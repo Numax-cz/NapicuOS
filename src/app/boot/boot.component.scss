@@ -1,0 +1,29 @@
+.BootBackground {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  color: white;
+}
+.BootScreen {
+  display: table;
+  z-index: 1;
+  height: 100vh;
+  min-height: 500px;
+  width: 100%;
+}
+.Logo {
+  font-size: 7rem;
+  text-align: center;
+}
+.Center {
+  display: table-cell;
+  vertical-align: middle;
+  padding-bottom: 355px;
+}
+.BottomText{
+    position: absolute;
+    bottom: 30%;
+    right: 0;
+    left: 0;
+    text-align: center;
+}
