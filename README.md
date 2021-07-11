@@ -14,7 +14,7 @@
    npm install
    ```
 
-### Spuštění
+## Spuštění
 
 1. Spuštění aplikace na localhostu
    ```sh
