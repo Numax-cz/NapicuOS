@@ -1,1 +1,22 @@
-<p>bios works!</p>
+<section class="BiosBackground">
+  <div class="Menu">
+    <div class="Top">
+      <p>Napicu BIOS SETUP</p>
+    </div>
+
+    <section class="root">
+      <div>
+        <p
+          *ngFor="let i of BiosMenu"
+          [ngClass]="i.selected ? 'selected' : 'nonselected'"
+        >
+          {{ i.title }}
+        </p>
+      </div>
+    </section>
+
+    <div class="Bottom">
+      <p>v02.69 Napicu 1985 - 2021</p>
+    </div>
+  </div>
+</section>
