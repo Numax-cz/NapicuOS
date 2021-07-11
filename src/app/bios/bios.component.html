@@ -8,11 +8,15 @@
       <div>
         <p
           *ngFor="let i of BiosMenu"
-          [ngClass]="i.selected ? 'selected' : 'nonselected'"
+          [ngClass]="i.id == selected? 'selected' : 'nonselected'"
         >
           {{ i.title }}
         </p>
       </div>
+    </section>
+
+    <section>
+      <router-outlet></router-outlet>
     </section>
 
     <div class="Bottom">

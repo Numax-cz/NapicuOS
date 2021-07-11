@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BootComponent } from './boot.component';
+import { TweakerComponent } from './tweaker.component';
 
-describe('BootComponent', () => {
-  let component: BootComponent;
-  let fixture: ComponentFixture<BootComponent>;
+describe('TweakerComponent', () => {
+  let component: TweakerComponent;
+  let fixture: ComponentFixture<TweakerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BootComponent ]
+      declarations: [ TweakerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BootComponent);
+    fixture = TestBed.createComponent(TweakerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -23,7 +23,7 @@ export class BootComponent implements OnInit {
   public RunBios = (e: KeyboardEvent): void => {
     if (e.keyCode == 46 || e.keyCode == 113) {
       setTimeout(() => {
-        this.router.navigate(['bios'], /*{ skipLocationChange: true } */);
+        this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
       }, this.startTime);
     }
   };

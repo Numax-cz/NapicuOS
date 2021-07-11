@@ -1,49 +1,87 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
   styleUrls: ['./bios.component.scss'],
 })
 export class BiosComponent implements OnInit {
-  constructor() {}
+  constructor(
+    @Inject(DOCUMENT) private doc: Document,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
+  }
+  public static selected: number = 0;
   public BiosMenu = [
     {
       title: 'Main',
-      selected: true,
+      router: 'main',
       id: 0,
     },
     {
       title: 'Ai Tweaker',
-      selected: false,
+      router: 'tweaker',
+
       id: 1,
     },
     {
       title: 'Advanced',
-      selected: false,
+      router: 'advanced',
       id: 2,
     },
     {
       title: 'Power',
-      selected: false,
+      router: 'power',
       id: 3,
     },
     {
       title: 'Boot',
-      selected: false,
+      router: 'bootb',
       id: 4,
     },
     {
       title: 'Tools',
-      selected: false,
+      router: 'tools',
       id: 5,
     },
     {
       title: 'Exit',
-      selected: false,
+      router: 'exit',
       id: 6,
     },
   ];
+  get selected(): number {
+    return BiosComponent.selected;
+  }
+
+  public Move = (e: KeyboardEvent): void => {
+    setTimeout(() => {
+      //ArrowRight
+      if (
+        e.keyCode == 39 &&
+        BiosComponent.selected < this.BiosMenu.length - 1
+      ) {
+        BiosComponent.selected += 1;
+        this.UpdateComponent();
+      }
+      //ArrowLeft
+      if (e.keyCode == 37 && BiosComponent.selected !== 0) {
+        BiosComponent.selected -= 1;
+        this.UpdateComponent();
+      }
+    }, 55);
+  };
+  public UpdateComponent(): void {
+    this.router.navigate(
+      [`bios/${this.BiosMenu[BiosComponent.selected].router}`],
+      { skipLocationChange: true }
+    );
+  }
+  public more() {
+    var l = 1 + 1;
+  }
 }
