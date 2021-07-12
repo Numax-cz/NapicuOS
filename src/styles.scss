@@ -28,7 +28,7 @@
 }
 #Grid-BiosItems {
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 60% 40%;
   padding: 3px 0px;
 }
 .colon{
@@ -54,6 +54,6 @@
 
 //Items
 
-.GridPaddin200{
-  padding-right: 200px;
+.Option{
+  color: blue;
 }

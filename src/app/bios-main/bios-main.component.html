@@ -2,9 +2,24 @@
   <div id="Frame">
     <div id="Title">System Overview</div>
     <div id="Grid">
-      <div class="Grid-Item GridPaddin200">
+      <div class="Grid-Item">
         <div class="Option"></div>
         <div class="Information">
+          <div *ngFor="let i of MainOption" id="Grid-BiosItems" class="Option">
+            <div>{{ i.title }}<span class="colon">:</span></div>
+            <div>[{{OptionsSelected}}]</div>
+          </div>
+
+          <!-- 
+          <div id="Grid-BiosItems" class="Option">
+            <div>System Date<span class="colon">:</span></div>
+            <div>[]</div>
+          </div>
+          <div id="Grid-BiosItems" class="Option">
+            <div>System Time<span class="colon">:</span></div>
+            <div>[]</div>
+          </div> -->
+
           <div id="Grid-BiosItems">
             <div>BIOS Version<span class="colon">:</span></div>
             <div>v02.69</div>

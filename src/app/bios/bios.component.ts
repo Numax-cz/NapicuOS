@@ -23,37 +23,32 @@ export class BiosComponent implements OnInit {
       id: 0,
     },
     {
-      title: 'Ai Tweaker',
-      router: 'tweaker',
-
-      id: 1,
-    },
-    {
       title: 'Advanced',
       router: 'advanced',
-      id: 2,
+      id: 1,
     },
     {
       title: 'Power',
       router: 'power',
-      id: 3,
+      id: 2,
     },
     {
       title: 'Boot',
       router: 'bootb',
-      id: 4,
+      id: 3,
     },
     {
       title: 'Tools',
       router: 'tools',
-      id: 5,
+      id: 4,
     },
     {
       title: 'Exit',
       router: 'exit',
-      id: 6,
+      id: 5,
     },
   ];
+  
   get selected(): number {
     return BiosComponent.selected;
   }
@@ -72,7 +67,12 @@ export class BiosComponent implements OnInit {
       if (e.keyCode == 37 && BiosComponent.selected !== 0) {
         BiosComponent.selected -= 1;
         this.UpdateComponent();
-        
+      }
+      //ArrowDown
+      if (e.keyCode == 40) {
+      }
+      //ArrowUp
+      if (e.keyCode == 38) {
       }
     }, 55);
   };
