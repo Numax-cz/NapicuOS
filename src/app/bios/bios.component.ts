@@ -72,6 +72,7 @@ export class BiosComponent implements OnInit {
       if (e.keyCode == 37 && BiosComponent.selected !== 0) {
         BiosComponent.selected -= 1;
         this.UpdateComponent();
+        
       }
     }, 55);
   };

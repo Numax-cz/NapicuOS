@@ -1,12 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: "DosVGA";
-  src: url("assets/font/Perfect DOS VGA 437.ttf") format("truetype"); 
+  src: url("assets/font/Perfect DOS VGA 437.ttf") format("truetype");
 }
 
-*{
+* {
   font-family: "DosVGA";
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+#BiosContainer {
+  background-color: lightgray;
+  width: 100%;
+  height: 85vh;
+  padding: 20px 10px;
+}
+#Frame {
+  border: 2px solid blue;
+  padding: 0px 30px;
+}
+#Grid {
+  display: grid;
+  grid-template-columns: 60% 30%;
+
+}
+#Grid-BiosItems {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  padding: 3px 0px;
+}
+.colon{
+  float: right;
+  margin-right: 10%;
+}
+#Title {
+  font-size: 1.8rem;
+  padding: 20px;
+  color: black;
+
+  font-weight: bold;
+}
+.Information{
+  font-size: 1.7rem;
+  color: gray;
+}
+
+
+
+
+
+
+//Items
+
+.GridPaddin200{
+  padding-right: 200px;
 }
