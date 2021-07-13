@@ -3,12 +3,12 @@
     <div class="Top">
       <p>Napicu BIOS SETUP</p>
     </div>
-    
+
     <section class="root">
       <div>
         <p
           *ngFor="let i of BiosMenu"
-          [ngClass]="i.id == selected? 'selected' : 'nonselected'"
+          [ngClass]="i.id == selected ? 'selected' : 'nonselected'"
         >
           {{ i.title }}
         </p>
@@ -16,7 +16,9 @@
     </section>
 
     <section>
-      <router-outlet></router-outlet>
+      <router-outlet
+        (activate)="Activate($event)"
+      ></router-outlet>
     </section>
 
     <div class="Bottom">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Option } from '../interface/Option';
+import { OptionsSelected } from '../Option';
 @Component({
   selector: 'app-bios-main',
   templateUrl: './bios-main.component.html',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BiosMainComponent implements OnInit {
   constructor() {}
-  static selected: number = 0;
-  ngOnInit(): void {}
+  static selected: number = 1;
+  ngOnInit(): void {
+    BiosMainComponent.selected = 0;
+  }
 
-  public MainOption = [
+  public MainOption: Option[] = [
     {
       title: 'System Language',
       options: [
@@ -25,16 +28,23 @@ export class BiosMainComponent implements OnInit {
       ],
       id: 0,
     },
+    {
+      title: 'System Date',
+      options: [
+        {
+          title: '{}',
+          selected: true,
+        },
+      ],
+      id: 1,
+    },
   ];
-  get OptionsSelected(): string {
-    var ret: string = "null";
-    this.MainOption[0].options.forEach((e: any) => {
-      if (e.selected) {
-        ret = e.title
-        return;
-      }
-      
-    });
-    return ret;
+
+  Options(o: Option): string {
+    return OptionsSelected(o);
+  }
+
+  get selected(): number {
+    return BiosMainComponent.selected;
   }
 }

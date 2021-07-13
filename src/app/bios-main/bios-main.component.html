@@ -5,9 +5,14 @@
       <div class="Grid-Item">
         <div class="Option"></div>
         <div class="Information">
-          <div *ngFor="let i of MainOption" id="Grid-BiosItems" class="Option">
+          <div
+            *ngFor="let i of MainOption; let index = index"
+            id="Grid-BiosItems"
+            class="Option"
+            [ngClass]="{ BIOSSelectedOption: i.id == selected }"
+          >
             <div>{{ i.title }}<span class="colon">:</span></div>
-            <div>[{{OptionsSelected}}]</div>
+            <div>[{{ Options(i) }}]</div>
           </div>
 
           <!-- 

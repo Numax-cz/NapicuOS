@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
+import { Menu } from '../interface/Menu';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -16,7 +17,7 @@ export class BiosComponent implements OnInit {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
   }
   public static selected: number = 0;
-  public BiosMenu = [
+  public BiosMenu: Menu[] = [
     {
       title: 'Main',
       router: 'main',
@@ -48,11 +49,14 @@ export class BiosComponent implements OnInit {
       id: 5,
     },
   ];
-  
+
   get selected(): number {
     return BiosComponent.selected;
   }
-
+  public Activate(e: Event): void {
+    console.log(e); //HERE
+    
+  }
   public Move = (e: KeyboardEvent): void => {
     setTimeout(() => {
       //ArrowRight
@@ -81,8 +85,5 @@ export class BiosComponent implements OnInit {
       [`bios/${this.BiosMenu[BiosComponent.selected].router}`],
       { skipLocationChange: true }
     );
-  }
-  public more() {
-    var l = 1 + 1;
   }
 }
