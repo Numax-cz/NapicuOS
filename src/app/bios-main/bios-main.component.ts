@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainOption } from '../Array/MainOption';
 import { BiosSettings } from '../interface/BiosSettings';
 import { Option } from '../interface/Option';
 import { MoveOption } from '../MoveOption';
@@ -15,32 +16,7 @@ export class BiosMainComponent implements OnInit, BiosSettings {
     this.selected = 0;
   }
 
-  public MainOption: Option[] = [
-    {
-      title: 'System Language',
-      options: [
-        {
-          title: 'English',
-          selected: true,
-        },
-        {
-          title: 'Korea',
-          selected: false,
-        },
-      ],
-      id: 0,
-    },
-    {
-      title: 'System Date',
-      options: [
-        {
-          title: '{}',
-          selected: true,
-        },
-      ],
-      id: 1,
-    },
-  ];
+  public MainOption: Option[] = MainOption
 
   Options(o: Option): string {
     return OptionsSelected(o);
@@ -51,8 +27,8 @@ export class BiosMainComponent implements OnInit, BiosSettings {
 
   }
   
-  public OpenMenu(e: Option[]) {
-    console.log(e);
+  public OpenMenu(option: Option[]) {
+
     
   }
 

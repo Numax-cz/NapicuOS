@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../interface/Menu';
 import { BiosSettings } from '../interface/BiosSettings';
+import { BiosMenu } from '../Array/BiosMenu';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -11,38 +12,7 @@ import { BiosSettings } from '../interface/BiosSettings';
 export class BiosComponent implements OnInit {
   public static selectedComponent: any;
   public static selected: number = 0;
-  public BiosMenu: Menu[] = [
-    {
-      title: 'Main',
-      router: 'main',
-      id: 0,
-    },
-    {
-      title: 'Advanced',
-      router: 'advanced',
-      id: 1,
-    },
-    {
-      title: 'Power',
-      router: 'power',
-      id: 2,
-    },
-    {
-      title: 'Boot',
-      router: 'bootb',
-      id: 3,
-    },
-    {
-      title: 'Tools',
-      router: 'tools',
-      id: 4,
-    },
-    {
-      title: 'Exit',
-      router: 'exit',
-      id: 5,
-    },
-  ];
+  public BiosMenu: Menu[] = BiosMenu;
   constructor(
     @Inject(DOCUMENT) private doc: Document,
     private router: Router
