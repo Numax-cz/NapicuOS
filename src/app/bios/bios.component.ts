@@ -1,21 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ComponentRef, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../interface/Menu';
+import { BiosSettings } from '../interface/BiosSettings';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
   styleUrls: ['./bios.component.scss'],
 })
 export class BiosComponent implements OnInit {
-  constructor(
-    @Inject(DOCUMENT) private doc: Document,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
-  }
+  public static selectedComponent: any;
   public static selected: number = 0;
   public BiosMenu: Menu[] = [
     {
@@ -49,14 +43,22 @@ export class BiosComponent implements OnInit {
       id: 5,
     },
   ];
+  constructor(
+    @Inject(DOCUMENT) private doc: Document,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
+  }
 
   get selected(): number {
     return BiosComponent.selected;
   }
-  public Activate(e: Event): void {
-    console.log(e); //HERE
-    
+  public Activate(e: any): void {
+    BiosComponent.selectedComponent = e;
   }
+
   public Move = (e: KeyboardEvent): void => {
     setTimeout(() => {
       //ArrowRight
@@ -72,11 +74,10 @@ export class BiosComponent implements OnInit {
         BiosComponent.selected -= 1;
         this.UpdateComponent();
       }
-      //ArrowDown
-      if (e.keyCode == 40) {
-      }
-      //ArrowUp
-      if (e.keyCode == 38) {
+
+      //ArrowDown & ArrowUp
+      if (e.keyCode == 40 || e.keyCode == 38) {
+        BiosComponent.selectedComponent.Move(e);
       }
     }, 55);
   };
