@@ -16,7 +16,7 @@ export class BiosMainComponent implements OnInit, BiosSettings {
     this.selected = 0;
   }
 
-  public MainOption: Option[] = MainOption
+  public MainOption: Option[] = MainOption;
 
   Options(o: Option): string {
     return OptionsSelected(o);
@@ -24,12 +24,7 @@ export class BiosMainComponent implements OnInit, BiosSettings {
 
   public Move(e: KeyboardEvent) {
     MoveOption(this, e.keyCode);
-
-  }
-  
-  public OpenMenu(option: Option[]) {
-
-    
   }
 
+  public OpenMenu(option: Option[]) {}
 }

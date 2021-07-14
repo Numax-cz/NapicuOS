@@ -4,6 +4,13 @@
   src: url("assets/font/Perfect DOS VGA 437.ttf") format("truetype");
 }
 
+#BiosOptionMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 * {
   font-family: "DosVGA";
   padding: 0;
@@ -24,14 +31,13 @@
 #Grid {
   display: grid;
   grid-template-columns: 60% 30%;
-
 }
 #Grid-BiosItems {
   display: grid;
   grid-template-columns: 60% 40%;
   padding: 3px 0px;
 }
-.colon{
+.colon {
   float: right;
   margin-right: 10%;
 }
@@ -42,22 +48,17 @@
 
   font-weight: bold;
 }
-.Information{
+.Information {
   font-size: 1.7rem;
   color: gray;
 }
 
-
-
-
-
-
 //Items
 
-.Option{
+.Option {
   color: blue;
 }
 
-.BIOSSelectedOption{
+.BIOSSelectedOption {
   color: white;
 }
