@@ -1,0 +1,19 @@
+#BiosOptionMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: blue;
+  padding: 10px 3px;
+  font-size: 2rem;
+  color: white;
+   box-shadow: 10px 10px black;
+}
+.BiosPanel{
+  padding: 20px;
+  border-left: 4px solid white;
+  border-right: 4px solid white;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  
+}

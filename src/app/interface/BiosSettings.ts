@@ -1,8 +1,6 @@
-import { Option } from './Option';
+import { ComponentOption } from './ComponentOption';
 
 export interface BiosSettings {
   selected: number;
-  Move(e: KeyboardEvent): void;
-  MainOption: Option[];
-  OpenMenu(e: Option[]): void;
+  MainOption: ComponentOption[];
 }

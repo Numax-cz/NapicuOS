@@ -1,4 +1,4 @@
-import { BiosSettings } from './interface/BiosSettings';
+import { BiosSettings } from '../interface/BiosSettings';
 
 export function MoveOption(component: BiosSettings, keyCode: number): void {
   // ArrowDown

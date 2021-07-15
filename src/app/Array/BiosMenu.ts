@@ -1,6 +1,6 @@
-import { Menu } from '../interface/Menu';
+import { BiosPanel } from '../interface/BiosPanel';
 
-export var BiosMenu: Menu[] = [
+export var BiosMenu: BiosPanel[] = [
   {
     title: 'Main',
     router: 'main',

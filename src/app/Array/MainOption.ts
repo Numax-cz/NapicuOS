@@ -1,5 +1,5 @@
-import { Option } from '../interface/Option';
-export var MainOption: Option[] = [
+import { ComponentOption } from '../interface/ComponentOption';
+export var MainOption: ComponentOption[] = [
   {
     title: 'System Language',
     options: [
@@ -9,6 +9,14 @@ export var MainOption: Option[] = [
       },
       {
         title: 'Korea',
+        selected: false,
+      },
+      {
+        title: 'Slovakia',
+        selected: false,
+      },
+      {
+        title: 'Deutschland',
         selected: false,
       },
     ],

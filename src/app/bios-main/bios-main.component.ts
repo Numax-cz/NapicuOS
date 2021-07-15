@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MainOption } from '../Array/MainOption';
 import { BiosSettings } from '../interface/BiosSettings';
-import { Option } from '../interface/Option';
-import { MoveOption } from '../MoveOption';
-import { OptionsSelected } from '../Option';
+import { ComponentOption } from '../interface/ComponentOption';
+import { SettingsOptions } from '../interface/SettingsOptions';
+import { OptionsSelected } from '../Scripts/Option';
 @Component({
   selector: 'app-bios-main',
   templateUrl: './bios-main.component.html',
@@ -16,15 +16,9 @@ export class BiosMainComponent implements OnInit, BiosSettings {
     this.selected = 0;
   }
 
-  public MainOption: Option[] = MainOption;
+  public MainOption: ComponentOption[] = MainOption;
 
-  Options(o: Option): string {
+  Options(o: ComponentOption): string {
     return OptionsSelected(o);
   }
-
-  public Move(e: KeyboardEvent) {
-    MoveOption(this, e.keyCode);
-  }
-
-  public OpenMenu(option: Option[]) {}
 }

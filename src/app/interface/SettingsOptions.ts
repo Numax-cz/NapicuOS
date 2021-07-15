@@ -1,4 +1,4 @@
-export interface BiosOption{
+export interface SettingsOptions{
     title: string,
     selected: boolean
 }

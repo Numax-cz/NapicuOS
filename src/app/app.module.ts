@@ -12,6 +12,7 @@ import { PowerComponent } from './power/power.component';
 import { BootbComponent } from './bootb/bootb.component';
 import { ToolsComponent } from './tools/tools.component';
 import { ExitComponent } from './exit/exit.component';
+import { OptionPanelComponent } from './option-panel/option-panel.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ExitComponent } from './exit/exit.component';
     PowerComponent,
     BootbComponent,
     ToolsComponent,
-    ExitComponent
+    ExitComponent,
+    OptionPanelComponent
   ],
   imports: [
     BrowserModule,
