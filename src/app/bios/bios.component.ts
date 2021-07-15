@@ -72,7 +72,7 @@ export class BiosComponent implements OnInit {
           //Move
         }
         if (e.keyCode == 13) {
-          //Close 
+          //Close --save
         }
         if (e.keyCode == 27) {
           //Close --unsave
