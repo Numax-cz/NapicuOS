@@ -1,6 +1,6 @@
-import { ToolBarComponents } from "../Scripts/ToolBarComponents";
 
-export var Main: ToolBarComponents = {
+
+export var Main = {
   title: 'System Overview',
   settings: [
     {
