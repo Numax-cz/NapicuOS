@@ -81,7 +81,7 @@ export class BiosComponent implements OnInit {
         }
         //Close --unsavey
         if (e.keyCode == 27) {
-          CloseWindowOptionUnsave(BiosComponent.selectedComponent);
+          CloseWindowOptionUnsave();
         }
       }
     }, 55);

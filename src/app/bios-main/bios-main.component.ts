@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MainOption } from '../Array/MainOption';
 import { BiosSettings } from '../interface/BiosSettings';
 import { ComponentOption } from '../interface/ComponentOption';
-import { SettingsOptions } from '../interface/SettingsOptions';
-import { OptionsSelected } from '../Scripts/Option';
+import { GetOptionsTitle } from '../Scripts/GetOptionsTitle';
+
 @Component({
   selector: 'app-bios-main',
   templateUrl: './bios-main.component.html',
@@ -19,6 +19,6 @@ export class BiosMainComponent implements OnInit, BiosSettings {
   public MainOption: ComponentOption[] = MainOption;
 
   Options(o: ComponentOption): string {
-    return OptionsSelected(o);
+   return GetOptionsTitle(o);
   }
 }
