@@ -1,5 +1,10 @@
 <section id="BiosOptionMenu">
   <div class="BiosPanel">
-    <div *ngFor="let i of Items">{{ i.title }}</div>
+    <div
+      *ngFor="let i of Items; let index = index"
+      [ngClass]="index == Selected ? 'selected' : 'nonselected'"
+    >
+      {{ i.title }}
+    </div>
   </div>
 </section>

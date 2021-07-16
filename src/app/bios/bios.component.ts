@@ -2,18 +2,23 @@ import { Component, ComponentRef, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { BiosPanel } from '../interface/BiosPanel';
-import { BiosSettings } from '../interface/BiosSettings';
 import { BiosMenu } from '../Array/BiosMenu';
 
 import { SettingsOptions } from '../interface/SettingsOptions';
 import { MoveOption } from '../Scripts/MoveOption';
-import { OpenMenuOption } from '../Scripts/OpenMenuOption';
+import { OpenWindowOption } from '../Scripts/OpenWindowOption';
+import {
+  CloseWindowOptionUnsave,
+  CloseWindowOptionSave,
+} from '../Scripts/CloseWindowOption';
+import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
   styleUrls: ['./bios.component.scss'],
 })
 export class BiosComponent implements OnInit {
+  //Main
   public static selectedComponent: any;
   public static selected: number = 0;
   public BiosMenu: BiosPanel[] = BiosMenu;
@@ -41,8 +46,6 @@ export class BiosComponent implements OnInit {
 
   public Move = (e: KeyboardEvent): void => {
     setTimeout(() => {
-
-      
       //ArrowRight
       if (!BiosComponent.WindowDisplay) {
         if (
@@ -65,17 +68,20 @@ export class BiosComponent implements OnInit {
         }
         //Enter
         if (e.keyCode == 13) {
-          OpenMenuOption(BiosComponent.selectedComponent);
+          OpenWindowOption(BiosComponent.selectedComponent);
         }
       } else {
         if (e.keyCode == 40 || e.keyCode == 38) {
           //Move
+          MoveWindowOptions(e.keyCode);
         }
+        //Close --save
         if (e.keyCode == 13) {
-          //Close --save
+          CloseWindowOptionSave(BiosComponent.selectedComponent);
         }
+        //Close --unsavey
         if (e.keyCode == 27) {
-          //Close --unsave
+          CloseWindowOptionUnsave(BiosComponent.selectedComponent);
         }
       }
     }, 55);

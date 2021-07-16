@@ -10,10 +10,16 @@ import { SettingsOptions } from '../interface/SettingsOptions';
 export class OptionPanelComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  
+  ngOnDestroy(): void {
+    BiosComponent.WindowSelectedOption = 0;
+  }
 
   get Items(): SettingsOptions[] {
     return BiosComponent.WindowItems;
   }
-
+  get Selected(): number {
+    return BiosComponent.WindowSelectedOption;
+  }
 }
