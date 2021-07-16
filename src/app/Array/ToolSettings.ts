@@ -1,6 +1,7 @@
 import { ComponentOption } from '../interface/ComponentOption';
+import { ToolSettings } from '../interface/ToolSettings';
 
-export var Main = {
+export var Main: ToolSettings = {
   title: 'System Overview',
   settings: [
     {
