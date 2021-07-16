@@ -15,10 +15,19 @@
       </div>
     </section>
 
-    <section>
-      <router-outlet
-        (activate)="Activate($event)"
-      ></router-outlet>
+    <section id="BiosContainer">
+      <div id="Frame">
+        <div id="Title">System Overview</div>
+        <div id="Grid">
+          <div class="Grid-Item">
+            <div class="Option"></div>
+            <section class="Information">
+              <router-outlet (activate)="Activate($event)"></router-outlet>
+            </section>
+          </div>
+          <div class="Grid-Item">xd</div>
+        </div>
+      </div>
     </section>
 
     <div class="Bottom">
@@ -26,4 +35,4 @@
     </div>
   </div>
 </section>
- <app-option-panel *ngIf="Display"></app-option-panel>
+<app-option-panel *ngIf="Display"></app-option-panel>

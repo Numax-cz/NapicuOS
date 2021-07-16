@@ -6,7 +6,12 @@ import { AppComponent } from './app.component';
 import { BootComponent } from './boot/boot.component';
 import { BiosComponent } from './bios/bios.component';
 import { BiosMainComponent } from './bios-main/bios-main.component';
+import { TweakerComponent } from './tweaker/tweaker.component';
 import { AdvancedComponent } from './advanced/advanced.component';
+import { PowerComponent } from './power/power.component';
+import { BootbComponent } from './bootb/bootb.component';
+import { ToolsComponent } from './tools/tools.component';
+import { ExitComponent } from './exit/exit.component';
 import { OptionPanelComponent } from './option-panel/option-panel.component';
 
 @NgModule({
@@ -15,7 +20,12 @@ import { OptionPanelComponent } from './option-panel/option-panel.component';
     BootComponent,
     BiosComponent,
     BiosMainComponent,
+    TweakerComponent,
     AdvancedComponent,
+    PowerComponent,
+    BootbComponent,
+    ToolsComponent,
+    ExitComponent,
     OptionPanelComponent
   ],
   imports: [

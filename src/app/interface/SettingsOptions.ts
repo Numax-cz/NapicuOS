@@ -1,4 +1,3 @@
-export interface SettingsOptions{
-    title: string,
-
+export interface SettingsOptions {
+  title: string;
 }

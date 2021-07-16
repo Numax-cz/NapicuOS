@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainOption } from '../Array/MainOption';
 import { BiosSettings } from '../interface/BiosSettings';
 import { ComponentOption } from '../interface/ComponentOption';
+import { SettingsOptions } from '../interface/SettingsOptions';
 import { GetOptionsTitle } from '../Scripts/GetOptionsTitle';
 
 @Component({
@@ -19,6 +20,6 @@ export class BiosMainComponent implements OnInit, BiosSettings {
   public MainOption: ComponentOption[] = MainOption;
 
   Options(o: ComponentOption): string {
-   return GetOptionsTitle(o);
+    return GetOptionsTitle(o);
   }
 }

@@ -5,22 +5,21 @@ export var MainOption: ComponentOption[] = [
     options: [
       {
         title: 'English',
-        // selected: true,
+        selected: true,
       },
       {
         title: 'Korea',
-        //selected: false,
+        selected: false,
       },
       {
         title: 'Slovakia',
-        // selected: false,
+        selected: false,
       },
       {
         title: 'Deutschland',
-        //selected: false,
+        selected: false,
       },
     ],
-    selected: 0,
     id: 0,
   },
   {
@@ -28,10 +27,9 @@ export var MainOption: ComponentOption[] = [
     options: [
       {
         title: '{}',
-        //selected: true,
+        selected: true,
       },
     ],
-    selected: 0,
     id: 1,
   },
 ];
