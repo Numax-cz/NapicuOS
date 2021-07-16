@@ -47,6 +47,7 @@ export class BiosComponent implements OnInit {
   public Move = (e: KeyboardEvent): void => {
     setTimeout(() => {
       //ArrowRight
+      if (!BiosComponent.selectedComponent) return;
       if (!BiosComponent.WindowDisplay) {
         if (
           e.keyCode == 39 &&

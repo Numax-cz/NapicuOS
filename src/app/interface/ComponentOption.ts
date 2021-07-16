@@ -4,5 +4,5 @@ export interface ComponentOption {
   title: string;
   options: SettingsOptions[];
   id: number;
-  selected: number
+  selected: number;
 }

@@ -8,7 +8,8 @@ export function CloseWindowOptionUnsave(component: any): void {
 export function CloseWindowOptionSave(component: any): void {
   if (component) {
     //Todo save Option
-    
+    component.MainOption[component.selected].selected = BiosComponent.WindowSelectedOption;
+    BiosComponent.WindowSelectedOption = 0;
     BiosComponent.WindowDisplay = false;
   }
 }

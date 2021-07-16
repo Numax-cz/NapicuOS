@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MainOption } from '../Array/MainOption';
+import { Main } from '../Array/ToolSettings';
 import { BiosSettings } from '../interface/BiosSettings';
 import { ComponentOption } from '../interface/ComponentOption';
-import { SettingsOptions } from '../interface/SettingsOptions';
 import { GetOptionsTitle } from '../Scripts/GetOptionsTitle';
 
 @Component({
@@ -12,12 +11,12 @@ import { GetOptionsTitle } from '../Scripts/GetOptionsTitle';
 })
 export class BiosMainComponent implements OnInit, BiosSettings {
   constructor() {}
-  public selected: number = 1;
+  public selected: number = 0;
   ngOnInit(): void {
     this.selected = 0;
   }
 
-  public MainOption: ComponentOption[] = MainOption;
+  public MainOption: ComponentOption[] = Main.settings;
 
   Options(o: ComponentOption): string {
     return GetOptionsTitle(o);

@@ -1,4 +1,4 @@
-
+import { ComponentOption } from '../interface/ComponentOption';
 
 export var Main = {
   title: 'System Overview',
@@ -39,4 +39,3 @@ export var Main = {
     },
   ],
 };
-
