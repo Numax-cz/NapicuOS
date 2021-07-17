@@ -1,10 +1,23 @@
 import { BiosComponent } from '../bios/bios.component';
-
-
 export function OpenWindowOption(component: any): void {
-  if (component) {
+  if (!component.MainOption) return;
+
+  if (component.MainOption[component.selected].options) {
     BiosComponent.WindowItems =
       component.MainOption[component.selected].options;
-    BiosComponent.WindowDisplay = true;
+  } else if (component.MainOption[component.selected].onTrue) {
+    BiosComponent.WindowItems = [
+      {
+        title: 'Yes',
+        settings: [],
+      },
+      {
+        title: 'No',
+        settings: [],
+      },
+    ];
+  } else {
+    console.error('Invalid input Array');
   }
+  BiosComponent.WindowDisplay = true;
 }

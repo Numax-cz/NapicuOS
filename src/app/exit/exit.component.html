@@ -1,1 +1,8 @@
-<p>exit works!</p>
+<div
+  *ngFor="let i of MainOption; let index = index"
+  id="Grid-BiosItems"
+  class="Option"
+  [ngClass]="{ BIOSSelectedOption: i.id == selected }"
+>
+  <div>{{ i.title }}</div>
+</div>

@@ -19,7 +19,7 @@ export class BiosMainComponent implements OnInit, ComponentClass {
 
   public MainOption: settings[] = Main.settings;
 
-  Options(o: settings): string {
+  public Options(o: settings): string {
     return GetOptionsTitle(o);
   }
 }

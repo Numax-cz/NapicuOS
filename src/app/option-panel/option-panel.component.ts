@@ -10,8 +10,8 @@ import { settings, ToolSettings } from '../interface/ToolSettings';
 export class OptionPanelComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void { }
-  
+  ngOnInit(): void {}
+
   ngOnDestroy(): void {
     BiosComponent.WindowSelectedOption = 0;
   }

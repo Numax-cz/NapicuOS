@@ -3,7 +3,6 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../Array/BiosMenu';
 
-
 import { MoveOption } from '../Scripts/MoveOption';
 import { OpenWindowOption } from '../Scripts/OpenWindowOption';
 import {
@@ -13,6 +12,7 @@ import {
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { ToolSettings } from '../interface/ToolSettings';
+import { ComponentClass } from '../interface/ComponentClass';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -49,7 +49,7 @@ export class BiosComponent implements OnInit {
     setTimeout(() => {
       //ArrowRight
       if (!BiosComponent.selectedComponent) return;
-      if (!BiosComponent.WindowDisplay) {
+      if (!BiosComponent.WindowDisplay ) {
         if (
           e.keyCode == 39 &&
           BiosComponent.selected < this.BiosMenu.length - 1
@@ -73,7 +73,12 @@ export class BiosComponent implements OnInit {
           OpenWindowOption(BiosComponent.selectedComponent);
         }
       } else {
-        if (e.keyCode == 40 || e.keyCode == 38) {
+        if (
+          e.keyCode == 40 ||
+          e.keyCode == 38 ||
+          e.keyCode == 37 ||
+          e.keyCode == 39
+        ) {
           //Move
           MoveWindowOptions(e.keyCode);
         }

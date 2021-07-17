@@ -1,6 +1,8 @@
 import { BiosComponent } from '../bios/bios.component';
 
 export function MoveWindowOptions(keyCode: number): void {
+
+
   // ArrowDown
   if (
     keyCode == 40 &&
@@ -12,4 +14,6 @@ export function MoveWindowOptions(keyCode: number): void {
   if (keyCode == 38 && BiosComponent.WindowSelectedOption > 0) {
     BiosComponent.WindowSelectedOption -= 1;
   }
+  
+  
 }
