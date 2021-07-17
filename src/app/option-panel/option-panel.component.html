@@ -1,10 +1,16 @@
 <section id="BiosOptionMenu">
   <div class="BiosPanel">
-    <div
-      *ngFor="let i of Items; let index = index"
-      [ngClass]="index == Selected ? 'selected' : 'nonselected'"
-    >
-      {{ i.title }}
+    <div *ngIf="MiddleTitle" id="MiddleTitle">{{ MiddleTitle }}</div>
+    <div [ngClass]="{ flex: MiddleTitle }">
+
+
+      <div
+        *ngFor="let i of Items; let index = index"
+        [ngClass]="{ selected: index == Selected }"
+      >
+        {{ i.title }}
+      </div>
+
     </div>
   </div>
 </section>
