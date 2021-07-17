@@ -1,4 +1,4 @@
-import { ComponentOption } from '../interface/ComponentOption';
+
 import { ToolSettings } from '../interface/ToolSettings';
 
 export var Main: ToolSettings = {

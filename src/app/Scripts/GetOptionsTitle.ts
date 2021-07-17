@@ -1,5 +1,6 @@
-import { ComponentOption } from '../interface/ComponentOption';
+import { settings } from "../interface/ToolSettings";
 
-export function GetOptionsTitle(component: ComponentOption): string {
+
+export function GetOptionsTitle(component: settings): string {
   return component.options[component.selected].title;
 }

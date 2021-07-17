@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BiosComponent } from '../bios/bios.component';
-import { SettingsOptions } from '../interface/SettingsOptions';
+import { settings, ToolSettings } from '../interface/ToolSettings';
 
 @Component({
   selector: 'app-option-panel',
@@ -16,7 +16,7 @@ export class OptionPanelComponent implements OnInit {
     BiosComponent.WindowSelectedOption = 0;
   }
 
-  get Items(): SettingsOptions[] {
+  get Items(): ToolSettings[] {
     return BiosComponent.WindowItems;
   }
   get Selected(): number {

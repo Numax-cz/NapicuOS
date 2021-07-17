@@ -1,6 +1,7 @@
-import { BiosSettings } from '../interface/BiosSettings';
+import { ComponentClass } from "../interface/ComponentClass";
 
-export function MoveOption(component: BiosSettings, keyCode: number): void {
+
+export function MoveOption(component: ComponentClass, keyCode: number): void {
   // ArrowDown
   if (!component.MainOption) return;
   if (keyCode == 40 && component.selected < component.MainOption.length - 1) {

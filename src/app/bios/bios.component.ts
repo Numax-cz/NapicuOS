@@ -1,10 +1,9 @@
 import { Component, ComponentRef, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { BiosPanel } from '../interface/BiosPanel';
-import { BiosMenu } from '../Array/BiosMenu';
+import { Menu } from '../Array/BiosMenu';
 
-import { SettingsOptions } from '../interface/SettingsOptions';
+
 import { MoveOption } from '../Scripts/MoveOption';
 import { OpenWindowOption } from '../Scripts/OpenWindowOption';
 import {
@@ -12,6 +11,8 @@ import {
   CloseWindowOptionSave,
 } from '../Scripts/CloseWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
+import { BiosMenu } from '../interface/BiosMenu';
+import { ToolSettings } from '../interface/ToolSettings';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -21,10 +22,10 @@ export class BiosComponent implements OnInit {
   //Main
   public static selectedComponent: any;
   public static selected: number = 0;
-  public BiosMenu: BiosPanel[] = BiosMenu;
+  public BiosMenu: BiosMenu[] = Menu;
 
   //PopUp Alert
-  public static WindowItems: SettingsOptions[];
+  public static WindowItems: ToolSettings[];
   public static WindowDisplay: boolean = false;
   public static WindowSelectedOption: number = 0;
 
