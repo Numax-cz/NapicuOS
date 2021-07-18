@@ -12,7 +12,7 @@ import {
 } from '../Scripts/CloseWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
-import { ToolSettings } from '../interface/ToolSettings';
+import { Options, ToolSettings } from '../interface/ToolSettings';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -25,7 +25,7 @@ export class BiosComponent implements OnInit {
   public BiosMenu: BiosMenu[] = Menu;
 
   //PopUp Alert
-  public static WindowItems: ToolSettings[];
+  public static WindowItems: Options[];
   public static WindowDisplay: boolean = false;
   public static WindowSelectedOption: number = 0;
 

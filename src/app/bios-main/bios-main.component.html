@@ -2,10 +2,14 @@
   *ngFor="let i of MainOption; let index = index"
   id="Grid-BiosItems"
   class="Option"
-  [ngClass]="{ BIOSSelectedOption: i.id == selected }"
+  [ngClass]="{ BIOSSelectedOption: index == selected }"
 >
   <div>{{ i.title }}<span class="colon">:</span></div>
-  <div>[{{ Options(i) }}]</div>
+  <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
+  <div *ngIf="isDate(i, index)">
+    {{ i.options[0].date?.hours }}<span>:</span>{{ i.options[0].date?.minutes
+    }}<span>:</span>{{ i.options[0].date?.seconds }}
+  </div>
 </div>
 
 <div id="Grid-BiosItems">

@@ -7,9 +7,16 @@ export interface settings {
   title: string;
   options: Options[];
   selected: number;
-  id: number;
 }
 
 export interface Options {
-  title: string;
+  title?: string;
+  date?: Date;
+  time?: string;
+}
+
+export interface Date {
+  hours: string;
+  minutes: string;
+  seconds: string;
 }

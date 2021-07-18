@@ -1,6 +1,20 @@
-import { settings } from "../interface/ToolSettings";
+import { settings } from '../interface/ToolSettings';
 
+export function GetOptionsTitle(component: settings): string | null | undefined {
+  if (
+    component.options[component.selected] &&
+    component.options[component.selected].title
+  ) {
+    return component.options[component.selected].title;
+  } 
+  return null;
 
-export function GetOptionsTitle(component: settings): string {
-  return component.options[component.selected].title;
 }
+export function GetOptionsTime(component: settings): Object | null{
+  
+  if (component.options[0] && component.options[0].date) {
+    return component.options[0].date;
+  } 
+  return null;
+}
+

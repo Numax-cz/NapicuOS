@@ -1,4 +1,3 @@
-
 import { ToolSettings } from '../interface/ToolSettings';
 
 export var Main: ToolSettings = {
@@ -21,18 +20,19 @@ export var Main: ToolSettings = {
         },
       ],
       selected: 0,
-      id: 0,
     },
     {
       title: 'System Date',
       options: [
         {
-          title: '{}',
-          //selected: true,
+          date: {
+            hours: '10',
+            minutes: '20',
+            seconds: '30',
+          },
         },
       ],
       selected: 0,
-      id: 1,
     },
   ],
 };

@@ -7,8 +7,8 @@
     <section class="root">
       <div>
         <p
-          *ngFor="let i of BiosMenu"
-          [ngClass]="i.id == selected ? 'selected' : 'nonselected'"
+          *ngFor="let i of BiosMenu; let index = index"
+          [ngClass]="{ selected: index == selected }"
         >
           {{ i.title }}
         </p>
