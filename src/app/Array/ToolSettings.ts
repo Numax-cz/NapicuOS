@@ -25,11 +25,16 @@ export var Main: ToolSettings = {
     },
     {
       title: 'System Date',
-      options: [
+      advanced: [
         {
-          title: '{}',
-          //selected: true,
+          title: "00"
         },
+        {
+          title: "00"
+        },
+        {
+          title: "00"
+        }
       ],
       selected: 0,
       id: 1,
