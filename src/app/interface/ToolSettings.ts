@@ -5,8 +5,7 @@ export interface ToolSettings {
 
 export interface settings {
   title: string;
-  options?: Options[];
-  advanced?: any;
+  options: Options[];
   selected: number;
   id: number;
 }
