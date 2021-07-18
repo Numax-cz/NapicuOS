@@ -1,3 +1,4 @@
+
 import { ToolSettings } from '../interface/ToolSettings';
 
 export var Main: ToolSettings = {
@@ -8,19 +9,15 @@ export var Main: ToolSettings = {
       options: [
         {
           title: 'English',
-          // selected: true,
         },
         {
           title: 'Korea',
-          //selected: false,
         },
         {
           title: 'Slovakia',
-          // selected: false,
         },
         {
           title: 'Deutschland',
-          //selected: false,
         },
       ],
       selected: 0,
@@ -39,5 +36,3 @@ export var Main: ToolSettings = {
     },
   ],
 };
-
-

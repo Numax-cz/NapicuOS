@@ -1,5 +1,5 @@
 export interface ToolSettings {
-  title: string | null;
+  title: string;
   settings: settings[];
 }
 

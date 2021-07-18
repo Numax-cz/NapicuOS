@@ -9,9 +9,9 @@ import { settings, ToolSettings } from '../interface/ToolSettings';
 })
 export class OptionPanelComponent implements OnInit {
   constructor() {}
-  public static MainTitle: string;
-  ngOnInit(): void {}
 
+  ngOnInit(): void { }
+  
   ngOnDestroy(): void {
     BiosComponent.WindowSelectedOption = 0;
   }
@@ -21,9 +21,5 @@ export class OptionPanelComponent implements OnInit {
   }
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
-  }
-
-  get MiddleTitle(): string {
-    return OptionPanelComponent.MainTitle;
   }
 }
