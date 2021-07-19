@@ -11,14 +11,12 @@ export interface settings {
 
 export interface Options {
   title?: string;
-  date?: Date;
+  date?: Date[];
   time?: string;
 }
 
 export interface Date {
-  hours: string;
-  minutes: string;
-  seconds: string;
+  title: string
 }
 
 //When adding it is necessary to initialize in Type.ts

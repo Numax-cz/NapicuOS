@@ -25,11 +25,17 @@ export var Main: ToolSettings = {
       title: 'System Date',
       options: [
         {
-          date: {
-            hours: '10',
-            minutes: '20',
-            seconds: '30',
-          },
+          date: [
+            {
+              title: '00',
+            },
+            {
+              title: '00',
+            },
+            {
+              title: '00',
+            },
+          ],
         },
       ],
       selected: 0,
