@@ -3,7 +3,6 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../Array/BiosMenu';
 
-
 import { MoveOption } from '../Scripts/MoveOption';
 import { OpenWindowOption } from '../Scripts/OpenWindowOption';
 import {
@@ -27,7 +26,7 @@ export class BiosComponent implements OnInit {
   //PopUp Alert
   public static WindowItems: Options[];
   public static WindowDisplay: boolean = false;
-  public static WindowFastOption: boolean = false;
+  public static WindowFastOptionDisplay: boolean = false;
   public static WindowSelectedOption: number = 0;
 
   constructor(
@@ -50,7 +49,10 @@ export class BiosComponent implements OnInit {
     setTimeout(() => {
       //ArrowRight
       if (!BiosComponent.selectedComponent) return;
-      if (!BiosComponent.WindowDisplay) {
+      if (
+        !BiosComponent.WindowDisplay &&
+        !BiosComponent.WindowFastOptionDisplay
+      ) {
         if (
           e.keyCode == 39 &&
           BiosComponent.selected < this.BiosMenu.length - 1
@@ -63,7 +65,10 @@ export class BiosComponent implements OnInit {
           BiosComponent.selected -= 1;
           this.UpdateComponent();
         }
-        if (!BiosComponent.WindowDisplay) {
+        if (
+          !BiosComponent.WindowDisplay &&
+          !BiosComponent.WindowFastOptionDisplay
+        ) {
         }
         //ArrowDown & ArrowUp
         if (e.keyCode == 40 || e.keyCode == 38) {
@@ -74,6 +79,7 @@ export class BiosComponent implements OnInit {
           OpenWindowOption(BiosComponent.selectedComponent);
         }
       } else {
+        // TODO Add WindowFastOptionDisplay
         if (e.keyCode == 40 || e.keyCode == 38) {
           //Move
           MoveWindowOptions(e.keyCode);

@@ -1,6 +1,7 @@
 import { Directive } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Main } from '../Array/ToolSettings';
+import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
 import { Options, settings, ToolSettings } from '../interface/ToolSettings';
 
@@ -19,14 +20,16 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     this.selected = 0;
   }
 
-
-
   public MainOption: settings[] = Main.settings;
 
   Options(o: settings): any {
-    return GetOptionsTitle(o) || GetOptionsTime(o) || BiosMainComponent.errorType();
+    return (
+      GetOptionsTitle(o) || GetOptionsTime(o) || BiosMainComponent.errorType()
+    );
   }
-
+  get Selected(): number {
+    return BiosComponent.WindowSelectedOption;
+  }
   isString(val: any): boolean {
     return typeof val === 'string';
   }
@@ -34,7 +37,7 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     console.error('Array Error');
     return '{[Bios_Main]TYPE ERROR}';
   }
-
+  //TOdo do píče to dát
   public isOption(component: settings, index: number): boolean {
     if (component.options[index] && component.options[index].title) {
       return true;

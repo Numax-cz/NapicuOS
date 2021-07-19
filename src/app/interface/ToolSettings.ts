@@ -12,11 +12,12 @@ export interface settings {
 export interface Options {
   title?: string;
   date?: Date[];
-  time?: string;
+  //TODO Time
+  //TODO Date TO Time 
 }
 
 export interface Date {
   title: string
 }
 
-//When adding it is necessary to initialize in Type.ts
+// ! When adding it is necessary to initialize in Type.ts

@@ -6,14 +6,14 @@
 >
   <div>{{ i.title }}<span class="colon">:</span></div>
   <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
-  <!-- <div *ngIf="isDate(i, index)">
-    {{ i.options[0].date?.hours }}<span>:</span>{{ i.options[0].date?.minutes
-    }}<span>:</span>{{ i.options[0].date?.seconds }}
-  </div> -->
+
   <div *ngIf="isDate(i, index)">
     [<span
       *ngFor="let time of MainOption[1].options[0].date; let timeIndex = index"
-      >{{ time.title }}<span *ngIf="timeIndex < 2">:</span></span
+      ><span [ngClass]="{ BIOSSelectedTime: Selected == timeIndex }">{{
+        time.title
+      }}</span
+      ><span *ngIf="timeIndex < 2">:</span></span
     >]
   </div>
 </div>

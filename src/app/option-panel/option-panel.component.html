@@ -2,7 +2,7 @@
   <div class="BiosPanel">
     <div
       *ngFor="let i of Items; let index = index"
-      [ngClass]="index == Selected ? 'selected' : 'nonselected'"
+      [ngClass]="{ selected: index == Selected }"
     >
       {{ i.title }}
     </div>
