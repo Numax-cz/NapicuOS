@@ -36,3 +36,6 @@ export var Main: ToolSettings = {
     },
   ],
 };
+
+//TOdo isOption / isDate
+//TOdo pročištění kodu od zbytečných funkcí 
