@@ -20,3 +20,5 @@ export interface Date {
   minutes: string;
   seconds: string;
 }
+
+//When adding it is necessary to initialize in Type.ts

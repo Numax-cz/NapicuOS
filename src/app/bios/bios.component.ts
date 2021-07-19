@@ -27,6 +27,7 @@ export class BiosComponent implements OnInit {
   //PopUp Alert
   public static WindowItems: Options[];
   public static WindowDisplay: boolean = false;
+  public static WindowFastOption: boolean = false;
   public static WindowSelectedOption: number = 0;
 
   constructor(
