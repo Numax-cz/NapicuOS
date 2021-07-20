@@ -9,6 +9,7 @@ export function CloseWindowOptionUnsave(component: ComponentClass): void {
   } else if (BiosComponent.WindowDisplay) {
     BiosComponent.WindowDisplay = false;
   }
+  BiosComponent.WindowItems = [];
 }
 export function CloseWindowOptionSave(component: ComponentClass): void {
   if (isOption(component.MainOption[component.selected])) {
@@ -23,4 +24,5 @@ export function CloseWindowOptionSave(component: ComponentClass): void {
   } else {
     //TODO else
   }
+  BiosComponent.WindowItems = [];
 }

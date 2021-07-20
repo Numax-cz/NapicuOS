@@ -7,12 +7,12 @@
   <div>{{ i.title }}<span class="colon">:</span></div>
   <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
 
-  <div *ngIf="isDate(i, index)">
+  <div *ngIf="isDate(i)">
     [<span
       *ngFor="let time of MainOption[1].options[0].date; let timeIndex = index"
-      ><span [ngClass]="{ BIOSSelectedTime: Selected == timeIndex }">{{
-        time.title
-      }}</span
+      ><span
+        [ngClass]="{ BIOSSelectedTime: Selected == timeIndex && CursorDisplay }"
+        >{{ time.title }}</span
       ><span *ngIf="timeIndex < 2">:</span></span
     >]
   </div>

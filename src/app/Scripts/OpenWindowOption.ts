@@ -11,7 +11,7 @@ export function OpenWindowOption(component: ComponentClass): void {
       BiosComponent.WindowDisplay = true;
     }
     else if (isDate(component.MainOption[component.selected])) {
-
+ 
       BiosComponent.WindowFastOptionDisplay = true;      
     } else {
       BiosMainComponent.errorType();

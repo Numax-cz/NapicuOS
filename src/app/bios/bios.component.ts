@@ -28,7 +28,6 @@ export class BiosComponent implements OnInit {
   public static WindowDisplay: boolean = false;
   public static WindowFastOptionDisplay: boolean = false;
   public static WindowSelectedOption: number = 0;
-
   constructor(
     @Inject(DOCUMENT) private doc: Document,
     private router: Router

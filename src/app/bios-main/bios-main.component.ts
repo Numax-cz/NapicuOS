@@ -4,7 +4,7 @@ import { Main } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
 import { Options, settings, ToolSettings } from '../interface/ToolSettings';
-
+import { isDate, isOption } from '../Scripts/Type';
 import { GetOptionsTime, GetOptionsTitle } from '../Scripts/GetOptionsTitle';
 
 @Component({
@@ -30,6 +30,10 @@ export class BiosMainComponent implements OnInit, ComponentClass {
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
   }
+
+  get CursorDisplay(): boolean {
+    return BiosComponent.WindowFastOptionDisplay;
+  }
   isString(val: any): boolean {
     return typeof val === 'string';
   }
@@ -37,17 +41,12 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     console.error('Array Error');
     return '{[Bios_Main]TYPE ERROR}';
   }
+
   //TOdo do píče to dát
   public isOption(component: settings, index: number): boolean {
-    if (component.options[index] && component.options[index].title) {
-      return true;
-    }
-    return false;
+    return isOption(component, index);
   }
-  public isDate(component: settings, index: number): boolean {
-    if (component.options[0] && component.options[0].date) {
-      return true;
-    }
-    return false;
+  public isDate(component: settings): boolean {
+    return isDate(component);
   }
 }
