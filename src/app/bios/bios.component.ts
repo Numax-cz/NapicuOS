@@ -1,4 +1,4 @@
-import { Component, ComponentRef, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../Array/BiosMenu';
@@ -11,7 +11,7 @@ import {
 } from '../Scripts/CloseWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
-import { Options, ToolSettings } from '../interface/ToolSettings';
+import { Options } from '../interface/ToolSettings';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -24,6 +24,7 @@ export class BiosComponent implements OnInit {
   public BiosMenu: BiosMenu[] = Menu;
 
   //PopUp Alert
+  public static MoreNevim: Options[] | Date[] = [];
   public static WindowItems: Options[];
   public static WindowDisplay: boolean = false;
   public static WindowFastOptionDisplay: boolean = false;
@@ -35,6 +36,7 @@ export class BiosComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
+  
   }
 
   get selected(): number {

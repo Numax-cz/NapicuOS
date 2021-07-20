@@ -22,11 +22,6 @@ export class BiosMainComponent implements OnInit, ComponentClass {
 
   public MainOption: settings[] = Main.settings;
 
-  Options(o: settings): any {
-    return (
-      GetOptionsTitle(o) || GetOptionsTime(o) || BiosMainComponent.errorType()
-    );
-  }
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
   }
@@ -34,9 +29,7 @@ export class BiosMainComponent implements OnInit, ComponentClass {
   get CursorDisplay(): boolean {
     return BiosComponent.WindowFastOptionDisplay;
   }
-  isString(val: any): boolean {
-    return typeof val === 'string';
-  }
+
   static errorType(): string {
     console.error('Array Error');
     return '{[Bios_Main]TYPE ERROR}';

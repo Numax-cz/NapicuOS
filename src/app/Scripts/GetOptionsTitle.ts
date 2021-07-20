@@ -1,5 +1,5 @@
 import { settings } from '../interface/ToolSettings';
-
+//todo do píče to dát 
 export function GetOptionsTitle(component: settings): string | null | undefined {
   if (
     component.options[component.selected] &&
