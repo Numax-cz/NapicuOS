@@ -25,7 +25,7 @@ export class BiosComponent implements OnInit {
 
   //PopUp Alert
   public static MoreNevim: Options[] | Date[] = [];
-  public static WindowItems: Options[];
+  public static WindowItems: Options[] | Date[];
   public static WindowDisplay: boolean = false;
   public static WindowFastOptionDisplay: boolean = false;
   public static WindowSelectedOption: number = 0;

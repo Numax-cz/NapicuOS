@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgIterable, OnInit } from '@angular/core';
 import { BiosComponent } from '../bios/bios.component';
 import { Options, settings, ToolSettings } from '../interface/ToolSettings';
 
@@ -10,13 +10,13 @@ import { Options, settings, ToolSettings } from '../interface/ToolSettings';
 export class OptionPanelComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void { }
-  
+  ngOnInit(): void {}
+
   ngOnDestroy(): void {
     BiosComponent.WindowSelectedOption = 0;
   }
 
-  get Items(): Options[] {
+  get Items(): Array<any> {
     return BiosComponent.WindowItems;
   }
   get Selected(): number {

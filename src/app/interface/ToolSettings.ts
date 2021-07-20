@@ -6,6 +6,7 @@ export interface ToolSettings {
 export interface settings {
   title: string;
   options: Options[];
+  date: Date[]; //Todo oddělat ?
   selected: number;
 }
 
@@ -13,11 +14,11 @@ export interface Options {
   title?: string;
   date?: Date[];
   //TODO Time
-  //TODO Date TO Time 
+  //TODO Date TO Time
 }
 
 export interface Date {
-  title: string
+  title: string;
 }
 
 // ! When adding it is necessary to initialize in Type.ts

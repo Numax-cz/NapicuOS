@@ -8,8 +8,9 @@
   <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
 
   <div *ngIf="isDate(i)">
-    [<span
-      *ngFor="let time of MainOption[1].options[0].date; let timeIndex = index"
+    <!-- todo MainOption dát do [index] -->
+    [<span  
+      *ngFor="let time of MainOption[index].date; let timeIndex = index"
       ><span
         [ngClass]="{ BIOSSelectedTime: Selected == timeIndex && CursorDisplay }"
         >{{ time.title }}</span
