@@ -12,6 +12,7 @@ import {
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { Options } from '../interface/ToolSettings';
+import { WindowItems } from '../Scripts/Type';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -24,8 +25,7 @@ export class BiosComponent implements OnInit {
   public BiosMenu: BiosMenu[] = Menu;
 
   //PopUp Alert
-  public static MoreNevim: Options[] | Date[] = [];
-  public static WindowItems: Options[] | Date[];
+  public static WindowItems: WindowItems;
   public static WindowDisplay: boolean = false;
   public static WindowFastOptionDisplay: boolean = false;
   public static WindowSelectedOption: number = 0;

@@ -9,10 +9,9 @@ export function OpenWindowOption(component: ComponentClass): void {
       BiosComponent.WindowItems =
         component.MainOption[component.selected].options;
       BiosComponent.WindowDisplay = true;
-    }
-    else if (isDate(component.MainOption[component.selected])) {
- 
-      BiosComponent.WindowFastOptionDisplay = true;      
+    } else if (isDate(component.MainOption[component.selected])) {
+      BiosComponent.WindowItems = component.MainOption[component.selected].date;
+      BiosComponent.WindowFastOptionDisplay = true;
     } else {
       BiosMainComponent.errorType();
     }

@@ -1,6 +1,7 @@
 import { Component, NgIterable, OnInit } from '@angular/core';
 import { BiosComponent } from '../bios/bios.component';
 import { Options, settings, ToolSettings } from '../interface/ToolSettings';
+import { WindowItems } from '../Scripts/Type';
 
 @Component({
   selector: 'app-option-panel',
