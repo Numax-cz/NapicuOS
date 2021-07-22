@@ -13,9 +13,6 @@ export class OptionPanelComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-    BiosComponent.WindowSelectedOption = 0;
-  }
 
   get Items(): Array<any> {
     return BiosComponent.WindowItems;

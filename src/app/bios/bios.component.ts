@@ -13,6 +13,7 @@ import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { Options } from '../interface/ToolSettings';
 import { WindowItems } from '../Scripts/Type';
+import { TimeSet } from '../Scripts/TimeSet';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -20,7 +21,7 @@ import { WindowItems } from '../Scripts/Type';
 })
 export class BiosComponent implements OnInit {
   //Main
-  public static selectedComponent: any;
+  public static selectedComponent: any; //TODO
   public static selected: number = 0;
   public BiosMenu: BiosMenu[] = Menu;
 
@@ -36,7 +37,6 @@ export class BiosComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
-  
   }
 
   get selected(): number {
@@ -54,6 +54,8 @@ export class BiosComponent implements OnInit {
         !BiosComponent.WindowDisplay &&
         !BiosComponent.WindowFastOptionDisplay
       ) {
+        BiosComponent.WindowItems = [];
+        BiosComponent.WindowSelectedOption = 0;
         if (
           e.keyCode == 39 &&
           BiosComponent.selected < this.BiosMenu.length - 1
@@ -61,7 +63,7 @@ export class BiosComponent implements OnInit {
           BiosComponent.selected += 1;
           this.UpdateComponent();
         }
-        //ArrowLeft
+        //* ArrowLeft
         if (e.keyCode == 37 && BiosComponent.selected !== 0) {
           BiosComponent.selected -= 1;
           this.UpdateComponent();
@@ -71,27 +73,35 @@ export class BiosComponent implements OnInit {
           !BiosComponent.WindowFastOptionDisplay
         ) {
         }
-        //ArrowDown & ArrowUp
+        //* ArrowDown & ArrowUp
         if (e.keyCode == 40 || e.keyCode == 38) {
           MoveOption(BiosComponent.selectedComponent, e.keyCode);
         }
-        //Enter
+        //* Enter
         if (e.keyCode == 13) {
           OpenWindowOption(BiosComponent.selectedComponent);
         }
       } else {
-        // TODO Add WindowFastOptionDisplay
-        if (e.keyCode == 40 || e.keyCode == 38) {
-          //Move
+        if (
+          e.keyCode == 40 ||
+          e.keyCode == 39 ||
+          e.keyCode == 38 ||
+          e.keyCode == 37
+        ) {
           MoveWindowOptions(e.keyCode);
         }
-        //Close --save
+        //* Close --save
         if (e.keyCode == 13) {
           CloseWindowOptionSave(BiosComponent.selectedComponent);
         }
-        //Close --unsavey
+        //* Close --unsavey
         if (e.keyCode == 27) {
           CloseWindowOptionUnsave(BiosComponent.selectedComponent);
+        }
+        if (BiosComponent.WindowFastOptionDisplay) {
+          if (e.keyCode == 40 || 38) {
+            TimeSet(e.keyCode, BiosComponent.WindowItems as any);
+          }
         }
       }
     }, 55);

@@ -1,5 +1,6 @@
 import { ComponentClass } from '../interface/ComponentClass';
-import { Options, settings } from '../interface/ToolSettings';
+import { Options, settings, Date } from '../interface/ToolSettings';
+
 export type WindowItems = Options[] | Date[];
 export function isOption(component: settings, index?: number): boolean {
   if (!index) index = 0;
