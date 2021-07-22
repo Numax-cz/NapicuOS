@@ -7,8 +7,10 @@ import { isDate, isOption } from './Type';
 export function CloseWindowOptionUnsave(component: ComponentClass): void {
   if (BiosComponent.WindowFastOptionDisplay) {
     BiosComponent.WindowFastOptionDisplay = false;
-   // component.MainOption[component.selected].date = ItemsDateInit;
-
+    component.MainOption[component.selected].date = ItemsDateInit;
+    console.log(ItemsDateInit);
+    
+    
   } else if (BiosComponent.WindowDisplay) {
     BiosComponent.WindowDisplay = false;
   }

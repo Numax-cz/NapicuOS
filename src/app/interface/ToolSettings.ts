@@ -6,7 +6,7 @@ export interface ToolSettings {
 export interface settings {
   title: string;
   options: Options[];
-  date: Date[]; //Todo oddělat ?
+  date: Date[];
   selected: number;
 }
 
