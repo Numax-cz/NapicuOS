@@ -1,6 +1,4 @@
 import { BiosComponent } from '../bios/bios.component';
-import { isDate } from './Type';
-
 export function MoveWindowOptions(keyCode: number): void {
   var KeyCodeArrow1 = BiosComponent.WindowFastOptionDisplay ? 39 : 40;
   var KeyCodeArrow2 = BiosComponent.WindowFastOptionDisplay ? 37 : 38;

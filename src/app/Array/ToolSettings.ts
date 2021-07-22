@@ -19,13 +19,14 @@ export var Main: ToolSettings = {
           title: 'Deutschland',
         },
       ],
+      time: [],
       date: [],
       selected: 0,
     },
     {
-      title: 'System Date',
+      title: 'System Time',
       options: [],
-      date: [
+      time: [
         {
           title: '10',
         },
@@ -34,6 +35,24 @@ export var Main: ToolSettings = {
         },
         {
           title: '30',
+        },
+      ],
+      date: [],
+      selected: 0,
+    },
+    {
+      title: 'System Date',
+      options: [],
+      time: [],
+      date: [
+        {
+          title: '07',
+        },
+        {
+          title: '16',
+        },
+        {
+          title: '2021',
         },
       ],
       selected: 0,

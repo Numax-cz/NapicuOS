@@ -1,7 +1,7 @@
 import { BiosComponent } from '../bios/bios.component';
-import { Date } from '../interface/ToolSettings';
+import { Time } from '../interface/ToolSettings';
 
-export function TimeSet(keyCode: number, Items: Date[]) {
+export function TimeSet(keyCode: number, Items: Time[]) {
   var ItemsNumber: number = Number(
     Items[BiosComponent.WindowSelectedOption].title
   );
@@ -18,6 +18,9 @@ export function TimeSet(keyCode: number, Items: Date[]) {
   Items[BiosComponent.WindowSelectedOption].title = ItemsNumber.toString();
   function MaxNumber(max: number) {
     if (ItemsNumber == max) {
+      ItemsNumber = 0;
+    }
+    if (ItemsNumber < 0) {
       ItemsNumber = 0;
     }
   }

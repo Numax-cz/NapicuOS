@@ -6,17 +6,18 @@ export interface ToolSettings {
 export interface settings {
   title: string;
   options: Options[];
+  time: Time[];
   date: Date[];
   selected: number;
 }
 
 export interface Options {
-  title?: string;
-  date?: Date[];
-  //TODO Time
-  //TODO Date TO Time
+  title: string;
 }
 
+export interface Time {
+  title: string;
+}
 export interface Date {
   title: string;
 }

@@ -1,10 +1,18 @@
 import { ComponentClass } from '../interface/ComponentClass';
-import { Options, settings, Date } from '../interface/ToolSettings';
+import { Options, settings, Time } from '../interface/ToolSettings';
 
-export type WindowItems = Options[] | Date[];
+export type WindowItems = Options[] | Time[] | Date[];
 export function isOption(component: settings, index?: number): boolean {
   if (!index) index = 0;
   if (component.options[index] && component.options[index].title) {
+    return true;
+  }
+  return false;
+}
+
+export function isTime(component: settings, index?: number): boolean {
+  if (!index) index = 0;
+  if (component.time[index] && component.time[index].title) {
     return true;
   }
   return false;

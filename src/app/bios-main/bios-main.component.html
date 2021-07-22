@@ -7,16 +7,17 @@
   <div>{{ i.title }}<span class="colon">:</span></div>
   <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
 
-  <div *ngIf="isDate(i)">
-    <!-- todo MainOption dát do [index] -->
+  <div *ngIf="isTime(i)">
     [<span  
-      *ngFor="let time of MainOption[index].date; let timeIndex = index"
+      *ngFor="let time of MainOption[index].time; let timeIndex = index"
       ><span
         [ngClass]="{ BIOSSelectedTime: Selected == timeIndex && CursorDisplay }"
         >{{ time.title }}</span
       ><span *ngIf="timeIndex < 2">:</span></span
     >]
   </div>
+
+ 
 </div>
 
 <div id="Grid-BiosItems">
