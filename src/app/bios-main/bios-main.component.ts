@@ -17,6 +17,7 @@ export class BiosMainComponent implements OnInit, ComponentClass {
 
   ngOnInit(): void {
     this.selected = 0;
+
   }
 
   public MainOption: settings[] = Main.settings;
@@ -33,6 +34,8 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     console.error('Array Error');
     return '{[Bios_Main]TYPE ERROR}';
   }
+
+
 
   public isOption(component: settings, index: number): boolean {
     return isOption(component, index);

@@ -1,4 +1,5 @@
 import { ToolSettings } from '../interface/ToolSettings';
+import { setTime } from '../Scripts/Time';
 
 export var Main: ToolSettings = {
   title: 'System Overview',
@@ -44,17 +45,7 @@ export var Main: ToolSettings = {
       title: 'System Date',
       options: [],
       time: [],
-      date: [
-        {
-          title: '07',
-        },
-        {
-          title: '16',
-        },
-        {
-          title: '999',
-        },
-      ],
+      date: setTime(),
       selected: 0,
     },
   ],

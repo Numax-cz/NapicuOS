@@ -14,6 +14,7 @@ import { BiosMenu } from '../interface/BiosMenu';
 import { Options } from '../interface/ToolSettings';
 import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
+import { setTime } from '../Scripts/Time';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -37,6 +38,7 @@ export class BiosComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
+    
   }
 
   get selected(): number {
