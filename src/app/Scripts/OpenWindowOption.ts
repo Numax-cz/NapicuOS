@@ -1,7 +1,7 @@
 import { BiosMainComponent } from '../bios-main/bios-main.component';
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
-import { isTime, isOption } from './Type';
+import { isTime, isOption, isDate } from './Type';
 import { Time, settings } from '../interface/ToolSettings';
 
 export var ItemsDateInit: Time[] ;
@@ -18,7 +18,14 @@ export function OpenWindowOption(component: ComponentClass): void {
       );
       BiosComponent.WindowItems = component.MainOption[component.selected].time;
       BiosComponent.WindowFastOptionDisplay = true;
-    } else {
+    } else if (isDate(component.MainOption[component.selected])) {
+      ItemsDateInit = component.MainOption[component.selected].date.map((x) =>
+        Object.assign({}, x)
+      );
+      BiosComponent.WindowItems = component.MainOption[component.selected].date
+      BiosComponent.WindowFastOptionDisplay = true;
+    }
+    else {
       BiosMainComponent.errorType();
     }
   }

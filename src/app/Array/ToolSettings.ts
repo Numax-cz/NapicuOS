@@ -52,7 +52,7 @@ export var Main: ToolSettings = {
           title: '16',
         },
         {
-          title: '2021',
+          title: '999',
         },
       ],
       selected: 0,

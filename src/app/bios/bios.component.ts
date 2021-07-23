@@ -13,7 +13,7 @@ import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { Options } from '../interface/ToolSettings';
 import { WindowItems } from '../Scripts/Type';
-import { TimeSet } from '../Scripts/TimeSet';
+import { TimeDateSet } from '../Scripts/TimeDateSet';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -100,7 +100,7 @@ export class BiosComponent implements OnInit {
         }
         if (BiosComponent.WindowFastOptionDisplay) {
           if (e.keyCode == 40 || 38) {
-            TimeSet(e.keyCode, BiosComponent.WindowItems as any);
+            TimeDateSet(e.keyCode, BiosComponent.WindowItems as any, BiosComponent.selectedComponent);
           }
         }
       }

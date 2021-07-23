@@ -4,7 +4,7 @@ import { Main } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
 import { Options, settings, ToolSettings } from '../interface/ToolSettings';
-import { isTime, isOption } from '../Scripts/Type';
+import { isTime, isOption, isDate } from '../Scripts/Type';
 
 @Component({
   selector: 'app-bios-main',
@@ -34,11 +34,13 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     return '{[Bios_Main]TYPE ERROR}';
   }
 
-  //TOdo do píče to dát
   public isOption(component: settings, index: number): boolean {
     return isOption(component, index);
   }
   public isTime(component: settings): boolean {
     return isTime(component);
+  }
+  public isDate(component: settings): boolean{
+    return isDate(component);
   }
 }
