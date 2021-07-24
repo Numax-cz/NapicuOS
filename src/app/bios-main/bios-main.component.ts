@@ -3,7 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Main } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
-import { Options, settings, ToolSettings } from '../interface/ToolSettings';
+import {
+  Options,
+  settings,
+  Time,
+  ToolSettings,
+} from '../interface/ToolSettings';
 import { isTime, isOption, isDate } from '../Scripts/Type';
 
 @Component({
@@ -14,13 +19,17 @@ import { isTime, isOption, isDate } from '../Scripts/Type';
 export class BiosMainComponent implements OnInit, ComponentClass {
   constructor() {}
   public selected: number = 0;
+  public MainOption: settings[] = Main.settings;
 
   ngOnInit(): void {
     this.selected = 0;
-
+    this.MainOption.forEach((e: settings, i: number) => {
+      if (isTime(e)) {
+        this.setTimeInterval(Main, i);
+      }
+      return;
+    });
   }
-
-  public MainOption: settings[] = Main.settings;
 
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
@@ -35,15 +44,25 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     return '{[Bios_Main]TYPE ERROR}';
   }
 
-
-
   public isOption(component: settings, index: number): boolean {
     return isOption(component, index);
   }
   public isTime(component: settings): boolean {
     return isTime(component);
   }
-  public isDate(component: settings): boolean{
+  public isDate(component: settings): boolean {
     return isDate(component);
+  }
+
+  public setTimeInterval(settings: ToolSettings, index: number) {
+    if (!settings.settings[index].interval) {
+      settings.settings[index].interval = setInterval(() => {
+        //* Seconds
+        settings.settings[index].time[2].title = (
+          Number(settings.settings[index].time[2].title) + 1
+        ).toString();
+        //! RULES
+      }, 1000);
+    }
   }
 }

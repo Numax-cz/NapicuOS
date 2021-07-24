@@ -10,6 +10,10 @@ export function TimeDateSet(
   component: ComponentClass
 ) {
   //TODO AutoCheck - Date
+
+
+  
+
   var ItemsNumber: number = Number(
     Items[BiosComponent.WindowSelectedOption].title
   );
@@ -17,6 +21,7 @@ export function TimeDateSet(
   if (keyCode == 38) ItemsNumber += +1;
   if (keyCode == 40) ItemsNumber -= +1;
 
+  //! TODO
   if (isTime(componentSelected)) {
     if (BiosComponent.WindowSelectedOption == 0) {
       MaxMinNumber(24);
@@ -92,3 +97,5 @@ export function TimeDateSet(
     }
   }
 }
+
+

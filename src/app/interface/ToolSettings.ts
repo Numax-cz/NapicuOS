@@ -8,6 +8,7 @@ export interface settings {
   options: Options[];
   time: Time[];
   date: Date[];
+  interval?: any;
   selected: number;
 }
 
