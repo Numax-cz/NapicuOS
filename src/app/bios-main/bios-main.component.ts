@@ -58,9 +58,9 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     if (!settings.settings[index].interval) {
       settings.settings[index].interval = setInterval(() => {
         //* Seconds
-        settings.settings[index].time[2].title = (
-          Number(settings.settings[index].time[2].title) + 1
-        ).toString();
+        var second = Number(settings.settings[index].time[2].title) + 1;
+        
+        //settings.settings[index].time[2].title =
         //! RULES
       }, 1000);
     }
