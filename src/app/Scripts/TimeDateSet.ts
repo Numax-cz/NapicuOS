@@ -3,17 +3,16 @@ import { ComponentClass } from '../interface/ComponentClass';
 import { Time } from '../interface/ToolSettings';
 import { ItemsDateInit } from './OpenWindowOption';
 import { isDate, isTime } from './Type';
-
+export const maxMinutes: number = 60;
+export const maxSeconds: number = 60;
+export const maxHours: number = 24;
 export function TimeDateSet(
   keyCode: number,
   Items: Time[],
   component: ComponentClass
 ) {
   //TODO AutoCheck - Date
-
-
   
-
   var ItemsNumber: number = Number(
     Items[BiosComponent.WindowSelectedOption].title
   );
@@ -24,9 +23,9 @@ export function TimeDateSet(
   //! TODO
   if (isTime(componentSelected)) {
     if (BiosComponent.WindowSelectedOption == 0) {
-      MaxMinNumber(24);
+      MaxMinNumber(maxHours);
     } else {
-      MaxMinNumber(60);
+      MaxMinNumber(maxSeconds); //* Seconds & Minutes      
     }
   } else if (isDate(componentSelected)) {
     var month: number = Number(
@@ -97,4 +96,3 @@ export function TimeDateSet(
     }
   }
 }
-

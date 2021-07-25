@@ -38,7 +38,6 @@ export class BiosComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
-    
   }
 
   get selected(): number {
@@ -84,11 +83,7 @@ export class BiosComponent implements OnInit {
           OpenWindowOption(BiosComponent.selectedComponent);
         }
       } else {
-        if (
-          e.keyCode == 40 ||
-          e.keyCode == 39 ||
-          e.keyCode == 38 ||
-          e.keyCode == 37
+        if (e.keyCode == 40 ||e.keyCode == 39 ||e.keyCode == 38 ||e.keyCode == 37
         ) {
           MoveWindowOptions(e.keyCode);
         }
@@ -102,7 +97,11 @@ export class BiosComponent implements OnInit {
         }
         if (BiosComponent.WindowFastOptionDisplay) {
           if (e.keyCode == 40 || 38) {
-            TimeDateSet(e.keyCode, BiosComponent.WindowItems as any, BiosComponent.selectedComponent);
+            TimeDateSet(
+              e.keyCode,
+              BiosComponent.WindowItems as any,
+              BiosComponent.selectedComponent
+            );
           }
         }
       }

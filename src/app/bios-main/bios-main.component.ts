@@ -1,4 +1,3 @@
-import { Directive } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Main } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
@@ -9,6 +8,7 @@ import {
   Time,
   ToolSettings,
 } from '../interface/ToolSettings';
+import { setTimeInterval, TimeInterval } from '../Scripts/TimeController';
 import { isTime, isOption, isDate } from '../Scripts/Type';
 
 @Component({
@@ -25,7 +25,7 @@ export class BiosMainComponent implements OnInit, ComponentClass {
     this.selected = 0;
     this.MainOption.forEach((e: settings, i: number) => {
       if (isTime(e)) {
-        this.setTimeInterval(Main, i);
+        setTimeInterval(this.MainOption, i);
       }
       return;
     });
@@ -52,17 +52,5 @@ export class BiosMainComponent implements OnInit, ComponentClass {
   }
   public isDate(component: settings): boolean {
     return isDate(component);
-  }
-
-  public setTimeInterval(settings: ToolSettings, index: number) {
-    if (!settings.settings[index].interval) {
-      settings.settings[index].interval = setInterval(() => {
-        //* Seconds
-        var second = Number(settings.settings[index].time[2].title) + 1;
-        
-        //settings.settings[index].time[2].title =
-        //! RULES
-      }, 1000);
-    }
   }
 }

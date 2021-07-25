@@ -1,33 +1,31 @@
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
 import { ItemsDateInit } from './OpenWindowOption';
+import { clearTimeInterval, setTimeInterval } from './TimeController';
 import { isTime, isOption, isDate } from './Type';
-
-//TODO component is not used
+//TODO clear code
 export function CloseWindowOptionUnsave(component: ComponentClass): void {
   if (BiosComponent.WindowFastOptionDisplay) {
     if (isTime(component.MainOption[component.selected])) {
       component.MainOption[component.selected].time = ItemsDateInit;
     } else if (isDate(component.MainOption[component.selected])) {
       component.MainOption[component.selected].date = ItemsDateInit;
+      setTimeInterval(component.MainOption, component.selected);
     }
-
-    BiosComponent.WindowFastOptionDisplay = false;
-  } else if (BiosComponent.WindowDisplay) {
-    BiosComponent.WindowDisplay = false;
   }
+  close();
 }
 export function CloseWindowOptionSave(component: ComponentClass): void {
   if (isOption(component.MainOption[component.selected])) {
     component.MainOption[component.selected].selected =
       BiosComponent.WindowSelectedOption;
-    BiosComponent.WindowDisplay = false;
-  } else if (
-    isTime(component.MainOption[component.selected]) ||
-    isDate(component.MainOption[component.selected])
-  ) {
-    BiosComponent.WindowFastOptionDisplay = false;
-  } else {
-    //TODO else
+  } else if (isTime(component.MainOption[component.selected])) {
+    setTimeInterval(component.MainOption, component.selected);
   }
+  close();
+}
+
+function close() {
+  BiosComponent.WindowDisplay = false;
+  BiosComponent.WindowFastOptionDisplay = false;
 }
