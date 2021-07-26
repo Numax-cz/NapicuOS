@@ -12,7 +12,7 @@ export function TimeDateSet(
   component: ComponentClass
 ) {
   //TODO AutoCheck - Date
-  
+
   var ItemsNumber: number = Number(
     Items[BiosComponent.WindowSelectedOption].title
   );
@@ -25,7 +25,7 @@ export function TimeDateSet(
     if (BiosComponent.WindowSelectedOption == 0) {
       MaxMinNumber(maxHours);
     } else {
-      MaxMinNumber(maxSeconds); //* Seconds & Minutes      
+      MaxMinNumber(maxSeconds); //* Seconds & Minutes
     }
   } else if (isDate(componentSelected)) {
     var month: number = Number(

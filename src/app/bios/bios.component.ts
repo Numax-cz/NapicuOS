@@ -76,11 +76,11 @@ export class BiosComponent implements OnInit {
         }
         //* ArrowDown & ArrowUp
         if (e.keyCode == 40 || e.keyCode == 38) {
-          MoveOption(BiosComponent.selectedComponent, e.keyCode);
+          MoveOption(e.keyCode);
         }
         //* Enter
         if (e.keyCode == 13) {
-          OpenWindowOption(BiosComponent.selectedComponent);
+          OpenWindowOption();
         }
       } else {
         if (

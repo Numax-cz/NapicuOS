@@ -13,6 +13,7 @@ import { BootbComponent } from './bootb/bootb.component';
 import { ToolsComponent } from './tools/tools.component';
 import { ExitComponent } from './exit/exit.component';
 import { OptionPanelComponent } from './option-panel/option-panel.component';
+import { SettingsTemplateComponent } from './settings-template/settings-template.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { OptionPanelComponent } from './option-panel/option-panel.component';
     BootbComponent,
     ToolsComponent,
     ExitComponent,
-    OptionPanelComponent
+    OptionPanelComponent,
+    SettingsTemplateComponent
   ],
   imports: [
     BrowserModule,
