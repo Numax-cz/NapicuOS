@@ -8,9 +8,9 @@ export function CloseWindowOptionUnsave(component: ComponentClass): void {
   if (BiosComponent.WindowFastOptionDisplay) {
     if (isTime(component.MainOption[component.selected])) {
       component.MainOption[component.selected].time = ItemsDateInit;
+      setTimeInterval(component.MainOption, component.selected);
     } else if (isDate(component.MainOption[component.selected])) {
       component.MainOption[component.selected].date = ItemsDateInit;
-      setTimeInterval(component.MainOption, component.selected);
     }
   }
   close();

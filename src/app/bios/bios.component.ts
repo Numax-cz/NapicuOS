@@ -83,7 +83,11 @@ export class BiosComponent implements OnInit {
           OpenWindowOption(BiosComponent.selectedComponent);
         }
       } else {
-        if (e.keyCode == 40 ||e.keyCode == 39 ||e.keyCode == 38 ||e.keyCode == 37
+        if (
+          e.keyCode == 40 ||
+          e.keyCode == 39 ||
+          e.keyCode == 38 ||
+          e.keyCode == 37
         ) {
           MoveWindowOptions(e.keyCode);
         }

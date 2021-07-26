@@ -1,3 +1,4 @@
+import { SelectorContext } from '@angular/compiler';
 import { ToolSettings } from '../interface/ToolSettings';
 import { setTime } from '../Scripts/Time';
 
@@ -46,6 +47,26 @@ export var Main: ToolSettings = {
       options: [],
       time: [],
       date: setTime(),
+      selected: 0,
+    },
+  ],
+};
+
+export var Boot: ToolSettings = {
+  title: '',
+  settings: [
+    {
+      title: 'Boot Mode',
+      options: [
+        {
+          title: 'UEFI',
+        },
+        {
+          title: 'Legacy',
+        },
+      ],
+      time: [],
+      date: [],
       selected: 0,
     },
   ],
