@@ -1,33 +1,37 @@
-<div
-  *ngFor="let i of MainOption; let index = index"
-  id="Grid-BiosItems"
-  class="Option"
-  [ngClass]="{ BIOSSelectedOption: index == localSelected }"
->
-  <div>{{ i.title }}<span class="colon">:</span></div>
-  <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
+<div>
+  <div id="Title">{{ComponentTitle}}</div>
 
-  <div *ngIf="isTime(i)">
-    [<span *ngFor="let time of MainOption[index].time; let timeIndex = index"
-      ><span
-        [ngClass]="{
-          BIOSSelectedTime:
-            Selected == timeIndex && CursorDisplay && index == localSelected
-        }"
-  
-        >{{ time.title }}</span
-      ><span *ngIf="timeIndex < 2">:</span></span
-    >]
-  </div>
+  <div
+    *ngFor="let i of MainOption; let index = index"
+    id="Grid-BiosItems"
+    class="Option"
+    [ngClass]="{ BIOSSelectedOption: index == localSelected }"
+  >
+    <div>{{ i.title }}<span class="colon">:</span></div>
+    <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
 
-  <div *ngIf="isDate(i)">
-    [<span *ngFor="let date of MainOption[index].date; let dateIndex = index">
-      <span
-        [ngClass]="{
-          BIOSSelectedTime:
-            Selected == dateIndex && CursorDisplay && index == localSelected
-        }"
-        >{{ date.title }}</span
-      ><span *ngIf="dateIndex < 2">/</span></span
-    >]
+    <div *ngIf="isTime(i)">
+      [<span *ngFor="let time of MainOption[index].time; let timeIndex = index"
+        ><span
+          [ngClass]="{
+            BIOSSelectedTime:
+              Selected == timeIndex && CursorDisplay && index == localSelected
+          }"
+          >{{ time.title }}</span
+        ><span *ngIf="timeIndex < 2">:</span></span
+      >]
+    </div>
+
+    <div *ngIf="isDate(i)">
+      [<span *ngFor="let date of MainOption[index].date; let dateIndex = index">
+        <span
+          [ngClass]="{
+            BIOSSelectedTime:
+              Selected == dateIndex && CursorDisplay && index == localSelected
+          }"
+          >{{ date.title }}</span
+        ><span *ngIf="dateIndex < 2">/</span></span
+      >]
+    </div>
   </div>
+</div>

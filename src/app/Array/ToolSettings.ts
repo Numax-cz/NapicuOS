@@ -69,5 +69,19 @@ export var Boot: ToolSettings = {
       date: [],
       selected: 0,
     },
+    {
+      title: 'Secure Boot',
+      options: [
+        {
+          title: 'Enabled',
+        },
+        {
+          title: 'Disabled',
+        },
+      ],
+      time: [],
+      date: [],
+      selected: 0,
+    },
   ],
 };

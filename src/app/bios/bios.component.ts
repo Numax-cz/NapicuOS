@@ -14,7 +14,7 @@ import { BiosMenu } from '../interface/BiosMenu';
 import { Options } from '../interface/ToolSettings';
 import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
-import { setTime } from '../Scripts/Time';
+import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
@@ -38,6 +38,8 @@ export class BiosComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
+
+
   }
 
   get selected(): number {
@@ -93,19 +95,15 @@ export class BiosComponent implements OnInit {
         }
         //* Close --save
         if (e.keyCode == 13) {
-          CloseWindowOptionSave(BiosComponent.selectedComponent);
+          CloseWindowOptionSave();
         }
         //* Close --unsavey
         if (e.keyCode == 27) {
-          CloseWindowOptionUnsave(BiosComponent.selectedComponent);
+          CloseWindowOptionUnsave();
         }
         if (BiosComponent.WindowFastOptionDisplay) {
           if (e.keyCode == 40 || 38) {
-            TimeDateSet(
-              e.keyCode,
-              BiosComponent.WindowItems as any,
-              BiosComponent.selectedComponent
-            );
+            TimeDateSet(e.keyCode, BiosComponent.WindowItems as any);
           }
         }
       }
@@ -120,4 +118,5 @@ export class BiosComponent implements OnInit {
   get Display(): boolean {
     return BiosComponent.WindowDisplay;
   }
+
 }

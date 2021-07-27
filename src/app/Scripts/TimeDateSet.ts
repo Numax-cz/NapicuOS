@@ -1,22 +1,20 @@
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
 import { Time } from '../interface/ToolSettings';
+import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
 import { ItemsDateInit } from './OpenWindowOption';
 import { isDate, isTime } from './Type';
 export const maxMinutes: number = 60;
 export const maxSeconds: number = 60;
 export const maxHours: number = 24;
-export function TimeDateSet(
-  keyCode: number,
-  Items: Time[],
-  component: ComponentClass
-) {
+export function TimeDateSet(keyCode: number, Items: Time[]) {
   //TODO AutoCheck - Date
 
   var ItemsNumber: number = Number(
     Items[BiosComponent.WindowSelectedOption].title
   );
-  var componentSelected = component.MainOption[component.selected];
+  var componentSelected =
+    SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
   if (keyCode == 38) ItemsNumber += +1;
   if (keyCode == 40) ItemsNumber -= +1;
 
@@ -29,7 +27,8 @@ export function TimeDateSet(
     }
   } else if (isDate(componentSelected)) {
     var month: number = Number(
-      component.MainOption[component.selected].date[0].title
+      SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected]
+        .date[0].title
     );
     if (BiosComponent.WindowSelectedOption == 0) {
       //* Month

@@ -2,10 +2,10 @@ import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
 import { ItemsDateInit } from './OpenWindowOption';
-import { clearTimeInterval, setTimeInterval } from './TimeController';
+import { setTimeInterval } from './TimeController';
 import { isTime, isOption, isDate } from './Type';
 //TODO clear code
-export function CloseWindowOptionUnsave(component: ComponentClass): void {
+export function CloseWindowOptionUnsave(): void {
   if (BiosComponent.WindowFastOptionDisplay) {
     if (
       isTime(
@@ -22,7 +22,7 @@ export function CloseWindowOptionUnsave(component: ComponentClass): void {
   }
   close();
 }
-export function CloseWindowOptionSave(component: ComponentClass): void {
+export function CloseWindowOptionSave(): void {
   if (isOption(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
     SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].selected =
       BiosComponent.WindowSelectedOption;

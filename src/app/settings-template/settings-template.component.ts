@@ -17,6 +17,7 @@ export class SettingsTemplateComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     SettingsTemplateComponent.MainOption = this.MainOption;
+    SettingsTemplateComponent.selected = 0;
   }
 
   get Selected(): number {
@@ -27,6 +28,9 @@ export class SettingsTemplateComponent implements OnInit {
   }
   get CursorDisplay(): boolean {
     return BiosComponent.WindowFastOptionDisplay;
+  }
+  get ComponentTitle(): string {
+    return SettingsTemplateComponent.MainOption[BiosComponent.selected].title
   }
 
   public isOption(component: settings, index: number): boolean {
