@@ -1,8 +1,8 @@
-import { Options, settings } from './ToolSettings';
+import { Options, settings, ToolSettings } from './ToolSettings';
 
 export interface ComponentClass {
   selected: number;
-  MainOption: settings[];
+  MainOption: ToolSettings;
 
   isOption(component: settings, index: number): boolean;
   isTime(component: settings): boolean;

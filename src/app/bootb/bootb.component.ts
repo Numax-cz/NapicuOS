@@ -11,7 +11,7 @@ import { isOption, isTime, isDate } from '../Scripts/Type';
 })
 export class BootbComponent implements OnInit, ComponentClass {
   public selected = 0;
-  public MainOption: settings[] = Boot.settings;
+  public MainOption: ToolSettings = Boot;
   constructor() {}
 
   ngOnInit(): void {}

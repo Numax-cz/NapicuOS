@@ -10,13 +10,13 @@ import { isOption, isTime, isDate } from '../Scripts/Type';
   styleUrls: ['./settings-template.component.scss'],
 })
 export class SettingsTemplateComponent implements OnInit {
-  @Input() MainOption: settings[] = [];
+  @Input() MainOption: any;
   public static MainOption: settings[] = [];
   public static selected: number = 0;
 
   constructor() {}
   ngOnInit(): void {
-    SettingsTemplateComponent.MainOption = this.MainOption;
+    SettingsTemplateComponent.MainOption = this.MainOption.settings;
     SettingsTemplateComponent.selected = 0;
   }
 
@@ -30,7 +30,7 @@ export class SettingsTemplateComponent implements OnInit {
     return BiosComponent.WindowFastOptionDisplay;
   }
   get ComponentTitle(): string {
-    return SettingsTemplateComponent.MainOption[BiosComponent.selected].title
+    return SettingsTemplateComponent.MainOption[0].title;
   }
 
   public isOption(component: settings, index: number): boolean {

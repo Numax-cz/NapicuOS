@@ -19,13 +19,13 @@ import { isTime, isOption, isDate } from '../Scripts/Type';
 export class BiosMainComponent implements OnInit, ComponentClass {
   constructor() {}
   public selected: number = 0;
-  public MainOption: settings[] = Main.settings;
+  public MainOption: ToolSettings = Main;
 
   ngOnInit(): void {
     this.selected = 0;
-    this.MainOption.forEach((e: settings, i: number) => {
+    this.MainOption.settings.forEach((e: settings, i: number) => {
       if (isTime(e)) {
-        setTimeInterval(this.MainOption, i);
+        setTimeInterval(this.MainOption.settings, i);
       }
       return;
     });

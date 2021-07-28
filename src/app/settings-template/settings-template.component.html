@@ -1,8 +1,8 @@
 <div>
-  <div id="Title">{{ComponentTitle}}</div>
+  <div id="Title" >{{MainOption.title}}</div>
 
   <div
-    *ngFor="let i of MainOption; let index = index"
+    *ngFor="let i of MainOption.settings; let index = index"
     id="Grid-BiosItems"
     class="Option"
     [ngClass]="{ BIOSSelectedOption: index == localSelected }"
@@ -11,7 +11,7 @@
     <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
 
     <div *ngIf="isTime(i)">
-      [<span *ngFor="let time of MainOption[index].time; let timeIndex = index"
+      [<span *ngFor="let time of MainOption.settings[index].time; let timeIndex = index"
         ><span
           [ngClass]="{
             BIOSSelectedTime:
@@ -23,7 +23,7 @@
     </div>
 
     <div *ngIf="isDate(i)">
-      [<span *ngFor="let date of MainOption[index].date; let dateIndex = index">
+      [<span *ngFor="let date of MainOption.settings[index].date; let dateIndex = index">
         <span
           [ngClass]="{
             BIOSSelectedTime:

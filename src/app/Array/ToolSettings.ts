@@ -83,5 +83,22 @@ export var Boot: ToolSettings = {
       date: [],
       selected: 0,
     },
+    {
+      title: 'Boot priority order',
+      options: [
+        {
+          title: '1. Samsung 860 EVO M.2 1TB',
+        },
+        {
+          title: '2. IBM 1405 0.0075 GB',
+        },
+        {
+          title: '3. Seagate ST-225 0.021 GB',
+        },
+      ],
+      time: [],
+      date: [],
+      selected: 0,
+    },
   ],
 };

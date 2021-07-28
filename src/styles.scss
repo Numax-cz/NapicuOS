@@ -4,8 +4,9 @@
   src: url("assets/font/Perfect DOS VGA 437.ttf") format("truetype");
 }
 
-
-
+$BorderTopABottom: 2px solid blue;
+$BorderLeftARight: 4px solid blue;
+$FrameSizeHeight: 100%;
 * {
   font-family: "DosVGA";
   padding: 0;
@@ -20,12 +21,21 @@
   padding: 20px 10px;
 }
 #Frame {
-  border: 2px solid blue;
+  border-left: $BorderLeftARight;
+  border-right: $BorderLeftARight;
+  border-top: $BorderTopABottom;
+  border-bottom: $BorderTopABottom;
   padding: 0px 30px;
+  height: $FrameSizeHeight;
 }
 #Grid {
   display: grid;
   grid-template-columns: 60% 30%;
+  height: 100%;
+}
+.Grid-ItemHoz {
+  display: grid;
+  grid-template-rows: 50% 50%;
 }
 #Grid-BiosItems {
   display: grid;
@@ -57,7 +67,13 @@
 .BIOSSelectedOption {
   color: white;
 }
-.BIOSSelectedTime{
+.BIOSSelectedTime {
   background: black;
 }
 
+.Right {
+  border-left: $BorderLeftARight;
+}
+.Right > div {
+  padding: 10px;
+}
