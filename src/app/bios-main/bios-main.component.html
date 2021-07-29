@@ -1,25 +1,6 @@
 <app-settings-template [MainOption]="MainOption"></app-settings-template>
 
-<div id="Grid-BiosItems">
-  <div>BIOS Version<span class="colon">:</span></div>
-  <div>v02.69</div>
-</div>
-<div id="Grid-BiosItems">
-  <div>Processor Type<span class="colon">:</span></div>
-  <div>AMD Celeron (tm) II B45 Processor @ 2.6 GHz (64bit)</div>
-</div>
-
-<div id="Grid-BiosItems">
-  <div>Processor Speed<span class="colon">:</span></div>
-  <div>2666MHz</div>
-</div>
-
-<div id="Grid-BiosItems">
-  <div>Cache Size<span class="colon">:</span></div>
-  <div>8192KB</div>
-</div>
-
-<div id="Grid-BiosItems">
-  <div>Total Memory<span class="colon">:</span></div>
-  <div>8192MB</div>
+<div id="Grid-BiosItems" *ngFor="let i of MainOptionInfo">
+  <div>{{ i.title }}<span class="colon">:</span></div>
+  <div>{{ i.value }}</div>
 </div>

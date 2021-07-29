@@ -9,6 +9,7 @@ export interface settings {
   time: Time[];
   date: Date[];
   interval?: any;
+  description: string
   selected: number;
 }
 

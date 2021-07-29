@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MainInfo } from '../Array/Informations';
 import { Main } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
+import { Informations } from '../interface/Informations';
 import { Options, settings, Time, ToolSettings } from '../interface/ToolSettings';
 import { setTimeInterval, TimeInterval } from '../Scripts/TimeController';
 import { isTime, isOption, isDate } from '../Scripts/Type';
@@ -15,7 +17,7 @@ export class BiosMainComponent implements OnInit, ComponentClass {
   constructor() {}
   public selected: number = 0;
   public MainOption: ToolSettings = Main;
-
+  public MainOptionInfo: Informations[] = MainInfo;
   ngOnInit(): void {
     this.selected = 0;
     this.MainOption.settings.forEach((e: settings, i: number) => {

@@ -23,6 +23,7 @@ export var Main: ToolSettings = {
       ],
       time: [],
       date: [],
+      description: 'Nastavení',
       selected: 0,
     },
     {
@@ -40,6 +41,8 @@ export var Main: ToolSettings = {
         },
       ],
       date: [],
+      description: 'Nastavení',
+
       selected: 0,
     },
     {
@@ -47,6 +50,7 @@ export var Main: ToolSettings = {
       options: [],
       time: [],
       date: setTime(),
+      description: 'Nastavení',
       selected: 0,
     },
   ],
@@ -67,6 +71,8 @@ export var Boot: ToolSettings = {
       ],
       time: [],
       date: [],
+      description: 'Nastavení',
+
       selected: 0,
     },
     {
@@ -81,6 +87,7 @@ export var Boot: ToolSettings = {
       ],
       time: [],
       date: [],
+      description: 'Nastavení',
       selected: 0,
     },
     {
@@ -98,6 +105,7 @@ export var Boot: ToolSettings = {
       ],
       time: [],
       date: [],
+      description: 'Nastavení',
       selected: 0,
     },
   ],

@@ -25,12 +25,11 @@ $FrameSizeHeight: 100%;
   border-right: $BorderLeftARight;
   border-top: $BorderTopABottom;
   border-bottom: $BorderTopABottom;
-  padding: 0px 30px;
   height: $FrameSizeHeight;
 }
 #Grid {
   display: grid;
-  grid-template-columns: 60% 30%;
+  grid-template-columns: 60% 40%;
   height: 100%;
 }
 .Grid-ItemHoz {
@@ -55,10 +54,14 @@ $FrameSizeHeight: 100%;
 }
 .Information {
   font-size: 1.7rem;
+
   color: gray;
 }
 .blue {
   color: blue;
+}
+.Hin{
+  border-top: $BorderTopABottom;
 }
 
 //Items
@@ -84,3 +87,4 @@ $FrameSizeHeight: 100%;
 .Options-Arrow {
   font-size: 20px;
 }
+
