@@ -57,6 +57,9 @@ $FrameSizeHeight: 100%;
   font-size: 1.7rem;
   color: gray;
 }
+.blue {
+  color: blue;
+}
 
 //Items
 
@@ -76,4 +79,8 @@ $FrameSizeHeight: 100%;
 }
 .Right > div {
   padding: 10px;
+}
+
+.Options-Arrow {
+  font-size: 20px;
 }

@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Main } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
-import {
-  Options,
-  settings,
-  Time,
-  ToolSettings,
-} from '../interface/ToolSettings';
+import { Options, settings, Time, ToolSettings } from '../interface/ToolSettings';
 import { setTimeInterval, TimeInterval } from '../Scripts/TimeController';
 import { isTime, isOption, isDate } from '../Scripts/Type';
 

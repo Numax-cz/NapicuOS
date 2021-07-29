@@ -4,11 +4,7 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
 export function MoveOption(keyCode: number): void {
   // ArrowDown
   if (!SettingsTemplateComponent.MainOption) return;
-  if (
-    keyCode == 40 &&
-    SettingsTemplateComponent.selected <
-      SettingsTemplateComponent.MainOption.length - 1
-  ) {
+  if (keyCode == 40 && SettingsTemplateComponent.selected < SettingsTemplateComponent.MainOption.length - 1) {
     SettingsTemplateComponent.selected += 1;
   }
   //ArrowUp

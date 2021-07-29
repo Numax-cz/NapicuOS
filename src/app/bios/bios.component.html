@@ -6,15 +6,11 @@
 
     <section class="root">
       <div>
-        <p
-          *ngFor="let i of BiosMenu; let index = index"
-          [ngClass]="{ selected: index == selected }"
-        >
+        <p *ngFor="let i of BiosMenu; let index = index" [ngClass]="{ selected: index == selected }">
           {{ i.title }}
         </p>
       </div>
     </section>
-
     <section id="BiosContainer">
       <div id="Frame">
         <div id="Grid">
@@ -26,13 +22,14 @@
           </div>
           <div class="Grid-ItemHoz Right">
             <div>xd</div>
-            <div class="Information">
-              <div class="Information-Options">Select Screen</div>
-              <div class="Information-Options">Select Item</div>
-              <div class="Information-Options"> Select</div>
-              <div class="Information-Options">Change Opt.</div>
-              <div class="Information-Options">Optimized Defaults</div>
-              <div class="Information-Options">Save & Exit</div>
+            <div class="Information blue">
+              <div class="Information-Options"><span class="Options-Arrow">►◄</span>: Select Screen</div>
+              <div class="Information-Options"><span class="Options-Arrow">▲▼</span>: Select Item</div>
+              <div class="Information-Options"><span>Enter:</span>: Select</div>
+              <div class="Information-Options"><span>+/-:</span> ¨ Change Opt.</div>
+              <div class="Information-Options"><span>F5:</span> Optimized Defaults</div>
+              <div class="Information-Options"><span>F10:</span> Save & Exit</div>
+              <div class="Information-Options"><span>ESC:</span> Exit</div>
             </div>
           </div>
         </div>

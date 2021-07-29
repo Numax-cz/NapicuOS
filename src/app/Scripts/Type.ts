@@ -25,4 +25,3 @@ export function isDate(component: settings, index?: number): boolean {
   }
   return false;
 }
-

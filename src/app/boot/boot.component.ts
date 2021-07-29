@@ -2,7 +2,6 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-boot',
   templateUrl: './boot.component.html',
@@ -10,10 +9,7 @@ import { Router } from '@angular/router';
 })
 export class BootComponent implements OnInit {
   public startTime: number = 0;
-  constructor(
-    @Inject(DOCUMENT) private doc: Document,
-    private router: Router
-  ) {}
+  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.RunBios(e));

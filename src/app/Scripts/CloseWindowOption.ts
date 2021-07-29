@@ -7,14 +7,8 @@ import { isTime, isOption, isDate } from './Type';
 //TODO clear code
 export function CloseWindowOptionUnsave(): void {
   if (BiosComponent.WindowFastOptionDisplay) {
-    if (
-      isTime(
-        SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected]
-      )
-    ) {
-      SettingsTemplateComponent.MainOption[
-        SettingsTemplateComponent.selected
-      ].time = ItemsDateInit;
+    if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
+      SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].time = ItemsDateInit;
       setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
     } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date = ItemsDateInit;
@@ -24,8 +18,7 @@ export function CloseWindowOptionUnsave(): void {
 }
 export function CloseWindowOptionSave(): void {
   if (isOption(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
-    SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].selected =
-      BiosComponent.WindowSelectedOption;
+    SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].selected = BiosComponent.WindowSelectedOption;
   } else if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
     setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
   }

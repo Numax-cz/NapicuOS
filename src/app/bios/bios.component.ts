@@ -5,10 +5,7 @@ import { Menu } from '../Array/BiosMenu';
 
 import { MoveOption } from '../Scripts/MoveOption';
 import { OpenWindowOption } from '../Scripts/OpenWindowOption';
-import {
-  CloseWindowOptionUnsave,
-  CloseWindowOptionSave,
-} from '../Scripts/CloseWindowOption';
+import { CloseWindowOptionUnsave, CloseWindowOptionSave } from '../Scripts/CloseWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { Options } from '../interface/ToolSettings';
@@ -31,15 +28,10 @@ export class BiosComponent implements OnInit {
   public static WindowDisplay: boolean = false;
   public static WindowFastOptionDisplay: boolean = false;
   public static WindowSelectedOption: number = 0;
-  constructor(
-    @Inject(DOCUMENT) private doc: Document,
-    private router: Router
-  ) {}
+  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
-
-
   }
 
   get selected(): number {
@@ -53,16 +45,10 @@ export class BiosComponent implements OnInit {
     setTimeout(() => {
       //ArrowRight
       if (!BiosComponent.selectedComponent) return;
-      if (
-        !BiosComponent.WindowDisplay &&
-        !BiosComponent.WindowFastOptionDisplay
-      ) {
+      if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
         BiosComponent.WindowItems = [];
         BiosComponent.WindowSelectedOption = 0;
-        if (
-          e.keyCode == 39 &&
-          BiosComponent.selected < this.BiosMenu.length - 1
-        ) {
+        if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
           BiosComponent.selected += 1;
           this.UpdateComponent();
         }
@@ -71,10 +57,7 @@ export class BiosComponent implements OnInit {
           BiosComponent.selected -= 1;
           this.UpdateComponent();
         }
-        if (
-          !BiosComponent.WindowDisplay &&
-          !BiosComponent.WindowFastOptionDisplay
-        ) {
+        if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
         }
         //* ArrowDown & ArrowUp
         if (e.keyCode == 40 || e.keyCode == 38) {
@@ -85,12 +68,7 @@ export class BiosComponent implements OnInit {
           OpenWindowOption();
         }
       } else {
-        if (
-          e.keyCode == 40 ||
-          e.keyCode == 39 ||
-          e.keyCode == 38 ||
-          e.keyCode == 37
-        ) {
+        if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
           MoveWindowOptions(e.keyCode);
         }
         //* Close --save
@@ -110,13 +88,9 @@ export class BiosComponent implements OnInit {
     }, 55);
   };
   public UpdateComponent(): void {
-    this.router.navigate(
-      [`bios/${this.BiosMenu[BiosComponent.selected].router}`],
-      { skipLocationChange: true }
-    );
+    this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });
   }
   get Display(): boolean {
     return BiosComponent.WindowDisplay;
   }
-
 }

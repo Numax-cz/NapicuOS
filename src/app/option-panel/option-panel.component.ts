@@ -13,7 +13,6 @@ export class OptionPanelComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
   get Items(): Array<any> {
     return BiosComponent.WindowItems;
   }

@@ -6,10 +6,7 @@ export function MoveWindowOptions(keyCode: number): void {
   if (keyCode == KeyCodeArrow2 && BiosComponent.WindowSelectedOption > 0) {
     BiosComponent.WindowSelectedOption -= 1;
   }
-  if (
-    keyCode == KeyCodeArrow1 &&
-    BiosComponent.WindowSelectedOption < BiosComponent.WindowItems.length - 1
-  ) {
+  if (keyCode == KeyCodeArrow1 && BiosComponent.WindowSelectedOption < BiosComponent.WindowItems.length - 1) {
     BiosComponent.WindowSelectedOption += 1;
   }
 }
