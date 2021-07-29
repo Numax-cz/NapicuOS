@@ -17,11 +17,13 @@
           <div class="GridOptionsBox">
             <div class="Option"></div>
             <section class="Information">
-              <router-outlet (activate)="Activate($event)"></router-outlet>
+              <router-outlet></router-outlet>
             </section>
           </div>
           <div class="Grid-ItemHoz Right">
-            <div>xd</div>
+            <div>
+              {{ Descriptions }}
+            </div>
             <div class="Information blue">
               <div class="Hin">
                 <div class="Information-Options"><span class="Options-Arrow">►◄</span>: Select Screen</div>

@@ -19,14 +19,27 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
 })
 export class BiosComponent implements OnInit {
   //Main
-  public static selectedComponent: any; //TODO
+  /**
+   * Specifies which screen is selected 
+   */
   public static selected: number = 0;
   public BiosMenu: BiosMenu[] = Menu;
 
-  //PopUp Alert
+  /**
+   * Items that are used in the popup window (Option-Panel)
+   */
   public static WindowItems: WindowItems;
+  /**
+   * Specifies whether the popup window is open or closed (Option-Panel)
+   */
   public static WindowDisplay: boolean = false;
+  /**
+   * Specifies whether the quick select option is open or closed (Option-Panel)
+   */
   public static WindowFastOptionDisplay: boolean = false;
+  /**
+   * Specifies which item is selected in the popup window (Option-Panel)
+   */
   public static WindowSelectedOption: number = 0;
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
@@ -37,14 +50,10 @@ export class BiosComponent implements OnInit {
   get selected(): number {
     return BiosComponent.selected;
   }
-  public Activate(e: any): void {
-    BiosComponent.selectedComponent = e;
-  }
 
   public Move = (e: KeyboardEvent): void => {
     setTimeout(() => {
       //ArrowRight
-      if (!BiosComponent.selectedComponent) return;
       if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
         BiosComponent.WindowItems = [];
         BiosComponent.WindowSelectedOption = 0;
@@ -92,5 +101,8 @@ export class BiosComponent implements OnInit {
   }
   get Display(): boolean {
     return BiosComponent.WindowDisplay;
+  }
+  get Descriptions(): string {
+    return 'xd';
   }
 }
