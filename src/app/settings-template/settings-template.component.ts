@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BiosComponent } from '../bios/bios.component';
 import { ComponentClass } from '../interface/ComponentClass';
-import { settings } from '../interface/ToolSettings';
-import { isOption, isTime, isDate } from '../Scripts/Type';
+import { Informations } from '../interface/Informations';
+import { settings, ToolSettings } from '../interface/ToolSettings';
+import { isOption, isTime, isDate, isOptionsFast } from '../Scripts/Type';
 
 @Component({
   selector: 'app-settings-template',
@@ -11,15 +12,14 @@ import { isOption, isTime, isDate } from '../Scripts/Type';
 })
 export class SettingsTemplateComponent implements OnInit {
   @Input() MainOption: any;
+  @Input() MainOptionInfo: Informations[] = [];
   public static MainOption: settings[] = [];
   /**
    * Number that indicates which item from MainOption is selected
    */
   public static selected: number = 0;
 
-  constructor() {
-
-  }
+  constructor() {}
   ngOnInit(): void {
     SettingsTemplateComponent.MainOption = this.MainOption.settings;
     SettingsTemplateComponent.selected = 0;
@@ -37,6 +37,9 @@ export class SettingsTemplateComponent implements OnInit {
   get ComponentTitle(): string {
     return SettingsTemplateComponent.MainOption[0].title;
   }
+  get Description(): string {
+    return SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].description;
+  }
 
   public isOption(component: settings, index: number): boolean {
     return isOption(component, index);
@@ -46,6 +49,9 @@ export class SettingsTemplateComponent implements OnInit {
   }
   public isDate(component: settings): boolean {
     return isDate(component);
+  }
+  public isOptionFast(component: settings): boolean {
+    return isOptionsFast(component);
   }
   static errorType(): string {
     console.error('Array Error');

@@ -23,7 +23,8 @@ export function OpenWindowOption(): void {
       BiosComponent.WindowItems = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date;
       BiosComponent.WindowFastOptionDisplay = true;
     } else {
-      BiosMainComponent.errorType();
+      console.log("Error Array");
+      
     }
   }
 }

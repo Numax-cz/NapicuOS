@@ -17,10 +17,11 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
   templateUrl: './bios.component.html',
   styleUrls: ['./bios.component.scss'],
 })
+
 export class BiosComponent implements OnInit {
   //Main
   /**
-   * Specifies which screen is selected 
+   * Specifies which screen is selected
    */
   public static selected: number = 0;
   public BiosMenu: BiosMenu[] = Menu;
@@ -103,8 +104,6 @@ export class BiosComponent implements OnInit {
     return BiosComponent.WindowDisplay;
   }
   get Descriptions(): string {
-
-    
-    return 'xd'
+    return 'xd';
   }
 }

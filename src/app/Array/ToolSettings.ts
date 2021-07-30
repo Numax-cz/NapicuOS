@@ -1,5 +1,8 @@
 import { SelectorContext } from '@angular/compiler';
 import { ToolSettings } from '../interface/ToolSettings';
+import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
+import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
+import { SaveChanges } from '../Scripts/exit/SaveChanges';
 import { setTime } from '../Scripts/Time';
 
 export var Main: ToolSettings = {
@@ -23,7 +26,8 @@ export var Main: ToolSettings = {
       ],
       time: [],
       date: [],
-      description: 'Nastavení',
+      optionsFast: null,
+      description: 'Choose the default language',
       selected: 0,
     },
     {
@@ -41,8 +45,8 @@ export var Main: ToolSettings = {
         },
       ],
       date: [],
+      optionsFast: null,
       description: 'Nastavení',
-
       selected: 0,
     },
     {
@@ -50,6 +54,7 @@ export var Main: ToolSettings = {
       options: [],
       time: [],
       date: setTime(),
+      optionsFast: null,
       description: 'Nastavení',
       selected: 0,
     },
@@ -71,7 +76,8 @@ export var Boot: ToolSettings = {
       ],
       time: [],
       date: [],
-      description: 'Nastavení',
+      optionsFast: null,
+      description: 'Set System Boot Mode',
 
       selected: 0,
     },
@@ -87,6 +93,7 @@ export var Boot: ToolSettings = {
       ],
       time: [],
       date: [],
+      optionsFast: null,
       description: 'Nastavení',
       selected: 0,
     },
@@ -105,7 +112,42 @@ export var Boot: ToolSettings = {
       ],
       time: [],
       date: [],
+      optionsFast: null,
       description: 'Nastavení',
+      selected: 0,
+    },
+  ],
+};
+
+export var Exit: ToolSettings = {
+  title: '',
+  settings: [
+    {
+      title: 'Load Optimized Defaults',
+      options: [],
+      time: [],
+      date: [],
+      optionsFast: () => LoadDefaults(),
+      description: 'Restores/loads the default values for all the setup options',
+
+      selected: 0,
+    },
+    {
+      title: 'Save Changes & Reset',
+      options: [],
+      time: [],
+      date: [],
+      optionsFast: () => SaveChanges(),
+      description: 'Set System Boot Mode',
+      selected: 0,
+    },
+    {
+      title: 'Discard Changes & Exit',
+      options: [],
+      time: [],
+      date: [],
+      optionsFast: () => DiscardChanges(),
+      description: 'Set System Boot Mode',
       selected: 0,
     },
   ],

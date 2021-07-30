@@ -46,3 +46,54 @@
     color: transparent;
   }
 }
+
+
+
+$Padding: 10.234px;
+.BiosBackground {
+  background-color: blue;
+
+  width: 100%;
+  height: 100vh;
+  color: white;
+  user-select: none;
+}
+.Top {
+  text-align: center;
+  padding: $Padding;
+  p {
+    font-size: 1.8rem;
+  }
+}
+.Bottom {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $Padding;
+  p {
+    font-size: 1.8rem;
+  }
+}
+.root {
+  font-size: 1.45rem;
+  div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 70%;
+  }
+}
+.selected {
+  background-color: lightgray;
+  color: blue;
+}
+.nonselected {
+  background-color: none;
+  color: white;
+}
+
+.GridOptionsBox{
+  padding: 0px 30px;
+}

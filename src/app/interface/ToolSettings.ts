@@ -8,8 +8,9 @@ export interface settings {
   options: Options[];
   time: Time[];
   date: Date[];
+  optionsFast: Function | null;
   interval?: any;
-  description: string
+  description: string;
   selected: number;
 }
 
