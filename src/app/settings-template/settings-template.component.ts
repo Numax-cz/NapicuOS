@@ -12,9 +12,14 @@ import { isOption, isTime, isDate } from '../Scripts/Type';
 export class SettingsTemplateComponent implements OnInit {
   @Input() MainOption: any;
   public static MainOption: settings[] = [];
+  /**
+   * Number that indicates which item from MainOption is selected
+   */
   public static selected: number = 0;
 
-  constructor() {}
+  constructor() {
+
+  }
   ngOnInit(): void {
     SettingsTemplateComponent.MainOption = this.MainOption.settings;
     SettingsTemplateComponent.selected = 0;

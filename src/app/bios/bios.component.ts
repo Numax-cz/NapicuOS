@@ -103,6 +103,8 @@ export class BiosComponent implements OnInit {
     return BiosComponent.WindowDisplay;
   }
   get Descriptions(): string {
-    return 'xd';
+
+    
+    return 'xd'
   }
 }

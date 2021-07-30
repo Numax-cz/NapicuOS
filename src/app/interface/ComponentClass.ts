@@ -8,4 +8,4 @@ export interface ComponentClass {
   isTime(component: settings): boolean;
   isDate(component: settings): boolean;
 }
-//todo do píče to dát
+
