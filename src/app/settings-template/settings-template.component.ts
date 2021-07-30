@@ -41,8 +41,8 @@ export class SettingsTemplateComponent implements OnInit {
     return SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].description;
   }
 
-  public isOption(component: settings, index: number): boolean {
-    return isOption(component, index);
+  public isOption(component: settings): boolean {
+    return isOption(component);
   }
   public isTime(component: settings): boolean {
     return isTime(component);

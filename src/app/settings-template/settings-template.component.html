@@ -6,7 +6,7 @@
           <div id="Title">{{ MainOption.title }}</div>
           <div *ngFor="let i of MainOption.settings; let index = index" id="Grid-BiosItems" class="Option" [ngClass]="{ BIOSSelectedOption: index == localSelected }">
             <div>{{ i.title }}<span *ngIf="!isOptionFast(i)" class="colon" >:</span></div>
-            <div *ngIf="isOption(i, index)">[{{ i.options[i.selected].title }}]</div>
+            <div *ngIf="isOption(i)">[{{ i.options[i.selected].title }}]</div>
             <div *ngIf="isTime(i)">
               [<span *ngFor="let time of MainOption.settings[index].time; let timeIndex = index"
                 ><span

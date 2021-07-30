@@ -4,8 +4,7 @@ export interface ComponentClass {
   selected: number;
   MainOption: ToolSettings;
 
-  isOption(component: settings, index: number): boolean;
+  isOption(component: settings): boolean;
   isTime(component: settings): boolean;
   isDate(component: settings): boolean;
 }
-
