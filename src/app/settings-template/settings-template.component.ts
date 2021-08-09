@@ -25,6 +25,10 @@ export class SettingsTemplateComponent implements OnInit {
     SettingsTemplateComponent.selected = 0;
   }
 
+  ngOnDestroy(): void{
+    SettingsTemplateComponent.MainOption = [];
+  }
+
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
   }

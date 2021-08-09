@@ -2,7 +2,7 @@ import { ComponentClass } from '../interface/ComponentClass';
 import { Options, settings, Time } from '../interface/ToolSettings';
 
 export type WindowItems = Options[] | Time[] | Date[];
-//TODO Type.ts Index pořešit index: number => in Function
+
 export function isOption(component: settings): boolean {
   var index = 0;
   if (component.options[index] && component.options[index].title) {

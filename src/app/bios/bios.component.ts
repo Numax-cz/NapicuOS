@@ -17,7 +17,6 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
   templateUrl: './bios.component.html',
   styleUrls: ['./bios.component.scss'],
 })
-
 export class BiosComponent implements OnInit {
   //Main
   /**
@@ -42,6 +41,7 @@ export class BiosComponent implements OnInit {
    * Specifies which item is selected in the popup window (Option-Panel)
    */
   public static WindowSelectedOption: number = 0;
+
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
   ngOnInit(): void {
@@ -58,6 +58,9 @@ export class BiosComponent implements OnInit {
       if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
         BiosComponent.WindowItems = [];
         BiosComponent.WindowSelectedOption = 0;
+
+    
+
         if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
           BiosComponent.selected += 1;
           this.UpdateComponent();
@@ -98,7 +101,7 @@ export class BiosComponent implements OnInit {
     }, 55);
   };
   public UpdateComponent(): void {
-    this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });
+    this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });    
   }
   get Display(): boolean {
     return BiosComponent.WindowDisplay;

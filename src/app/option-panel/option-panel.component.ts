@@ -1,7 +1,5 @@
-import { Component, NgIterable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BiosComponent } from '../bios/bios.component';
-import { Options, settings, ToolSettings } from '../interface/ToolSettings';
-import { WindowItems } from '../Scripts/Type';
 
 @Component({
   selector: 'app-option-panel',
@@ -10,7 +8,7 @@ import { WindowItems } from '../Scripts/Type';
 })
 export class OptionPanelComponent implements OnInit {
   constructor() {}
-
+  public static FastOption: boolean = false;
   ngOnInit(): void {}
 
   get Items(): Array<any> {
@@ -18,5 +16,8 @@ export class OptionPanelComponent implements OnInit {
   }
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
+  }
+  get FastOption(): boolean {
+    return OptionPanelComponent.FastOption;
   }
 }

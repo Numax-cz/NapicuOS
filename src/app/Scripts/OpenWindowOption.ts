@@ -9,7 +9,7 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
 export var ItemsDateInit: Time[];
 export var nevim: any = {};
 export function OpenWindowOption(): void {
-  if (SettingsTemplateComponent) {
+  if (SettingsTemplateComponent.MainOption.length) {
     if (isOption(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       BiosComponent.WindowItems = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].options;
       BiosComponent.WindowDisplay = true;
@@ -23,8 +23,7 @@ export function OpenWindowOption(): void {
       BiosComponent.WindowItems = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date;
       BiosComponent.WindowFastOptionDisplay = true;
     } else {
-      console.log("Error Array");
-      
+      console.log('Error Array');
     }
   }
 }
