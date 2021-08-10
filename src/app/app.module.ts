@@ -15,6 +15,7 @@ import { ExitComponent } from './exit/exit.component';
 import { OptionPanelComponent } from './option-panel/option-panel.component';
 import { SettingsTemplateComponent } from './settings-template/settings-template.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,7 @@ import { SettingsTemplateComponent } from './settings-template/settings-template
     ToolsComponent,
     ExitComponent,
     OptionPanelComponent,
-    SettingsTemplateComponent
+    SettingsTemplateComponent,
   ],
   imports: [
     BrowserModule,

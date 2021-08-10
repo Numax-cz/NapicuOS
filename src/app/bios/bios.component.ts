@@ -30,7 +30,7 @@ export class BiosComponent implements OnInit {
    */
   public static WindowItems: WindowItems;
   /**
-   * Specifies whether the popup window is open or closed (Option-Panel)
+   * Specifies whether the popup - 1 window is open or closed (Option-Panel)
    */
   public static WindowDisplay: boolean = false;
   /**
@@ -58,8 +58,6 @@ export class BiosComponent implements OnInit {
       if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
         BiosComponent.WindowItems = [];
         BiosComponent.WindowSelectedOption = 0;
-
-    
 
         if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
           BiosComponent.selected += 1;
@@ -101,7 +99,7 @@ export class BiosComponent implements OnInit {
     }, 55);
   };
   public UpdateComponent(): void {
-    this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });    
+    this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });
   }
   get Display(): boolean {
     return BiosComponent.WindowDisplay;

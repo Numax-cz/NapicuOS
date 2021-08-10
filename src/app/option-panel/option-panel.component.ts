@@ -8,16 +8,18 @@ import { BiosComponent } from '../bios/bios.component';
 })
 export class OptionPanelComponent implements OnInit {
   constructor() {}
-  public static FastOption: boolean = false;
   ngOnInit(): void {}
+
+  get FunctionOnClick(): Function {
+    return function kokot() {
+      alert('Click');
+    };
+  }
 
   get Items(): Array<any> {
     return BiosComponent.WindowItems;
   }
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
-  }
-  get FastOption(): boolean {
-    return OptionPanelComponent.FastOption;
   }
 }

@@ -1,1 +1,3 @@
-export function SaveChanges(): void {}
+export function SaveChanges(): void {
+  console.log('SaveChanges');
+}

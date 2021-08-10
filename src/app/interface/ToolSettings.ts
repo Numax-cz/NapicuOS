@@ -21,6 +21,7 @@ export interface Options {
 export interface Time {
   title: string;
 }
+
 export interface Date {
   title: string;
 }

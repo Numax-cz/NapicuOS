@@ -1,1 +1,3 @@
-export function LoadDefaults(): void {}
+export function LoadDefaults(): void {
+  console.log('LoadDefaults');
+}
