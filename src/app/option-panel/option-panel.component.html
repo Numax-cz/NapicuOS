@@ -1,11 +1,10 @@
-<section id="BiosOptionMenu">
+<section id="BiosOptionMenu" [ngClass]="{ OptionFun: Horizontal }">
   <div class="BiosPanel">
-    <div *ngFor="let i of Items; let index = index" [ngClass]="{ selected: index == Selected }">
-      {{ i.title }}
+    <div *ngIf="Horizontal">{{ SelectedTitle }}</div>
+    <div [ngClass]="{ FunFlex: Horizontal }">
+      <div *ngFor="let i of Items; let index = index" [ngClass]="{ selected: index == Selected }">
+        <p>{{ i.title }}</p>
+      </div>
     </div>
   </div>
 </section>
-
-
-
-

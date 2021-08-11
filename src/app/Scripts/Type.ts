@@ -1,7 +1,7 @@
 import { ComponentClass } from '../interface/ComponentClass';
-import { Options, settings, Time } from '../interface/ToolSettings';
+import { Options, settings, Time, Date } from '../interface/ToolSettings';
 
-export type WindowItems = Options[] | Time[] | Date[] ;
+export type WindowItems = Options[] | Time[] | Date[];
 
 export function isOption(component: settings): boolean {
   var index = 0;

@@ -3,6 +3,7 @@ import { isTime, isOption, isDate, isOptionsFast } from './Type';
 import { Time } from '../interface/ToolSettings';
 import { clearTimeInterval } from './TimeController';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
+import { OptionPanelComponent } from '../option-panel/option-panel.component';
 
 export var ItemsDateInit: Time[];
 export var nevim: any = {};

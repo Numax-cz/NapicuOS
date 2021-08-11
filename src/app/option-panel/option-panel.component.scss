@@ -17,5 +17,16 @@
   border-bottom: 2px solid white;
 }
 .selected {
-  background-color: black;
+  p {
+    background-color: black;
+  }
+}
+.OptionFun {
+  padding: 40px;
+}
+
+.FunFlex {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
 }
