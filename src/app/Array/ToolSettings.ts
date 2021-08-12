@@ -1,9 +1,8 @@
-import { SelectorContext } from '@angular/compiler';
 import { ToolSettings } from '../interface/ToolSettings';
 import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
 import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
 import { SaveChanges } from '../Scripts/exit/SaveChanges';
-import { setTime } from '../Scripts/Time';
+import { setDate, setTime } from '../Scripts/TimeDate';
 
 export var Main: ToolSettings = {
   title: 'System Overview',
@@ -33,17 +32,7 @@ export var Main: ToolSettings = {
     {
       title: 'System Time',
       options: [],
-      time: [
-        {
-          title: '10',
-        },
-        {
-          title: '20',
-        },
-        {
-          title: '30',
-        },
-      ],
+      time: setTime(),
       date: [],
       optionsFast: null,
       description: 'Nastavení',
@@ -53,7 +42,7 @@ export var Main: ToolSettings = {
       title: 'System Date',
       options: [],
       time: [],
-      date: setTime(),
+      date: setDate(),
       optionsFast: null,
       description: 'Nastavení',
       selected: 0,
@@ -152,3 +141,9 @@ export var Exit: ToolSettings = {
     },
   ],
 };
+
+export var ArrayToolSettings: ToolSettings[] = [
+  Main,
+  Boot,
+  Exit,
+]
