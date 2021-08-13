@@ -1,4 +1,5 @@
 export function BiosExit(): void {
-    console.log('BiosExit');
-    
+  //TODO: Go bios
+  //TODO: Wait for load
+  console.log('BiosExit');
 }

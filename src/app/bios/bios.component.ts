@@ -2,29 +2,32 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../Array/BiosMenu';
-
 import { MoveOption } from '../Scripts/MoveOption';
 import { OpenWindowOption } from '../Scripts/OpenWindowOption';
 import { CloseWindowOptionUnsave, CloseWindowOptionSave } from '../Scripts/CloseWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
-import { Options } from '../interface/ToolSettings';
+import { ToolSettings } from '../interface/ToolSettings';
 import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
-import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
+import { deleteCookies, getCookies, setCookies } from '../Scripts/Cookies';
+import { stringify } from '@angular/compiler/src/util';
+import { ArrayToolSettings } from '../Array/ToolSettings';
+
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',
   styleUrls: ['./bios.component.scss'],
 })
 export class BiosComponent implements OnInit {
-  //Main
+  //TODO: Check Cookies
+  public static BiosMenuSave: ToolSettings[];
+
   /**
    * Specifies which screen is selected
    */
   public static selected: number = 0;
   public BiosMenu: BiosMenu[] = Menu;
-
   /**
    * Items that are used in the popup window (Option-Panel)
    */
@@ -42,7 +45,10 @@ export class BiosComponent implements OnInit {
    */
   public static WindowSelectedOption: number = 0;
 
-  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
+  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
+    var SaveBiosArray = JSON.parse(JSON.stringify(ArrayToolSettings));
+    BiosComponent.BiosMenuSave = getCookies('BiosSettingsArray') || SaveBiosArray;
+  }
 
   ngOnInit(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
@@ -54,7 +60,7 @@ export class BiosComponent implements OnInit {
 
   public Move = (e: KeyboardEvent): void => {
     setTimeout(() => {
-      //ArrowRight
+      //* ArrowRight
       if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
         BiosComponent.WindowItems = [];
         BiosComponent.WindowSelectedOption = 0;
@@ -98,12 +104,15 @@ export class BiosComponent implements OnInit {
       }
     }, 55);
   };
+
   public UpdateComponent(): void {
     this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });
   }
+
   get Display(): boolean {
     return BiosComponent.WindowDisplay;
   }
+
   get Descriptions(): string {
     return 'xd';
   }
