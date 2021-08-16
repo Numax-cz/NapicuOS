@@ -16,6 +16,11 @@ import { ArrayToolSettings, BiosInfo, Boot } from '../Array/ToolSettings';
 import { BootbComponent } from '../bootb/bootb.component';
 import { BootComponent } from '../boot/boot.component';
 
+/**
+ * @author Numax-cz
+ * @version 1.1.0
+ */
+
 @Component({
   selector: 'app-bios',
   templateUrl: './bios.component.html',

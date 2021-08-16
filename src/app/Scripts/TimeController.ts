@@ -1,6 +1,10 @@
-import { settings, ToolSettings } from '../interface/ToolSettings';
+import { settings } from '../interface/ToolSettings';
 import { maxMinutes, maxSeconds, maxHours } from './TimeDateSet';
-
+/**
+ * Sets the correct tick of the clock
+ * @param {settings} MainOption
+ * @param {number} index
+ */
 export function TimeInterval(MainOption: settings[], index: number): void {
   var seconds = Number(MainOption[index].time[2].title) + 1;
   var minutes = Number(MainOption[index].time[1].title) + 1;
@@ -23,6 +27,11 @@ export function TimeInterval(MainOption: settings[], index: number): void {
   }
 }
 
+/**
+ * Sets for MainOption[index].interval setInterval..1000ms => TimeInterval
+ * @param {settings} MainOption
+ * @param {number} index
+ */
 export function setTimeInterval(MainOption: settings[], index: number): void {
   if (!MainOption[index].interval) {
     MainOption[index].interval = setInterval(() => {
@@ -31,6 +40,11 @@ export function setTimeInterval(MainOption: settings[], index: number): void {
   }
 }
 
+/**
+ * Clears MainOption[index].interval
+ * @param {settings} MainOption
+ * @param {number} index
+ */
 export function clearTimeInterval(MainOption: settings[], index: number): void {
   clearInterval(MainOption[index].interval);
   MainOption[index].interval = null;
