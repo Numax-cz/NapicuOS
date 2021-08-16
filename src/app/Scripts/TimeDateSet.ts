@@ -1,15 +1,18 @@
 import { BiosComponent } from '../bios/bios.component';
-import { ComponentClass } from '../interface/ComponentClass';
 import { Time } from '../interface/ToolSettings';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
-import { ItemsDateInit } from './OpenWindowOption';
 import { isDate, isTime } from './Type';
 export const maxMinutes: number = 60;
 export const maxSeconds: number = 60;
 export const maxHours: number = 24;
-export function TimeDateSet(keyCode: number, Items: Time[]) {
-  //TODO AutoCheck - Date
 
+/**
+ *
+ * @param {number} keyCode
+ * @param {Time} Items - Time[]
+ */
+export function TimeDateSet(keyCode: number, Items: Time[]): void {
+  //TODO AutoCheck - Date
   var ItemsNumber: number = Number(Items[BiosComponent.WindowSelectedOption].title);
   var componentSelected = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
   if (keyCode == 38) ItemsNumber += +1;
@@ -76,8 +79,15 @@ export function TimeDateSet(keyCode: number, Items: Time[]) {
       MaxMinNumber(3000, 2000);
     }
   }
-
   Items[BiosComponent.WindowSelectedOption].title = ItemsNumber.toString();
+
+  /**
+   * If the number is higher than max, the number will be min.
+   * 
+   * If the number is smaller, the number will be max...
+   * @param {number} max - Maximum number
+   * @param {number} min - Minimum number, default is 0
+   */
   function MaxMinNumber(max: number, min?: number) {
     if (!min) min = 0;
     max -= 1;

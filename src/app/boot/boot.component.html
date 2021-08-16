@@ -1,8 +1,8 @@
 <section class="BootBackground">
-  <div class="BootScreen">
+  <div class="BootScreen" *ngIf="!BlackScreen">
     <div class="Center">
       <div class="Logo">
-        <p>NapicuBios</p>
+        <p>{{ biosTitle }}</p>
       </div>
     </div>
     <div class="BottomText">Please press DEL or F2 to enter BIOS setting</div>

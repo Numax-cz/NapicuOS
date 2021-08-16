@@ -3,7 +3,6 @@
     <div class="Top">
       <p>Napicu BIOS SETUP</p>
     </div>
-
     <section class="root">
       <div>
         <p *ngFor="let i of BiosMenu; let index = index" [ngClass]="{ selected: index == selected }">
@@ -16,7 +15,7 @@
     </section>
 
     <div class="Bottom">
-      <p>v02.69 Napicu 1985 - 2021</p>
+      <p>{{biosVersion}} Napicu {{biosDate}}</p>
     </div>
   </div>
 </section>

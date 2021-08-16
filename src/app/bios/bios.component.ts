@@ -12,7 +12,9 @@ import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
 import { deleteCookies, getCookies, setCookies } from '../Scripts/Cookies';
 import { stringify } from '@angular/compiler/src/util';
-import { ArrayToolSettings } from '../Array/ToolSettings';
+import { ArrayToolSettings, BiosInfo, Boot } from '../Array/ToolSettings';
+import { BootbComponent } from '../bootb/bootb.component';
+import { BootComponent } from '../boot/boot.component';
 
 @Component({
   selector: 'app-bios',
@@ -21,12 +23,17 @@ import { ArrayToolSettings } from '../Array/ToolSettings';
 })
 export class BiosComponent implements OnInit {
   //TODO: Check Cookies
+  public static BiosRouter: Router;
+
   public static BiosMenuSave: ToolSettings[];
 
   /**
    * Specifies which screen is selected
    */
   public static selected: number = 0;
+  /**
+   * All items displayed in the top panel
+   */
   public BiosMenu: BiosMenu[] = Menu;
   /**
    * Items that are used in the popup window (Option-Panel)
@@ -48,10 +55,14 @@ export class BiosComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     var SaveBiosArray = JSON.parse(JSON.stringify(ArrayToolSettings));
     BiosComponent.BiosMenuSave = getCookies('BiosSettingsArray') || SaveBiosArray;
+    BiosComponent.BiosRouter = this.router;
   }
 
   ngOnInit(): void {
-    window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
+    if (!BootComponent.removeListener) {
+      window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
+      BootComponent.removeListener = true;
+    }
   }
 
   get selected(): number {
@@ -107,6 +118,7 @@ export class BiosComponent implements OnInit {
 
   public UpdateComponent(): void {
     this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });
+    BiosComponent.BiosRouter = this.router;
   }
 
   get Display(): boolean {
@@ -115,5 +127,13 @@ export class BiosComponent implements OnInit {
 
   get Descriptions(): string {
     return 'xd';
+  }
+
+  get biosVersion(): string {
+    return BiosInfo.version;
+  }
+
+  get biosDate(): string {
+    return BiosInfo.date;
   }
 }

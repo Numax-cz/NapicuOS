@@ -21,4 +21,8 @@ export var MainInfo: Informations[] = [
     title: 'Total Memory',
     value: '8192MB',
   },
+  {
+    title: 'Serial Number',
+    value: 'HRV54JFKD54FJ34FJfj333',
+  },
 ];

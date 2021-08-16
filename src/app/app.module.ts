@@ -14,6 +14,8 @@ import { ToolsComponent } from './tools/tools.component';
 import { ExitComponent } from './exit/exit.component';
 import { OptionPanelComponent } from './option-panel/option-panel.component';
 import { SettingsTemplateComponent } from './settings-template/settings-template.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -33,7 +35,13 @@ import { SettingsTemplateComponent } from './settings-template/settings-template
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

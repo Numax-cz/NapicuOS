@@ -1,8 +1,15 @@
+import { BiosIf } from '../interface/BiosInfo';
 import { ToolSettings } from '../interface/ToolSettings';
 import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
 import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
 import { SaveChanges } from '../Scripts/exit/SaveChanges';
 import { setDate, setTime } from '../Scripts/TimeDate';
+
+export var BiosInfo: BiosIf = {
+  title: "NapicuBios",
+  version: 'v2.69',
+  date: '1985 - 2021',
+};
 
 export var Main: ToolSettings = {
   title: 'System Overview',
@@ -47,6 +54,38 @@ export var Main: ToolSettings = {
       description: 'Nastavení',
       selected: 0,
     },
+    {
+      title: 'Network Boot',
+      options: [
+        {
+          title: 'Disabled',
+        },
+        {
+          title: 'Enabled',
+        },
+      ],
+      time: [],
+      date: [],
+      optionsFast: null,
+      description: 'Enable/Disable PXE boot on to LAN',
+      selected: 0,
+    },
+    {
+      title: 'Wake on LAN',
+      options: [
+        {
+          title: 'Disabled',
+        },
+        {
+          title: 'Enabled',
+        },
+      ],
+      time: [],
+      date: [],
+      optionsFast: null,
+      description: 'Enable/Disable Integrated LAN to wake the system',
+      selected: 0,
+    },
   ],
 };
 
@@ -68,6 +107,22 @@ export var Boot: ToolSettings = {
       optionsFast: null,
       description: 'Set System Boot Mode',
 
+      selected: 0,
+    },
+    {
+      title: 'Fast Boot',
+      options: [
+        {
+          title: 'Enabled',
+        },
+        {
+          title: 'Disabled',
+        },
+      ],
+      time: [],
+      date: [],
+      optionsFast: null,
+      description: 'Enable/Disable Fast Boot',
       selected: 0,
     },
     {
@@ -142,8 +197,4 @@ export var Exit: ToolSettings = {
   ],
 };
 
-export var ArrayToolSettings: ToolSettings[] = [
-  Main,
-  Boot,
-  Exit,
-]
+export var ArrayToolSettings: ToolSettings[] = [Main, Boot, Exit];
