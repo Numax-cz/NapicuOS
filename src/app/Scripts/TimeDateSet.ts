@@ -26,7 +26,9 @@ export function TimeDateSet(keyCode: number, Items: Time[]): void {
       MaxMinNumber(maxSeconds); //* Seconds & Minutes
     }
   } else if (isDate(componentSelected)) {
-    var month: number = Number(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date[0].title);
+    var date = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date;
+    if (!date) return;
+    var month: number = Number(date[0].title);
     if (BiosComponent.WindowSelectedOption == 0) {
       //* Month
       MaxMinNumber(13, 1);

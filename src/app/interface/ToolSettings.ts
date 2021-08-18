@@ -5,10 +5,10 @@ export interface ToolSettings {
 
 export interface settings {
   title: string;
-  options: Options[];
-  time: Time[];
-  date: Date[];
-  optionsFast: Function | null;
+  options?: Options[];
+  time?: Time[];
+  date?: Date[];
+  optionsFast?: Function | null;
   interval?: any;
   description: string;
   selected: number;
