@@ -1,15 +1,16 @@
-import { ArrayToolSettings } from 'src/app/Array/ToolSettings';
+import { BiosSettings } from 'src/app/Array/ToolSettings';
 import { BiosComponent } from 'src/app/bios/bios.component';
-import { getCookies, setCookies } from '../Cookies';
+import { BootComponent } from 'src/app/boot/boot.component';
+import { setCookies } from '../Cookies';
 import { BiosExit } from './BiosExit';
 
 export function SaveChanges(): void {
   Save();
+  BootComponent.BlackScreen = true;
   BiosExit();
-  console.log('SaveChanges');
 }
 
 function Save(): void {
-  BiosComponent.BiosMenuSave = ArrayToolSettings;
-  setCookies('BiosSettingsArray', JSON.stringify(ArrayToolSettings));
+  BiosComponent.BiosMenuSavePoint = BiosSettings;
+  setCookies('BiosSettingsArray', JSON.stringify(BiosSettings));
 }

@@ -3,7 +3,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BiosInfo } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
-import { setTime } from '../Scripts/TimeDate';
 
 @Component({
   selector: 'app-boot',
@@ -11,6 +10,7 @@ import { setTime } from '../Scripts/TimeDate';
   styleUrls: ['./boot.component.scss'],
 })
 export class BootComponent implements OnInit {
+  public static EnterBios: boolean;
   public startTime: number = 2055;
   /**
    * Defines whether a black screen is displayed
@@ -25,9 +25,19 @@ export class BootComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
   ngOnInit(): void {
-    window.addEventListener('keydown', (e: KeyboardEvent) => this.RunBios(e));
-    BiosComponent.selected = 0;
     this.ClearRouter();
+
+    if (!BootComponent.removeListener) {
+      window.addEventListener('keydown', (e: KeyboardEvent) => this.RunBios(e));
+    }
+
+    if (BootComponent.BlackScreen) {
+      setTimeout(() => {
+        BootComponent.BlackScreen = false;
+      }, 1055);
+    } else {
+      BootComponent.BlackScreen = false;
+    }
   }
 
   protected PlayBootSound(): void {
@@ -36,20 +46,24 @@ export class BootComponent implements OnInit {
 
   public RunBios = (e: KeyboardEvent): void => {
     if (e.keyCode == 46 || e.keyCode == 113) {
-      setTimeout(() => {
-        BootComponent.BlackScreen = true;
+      if (!BootComponent.BlackScreen) {
         setTimeout(() => {
-          this.PlayBootSound();
+          BootComponent.BlackScreen = true;
           setTimeout(() => {
-            this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
-          }, 150);
-        }, this.startTime);
-      }, 280);
+            this.PlayBootSound();
+            setTimeout(() => {
+              this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
+            }, 150);
+          }, this.startTime);
+        }, 280);
+      }
     }
   };
 
   public ClearRouter(): void {
     BiosComponent.BiosRouter = this.router;
+    BiosComponent.selected = 0;
+    BootComponent.EnterBios = false;
   }
 
   get biosTitle(): string {

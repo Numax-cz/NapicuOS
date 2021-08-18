@@ -1,4 +1,5 @@
-import { ArrayToolSettings } from 'src/app/Array/ToolSettings';
+import { NumberSymbol } from '@angular/common';
+import { BiosSettings } from 'src/app/Array/ToolSettings';
 import { settings, ToolSettings } from 'src/app/interface/ToolSettings';
 import { setDate, setTime } from '../TimeDate';
 import { isDate, isOption, isOptionsFast, isTime } from '../Type';
@@ -7,8 +8,8 @@ export function LoadDefaults(): void {
   setDefaultOptions();
 }
 function setDefaultOptions(): void {
-  ArrayToolSettings.forEach((ToolSettingsAr: ToolSettings) => {
-    ToolSettingsAr.settings.forEach((Settings: settings) => {
+  Object.values(BiosSettings).forEach((ArrayValue: ToolSettings) => {
+    ArrayValue.settings.forEach((Settings: settings) => {
       if (isOption(Settings)) {
         Settings.selected = 0;
       } else if (isTime(Settings)) {

@@ -10,10 +10,8 @@ import { BiosMenu } from '../interface/BiosMenu';
 import { ToolSettings } from '../interface/ToolSettings';
 import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
-import { deleteCookies, getCookies, setCookies } from '../Scripts/Cookies';
-import { stringify } from '@angular/compiler/src/util';
-import { ArrayToolSettings, BiosInfo, Boot } from '../Array/ToolSettings';
-import { BootbComponent } from '../bootb/bootb.component';
+import { getCookies } from '../Scripts/Cookies';
+import { BiosInfo, BiosOptionsST, BiosSettings } from '../Array/ToolSettings';
 import { BootComponent } from '../boot/boot.component';
 
 /**
@@ -30,8 +28,7 @@ export class BiosComponent implements OnInit {
   //TODO: Check Cookies
   public static BiosRouter: Router;
 
-  public static BiosMenuSave: ToolSettings[];
-
+  public static BiosMenuSavePoint: BiosOptionsST;
   /**
    * Specifies which screen is selected
    */
@@ -58,9 +55,12 @@ export class BiosComponent implements OnInit {
   public static WindowSelectedOption: number = 0;
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
-    var SaveBiosArray = JSON.parse(JSON.stringify(ArrayToolSettings));
-    BiosComponent.BiosMenuSave = getCookies('BiosSettingsArray') || SaveBiosArray;
+    var SaveBiosArray = JSON.parse(JSON.stringify(BiosSettings));
+    BiosComponent.BiosMenuSavePoint = JSON.parse(getCookies('BiosSettingsArray')) || SaveBiosArray;
     BiosComponent.BiosRouter = this.router;
+
+    //Set Cookies value to BiosSettings
+    Object.values(BiosSettings).forEach((ArrayValue: ToolSettings) => {});
   }
 
   ngOnInit(): void {
@@ -68,6 +68,7 @@ export class BiosComponent implements OnInit {
       window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
       BootComponent.removeListener = true;
     }
+    BootComponent.EnterBios = true;
   }
 
   get selected(): number {
@@ -75,50 +76,52 @@ export class BiosComponent implements OnInit {
   }
 
   public Move = (e: KeyboardEvent): void => {
-    setTimeout(() => {
-      //* ArrowRight
-      if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
-        BiosComponent.WindowItems = [];
-        BiosComponent.WindowSelectedOption = 0;
-
-        if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
-          BiosComponent.selected += 1;
-          this.UpdateComponent();
-        }
-        //* ArrowLeft
-        if (e.keyCode == 37 && BiosComponent.selected !== 0) {
-          BiosComponent.selected -= 1;
-          this.UpdateComponent();
-        }
+    if (BootComponent.EnterBios) {
+      setTimeout(() => {
+        //* ArrowRight
         if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
-        }
-        //* ArrowDown & ArrowUp
-        if (e.keyCode == 40 || e.keyCode == 38) {
-          MoveOption(e.keyCode);
-        }
-        //* Enter
-        if (e.keyCode == 13) {
-          OpenWindowOption();
-        }
-      } else {
-        if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
-          MoveWindowOptions(e.keyCode);
-        }
-        //* Close --save
-        if (e.keyCode == 13) {
-          CloseWindowOptionSave();
-        }
-        //* Close --unsavey
-        if (e.keyCode == 27) {
-          CloseWindowOptionUnsave();
-        }
-        if (BiosComponent.WindowFastOptionDisplay) {
-          if (e.keyCode == 40 || 38) {
-            TimeDateSet(e.keyCode, BiosComponent.WindowItems as any);
+          BiosComponent.WindowItems = [];
+          BiosComponent.WindowSelectedOption = 0;
+
+          if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
+            BiosComponent.selected += 1;
+            this.UpdateComponent();
+          }
+          //* ArrowLeft
+          if (e.keyCode == 37 && BiosComponent.selected !== 0) {
+            BiosComponent.selected -= 1;
+            this.UpdateComponent();
+          }
+          if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
+          }
+          //* ArrowDown & ArrowUp
+          if (e.keyCode == 40 || e.keyCode == 38) {
+            MoveOption(e.keyCode);
+          }
+          //* Enter
+          if (e.keyCode == 13) {
+            OpenWindowOption();
+          }
+        } else {
+          if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
+            MoveWindowOptions(e.keyCode);
+          }
+          //* Close --save
+          if (e.keyCode == 13) {
+            CloseWindowOptionSave();
+          }
+          //* Close --unsavey
+          if (e.keyCode == 27) {
+            CloseWindowOptionUnsave();
+          }
+          if (BiosComponent.WindowFastOptionDisplay) {
+            if (e.keyCode == 40 || 38) {
+              TimeDateSet(e.keyCode, BiosComponent.WindowItems as any);
+            }
           }
         }
-      }
-    }, 55);
+      }, 55);
+    }
   };
 
   public UpdateComponent(): void {
@@ -141,4 +144,7 @@ export class BiosComponent implements OnInit {
   get biosDate(): string {
     return BiosInfo.date;
   }
+}
+function BiosOptionsSettings(BiosOptionsSettings: any): string {
+  throw new Error('Function not implemented.');
 }
