@@ -26,7 +26,8 @@ export function OpenWindowOption(): void {
       BiosComponent.WindowItems = [{ title: 'Yes' }, { title: 'No' }];
       BiosComponent.WindowDisplay = true;
     } else {
-      console.log('Error Array');
+      console.error('Error Array');
+      console.error(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected]);
     }
   }
 }

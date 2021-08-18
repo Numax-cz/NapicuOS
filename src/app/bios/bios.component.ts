@@ -7,12 +7,12 @@ import { OpenWindowOption } from '../Scripts/OpenWindowOption';
 import { CloseWindowOptionUnsave, CloseWindowOptionSave } from '../Scripts/CloseWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
-import { ToolSettings } from '../interface/ToolSettings';
 import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
 import { getCookies } from '../Scripts/Cookies';
-import { BiosInfo, BiosOptionsST, BiosSettings } from '../Array/ToolSettings';
+import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../Array/ToolSettings';
 import { BootComponent } from '../boot/boot.component';
+import { copy } from '../Scripts/DeepClone';
 
 /**
  * @author Numax-cz
@@ -25,7 +25,6 @@ import { BootComponent } from '../boot/boot.component';
   styleUrls: ['./bios.component.scss'],
 })
 export class BiosComponent implements OnInit {
-  //TODO: Check Cookies
   public static BiosRouter: Router;
 
   public static BiosMenuSavePoint: BiosOptionsST;
@@ -55,12 +54,17 @@ export class BiosComponent implements OnInit {
   public static WindowSelectedOption: number = 0;
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
-    var SaveBiosArray = JSON.parse(JSON.stringify(BiosSettings));
-    BiosComponent.BiosMenuSavePoint = JSON.parse(getCookies('BiosSettingsArray')) || SaveBiosArray;
-    BiosComponent.BiosRouter = this.router;
+    var SaveBiosArray: BiosOptionsST = copy(BiosSettings);
+    //TODO ERROR Screen
 
-    //Set Cookies value to BiosSettings
-    Object.values(BiosSettings).forEach((ArrayValue: ToolSettings) => {});
+    if (JSON.parse(getCookies('BiosSettingsArray'))) {
+      BiosComponent.BiosMenuSavePoint = JSON.parse(getCookies('BiosSettingsArray'));
+      setSettingsValue(BiosComponent.BiosMenuSavePoint);
+    } else {
+      BiosComponent.BiosMenuSavePoint = SaveBiosArray;
+    }
+
+    BiosComponent.BiosRouter = this.router;
   }
 
   ngOnInit(): void {
