@@ -1,9 +1,10 @@
 import { BiosIf } from '../interface/BiosInfo';
-import { ToolSettings } from '../interface/ToolSettings';
+import { settings, ToolSettings } from '../interface/ToolSettings';
 import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
 import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
 import { SaveChanges } from '../Scripts/exit/SaveChanges';
 import { setDate, setTime } from '../Scripts/TimeDate';
+import { isDate, isOption, isTime } from '../Scripts/Type';
 export interface BiosOptionsST {
   [index: string]: ToolSettings;
 }
@@ -169,5 +170,15 @@ export var BiosSettings: BiosOptionsST = {
  * @param {BiosOptionsST} value All bios settings
  */
 export function setSettingsValue(value: BiosOptionsST): void {
-  BiosSettings = value;
+  for (const [key, val] of Object.entries(value)) {
+    val.settings.forEach((St: settings, indexVal: number) => {
+      if (isOption(St)) {
+        BiosSettings[key].settings[indexVal].selected = St.selected;
+      } else if (isDate(St)) {
+        BiosSettings[key].settings[indexVal].date = St.date;
+      } else if (isTime(St)) {
+        BiosSettings[key].settings[indexVal].time = St.time;
+      }
+    });
+  }
 }

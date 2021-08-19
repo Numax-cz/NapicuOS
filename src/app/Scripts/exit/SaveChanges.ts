@@ -7,7 +7,7 @@ import { BiosExit } from './BiosExit';
 export function SaveChanges(): void {
   Save();
   BootComponent.BlackScreen = true;
-  BiosExit();
+  BiosExit(true);
 }
 
 function Save(): void {

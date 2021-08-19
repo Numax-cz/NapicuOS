@@ -23,6 +23,8 @@ export function CloseWindowOptionSave(): void {
     SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].selected = BiosComponent.WindowSelectedOption;
   } else if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
     setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
+  } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
+    //There is nothing to see
   } else if (isOptionsFast(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
     if (BiosComponent.WindowSelectedOption !== 0 && BiosComponent.WindowSelectedOption !== 1) {
       ErrorOptionFunction();

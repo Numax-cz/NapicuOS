@@ -46,6 +46,8 @@ export class BootComponent implements OnInit {
 
   public RunBios = (e: KeyboardEvent): void => {
     if (e.keyCode == 46 || e.keyCode == 113) {
+      console.log('BlackScreen: ' + BootComponent.BlackScreen);
+
       if (!BootComponent.BlackScreen) {
         setTimeout(() => {
           BootComponent.BlackScreen = true;

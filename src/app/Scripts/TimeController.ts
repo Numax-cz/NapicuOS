@@ -31,7 +31,6 @@ export function TimeInterval(MainOption: settings[], index: number): void {
       }
     }
   } else {
-    console.log('Clear');
     clearTimeInterval(MainOption, index);
   }
 }
