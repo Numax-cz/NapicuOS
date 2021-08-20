@@ -13,6 +13,7 @@ import { getCookies } from '../Scripts/Cookies';
 import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../Array/ToolSettings';
 import { BootComponent } from '../boot/boot.component';
 import { copy } from '../Scripts/DeepClone';
+import { FlashComponent } from '../flash/flash.component';
 
 /**
  * @author Numax-cz
@@ -73,14 +74,14 @@ export class BiosComponent implements OnInit {
       BootComponent.removeListener = true;
     }
     BootComponent.EnterBios = true;
-  }
+  } 
 
   get selected(): number {
     return BiosComponent.selected;
   }
 
   public Move = (e: KeyboardEvent): void => {
-    if (BootComponent.EnterBios) {
+    if (BootComponent.EnterBios && !FlashComponent.ezFlashWindow) {
       setTimeout(() => {
         //* ArrowRight
         if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
@@ -126,10 +127,17 @@ export class BiosComponent implements OnInit {
         }
       }, 55);
     }
+    if (FlashComponent.ezFlashWindow) {
+      if (e.keyCode == 38) {
+        FlashComponent.SelectedDir -= 1;
+      } else if (e.keyCode == 40) {
+        FlashComponent.SelectedDir += 1;
+      }
+    }
   };
 
   public UpdateComponent(): void {
-    this.router.navigate([`bios/${this.BiosMenu[BiosComponent.selected].router}`], { skipLocationChange: true });
+    this.router.navigate([`bios/`, this.BiosMenu[BiosComponent.selected].router], { skipLocationChange: true });
     BiosComponent.BiosRouter = this.router;
   }
 
@@ -148,7 +156,4 @@ export class BiosComponent implements OnInit {
   get biosDate(): string {
     return BiosInfo.date;
   }
-}
-function BiosOptionsSettings(BiosOptionsSettings: any): string {
-  throw new Error('Function not implemented.');
 }

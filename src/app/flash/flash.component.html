@@ -1,0 +1,61 @@
+<section id="FlashBackground">
+  <div class="Title">{{ Title }} EZ Flash 2 BIOS {{ Version }}</div>
+  <section>
+    <div class="FlashPanel">
+      <div class="Grid50">
+        <div class="Window">
+          <div class="TitleWindow">Current ROM</div>
+          <div class="txt" *ngFor="let i of Current | keyvalue">
+            <div class="Grid30">
+              <div>{{ i.key }}</div>
+              <div class="Yellow">{{ i.value }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="Window">
+          <div class="TitleWindow">Update ROM</div>
+          <div class="txt" *ngFor="let i of Update | keyvalue">
+            <div class="Grid30">
+              <div>{{ i.key }}</div>
+              <div class="Yellow">{{ i.value }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Path txt">
+        <div class="Grid30">
+          <div class="PathTitle">Path:</div>
+          <div id="Path" class="Yellow">D:\</div>
+        </div>
+      </div>
+      <div class="Grid30 txt">
+        <div class="Window">
+          <div *ngFor="let i of Drive; let index = index">
+            <div class="Grid30" [ngClass]="{ Selected: index == SelectedDir }" >
+              <div>{{ i.title }}:</div>
+              <div>{{ i.description }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="Window">xd</div>
+      </div>
+
+      <div class="Grid100NON Notetxt Window">
+        <div class="TitleWindow leftNote">Note</div>
+        <div class="Column">
+          <div>
+            <div>[Enter] Select or Load</div>
+            <div>[Up/Down/Home/End] Move</div>
+          </div>
+          <div>
+            <div>[Tab] Switch</div>
+            <div>[B] Backup</div>
+          </div>
+          <div>
+            <div>[Esc] Exit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

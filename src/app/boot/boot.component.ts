@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BiosInfo } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
+import { FlashComponent } from '../flash/flash.component';
 
 @Component({
   selector: 'app-boot',
@@ -26,7 +27,9 @@ export class BootComponent implements OnInit {
 
   ngOnInit(): void {
     this.ClearRouter();
-
+    BootComponent.EnterBios = false;
+    FlashComponent.ezFlashWindow = false;
+    //TODO Guard
     if (!BootComponent.removeListener) {
       window.addEventListener('keydown', (e: KeyboardEvent) => this.RunBios(e));
     }
@@ -46,8 +49,6 @@ export class BootComponent implements OnInit {
 
   public RunBios = (e: KeyboardEvent): void => {
     if (e.keyCode == 46 || e.keyCode == 113) {
-      console.log('BlackScreen: ' + BootComponent.BlackScreen);
-
       if (!BootComponent.BlackScreen) {
         setTimeout(() => {
           BootComponent.BlackScreen = true;

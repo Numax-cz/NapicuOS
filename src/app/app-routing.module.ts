@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdvancedComponent } from './advanced/advanced.component';
 import { BiosMainComponent } from './bios-main/bios-main.component';
+import { BiosGuard } from './bios.guard';
 
 import { BiosComponent } from './bios/bios.component';
 import { BootComponent } from './boot/boot.component';
 import { BootbComponent } from './bootb/bootb.component';
 import { ExitComponent } from './exit/exit.component';
+import { FlashComponent } from './flash/flash.component';
 import { PowerComponent } from './power/power.component';
 import { ToolsComponent } from './tools/tools.component';
 import { TweakerComponent } from './tweaker/tweaker.component';
@@ -26,6 +28,7 @@ const routes: Routes = [
       { path: 'exit', component: ExitComponent },
     ],
   },
+  { path: 'flash', canActivate: [BiosGuard], component: FlashComponent },
 ];
 
 @NgModule({

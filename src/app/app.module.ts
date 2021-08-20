@@ -16,6 +16,7 @@ import { OptionPanelComponent } from './option-panel/option-panel.component';
 import { SettingsTemplateComponent } from './settings-template/settings-template.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FlashComponent } from './flash/flash.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { environment } from '../environments/environment';
     ExitComponent,
     OptionPanelComponent,
     SettingsTemplateComponent,
+    FlashComponent,
   ],
   imports: [
     BrowserModule,

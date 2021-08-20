@@ -3,6 +3,7 @@ import { settings, ToolSettings } from '../interface/ToolSettings';
 import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
 import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
 import { SaveChanges } from '../Scripts/exit/SaveChanges';
+import { FlashBios } from '../Scripts/Flash/FlashBios';
 import { setDate, setTime } from '../Scripts/TimeDate';
 import { isDate, isOption, isTime } from '../Scripts/Type';
 export interface BiosOptionsST {
@@ -158,6 +159,20 @@ export var BiosSettings: BiosOptionsST = {
         title: 'Discard Changes & Exit',
         optionsFast: () => DiscardChanges(),
         description: 'Exit Bios without saving any changes.',
+        selected: 0,
+      },
+    ],
+  },
+  Tools: {
+    title: '',
+    settings: [
+      {
+        title: 'Ez Flash',
+        optionsFast: () => FlashBios(),
+        description: `
+          Run the utility to select and update BIOS. This utility supports 
+          Fat 12/16/32, NTFS, CD-DISC, 
+          `,
         selected: 0,
       },
     ],

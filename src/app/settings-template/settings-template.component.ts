@@ -25,7 +25,7 @@ export class SettingsTemplateComponent implements OnInit {
     SettingsTemplateComponent.selected = 0;
   }
 
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     SettingsTemplateComponent.MainOption = [];
   }
 

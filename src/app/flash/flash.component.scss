@@ -1,0 +1,86 @@
+#FlashBackground {
+  background-color: blue;
+  width: 100%;
+  height: 100vh;
+  color: white;
+  user-select: none;
+}
+.Title {
+  text-align: center;
+  font-size: 2rem;
+  padding: 20px;
+}
+// rgb(221, 221, 9);
+$yellow: rgb(0, 0, 0);
+$MarginPath: 40px;
+
+.Grid50 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.Grid30 {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.Grid100NON {
+  will-change: 100%;
+}
+
+.FlashPanel {
+  width: 100%;
+  max-width: 60%;
+  margin: auto;
+}
+.TitleWindow {
+  text-align: center;
+  color: magenta;
+  font-size: 2rem;
+  margin-bottom: 7px;
+}
+.Window {
+  margin: 15px;
+  padding: 20px;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 4.5px solid white;
+  border-right: 4.5px solid white;
+}
+
+.txt {
+  font-size: 1.67rem;
+}
+.Notetxt {
+  font-size: 1.35rem;
+}
+.Column {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  div {
+    div {
+      margin: 10px;
+      margin-left: 10%;
+    }
+  }
+}
+.leftNote {
+  text-align: left;
+  margin-left: 2%;
+}
+
+.PathTitle {
+  width: 10%;
+  margin-left: $MarginPath;
+}
+
+#Path {
+  margin-right: $MarginPath;
+}
+.Yellow {
+  background-color: cyan;
+  padding: 2px;
+  color: $yellow;
+}
+.Selected{
+    background-color: magenta;
+}
