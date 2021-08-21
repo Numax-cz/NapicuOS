@@ -12,6 +12,7 @@ export class FlashComponent implements OnInit {
   constructor() {}
   public static SelectedDir: number;
   public static ezFlashWindow: boolean;
+  public static FlashDrive: any[] = Drive;
 
   ngOnInit(): void {
     FlashComponent.SelectedDir = 0;
@@ -33,9 +34,12 @@ export class FlashComponent implements OnInit {
     return Update;
   }
   get Drive(): any[] {
-    return Drive;
+    return FlashComponent.FlashDrive;
   }
   get SelectedDir(): number {
     return FlashComponent.SelectedDir;
+  }
+  get LocationPath(): string{
+  return FlashComponent.FlashDrive[FlashComponent.SelectedDir].title
   }
 }

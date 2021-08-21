@@ -14,10 +14,11 @@ import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../Arra
 import { BootComponent } from '../boot/boot.component';
 import { copy } from '../Scripts/DeepClone';
 import { FlashComponent } from '../flash/flash.component';
+import { FlashBiosExit } from '../Scripts/Flash/FlashBiosExit';
 
 /**
  * @author Numax-cz
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 @Component({
@@ -74,7 +75,7 @@ export class BiosComponent implements OnInit {
       BootComponent.removeListener = true;
     }
     BootComponent.EnterBios = true;
-  } 
+  }
 
   get selected(): number {
     return BiosComponent.selected;
@@ -128,10 +129,15 @@ export class BiosComponent implements OnInit {
       }, 55);
     }
     if (FlashComponent.ezFlashWindow) {
-      if (e.keyCode == 38) {
-        FlashComponent.SelectedDir -= 1;
-      } else if (e.keyCode == 40) {
+      if (e.keyCode == 40 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
         FlashComponent.SelectedDir += 1;
+      } else if (e.keyCode == 38 && FlashComponent.SelectedDir !== 0) {
+        FlashComponent.SelectedDir -= 1;
+      } else if (e.keyCode == 9) {
+        //TODO FLASH TAB
+        
+      } else if (e.keyCode == 27) {
+        FlashBiosExit();
       }
     }
   };
