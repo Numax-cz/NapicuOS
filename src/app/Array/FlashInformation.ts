@@ -32,7 +32,6 @@ export var Drive = [
         title: 'System Volume',
       },
     ],
-    file: [],
   },
   {
     title: 'D',
@@ -41,8 +40,6 @@ export var Drive = [
       {
         title: 'System~1',
       },
-    ],
-    file: [
       {
         title: 'P8H66-CFT3 - 1701 h:320',
       },

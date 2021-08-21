@@ -15,6 +15,7 @@ import { BootComponent } from '../boot/boot.component';
 import { copy } from '../Scripts/DeepClone';
 import { FlashComponent } from '../flash/flash.component';
 import { FlashBiosExit } from '../Scripts/Flash/FlashBiosExit';
+import { FlashTab } from '../Scripts/Flash/FlashTab';
 
 /**
  * @author Numax-cz
@@ -129,17 +130,27 @@ export class BiosComponent implements OnInit {
       }, 55);
     }
     if (FlashComponent.ezFlashWindow) {
-      if (e.keyCode == 40 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
-        FlashComponent.SelectedDir += 1;
-      } else if (e.keyCode == 38 && FlashComponent.SelectedDir !== 0) {
-        FlashComponent.SelectedDir -= 1;
+      if (e.keyCode == 40 || e.keyCode == 35) {
+        if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
+          FlashComponent.SelectedDir += 1;
+        } else if (FlashComponent.SelectedWindow == 1) {
+          FlashComponent.SelectedFile += 1;
+        }
+      } else if (e.keyCode == 38 || e.keyCode == 36) {
+        if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
+          FlashComponent.SelectedDir -= 1;
+        } else if (FlashComponent.SelectedWindow == 1) {
+          FlashComponent.SelectedFile -= 1;
+        }
       } else if (e.keyCode == 9) {
         //TODO FLASH TAB
-        
+        FlashTab();
+        e.preventDefault();
       } else if (e.keyCode == 27) {
         FlashBiosExit();
       }
     }
+    //e.preventDefault();
   };
 
   public UpdateComponent(): void {

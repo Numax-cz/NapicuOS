@@ -37,7 +37,13 @@
             </div>
           </div>
         </div>
-        <div class="Window">xd</div>
+        <div class="Window">
+          <div *ngFor="let i of File; let index = index">
+            <div  [ngClass]="{ Selected: index == SelectedFile }">
+              {{i.title}}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="Grid100NON Notetxt Window">
