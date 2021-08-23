@@ -1,5 +1,5 @@
-export interface BiosIf{
-    title: string
-    version: string,
-    date: string
+export interface BiosIf {
+  title: string;
+  version: string;
+  date: string;
 }

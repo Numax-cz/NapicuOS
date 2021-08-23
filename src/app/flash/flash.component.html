@@ -25,30 +25,31 @@
       <div class="Path txt">
         <div class="Grid30">
           <div class="PathTitle">Path:</div>
-          <div id="Path" class="Yellow">{{LocationPath}}:\</div>
+          <div id="Path" class="Yellow">{{ LocationPath }}:\</div>
         </div>
       </div>
       <div class="Grid30 txt">
-        <div class="Window">
+        <div class="Window" [ngClass]="{ selectedWindow: SelectedWindow == 0 }">
           <div *ngFor="let i of Drive; let index = index">
-            <div class="Grid30" [ngClass]="{ Selected: index == SelectedDir }" >
+            <div class="Grid30" [ngClass]="{ Selected: index == SelectedDir }">
               <div>{{ i.title }}:</div>
               <div>{{ i.description }}</div>
             </div>
           </div>
         </div>
-        <div class="Window">
-          <div *ngFor="let i of File; let index = index">
-            <div  [ngClass]="{ Selected: index == SelectedFile }">
-              {{i.title}}
+        <div id="Scroll" class="Window" [ngClass]="{ selectedWindow: SelectedWindow == 1 }">
+          <div id="fileid">
+            <div *ngFor="let i of File; let index = index">
+              <div [ngClass]="{ Selected: index == SelectedFile }">
+                {{ i.title }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       <div class="Grid100NON Notetxt Window">
         <div class="TitleWindow leftNote">Note</div>
-        <div class="Column">
+        <div class="Column" *ngIf="!Flashing">
           <div>
             <div>[Enter] Select or Load</div>
             <div>[Up/Down/Home/End] Move</div>
@@ -60,6 +61,10 @@
           <div>
             <div>[Esc] Exit</div>
           </div>
+        </div>
+        <div class="ProgressBar" [class.hidden]="!Flashing">
+          {{ FlashingText }}
+          <div class="Bar" id="Bar"></div>
         </div>
       </div>
     </div>

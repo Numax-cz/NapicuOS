@@ -1,4 +1,6 @@
+import { Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
+import { FlashingTxt } from '../interface/FlashingTxt';
 
 export var Current: FlashInformation = {
   board: 'P8H66-CFT3',
@@ -12,7 +14,14 @@ export var Update: FlashInformation = {
   date: 'Unknown',
 };
 
-export var Drive = [
+export var FlashingText: FlashingTxt = {
+  0: 'Checking File:',
+  1: 'Erasing BIOS:',
+  2: 'Writin BIOS:',
+  3: 'Verifying BIOS:',
+};
+
+export var Drive: Drives[] = [
   {
     title: 'A',
     description: '',
@@ -24,12 +33,55 @@ export var Drive = [
     dir: [
       {
         title: 'Boot',
+        dir: [],
       },
       {
         title: 'Recovery',
+        dir: [],
       },
       {
         title: 'System Volume',
+        dir: [],
+      },
+      {
+        title: '$Windows.~WS',
+        dir: [],
+      },
+      {
+        title: '$WinREAgent',
+        dir: [],
+      },
+      {
+        title: 'ESD',
+        dir: [],
+      },
+      {
+        title: 'PerfLogs',
+        dir: [],
+      },
+      {
+        title: 'Program Files',
+        dir: [],
+      },
+      {
+        title: 'Program Files(x86)',
+        dir: [],
+      },
+      {
+        title: 'ProgramData',
+        dir: [],
+      },
+      {
+        title: 'Users',
+        dir: [],
+      },
+      {
+        title: 'Windows',
+        dir: [],
+      },
+      {
+        title: 'Boot',
+        dir: [],
       },
     ],
   },

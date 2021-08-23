@@ -16,6 +16,7 @@ import { copy } from '../Scripts/DeepClone';
 import { FlashComponent } from '../flash/flash.component';
 import { FlashBiosExit } from '../Scripts/Flash/FlashBiosExit';
 import { FlashTab } from '../Scripts/Flash/FlashTab';
+import { CheckFile } from '../Scripts/Flash/CheckFile';
 
 /**
  * @author Numax-cz
@@ -71,10 +72,8 @@ export class BiosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!BootComponent.removeListener) {
-      window.addEventListener('keydown', (e: KeyboardEvent) => this.Move(e));
-      BootComponent.removeListener = true;
-    }
+    window.removeEventListener('keydown', this.Move, true);
+    window.addEventListener('keydown', this.Move, true);
     BootComponent.EnterBios = true;
   }
 
@@ -130,24 +129,36 @@ export class BiosComponent implements OnInit {
       }, 55);
     }
     if (FlashComponent.ezFlashWindow) {
-      if (e.keyCode == 40 || e.keyCode == 35) {
-        if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
-          FlashComponent.SelectedDir += 1;
-        } else if (FlashComponent.SelectedWindow == 1) {
-          FlashComponent.SelectedFile += 1;
+      if (!FlashComponent.Flashing) {
+        if (e.keyCode == 40 || e.keyCode == 35) {
+          if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
+            FlashComponent.SelectedDir += 1;
+          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir.length - 1) {
+            FlashComponent.SelectedFile += 1;
+            var ScrollY = FlashComponent.Scroll.scrollTop;
+            FlashComponent.Scroll.scrollTo(0, ScrollY + 23);
+          }
+        } else if (e.keyCode == 38 || e.keyCode == 36) {
+          if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
+            FlashComponent.SelectedDir -= 1;
+          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
+            FlashComponent.SelectedFile -= 1;
+            var ScrollY = FlashComponent.Scroll.scrollTop;
+            console.log(FlashComponent.Scroll.scrollHeight);
+
+            FlashComponent.Scroll.scrollTo(0, ScrollY - 23);
+          }
+        } else if (e.keyCode == 9) {
+          //TODO FLASH TAB
+          FlashTab();
+          e.preventDefault();
+        } else if (e.keyCode == 27) {
+          FlashBiosExit();
+        } else if (e.keyCode == 13) {
+          if (FlashComponent.SelectedWindow == 1) {
+            CheckFile();
+          }
         }
-      } else if (e.keyCode == 38 || e.keyCode == 36) {
-        if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
-          FlashComponent.SelectedDir -= 1;
-        } else if (FlashComponent.SelectedWindow == 1) {
-          FlashComponent.SelectedFile -= 1;
-        }
-      } else if (e.keyCode == 9) {
-        //TODO FLASH TAB
-        FlashTab();
-        e.preventDefault();
-      } else if (e.keyCode == 27) {
-        FlashBiosExit();
       }
     }
     //e.preventDefault();

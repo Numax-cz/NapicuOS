@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Current, Drive, Update } from '../Array/FlashInformation';
 import { BiosInfo } from '../Array/ToolSettings';
+import { directories, Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
+import { FlashingTxt } from '../interface/FlashingTxt';
 
 @Component({
   selector: 'app-flash',
@@ -9,18 +12,34 @@ import { FlashInformation } from '../interface/FlashInformation';
   styleUrls: ['./flash.component.scss'],
 })
 export class FlashComponent implements OnInit {
+  public static ProgressBar: HTMLElement;
+  public static Scroll: HTMLElement;
+  public static FlashingText: string;
   constructor() {}
   public static SelectedDir: number;
   public static ezFlashWindow: boolean;
 
-  public static FlashDrive: any[] = Drive;
+  public static FlashDrive: Drives[] = Drive;
   public static SelectedWindow: number;
   public static SelectedFile: number;
 
+  public static listDir: directories[];
+  //Flash
+  public static Flashing: boolean = true;
+
   ngOnInit(): void {
+    var id = document.getElementById('Bar');
+    var id2 = document.getElementById('Scroll');
+    if (id && id2) {
+      FlashComponent.ProgressBar = id;
+      FlashComponent.Scroll = id2;
+
+    }
+
     FlashComponent.SelectedDir = 0;
     FlashComponent.SelectedFile = 0;
     FlashComponent.SelectedWindow = 0;
+    FlashComponent.Flashing = false;
   }
   ngOnDestroy(): void {
     FlashComponent.ezFlashWindow = false;
@@ -41,7 +60,7 @@ export class FlashComponent implements OnInit {
   get Drive(): any[] {
     return FlashComponent.FlashDrive;
   }
-  get File(): any[] {
+  get File(): directories[] {
     return FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
   }
   get SelectedDir(): number {
@@ -52,5 +71,14 @@ export class FlashComponent implements OnInit {
   }
   get LocationPath(): string {
     return FlashComponent.FlashDrive[FlashComponent.SelectedDir].title;
+  }
+  get SelectedWindow(): number {
+    return FlashComponent.SelectedWindow;
+  }
+  get Flashing(): boolean {
+    return FlashComponent.Flashing;
+  }
+  get FlashingText(): string {
+    return FlashComponent.FlashingText;
   }
 }

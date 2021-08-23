@@ -17,11 +17,7 @@ export class BootComponent implements OnInit {
    * Defines whether a black screen is displayed
    */
   public static BlackScreen: boolean = false;
-  /**
-   * True if the bios component is initialized
-   * If true, the addEventListener function will not be executed
-   */
-  public static removeListener: boolean = false;
+
   protected BiosBootAudio: HTMLAudioElement = new Audio('/assets/sound/Boot.wav');
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
@@ -29,11 +25,8 @@ export class BootComponent implements OnInit {
     this.ClearRouter();
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
-    //TODO Guard
-    if (!BootComponent.removeListener) {
-      window.addEventListener('keydown', (e: KeyboardEvent) => this.RunBios(e));
-    }
-
+    window.removeEventListener('keydown', this.RunBios, true);
+    window.addEventListener('keydown', this.RunBios, true);
     if (BootComponent.BlackScreen) {
       setTimeout(() => {
         BootComponent.BlackScreen = false;

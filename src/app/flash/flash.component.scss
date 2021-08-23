@@ -81,6 +81,27 @@ $MarginPath: 40px;
   padding: 2px;
   color: $yellow;
 }
-.Selected{
-    background-color: magenta;
+.Selected {
+  background-color: magenta;
+}
+
+.selectedWindow {
+  border-color: cyan;
+}
+
+.Bar {
+  width: 3.55%;
+  height: 30px;
+  background-color: lightgray;
+  background-repeat: repeat;
+}
+.hidden {
+  visibility: 0;
+  display: none;
+}
+#Scroll {
+  overflow-y: hidden;
+}
+#fileid {
+  height: 220px;
 }
