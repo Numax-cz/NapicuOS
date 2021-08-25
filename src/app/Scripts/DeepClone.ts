@@ -1,5 +1,4 @@
 /**
-
  * @author tim-montague
  */
 export function copy(aObject: any): any {

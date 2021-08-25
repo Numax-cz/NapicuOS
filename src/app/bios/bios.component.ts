@@ -135,23 +135,21 @@ export class BiosComponent implements OnInit {
             FlashComponent.SelectedDir += 1;
 
             FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-
           } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.listDir.length - 1) {
             FlashComponent.SelectedFile += 1;
             var ScrollY = FlashComponent.Scroll.scrollTop;
-            FlashComponent.Scroll.scrollTo(0, ScrollY + 23);
+            FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
           }
         } else if (e.keyCode == 38 || e.keyCode == 36) {
           if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
             FlashComponent.SelectedDir -= 1;
 
             FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-
           } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
             FlashComponent.SelectedFile -= 1;
-            
+
             var ScrollY = FlashComponent.Scroll.scrollTop;
-            FlashComponent.Scroll.scrollTo(0, ScrollY - 23);
+            FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
           }
         } else if (e.keyCode == 9) {
           //TODO FLASH TAB

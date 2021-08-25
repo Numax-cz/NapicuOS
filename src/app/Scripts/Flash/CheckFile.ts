@@ -1,25 +1,38 @@
 import { FlashComponent } from 'src/app/flash/flash.component';
+import { Flash } from './Flash';
 
 export function CheckFile(): void {
   const exit = '..';
   var path = FlashComponent.listDir[FlashComponent.SelectedFile];
 
-  if (path.dir) {
-    if (path.dir[0] && path.dir[0].title !== exit) {
+  if (path && path.dir) {
+    if ((path.dir[0] && path.dir[0].title !== exit) || !path.dir[0]) {
       path.dir.unshift({ title: exit });
     }
-    FlashComponent.PathFile.push(path);
-    FlashComponent.listDir = path.dir;
+    if (!path.noEnter) {
+      FlashComponent.PathFile.push(path);
+      FlashComponent.listDir = path.dir;
+      console.log(FlashComponent.PathFile);
+
+      FlashComponent.SelectedFile = 0;
+    }
+  } else if (path.biosFile) {
+    //TODO "Install" Bios
   } else if (path.title) {
     if (path.title === exit) {
-      FlashComponent.PathFile.pop();
       var index = FlashComponent.PathFile.length - 1;
-      var newDir = FlashComponent.PathFile[index].dir;
-      if (newDir) {
-        FlashComponent.listDir = newDir;
+      if (index == 0) {
+        FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+        FlashComponent.PathFile = [];
+      } else {
+        FlashComponent.PathFile.pop();
+        var newDir = FlashComponent.PathFile[index - 1];
+        if (newDir.dir) {
+          FlashComponent.listDir = newDir.dir;
+        }
       }
     }
-    //CheckBIOSFile(FlashComponent.FlashDrive[dir].dir[file].title);
+  } else {
+    //TODO File not support
   }
-  console.log(FlashComponent.PathFile);
 }

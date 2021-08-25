@@ -42,8 +42,11 @@
         <div id="Scroll" class="Window" [ngClass]="{ selectedWindow: SelectedWindow == 1 }">
           <div id="fileid">
             <div *ngFor="let i of File; let index = index">
-              <div [ngClass]="{ Selected: index == SelectedFile }">
-                {{ i.title }}
+              <div [ngClass]="{ Selected: index == SelectedFile, Grid50: i.dir }">
+                <div>
+                  {{ i.title }}
+                </div>
+                <div *ngIf="i.dir">[DIR]</div>
               </div>
             </div>
           </div>

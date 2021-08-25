@@ -14,6 +14,12 @@ export var Update: FlashInformation = {
   date: 'Unknown',
 };
 
+var newBios: FlashInformation = {
+  board: Current.board,
+  ver: '1707 h:320',
+  date: '8/25/2021',
+};
+
 export var FlashingText: FlashingTxt = {
   0: 'Checking File:',
   1: 'Erasing BIOS:',
@@ -46,7 +52,81 @@ export var Drive: Drives[] = [
   {
     title: 'A',
     description: '',
-    dir: [],
+    dir: [
+      {
+        title: 'Games',
+        dir: [
+          {
+            title: 'Steam',
+            dir: [
+              { title: 'bin', noEnter: true },
+              { title: 'client', noEnter: true },
+              { title: 'music', noEnter: true },
+              { title: 'userdata', noEnter: true },
+              { title: 'steamapps', noEnter: true },
+              { title: 'Steam.exe' },
+              { title: 'Steam.dll' },
+              { title: 'api-ms-win-core-console-l1-1-0.dll' },
+              { title: 'api-ms-win-core-console-l1-2-0.dll' },
+              { title: 'api-ms-win-core-datetime-l1-1-0.dll' },
+              { title: 'api-ms-win-core-debug-l1-1-0.dll' },
+              { title: 'api-ms-win-core-errorhandling-l1-1-0.dll' },
+              { title: 'api-ms-win-core-file-l1-1-0.dll' },
+              { title: 'api-ms-win-core-file-l1-2-0.dll' },
+              { title: 'api-ms-win-core-file-l2-1-0.dll' },
+              { title: 'api-ms-win-core-handle-l1-1-0.dll' },
+              { title: 'api-ms-win-core-heap-l1-1-0.dll' },
+              { title: 'api-ms-win-core-interlocked-l1-1-0.dll' },
+              { title: 'api-ms-win-core-libraryloader-l1-1-0.dll' },
+              { title: 'api-ms-win-core-localization-l1-2-0.dll' },
+              { title: 'api-ms-win-core-memory-l1-1-0.dll' },
+              { title: 'api-ms-win-core-namedpipe-l1-1-0.dll' },
+              { title: 'api-ms-win-core-processenvironment-l1-1-0.dll' },
+              { title: 'api-ms-win-core-processthreads-l1-1-0.dll' },
+              { title: 'api-ms-win-core-processthreads-l1-1-1.dll' },
+              { title: 'api-ms-win-core-profile-l1-1-0.dll' },
+              { title: 'api-ms-win-core-rtlsupport-l1-1-0.dll' },
+              { title: 'api-ms-win-core-string-l1-1-0.dll' },
+              { title: 'api-ms-win-core-synch-l1-1-0.dll' },
+              { title: 'api-ms-win-core-synch-l1-2-0.dll' },
+              { title: 'api-ms-win-core-sysinfo-l1-1-0.dll' },
+              { title: 'api-ms-win-core-timezone-l1-1-0.dll' },
+              { title: 'api-ms-win-core-util-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-conio-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-convert-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-environment-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-filesystem-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-heap-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-locale-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-math-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-multibyte-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-private-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-process-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-runtime-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-stdio-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-string-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-time-l1-1-0.dll' },
+              { title: 'api-ms-win-crt-utility-l1-1-0.dll' },
+              { title: 'cef.pak' },
+              { title: 'cef_100_percent.pak' },
+              { title: 'cef_200_percent.pak' },
+              { title: 'cef_extensions.pak' },
+              { title: 'chrome_elf.dll' },
+              { title: 'crash_reporter.cfg' },
+              { title: 'd3dcompiler_47.dll' },
+              { title: 'dbgcore.dll' },
+              { title: 'debug.log' },
+              { title: 'devtools_resources.pak' },
+              { title: 'html5app_steam.exe' },
+              { title: 'icudtl.dat' },
+              { title: 'libcef.dll' },
+              { title: 'libEGL.dll' },
+              { title: 'libGLESv2.dll' },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     title: 'C',
@@ -56,62 +136,27 @@ export var Drive: Drives[] = [
         title: 'Boot',
         dir: [
           {
-            title: 'xd',
-            dir: [
-              {
-                title: 'xdxd',
-                dir: [],
-              },
-            ],
+            title: 'alldb.db',
           },
         ],
       },
       {
         title: 'Recovery',
-        dir: [],
+        dir: [
+          {
+            title: 'install.wim',
+          },
+          {
+            title: 'Recovery.txt',
+          },
+          {
+            title: 'rrt.txt',
+          },
+        ],
       },
       {
-        title: 'System Volume',
-        dir: [],
-      },
-      {
-        title: '$Windows.~WS',
-        dir: [],
-      },
-      {
-        title: '$WinREAgent',
-        dir: [],
-      },
-      {
-        title: 'ESD',
-        dir: [],
-      },
-      {
-        title: 'PerfLogs',
-        dir: [],
-      },
-      {
-        title: 'Program Files',
-        dir: [],
-      },
-      {
-        title: 'Program Files(x86)',
-        dir: [],
-      },
-      {
-        title: 'ProgramData',
-        dir: [],
-      },
-      {
-        title: 'Users',
-        dir: [],
-      },
-      {
-        title: 'Windows',
-        dir: [],
-      },
-      {
-        title: 'Boot',
+        title: 'System Volume I..',
+        noEnter: true,
         dir: [],
       },
     ],
@@ -122,9 +167,12 @@ export var Drive: Drives[] = [
     dir: [
       {
         title: 'System~1',
+        dir: [],
+        noEnter: true,
       },
       {
-        title: 'P8H66-CFT3 - 1701 h:320',
+        title: `${newBios.board} - ${newBios.ver}`,
+        biosFile: newBios,
       },
     ],
   },

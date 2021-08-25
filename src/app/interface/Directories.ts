@@ -1,3 +1,5 @@
+import { FlashInformation } from './FlashInformation';
+
 export interface Drives {
   title: string;
   description: string;
@@ -5,5 +7,7 @@ export interface Drives {
 }
 export interface directories {
   title: string;
+  biosFile?: FlashInformation;
+  noEnter?: true;
   dir?: directories[];
 }
