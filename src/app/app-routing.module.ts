@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'exit', component: ExitComponent },
     ],
   },
-  { path: 'flash', canActivate: [BiosGuard], component: FlashComponent },
+  { path: 'flash', canActivate: [BiosGuard],  component: FlashComponent },
 ];
 
 @NgModule({

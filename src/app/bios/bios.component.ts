@@ -133,7 +133,10 @@ export class BiosComponent implements OnInit {
         if (e.keyCode == 40 || e.keyCode == 35) {
           if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
             FlashComponent.SelectedDir += 1;
-          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir.length - 1) {
+
+            FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+
+          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.listDir.length - 1) {
             FlashComponent.SelectedFile += 1;
             var ScrollY = FlashComponent.Scroll.scrollTop;
             FlashComponent.Scroll.scrollTo(0, ScrollY + 23);
@@ -141,11 +144,13 @@ export class BiosComponent implements OnInit {
         } else if (e.keyCode == 38 || e.keyCode == 36) {
           if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
             FlashComponent.SelectedDir -= 1;
+
+            FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+
           } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
             FlashComponent.SelectedFile -= 1;
+            
             var ScrollY = FlashComponent.Scroll.scrollTop;
-            console.log(FlashComponent.Scroll.scrollHeight);
-
             FlashComponent.Scroll.scrollTo(0, ScrollY - 23);
           }
         } else if (e.keyCode == 9) {

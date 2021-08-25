@@ -12,7 +12,7 @@ import { FlashComponent } from '../flash/flash.component';
 })
 export class BootComponent implements OnInit {
   public static EnterBios: boolean;
-  public startTime: number = 2055;
+  public startTime: number = 0; //2055
   /**
    * Defines whether a black screen is displayed
    */

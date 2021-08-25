@@ -4,7 +4,7 @@ import { Current, Drive, Update } from '../Array/FlashInformation';
 import { BiosInfo } from '../Array/ToolSettings';
 import { directories, Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
-import { FlashingTxt } from '../interface/FlashingTxt';
+
 
 @Component({
   selector: 'app-flash',
@@ -12,20 +12,25 @@ import { FlashingTxt } from '../interface/FlashingTxt';
   styleUrls: ['./flash.component.scss'],
 })
 export class FlashComponent implements OnInit {
+  constructor() {}
+  //TODO @Document
   public static ProgressBar: HTMLElement;
   public static Scroll: HTMLElement;
   public static FlashingText: string;
-  constructor() {}
   public static SelectedDir: number;
   public static ezFlashWindow: boolean;
 
-  public static FlashDrive: Drives[] = Drive;
+  public static FlashDrive = Drive;
   public static SelectedWindow: number;
   public static SelectedFile: number;
 
   public static listDir: directories[];
   //Flash
   public static Flashing: boolean = true;
+  /**
+   * Saves browsing history
+   */
+  public static PathFile: directories[];
 
   ngOnInit(): void {
     var id = document.getElementById('Bar');
@@ -33,13 +38,15 @@ export class FlashComponent implements OnInit {
     if (id && id2) {
       FlashComponent.ProgressBar = id;
       FlashComponent.Scroll = id2;
-
     }
 
     FlashComponent.SelectedDir = 0;
     FlashComponent.SelectedFile = 0;
     FlashComponent.SelectedWindow = 0;
     FlashComponent.Flashing = false;
+
+    FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+    FlashComponent.PathFile = [];
   }
   ngOnDestroy(): void {
     FlashComponent.ezFlashWindow = false;
@@ -61,7 +68,7 @@ export class FlashComponent implements OnInit {
     return FlashComponent.FlashDrive;
   }
   get File(): directories[] {
-    return FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+    return FlashComponent.listDir;
   }
   get SelectedDir(): number {
     return FlashComponent.SelectedDir;
@@ -71,6 +78,12 @@ export class FlashComponent implements OnInit {
   }
   get LocationPath(): string {
     return FlashComponent.FlashDrive[FlashComponent.SelectedDir].title;
+  }
+  get Path(): directories[] {
+    return FlashComponent.PathFile;
+  }
+  get PathFile(): directories[] {
+    return FlashComponent.PathFile;
   }
   get SelectedWindow(): number {
     return FlashComponent.SelectedWindow;

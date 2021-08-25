@@ -1,5 +1,6 @@
 import { FlashComponent } from 'src/app/flash/flash.component';
 
+
 export function FlashTab(): void {
   if (FlashComponent.SelectedWindow == 0) {
     if (FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir.length) {
@@ -10,4 +11,5 @@ export function FlashTab(): void {
     FlashComponent.SelectedWindow = 0;
     FlashComponent.Scroll.scrollTo(0, 0);
   }
+  FlashComponent.PathFile = [];
 }

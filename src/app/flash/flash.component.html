@@ -25,7 +25,9 @@
       <div class="Path txt">
         <div class="Grid30">
           <div class="PathTitle">Path:</div>
-          <div id="Path" class="Yellow">{{ LocationPath }}:\</div>
+          <div id="Path" class="Yellow">
+            {{ LocationPath }}:\<span *ngFor="let i of PathFile">{{ i.title }}\</span>
+          </div>
         </div>
       </div>
       <div class="Grid30 txt">
