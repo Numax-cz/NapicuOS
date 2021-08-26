@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BiosComponent } from '../bios/bios.component';
+import { WindowItems } from '../Scripts/Type';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
 
 @Component({
@@ -11,7 +12,9 @@ export class OptionPanelComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
   public static Title: string;
-  public static OpenWindow(title?: string): void {
+  public static CallBack: Function | undefined;
+
+  public static OpenWindow(WindowItems: WindowItems, title?: string, CallBack?: Function): void {
     var getSelectedItem = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
     if (title) {
       OptionPanelComponent.Title = title;
@@ -20,7 +23,13 @@ export class OptionPanelComponent implements OnInit {
     } else {
       OptionPanelComponent.Title = 'Undefined';
     }
+    OptionPanelComponent.CallBack = CallBack;
+    BiosComponent.WindowItems = WindowItems;
     BiosComponent.WindowDisplay = true;
+  }
+  public static OpenFastWindow(WindowItems: WindowItems): void {
+    BiosComponent.WindowItems = WindowItems;
+    BiosComponent.WindowFastOptionDisplay = true;
   }
 
   get Items(): Array<any> {
@@ -39,4 +48,5 @@ export class OptionPanelComponent implements OnInit {
   get SelectedTitle(): string {
     return OptionPanelComponent.Title;
   }
+
 }

@@ -1,4 +1,3 @@
-import { BiosComponent } from '../bios/bios.component';
 import { isTime, isOption, isDate, isOptionsFast } from './Type';
 import { Time } from '../interface/ToolSettings';
 import { clearTimeInterval } from './TimeController';
@@ -13,24 +12,23 @@ export function OpenWindowOption(): void {
     if (isOption(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       var options = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].options;
       if (!options) return;
-      BiosComponent.WindowItems = options;
-      OptionPanelComponent.OpenWindow();
+      OptionPanelComponent.OpenWindow(options);
     } else if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       var time = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].time;
       if (!time) return;
       ItemsDateInit = time.map((x) => Object.assign({}, x));
-      BiosComponent.WindowItems = time;
-      BiosComponent.WindowFastOptionDisplay = true;
+      OptionPanelComponent.OpenFastWindow(time);
       clearTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
     } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       var date = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date;
       if (!date) return;
       ItemsDateInit = date.map((x) => Object.assign({}, x));
-      BiosComponent.WindowItems = date;
-      BiosComponent.WindowFastOptionDisplay = true;
+      OptionPanelComponent.OpenFastWindow(date);
     } else if (isOptionsFast(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
-      BiosComponent.WindowItems = [{ title: 'Yes' }, { title: 'No' }];
-      OptionPanelComponent.OpenWindow();
+      var title = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].title;
+      var fun = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].optionsFast;
+      if (!fun) return;
+      OptionPanelComponent.OpenWindow([{ title: 'Yes' }, { title: 'No' }], title, fun);
     } else {
       console.error('Error Array');
       console.error(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected]);

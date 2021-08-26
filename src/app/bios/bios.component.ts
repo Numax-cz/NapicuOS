@@ -90,9 +90,6 @@ export class BiosComponent implements OnInit {
       setTimeout(() => {
         //* ArrowRight
         if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
-          BiosComponent.WindowItems = [];
-          BiosComponent.WindowSelectedOption = 0;
-
           if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
             BiosComponent.selected += 1;
             this.UpdateComponent();

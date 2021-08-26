@@ -31,10 +31,7 @@ export function CloseWindowOptionSave(): void {
       ErrorOptionFunction();
     }
     if (BiosComponent.WindowSelectedOption == 0) {
-      var outFunction = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].optionsFast;
-      if (outFunction) {
-        outFunction();
-      }
+      if (OptionPanelComponent.CallBack) OptionPanelComponent.CallBack();
     }
   } else {
     ErrorClosed();
@@ -44,7 +41,11 @@ export function CloseWindowOptionSave(): void {
 
 function close() {
   BiosComponent.WindowDisplay = false;
+  BiosComponent.WindowError = false;
   BiosComponent.WindowFastOptionDisplay = false;
+  OptionPanelComponent.CallBack = undefined;
+  BiosComponent.WindowItems = [];
+  BiosComponent.WindowSelectedOption = 0;
 }
 
 //* Errors
