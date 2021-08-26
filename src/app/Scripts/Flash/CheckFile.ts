@@ -1,5 +1,7 @@
+import { BiosComponent } from 'src/app/bios/bios.component';
 import { FlashComponent } from 'src/app/flash/flash.component';
-import { Flash } from './Flash';
+import { CheckBIOSFile, Flash } from './Flash';
+import { ErrorAlert } from './OpenWindow';
 
 export function CheckFile(): void {
   const exit = '..';
@@ -17,7 +19,7 @@ export function CheckFile(): void {
       FlashComponent.SelectedFile = 0;
     }
   } else if (path.biosFile) {
-    //TODO "Install" Bios
+    CheckBIOSFile();
   } else if (path.title) {
     if (path.title === exit) {
       var index = FlashComponent.PathFile.length - 1;
@@ -31,8 +33,10 @@ export function CheckFile(): void {
           FlashComponent.listDir = newDir.dir;
         }
       }
+    } else {
+      ErrorAlert();
     }
   } else {
-    //TODO File not support
+    //TODO ERROR Idk
   }
 }

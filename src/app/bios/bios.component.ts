@@ -45,6 +45,10 @@ export class BiosComponent implements OnInit {
    */
   public static WindowItems: WindowItems;
   /**
+   * Specifies whether the window will be "red"
+   */
+  public static WindowError: boolean = false;
+  /**
    * Specifies whether the popup - 1 window is open or closed (Option-Panel)
    */
   public static WindowDisplay: boolean = false;
@@ -130,37 +134,42 @@ export class BiosComponent implements OnInit {
     }
     if (FlashComponent.ezFlashWindow) {
       if (!FlashComponent.Flashing) {
-        if (e.keyCode == 40 || e.keyCode == 35) {
-          if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
-            FlashComponent.SelectedDir += 1;
+        if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
+          if (e.keyCode == 40 || e.keyCode == 35) {
+            if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
+              FlashComponent.SelectedDir += 1;
 
-            FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.listDir.length - 1) {
-            FlashComponent.SelectedFile += 1;
-            var ScrollY = FlashComponent.Scroll.scrollTop;
-            FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
+              FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+            } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.listDir.length - 1) {
+              FlashComponent.SelectedFile += 1;
+              var ScrollY = FlashComponent.Scroll.scrollTop;
+              FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
+            }
+          } else if (e.keyCode == 38 || e.keyCode == 36) {
+            if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
+              FlashComponent.SelectedDir -= 1;
+
+              FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+            } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
+              FlashComponent.SelectedFile -= 1;
+
+              var ScrollY = FlashComponent.Scroll.scrollTop;
+              FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
+            }
+          } else if (e.keyCode == 9) {
+            //TODO FLASH TAB
+            FlashTab();
+            e.preventDefault(); //TODO Move => End
+          } else if (e.keyCode == 27) {
+            FlashBiosExit();
+          } else if (e.keyCode == 13) {
+            //* Enter
+            if (FlashComponent.SelectedWindow == 1) {
+              CheckFile();
+            }
           }
-        } else if (e.keyCode == 38 || e.keyCode == 36) {
-          if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
-            FlashComponent.SelectedDir -= 1;
-
-            FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
-            FlashComponent.SelectedFile -= 1;
-
-            var ScrollY = FlashComponent.Scroll.scrollTop;
-            FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
-          }
-        } else if (e.keyCode == 9) {
-          //TODO FLASH TAB
-          FlashTab();
-          e.preventDefault();
-        } else if (e.keyCode == 27) {
-          FlashBiosExit();
         } else if (e.keyCode == 13) {
-          if (FlashComponent.SelectedWindow == 1) {
-            CheckFile();
-          }
+          CloseWindowOptionSave();
         }
       }
     }

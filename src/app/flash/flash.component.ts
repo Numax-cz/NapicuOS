@@ -2,9 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Current, Drive, Update } from '../Array/FlashInformation';
 import { BiosInfo } from '../Array/ToolSettings';
+import { BiosComponent } from '../bios/bios.component';
 import { directories, Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
-
 
 @Component({
   selector: 'app-flash',
@@ -32,6 +32,10 @@ export class FlashComponent implements OnInit {
    */
   public static PathFile: directories[];
 
+  //Winodw Alerts
+  public static WindowAlert: boolean;
+  public static WindowAlertOption: boolean;
+
   ngOnInit(): void {
     var id = document.getElementById('Bar');
     var id2 = document.getElementById('Scroll');
@@ -47,6 +51,14 @@ export class FlashComponent implements OnInit {
 
     FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
     FlashComponent.PathFile = [];
+
+    FlashComponent.WindowAlert = false;
+    FlashComponent.WindowAlertOption = false;
+
+    //! Test
+
+
+    
   }
   ngOnDestroy(): void {
     FlashComponent.ezFlashWindow = false;
@@ -93,5 +105,8 @@ export class FlashComponent implements OnInit {
   }
   get FlashingText(): string {
     return FlashComponent.FlashingText;
+  }
+  get Display(): boolean {
+    return BiosComponent.WindowDisplay;
   }
 }

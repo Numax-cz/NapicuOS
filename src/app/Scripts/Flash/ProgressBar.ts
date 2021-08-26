@@ -1,7 +1,7 @@
 import { FlashingText } from 'src/app/Array/FlashInformation';
 import { FlashComponent } from 'src/app/flash/flash.component';
 
-export function ProgressBar(): void {
+export function ProgressBar(time: number, callback: () => void): void {
   var bar = FlashComponent.ProgressBar;
   var i = 0;
   if (bar) {
@@ -24,6 +24,7 @@ export function ProgressBar(): void {
             clearInterval(id);
             i = 0;
             //TODO Exit witch setTimeOut
+            callback;
           } else {
             width++;
             bar.style.width = width + '%';

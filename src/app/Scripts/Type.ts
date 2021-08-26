@@ -9,7 +9,7 @@ export type WindowItems = Options[] | Time[] | Date[];
  */
 export function isOption(component: settings): boolean {
   var index = 0;
-  if (component.options && component.options[index] && component.options[index].title) {
+  if (component && component.options && component.options[index] && component.options[index].title) {
     return true;
   }
   return false;
@@ -21,7 +21,7 @@ export function isOption(component: settings): boolean {
  */
 export function isTime(component: settings): boolean {
   var index = 0;
-  if (component.time && component.time[index] && component.time[index].title) {
+  if (component && component.time && component.time[index] && component.time[index].title) {
     return true;
   }
   return false;
@@ -33,7 +33,7 @@ export function isTime(component: settings): boolean {
  */
 export function isDate(component: settings): boolean {
   var index = 0;
-  if (component.date && component.date[index] && component.date[index].title) {
+  if (component && component.date && component.date[index] && component.date[index].title) {
     return true;
   }
   return false;
@@ -44,6 +44,6 @@ export function isDate(component: settings): boolean {
  * @returns boolen
  */
 export function isOptionsFast(component: settings): boolean {
-  if (component.optionsFast) return true;
+  if (component && component.optionsFast) return true;
   return false;
 }

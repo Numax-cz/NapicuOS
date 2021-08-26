@@ -10,6 +10,18 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
 export class OptionPanelComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
+  public static Title: string;
+  public static OpenWindow(title?: string): void {
+    var getSelectedItem = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
+    if (title) {
+      OptionPanelComponent.Title = title;
+    } else if (getSelectedItem) {
+      OptionPanelComponent.Title = getSelectedItem.title;
+    } else {
+      OptionPanelComponent.Title = 'Undefined';
+    }
+    BiosComponent.WindowDisplay = true;
+  }
 
   get Items(): Array<any> {
     return BiosComponent.WindowItems;
@@ -25,6 +37,6 @@ export class OptionPanelComponent implements OnInit {
   }
 
   get SelectedTitle(): string {
-    return SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].title;
+    return OptionPanelComponent.Title;
   }
 }

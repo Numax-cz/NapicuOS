@@ -14,14 +14,12 @@ export function OpenWindowOption(): void {
       var options = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].options;
       if (!options) return;
       BiosComponent.WindowItems = options;
-      BiosComponent.WindowDisplay = true;
+      OptionPanelComponent.OpenWindow();
     } else if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       var time = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].time;
       if (!time) return;
       ItemsDateInit = time.map((x) => Object.assign({}, x));
-
       BiosComponent.WindowItems = time;
-
       BiosComponent.WindowFastOptionDisplay = true;
       clearTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
     } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
@@ -32,7 +30,7 @@ export function OpenWindowOption(): void {
       BiosComponent.WindowFastOptionDisplay = true;
     } else if (isOptionsFast(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       BiosComponent.WindowItems = [{ title: 'Yes' }, { title: 'No' }];
-      BiosComponent.WindowDisplay = true;
+      OptionPanelComponent.OpenWindow();
     } else {
       console.error('Error Array');
       console.error(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected]);

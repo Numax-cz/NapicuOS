@@ -1,4 +1,5 @@
 import { BiosComponent } from '../bios/bios.component';
+import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
 import { ItemsDateInit } from './OpenWindowOption';
 import { setTimeInterval } from './TimeController';
@@ -24,7 +25,7 @@ export function CloseWindowOptionSave(): void {
   } else if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
     setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
   } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
-    //There is nothing to see
+    //? There is nothing to see
   } else if (isOptionsFast(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
     if (BiosComponent.WindowSelectedOption !== 0 && BiosComponent.WindowSelectedOption !== 1) {
       ErrorOptionFunction();

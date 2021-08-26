@@ -7,7 +7,7 @@ export function Flash(): void {
   //ProgressBar();
 }
 
-export function CheckBIOSFile(file: string) {
+export function CheckBIOSFile() {
   FlashComponent.FlashingText = FlashingText[0];
 }
 export function ErasingBIOS() {
