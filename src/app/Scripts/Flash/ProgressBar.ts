@@ -8,23 +8,27 @@ export function ProgressBar(time: number, callback: () => void): void {
     if (i == 0) {
       i = 1;
       var width = 10;
-      var time = 285;
       var id = setInterval(frame, time);
       function frame() {
         var d = Math.random();
         if (d < 0.5) {
-          setTimeout(() => Move(), time * 8);
+          setTimeout(() => {
+            Move();
+          }, time * 8);
         } else if (d < 0.7) {
-          setTimeout(() => Move(), time * 11);
+          setTimeout(() => {
+            Move();
+          }, time * 11);
         } else {
           Move();
         }
         function Move() {
           if (width >= 100) {
             clearInterval(id);
-            i = 0;
             //TODO Exit witch setTimeOut
-            callback;
+            if (i == 0) return;
+            i = 0;
+            callback();
           } else {
             width++;
             bar.style.width = width + '%';

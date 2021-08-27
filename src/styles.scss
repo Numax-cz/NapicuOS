@@ -1,18 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-  font-family: "DosVGA";
+  font-family: 'DosVGA';
   // overflow-y: hidden;
-  src: url("assets/font/Perfect DOS VGA 437.ttf") format("truetype");
+  src: url('assets/font/Perfect DOS VGA 437.ttf') format('truetype');
 }
 
 $BorderTopABottom: 2px solid blue;
 $BorderLeftARight: 4px solid blue;
 $FrameSizeHeight: 100%;
 * {
-  font-family: "DosVGA";
+  font-family: 'DosVGA';
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 #BiosContainer {
@@ -61,7 +62,7 @@ $FrameSizeHeight: 100%;
 .blue {
   color: blue;
 }
-.Hin{
+.Hin {
   border-top: $BorderTopABottom;
 }
 

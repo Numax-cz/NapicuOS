@@ -12,8 +12,6 @@ export function CloseWindowOptionUnsave(): void {
       setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
     } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date = ItemsDateInit;
-    } else {
-      ErrorClosed();
     }
   }
   close();
@@ -33,8 +31,6 @@ export function CloseWindowOptionSave(): void {
     if (BiosComponent.WindowSelectedOption == 0) {
       if (OptionPanelComponent.CallBack) OptionPanelComponent.CallBack();
     }
-  } else {
-    ErrorClosed();
   }
   close();
 }
@@ -46,6 +42,7 @@ function close() {
   OptionPanelComponent.CallBack = undefined;
   BiosComponent.WindowItems = [];
   BiosComponent.WindowSelectedOption = 0;
+  OptionPanelComponent.Horizontal = false;
 }
 
 //* Errors

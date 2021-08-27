@@ -20,6 +20,10 @@ var newBios: FlashInformation = {
   date: '8/25/2021',
 };
 
+export function WriteInformations(): void {
+  Update = newBios;
+}
+
 export var FlashingText: FlashingTxt = {
   0: 'Checking File:',
   1: 'Erasing BIOS:',
@@ -171,7 +175,7 @@ export var Drive: Drives[] = [
         noEnter: true,
       },
       {
-        title: `${newBios.board} - ${newBios.ver}`,
+        title: `${newBios.board}.ROM - ${newBios.ver}`,
         biosFile: newBios,
       },
     ],

@@ -28,7 +28,7 @@ export function OpenWindowOption(): void {
       var title = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].title;
       var fun = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].optionsFast;
       if (!fun) return;
-      OptionPanelComponent.OpenWindow([{ title: 'Yes' }, { title: 'No' }], title, fun);
+      OptionPanelComponent.OpenWindow([{ title: 'Yes' }, { title: 'No' }], title, fun, false, true);
     } else {
       console.error('Error Array');
       console.error(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected]);

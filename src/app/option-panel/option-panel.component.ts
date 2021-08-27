@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BiosSettings } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { WindowItems } from '../Scripts/Type';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
@@ -13,9 +14,17 @@ export class OptionPanelComponent implements OnInit {
   ngOnInit(): void {}
   public static Title: string;
   public static CallBack: Function | undefined;
-
-  public static OpenWindow(WindowItems: WindowItems, title?: string, CallBack?: Function): void {
+  public static Horizontal: boolean;
+  /**
+   * Function that opens a popup window
+   * @param WindowItems Items that will be in the popup window
+   * @param title Title popup window
+   * @param CallBack A function that is triggered if the popup is yes/no and the user has selected yes
+   */
+  public static OpenWindow(WindowItems: WindowItems, title?: string, CallBack?: Function, WindowError?: boolean, Horizontal?: boolean): void {
     var getSelectedItem = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
+    if (WindowError) BiosComponent.WindowError = true;
+    if (Horizontal) OptionPanelComponent.Horizontal = true;
     if (title) {
       OptionPanelComponent.Title = title;
     } else if (getSelectedItem) {
@@ -31,22 +40,19 @@ export class OptionPanelComponent implements OnInit {
     BiosComponent.WindowItems = WindowItems;
     BiosComponent.WindowFastOptionDisplay = true;
   }
-
   get Items(): Array<any> {
     return BiosComponent.WindowItems;
   }
-
   get Horizontal(): boolean {
-    if (BiosComponent.WindowItems[0].title === 'Yes') return true;
-    return false;
+    return OptionPanelComponent.Horizontal;
   }
-
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
   }
-
   get SelectedTitle(): string {
     return OptionPanelComponent.Title;
   }
-
+  get Error(): boolean {
+    return BiosComponent.WindowError;
+  }
 }

@@ -1,23 +1,21 @@
+
 import { BiosComponent } from 'src/app/bios/bios.component';
 import { FlashComponent } from 'src/app/flash/flash.component';
-import { CheckBIOSFile, Flash } from './Flash';
-import { ErrorAlert } from './OpenWindow';
+import { CheckBIOSFile } from './Flash';
+import { FileIsUnsupported } from './OpenWindow';
 
 export function CheckFile(): void {
   const exit = '..';
   var path = FlashComponent.listDir[FlashComponent.SelectedFile];
-
+  if (path.noEnter) return;
   if (path && path.dir) {
     if ((path.dir[0] && path.dir[0].title !== exit) || !path.dir[0]) {
       path.dir.unshift({ title: exit });
     }
-    if (!path.noEnter) {
-      FlashComponent.PathFile.push(path);
-      FlashComponent.listDir = path.dir;
-      console.log(FlashComponent.PathFile);
 
-      FlashComponent.SelectedFile = 0;
-    }
+    FlashComponent.PathFile.push(path);
+    FlashComponent.listDir = path.dir;
+    FlashComponent.SelectedFile = 0;
   } else if (path.biosFile) {
     CheckBIOSFile();
   } else if (path.title) {
@@ -34,7 +32,7 @@ export function CheckFile(): void {
         }
       }
     } else {
-      ErrorAlert();
+      FileIsUnsupported();
     }
   } else {
     //TODO ERROR Idk

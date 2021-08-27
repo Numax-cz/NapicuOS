@@ -1,4 +1,4 @@
-<section id="BiosOptionMenu" [ngClass]="{ OptionFun: Horizontal }">
+<section class="BiosOptionMenu" [ngClass]="{ OptionFun: Horizontal, BiosOptionMenuError: Error }">
   <div class="BiosPanel">
     <div *ngIf="Horizontal">{{ SelectedTitle }}</div>
     <div [ngClass]="{ FunFlex: Horizontal }">

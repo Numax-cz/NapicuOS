@@ -1,4 +1,4 @@
-#BiosOptionMenu {
+.BiosOptionMenu {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,6 +9,9 @@
   color: white;
   box-shadow: 10px 10px black;
   z-index: 100000;
+}
+.BiosOptionMenuError {
+  background-color: red;
 }
 .BiosPanel {
   padding: 20px;
@@ -23,7 +26,7 @@
   }
 }
 .OptionFun {
-  padding: 40px;
+  padding: 10px;
 }
 
 .FunFlex {
