@@ -10,6 +10,7 @@ export function Continue(): void {
   BootComponent.BlackScreen = false;
   redirect();
 }
+
 function redirect(): void {
   BootComponent.EnterBios = false;
   Navigate('/');
