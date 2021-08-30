@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../Array/BiosMenu';
 import { MoveOption } from '../Scripts/MoveOption';
-import { OpenWindowOption } from '../Scripts/OpenWindowOption';
+import { SetWindowOption } from '../Scripts/SetWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { WindowItems } from '../Scripts/Type';
@@ -30,28 +30,18 @@ import { OptionPanelComponent } from '../option-panel/option-panel.component';
 })
 export class BiosComponent implements OnInit {
   public static BiosRouter: Router;
-
-  public static BiosMenuSavePoint: BiosOptionsST;
-  /**
-   * Specifies which screen is selected
-   */
-  public static selected: number = 0;
   /**
    * All items displayed in the top panel
    */
   public BiosMenu: BiosMenu[] = Menu;
   /**
-   * Items that are used in the popup window (Option-Panel)
+   * Saves bios settings before changing
    */
-  public static WindowItems: WindowItems;
+  public static BiosMenuSavePoint: BiosOptionsST;
   /**
-   * Specifies whether the window will be "red"
+   * Specifies which screen is selected
    */
-  public static WindowError: boolean = false;
-  /**
-   * Specifies whether the popup - 1 window is open or closed (Option-Panel)
-   */
-  public static WindowDisplay: boolean = false;
+  public static selected: number = 0;
   /**
    * Specifies whether the quick select option is open or closed (Option-Panel)
    */
@@ -89,7 +79,7 @@ export class BiosComponent implements OnInit {
     if (BootComponent.EnterBios && !FlashComponent.ezFlashWindow) {
       setTimeout(() => {
         //* ArrowRight
-        if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
+        if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay) {
           if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
             BiosComponent.selected += 1;
             this.UpdateComponent();
@@ -99,7 +89,7 @@ export class BiosComponent implements OnInit {
             BiosComponent.selected -= 1;
             this.UpdateComponent();
           }
-          if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
+          if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay) {
           }
           //* ArrowDown & ArrowUp
           if (e.keyCode == 40 || e.keyCode == 38) {
@@ -107,7 +97,7 @@ export class BiosComponent implements OnInit {
           }
           //* Enter
           if (e.keyCode == 13) {
-            OpenWindowOption();
+            SetWindowOption();
           }
         } else {
           if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
@@ -115,15 +105,15 @@ export class BiosComponent implements OnInit {
           }
           //* Close --save
           if (e.keyCode == 13) {
-            OptionPanelComponent.window.CloseSave();
+            if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
           }
           //* Close --unsavey
           if (e.keyCode == 27) {
-            OptionPanelComponent.window.CloseUnsave();
+            if (OptionPanelComponent.window) OptionPanelComponent.window.CloseUnsave();
           }
           if (BiosComponent.WindowFastOptionDisplay) {
-            if (e.keyCode == 40 || 38) {
-              TimeDateSet(e.keyCode, BiosComponent.WindowItems as any);
+            if (e.keyCode == 40 || (38 && OptionPanelComponent.window)) {
+              TimeDateSet(e.keyCode, OptionPanelComponent.window?.WindowItems as any);
             }
           }
         }
@@ -131,7 +121,7 @@ export class BiosComponent implements OnInit {
     }
     if (FlashComponent.ezFlashWindow) {
       //TODO FIX
-      if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay && !FlashComponent.Flashing) {
+      if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay && !FlashComponent.Flashing) {
         if (e.keyCode == 40 || e.keyCode == 35) {
           if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
             FlashComponent.SelectedDir += 1;
@@ -166,7 +156,7 @@ export class BiosComponent implements OnInit {
           }
         }
       } else if (e.keyCode == 13) {
-        OptionPanelComponent.window.CloseSave();
+        if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
       }
     }
     //e.preventDefault();
@@ -178,7 +168,7 @@ export class BiosComponent implements OnInit {
   }
 
   get Display(): boolean {
-    return BiosComponent.WindowDisplay;
+    return OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay ? true : false;
   }
 
   get Descriptions(): string {

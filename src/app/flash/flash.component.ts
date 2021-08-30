@@ -5,6 +5,7 @@ import { BiosInfo } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { directories, Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
+import { OptionPanelComponent } from '../option-panel/option-panel.component';
 
 @Component({
   selector: 'app-flash',
@@ -107,6 +108,6 @@ export class FlashComponent implements OnInit {
     return FlashComponent.FlashingText;
   }
   get Display(): boolean {
-    return BiosComponent.WindowDisplay;
+    return OptionPanelComponent.window ? true : false;
   }
 }

@@ -2,29 +2,52 @@ import { disableDebugTools } from '@angular/platform-browser';
 import { BiosComponent } from '../bios/bios.component';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
-import { ItemsDateInit } from './OpenWindowOption';
 import { setTimeInterval } from './TimeController';
 import { isTime, isOption, isDate, isOptionsFast } from './Type';
 import { WindowItems } from './Type';
-import { settings } from '../interface/ToolSettings';
+import { settings, Time } from '../interface/ToolSettings';
+import { ItemsDateInit } from './SetWindowOption';
 //TODO clear code
 
 export class Window {
-  //TODO No-Static
-  WindowItems: WindowItems | undefined;
-  title: string | undefined;
+  /**
+   * Items that are used in the popup window (Option-Panel)
+   */
+  WindowItems: WindowItems;
+  /**
+   * Popup title
+   */
+  title: string;
   CallBack: Function | undefined;
-  WindowError: boolean | undefined;
-  Horizontal: boolean | undefined;
+  /**
+   * Specifies whether the window will be "red"
+   */
+  WindowError: boolean;
+  /**
+   * Determines, if the Items will be horizontal
+   */
+  Horizontal: boolean;
   CallBackD: Function | undefined;
+
+  /**
+   *
+   * @param WindowItems Items that will be in the popup window
+   * @param title Title popup window
+   * @param CallBack A function that is triggered if the popup is yes/no and the user has selected YES
+   * @param WindowError Determines, if the popup window will be red (warning)
+   * @param Horizontal Determines, if the Items will be horizontal
+   * @param CallBackD A function that is triggered if the popup is yes/no and the user has selected NO
+   */
   constructor(WindowItems: WindowItems, title?: string, CallBack?: Function, WindowError?: boolean, Horizontal?: boolean, CallBackD?: Function) {
-    this.WindowItems = WindowItems;
-    this.title = title;
+    this.WindowItems = WindowItems || [];
+    this.title = title || '';
     this.CallBack = CallBack;
-    this.WindowError = WindowError;
-    this.Horizontal = Horizontal;
+    this.WindowError = WindowError || false;
+    this.Horizontal = Horizontal || false;
     this.CallBackD = CallBackD;
   }
+
+  public OpenWindow() {}
 
   public CloseUnsave() {
     if (BiosComponent.WindowFastOptionDisplay) {
@@ -34,6 +57,7 @@ export class Window {
         SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date = ItemsDateInit;
       }
     }
+
     this.close();
   }
 
@@ -53,12 +77,9 @@ export class Window {
   }
 
   public close() {
-    BiosComponent.WindowDisplay = false;
-    BiosComponent.WindowError = false;
+    BiosComponent.WindowSelectedOption = 0;
     BiosComponent.WindowFastOptionDisplay = false;
     OptionPanelComponent.CallBack = undefined;
-    BiosComponent.WindowItems = [];
-    BiosComponent.WindowSelectedOption = 0;
-    OptionPanelComponent.Horizontal = false;
+    OptionPanelComponent.window = undefined;
   }
 }
