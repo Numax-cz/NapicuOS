@@ -1,5 +1,6 @@
 import { WriteInformations, WriteInformationsDefault } from 'src/app/Array/FlashInformation';
 import { BiosComponent } from 'src/app/bios/bios.component';
+import { reboot } from 'src/app/Config/Animation/Flash';
 import { FlashComponent } from 'src/app/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
 import { Reboot } from '../exit/Reboot';
@@ -33,5 +34,5 @@ export function SuccesFlash(): void {
   setTimeout(() => {
     Reboot();
     FlashComponent.Flashing = false;
-  }, 5000);
+  }, reboot);
 }

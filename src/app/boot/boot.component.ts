@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BiosInfo } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
+import { startTimeIn, startTimeOut } from '../Config/Animation/Boot';
 import { FlashComponent } from '../flash/flash.component';
 
 @Component({
@@ -12,7 +13,7 @@ import { FlashComponent } from '../flash/flash.component';
 })
 export class BootComponent implements OnInit {
   public static EnterBios: boolean;
-  public startTime: number = 0; //2055
+
   /**
    * Defines whether a black screen is displayed
    */
@@ -30,7 +31,7 @@ export class BootComponent implements OnInit {
     if (BootComponent.BlackScreen) {
       setTimeout(() => {
         BootComponent.BlackScreen = false;
-      }, 1055);
+      }, startTimeOut);
     } else {
       BootComponent.BlackScreen = false;
     }
@@ -50,7 +51,7 @@ export class BootComponent implements OnInit {
             setTimeout(() => {
               this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
             }, 150);
-          }, this.startTime);
+          }, startTimeIn);
         }, 280);
       }
     }

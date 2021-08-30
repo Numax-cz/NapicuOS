@@ -1,4 +1,5 @@
 import { FlashingText } from 'src/app/Array/FlashInformation';
+import { Checking, Erasing, Verifying, Writing } from 'src/app/Config/Animation/Flash';
 import { FlashComponent } from 'src/app/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
 import { Window } from '../Window';
@@ -8,7 +9,7 @@ import { ProgressBar } from './ProgressBar';
 export function CheckBIOSFile() {
   FlashComponent.Flashing = true;
   FlashComponent.FlashingText = FlashingText[0];
-  ProgressBar(97, 'Bar', () => {
+  ProgressBar(Checking, 'Bar', () => {
     //TODO Alert
     ReadyToFlash();
   });
@@ -16,7 +17,7 @@ export function CheckBIOSFile() {
 export function ErasingBIOS() {
   FlashComponent.FlashingText = FlashingText[1];
   ProgressBar(
-    56,
+    Erasing,
     'Bar1',
     () => {
       WritingBIOS();
@@ -26,14 +27,14 @@ export function ErasingBIOS() {
 }
 export function WritingBIOS() {
   FlashComponent.FlashingText = FlashingText[2];
-  ProgressBar(77, 'Bar2', () => {
+  ProgressBar(Writing, 'Bar2', () => {
     VerifyingBIOS();
   });
 }
 
 export function VerifyingBIOS() {
   FlashComponent.FlashingText = FlashingText[3];
-  ProgressBar(33, 'Bar3', () => {
+  ProgressBar(Verifying, 'Bar3', () => {
     SuccesFlash();
   });
 }
