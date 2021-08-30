@@ -1,11 +1,9 @@
-import { BiosComponent } from 'src/app/bios/bios.component';
-import { BootbComponent } from 'src/app/bootb/bootb.component';
-import { BiosExit } from './BiosExit';
+import { Continue } from './Reboot';
 
 export function DiscardChanges(): void {
   //TODO Export = BiosComponent.BiosMenuSavePoint
 
-  BiosExit(false);
+  Continue();
 }
 
 function unSave(): void {}

@@ -2,6 +2,7 @@ import { WriteInformations, WriteInformationsDefault } from 'src/app/Array/Flash
 import { BiosComponent } from 'src/app/bios/bios.component';
 import { FlashComponent } from 'src/app/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
+import { Reboot } from '../exit/Reboot';
 import { Window } from '../Window';
 import { ErasingBIOS } from './Flash';
 
@@ -30,7 +31,7 @@ export function ReadyToFlash(): void {
 export function SuccesFlash(): void {
   OptionPanelComponent.window = new Window([], 'Update is done! System will reboot.', undefined, true, true);
   setTimeout(() => {
-    
+    Reboot();
     FlashComponent.Flashing = false;
   }, 5000);
 }
