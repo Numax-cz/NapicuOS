@@ -2,7 +2,7 @@ import { FlashingText } from 'src/app/Array/FlashInformation';
 import { FlashComponent } from 'src/app/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
 import { Window } from '../Window';
-import { ReadyToFlash } from './OpenWindow';
+import { ReadyToFlash, SuccesFlash } from './OpenWindow';
 import { ProgressBar } from './ProgressBar';
 
 export function CheckBIOSFile() {
@@ -34,6 +34,6 @@ export function WritingBIOS() {
 export function VerifyingBIOS() {
   FlashComponent.FlashingText = FlashingText[3];
   ProgressBar(33, 'Bar3', () => {
-    
+    SuccesFlash();
   });
 }

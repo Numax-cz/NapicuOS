@@ -27,3 +27,10 @@ export function ReadyToFlash(): void {
     }
   );
 }
+export function SuccesFlash(): void {
+  OptionPanelComponent.window = new Window([], 'Update is done! System will reboot.', undefined, true, true);
+  setTimeout(() => {
+    
+    FlashComponent.Flashing = false;
+  }, 5000);
+}
