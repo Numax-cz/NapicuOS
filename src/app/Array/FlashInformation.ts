@@ -23,6 +23,11 @@ var newBios: FlashInformation = {
 export function WriteInformations(): void {
   Update = newBios;
 }
+export function WriteInformationsDefault(): void {
+  Update.board = 'Unknown';
+  Update.ver = 'Unknown';
+  Update.date = 'Unknown';
+}
 
 export var FlashingText: FlashingTxt = {
   0: 'Checking File:',

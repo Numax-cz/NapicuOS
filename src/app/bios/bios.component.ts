@@ -54,7 +54,6 @@ export class BiosComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     var SaveBiosArray: BiosOptionsST = copy(BiosSettings);
     //TODO ERROR Screen
-
     if (JSON.parse(getCookies('BiosSettingsArray'))) {
       BiosComponent.BiosMenuSavePoint = JSON.parse(getCookies('BiosSettingsArray'));
       setSettingsValue(BiosComponent.BiosMenuSavePoint);
@@ -157,6 +156,8 @@ export class BiosComponent implements OnInit {
         }
       } else if (e.keyCode == 13) {
         if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
+      } else if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
+        MoveWindowOptions(e.keyCode);
       }
     }
     //e.preventDefault();

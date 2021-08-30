@@ -40,14 +40,12 @@ export class Window {
    */
   constructor(WindowItems: WindowItems, title?: string, CallBack?: Function, WindowError?: boolean, Horizontal?: boolean, CallBackD?: Function) {
     this.WindowItems = WindowItems || [];
-    this.title = title || '';
-    this.CallBack = CallBack;
+    this.title = title || 'Undefined';
     this.WindowError = WindowError || false;
     this.Horizontal = Horizontal || false;
-    this.CallBackD = CallBackD;
+    this.CallBack = CallBack || undefined;
+    this.CallBackD = CallBackD || undefined;
   }
-
-  public OpenWindow() {}
 
   public CloseUnsave() {
     if (BiosComponent.WindowFastOptionDisplay) {
@@ -57,7 +55,6 @@ export class Window {
         SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date = ItemsDateInit;
       }
     }
-
     this.close();
   }
 
@@ -68,11 +65,12 @@ export class Window {
       setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
     } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
       //? There is nothing to see
-    } else if (OptionPanelComponent.CallBack && BiosComponent.WindowSelectedOption == 0) {
-      OptionPanelComponent.CallBack();
-    } else if (OptionPanelComponent.CallBackD && BiosComponent.WindowSelectedOption == 1) {
-      OptionPanelComponent.CallBackD();
+    } else if (this.CallBack && BiosComponent.WindowSelectedOption == 0) {
+      this.CallBack();
+    } else if (this.CallBackD && BiosComponent.WindowSelectedOption == 1) {
+      this.CallBackD();
     }
+    
     this.close();
   }
 
