@@ -12,9 +12,7 @@ export function ReadyToFlash(): void {
   OptionPanelComponent.OpenWindow(
     [{ title: 'Yes' }, { title: 'No' }],
     'Are you sure to update BIOS?',
-    () => {
-      alert('y'), undefined, true;
-    },
+    () => {alert("xd")},
     true,
     true
   );

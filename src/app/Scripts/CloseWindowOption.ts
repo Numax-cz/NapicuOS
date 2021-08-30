@@ -1,3 +1,4 @@
+import { disableDebugTools } from '@angular/platform-browser';
 import { BiosComponent } from '../bios/bios.component';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
@@ -24,7 +25,7 @@ export function CloseWindowOptionSave(): void {
     setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
   } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
     //? There is nothing to see
-  } else if (isOptionsFast(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
+  } else if (OptionPanelComponent.CallBack) {
     if (BiosComponent.WindowSelectedOption !== 0 && BiosComponent.WindowSelectedOption !== 1) {
       ErrorOptionFunction();
     }
@@ -43,11 +44,6 @@ function close() {
   BiosComponent.WindowItems = [];
   BiosComponent.WindowSelectedOption = 0;
   OptionPanelComponent.Horizontal = false;
-}
-
-//* Errors
-function ErrorClosed(): void {
-  console.error('ClosedWindowOption.ts => Closed without function');
 }
 
 function ErrorOptionFunction(): void {

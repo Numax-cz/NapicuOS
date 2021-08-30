@@ -12,14 +12,25 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
 export class OptionPanelComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
+  /**
+   * Popup title
+   */
   public static Title: string;
+  /**
+   * Function that is called when the window is closed (yes/ok...)
+   */
   public static CallBack: Function | undefined;
+  /**
+   * Determines, if the Items will be horizontal
+   */
   public static Horizontal: boolean;
   /**
    * Function that opens a popup window
    * @param WindowItems Items that will be in the popup window
    * @param title Title popup window
    * @param CallBack A function that is triggered if the popup is yes/no and the user has selected yes
+   * @param WindowError Determines, if the popup window will be red (warning)
+   * @param Horizontal Determines, if the Items will be horizontal
    */
   public static OpenWindow(WindowItems: WindowItems, title?: string, CallBack?: Function, WindowError?: boolean, Horizontal?: boolean): void {
     var getSelectedItem = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
