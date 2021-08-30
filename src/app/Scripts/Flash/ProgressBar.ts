@@ -1,8 +1,14 @@
 import { FlashingText } from 'src/app/Array/FlashInformation';
 import { FlashComponent } from 'src/app/flash/flash.component';
 
-export function ProgressBar(time: number, callback: () => void): void {
-  var bar = FlashComponent.ProgressBar;
+export function ProgressBar(time: number, htmlID: string, callback: () => void, max?: number): void {
+  FlashComponent.Flashing = true;
+  var bar = FlashComponent.Doc.getElementById(htmlID);
+  if (!bar) {
+    console.error('Progress Bar ID is null');
+    return;
+  }
+  var MaxLoad: number = max || 100;
   var i = 0;
   if (bar) {
     if (i == 0) {
@@ -23,7 +29,7 @@ export function ProgressBar(time: number, callback: () => void): void {
           Move();
         }
         function Move() {
-          if (width >= 100) {
+          if (width >= MaxLoad) {
             clearInterval(id);
             //TODO Exit witch setTimeOut
             if (i == 0) return;
@@ -31,7 +37,7 @@ export function ProgressBar(time: number, callback: () => void): void {
             callback();
           } else {
             width++;
-            bar.style.width = width + '%';
+            if (bar) bar.style.width = width + '%';
           }
         }
       }

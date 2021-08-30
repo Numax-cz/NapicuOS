@@ -15,7 +15,7 @@ import { OptionPanelComponent } from '../option-panel/option-panel.component';
 export class FlashComponent implements OnInit {
   constructor() {}
   //TODO @Document
-  public static ProgressBar: HTMLElement;
+  public static Doc: Document;
   public static Scroll: HTMLElement;
   public static FlashingText: string;
   public static SelectedDir: number;
@@ -38,11 +38,10 @@ export class FlashComponent implements OnInit {
   public static WindowAlertOption: boolean;
 
   ngOnInit(): void {
-    var id = document.getElementById('Bar');
-    var id2 = document.getElementById('Scroll');
-    if (id && id2) {
-      FlashComponent.ProgressBar = id;
-      FlashComponent.Scroll = id2;
+    var Scroll = document.getElementById('Scroll');
+    if (Scroll) {
+      FlashComponent.Doc = document;
+      FlashComponent.Scroll = Scroll;
     }
 
     FlashComponent.SelectedDir = 0;
@@ -57,9 +56,6 @@ export class FlashComponent implements OnInit {
     FlashComponent.WindowAlertOption = false;
 
     //! Test
-
-
-    
   }
   ngOnDestroy(): void {
     FlashComponent.ezFlashWindow = false;

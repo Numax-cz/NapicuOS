@@ -3,8 +3,7 @@ import { BiosComponent } from 'src/app/bios/bios.component';
 import { FlashComponent } from 'src/app/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
 import { Window } from '../Window';
-
-export function OptionAlert() {}
+import { ErasingBIOS } from './Flash';
 
 export function FileIsUnsupported(): void {
   OptionPanelComponent.window = new Window([{ title: 'Ok' }], 'This file is not supported!', undefined, true, true);
@@ -12,15 +11,17 @@ export function FileIsUnsupported(): void {
 
 export function ReadyToFlash(): void {
   WriteInformations();
+  FlashComponent.Flashing = false;
   OptionPanelComponent.window = new Window(
     [{ title: 'Yes' }, { title: 'No' }],
     'Are you sure to update BIOS?',
-    () => {},
+    () => {
+      ErasingBIOS();
+    },
     true,
     true,
     () => {
       setTimeout(() => {
-        FlashComponent.Flashing = false;
         WriteInformationsDefault();
       }, 250);
     }
