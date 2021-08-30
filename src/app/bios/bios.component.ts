@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Menu } from '../Array/BiosMenu';
 import { MoveOption } from '../Scripts/MoveOption';
 import { OpenWindowOption } from '../Scripts/OpenWindowOption';
-import { CloseWindowOptionUnsave, CloseWindowOptionSave } from '../Scripts/CloseWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { WindowItems } from '../Scripts/Type';
@@ -17,6 +16,7 @@ import { FlashComponent } from '../flash/flash.component';
 import { FlashBiosExit } from '../Scripts/Flash/FlashBiosExit';
 import { FlashTab } from '../Scripts/Flash/FlashTab';
 import { CheckFile } from '../Scripts/Flash/CheckFile';
+import { OptionPanelComponent } from '../option-panel/option-panel.component';
 
 /**
  * @author Numax-cz
@@ -86,10 +86,10 @@ export class BiosComponent implements OnInit {
   }
 
   public Move = (e: KeyboardEvent): void => {
-    if (BootComponent.EnterBios) {
+    if (BootComponent.EnterBios && !FlashComponent.ezFlashWindow) {
       setTimeout(() => {
         //* ArrowRight
-        if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay && !FlashComponent.ezFlashWindow) {
+        if (!BiosComponent.WindowDisplay && !BiosComponent.WindowFastOptionDisplay) {
           if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
             BiosComponent.selected += 1;
             this.UpdateComponent();
@@ -115,11 +115,11 @@ export class BiosComponent implements OnInit {
           }
           //* Close --save
           if (e.keyCode == 13) {
-            CloseWindowOptionSave();
+            OptionPanelComponent.window.CloseSave();
           }
           //* Close --unsavey
           if (e.keyCode == 27) {
-            CloseWindowOptionUnsave();
+            OptionPanelComponent.window.CloseUnsave();
           }
           if (BiosComponent.WindowFastOptionDisplay) {
             if (e.keyCode == 40 || 38) {
@@ -166,7 +166,7 @@ export class BiosComponent implements OnInit {
           }
         }
       } else if (e.keyCode == 13) {
-        CloseWindowOptionSave();
+        OptionPanelComponent.window.CloseSave();
       }
     }
     //e.preventDefault();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BiosSettings } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
+import { Window } from '../Scripts/Window';
 import { WindowItems } from '../Scripts/Type';
 import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
 
@@ -10,6 +11,7 @@ import { SettingsTemplateComponent } from '../settings-template/settings-templat
   styleUrls: ['./option-panel.component.scss'],
 })
 export class OptionPanelComponent implements OnInit {
+  public static window: Window;
   constructor() {}
   ngOnInit(): void {}
   /**
@@ -20,6 +22,7 @@ export class OptionPanelComponent implements OnInit {
    * Function that is called when the window is closed (yes/ok...)
    */
   public static CallBack: Function | undefined;
+  public static CallBackD: Function | undefined;
   /**
    * Determines, if the Items will be horizontal
    */
@@ -28,11 +31,12 @@ export class OptionPanelComponent implements OnInit {
    * Function that opens a popup window
    * @param WindowItems Items that will be in the popup window
    * @param title Title popup window
-   * @param CallBack A function that is triggered if the popup is yes/no and the user has selected yes
+   * @param CallBack A function that is triggered if the popup is yes/no and the user has selected YES
    * @param WindowError Determines, if the popup window will be red (warning)
    * @param Horizontal Determines, if the Items will be horizontal
+   * @param CallBackD A function that is triggered if the popup is yes/no and the user has selected NO
    */
-  public static OpenWindow(WindowItems: WindowItems, title?: string, CallBack?: Function, WindowError?: boolean, Horizontal?: boolean): void {
+  public static OpenWindow(WindowItems: WindowItems, title?: string, CallBack?: Function, WindowError?: boolean, Horizontal?: boolean, CallBackD?: Function): void {
     var getSelectedItem = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
     if (WindowError) BiosComponent.WindowError = true;
     if (Horizontal) OptionPanelComponent.Horizontal = true;
@@ -44,8 +48,10 @@ export class OptionPanelComponent implements OnInit {
       OptionPanelComponent.Title = 'Undefined';
     }
     OptionPanelComponent.CallBack = CallBack;
+    OptionPanelComponent.CallBackD = CallBack;
     BiosComponent.WindowItems = WindowItems;
     BiosComponent.WindowDisplay = true;
+    OptionPanelComponent.window = new Window(WindowItems, title, CallBack, WindowError, Horizontal, CallBackD);
   }
   public static OpenFastWindow(WindowItems: WindowItems): void {
     BiosComponent.WindowItems = WindowItems;
