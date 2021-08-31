@@ -20,8 +20,6 @@ export const LangMenu: Options[] = [
   },
 ];
 
-
-
 export const English = {
   Main: {
     title: 'System Overview',
@@ -35,5 +33,25 @@ export const English = {
     network_boot_description: 'Enable/Disable PXE boot on to LAN',
     wake_on_lan_title: 'Wake on LAN',
     wake_on_lan_description: 'Enable/Disable Integrated LAN to wake the system',
+  },
+  Boot: {
+    title: '',
+    boot_mode_title: 'Boot Mode',
+    boot_mode_description: 'Set System Boot Mode',
+    fast_boot_title: 'Fast Boot',
+    fast_boot_description: 'Enable/Disable Fast Boot',
+    secure_boot_title: 'Secure Boot',
+    secure_boot_description: 'Enable/Disable Fast Boot',
+    boot_priority_title: 'Boot priority order',
+    boot_priority_description: 'NONENENENENENENENEN', //TODO
+  },
+  Exit: {
+    title: '',
+    default_title: 'Load Optimized Defaults',
+    default_description: 'Restores/loads the default values for all the setup options',
+    save_title: 'Save Changes & Reset',
+    save_description: 'Exit Bios and save your changes to CMOS',
+    discard_title: 'Discard Changes & Exit',
+    discard_description: 'Exit Bios without saving any changes',
   },
 };
