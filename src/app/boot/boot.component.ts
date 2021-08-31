@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BiosInfo } from '../Array/ToolSettings';
+import { BiosInfo, BiosSettings } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { startTimeIn, startTimeOut } from '../Config/Animation/Boot';
 import { FlashComponent } from '../flash/flash.component';

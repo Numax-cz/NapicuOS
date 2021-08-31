@@ -1,3 +1,4 @@
+import { LangMenu } from '../Config/Lang/English';
 import { BiosIf } from '../interface/BiosInfo';
 import { settings, ToolSettings } from '../interface/ToolSettings';
 import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
@@ -22,20 +23,7 @@ export var BiosSettings: BiosOptionsST = {
     settings: [
       {
         title: 'System Language',
-        options: [
-          {
-            title: 'English',
-          },
-          {
-            title: 'Korea',
-          },
-          {
-            title: 'Slovakia',
-          },
-          {
-            title: 'Deutschland',
-          },
-        ],
+        options: LangMenu,
         description: 'Choose the default language',
         selected: 0,
       },
@@ -197,3 +185,4 @@ export function setSettingsValue(value: BiosOptionsST): void {
     });
   }
 }
+
