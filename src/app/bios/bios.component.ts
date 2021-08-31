@@ -8,7 +8,7 @@ import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
 import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
-import { getCookies } from '../Scripts/Cookies';
+import { cookiesForBisoSettingsAr, getCookies } from '../Scripts/Cookies';
 import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../Array/ToolSettings';
 import { BootComponent } from '../boot/boot.component';
 import { copy } from '../Scripts/DeepClone';
@@ -17,6 +17,7 @@ import { FlashBiosExit } from '../Scripts/Flash/FlashBiosExit';
 import { FlashTab } from '../Scripts/Flash/FlashTab';
 import { CheckFile } from '../Scripts/Flash/CheckFile';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
+import { getLanguage } from '../Scripts/getLanguage';
 
 /**
  * @author Numax-cz
@@ -54,8 +55,8 @@ export class BiosComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     var SaveBiosArray: BiosOptionsST = copy(BiosSettings);
     //TODO ERROR Screen
-    if (JSON.parse(getCookies('BiosSettingsArray'))) {
-      BiosComponent.BiosMenuSavePoint = JSON.parse(getCookies('BiosSettingsArray'));
+    if (JSON.parse(getCookies(cookiesForBisoSettingsAr))) {
+      BiosComponent.BiosMenuSavePoint = JSON.parse(getCookies(cookiesForBisoSettingsAr));
       setSettingsValue(BiosComponent.BiosMenuSavePoint);
     } else {
       BiosComponent.BiosMenuSavePoint = SaveBiosArray;
@@ -68,6 +69,7 @@ export class BiosComponent implements OnInit {
     window.removeEventListener('keydown', this.Move, true);
     window.addEventListener('keydown', this.Move, true);
     BootComponent.EnterBios = true;
+    getLanguage();
   }
 
   get selected(): number {

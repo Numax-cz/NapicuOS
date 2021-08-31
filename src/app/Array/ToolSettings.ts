@@ -5,6 +5,7 @@ import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
 import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
 import { SaveChanges } from '../Scripts/exit/SaveChanges';
 import { FlashBios } from '../Scripts/Flash/FlashBios';
+import { getLanguage } from '../Scripts/getLanguage';
 import { setDate, setTime } from '../Scripts/TimeDate';
 import { isDate, isOption, isTime } from '../Scripts/Type';
 export interface BiosOptionsST {
@@ -16,10 +17,10 @@ export var BiosInfo: BiosIf = {
   version: 'v2.69',
   date: '1985 - 2021',
 };
-
+export var lang = getLanguage();
 export var BiosSettings: BiosOptionsST = {
   Main: {
-    title: 'System Overview',
+    title:  lang.Main.title,
     settings: [
       {
         title: 'System Language',
@@ -185,4 +186,3 @@ export function setSettingsValue(value: BiosOptionsST): void {
     });
   }
 }
-
