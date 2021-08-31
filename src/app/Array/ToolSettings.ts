@@ -20,28 +20,28 @@ export var BiosInfo: BiosIf = {
 export var lang = getLanguage();
 export var BiosSettings: BiosOptionsST = {
   Main: {
-    title:  lang.Main.title,
+    title: lang.Main.title,
     settings: [
       {
-        title: 'System Language',
+        title: lang.Main.lang_title,
         options: LangMenu,
-        description: 'Choose the default language',
+        description: lang.Main.lang_description,
         selected: 0,
       },
       {
-        title: 'System Time',
+        title: lang.Main.time_title,
         time: setTime(),
-        description: 'Nastavení',
+        description: lang.Main.time_description,
         selected: 0,
       },
       {
-        title: 'System Date',
+        title: lang.Main.date_title,
         date: setDate(),
-        description: 'Nastavení',
+        description: lang.Main.date_description,
         selected: 0,
       },
       {
-        title: 'Network Boot',
+        title: lang.Main.network_boot_title,
         options: [
           {
             title: 'Disabled',
@@ -50,11 +50,11 @@ export var BiosSettings: BiosOptionsST = {
             title: 'Enabled',
           },
         ],
-        description: 'Enable/Disable PXE boot on to LAN',
+        description: lang.Main.network_boot_description,
         selected: 0,
       },
       {
-        title: 'Wake on LAN',
+        title: lang.Main.wake_on_lan_title,
         options: [
           {
             title: 'Disabled',
@@ -64,16 +64,16 @@ export var BiosSettings: BiosOptionsST = {
           },
         ],
         optionsFast: null,
-        description: 'Enable/Disable Integrated LAN to wake the system',
+        description: lang.Main.wake_on_lan_description,
         selected: 0,
       },
     ],
   },
   Boot: {
-    title: '',
+    title: lang.Boot.title,
     settings: [
       {
-        title: 'Boot Mode',
+        title: lang.Boot.boot_mode_title,
         options: [
           {
             title: 'UEFI',
@@ -82,11 +82,11 @@ export var BiosSettings: BiosOptionsST = {
             title: 'Legacy',
           },
         ],
-        description: 'Set System Boot Mode',
+        description: lang.Boot.boot_mode_description,
         selected: 0,
       },
       {
-        title: 'Fast Boot',
+        title: lang.Boot.fast_boot_title,
         options: [
           {
             title: 'Enabled',
@@ -95,11 +95,11 @@ export var BiosSettings: BiosOptionsST = {
             title: 'Disabled',
           },
         ],
-        description: 'Enable/Disable Fast Boot',
+        description: lang.Boot.fast_boot_description,
         selected: 0,
       },
       {
-        title: 'Secure Boot',
+        title: lang.Boot.secure_boot_title,
         options: [
           {
             title: 'Enabled',
@@ -108,11 +108,11 @@ export var BiosSettings: BiosOptionsST = {
             title: 'Disabled',
           },
         ],
-        description: 'Nastavení',
+        description: lang.Boot.secure_boot_description,
         selected: 0,
       },
       {
-        title: 'Boot priority order',
+        title: lang.Boot.boot_priority_title,
         options: [
           {
             title: '1. Samsung 860 EVO M.2 1TB',
@@ -124,44 +124,41 @@ export var BiosSettings: BiosOptionsST = {
             title: '3. Seagate ST-225 0.021 GB',
           },
         ],
-        description: 'Nastavení',
+        description: lang.Boot.boot_priority_description,
         selected: 0,
       },
     ],
   },
   Exit: {
-    title: '',
+    title: lang.Exit.title,
     settings: [
       {
-        title: 'Load Optimized Defaults',
+        title: lang.Exit.default_title,
         optionsFast: () => LoadDefaults(),
-        description: 'Restores/loads the default values for all the setup options',
+        description: lang.Exit.default_description,
         selected: 0,
       },
       {
-        title: 'Save Changes & Reset',
+        title: lang.Exit.save_title,
         optionsFast: () => SaveChanges(),
-        description: 'Exit Bios and save your changes to CMOS.',
+        description: lang.Exit.save_description,
         selected: 0,
       },
       {
-        title: 'Discard Changes & Exit',
+        title: lang.Exit.discard_title,
         optionsFast: () => DiscardChanges(),
-        description: 'Exit Bios without saving any changes.',
+        description: lang.Exit.discard_description,
         selected: 0,
       },
     ],
   },
   Tools: {
-    title: '',
+    title: lang.Tools.title,
     settings: [
       {
-        title: 'Ez Flash',
+        title: lang.Tools.flash_title,
         optionsFast: () => FlashBios(),
-        description: `
-          Run the utility to select and update BIOS. This utility supports 
-          Fat 12/16/32, NTFS, CD-DISC, 
-          `,
+        description: lang.Tools.flash_description,
         selected: 0,
       },
     ],

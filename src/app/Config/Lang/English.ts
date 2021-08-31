@@ -38,9 +38,9 @@ export const English = {
     fast_boot_title: 'Fast Boot',
     fast_boot_description: 'Enable/Disable Fast Boot',
     secure_boot_title: 'Secure Boot',
-    secure_boot_description: 'Enable/Disable Fast Boot',
+    secure_boot_description: 'Enable/Disable Secure Boot',
     boot_priority_title: 'Boot priority order',
-    boot_priority_description: 'NONENENENENENENENEN', //TODO
+    boot_priority_description: 'Set Boot Priority',
   },
   Exit: {
     title: '',
@@ -51,40 +51,9 @@ export const English = {
     discard_title: 'Discard Changes & Exit',
     discard_description: 'Exit Bios without saving any changes',
   },
-};
-
-export const Korea = {
-  Main: {
-    title: 'KOREA',
-    lang_title: 'System Language',
-    lang_description: 'Choose the default language',
-    time_title: 'System Time',
-    time_description: 'Change system time',
-    date_title: 'System Date',
-    date_description: 'Change system date',
-    network_boot_title: 'Network Boot',
-    network_boot_description: 'Enable/Disable PXE boot on to LAN',
-    wake_on_lan_title: 'Wake on LAN',
-    wake_on_lan_description: 'Enable/Disable Integrated LAN to wake the system',
-  },
-  Boot: {
+  Tools: {
     title: '',
-    boot_mode_title: 'Boot Mode',
-    boot_mode_description: 'Set System Boot Mode',
-    fast_boot_title: 'Fast Boot',
-    fast_boot_description: 'Enable/Disable Fast Boot',
-    secure_boot_title: 'Secure Boot',
-    secure_boot_description: 'Enable/Disable Fast Boot',
-    boot_priority_title: 'Boot priority order',
-    boot_priority_description: 'NONENENENENENENENEN', //TODO
-  },
-  Exit: {
-    title: '',
-    default_title: 'Load Optimized Defaults',
-    default_description: 'Restores/loads the default values for all the setup options',
-    save_title: 'Save Changes & Reset',
-    save_description: 'Exit Bios and save your changes to CMOS',
-    discard_title: 'Discard Changes & Exit',
-    discard_description: 'Exit Bios without saving any changes',
+    flash_title: 'Ez Flash',
+    flash_description: 'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
   },
 };
