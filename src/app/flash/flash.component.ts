@@ -6,6 +6,7 @@ import { BiosComponent } from '../bios/bios.component';
 import { directories, Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
+import { Move } from '../Scripts/Flash/Move';
 
 @Component({
   selector: 'app-flash',
@@ -38,12 +39,13 @@ export class FlashComponent implements OnInit {
   public static WindowAlertOption: boolean;
 
   ngOnInit(): void {
+    this.setEvents();
     var Scroll = document.getElementById('Scroll');
     if (Scroll) {
       FlashComponent.Doc = document;
       FlashComponent.Scroll = Scroll;
     }
-
+    
     FlashComponent.SelectedDir = 0;
     FlashComponent.SelectedFile = 0;
     FlashComponent.SelectedWindow = 0;
@@ -54,11 +56,16 @@ export class FlashComponent implements OnInit {
 
     FlashComponent.WindowAlert = false;
     FlashComponent.WindowAlertOption = false;
-
-    //! Test
   }
+
   ngOnDestroy(): void {
+    window.removeEventListener('keydown', Move, true);
     FlashComponent.ezFlashWindow = false;
+  }
+
+  protected setEvents(): void {
+    window.removeEventListener('keydown', Move, true);
+    window.addEventListener('keydown', Move, true);
   }
 
   get Title(): string {

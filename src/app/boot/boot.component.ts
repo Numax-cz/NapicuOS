@@ -1,17 +1,18 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BiosInfo, BiosSettings } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { startTimeIn, startTimeOut } from '../Config/Animation/Boot';
 import { FlashComponent } from '../flash/flash.component';
+import { Move } from '../Scripts/Flash/Move';
 
 @Component({
   selector: 'app-boot',
   templateUrl: './boot.component.html',
   styleUrls: ['./boot.component.scss'],
 })
-export class BootComponent implements OnInit {
+export class BootComponent implements OnInit, OnDestroy {
   public static EnterBios: boolean;
 
   /**
@@ -26,8 +27,7 @@ export class BootComponent implements OnInit {
     this.ClearRouter();
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
-    window.removeEventListener('keydown', this.RunBios, true);
-    window.addEventListener('keydown', this.RunBios, true);
+    this.setEvents();
     if (BootComponent.BlackScreen) {
       setTimeout(() => {
         BootComponent.BlackScreen = false;
@@ -35,6 +35,15 @@ export class BootComponent implements OnInit {
     } else {
       BootComponent.BlackScreen = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('keydown', this.RunBios, true);
+  }
+
+  protected setEvents(): void {
+    window.removeEventListener('keydown', this.RunBios, true);
+    window.addEventListener('keydown', this.RunBios, true);
   }
 
   protected PlayBootSound(): void {

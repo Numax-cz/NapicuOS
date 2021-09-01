@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Menu } from '../Array/BiosMenu';
@@ -29,7 +29,7 @@ import { getLanguage } from '../Scripts/getLanguage';
   templateUrl: './bios.component.html',
   styleUrls: ['./bios.component.scss'],
 })
-export class BiosComponent implements OnInit {
+export class BiosComponent implements OnInit, OnDestroy {
   public static BiosRouter: Router;
   /**
    * All items displayed in the top panel
@@ -61,17 +61,23 @@ export class BiosComponent implements OnInit {
     } else {
       BiosComponent.BiosMenuSavePoint = SaveBiosArray;
     }
-
     BiosComponent.BiosRouter = this.router;
   }
 
   ngOnInit(): void {
-    window.removeEventListener('keydown', this.Move, true);
-    window.addEventListener('keydown', this.Move, true);
+    this.setEvents();
     BootComponent.EnterBios = true;
     getLanguage();
   }
 
+  ngOnDestroy(): void {
+    window.removeEventListener('keydown', this.Move, true);
+  }
+
+  protected setEvents(): void {
+    window.removeEventListener('keydown', this.Move, true);
+    window.addEventListener('keydown', this.Move, true);
+  }
   get selected(): number {
     return BiosComponent.selected;
   }
@@ -120,48 +126,48 @@ export class BiosComponent implements OnInit {
         }
       }, 55);
     }
-    if (FlashComponent.ezFlashWindow) {
-      //TODO FIX
-      if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay && !FlashComponent.Flashing) {
-        if (e.keyCode == 40 || e.keyCode == 35) {
-          if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
-            FlashComponent.SelectedDir += 1;
+    // if (FlashComponent.ezFlashWindow) {
+    //   //TODO FIX
+    //   if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay && !FlashComponent.Flashing) {
+    //     if (e.keyCode == 40 || e.keyCode == 35) {
+    //       if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
+    //         FlashComponent.SelectedDir += 1;
 
-            FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.listDir.length - 1) {
-            FlashComponent.SelectedFile += 1;
-            var ScrollY = FlashComponent.Scroll.scrollTop;
-            FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
-          }
-        } else if (e.keyCode == 38 || e.keyCode == 36) {
-          if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
-            FlashComponent.SelectedDir -= 1;
+    //         FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+    //       } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.listDir.length - 1) {
+    //         FlashComponent.SelectedFile += 1;
+    //         var ScrollY = FlashComponent.Scroll.scrollTop;
+    //         FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
+    //       }
+    //     } else if (e.keyCode == 38 || e.keyCode == 36) {
+    //       if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
+    //         FlashComponent.SelectedDir -= 1;
 
-            FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-          } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
-            FlashComponent.SelectedFile -= 1;
+    //         FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+    //       } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
+    //         FlashComponent.SelectedFile -= 1;
 
-            var ScrollY = FlashComponent.Scroll.scrollTop;
-            FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
-          }
-        } else if (e.keyCode == 9) {
-          //TODO FLASH TAB
-          FlashTab();
-          e.preventDefault(); //TODO Move => End
-        } else if (e.keyCode == 27) {
-          FlashBiosExit();
-        } else if (e.keyCode == 13) {
-          //* Enter
-          if (FlashComponent.SelectedWindow == 1) {
-            CheckFile();
-          }
-        }
-      } else if (e.keyCode == 13) {
-        if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
-      } else if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
-        MoveWindowOptions(e.keyCode);
-      }
-    }
+    //         var ScrollY = FlashComponent.Scroll.scrollTop;
+    //         FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
+    //       }
+    //     } else if (e.keyCode == 9) {
+    //       //TODO FLASH TAB
+    //       FlashTab();
+    //       e.preventDefault(); //TODO Move => End
+    //     } else if (e.keyCode == 27) {
+    //       FlashBiosExit();
+    //     } else if (e.keyCode == 13) {
+    //       //* Enter
+    //       if (FlashComponent.SelectedWindow == 1) {
+    //         CheckFile();
+    //       }
+    //     }
+    //   } else if (e.keyCode == 13) {
+    //     if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
+    //   } else if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
+    //     MoveWindowOptions(e.keyCode);
+    //   }
+    // }
     //e.preventDefault();
   };
 
