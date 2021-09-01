@@ -18,6 +18,7 @@ import { FlashTab } from '../Scripts/Flash/FlashTab';
 import { CheckFile } from '../Scripts/Flash/CheckFile';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { getLanguage } from '../Scripts/getLanguage';
+import { GlobalEvents } from '../Scripts/GlobalEvents';
 
 /**
  * @author Numax-cz
@@ -126,49 +127,7 @@ export class BiosComponent implements OnInit, OnDestroy {
         }
       }, 55);
     }
-    // if (FlashComponent.ezFlashWindow) {
-    //   //TODO FIX
-    //   if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay && !FlashComponent.Flashing) {
-    //     if (e.keyCode == 40 || e.keyCode == 35) {
-    //       if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
-    //         FlashComponent.SelectedDir += 1;
-
-    //         FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-    //       } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile < FlashComponent.listDir.length - 1) {
-    //         FlashComponent.SelectedFile += 1;
-    //         var ScrollY = FlashComponent.Scroll.scrollTop;
-    //         FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
-    //       }
-    //     } else if (e.keyCode == 38 || e.keyCode == 36) {
-    //       if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
-    //         FlashComponent.SelectedDir -= 1;
-
-    //         FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-    //       } else if (FlashComponent.SelectedWindow == 1 && FlashComponent.SelectedFile > 0) {
-    //         FlashComponent.SelectedFile -= 1;
-
-    //         var ScrollY = FlashComponent.Scroll.scrollTop;
-    //         FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
-    //       }
-    //     } else if (e.keyCode == 9) {
-    //       //TODO FLASH TAB
-    //       FlashTab();
-    //       e.preventDefault(); //TODO Move => End
-    //     } else if (e.keyCode == 27) {
-    //       FlashBiosExit();
-    //     } else if (e.keyCode == 13) {
-    //       //* Enter
-    //       if (FlashComponent.SelectedWindow == 1) {
-    //         CheckFile();
-    //       }
-    //     }
-    //   } else if (e.keyCode == 13) {
-    //     if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
-    //   } else if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
-    //     MoveWindowOptions(e.keyCode);
-    //   }
-    // }
-    //e.preventDefault();
+    GlobalEvents(e);
   };
 
   public UpdateComponent(): void {

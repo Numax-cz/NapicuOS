@@ -8,7 +8,9 @@ import { WindowItems } from './Type';
 import { settings, Time } from '../interface/ToolSettings';
 import { ItemsDateInit } from './SetWindowOption';
 //TODO clear code
-
+/**
+ * Class for pop up window
+ */
 export class Window {
   /**
    * Items that are used in the popup window (Option-Panel)
@@ -18,6 +20,9 @@ export class Window {
    * Popup title
    */
   title: string;
+  /**
+   * Function that is called when WindowSelectedOption(yes) = 0
+   */
   CallBack: Function | undefined;
   /**
    * Specifies whether the window will be "red"
@@ -27,6 +32,9 @@ export class Window {
    * Determines, if the Items will be horizontal
    */
   Horizontal: boolean;
+  /**
+   * Function that is called when WindowSelectedOption(no) = 1
+   */
   CallBackD: Function | undefined;
 
   /**
@@ -70,10 +78,12 @@ export class Window {
     } else if (this.CallBackD && BiosComponent.WindowSelectedOption == 1) {
       this.CallBackD();
     }
-    
     this.close();
   }
-
+  
+  /**
+   * Function that closes the popup window
+   */
   public close() {
     BiosComponent.WindowSelectedOption = 0;
     BiosComponent.WindowFastOptionDisplay = false;
