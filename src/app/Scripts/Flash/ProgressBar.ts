@@ -34,7 +34,9 @@ export function ProgressBar(time: number, htmlID: string, callback: () => void, 
             //TODO Exit witch setTimeOut
             if (i == 0) return;
             i = 0;
-            callback();
+            if (FlashComponent.ezFlashWindow) {
+              callback();
+            }
           } else {
             width++;
             if (bar) bar.style.width = width + '%';
