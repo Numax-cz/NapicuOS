@@ -1,4 +1,5 @@
 import { BiosComponent } from 'src/app/bios/bios.component';
+import * as key from 'src/app/Config/KeyMaps';
 import { FlashComponent } from 'src/app/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
 import { GlobalEvents } from '../GlobalEvents';
@@ -11,7 +12,7 @@ export const Move = (e: KeyboardEvent) => {
   if (FlashComponent.ezFlashWindow) {
     //TODO FIX
     if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay && !FlashComponent.Flashing) {
-      if (e.keyCode == 40 || e.keyCode == 35) {
+      if (e.keyCode == key.ArrowDown || e.keyCode == key.End) {
         if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1) {
           FlashComponent.SelectedDir += 1;
 
@@ -21,7 +22,7 @@ export const Move = (e: KeyboardEvent) => {
           var ScrollY = FlashComponent.Scroll.scrollTop;
           FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
         }
-      } else if (e.keyCode == 38 || e.keyCode == 36) {
+      } else if (e.keyCode == key.ArrowUp || e.keyCode == key.Home) {
         if (FlashComponent.SelectedWindow == 0 && FlashComponent.SelectedDir !== 0) {
           FlashComponent.SelectedDir -= 1;
 
@@ -32,21 +33,21 @@ export const Move = (e: KeyboardEvent) => {
           var ScrollY = FlashComponent.Scroll.scrollTop;
           FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
         }
-      } else if (e.keyCode == 9) {
+      } else if (e.keyCode == key.Tab) {
         //TODO FLASH TAB
         FlashTab();
         e.preventDefault(); //TODO Move => End
-      } else if (e.keyCode == 27) {
+      } else if (e.keyCode == key.Escape) {
         FlashBiosExit();
-      } else if (e.keyCode == 13) {
+      } else if (e.keyCode == key.Enter) {
         //* Enter
         if (FlashComponent.SelectedWindow == 1) {
           CheckFile();
         }
       }
-    } else if (e.keyCode == 13) {
+    } else if (e.keyCode == key.Enter) {
       if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
-    } else if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
+    } else if (e.keyCode == key.ArrowDown || e.keyCode == key.ArrowRight || e.keyCode == key.ArrowUp || e.keyCode == key.ArrowLeft) {
       MoveWindowOptions(e.keyCode);
     }
   }

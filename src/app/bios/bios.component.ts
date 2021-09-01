@@ -6,19 +6,16 @@ import { MoveOption } from '../Scripts/MoveOption';
 import { SetWindowOption } from '../Scripts/SetWindowOption';
 import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../interface/BiosMenu';
-import { WindowItems } from '../Scripts/Type';
 import { TimeDateSet } from '../Scripts/TimeDateSet';
 import { cookiesForBisoSettingsAr, getCookies } from '../Scripts/Cookies';
 import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../Array/ToolSettings';
 import { BootComponent } from '../boot/boot.component';
 import { copy } from '../Scripts/DeepClone';
 import { FlashComponent } from '../flash/flash.component';
-import { FlashBiosExit } from '../Scripts/Flash/FlashBiosExit';
-import { FlashTab } from '../Scripts/Flash/FlashTab';
-import { CheckFile } from '../Scripts/Flash/CheckFile';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { getLanguage } from '../Scripts/getLanguage';
 import { GlobalEvents } from '../Scripts/GlobalEvents';
+import * as key from 'src/app/Config/KeyMaps';
 
 /**
  * @author Numax-cz
@@ -88,39 +85,39 @@ export class BiosComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         //* ArrowRight
         if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay) {
-          if (e.keyCode == 39 && BiosComponent.selected < this.BiosMenu.length - 1) {
+          if (e.keyCode == key.ArrowRight && BiosComponent.selected < this.BiosMenu.length - 1) {
             BiosComponent.selected += 1;
             this.UpdateComponent();
           }
           //* ArrowLeft
-          if (e.keyCode == 37 && BiosComponent.selected !== 0) {
+          if (e.keyCode == key.ArrowLeft && BiosComponent.selected !== 0) {
             BiosComponent.selected -= 1;
             this.UpdateComponent();
           }
           if (!OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay) {
           }
           //* ArrowDown & ArrowUp
-          if (e.keyCode == 40 || e.keyCode == 38) {
+          if (e.keyCode == key.ArrowDown || e.keyCode == key.ArrowUp) {
             MoveOption(e.keyCode);
           }
           //* Enter
-          if (e.keyCode == 13) {
+          if (e.keyCode == key.Enter) {
             SetWindowOption();
           }
         } else {
-          if (e.keyCode == 40 || e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
+          if (e.keyCode == key.ArrowDown || e.keyCode == key.ArrowRight || e.keyCode == key.ArrowUp || e.keyCode == key.ArrowLeft) {
             MoveWindowOptions(e.keyCode);
           }
           //* Close --save
-          if (e.keyCode == 13) {
+          if (e.keyCode == key.Enter) {
             if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
           }
           //* Close --unsavey
-          if (e.keyCode == 27) {
+          if (e.keyCode == key.Escape) {
             if (OptionPanelComponent.window) OptionPanelComponent.window.CloseUnsave();
           }
           if (BiosComponent.WindowFastOptionDisplay) {
-            if (e.keyCode == 40 || (38 && OptionPanelComponent.window)) {
+            if (e.keyCode == key.ArrowDown || (key.ArrowUp && OptionPanelComponent.window)) {
               TimeDateSet(e.keyCode, OptionPanelComponent.window?.WindowItems as any);
             }
           }

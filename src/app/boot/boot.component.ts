@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BiosInfo, BiosSettings } from '../Array/ToolSettings';
+import { BiosInfo } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { startTimeIn, startTimeOut } from '../Config/Animation/Boot';
 import { FlashComponent } from '../flash/flash.component';
-import { Move } from '../Scripts/Flash/Move';
+import * as key from 'src/app/Config/KeyMaps';
 
 @Component({
   selector: 'app-boot',
@@ -51,7 +51,7 @@ export class BootComponent implements OnInit, OnDestroy {
   }
 
   public RunBios = (e: KeyboardEvent): void => {
-    if (e.keyCode == 46 || e.keyCode == 113) {
+    if (e.keyCode == key.Delete || e.keyCode == key.F2) {
       if (!BootComponent.BlackScreen) {
         setTimeout(() => {
           BootComponent.BlackScreen = true;
