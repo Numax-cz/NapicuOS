@@ -1,4 +1,4 @@
-import { LangMenu } from '../Config/Lang/English';
+import { LangMenu } from '../Config/Lang/Lang';
 import { BiosIf } from '../interface/BiosInfo';
 import { settings, ToolSettings } from '../interface/ToolSettings';
 import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
