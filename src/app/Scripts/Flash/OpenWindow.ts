@@ -32,6 +32,7 @@ export function SuccesFlash(): void {
   OptionPanelComponent.window = new Window([], 'Update is done! System will reboot.', undefined, true, true);
   setTimeout(() => {
     Reboot();
+    OptionPanelComponent.window = undefined;
     FlashComponent.Flashing = false;
   }, reboot);
 }
