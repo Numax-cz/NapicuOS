@@ -37,7 +37,6 @@ export class Window {
    * Function that is called when WindowSelectedOption(no) = 1
    */
   CallBackD: Function | undefined;
-
   
   /**
    *
