@@ -18,7 +18,7 @@ export function TimeDateSet(keyCode: number, Items: Time[]): void {
   if (keyCode == 38) ItemsNumber += +1;
   if (keyCode == 40) ItemsNumber -= +1;
 
-  //! TODO
+
   if (isTime(componentSelected)) {
     if (BiosComponent.WindowSelectedOption == 0) {
       MaxMinNumber(maxHours);
