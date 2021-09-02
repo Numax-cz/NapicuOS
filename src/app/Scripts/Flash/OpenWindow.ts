@@ -1,8 +1,7 @@
 import { WriteInformations, WriteInformationsDefault } from 'src/app/Array/FlashInformation';
-import { BiosComponent } from 'src/app/bios/bios.component';
+import { FlashComponent } from 'src/app/Bios/flash/flash.component';
+import { OptionPanelComponent } from 'src/app/Bios/option-panel/option-panel.component';
 import { reboot } from 'src/app/Config/Animation/Flash';
-import { FlashComponent } from 'src/app/flash/flash.component';
-import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
 import { Reboot } from '../exit/Reboot';
 import { Window } from '../Window';
 import { ErasingBIOS } from './Flash';

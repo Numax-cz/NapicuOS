@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Current, Drive, Update } from '../Array/FlashInformation';
-import { BiosInfo } from '../Array/ToolSettings';
+import { Current, Drive, Update } from '../../Array/FlashInformation';
+import { BiosInfo } from '../../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
-import { directories, Drives } from '../interface/Directories';
-import { FlashInformation } from '../interface/FlashInformation';
+import { directories, Drives } from '../../interface/Directories';
+import { FlashInformation } from '../../interface/FlashInformation';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
-import { Move } from '../Scripts/Flash/Move';
+import { Move } from '../../Scripts/Flash/Move';
 
 @Component({
   selector: 'app-flash',

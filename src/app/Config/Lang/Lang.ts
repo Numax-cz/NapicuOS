@@ -1,6 +1,5 @@
-import { BiosOptionsST, BiosSettings } from 'src/app/Array/ToolSettings';
-import { BiosComponent } from 'src/app/bios/bios.component';
-import { Options } from 'src/app/interface/ToolSettings';
+import { Options } from "src/app/interface/ToolSettings";
+
 
 export const LangMenu: Options[] = [
   {

@@ -1,21 +1,21 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { Menu } from '../Array/BiosMenu';
-import { MoveOption } from '../Scripts/MoveOption';
-import { SetWindowOption } from '../Scripts/SetWindowOption';
-import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
-import { BiosMenu } from '../interface/BiosMenu';
-import { TimeDateSet } from '../Scripts/TimeDateSet';
-import { cookiesForBisoSettingsAr, getCookies } from '../Scripts/Cookies';
-import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../Array/ToolSettings';
+import { Menu } from '../../Array/BiosMenu';
+import { MoveOption } from '../../Scripts/MoveOption';
+import { SetWindowOption } from '../../Scripts/SetWindowOption';
+import { MoveWindowOptions } from '../../Scripts/MoveWindowOptions';
+import { BiosMenu } from '../../interface/BiosMenu';
+import { TimeDateSet } from '../../Scripts/TimeDateSet';
+import { cookiesForBisoSettingsAr, getCookies } from '../../Scripts/Cookies';
+import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../../Array/ToolSettings';
 import { BootComponent } from '../boot/boot.component';
-import { copy } from '../Scripts/DeepClone';
+import { copy } from '../../Scripts/DeepClone';
 import { FlashComponent } from '../flash/flash.component';
-import { OptionPanelComponent } from '../option-panel/option-panel.component';
-import { getLanguage } from '../Scripts/getLanguage';
-import { GlobalEvents } from '../Scripts/GlobalEvents';
+import { getLanguage } from '../../Scripts/getLanguage';
+import { GlobalEvents } from '../../Scripts/GlobalEvents';
 import * as key from 'src/app/Config/KeyMaps';
+import { OptionPanelComponent } from '../option-panel/option-panel.component';
 
 /**
  * @author Numax-cz

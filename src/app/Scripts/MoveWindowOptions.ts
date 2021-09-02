@@ -1,7 +1,6 @@
-import { BiosComponent } from '../bios/bios.component';
-import { OptionPanelComponent } from '../option-panel/option-panel.component';
-import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
-import { isOptionsFast } from './Type';
+import { BiosComponent } from "../Bios/bios/bios.component";
+import { OptionPanelComponent } from "../Bios/option-panel/option-panel.component";
+
 export function MoveWindowOptions(keyCode: number): void {
   if (!OptionPanelComponent.window) return;
   var KeyCodeArrow1 = BiosComponent.WindowFastOptionDisplay || OptionPanelComponent.window.Horizontal ? 39 : 40;

@@ -1,7 +1,7 @@
 import { FlashingText } from 'src/app/Array/FlashInformation';
+import { FlashComponent } from 'src/app/Bios/flash/flash.component';
 import { Checking, Erasing, Verifying, Writing } from 'src/app/Config/Animation/Flash';
-import { FlashComponent } from 'src/app/flash/flash.component';
-import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
+
 import { Window } from '../Window';
 import { ReadyToFlash, SuccesFlash } from './OpenWindow';
 import { ProgressBar } from './ProgressBar';

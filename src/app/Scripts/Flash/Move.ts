@@ -1,7 +1,8 @@
-import { BiosComponent } from 'src/app/bios/bios.component';
+
+import { BiosComponent } from 'src/app/Bios/bios/bios.component';
+import { FlashComponent } from 'src/app/Bios/flash/flash.component';
+import { OptionPanelComponent } from 'src/app/Bios/option-panel/option-panel.component';
 import * as key from 'src/app/Config/KeyMaps';
-import { FlashComponent } from 'src/app/flash/flash.component';
-import { OptionPanelComponent } from 'src/app/option-panel/option-panel.component';
 import { GlobalEvents } from '../GlobalEvents';
 import { MoveWindowOptions } from '../MoveWindowOptions';
 import { CheckFile } from './CheckFile';

@@ -1,4 +1,5 @@
-import { FlashComponent } from 'src/app/flash/flash.component';
+import { FlashComponent } from "src/app/Bios/flash/flash.component";
+
 
 export function FlashTab(): void {
   if (FlashComponent.SelectedWindow == 0) {

@@ -1,5 +1,8 @@
-import { BiosComponent } from '../bios/bios.component';
+
 //TODO document
+
+import { BiosComponent } from "../Bios/bios/bios.component";
+
 //TODO Doc
 export function Navigate(Path: string) {
   BiosComponent.BiosRouter.navigate([Path]); //TODO NONLIST

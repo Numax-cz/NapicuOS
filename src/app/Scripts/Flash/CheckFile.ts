@@ -1,6 +1,5 @@
 
-import { BiosComponent } from 'src/app/bios/bios.component';
-import { FlashComponent } from 'src/app/flash/flash.component';
+import { FlashComponent } from 'src/app/Bios/flash/flash.component';
 import { CheckBIOSFile } from './Flash';
 import { FileIsUnsupported } from './OpenWindow';
 

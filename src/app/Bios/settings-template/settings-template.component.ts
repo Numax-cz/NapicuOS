@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BiosComponent } from '../bios/bios.component';
-import { ComponentClass } from '../interface/ComponentClass';
-import { Informations } from '../interface/Informations';
-import { settings, ToolSettings } from '../interface/ToolSettings';
-import { isOption, isTime, isDate, isOptionsFast } from '../Scripts/Type';
+import { ComponentClass } from '../../interface/ComponentClass';
+import { Informations } from '../../interface/Informations';
+import { settings, ToolSettings } from '../../interface/ToolSettings';
+import { isOption, isTime, isDate, isOptionsFast } from '../../Scripts/Type';
 
 @Component({
   selector: 'app-settings-template',

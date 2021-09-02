@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdvancedComponent } from './advanced/advanced.component';
-import { BiosMainComponent } from './bios-main/bios-main.component';
+import { AdvancedComponent } from './Bios/advanced/advanced.component';
+import { BiosMainComponent } from './Bios/bios-main/bios-main.component';
 import { BiosGuard } from './bios.guard';
 
-import { BiosComponent } from './bios/bios.component';
-import { BootComponent } from './boot/boot.component';
-import { BootbComponent } from './bootb/bootb.component';
-import { ExitComponent } from './exit/exit.component';
-import { FlashComponent } from './flash/flash.component';
-import { PowerComponent } from './power/power.component';
-import { ToolsComponent } from './tools/tools.component';
-import { TweakerComponent } from './tweaker/tweaker.component';
+import { BiosComponent } from './Bios/bios/bios.component';
+import { BootComponent } from './Bios/boot/boot.component';
+import { BootbComponent } from './Bios/bootb/bootb.component';
+import { ExitComponent } from './Bios/exit/exit.component';
+import { FlashComponent } from './Bios/flash/flash.component';
+import { PowerComponent } from './Bios/power/power.component';
+import { ToolsComponent } from './Bios/tools/tools.component';
+import { TweakerComponent } from './Bios/tweaker/tweaker.component';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'exit', component: ExitComponent },
     ],
   },
-  { path: 'flash', canActivate: [BiosGuard],  component: FlashComponent },
+  { path: 'flash', canActivate: [BiosGuard], component: FlashComponent },
 ];
 
 @NgModule({

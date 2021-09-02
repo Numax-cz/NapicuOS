@@ -1,4 +1,4 @@
-import { BootComponent } from 'src/app/boot/boot.component';
+import { BootComponent } from 'src/app/Bios/boot/boot.component';
 import { Navigate } from '../BiosRouter';
 
 export function Reboot(): void {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BootComponent } from './boot/boot.component';
+import { BootComponent } from './Bios/boot/boot.component';
 
 @Injectable({
   providedIn: 'root',

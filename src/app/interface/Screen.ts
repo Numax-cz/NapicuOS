@@ -1,5 +1,6 @@
-import { Informations } from './Informations';
-import { ToolSettings } from './ToolSettings';
+import { Informations } from "./Informations";
+import { ToolSettings } from "./ToolSettings";
+
 
 export interface Screen {
   selected: number;

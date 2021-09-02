@@ -1,5 +1,4 @@
-import { FlashingText } from 'src/app/Array/FlashInformation';
-import { FlashComponent } from 'src/app/flash/flash.component';
+import { FlashComponent } from "src/app/Bios/flash/flash.component";
 
 export function ProgressBar(time: number, htmlID: string, callback: () => void, max?: number): void {
   FlashComponent.Flashing = true;

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MainInfo } from '../Array/Informations';
-import { BiosSettings } from '../Array/ToolSettings';
+import { MainInfo } from '../../Array/Informations';
+import { BiosSettings } from '../../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
-import { ComponentClass } from '../interface/ComponentClass';
-import { Informations } from '../interface/Informations';
-import { settings, ToolSettings } from '../interface/ToolSettings';
-import { setTimeInterval } from '../Scripts/TimeController';
-import { isTime } from '../Scripts/Type';
-import { Screen } from '../interface/Screen';
+import { ComponentClass } from '../../interface/ComponentClass';
+import { Informations } from '../../interface/Informations';
+import { settings, ToolSettings } from '../../interface/ToolSettings';
+import { setTimeInterval } from '../../Scripts/TimeController';
+import { isTime } from '../../Scripts/Type';
+import { Screen } from '../../interface/Screen';
 @Component({
   selector: 'app-bios-main',
   templateUrl: './bios-main.component.html',

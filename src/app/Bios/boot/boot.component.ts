@@ -1,9 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BiosInfo } from '../Array/ToolSettings';
+import { BiosInfo } from '../../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
-import { startTimeIn, startTimeOut } from '../Config/Animation/Boot';
+import { startTimeIn, startTimeOut } from '../../Config/Animation/Boot';
 import { FlashComponent } from '../flash/flash.component';
 import * as key from 'src/app/Config/KeyMaps';
 

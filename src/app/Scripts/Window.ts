@@ -1,12 +1,13 @@
 import { disableDebugTools } from '@angular/platform-browser';
-import { BiosComponent } from '../bios/bios.component';
-import { OptionPanelComponent } from '../option-panel/option-panel.component';
-import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
+
 import { setTimeInterval } from './TimeController';
 import { isTime, isOption, isDate, isOptionsFast } from './Type';
 import { WindowItems } from './Type';
 import { settings, Time } from '../interface/ToolSettings';
 import { ItemsDateInit } from './SetWindowOption';
+import { BiosComponent } from '../Bios/bios/bios.component';
+import { OptionPanelComponent } from '../Bios/option-panel/option-panel.component';
+import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
 //TODO clear code
 /**
  * Class for pop up window

@@ -1,6 +1,5 @@
-import { BiosComponent } from '../bios/bios.component';
-import { ComponentClass } from '../interface/ComponentClass';
-import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
+import { SettingsTemplateComponent } from "../Bios/settings-template/settings-template.component";
+
 
 export function MoveOption(keyCode: number): void {
   // ArrowDown

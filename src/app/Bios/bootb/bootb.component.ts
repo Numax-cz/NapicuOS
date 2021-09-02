@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToolSettings } from '../interface/ToolSettings';
-import { Screen } from '../interface/Screen';
-import { BiosSettings } from '../Array/ToolSettings';
+import { ToolSettings } from '../../interface/ToolSettings';
+import { Screen } from '../../interface/Screen';
+import { BiosSettings } from '../../Array/ToolSettings';
 @Component({
   selector: 'app-bootb',
   templateUrl: './bootb.component.html',

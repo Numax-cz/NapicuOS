@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BiosSettings } from '../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
-import { Window } from '../Scripts/Window';
-import { WindowItems } from '../Scripts/Type';
-import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
+import { Window } from 'src/app/Scripts/Window';
 
 @Component({
   selector: 'app-option-panel',

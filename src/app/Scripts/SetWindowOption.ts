@@ -1,10 +1,10 @@
 import { isTime, isOption, isDate, isOptionsFast } from './Type';
 import { Time } from '../interface/ToolSettings';
 import { clearTimeInterval } from './TimeController';
-import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
-import { OptionPanelComponent } from '../option-panel/option-panel.component';
+import { BiosComponent } from '../Bios/bios/bios.component';
+import { OptionPanelComponent } from '../Bios/option-panel/option-panel.component';
+import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
 import { Window } from './Window';
-import { BiosComponent } from '../bios/bios.component';
 
 export var ItemsDateInit: Time[];
 export var nevim: any = {};
