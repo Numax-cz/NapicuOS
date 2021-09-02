@@ -12,7 +12,6 @@ export class BiosGuard implements CanActivate {
     if (BootComponent.EnterBios) {
       return true;
     }
-    BootComponent.BlackScreen = false;
     this.router.navigate(['']);
     return false; //False
   }

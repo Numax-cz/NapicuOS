@@ -6,6 +6,7 @@ import { BiosComponent } from '../bios/bios.component';
 import { startTimeIn, startTimeOut } from '../../Config/Animation/Boot';
 import { FlashComponent } from '../flash/flash.component';
 import * as key from 'src/app/Config/KeyMaps';
+import { Navigate } from 'src/app/Scripts/BiosRouter';
 
 @Component({
   selector: 'app-boot',
@@ -15,11 +16,6 @@ import * as key from 'src/app/Config/KeyMaps';
 export class BootComponent implements OnInit, OnDestroy {
   public static EnterBios: boolean;
 
-  /**
-   * Defines whether a black screen is displayed
-   */
-  public static BlackScreen: boolean = false;
-
   protected BiosBootAudio: HTMLAudioElement = new Audio('/assets/sound/Boot.wav');
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
@@ -28,13 +24,6 @@ export class BootComponent implements OnInit, OnDestroy {
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
     this.setEvents();
-    if (BootComponent.BlackScreen) {
-      setTimeout(() => {
-        BootComponent.BlackScreen = false;
-      }, startTimeOut);
-    } else {
-      BootComponent.BlackScreen = false;
-    }
   }
 
   ngOnDestroy(): void {
@@ -52,17 +41,15 @@ export class BootComponent implements OnInit, OnDestroy {
 
   public RunBios = (e: KeyboardEvent): void => {
     if (e.keyCode == key.Delete || e.keyCode == key.F2) {
-      if (!BootComponent.BlackScreen) {
+      setTimeout(() => {
+        Navigate('/blackloading');
         setTimeout(() => {
-          BootComponent.BlackScreen = true;
+          this.PlayBootSound();
           setTimeout(() => {
-            this.PlayBootSound();
-            setTimeout(() => {
-              this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
-            }, 150);
-          }, startTimeIn);
-        }, 280);
-      }
+            this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
+          }, 150);
+        }, startTimeIn);
+      }, 280);
     }
   };
 
@@ -74,9 +61,5 @@ export class BootComponent implements OnInit, OnDestroy {
 
   get biosTitle(): string {
     return BiosInfo.title;
-  }
-
-  get BlackScreen(): boolean {
-    return BootComponent.BlackScreen;
   }
 }
