@@ -1,9 +1,9 @@
-import { exitTimeOut } from 'src/app/Config/Animation/FlashBiosExit';
+import { exitTimeOut, TimeIn } from 'src/app/Config/Animation/FlashBiosExit';
 import { Navigate } from '../BiosRouter';
 import { Loading } from '../LoadingAnimations';
 
 export function FlashBiosExit(): void {
-  Loading('/bios/main', 800, 130);
+  Loading('/bios/main', exitTimeOut, TimeIn);
 }
 
 

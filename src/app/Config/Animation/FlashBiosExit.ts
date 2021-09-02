@@ -1,1 +1,2 @@
-export const exitTimeOut = 155;
+export const exitTimeOut = 800;
+export const TimeIn = 155;
