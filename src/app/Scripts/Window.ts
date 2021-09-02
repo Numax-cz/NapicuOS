@@ -38,6 +38,7 @@ export class Window {
    */
   CallBackD: Function | undefined;
 
+  
   /**
    *
    * @param WindowItems Items that will be in the popup window
