@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BootComponent } from './Bios/boot/boot.component';
@@ -17,6 +16,7 @@ import { SettingsTemplateComponent } from './Bios/settings-template/settings-tem
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FlashComponent } from './Bios/flash/flash.component';
+import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
 
 
 @NgModule({
@@ -34,6 +34,7 @@ import { FlashComponent } from './Bios/flash/flash.component';
     OptionPanelComponent,
     SettingsTemplateComponent,
     FlashComponent,
+    BlackloadingComponent,
   ],
   imports: [
     BrowserModule,

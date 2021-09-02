@@ -16,6 +16,7 @@ import { getLanguage } from '../../Scripts/getLanguage';
 import { GlobalEvents } from '../../Scripts/GlobalEvents';
 import * as key from 'src/app/Config/KeyMaps';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
+import { Loading } from 'src/app/Scripts/LoadingAnimations';
 
 /**
  * @author Numax-cz
@@ -65,11 +66,12 @@ export class BiosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setEvents();
     BootComponent.EnterBios = true;
-    getLanguage();
+    getLanguage();  
   }
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
+    BiosComponent.selected = 0;
   }
 
   protected setEvents(): void {

@@ -12,6 +12,7 @@ import { FlashComponent } from './Bios/flash/flash.component';
 import { PowerComponent } from './Bios/power/power.component';
 import { ToolsComponent } from './Bios/tools/tools.component';
 import { TweakerComponent } from './Bios/tweaker/tweaker.component';
+import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -29,6 +30,8 @@ const routes: Routes = [
     ],
   },
   { path: 'flash', canActivate: [BiosGuard], component: FlashComponent },
+  //todo: ?BiosGuard
+  { path: 'blackloading', component: BlackloadingComponent },
 ];
 
 @NgModule({

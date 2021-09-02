@@ -61,6 +61,7 @@ export class FlashComponent implements OnInit {
   ngOnDestroy(): void {
     window.removeEventListener('keydown', Move, true);
     FlashComponent.ezFlashWindow = false;
+    FlashComponent.Flashing = false;
   }
 
   protected setEvents(): void {
