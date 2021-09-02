@@ -10,7 +10,6 @@ export function CheckBIOSFile() {
   FlashComponent.Flashing = true;
   FlashComponent.FlashingText = FlashingText[0];
   ProgressBar(Checking, 'Bar', () => {
-    //TODO Alert
     ReadyToFlash();
   });
 }
