@@ -34,8 +34,9 @@ export function WriteInformationsDefault(): void {
   Update.date = 'Unknown';
 }
 
-export function GetFromCookies(): void {
-  Current = getCookies(cookiesForBiosVersion);
+export function GetBiosVersionFromCookies(): void {
+  let value = getCookies(cookiesForBiosVersion);
+  if (value) Current = value;
 }
 
 export function setNewBiosinf(): void {
