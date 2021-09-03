@@ -33,8 +33,7 @@ export const English = {
     wake_on_lan_description: 'Enable/Disable Integrated LAN to wake the system',
   },
   Advanced: {
-    virtual_description: 'xd',
-    sata_config_title: 'Sata Configuration'
+    virtual_description: 'This is AMD virtualization function switch',
   },
   Boot: {
     title: '',
