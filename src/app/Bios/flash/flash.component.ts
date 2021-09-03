@@ -7,6 +7,8 @@ import { directories, Drives } from '../../interface/Directories';
 import { FlashInformation } from '../../interface/FlashInformation';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { Move } from '../../Scripts/Flash/Move';
+import { getCookies } from 'src/app/Scripts/Cookies';
+import { cookiesForBiosVersion } from 'src/app/Config/Cookies';
 
 @Component({
   selector: 'app-flash',
@@ -14,7 +16,11 @@ import { Move } from '../../Scripts/Flash/Move';
   styleUrls: ['./flash.component.scss'],
 })
 export class FlashComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    if (getCookies(cookiesForBiosVersion)) {
+      
+    }
+  }
   //TODO @Document
   public static Doc: Document;
   public static Scroll: HTMLElement;
@@ -45,7 +51,7 @@ export class FlashComponent implements OnInit {
       FlashComponent.Doc = document;
       FlashComponent.Scroll = Scroll;
     }
-    
+
     FlashComponent.SelectedDir = 0;
     FlashComponent.SelectedFile = 0;
     FlashComponent.SelectedWindow = 0;

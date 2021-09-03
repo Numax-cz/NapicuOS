@@ -1,6 +1,8 @@
+import { cookiesForBiosVersion } from '../Config/Cookies';
 import { Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
 import { FlashingTxt } from '../interface/FlashingTxt';
+import { getCookies } from '../Scripts/Cookies';
 /**
  * Current bios information
  */
@@ -30,6 +32,10 @@ export function WriteInformationsDefault(): void {
   Update.board = 'Unknown';
   Update.ver = 'Unknown';
   Update.date = 'Unknown';
+}
+
+export function GetFromCookies(): void {
+  Current = getCookies(cookiesForBiosVersion);
 }
 
 export function setNewBiosinf(): void {
