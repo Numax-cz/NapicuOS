@@ -32,6 +32,10 @@ export const English = {
     wake_on_lan_title: 'Wake on LAN',
     wake_on_lan_description: 'Enable/Disable Integrated LAN to wake the system',
   },
+  Advanced: {
+    virtual_description: '',
+    sata_config_title: 'Sata Configuration'
+  },
   Boot: {
     title: '',
     boot_mode_title: 'Boot Mode',

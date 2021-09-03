@@ -76,13 +76,39 @@ export var BiosSettings: BiosOptionsST = {
         title: 'AMD_SVM',
         options: [
           {
-            title: 'UEFI',
+            title: lang.title_enabled,
           },
           {
-            title: 'Legacy',
+            title: lang.title_disabled,
           },
         ],
-        description: lang.Boot.boot_mode_description,
+        description: lang.Advanced.virtual_description,
+        selected: 0,
+      },
+      {
+        title: 'AMD-IOMMU',
+        options: [
+          {
+            title: lang.title_enabled,
+          },
+          {
+            title: lang.title_disabled,
+          },
+        ],
+        description: lang.Advanced.virtual_description,
+        selected: 0,
+      },
+      {
+        title: lang.Advanced.sata_config_title,
+        options: [
+          {
+            title: lang.title_enabled,
+          },
+          {
+            title: lang.title_disabled,
+          },
+        ],
+        description: lang.Advanced.virtual_description,
         selected: 0,
       },
     ],
