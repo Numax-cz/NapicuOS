@@ -7,7 +7,7 @@ import { SetWindowOption } from '../../Scripts/SetWindowOption';
 import { MoveWindowOptions } from '../../Scripts/MoveWindowOptions';
 import { BiosMenu } from '../../interface/BiosMenu';
 import { TimeDateSet } from '../../Scripts/TimeDateSet';
-import { cookiesForBisoSettingsAr, getCookies } from '../../Scripts/Cookies';
+import { getCookies } from '../../Scripts/Cookies';
 import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../../Array/ToolSettings';
 import { BootComponent } from '../boot/boot.component';
 import { copy } from '../../Scripts/DeepClone';
@@ -17,6 +17,7 @@ import { GlobalEvents } from '../../Scripts/GlobalEvents';
 import * as key from 'src/app/Config/KeyMaps';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { Loading } from 'src/app/Scripts/LoadingAnimations';
+import { cookiesForBisoSettingsAr } from 'src/app/Config/Cookies';
 
 /**
  * @author Numax-cz
@@ -66,7 +67,7 @@ export class BiosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setEvents();
     BootComponent.EnterBios = true;
-    getLanguage();  
+    getLanguage();
   }
 
   ngOnDestroy(): void {

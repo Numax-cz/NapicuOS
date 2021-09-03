@@ -1,11 +1,5 @@
-/**
- * Cookie duration
- */
-const cookiesTime: number = 7 * 24 * 60 * 60 * 1000;
-/**
- * Default string cookies for bios settings
- */
-export const cookiesForBisoSettingsAr: string = 'BiosSettingsArray';
+import { cookiesTime } from "../Config/Cookies";
+
 /**
  * Sets the value of cookies
  * @param {String} name Name of cookies

@@ -1,5 +1,6 @@
+import { cookiesForBisoSettingsAr } from '../Config/Cookies';
 import { Deutschland, English, Korea, LangMenu, Slovakia } from '../Config/Lang/Lang';
-import { cookiesForBisoSettingsAr, getCookies } from './Cookies';
+import { getCookies } from './Cookies';
 
 export function getLanguage(): any {
   var pack;
