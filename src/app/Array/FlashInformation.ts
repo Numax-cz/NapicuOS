@@ -43,27 +43,6 @@ export var FlashingText: FlashingTxt = {
   3: 'Verifying BIOS:',
 };
 
-export var Driv = [
-  {
-    title: 'A',
-    description: '',
-    Boot: [
-      {
-        xd: [
-          {
-            file: 'xd',
-            xdxd: [
-              {
-                title: 'xdxd',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
-
 export var Drive: Drives[] = [
   {
     title: 'A',
