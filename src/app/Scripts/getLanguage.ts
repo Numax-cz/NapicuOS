@@ -4,9 +4,9 @@ import { getCookies } from './Cookies';
 
 export function getLanguage(): any {
   var pack;
-  var selected = JSON.parse(getCookies(cookiesForBisoSettingsAr));
-  var selectedLang: number = selected.Main.settings[0].selected || 0;
-  switch (LangMenu[selectedLang].title) {
+  var selected = JSON.parse(getCookies(cookiesForBisoSettingsAr)) || 0;
+
+  switch (LangMenu[selected].title) {
     case 'Korea':
       pack = Korea;
       break;
