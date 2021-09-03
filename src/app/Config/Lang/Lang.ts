@@ -1,5 +1,4 @@
-import { Options } from "src/app/interface/ToolSettings";
-
+import { Options } from 'src/app/interface/ToolSettings';
 
 export const LangMenu: Options[] = [
   {
@@ -17,6 +16,9 @@ export const LangMenu: Options[] = [
 ];
 
 export const English = {
+  title_enabled: 'Enabled',
+  title_disabled: 'Disabled',
+
   Main: {
     title: 'System Overview',
     lang_title: 'System Language',

@@ -69,6 +69,24 @@ export var BiosSettings: BiosOptionsST = {
       },
     ],
   },
+  Advanced: {
+    title: '',
+    settings: [
+      {
+        title: 'AMD_SVM',
+        options: [
+          {
+            title: 'UEFI',
+          },
+          {
+            title: 'Legacy',
+          },
+        ],
+        description: lang.Boot.boot_mode_description,
+        selected: 0,
+      },
+    ],
+  },
   Boot: {
     title: lang.Boot.title,
     settings: [
@@ -89,10 +107,10 @@ export var BiosSettings: BiosOptionsST = {
         title: lang.Boot.fast_boot_title,
         options: [
           {
-            title: 'Enabled',
+            title: lang.title_enabled,
           },
           {
-            title: 'Disabled',
+            title: lang.title_disabled,
           },
         ],
         description: lang.Boot.fast_boot_description,
@@ -102,10 +120,10 @@ export var BiosSettings: BiosOptionsST = {
         title: lang.Boot.secure_boot_title,
         options: [
           {
-            title: 'Enabled',
+            title: lang.title_enabled,
           },
           {
-            title: 'Disabled',
+            title: lang.title_disabled,
           },
         ],
         description: lang.Boot.secure_boot_description,
