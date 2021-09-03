@@ -1,7 +1,9 @@
 import { Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
 import { FlashingTxt } from '../interface/FlashingTxt';
-
+/**
+ * Current bios information
+ */
 export var Current: FlashInformation = {
   board: 'P8H66-CFT3',
   ver: '1606 h:320',
@@ -23,10 +25,15 @@ var newBios: FlashInformation = {
 export function WriteInformations(): void {
   Update = newBios;
 }
+
 export function WriteInformationsDefault(): void {
   Update.board = 'Unknown';
   Update.ver = 'Unknown';
   Update.date = 'Unknown';
+}
+
+export function setNewBiosinf(): void {
+  Current = newBios;
 }
 
 export var FlashingText: FlashingTxt = {

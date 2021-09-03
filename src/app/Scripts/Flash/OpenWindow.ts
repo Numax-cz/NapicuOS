@@ -1,4 +1,4 @@
-import { WriteInformations, WriteInformationsDefault } from 'src/app/Array/FlashInformation';
+import { setNewBiosinf, WriteInformations, WriteInformationsDefault } from 'src/app/Array/FlashInformation';
 import { FlashComponent } from 'src/app/Bios/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/Bios/option-panel/option-panel.component';
 import { reboot } from 'src/app/Config/Animation/Flash';
@@ -34,5 +34,7 @@ export function SuccesFlash(): void {
     Reboot();
     OptionPanelComponent.window = undefined;
     FlashComponent.Flashing = false;
+    setNewBiosinf();
+    WriteInformationsDefault();
   }, reboot);
 }
