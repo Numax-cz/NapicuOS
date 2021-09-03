@@ -6,7 +6,6 @@ import { Reboot } from './Reboot';
 
 export function SaveChanges(): void {
   Save();
-  //BootComponent.BlackScreen = true;
   Reboot();
 }
 
