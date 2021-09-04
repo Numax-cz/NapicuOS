@@ -18,7 +18,16 @@ export const LangMenu: Options[] = [
 export const English = {
   title_enabled: 'Enabled',
   title_disabled: 'Disabled',
-
+  MonitorInfo: {
+    cpu_temp: 'CPU Temperature',
+    mon_temp: 'MotherBoard Temperature',
+    cpu_fan_speed: 'CPU Fan Speed',
+    fan_speed: 'Chassic Fan Speed',
+    cpu_core_v: 'CPU Core Voltage',
+    V3: '3.3V Voltage',
+    V5: '5V Voltage',
+    V12: '12V Voltage',
+  },
   Main: {
     title: 'System Overview',
     lang_title: 'System Language',

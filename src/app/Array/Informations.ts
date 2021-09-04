@@ -1,4 +1,5 @@
 import { Informations } from '../interface/Informations';
+import { lang } from './ToolSettings';
 
 export var MainInfo: Informations[] = [
   {
@@ -26,3 +27,4 @@ export var MainInfo: Informations[] = [
     value: 'HRV54JFKD54FJ34FJfj333',
   },
 ];
+export var MonitorInfo: Informations[] = [];
