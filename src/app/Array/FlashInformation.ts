@@ -26,7 +26,9 @@ const newBios: FlashInformation = {
 
 //Functions
 export function WriteInformations(): void {
-  Update = newBios;
+  Update.board = Current.board;
+  Update.ver = Current.ver;
+  Update.date = Current.date;
 }
 
 export function WriteInformationsDefault(): void {

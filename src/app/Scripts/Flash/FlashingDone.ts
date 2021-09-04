@@ -1,12 +1,12 @@
-import { setNewBiosinf, WriteInformationsDefault } from 'src/app/Array/FlashInformation';
+import { Current, setNewBiosinf, WriteInformationsDefault } from 'src/app/Array/FlashInformation';
 import { FlashComponent } from 'src/app/Bios/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/Bios/option-panel/option-panel.component';
 import { Reboot } from '../exit/Reboot';
 
-export function FlashingDone(): void {
+export async function FlashingDone(): Promise<void> {
   OptionPanelComponent.window = undefined;
   FlashComponent.Flashing = false;
-  Reboot();
-  setNewBiosinf();
   WriteInformationsDefault();
+  setNewBiosinf();
+  Reboot();
 }

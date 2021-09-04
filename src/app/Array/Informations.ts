@@ -4,14 +4,6 @@ import { lang } from './ToolSettings';
 
 export var MainInfo: Informations[] = [
   {
-    title: 'BIOS Version',
-    value: Current.ver,
-  },
-  {
-    title: 'Build Date',
-    value: Current.date,
-  },
-  {
     title: 'Processor Type',
     value: 'AMD Celeron (tm) II B45 Processor @ 2.6 GHz (64bit)',
   },
