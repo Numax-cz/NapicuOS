@@ -2,15 +2,17 @@ import { cookiesForBiosVersion } from '../Config/Cookies';
 import { Drives } from '../interface/Directories';
 import { FlashInformation } from '../interface/FlashInformation';
 import { FlashingTxt } from '../interface/FlashingTxt';
-import { getCookies } from '../Scripts/Cookies';
+import { getCookies, setCookies } from '../Scripts/Cookies';
 /**
  * Current bios information
  */
-export var Current: FlashInformation = {
+
+var CurrentSa: FlashInformation = {
   board: 'P8H66-CFT3',
   ver: '1606 h:320',
   date: '07/24/2021',
 };
+export var Current: FlashInformation = GetBiosVersionFromCookies();
 
 export var Update: FlashInformation = {
   board: 'Unknown',
@@ -34,13 +36,14 @@ export function WriteInformationsDefault(): void {
   Update.date = 'Unknown';
 }
 
-export function GetBiosVersionFromCookies(): void {
-  let value = getCookies(cookiesForBiosVersion);
-  if (value) Current = value;
+export function GetBiosVersionFromCookies(): FlashInformation {
+  let value = JSON.parse(getCookies(cookiesForBiosVersion));
+  return value || CurrentSa;
 }
 
 export function setNewBiosinf(): void {
   Current = newBios;
+  setCookies(cookiesForBiosVersion, JSON.stringify(newBios));
 }
 
 export var FlashingText: FlashingTxt = {

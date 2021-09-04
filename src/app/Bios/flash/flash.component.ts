@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Current, Drive, GetBiosVersionFromCookies, Update } from '../../Array/FlashInformation';
+import { Current, Drive, Update } from '../../Array/FlashInformation';
 import { BiosInfo } from '../../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
 import { directories, Drives } from '../../interface/Directories';
@@ -16,9 +16,8 @@ import { cookiesForBiosVersion } from 'src/app/Config/Cookies';
   styleUrls: ['./flash.component.scss'],
 })
 export class FlashComponent implements OnInit {
-  constructor() {
-    GetBiosVersionFromCookies();
-  }
+  constructor() {}
+
   //TODO @Document
   public static Doc: Document;
   public static Scroll: HTMLElement;

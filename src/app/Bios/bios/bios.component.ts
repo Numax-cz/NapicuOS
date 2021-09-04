@@ -18,6 +18,7 @@ import * as key from 'src/app/Config/KeyMaps';
 import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { Loading } from 'src/app/Scripts/LoadingAnimations';
 import { cookiesForBisoSettingsAr } from 'src/app/Config/Cookies';
+import { GetBiosVersionFromCookies } from 'src/app/Array/FlashInformation';
 
 /**
  * @author Numax-cz
@@ -151,3 +152,4 @@ export class BiosComponent implements OnInit, OnDestroy {
     return BiosInfo.date;
   }
 }
+

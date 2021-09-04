@@ -1,10 +1,15 @@
 import { Informations } from '../interface/Informations';
+import { Current } from './FlashInformation';
 import { lang } from './ToolSettings';
 
 export var MainInfo: Informations[] = [
   {
     title: 'BIOS Version',
-    value: 'v02.69',
+    value: Current.ver,
+  },
+  {
+    title: 'Build Date',
+    value: Current.date,
   },
   {
     title: 'Processor Type',
