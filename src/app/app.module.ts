@@ -17,27 +17,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FlashComponent } from './Bios/flash/flash.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
-import { MonitorComponent } from './Bios/monitor/monitor.component';
-
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BootComponent,
-    BiosComponent,
-    BiosMainComponent,
-    TweakerComponent,
-    AdvancedComponent,
-    PowerComponent,
-    BootbComponent,
-    ToolsComponent,
-    ExitComponent,
-    OptionPanelComponent,
-    SettingsTemplateComponent,
-    FlashComponent,
-    BlackloadingComponent,
-    MonitorComponent,
-  ],
+  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,10 +27,10 @@ import { MonitorComponent } from './Bios/monitor/monitor.component';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

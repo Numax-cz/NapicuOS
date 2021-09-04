@@ -24,6 +24,7 @@ export class BootComponent implements OnInit, OnDestroy {
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
     this.setEvents();
+
   }
 
   ngOnDestroy(): void {

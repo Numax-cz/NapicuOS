@@ -13,7 +13,6 @@ import { PowerComponent } from './Bios/power/power.component';
 import { ToolsComponent } from './Bios/tools/tools.component';
 import { TweakerComponent } from './Bios/tweaker/tweaker.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
-import { MonitorComponent } from './Bios/monitor/monitor.component';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -24,7 +23,6 @@ const routes: Routes = [
       { path: 'main', component: BiosMainComponent },
       { path: 'tweaker', component: TweakerComponent },
       { path: 'advanced', component: AdvancedComponent },
-      { path: 'monitor', component: MonitorComponent },
       { path: 'power', component: PowerComponent },
       { path: 'bootb', component: BootbComponent },
       { path: 'tools', component: ToolsComponent },

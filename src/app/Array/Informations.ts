@@ -24,37 +24,3 @@ export var MainInfo: Informations[] = [
     value: 'HRV54JFKD54FJ34FJfj333',
   },
 ];
-export var MonitorInfo: Informations[] = [
-  {
-    title: lang.MonitorInfo.cpu_temp,
-    value: '0',
-  },
-  {
-    title: lang.MonitorInfo.mon_temp,
-    value: '0',
-  },
-  {
-    title: lang.MonitorInfo.cpu_fan_speed,
-    value: '0',
-  },
-  {
-    title: lang.MonitorInfo.fan_speed,
-    value: '0',
-  },
-  {
-    title: lang.MonitorInfo.cpu_core_v,
-    value: '0',
-  },
-  {
-    title: lang.MonitorInfo.V3,
-    value: '0',
-  },
-  {
-    title: lang.MonitorInfo.V5,
-    value: '0',
-  },
-  {
-    title: lang.MonitorInfo.V12,
-    value: '0',
-  },
-];
