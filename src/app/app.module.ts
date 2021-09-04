@@ -17,6 +17,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FlashComponent } from './Bios/flash/flash.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
+import { MonitorComponent } from './Bios/monitor/monitor.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { BlackloadingComponent } from './Bios/blackloading/blackloading.componen
     SettingsTemplateComponent,
     FlashComponent,
     BlackloadingComponent,
+    MonitorComponent,
   ],
   imports: [
     BrowserModule,
