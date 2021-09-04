@@ -6,13 +6,11 @@ import { getCookies, setCookies } from '../Scripts/Cookies';
 /**
  * Current bios information
  */
-
-var CurrentSa: FlashInformation = {
+export var Current: FlashInformation = {
   board: 'P8H66-CFT3',
   ver: '1606 h:320',
   date: '07/24/2021',
 };
-export var Current: FlashInformation = GetBiosVersionFromCookies();
 
 export var Update: FlashInformation = {
   board: 'Unknown',
@@ -20,12 +18,13 @@ export var Update: FlashInformation = {
   date: 'Unknown',
 };
 
-var newBios: FlashInformation = {
+const newBios: FlashInformation = {
   board: Current.board,
   ver: '1707 h:320',
   date: '8/25/2021',
 };
 
+//Functions
 export function WriteInformations(): void {
   Update = newBios;
 }
@@ -36,9 +35,11 @@ export function WriteInformationsDefault(): void {
   Update.date = 'Unknown';
 }
 
-export function GetBiosVersionFromCookies(): FlashInformation {
-  let value = JSON.parse(getCookies(cookiesForBiosVersion));
-  return value || CurrentSa;
+export function setCookiesBiosinf(): void {
+  let cookies = JSON.parse(getCookies(cookiesForBiosVersion));
+  if (cookies) {
+    Current = cookies;
+  }
 }
 
 export function setNewBiosinf(): void {

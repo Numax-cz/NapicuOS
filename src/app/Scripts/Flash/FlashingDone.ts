@@ -6,7 +6,7 @@ import { Reboot } from '../exit/Reboot';
 export function FlashingDone(): void {
   OptionPanelComponent.window = undefined;
   FlashComponent.Flashing = false;
+  Reboot();
   setNewBiosinf();
   WriteInformationsDefault();
-  Reboot();
 }
