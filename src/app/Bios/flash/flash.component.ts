@@ -9,6 +9,7 @@ import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { Move } from '../../Scripts/Flash/Move';
 import { getCookies } from 'src/app/Scripts/Cookies';
 import { cookiesForBiosVersion } from 'src/app/Config/Cookies';
+import { Loading } from 'src/app/Scripts/Flash/Loading';
 
 @Component({
   selector: 'app-flash',
@@ -17,7 +18,7 @@ import { cookiesForBiosVersion } from 'src/app/Config/Cookies';
 })
 export class FlashComponent implements OnInit {
   constructor() {}
-
+  public static Loading: boolean;
   //TODO @Document
   public static Doc: Document;
   public static Scroll: HTMLElement;
@@ -59,12 +60,15 @@ export class FlashComponent implements OnInit {
 
     FlashComponent.WindowAlert = false;
     FlashComponent.WindowAlertOption = false;
+    FlashComponent.Loading = false;
+    Loading();
   }
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', Move, true);
     FlashComponent.ezFlashWindow = false;
     FlashComponent.Flashing = false;
+    FlashComponent.Loading = true;
   }
 
   protected setEvents(): void {
@@ -116,5 +120,8 @@ export class FlashComponent implements OnInit {
   }
   get Display(): boolean {
     return OptionPanelComponent.window ? true : false;
+  }
+  get Loading(): boolean {
+    return FlashComponent.Loading;
   }
 }

@@ -115,3 +115,18 @@ $MarginPath: 40px;
 .cya {
   background-color: cyan;
 }
+.CenterScreen {
+  display: table;
+  z-index: 1;
+  height: 100vh;
+  min-height: 500px;
+  width: 100%;
+  div {
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: 355px;
+    padding-top: 355px;
+    text-align: center;
+    font-size: 3.35rem;
+  }
+}

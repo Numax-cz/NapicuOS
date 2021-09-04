@@ -3,7 +3,7 @@ import { FlashComponent } from 'src/app/Bios/flash/flash.component';
 import { OptionPanelComponent } from 'src/app/Bios/option-panel/option-panel.component';
 import { Reboot } from '../exit/Reboot';
 
-export async function FlashingDone(): Promise<void> {
+export function FlashingDone(): void {
   OptionPanelComponent.window = undefined;
   FlashComponent.Flashing = false;
   WriteInformationsDefault();
