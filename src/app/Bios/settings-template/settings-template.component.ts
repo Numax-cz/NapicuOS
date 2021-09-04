@@ -21,7 +21,9 @@ export class SettingsTemplateComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {
-    SettingsTemplateComponent.MainOption = this.MainOption.settings;
+    if (this.MainOption) {
+      SettingsTemplateComponent.MainOption = this.MainOption.settings;
+    }
     SettingsTemplateComponent.selected = 0;
   }
 

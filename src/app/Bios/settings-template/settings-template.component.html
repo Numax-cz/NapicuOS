@@ -3,31 +3,37 @@
     <div class="GridOptionsBox">
       <section class="Information">
         <div>
-          <div id="Title">{{ MainOption.title }}</div>
-          <div *ngFor="let i of MainOption.settings; let index = index" id="Grid-BiosItems" class="Option" [ngClass]="{ BIOSSelectedOption: index == localSelected }">
-            <div>{{ i.title }}<span *ngIf="!isOptionFast(i)" class="colon" >:</span></div>
-            <div *ngIf="isOption(i)">[{{ i.options[i.selected].title }}]</div>
-            <div *ngIf="isTime(i)">
-              [<span *ngFor="let time of MainOption.settings[index].time; let timeIndex = index"
-                ><span
-                  [ngClass]="{
-                    BIOSSelectedTime: Selected == timeIndex && CursorDisplay && index == localSelected
-                  }"
-                  >{{ time.title }}</span
-                ><span *ngIf="timeIndex < 2">:</span></span
-              >]
-            </div>
-            <div *ngIf="isDate(i)">
-              [<span *ngFor="let date of MainOption.settings[index].date; let dateIndex = index">
-                <span
-                  [ngClass]="{
-                    BIOSSelectedTime: Selected == dateIndex && CursorDisplay && index == localSelected
-                  }"
-                  >{{ date.title }}</span
-                ><span *ngIf="dateIndex < 2">/</span></span
-              >]
-            </div>
+          <div id="Title">
+            <ng-container *ngIf="MainOption">
+              {{ MainOption.title }}
+            </ng-container>
           </div>
+          <ng-container *ngIf="MainOption">
+            <div *ngFor="let i of MainOption.settings; let index = index" id="Grid-BiosItems" class="Option" [ngClass]="{ BIOSSelectedOption: index == localSelected }">
+              <div>{{ i.title }}<span *ngIf="!isOptionFast(i)" class="colon">:</span></div>
+              <div *ngIf="isOption(i)">[{{ i.options[i.selected].title }}]</div>
+              <div *ngIf="isTime(i)">
+                [<span *ngFor="let time of MainOption.settings[index].time; let timeIndex = index"
+                  ><span
+                    [ngClass]="{
+                      BIOSSelectedTime: Selected == timeIndex && CursorDisplay && index == localSelected
+                    }"
+                    >{{ time.title }}</span
+                  ><span *ngIf="timeIndex < 2">:</span></span
+                >]
+              </div>
+              <div *ngIf="isDate(i)">
+                [<span *ngFor="let date of MainOption.settings[index].date; let dateIndex = index">
+                  <span
+                    [ngClass]="{
+                      BIOSSelectedTime: Selected == dateIndex && CursorDisplay && index == localSelected
+                    }"
+                    >{{ date.title }}</span
+                  ><span *ngIf="dateIndex < 2">/</span></span
+                >]
+              </div>
+            </div>
+          </ng-container>
           <ng-container *ngIf="MainOptionInfo">
             <div id="Grid-BiosItems" *ngFor="let i of MainOptionInfo">
               <div>{{ i.title }}<span class="colon">:</span></div>
@@ -39,7 +45,9 @@
     </div>
     <div class="Grid-ItemHoz Right">
       <div class="Information blue" id="DescriptionTST">
-        {{ Description }}
+        <div *ngIf="MainOption">
+          {{ Description }}
+        </div>
       </div>
       <div class="Information blue">
         <div class="Hin">
