@@ -4,6 +4,7 @@ import { ComponentClass } from '../../interface/ComponentClass';
 import { Informations } from '../../interface/Informations';
 import { settings, ToolSettings } from '../../interface/ToolSettings';
 import { isOption, isTime, isDate, isOptionsFast } from '../../Scripts/Type';
+import { objectKeys } from 'src/app/Scripts/objectKeys';
 
 @Component({
   selector: 'app-settings-template',
@@ -13,6 +14,12 @@ import { isOption, isTime, isDate, isOptionsFast } from '../../Scripts/Type';
 export class SettingsTemplateComponent implements OnInit {
   @Input() MainOption: any;
   @Input() MainOptionInfo: Informations[] = [];
+  public test: any = {
+    kokot: {
+      title: 'xd',
+      picus123: 'fsd',
+    },
+  };
   public static MainOption: settings[] = [];
   /**
    * Number that indicates which item from MainOption is selected
@@ -44,7 +51,9 @@ export class SettingsTemplateComponent implements OnInit {
     return SettingsTemplateComponent.MainOption[0].title;
   }
   get Description(): string {
-    return SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].description;
+    return SettingsTemplateComponent.MainOption[
+      objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
+    ].description;
   }
 
   public isOption(component: settings): boolean {
@@ -62,5 +71,8 @@ export class SettingsTemplateComponent implements OnInit {
   static errorType(): string {
     console.error('Array Error');
     return '{[Bios_Main]TYPE ERROR}';
+  }
+  objectKeys(obj: any): any {
+    return Object.keys(obj);
   }
 }

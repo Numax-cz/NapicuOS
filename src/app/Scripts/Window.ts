@@ -1,5 +1,3 @@
-import { disableDebugTools } from '@angular/platform-browser';
-
 import { setTimeInterval } from './TimeController';
 import { isTime, isOption, isDate, isOptionsFast } from './Type';
 import { WindowItems } from './Type';
@@ -8,6 +6,7 @@ import { ItemsDateInit } from './SetWindowOption';
 import { BiosComponent } from '../Bios/bios/bios.component';
 import { OptionPanelComponent } from '../Bios/option-panel/option-panel.component';
 import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
+import { objectKeys } from './objectKeys';
 //TODO clear code
 /**
  * Class for pop up window
@@ -37,7 +36,7 @@ export class Window {
    * Function that is called when WindowSelectedOption(no) = 1
    */
   CallBackD: Function | undefined;
-  
+
   /**
    *
    * @param WindowItems Items that will be in the popup window
@@ -47,7 +46,14 @@ export class Window {
    * @param Horizontal Determines, if the Items will be horizontal
    * @param CallBackD A function that is triggered if the popup is yes/no and the user has selected NO
    */
-  constructor(WindowItems: WindowItems, title?: string, CallBack?: Function, WindowError?: boolean, Horizontal?: boolean, CallBackD?: Function) {
+  constructor(
+    WindowItems: WindowItems,
+    title?: string,
+    CallBack?: Function,
+    WindowError?: boolean,
+    Horizontal?: boolean,
+    CallBackD?: Function
+  ) {
     this.WindowItems = WindowItems || [];
     this.title = title || 'Undefined';
     this.WindowError = WindowError || false;
@@ -57,22 +63,31 @@ export class Window {
   }
 
   public CloseUnsave() {
+    let selected: settings =
+      SettingsTemplateComponent.MainOption[
+        objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
+      ];
     if (BiosComponent.WindowFastOptionDisplay) {
-      if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
-        SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].time = ItemsDateInit;
-      } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
-        SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].date = ItemsDateInit;
+      if (isTime(selected)) {
+        selected.time = ItemsDateInit;
+      } else if (isDate(selected)) {
+        selected.date = ItemsDateInit;
       }
     }
     this.close();
   }
 
   public CloseSave() {
-    if (isOption(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
-      SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected].selected = BiosComponent.WindowSelectedOption;
-    } else if (isTime(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
+    let selected: settings =
+      SettingsTemplateComponent.MainOption[
+        objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
+      ];
+    if (isOption(selected)) {
+      selected.selected =
+        BiosComponent.WindowSelectedOption;
+    } else if (isTime(selected)) {
       setTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
-    } else if (isDate(SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected])) {
+    } else if (isDate(selected)) {
       //? There is nothing to see
     } else if (this.CallBack && BiosComponent.WindowSelectedOption == 0) {
       this.CallBack();
@@ -81,7 +96,7 @@ export class Window {
     }
     this.close();
   }
-  
+
   /**
    * Function that closes the popup window
    */

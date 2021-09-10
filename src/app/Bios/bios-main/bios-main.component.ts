@@ -7,6 +7,8 @@ import { Informations } from '../../interface/Informations';
 import { settings, ToolSettings } from '../../interface/ToolSettings';
 import { setTimeInterval } from '../../Scripts/TimeController';
 import { isTime } from '../../Scripts/Type';
+import { objectKeys } from 'src/app/Scripts/objectKeys';
+import { SettingsTemplateComponent } from '../settings-template/settings-template.component';
 @Component({
   selector: 'app-bios-main',
   templateUrl: './bios-main.component.html',
@@ -18,11 +20,12 @@ export class BiosMainComponent implements OnInit {
   public MainOption: ToolSettings = BiosSettings.Main;
   public MainOptionInfo: Informations[] = MainInfo;
   ngOnInit(): void {
-    this.MainOption.settings.forEach((e: settings, i: number) => {
-      if (isTime(e)) {
-        setTimeInterval(this.MainOption.settings, i);
-      }
-      return;
-    });
+    // this.MainOption.settings.forEach((e: settings, i: number) => {
+    //   if (isTime(e)) {
+    //     setTimeInterval(this.MainOption.settings, i);
+    //   }
+    //   return;
+    // });
+
   }
 }

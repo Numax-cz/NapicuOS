@@ -1,6 +1,6 @@
 export interface ToolSettings {
   title: string;
-  settings: settings[];
+  settings: struc;
 }
 
 export interface settings {
@@ -13,7 +13,9 @@ export interface settings {
   description: string;
   selected: number;
 }
-
+interface struc {
+  [index: string]: settings;
+}
 export interface Options {
   title: string;
 }

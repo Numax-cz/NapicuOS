@@ -8,17 +8,17 @@ export function LoadDefaults(): void {
   setDefaultOptions();
 }
 function setDefaultOptions(): void {
-  Object.values(BiosSettings).forEach((ArrayValue: ToolSettings) => {
-    ArrayValue.settings.forEach((Settings: settings) => {
-      if (isOption(Settings)) {
-        Settings.selected = 0;
-      } else if (isTime(Settings)) {
-        Settings.time = setTime();
-      } else if (isDate(Settings)) {
-        Settings.date = setDate();
-      } else if (!isOptionsFast(Settings)) {
-        console.error('LoadDefaults.ts => No input matches');
-      }
-    });
-  });
+  // Object.values(BiosSettings).forEach((ArrayValue: ToolSettings) => {
+  //   ArrayValue.settings.forEach((Settings: settings) => {
+  //     if (isOption(Settings)) {
+  //       Settings.selected = 0;
+  //     } else if (isTime(Settings)) {
+  //       Settings.time = setTime();
+  //     } else if (isDate(Settings)) {
+  //       Settings.date = setDate();
+  //     } else if (!isOptionsFast(Settings)) {
+  //       console.error('LoadDefaults.ts => No input matches');
+  //     }
+  //   });
+  // });
 }

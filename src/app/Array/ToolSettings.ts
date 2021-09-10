@@ -21,26 +21,26 @@ export var lang = getLanguage();
 export var BiosSettings: BiosOptionsST = {
   Main: {
     title: lang.Main.title,
-    settings: [
-      {
+    settings: {
+      xd: {
         title: lang.Main.lang_title,
         options: LangMenu,
         description: lang.Main.lang_description,
         selected: 0,
       },
-      {
+      adf: {
         title: lang.Main.time_title,
         time: setTime(),
         description: lang.Main.time_description,
         selected: 0,
       },
-      {
+      afd: {
         title: lang.Main.date_title,
         date: setDate(),
         description: lang.Main.date_description,
         selected: 0,
       },
-      {
+      fdadf: {
         title: lang.Main.network_boot_title,
         options: [
           {
@@ -53,7 +53,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Main.network_boot_description,
         selected: 0,
       },
-      {
+      afdsfad: {
         title: lang.Main.wake_on_lan_title,
         options: [
           {
@@ -67,12 +67,12 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Main.wake_on_lan_description,
         selected: 0,
       },
-    ],
+    },
   },
   Advanced: {
     title: '',
-    settings: [
-      {
+    settings: {
+      fda: {
         title: 'AMD-SVM',
         options: [
           {
@@ -85,7 +85,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Advanced.virtual_description,
         selected: 0,
       },
-      {
+      fdaad: {
         title: 'AMD-IOMMU',
         options: [
           {
@@ -98,12 +98,12 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Advanced.virtual_description,
         selected: 0,
       },
-    ],
+    },
   },
   Boot: {
     title: lang.Boot.title,
-    settings: [
-      {
+    settings: {
+      fda: {
         title: lang.Boot.boot_mode_title,
         options: [
           {
@@ -116,7 +116,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Boot.boot_mode_description,
         selected: 0,
       },
-      {
+      hgd: {
         title: lang.Boot.fast_boot_title,
         options: [
           {
@@ -129,7 +129,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Boot.fast_boot_description,
         selected: 0,
       },
-      {
+      gfsgsfg: {
         title: lang.Boot.secure_boot_title,
         options: [
           {
@@ -142,7 +142,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Boot.secure_boot_description,
         selected: 0,
       },
-      {
+      gsfg: {
         title: lang.Boot.boot_priority_title,
         options: [
           {
@@ -158,41 +158,41 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Boot.boot_priority_description,
         selected: 0,
       },
-    ],
+    },
   },
   Exit: {
     title: lang.Exit.title,
-    settings: [
-      {
+    settings: {
+      fda: {
         title: lang.Exit.default_title,
         optionsFast: () => LoadDefaults(),
         description: lang.Exit.default_description,
         selected: 0,
       },
-      {
+     fad: {
         title: lang.Exit.save_title,
         optionsFast: () => SaveChanges(),
         description: lang.Exit.save_description,
         selected: 0,
       },
-      {
+     afd: {
         title: lang.Exit.discard_title,
         optionsFast: () => DiscardChanges(),
         description: lang.Exit.discard_description,
         selected: 0,
       },
-    ],
+    }
   },
   Tools: {
     title: lang.Tools.title,
-    settings: [
-      {
+    settings: {
+      fda:{
         title: lang.Tools.flash_title,
         optionsFast: () => FlashBios(),
         description: lang.Tools.flash_description,
         selected: 0,
       },
-    ],
+    }
   },
 };
 
@@ -202,15 +202,15 @@ export var BiosSettings: BiosOptionsST = {
  * @param {BiosOptionsST} value All bios settings
  */
 export function setSettingsValue(value: BiosOptionsST): void {
-  for (const [key, val] of Object.entries(value)) {
-    val.settings.forEach((St: settings, indexVal: number) => {
-      if (isOption(St)) {
-        BiosSettings[key].settings[indexVal].selected = St.selected;
-      } else if (isDate(St)) {
-        BiosSettings[key].settings[indexVal].date = St.date;
-      } else if (isTime(St)) {
-        BiosSettings[key].settings[indexVal].time = St.time;
-      }
-    });
-  }
+  // for (const [key, val] of Object.entries(value)) {
+  //   val.settings.forEach((St: settings, indexVal: number) => {
+  //     if (isOption(St)) {
+  //       BiosSettings[key].settings[indexVal].selected = St.selected;
+  //     } else if (isDate(St)) {
+  //       BiosSettings[key].settings[indexVal].date = St.date;
+  //     } else if (isTime(St)) {
+  //       BiosSettings[key].settings[indexVal].time = St.time;
+  //     }
+  //   });
+  // }
 }
