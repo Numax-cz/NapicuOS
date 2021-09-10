@@ -58,7 +58,8 @@ export const English = {
   Exit: {
     title: '',
     default_title: 'Load Optimized Defaults',
-    default_description: 'Restores/loads the default values for all the setup options',
+    default_description:
+      'Restores/loads the default values for all the setup options',
     save_title: 'Save Changes & Reset',
     save_description: 'Exit Bios and save your changes to CMOS',
     discard_title: 'Discard Changes & Exit',
@@ -67,7 +68,8 @@ export const English = {
   Tools: {
     title: '',
     flash_title: 'Ez Flash',
-    flash_description: 'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
+    flash_description:
+      'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
   },
 };
 
@@ -99,7 +101,8 @@ export const Korea = {
   Exit: {
     title: '',
     default_title: 'Load Optimized Defaults',
-    default_description: 'Restores/loads the default values for all the setup options',
+    default_description:
+      'Restores/loads the default values for all the setup options',
     save_title: 'Save Changes & Reset',
     save_description: 'Exit Bios and save your changes to CMOS',
     discard_title: 'Discard Changes & Exit',
@@ -108,7 +111,8 @@ export const Korea = {
   Tools: {
     title: '',
     flash_title: 'Ez Flash',
-    flash_description: 'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
+    flash_description:
+      'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
   },
 };
 
@@ -140,7 +144,8 @@ export const Slovakia = {
   Exit: {
     title: '',
     default_title: 'Load Optimized Defaults',
-    default_description: 'Restores/loads the default values for all the setup options',
+    default_description:
+      'Restores/loads the default values for all the setup options',
     save_title: 'Save Changes & Reset',
     save_description: 'Exit Bios and save your changes to CMOS',
     discard_title: 'Discard Changes & Exit',
@@ -149,7 +154,8 @@ export const Slovakia = {
   Tools: {
     title: '',
     flash_title: 'Ez Flash',
-    flash_description: 'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
+    flash_description:
+      'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
   },
 };
 
@@ -181,7 +187,8 @@ export const Deutschland = {
   Exit: {
     title: '',
     default_title: 'Load Optimized Defaults',
-    default_description: 'Restores/loads the default values for all the setup options',
+    default_description:
+      'Restores/loads the default values for all the setup options',
     save_title: 'Save Changes & Reset',
     save_description: 'Exit Bios and save your changes to CMOS',
     discard_title: 'Discard Changes & Exit',
@@ -190,6 +197,7 @@ export const Deutschland = {
   Tools: {
     title: '',
     flash_title: 'Ez Flash',
-    flash_description: 'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
+    flash_description:
+      'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
   },
 };

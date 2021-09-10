@@ -15,6 +15,14 @@ $FrameSizeHeight: 100%;
   box-sizing: border-box;
   user-select: none;
 }
+#black {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  user-select: none;
+  color: white;
+}
+
 
 #BiosContainer {
   background-color: lightgray;

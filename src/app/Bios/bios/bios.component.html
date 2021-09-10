@@ -5,7 +5,10 @@
     </div>
     <section class="root">
       <div>
-        <p *ngFor="let i of BiosMenu; let index = index" [ngClass]="{ selected: index == selected }">
+        <p
+          *ngFor="let i of BiosMenu; let index = index"
+          [ngClass]="{ selected: index == selected }"
+        >
           {{ i.title }}
         </p>
       </div>
@@ -15,7 +18,7 @@
     </section>
 
     <div class="Bottom">
-      <p>{{biosVersion}} Napicu {{biosDate}}</p>
+      <p>{{ biosVersion }} Napicu {{ biosDate }}</p>
     </div>
   </div>
 </section>

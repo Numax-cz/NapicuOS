@@ -17,9 +17,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FlashComponent } from './Bios/flash/flash.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
+import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
 
 @NgModule({
-  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent],
+  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent, BlackscreenComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -16,15 +16,19 @@ import { Navigate } from 'src/app/Scripts/BiosRouter';
 export class BootComponent implements OnInit, OnDestroy {
   public static EnterBios: boolean;
 
-  protected BiosBootAudio: HTMLAudioElement = new Audio('/assets/sound/Boot.wav');
-  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
+  protected BiosBootAudio: HTMLAudioElement = new Audio(
+    '/assets/sound/Boot.wav'
+  );
+  constructor(
+    @Inject(DOCUMENT) private doc: Document,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.ClearRouter();
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
     this.setEvents();
-
   }
 
   ngOnDestroy(): void {
@@ -47,7 +51,9 @@ export class BootComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.PlayBootSound();
           setTimeout(() => {
-            this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
+            this.router.navigate(
+              ['bios/main'] /*{ skipLocationChange: true } */
+            );
           }, 150);
         }, startTimeIn);
       }, 280);

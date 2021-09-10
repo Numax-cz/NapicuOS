@@ -10,10 +10,6 @@ export var Menu: BiosMenu[] = [
     router: 'advanced',
   },
   {
-    title: 'Power',
-    router: 'power',
-  },
-  {
     title: 'Boot',
     router: 'bootb',
   },
