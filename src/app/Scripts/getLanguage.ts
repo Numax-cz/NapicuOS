@@ -4,6 +4,7 @@ import { getCookies } from './Cookies';
 
 export function getLanguage(): any {
   var pack;
+  //! Fix 
   var selected = JSON.parse(getCookies(cookiesForBisoSettingsAr)) || 0;
 
   switch (LangMenu[selected].title) {
