@@ -202,15 +202,15 @@ export var BiosSettings: BiosOptionsST = {
  * @param {BiosOptionsST} value All bios settings
  */
 export function setSettingsValue(value: BiosOptionsST): void {
-  // for (const [key, val] of Object.entries(value)) {
-  //   val.settings.forEach((St: settings, indexVal: number) => {
-  //     if (isOption(St)) {
-  //       BiosSettings[key].settings[indexVal].selected = St.selected;
-  //     } else if (isDate(St)) {
-  //       BiosSettings[key].settings[indexVal].date = St.date;
-  //     } else if (isTime(St)) {
-  //       BiosSettings[key].settings[indexVal].time = St.time;
-  //     }
-  //   });
-  // }
+  for (const [key, val] of Object.entries(value)) {
+    Object.values(val.settings).forEach((St: settings, indexVal: number) => {
+      if (isOption(St)) {
+        BiosSettings[key].settings[indexVal].selected = St.selected;
+      } else if (isDate(St)) {
+        BiosSettings[key].settings[indexVal].date = St.date;
+      } else if (isTime(St)) {
+        BiosSettings[key].settings[indexVal].time = St.time;
+      }
+    });
+  }
 }
