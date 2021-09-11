@@ -1,5 +1,5 @@
 <section id="FlashBackground">
-  <section *ngIf="Loading">
+  <section>
     <div class="Title">{{ Title }} EZ Flash 2 BIOS {{ Version }}</div>
     <section>
       <div class="FlashPanel">
@@ -80,11 +80,6 @@
         </div>
       </div>
     </section>
-  </section>
-  <section *ngIf="!Loading">
-    <div class="CenterScreen">
-      <div>Loading...</div>
-    </div>
   </section>
 </section>
 
