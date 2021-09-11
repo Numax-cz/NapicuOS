@@ -14,12 +14,7 @@ import { objectKeys } from 'src/app/Scripts/objectKeys';
 export class SettingsTemplateComponent implements OnInit {
   @Input() MainOption: any;
   @Input() MainOptionInfo: Informations[] = [];
-  public test: any = {
-    kokot: {
-      title: 'xd',
-      picus123: 'fsd',
-    },
-  };
+
   public static MainOption: settings[] = [];
   /**
    * Number that indicates which item from MainOption is selected

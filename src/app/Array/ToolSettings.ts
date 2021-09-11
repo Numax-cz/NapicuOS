@@ -22,25 +22,25 @@ export var BiosSettings: BiosOptionsST = {
   Main: {
     title: lang.Main.title,
     settings: {
-      xd: {
+      lang: {
         title: lang.Main.lang_title,
         options: LangMenu,
         description: lang.Main.lang_description,
         selected: 0,
       },
-      adf: {
+      time: {
         title: lang.Main.time_title,
         time: setTime(),
         description: lang.Main.time_description,
         selected: 0,
       },
-      afd: {
+      date: {
         title: lang.Main.date_title,
         date: setDate(),
         description: lang.Main.date_description,
         selected: 0,
       },
-      fdadf: {
+      network_boot: {
         title: lang.Main.network_boot_title,
         options: [
           {
@@ -53,7 +53,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Main.network_boot_description,
         selected: 0,
       },
-      afdsfad: {
+      wake_on_lan: {
         title: lang.Main.wake_on_lan_title,
         options: [
           {
@@ -72,7 +72,7 @@ export var BiosSettings: BiosOptionsST = {
   Advanced: {
     title: '',
     settings: {
-      fda: {
+      amd_svm: {
         title: 'AMD-SVM',
         options: [
           {
@@ -85,7 +85,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Advanced.virtual_description,
         selected: 0,
       },
-      fdaad: {
+      amd_iommu: {
         title: 'AMD-IOMMU',
         options: [
           {
@@ -103,7 +103,7 @@ export var BiosSettings: BiosOptionsST = {
   Boot: {
     title: lang.Boot.title,
     settings: {
-      fda: {
+      boot_mode: {
         title: lang.Boot.boot_mode_title,
         options: [
           {
@@ -116,7 +116,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Boot.boot_mode_description,
         selected: 0,
       },
-      hgd: {
+      fast_boot: {
         title: lang.Boot.fast_boot_title,
         options: [
           {
@@ -129,7 +129,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Boot.fast_boot_description,
         selected: 0,
       },
-      gfsgsfg: {
+      boot_secure: {
         title: lang.Boot.secure_boot_title,
         options: [
           {
@@ -142,7 +142,7 @@ export var BiosSettings: BiosOptionsST = {
         description: lang.Boot.secure_boot_description,
         selected: 0,
       },
-      gsfg: {
+      boot_priority: {
         title: lang.Boot.boot_priority_title,
         options: [
           {
@@ -163,36 +163,36 @@ export var BiosSettings: BiosOptionsST = {
   Exit: {
     title: lang.Exit.title,
     settings: {
-      fda: {
+      default: {
         title: lang.Exit.default_title,
         optionsFast: () => LoadDefaults(),
         description: lang.Exit.default_description,
         selected: 0,
       },
-     fad: {
+      save: {
         title: lang.Exit.save_title,
         optionsFast: () => SaveChanges(),
         description: lang.Exit.save_description,
         selected: 0,
       },
-     afd: {
+      discard: {
         title: lang.Exit.discard_title,
         optionsFast: () => DiscardChanges(),
         description: lang.Exit.discard_description,
         selected: 0,
       },
-    }
+    },
   },
   Tools: {
     title: lang.Tools.title,
     settings: {
-      fda:{
+      flash: {
         title: lang.Tools.flash_title,
         optionsFast: () => FlashBios(),
         description: lang.Tools.flash_description,
         selected: 0,
       },
-    }
+    },
   },
 };
 
