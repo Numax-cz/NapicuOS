@@ -1,15 +1,17 @@
 # NapicuBios
 
+- NapicuBios je webová aplikace, která simuluje reálný bios
+- Na této stránce najdete základní nastavení biosu
 - Vytvořeno v [Angular](https://angular.io/)
+- Použitý font [Perfect DOS VGA 437](https://www.dafont.com/perfect-dos-vga-437.font)
 
+
+## Instalace
 1. Naklonování repozitáře
    ```sh
    git clone https://github.com/Numax-cz/NapicuBios.git
    ```
-
-## Instalace
-
-1. Nainstalování balíčků (web)
+2. Nainstalování balíčků
    ```sh
    npm install
    ```
@@ -20,7 +22,7 @@
    ```sh
    npm run start
    ```
-2. Buildnutí aplikace pro finální použití
+2. Buildnutí aplikace
    ```sh
    npm run build
    ```
