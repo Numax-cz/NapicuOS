@@ -22,12 +22,9 @@ export class BiosMainComponent implements OnInit {
   ngOnInit(): void {
     Object.values(this.MainOption.settings).forEach((e: settings, i: number) => {
       if (isTime(e)) {
-          console.log(e);
-          
         setTimeInterval(Object.values(this.MainOption.settings), i);
       }
       return;
     });
-
   }
 }
