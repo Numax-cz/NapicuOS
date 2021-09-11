@@ -1,5 +1,5 @@
 import { BootComponent } from '../Bios/boot/boot.component';
-import { settings } from '../interface/ToolSettings';
+import { settings, struc } from '../interface/ToolSettings';
 import { maxMinutes, maxSeconds, maxHours } from './TimeDateSet';
 
 /**
