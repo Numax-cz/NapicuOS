@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { lang } from 'src/app/Array/ToolSettings';
 import { NoBootDevice } from 'src/app/Config/BlackScreenText';
 import { checkBootDrive } from 'src/app/Scripts/bootloader/MainBootLoader';
-import { setDisplayText } from 'src/app/Scripts/Stage/text';
+import { setDisplayText } from 'src/app/Scripts/bootloader/text';
 
 @Component({
   selector: 'app-blackscreen',
@@ -11,12 +11,16 @@ import { setDisplayText } from 'src/app/Scripts/Stage/text';
 })
 export class BlackscreenComponent implements OnInit {
   public static text: string[];
+  public static animation: boolean;
   constructor() {
     checkBootDrive();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  
+
   get text(): any {
     return BlackscreenComponent.text;
   }
+  
 }
