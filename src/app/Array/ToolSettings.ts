@@ -1,6 +1,7 @@
 import { LangMenu } from '../Config/Lang/Lang';
 import { BiosIf } from '../interface/BiosInfo';
 import { settings, ToolSettings } from '../interface/ToolSettings';
+import { GetDrives } from '../Scripts/Drives/Drives';
 import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
 import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
 import { SaveChanges } from '../Scripts/exit/SaveChanges';
@@ -144,17 +145,7 @@ export var BiosSettings: BiosOptionsST = {
       },
       boot_priority: {
         title: lang.Boot.boot_priority_title,
-        options: [
-          {
-            title: '1. Samsung 860 EVO M.2 1TB',
-          },
-          {
-            title: '2. IBM 1405 0.0075 GB',
-          },
-          {
-            title: '3. Seagate ST-225 0.021 GB',
-          },
-        ],
+        options: GetDrives(true),
         description: lang.Boot.boot_priority_description,
         selected: 0,
       },

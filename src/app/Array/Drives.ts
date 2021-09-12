@@ -1,18 +1,21 @@
-import { Options } from "../interface/ToolSettings";
+import { SystemDrives } from '../interface/SystemDrives';
+import { Options } from '../interface/ToolSettings';
 //TODO
-//? Samsung - Main System 
+//? Samsung - Main System
 //? IBM - Low graphic interface operating system
 //? Segate - No operating system
 
-
-export const drive: Options[] = [
+export const drive: SystemDrives[] = [
   {
-    title: '1. Samsung 860 EVO M.2 1TB',
+    title: 'Seagate ST-225 0.021 GB',
+    data: [],
   },
   {
-    title: '2. IBM 1405 0.0075 GB',
+    title: 'IBM 1405 0.0075 GB',
+    data: [],
   },
   {
-    title: '3. Seagate ST-225 0.021 GB',
+    title: 'Samsung 860 EVO M.2 1TB',
+    data: [],
   },
 ];
