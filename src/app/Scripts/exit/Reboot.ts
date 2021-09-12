@@ -8,10 +8,6 @@ export function Reboot(): void {
 }
 
 export function Continue(): void {
-  redirect();
-}
-
-function redirect(): void {
   BootComponent.EnterBios = false;
-  Navigate('/');
+  Navigate('/blackscreen'); //! BootLoader
 }
