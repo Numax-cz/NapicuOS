@@ -10,14 +10,14 @@ import { Options } from '../interface/ToolSettings';
 export const drive: SystemDrives[] = [
   {
     title: 'Seagate ST-225 0.021 GB',
-    data: [],
+    data: {},
   },
   {
     title: 'IBM 1405 0.0075 GB',
-    data: [],
+    data: {},
   },
   {
     title: 'Samsung 860 EVO M.2 1TB',
-    data: [],
+    data: {},
   },
 ];

@@ -1,4 +1,4 @@
 export interface SystemDrives {
   title: string;
-  data: any[];
+  data: any;
 }
