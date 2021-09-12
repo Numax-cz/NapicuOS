@@ -4,7 +4,9 @@ import { Options } from '../interface/ToolSettings';
 //? Samsung - Main System
 //? IBM - Low graphic interface operating system
 //? Segate - No operating system
-
+/**
+ * Main disks
+ */
 export const drive: SystemDrives[] = [
   {
     title: 'Seagate ST-225 0.021 GB',
