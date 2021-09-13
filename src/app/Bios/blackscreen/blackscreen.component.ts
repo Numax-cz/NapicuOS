@@ -1,26 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { lang } from 'src/app/Array/ToolSettings';
-import { NoBootDevice } from 'src/app/Config/BlackScreenText';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { checkBootDrive } from 'src/app/Scripts/bootloader/MainBootLoader';
-import { setDisplayText } from 'src/app/Scripts/bootloader/text';
 
 @Component({
   selector: 'app-blackscreen',
   templateUrl: './blackscreen.component.html',
   styleUrls: ['./blackscreen.component.scss'],
 })
-export class BlackscreenComponent implements OnInit {
+export class BlackscreenComponent implements OnInit, OnDestroy {
   public static text: string[];
   public static animation: boolean;
+  public static BigTextClass: boolean = false;
   constructor() {
     checkBootDrive();
   }
 
-  ngOnInit(): void { }
-  
+  ngOnInit(): void {
+    BlackscreenComponent.BigTextClass = false;
+  }
+  ngOnDestroy(): void {
+    BlackscreenComponent.BigTextClass = false;
+  }
 
   get text(): any {
     return BlackscreenComponent.text;
   }
-  
+  get BigTextClass(): boolean {
+    return BlackscreenComponent.BigTextClass;
+  }
 }

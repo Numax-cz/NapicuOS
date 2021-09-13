@@ -1,5 +1,10 @@
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
-import { CursorAnimationIN, CursorAnimationTimeIn } from 'src/app/Config/Animation/animationCursor';
+import {
+  CursorAnimationIN,
+  CursorAnimationTimeIn,
+  CursorMoveDown,
+  CUrsorTimeOut,
+} from 'src/app/Config/Animation/animationCursor';
 import { setTimeInterval } from '../TimeController';
 
 export function setDisplayText(text: string[], index?: number): void {
@@ -13,11 +18,21 @@ export function setDisplayText(text: string[], index?: number): void {
 //? Class
 //? In Function
 export class animationCursor {
-  //TODO constructor params
-  protected interval: any;
-  protected arrayText: string[] = [];
   constructor() {}
 
+  /**
+   * Interval for blinking cursor
+   */
+  protected interval: any;
+
+  /**
+   * Array that shows up in BlackscreenComponent.text
+   */
+  protected arrayText: string[] = [];
+
+  /**
+   * Starts a blinking cursor animation
+   */
   blinking(): void {
     setDisplayText(['_']);
     this.interval = setInterval(() => {
@@ -28,12 +43,27 @@ export class animationCursor {
     }, CursorAnimationIN);
   }
 
+  /**
+   * Moves the cursor down in blackscreen
+   */
   moveDown(): void {
-    for (let i = 0; i < 10; i++) {
-      BlackscreenComponent.text.unshift(" \n ")
-    }
+    var i: number = 0;
+    var maxTime: number = 10;
+    var id: any;
+    id = setInterval(() => {
+      setTimeout(() => {
+        if (i <= maxTime) {
+          BlackscreenComponent.text.unshift(' ');
+          i++;
+        } else {
+          clearInterval(id);
+        }
+      }, CUrsorTimeOut);
+    }, CursorMoveDown);
   }
-
+  /**
+   * Stop blinking
+   */
   stop(): void {
     this.interval = undefined;
   }
