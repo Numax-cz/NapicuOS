@@ -6,25 +6,16 @@ import { checkBootDrive } from 'src/app/Scripts/bootloader/MainBootLoader';
   templateUrl: './blackscreen.component.html',
   styleUrls: ['./blackscreen.component.scss'],
 })
-export class BlackscreenComponent implements OnInit, OnDestroy {
+export class BlackscreenComponent implements OnInit {
   public static text: string[];
   public static animation: boolean;
-  public static BigTextClass: boolean = false;
   constructor() {
     checkBootDrive();
   }
 
-  ngOnInit(): void {
-    BlackscreenComponent.BigTextClass = false;
-  }
-  ngOnDestroy(): void {
-    BlackscreenComponent.BigTextClass = false;
-  }
+  ngOnInit(): void {}
 
   get text(): any {
     return BlackscreenComponent.text;
-  }
-  get BigTextClass(): boolean {
-    return BlackscreenComponent.BigTextClass;
   }
 }
