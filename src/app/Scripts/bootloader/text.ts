@@ -38,7 +38,7 @@ export class animationCursor {
     this.interval = setInterval(() => {
       setDisplayText([' '], BlackscreenComponent.text.length - 1);
       setTimeout(() => {
-        setDisplayText(['_'], BlackscreenComponent.text.length - 1);
+        BlackscreenComponent.text.push("_");
       }, CursorAnimationTimeIn);
     }, CursorAnimationIN);
   }
