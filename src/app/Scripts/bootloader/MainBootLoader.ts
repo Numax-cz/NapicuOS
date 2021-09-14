@@ -7,18 +7,20 @@ import { animationCursor, setDisplayText } from './text';
  */
 export function checkBootDrive(): void {
   var selected: number = BiosSettings.Boot.settings.boot_priority.selected;
-  if (drive && drive.length && drive[selected].data) {
-    if (drive[selected].data.boot) {
-    } else {
-    }
+  let test = new animationCursor();
+  test.blinking();
+  setTimeout(() => {
+    if (drive && drive.length && drive[selected].data) {
+      if (drive[selected].data.boot) {
+      } else {
+      }
 
-    var test = new animationCursor();
-    test.blinking();
-    setTimeout(() => {
-      test.moveDown();
-    }, 2000);
-  } else {
-    //TODO No drives found
-    setDisplayText(['TO JE PEPEGA NO TAK TO JSEM NEVIDĚL']);
-  }
+      setTimeout(() => {
+        test.moveDown();
+      }, 2000);
+    } else {
+      //TODO No drives found
+      setDisplayText(['TO JE PEPEGA NO TAK TO JSEM NEVIDĚL']);
+    }
+  }, 200);
 }

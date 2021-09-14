@@ -1,6 +1,6 @@
 <section id="black" class="FontSize maintext">
   <div>
-    <p *ngFor="let i of text" id="text">
+    <p *ngFor="let i of text" id="text" [ngClass]="{BigText: i == '_'}">
       {{ i }}
     </p>
   </div>
