@@ -1,3 +1,4 @@
+import { StylesCompileDependency } from '@angular/compiler';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import {
   CursorAnimationIN,
@@ -6,6 +7,7 @@ import {
   CUrsorTimeOut,
 } from 'src/app/Config/Animation/animationCursor';
 import { setTimeInterval } from '../TimeController';
+import { setTime } from '../TimeDate';
 
 export function setDisplayText(text: string[], index?: number): void {
   if (index && BlackscreenComponent.text[index]) {
@@ -38,7 +40,7 @@ export class animationCursor {
     this.interval = setInterval(() => {
       BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
       setTimeout(() => {
-        BlackscreenComponent.text.push("_");
+        BlackscreenComponent.text.push('_');
       }, CursorAnimationTimeIn);
     }, CursorAnimationIN);
   }
