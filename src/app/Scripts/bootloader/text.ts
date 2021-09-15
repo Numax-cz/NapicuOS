@@ -1,4 +1,4 @@
-import { StylesCompileDependency } from '@angular/compiler';
+import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/util';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import {
   CursorAnimationIN,
@@ -6,8 +6,6 @@ import {
   CursorMoveDown,
   CUrsorTimeOut,
 } from 'src/app/Config/Animation/animationCursor';
-import { setTimeInterval } from '../TimeController';
-import { setTime } from '../TimeDate';
 
 export function setDisplayText(text: string[], index?: number): void {
   if (index && BlackscreenComponent.text[index]) {
@@ -19,6 +17,7 @@ export function setDisplayText(text: string[], index?: number): void {
 //TODO
 //? Class
 //? In Function
+
 export class animationCursor {
   constructor() {}
 
@@ -36,13 +35,14 @@ export class animationCursor {
    * Starts a blinking cursor animation
    */
   blinking(): void {
+    //TODO async
     setDisplayText(['_']);
-    this.interval = setInterval(() => {
-      BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
-      setTimeout(() => {
-        BlackscreenComponent.text.push('_');
-      }, CursorAnimationTimeIn);
-    }, CursorAnimationIN);
+    // this.interval = setInterval(() => {
+    //   BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
+    //   setTimeout(() => {
+    //     BlackscreenComponent.text.push('_');
+    //   }, CursorAnimationTimeIn);
+    // }, CursorAnimationIN);
   }
 
   /**
