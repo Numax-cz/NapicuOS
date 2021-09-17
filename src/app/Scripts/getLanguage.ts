@@ -1,11 +1,13 @@
+import { BiosOptionsST } from '../Array/ToolSettings';
 import { cookiesForBisoSettingsAr } from '../Config/Cookies';
 import { Deutschland, English, Korea, LangMenu, Slovakia } from '../Config/Lang/Lang';
 import { getCookies } from './Cookies';
 
 export function getLanguage(): any {
   var pack;
-  //! Fix 
-  var selected = JSON.parse(getCookies(cookiesForBisoSettingsAr)) || 0;
+  //! Fix
+  var cookiesArray: BiosOptionsST = JSON.parse(getCookies(cookiesForBisoSettingsAr));
+  var selected = cookiesArray.Main.settings.lang.selected || 0;
 
   switch (LangMenu[selected].title) {
     case 'Korea':

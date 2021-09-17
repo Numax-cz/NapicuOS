@@ -196,6 +196,8 @@ export function setSettingsValue(value: BiosOptionsST): void {
   for (const [key, val] of Object.entries(value)) {
     Object.values(val.settings).forEach((St: settings, indexVal: number) => {
       if (isOption(St)) {
+      
+        
         BiosSettings[key].settings[indexVal].selected = St.selected;
       } else if (isDate(St)) {
         BiosSettings[key].settings[indexVal].date = St.date;
