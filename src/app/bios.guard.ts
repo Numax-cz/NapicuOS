@@ -16,6 +16,6 @@ export class BiosGuard implements CanActivate {
       return true;
     }
     this.router.navigate(['']);
-    return false; //False
+    return false;
   }
 }
