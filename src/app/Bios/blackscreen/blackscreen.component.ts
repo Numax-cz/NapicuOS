@@ -9,9 +9,7 @@ import { checkBootDrive } from 'src/app/Scripts/bootloader/MainBootLoader';
 export class BlackscreenComponent implements OnInit {
   public static text: string[];
   public static animation: boolean;
-  constructor() {
-    checkBootDrive();
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 

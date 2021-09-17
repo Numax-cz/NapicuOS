@@ -16,7 +16,7 @@ export function checkBootDrive(): void { //TODO rename
     if (checkBootDevice(selected)) {
 
     }
-  }, 1050);
+  }, 1350);
 }
 
 function checkBootDevice(selected: number): boolean {
@@ -28,7 +28,6 @@ function checkBootDevice(selected: number): boolean {
     return true;
   } else {
     //TODO No drives found
-    setDisplayText(['TO JE PEPEGA NO TAK TO JSEM NEVIDĚL']);
     return false;
   }
 }

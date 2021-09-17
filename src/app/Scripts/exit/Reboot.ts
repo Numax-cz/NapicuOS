@@ -9,5 +9,5 @@ export function Reboot(): void {
 
 export function Continue(): void {
   BootComponent.EnterBios = false;
-  Navigate('/blackscreen'); //! BootLoader
+  Navigate('/blackscreen'); 
 }
