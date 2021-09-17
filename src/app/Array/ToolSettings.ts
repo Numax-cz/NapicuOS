@@ -205,5 +205,3 @@ export function setSettingsValue(value: BiosOptionsST): void {
     });
   }
 }
-
-//Object.values(val.settings).forEach((St: settings, indexVal: number)
