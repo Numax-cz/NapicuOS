@@ -1,9 +1,9 @@
-import { Continue } from './Reboot';
+import { Boot } from './Boot';
 
 export function DiscardChanges(): void {
   //TODO Export = BiosComponent.BiosMenuSavePoint
 
-  Continue();
+  Boot();
 }
 
 function unSave(): void {}
