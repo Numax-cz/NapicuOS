@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { checkBootDrive } from 'src/app/Scripts/bootloader/MainBootLoader';
 
 @Component({
   selector: 'app-blackscreen',
