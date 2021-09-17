@@ -194,16 +194,16 @@ export var BiosSettings: BiosOptionsST = {
  */
 export function setSettingsValue(value: BiosOptionsST): void {
   for (const [key, val] of Object.entries(value)) {
-    Object.values(val.settings).forEach((St: settings, indexVal: number) => {
-      if (isOption(St)) {
-      
-        
-        BiosSettings[key].settings[indexVal].selected = St.selected;
-      } else if (isDate(St)) {
-        BiosSettings[key].settings[indexVal].date = St.date;
-      } else if (isTime(St)) {
-        BiosSettings[key].settings[indexVal].time = St.time;
+    Object.keys(val.settings).forEach((valueS: string) => {
+      if (isOption(val.settings[valueS])) {
+        BiosSettings[key].settings[valueS].selected = val.settings[valueS].selected;
+      } else if (isDate(val.settings[valueS])) {
+        BiosSettings[key].settings[valueS].date = val.settings[valueS].date;
+      } else if (isTime(val.settings[valueS])) {
+        BiosSettings[key].settings[valueS].time = val.settings[valueS].time;
       }
     });
   }
 }
+
+//Object.values(val.settings).forEach((St: settings, indexVal: number)
