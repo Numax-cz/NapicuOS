@@ -14,6 +14,7 @@ import { ToolsComponent } from './Bios/tools/tools.component';
 import { TweakerComponent } from './Bios/tweaker/tweaker.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
 import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
+import { BlackscreenGuard } from './blackscreen.guard';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -33,7 +34,7 @@ const routes: Routes = [
   { path: 'flash', canActivate: [BiosGuard], component: FlashComponent },
   //todo: ?BiosGuard
   { path: 'blackloading', component: BlackloadingComponent },
-  { path: 'blackscreen', component: BlackscreenComponent },
+  { path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent },
 ];
 
 @NgModule({

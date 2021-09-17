@@ -8,7 +8,10 @@ import { BootComponent } from './Bios/boot/boot.component';
 })
 export class BiosGuard implements CanActivate {
   constructor(private router: Router) {}
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (BootComponent.EnterBios) {
       return true;
     }
