@@ -35,14 +35,20 @@ export class animationCursor {
    * Starts a blinking cursor animation
    */
   blinking(): void {
-    //TODO async
     setDisplayText(['_']);
-    // this.interval = setInterval(() => {
-    //   BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
-    //   setTimeout(() => {
-    //     BlackscreenComponent.text.push('_');
-    //   }, CursorAnimationTimeIn);
-    // }, CursorAnimationIN);
+    var n: number = 0;
+    this.interval = setInterval(() => {
+      if (n == 0) {
+        setTimeout(() => {
+          BlackscreenComponent.text.push('_');
+        }, CursorAnimationTimeIn);
+        n = 1;
+      }
+      if (n == 1) {
+        BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
+        n = 0;
+      }
+    }, CursorAnimationIN);
   }
 
   /**
