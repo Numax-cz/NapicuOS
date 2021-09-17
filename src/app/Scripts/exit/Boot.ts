@@ -6,9 +6,7 @@ import { Loading } from '../LoadingAnimations';
 
 export function Boot(): void {
   BootComponent.EnterBios = false;
-  setTimeout(() => {
-    Loading('/blackscreen', 200, 550);
-    var bootLoader = new BootLoader(BiosSettings);
-    bootLoader.check();
-  }, 550);
+  Loading('/blackscreen', 1050, 200);
+  var bootLoader = new BootLoader(BiosSettings);
+  bootLoader.check();
 }

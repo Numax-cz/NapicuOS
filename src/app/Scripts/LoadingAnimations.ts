@@ -10,7 +10,7 @@ export function Loading(redirect: string, outTime: number, inTime?: number): voi
   setTimeout(() => {
     Navigate('/blackloading');
     setTimeout(() => {
-      Navigate(redirect);
+      Navigate(redirect); 
     }, outTime);
   }, inTime);
 }
