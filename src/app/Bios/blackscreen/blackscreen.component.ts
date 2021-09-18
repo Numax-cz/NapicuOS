@@ -1,4 +1,6 @@
+import { keyframes } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import * as key from 'src/app/Config/KeyMaps';
 
 @Component({
   selector: 'app-blackscreen',
@@ -11,6 +13,12 @@ export class BlackscreenComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  public Move = (e: KeyboardEvent): void => {
+    if (e.keyCode == key.F2) {
+      
+    }
+  };
 
   get text(): any {
     return BlackscreenComponent.text;

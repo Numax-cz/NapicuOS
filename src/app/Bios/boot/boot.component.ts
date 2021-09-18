@@ -3,10 +3,11 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BiosInfo } from '../../Array/ToolSettings';
 import { BiosComponent } from '../bios/bios.component';
-import { startTimeIn, startTimeOut } from '../../Config/Animation/Boot';
+import { exitTime, startTimeIn, startTimeOut } from '../../Config/Animation/Boot';
 import { FlashComponent } from '../flash/flash.component';
 import * as key from 'src/app/Config/KeyMaps';
 import { Navigate } from 'src/app/Scripts/BiosRouter';
+import { Boot } from 'src/app/Scripts/exit/Boot';
 
 @Component({
   selector: 'app-boot',
@@ -16,19 +17,19 @@ import { Navigate } from 'src/app/Scripts/BiosRouter';
 export class BootComponent implements OnInit, OnDestroy {
   public static EnterBios: boolean;
 
-  protected BiosBootAudio: HTMLAudioElement = new Audio(
-    '/assets/sound/Boot.wav'
-  );
-  constructor(
-    @Inject(DOCUMENT) private doc: Document,
-    private router: Router
-  ) {}
+  protected BiosBootAudio: HTMLAudioElement = new Audio('/assets/sound/Boot.wav');
+  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
 
   ngOnInit(): void {
     this.ClearRouter();
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
     this.setEvents();
+    setTimeout(() => {
+      if (!BootComponent.EnterBios) {
+        Boot();
+      }
+    }, exitTime);
   }
 
   ngOnDestroy(): void {
@@ -46,14 +47,13 @@ export class BootComponent implements OnInit, OnDestroy {
 
   public RunBios = (e: KeyboardEvent): void => {
     if (e.keyCode == key.Delete || e.keyCode == key.F2) {
+      BootComponent.EnterBios = true;
       setTimeout(() => {
         Navigate('/blackloading');
         setTimeout(() => {
           this.PlayBootSound();
           setTimeout(() => {
-            this.router.navigate(
-              ['bios/main'] /*{ skipLocationChange: true } */
-            );
+            this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
           }, 150);
         }, startTimeIn);
       }, 280);
