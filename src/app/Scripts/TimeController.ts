@@ -53,7 +53,7 @@ export function setTimeInterval(MainOption: settings[], index: number): void {
 }
 
 /**
- * Clears MainOption[index].interval
+ * Clears the time interval
  * @param {settings} MainOption
  * @param {number} index
  */
