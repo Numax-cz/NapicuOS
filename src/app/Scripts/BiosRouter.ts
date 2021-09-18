@@ -1,11 +1,10 @@
-
-//TODO document
-
 import { BiosComponent } from "../Bios/bios/bios.component";
 
-//TODO Doc
+/**
+ * Redirects to the required path
+ * @param Path - URL Path
+ */
 export function Navigate(Path: string) {
-  BiosComponent.BiosRouter.navigate([Path]); //TODO NONLIST
+  BiosComponent.BiosRouter.navigate([Path]); //TODO { skipLocationChange: true }
 }
 
-// , { skipLocationChange: true }
