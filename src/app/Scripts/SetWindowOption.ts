@@ -9,7 +9,7 @@ import { objectKeys } from './objectKeys';
 import { copy } from './DeepClone';
 
 export var ItemsDateInit: Time[];
-export var nevim: any = {};
+
 //TODO Clear Code => Function
 export function SetWindowOption(): void {
   let selected: settings =
