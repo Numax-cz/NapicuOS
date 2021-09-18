@@ -1,5 +1,6 @@
 import { drive } from 'src/app/Array/Drives';
 import { BiosOptionsST, BiosSettings } from 'src/app/Array/ToolSettings';
+import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
 import { Navigate } from '../BiosRouter';
 import { setTime } from '../TimeDate';
@@ -41,9 +42,8 @@ export class BootLoader {
   }
 
   public check(): void {
-    let test = new animationCursor();
-    test.blinking();
-
+    BlackscreenComponent.cursor = new animationCursor();
+    BlackscreenComponent.cursor.blinking();
     setTimeout(() => {
       if (this.checkBootSector()) {
       }

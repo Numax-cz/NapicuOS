@@ -1,6 +1,7 @@
 import { keyframes } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as key from 'src/app/Config/KeyMaps';
+import { animationCursor } from 'src/app/Scripts/bootloader/text';
 import { Reboot } from 'src/app/Scripts/exit/Reboot';
 
 @Component({
@@ -10,7 +11,7 @@ import { Reboot } from 'src/app/Scripts/exit/Reboot';
 })
 export class BlackscreenComponent implements OnInit, OnDestroy {
   public static text: string[];
-
+  public static cursor: animationCursor | null;
   constructor() {}
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
+    BlackscreenComponent.cursor = null;
   }
 
   protected setEvents(): void {
