@@ -6,6 +6,7 @@ import { OptionPanelComponent } from '../Bios/option-panel/option-panel.componen
 import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
 import { Window } from './Window';
 import { objectKeys } from './objectKeys';
+import { copy } from './DeepClone';
 
 export var ItemsDateInit: Time[];
 export var nevim: any = {};
@@ -24,14 +25,14 @@ export function SetWindowOption(): void {
     } else if (isTime(selected)) {
       var time = selected.time;
       if (!time) return;
-      ItemsDateInit = time.map((x) => Object.assign({}, x));
+      ItemsDateInit = copy(time);
       OptionPanelComponent.window = new Window(time);
       BiosComponent.WindowFastOptionDisplay = true;
       clearTimeInterval(SettingsTemplateComponent.MainOption, SettingsTemplateComponent.selected);
     } else if (isDate(selected)) {
       var date = selected.date;
       if (!date) return;
-      ItemsDateInit = date.map((x) => Object.assign({}, x));
+      ItemsDateInit = copy(date);
       OptionPanelComponent.window = new Window(date);
       BiosComponent.WindowFastOptionDisplay = true;
     } else if (isOptionsFast(selected)) {
