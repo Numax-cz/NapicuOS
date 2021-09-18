@@ -4,5 +4,5 @@ export const NoBootDevice: string[] = [
   'Please ensure compatible bootable media is available.',
   'Use the system setup program to change the boot mode as needed.',
   '',
-  'Press F1 to retry boot.',
+  'Press F1 to reboot device.',
 ];
