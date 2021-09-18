@@ -13,3 +13,4 @@ function Save(): void {
   BiosComponent.BiosMenuSavePoint = BiosSettings;
   setCookies(cookiesForBisoSettingsAr, JSON.stringify(BiosSettings));
 }
+
