@@ -16,7 +16,6 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setEvents();
-    console.log(BlackscreenComponent.text);
   }
 
   ngOnDestroy(): void {
