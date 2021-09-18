@@ -1,4 +1,4 @@
-export const NoBootDevice: string[] = [
+export const  NoBootDevice: string[] = [
   'No boot device available.',
   'Current boot mode is set to BIOS.',
   'Please ensure compatible bootable media is available.',

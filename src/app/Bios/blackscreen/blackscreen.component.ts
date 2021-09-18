@@ -16,13 +16,23 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setEvents();
+    console.log(BlackscreenComponent.text);
   }
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
+    BlackscreenComponent.text = [];
+  }
+  /**
+   * Clears the cursor
+   */
+  protected clearCursor1(): void {
+    BlackscreenComponent.cursor?.stop();
     BlackscreenComponent.cursor = null;
   }
-
+  /**
+   * Sets the event keyup
+   */
   protected setEvents(): void {
     window.removeEventListener('keydown', this.Move, true);
     window.addEventListener('keydown', this.Move, true);

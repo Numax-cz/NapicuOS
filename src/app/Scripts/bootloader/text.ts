@@ -27,15 +27,9 @@ export class animationCursor {
   protected interval: any;
 
   /**
-   * Array that shows up in BlackscreenComponent.text
-   */
-  protected arrayText: string[] = [];
-
-  /**
    * Starts a blinking cursor animation
    */
   blinking(): void {
-    //TODO async
     setDisplayText(['_']);
     this.interval = setInterval(() => {
       setTimeout(() => {
@@ -66,9 +60,9 @@ export class animationCursor {
     }, CursorMoveDown);
   }
   /**
-   * Stop blinking
+   * Stop blinking (Deletes the interval function)
    */
   stop(): void {
-    this.interval = undefined;
+    clearInterval(this.interval);
   }
 }

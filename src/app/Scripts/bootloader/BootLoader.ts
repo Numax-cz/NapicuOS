@@ -3,6 +3,7 @@ import { BiosOptionsST, BiosSettings } from 'src/app/Array/ToolSettings';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
 import { Navigate } from '../BiosRouter';
+import { copy } from '../DeepClone';
 import { setTime } from '../TimeDate';
 import { animationCursor, setDisplayText } from './text';
 
@@ -38,7 +39,7 @@ export class BootLoader {
   protected checkBootSector(): boolean {
     if (drive && drive.length && drive[this.selectedBootPriority].data) {
       if (!drive[this.selectedBootPriority].data.boot) {
-        setDisplayText(NoBootDevice);
+        setDisplayText(copy(NoBootDevice));
         return false;
       }
       return true;
