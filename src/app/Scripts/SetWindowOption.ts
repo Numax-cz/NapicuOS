@@ -10,7 +10,6 @@ import { copy } from './DeepClone';
 
 export var ItemsDateInit: Time[];
 
-//TODO Clear Code => Function
 export function SetWindowOption(): void {
   let selected: settings =
     SettingsTemplateComponent.MainOption[
