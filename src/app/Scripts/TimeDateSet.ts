@@ -14,10 +14,9 @@ export const maxHours: number = 24;
 export function TimeDateSet(keyCode: number, Items: Time[]): void {
   //TODO AutoCheck - Date
   var ItemsNumber: number = Number(Items[BiosComponent.WindowSelectedOption].title);
-  var componentSelected = SettingsTemplateComponent.MainOption[SettingsTemplateComponent.selected];
+  var componentSelected = Object.values(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected];
   if (keyCode == 38) ItemsNumber += +1;
   if (keyCode == 40) ItemsNumber -= +1;
-
 
   if (isTime(componentSelected)) {
     if (BiosComponent.WindowSelectedOption == 0) {
@@ -85,7 +84,7 @@ export function TimeDateSet(keyCode: number, Items: Time[]): void {
 
   /**
    * If the number is higher than max, the number will be min.
-   * 
+   *
    * If the number is smaller, the number will be max...
    * @param {number} max - Maximum number
    * @param {number} min - Minimum number, default is 0
