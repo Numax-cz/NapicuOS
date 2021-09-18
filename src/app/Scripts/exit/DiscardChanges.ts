@@ -1,9 +1,10 @@
+import { BiosSettings, setSettingsValue } from 'src/app/Array/ToolSettings';
+import { BiosComponent } from 'src/app/Bios/bios/bios.component';
 import { Boot } from './Boot';
 
 export function DiscardChanges(): void {
-  //TODO Export = BiosComponent.BiosMenuSavePoint
-
+  setSettingsValue(BiosComponent.BiosMenuSavePoint);
   Boot();
 }
 
-function unSave(): void {}
+
