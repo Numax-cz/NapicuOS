@@ -9,6 +9,7 @@ export const Enter = 13;
 export const Delete = 46;
 
 export const F2 = 113;
+export const F1 = 112;
 
 export const Home = 36;
 export const End = 35;
