@@ -45,9 +45,9 @@ export function TimeInterval(MainOption: settings[], index: number): void {
  * @param {number} index
  */
 export function setTimeInterval(MainOption: settings[], index: number): void {
-  if (!MainOption[index].interval) {
-    MainOption[index].interval = setInterval(() => {
-      TimeInterval(MainOption, index);
+  if (!Object.values(MainOption)[index].interval) {
+    Object.values(MainOption)[index].interval = setInterval(() => {
+      TimeInterval(Object.values(MainOption), index);
     }, 1000);
   }
 }
@@ -58,6 +58,6 @@ export function setTimeInterval(MainOption: settings[], index: number): void {
  * @param {number} index
  */
 export function clearTimeInterval(MainOption: settings[], index: number): void {
-  clearInterval(MainOption[index].interval);
-  MainOption[index].interval = null;
+  clearInterval(Object.values(MainOption)[index].interval);
+  Object.values(MainOption)[index].interval = null;
 }

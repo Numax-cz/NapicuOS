@@ -7,14 +7,12 @@ import { SettingsTemplateComponent } from '../Bios/settings-template/settings-te
 import { Window } from './Window';
 import { objectKeys } from './objectKeys';
 import { copy } from './DeepClone';
+import { getSelectedItem } from './getSelectedItem';
 
 export var ItemsDateInit: Time[];
 
 export function SetWindowOption(): void {
-  let selected: settings =
-    SettingsTemplateComponent.MainOption[
-      objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
-    ];
+  let selected: settings = getSelectedItem();
 
   if (selected) {
     if (isOption(selected)) {
