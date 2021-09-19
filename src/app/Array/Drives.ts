@@ -10,7 +10,7 @@ const NapicuOS = {
     title: 'NapicuOS',
     logo: '/assets/icons/icon-128x128.png',
   },
-};  
+};
 
 /**
  * Main disks
@@ -24,15 +24,14 @@ export const drive: SystemDrives[] = [
     title: 'Seagate ST-225 0.021 GB',
     data: {
       boot: {
-        system: NapicuOS
-      }
+        system: [NapicuOS],
+      },
     },
   },
   {
     title: 'Samsung 860 EVO M.2 1TB',
     data: {
-      boot: {}
+      boot: {},
     },
   },
 ];
-

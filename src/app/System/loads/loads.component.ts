@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loads.component.scss']
 })
 export class LoadsComponent implements OnInit {
-  public static Systems = []
+  public static Systems: any = []
   constructor() { }
 
   ngOnInit(): void {
+    console.log(LoadsComponent.Systems);
+    
   }
 
 }

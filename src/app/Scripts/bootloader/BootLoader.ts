@@ -2,8 +2,10 @@ import { drive } from 'src/app/Array/Drives';
 import { BiosOptionsST, BiosSettings } from 'src/app/Array/ToolSettings';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
+import { LoadsComponent } from 'src/app/System/loads/loads.component';
 import { Navigate } from '../BiosRouter';
 import { copy } from '../DeepClone';
+import { Loading } from '../LoadingAnimations';
 import { setTime } from '../TimeDate';
 import { animationCursor, setDisplayText } from './text';
 
@@ -29,8 +31,9 @@ export class BootLoader {
     BlackscreenComponent.cursor.blinking();
     setTimeout(() => {
       if (this.checkBootSector()) {
-
-        
+        LoadsComponent.Systems.push(drive[this.selectedBootPriority].data.boot);
+        BlackscreenComponent.cursor?.moveDown();
+        Loading('/system/load', 500, 250);
       }
     }, 1350);
   }
