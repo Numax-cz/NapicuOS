@@ -7,7 +7,7 @@ import { systemdata } from 'src/app/interface/System';
   styleUrls: ['./loads.component.scss']
 })
 export class LoadsComponent implements OnInit {
-  public static Systems: systemdata[] = [];
+  public static Systems: systemdata[] = NapicuOS;
   constructor() { }
 
   ngOnInit(): void {

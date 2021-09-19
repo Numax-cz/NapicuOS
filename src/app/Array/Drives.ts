@@ -6,7 +6,7 @@ import { Options } from '../interface/ToolSettings';
 //? IBM - Low graphic interface operating system
 //? Segate - No operating system
 
-const NapicuOS: systemdata = {
+export const NapicuOS: systemdata = {
   boot: {
     title: 'NapicuOS',
     logo: '/assets/icons/icon-192x192.png',
