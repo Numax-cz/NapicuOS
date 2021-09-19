@@ -1,12 +1,10 @@
-import { system } from "./System";
+import { systemdata } from "./System";
 
 export interface SystemDrives {
   title: string;
-  data: SystemDrivesData; //TODO add ? 
+  data: System; //TODO add ?
 }
 //TODO Add more items
-export interface SystemDrivesData{
-  boot?: {
-    system?: system[]
-  }
+export interface System {
+  system?: systemdata[];
 }

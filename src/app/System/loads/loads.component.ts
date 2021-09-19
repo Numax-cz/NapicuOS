@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { systemdata } from 'src/app/interface/System';
 
 @Component({
   selector: 'app-loads',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loads.component.scss']
 })
 export class LoadsComponent implements OnInit {
-  public static Systems: any = []
+  public static Systems: systemdata[] = [];
   constructor() { }
 
   ngOnInit(): void {

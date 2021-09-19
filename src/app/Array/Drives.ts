@@ -1,4 +1,4 @@
-import { system } from '../interface/System';
+import { systemdata } from '../interface/System';
 import { SystemDrives } from '../interface/SystemDrives';
 import { Options } from '../interface/ToolSettings';
 //TODO
@@ -6,7 +6,7 @@ import { Options } from '../interface/ToolSettings';
 //? IBM - Low graphic interface operating system
 //? Segate - No operating system
 
-const NapicuOS: system = {
+const NapicuOS: systemdata = {
   boot: {
     title: 'NapicuOS',
     logo: '/assets/icons/icon-128x128.png',
@@ -24,15 +24,11 @@ export const drive: SystemDrives[] = [
   {
     title: 'Seagate ST-225 0.021 GB',
     data: {
-      boot: {
-        system: [NapicuOS],
-      },
+      system: [NapicuOS],
     },
   },
   {
     title: 'Samsung 860 EVO M.2 1TB',
-    data: {
-      boot: {},
-    },
+    data: {},
   },
 ];

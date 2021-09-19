@@ -2,11 +2,8 @@ import { drive } from 'src/app/Array/Drives';
 import { BiosOptionsST, BiosSettings } from 'src/app/Array/ToolSettings';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
-import { LoadsComponent } from 'src/app/System/loads/loads.component';
-import { Navigate } from '../BiosRouter';
 import { copy } from '../DeepClone';
 import { Loading } from '../LoadingAnimations';
-import { setTime } from '../TimeDate';
 import { animationCursor, setDisplayText } from './text';
 
 /**
@@ -15,7 +12,7 @@ import { animationCursor, setDisplayText } from './text';
 export class BootLoader {
   protected selectedBootPriority: number;
   protected biosConfig: BiosOptionsST;
-  /**
+  /**d
    *
    * @param biosConfig - Bios Settings
    */
@@ -32,7 +29,6 @@ export class BootLoader {
     setTimeout(() => {
       if (this.checkBootSector()) {
         setTimeout(() => {
-          LoadsComponent.Systems.push(drive[this.selectedBootPriority].data.boot);
           BlackscreenComponent.cursor?.moveDown(() => {
             Loading('/booting', 500, 1050);
           });
@@ -43,17 +39,13 @@ export class BootLoader {
   /**
    * Functions to continue to the system
    */
-  protected system(): void {
-    if (LoadsComponent.Systems.system.boot) {
-      
-    }
-  }
+  protected system(): void {}
   /**
    * Checks the disk to see if there is something to boot from
    */
   protected checkBootSector(): boolean {
     if (drive && drive.length && drive[this.selectedBootPriority].data) {
-      if (!drive[this.selectedBootPriority].data.boot) {
+      if (!drive[this.selectedBootPriority].data.system) {
         setDisplayText(copy(NoBootDevice));
         return false;
       }
