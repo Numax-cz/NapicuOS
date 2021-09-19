@@ -1,3 +1,4 @@
+import { system } from '../interface/System';
 import { SystemDrives } from '../interface/SystemDrives';
 import { Options } from '../interface/ToolSettings';
 //TODO
@@ -5,7 +6,7 @@ import { Options } from '../interface/ToolSettings';
 //? IBM - Low graphic interface operating system
 //? Segate - No operating system
 
-const NapicuOS = {
+const NapicuOS: system = {
   boot: {
     title: 'NapicuOS',
     logo: '/assets/icons/icon-128x128.png',

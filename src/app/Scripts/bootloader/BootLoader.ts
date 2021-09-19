@@ -31,13 +31,23 @@ export class BootLoader {
     BlackscreenComponent.cursor.blinking();
     setTimeout(() => {
       if (this.checkBootSector()) {
-        LoadsComponent.Systems.push(drive[this.selectedBootPriority].data.boot);
-        BlackscreenComponent.cursor?.moveDown();
-        // Loading('/booting', 500, 250);
+        setTimeout(() => {
+          LoadsComponent.Systems.push(drive[this.selectedBootPriority].data.boot);
+          BlackscreenComponent.cursor?.moveDown(() => {
+            Loading('/booting', 500, 1050);
+          });
+        }, 1230);
       }
     }, 1350);
   }
-
+  /**
+   * Functions to continue to the system
+   */
+  protected system(): void {
+    if (LoadsComponent.Systems.system.boot) {
+      
+    }
+  }
   /**
    * Checks the disk to see if there is something to boot from
    */
