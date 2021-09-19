@@ -30,7 +30,7 @@ export class animationCursor {
    * Starts a blinking cursor animation
    */
   blinking(): void {
-    setDisplayText(['_']);
+    setDisplayText(['']);
     this.interval = setInterval(() => {
       setTimeout(() => {
         BlackscreenComponent.text.push('_');

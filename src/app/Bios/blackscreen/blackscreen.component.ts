@@ -20,6 +20,7 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
+    this.clearCursor1();
     BlackscreenComponent.text = [];
   }
   /**
