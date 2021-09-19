@@ -33,7 +33,7 @@ export class BootLoader {
       if (this.checkBootSector()) {
         LoadsComponent.Systems.push(drive[this.selectedBootPriority].data.boot);
         BlackscreenComponent.cursor?.moveDown();
-        Loading('/booting', 500, 250);
+        // Loading('/booting', 500, 250);
       }
     }, 1350);
   }

@@ -44,7 +44,7 @@ export class animationCursor {
   /**
    * Moves the cursor down in blackscreen
    */
-  moveDown(): void {
+  moveDown(fun?: Function): void {
     var i: number = 0;
     var maxTime: number = 10;
     var id: any;
@@ -55,6 +55,7 @@ export class animationCursor {
           i++;
         } else {
           clearInterval(id);
+          if (fun) fun();
         }
       }, CUrsorTimeOut);
     }, CursorMoveDown);
