@@ -14,5 +14,11 @@ export class LoadsComponent implements OnInit {
     console.log(LoadsComponent.Systems);
     
   }
-
+  get Img(): string  {
+    var logo = LoadsComponent.Systems[0].boot.logo; // TODO Remove zero index
+    if (logo) {
+      return logo;
+    }
+    return '';
+  }
 }
