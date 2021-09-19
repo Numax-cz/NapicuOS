@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NapicuOS } from 'src/app/Array/Drives';
 import { systemdata } from 'src/app/interface/System';
 
 @Component({
@@ -7,7 +8,7 @@ import { systemdata } from 'src/app/interface/System';
   styleUrls: ['./loads.component.scss']
 })
 export class LoadsComponent implements OnInit {
-  public static Systems: systemdata[] = NapicuOS;
+  public static Systems: systemdata[] = [NapicuOS];
   constructor() { }
 
   ngOnInit(): void {
