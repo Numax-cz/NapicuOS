@@ -55,7 +55,7 @@ export class BiosComponent implements OnInit, OnDestroy {
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     var SaveBiosArray: BiosOptionsST = copy(BiosSettings);
-    //TODO ERROR Screen
+
     if (JSON.parse(getCookies(cookiesForBisoSettingsAr))) {
       BiosComponent.BiosMenuSavePoint = JSON.parse(getCookies(cookiesForBisoSettingsAr));
       setSettingsValue(BiosComponent.BiosMenuSavePoint);
