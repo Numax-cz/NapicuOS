@@ -10,6 +10,9 @@ import { Reboot } from 'src/app/Scripts/exit/Reboot';
   styleUrls: ['./blackscreen.component.scss'],
 })
 export class BlackscreenComponent implements OnInit, OnDestroy {
+  /**
+   * Text to be displayed on the black screen
+   */
   public static text: string[];
   public static cursor: animationCursor | null;
   constructor() {}
