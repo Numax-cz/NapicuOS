@@ -4,6 +4,14 @@ import { Options } from '../interface/ToolSettings';
 //? Samsung - Main System
 //? IBM - Low graphic interface operating system
 //? Segate - No operating system
+
+const NapicuOS = {
+  boot: {
+    title: 'NapicuOS',
+    logo: '/assets/icons/icon-128x128.png',
+  },
+};  
+
 /**
  * Main disks
  */
@@ -15,7 +23,9 @@ export const drive: SystemDrives[] = [
   {
     title: 'Seagate ST-225 0.021 GB',
     data: {
-      boot: {}
+      boot: {
+        system: NapicuOS
+      }
     },
   },
   {
@@ -25,3 +35,4 @@ export const drive: SystemDrives[] = [
     },
   },
 ];
+
