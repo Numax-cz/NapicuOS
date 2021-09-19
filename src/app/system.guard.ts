@@ -13,7 +13,7 @@ export class SystemGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (LoadsComponent.Systems) {
+    if (LoadsComponent.Systems.length) {
       return true;
     }
     this.router.navigate(['']);
