@@ -1,0 +1,15 @@
+.Img {
+  display: table;
+  z-index: 1;
+  height: 100vh;
+  min-height: 500px;
+  width: 100%;
+}
+#SystemLogo {
+  display: table-cell;
+  vertical-align: middle;
+  padding-top: 130px;
+  width: 10.55%;
+  margin: auto;
+  padding-bottom: 100px;
+}

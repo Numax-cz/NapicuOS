@@ -9,7 +9,7 @@ import { Options } from '../interface/ToolSettings';
 const NapicuOS: systemdata = {
   boot: {
     title: 'NapicuOS',
-    logo: '/assets/icons/icon-128x128.png',
+    logo: '/assets/icons/icon-192x192.png',
   },
 };
 
