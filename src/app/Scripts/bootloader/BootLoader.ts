@@ -29,6 +29,8 @@ export class BootLoader {
     BlackscreenComponent.cursor.blinking();
     setTimeout(() => {
       if (this.checkBootSector()) {
+
+        
       }
     }, 1350);
   }

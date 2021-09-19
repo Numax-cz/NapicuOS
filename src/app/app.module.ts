@@ -18,9 +18,10 @@ import { environment } from '../environments/environment';
 import { FlashComponent } from './Bios/flash/flash.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
 import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
+import { LoadsComponent } from './System/loads/loads.component';
 
 @NgModule({
-  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent, BlackscreenComponent],
+  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent, BlackscreenComponent, LoadsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
