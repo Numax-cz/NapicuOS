@@ -1,14 +1,11 @@
 export class System {
   static SystemRunning: boolean;
-  constructor() {
+  static boot: {
+    title: string;
+    logo: string;
+  };
+  constructor() {}
 
-  }
-
-  public onStartup(): void {
-
-  }
-  public onShutDown(): void {
- 
-  }
+  public onStartup(): void {}
+  public onShutDown(): void {}
 }
-
