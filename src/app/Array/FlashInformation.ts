@@ -1,5 +1,5 @@
 import { cookiesForBiosVersion } from '../Config/Cookies';
-import { Drives } from '../interface/Directories';
+import { Drives } from '../interface/Directorie';
 import { FlashInformation } from '../interface/FlashInformation';
 import { FlashingTxt } from '../interface/FlashingTxt';
 import { getCookies, setCookies } from '../Scripts/Cookies';
