@@ -1,11 +1,18 @@
 export class System {
-  static SystemRunning: boolean;
-  static boot: {
+  public SystemRunning: boolean;
+  declare boot: {
     title: string;
     logo: string;
   };
-  constructor() {}
+  constructor() {
+    this.SystemRunning = false;
+  }
 
-  public onStartup(): void {}
-  public onShutDown(): void {}
+  public onStartup(): void {
+    this.SystemRunning = true;
+  }
+
+  public onShutDown(): void {
+    this.SystemRunning = false;
+  }
 }

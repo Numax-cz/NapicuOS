@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NapicuOS } from 'src/app/Array/Drives';
-import { systemdata } from 'src/app/interface/System';
+import { System } from 'src/app/Sys/System';
+import { NapicuOS } from 'src/app/Sys/Systems/NapicuOS/system.napicuos';
+
 
 @Component({
   selector: 'app-loads',
@@ -8,12 +9,12 @@ import { systemdata } from 'src/app/interface/System';
   styleUrls: ['./loads.component.scss']
 })
 export class LoadsComponent implements OnInit {
-  public static Systems: systemdata[] = [NapicuOS];
+  public static Systems: System[] = [new NapicuOS] //TODO
   constructor() { }
 
   ngOnInit(): void {
     console.log(LoadsComponent.Systems);
-    
+    LoadsComponent.Systems[0]
   }
   get Img(): string  {
     var logo = LoadsComponent.Systems[0].boot.logo; // TODO Remove zero index

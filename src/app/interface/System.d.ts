@@ -1,6 +1,6 @@
-export interface systemdata {
-  boot: {
-    title: string;
-    logo: string;
-  };
-}
+// export interface systemdata {
+//   boot: {
+//     title: string;
+//     logo: string;
+//   };
+// }
