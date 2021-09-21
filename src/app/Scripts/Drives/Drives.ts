@@ -1,5 +1,4 @@
 import { drive } from "src/app/Array/Drives";
-import { Drives } from "src/app/interface/Directories";
 import { SystemDrives } from "src/app/interface/SystemDrives";
 import { Options } from "src/app/interface/ToolSettings";
 
