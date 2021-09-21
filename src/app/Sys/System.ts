@@ -1,8 +1,17 @@
 export class System {
-  constructor() {}
+  public SystemRunning: boolean;
+  constructor() {
+    this.SystemRunning = false;
+  }
 
-  public onStartup(): void {}
-  public onShutDown(): void {}
+  public onStartup(): void {
+    this.SystemRunning = true;
+  }
+  public onShutDown(): void {
+    this.SystemRunning = false;
+  }
 }
 
 class NapicuOS extends System {}
+
+let Napicu = new NapicuOS();
