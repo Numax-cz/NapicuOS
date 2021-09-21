@@ -7,7 +7,7 @@ export function getLanguage(): any {
   var pack;
   //! Fix
   var cookiesArray: BiosOptionsST = JSON.parse(getCookies(cookiesForBisoSettingsAr));
-  var selected = cookiesArray.Main.settings.lang.selected || 0;
+  var selected = (cookiesArray && cookiesArray.Main.settings.lang.selected) || 0;
 
   switch (LangMenu[selected].title) {
     case 'Korea':
