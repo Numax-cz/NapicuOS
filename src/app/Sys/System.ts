@@ -8,11 +8,14 @@ export class System {
     this.SystemRunning = false;
   }
 
-  public onStartup(): void {
+  public Start(): void {
     this.SystemRunning = true;
   }
-
-  public onShutDown(): void {
+  public shutDown(): void {
     this.SystemRunning = false;
   }
+
+  private onStartup(): void {}
+
+  private onShutDown(): void {}
 }
