@@ -40,10 +40,12 @@ export class BootLoader {
     var system = drive[this.selectedBootPriority].data.system;
     if (system) {
       LoadsComponent.Systems = system;
-      
+      if (system.length && system.length >= 1) {
+        Loading('/grub', 500, 1050); //TODO Time 
+      }
       setTimeout(() => {
         BlackscreenComponent.cursor?.moveDown(() => {
-          Loading('/booting', 500, 1050);
+          Loading('/booting', 500, 1050); //TODO Time
         });
       }, 1230);
     } else {

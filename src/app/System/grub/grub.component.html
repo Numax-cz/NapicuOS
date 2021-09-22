@@ -3,11 +3,8 @@
     <div class="TopText"></div>
     <div class="SelectedMenu">
       <div>
-        <div><!--TODO ngFor -->
-            
-        
-        
-        
+        <div *ngFor="let i of Systems">
+          <p>{{ SystemName(i) }}</p>
         </div>
       </div>
     </div>
