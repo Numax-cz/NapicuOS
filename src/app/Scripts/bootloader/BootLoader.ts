@@ -40,6 +40,7 @@ export class BootLoader {
     var system = drive[this.selectedBootPriority].data.system;
     if (system) {
       LoadsComponent.Systems = system;
+      
       setTimeout(() => {
         BlackscreenComponent.cursor?.moveDown(() => {
           Loading('/booting', 500, 1050);
