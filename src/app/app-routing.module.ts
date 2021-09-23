@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'blackloading', component: BlackloadingComponent },
   { path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent },
   { path: 'booting', canActivate: [SystemGuard], component: LoadsComponent },
-  {path: 'grub', component: GrubComponent}
+  { path: 'grub', component: GrubComponent },
 ];
 
 @NgModule({

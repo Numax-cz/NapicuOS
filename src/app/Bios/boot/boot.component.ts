@@ -17,9 +17,11 @@ import { setBiosSettings } from 'src/app/Scripts/setBiosSettings';
 })
 export class BootComponent implements OnInit, OnDestroy {
   public static EnterBios: boolean;
-
+  public static NavigateRouter: Router;
   protected BiosBootAudio: HTMLAudioElement = new Audio('/assets/sound/Boot.wav');
-  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {}
+  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
+    BootComponent.NavigateRouter = this.router;
+  }
 
   ngOnInit(): void {
     setBiosSettings();
