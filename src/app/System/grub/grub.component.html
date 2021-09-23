@@ -7,8 +7,8 @@
     </div>
     <div class="SelectedMenu">
       <div>
-        <div *ngFor="let i of Systems">
-          <p>{{ SystemName(i) }}</p>
+        <div *ngFor="let i of Systems; let index = index">
+          <p [ngClass]="{selected: index == selected}">{{ SystemName(i) }}</p>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as key from 'src/app/Config/KeyMaps';
+import { Loading } from 'src/app/Scripts/LoadingAnimations';
 import { System } from 'src/app/Sys/System';
 import { LoadsComponent } from '../loads/loads.component';
 
@@ -11,9 +12,11 @@ import { LoadsComponent } from '../loads/loads.component';
 export class GrubComponent implements OnInit, OnDestroy {
   constructor() {}
 
-  protected selected: number = 0;
+  public selected: number = 0;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setEvents();
+  }
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
@@ -25,11 +28,28 @@ export class GrubComponent implements OnInit, OnDestroy {
   }
 
   public Move = (e: KeyboardEvent): void => {
-    //TODO check array length
     if (e.keyCode == key.ArrowUp) {
+      if (this.selected > 0) {
+        this.selected -= 1;
+      }
     } else if (e.keyCode == key.ArrowDown) {
+      if (this.selected < LoadsComponent.Systems.length - 1) {
+        this.selected += 1;
+      }
+    } else if (e.keyCode == key.Enter) {
+      this.Enter();
     }
   };
+
+  public Enter(): void {
+    if (!LoadsComponent.Systems[this.selected]) return;
+    LoadsComponent.Systems = [LoadsComponent.Systems[this.selected]];
+    this.Exit();
+  }
+
+  public Exit(): void {
+    Loading('/booting', 500, 200); //TODO Time to config
+  }
 
   public SystemName(system: System): string {
     return system.constructor.name;
