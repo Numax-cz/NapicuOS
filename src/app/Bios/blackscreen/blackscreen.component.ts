@@ -23,7 +23,7 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
-    this.clearCursor1();
+    this.clearCursor1(); //TODO Move
     BlackscreenComponent.text = [];
   }
   /**
@@ -42,6 +42,7 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
   }
 
   public Move = (e: KeyboardEvent): void => {
+    //TODO If Error
     if (e.keyCode == key.F1) {
       Reboot();
 
