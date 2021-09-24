@@ -8,7 +8,7 @@ import { NapicuOS } from 'src/app/Sys/Systems/NapicuOS/system.napicuos';
   styleUrls: ['./loads.component.scss'],
 })
 export class LoadsComponent implements OnInit {
-  public static Systems: System[] = [new NapicuOS(), new NapicuOS()]; //TODO
+  public static Systems: System[] = []; //TODO
   constructor() {}
 
   ngOnInit(): void {}

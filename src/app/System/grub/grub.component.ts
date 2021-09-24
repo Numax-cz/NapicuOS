@@ -14,7 +14,7 @@ export class GrubComponent implements OnInit, OnDestroy {
 
   public selected: number = 0;
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.setEvents();
   }
 

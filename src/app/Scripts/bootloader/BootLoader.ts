@@ -13,7 +13,7 @@ import { animationCursor, setDisplayText } from './text';
 export class BootLoader {
   protected selectedBootPriority: number;
   protected biosConfig: BiosOptionsST;
-  /**d
+  /**
    *
    * @param biosConfig - Bios Settings
    */
@@ -25,11 +25,12 @@ export class BootLoader {
    * Checks all necessary parts of the setup
    */
   public check(): void {
+    console.log(LoadsComponent.Systems);
     BlackscreenComponent.cursor = new animationCursor();
     BlackscreenComponent.cursor.blinking();
     setTimeout(() => {
       if (this.checkBootSector()) {
-        this.system();
+        BlackscreenComponent.cursor?.moveDown(() => this.system());
       }
     }, 1350);
   }
@@ -37,21 +38,21 @@ export class BootLoader {
    * Functions to continue to the system
    */
   protected system(): void {
-    var system = drive[this.selectedBootPriority].data.system;
-    if (system) {
-      LoadsComponent.Systems = system;
-      if (system.length && system.length >= 1) {
-        Loading('/grub', 500, 1050); //TODO Time 
-      }
-      setTimeout(() => {
-        BlackscreenComponent.cursor?.moveDown(() => {
+    setTimeout(() => {
+      var system = drive[this.selectedBootPriority].data.system;
+      if (system) {
+        LoadsComponent.Systems = system;
+        if (system.length && (system.length - 1) >= 1) {
+          Loading('/grub', 500, 1050); //TODO Time
+        } else {
           Loading('/booting', 500, 1050); //TODO Time
-        });
-      }, 1230);
-    } else {
-      //TODO Error system boot
-    }
+        }
+      } else {
+        //TODO Error system boot
+      }
+    }, 1250); //TODO Config
   }
+
   /**
    * Checks the disk to see if there is something to boot from
    */

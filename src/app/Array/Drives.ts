@@ -1,4 +1,4 @@
-;import { SystemDrives } from '../interface/SystemDrives';
+import { SystemDrives } from '../interface/SystemDrives';
 import { NapicuOS } from '../Sys/Systems/NapicuOS/system.napicuos';
 //TODO
 //? Samsung - Main System
@@ -23,7 +23,7 @@ export const drive: SystemDrives[] = [
   {
     title: 'Seagate ST-225 0.021 GB',
     data: {
-      system: [new NapicuOS],
+      system: [new NapicuOS()],
     },
   },
   {
