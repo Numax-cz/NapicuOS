@@ -20,9 +20,10 @@ import { BlackloadingComponent } from './Bios/blackloading/blackloading.componen
 import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
 import { LoadsComponent } from './System/loads/loads.component';
 import { GrubComponent } from './System/grub/grub.component';
+import { SystemComponent } from './System/system/system.component';
 
 @NgModule({
-  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent, BlackscreenComponent, LoadsComponent, GrubComponent],
+  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent, BlackscreenComponent, LoadsComponent, GrubComponent, SystemComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
