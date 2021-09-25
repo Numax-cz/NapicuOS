@@ -23,7 +23,7 @@ export const drive: SystemDrives[] = [
   {
     title: 'Seagate ST-225 0.021 GB',
     data: {
-      system: [new NapicuOS(), new NapicuOS],
+      system: [new NapicuOS()],
     },
   },
   {
