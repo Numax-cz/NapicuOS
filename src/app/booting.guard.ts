@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoadsComponent } from './System/loads/loads.component';
+import { SystemComponent } from './System/system/system.component';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,8 @@ export class BootingGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (LoadsComponent.Systems) {
-      if (!LoadsComponent.Systems.boot.logo) {
+    if (SystemComponent.System) {
+      if (!SystemComponent.System.boot.logo) {
         console.error('The system logo is not set');
         return false;
       }

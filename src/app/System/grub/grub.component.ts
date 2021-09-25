@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { drive } from 'src/app/Array/Drives';
 import * as key from 'src/app/Config/KeyMaps';
 import { Boot } from 'src/app/Scripts/exit/Boot';
-import { Loading } from 'src/app/Scripts/LoadingAnimations';
 import { System } from 'src/app/Sys/System';
-import { LoadsComponent } from '../loads/loads.component';
+import { SystemComponent } from '../system/system.component';
 
 @Component({
   selector: 'app-grub',
@@ -56,7 +54,7 @@ export class GrubComponent implements OnInit, OnDestroy {
    * The function that is invoked when the selection is complete
    */
   public Enter(): void {
-    LoadsComponent.Systems = GrubComponent.Systems[this.selected];
+    SystemComponent.System = GrubComponent.Systems[this.selected];
     Boot();
   }
 

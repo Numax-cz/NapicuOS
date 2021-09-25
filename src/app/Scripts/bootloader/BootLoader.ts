@@ -4,6 +4,7 @@ import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.compo
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { LoadsComponent } from 'src/app/System/loads/loads.component';
+import { SystemComponent } from 'src/app/System/system/system.component';
 import { copy } from '../DeepClone';
 import { Loading } from '../LoadingAnimations';
 import { animationCursor, setDisplayText } from './text';
@@ -41,7 +42,7 @@ export class BootLoader {
       }
     }, 1350);
   }
-  
+
   /**
    * Functions to continue to the system
    */
@@ -49,11 +50,11 @@ export class BootLoader {
     setTimeout(() => {
       var system = drive[this.selectedBootPriority].data.system;
       if (system) {
-        if (system.length && system.length - 1 >= 1 && !LoadsComponent.Systems) {
+        if (system.length && system.length - 1 >= 1 && !SystemComponent.System) {
           GrubComponent.Systems = system;
           Loading('/grub', 500, 1050); //TODO TimeSame
         } else {
-          LoadsComponent.Systems = system[0];
+          SystemComponent.System = system[0];
           Loading('/booting', 500, 1050); //TODO TimeSame
         }
       } else {

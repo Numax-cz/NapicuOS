@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { System } from 'src/app/Sys/System';
 import { NapicuOS } from 'src/app/Sys/Systems/NapicuOS/system.napicuos';
+import { SystemComponent } from '../system/system.component';
 
 @Component({
   selector: 'app-loads',
@@ -8,17 +9,12 @@ import { NapicuOS } from 'src/app/Sys/Systems/NapicuOS/system.napicuos';
   styleUrls: ['./loads.component.scss'],
 })
 export class LoadsComponent implements OnInit {
-  public static Systems: System; //TODO
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
-  
-
+  ngOnInit(): void {}
 
   get Img(): string {
-    var logo = LoadsComponent.Systems.boot.logo; // TODO Remove zero index
+    var logo = SystemComponent.System.boot.logo; // TODO Remove zero index
     if (logo) {
       return logo;
     }

@@ -18,6 +18,7 @@ import { BlackscreenGuard } from './blackscreen.guard';
 import { LoadsComponent } from './System/loads/loads.component';
 import { GrubComponent } from './System/grub/grub.component';
 import { BootingGuard } from './booting.guard';
+import { SystemComponent } from './System/system/system.component';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -38,8 +39,9 @@ const routes: Routes = [
   //todo: ?BiosGuard
   { path: 'blackloading', component: BlackloadingComponent },
   { path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent },
-  { path: 'booting', canActivate: [BootingGuard] ,component: LoadsComponent },
+  { path: 'booting', canActivate: [BootingGuard], component: LoadsComponent },
   { path: 'grub', component: GrubComponent }, //TODO Guard
+  { path: 'system', canActivate: [BootingGuard], component: SystemComponent },
 ];
 
 @NgModule({
