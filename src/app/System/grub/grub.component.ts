@@ -12,11 +12,13 @@ import { LoadsComponent } from '../loads/loads.component';
   styleUrls: ['./grub.component.scss'],
 })
 export class GrubComponent implements OnInit, OnDestroy {
-  constructor() {}
+  constructor() { }
+  
   /**
    * Number indicates the selected options
    */
   public selected: number = 0;
+
   /**
    * Loaded all systems from the drive
    */
@@ -28,6 +30,7 @@ export class GrubComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
+    this.selected = 0;
   }
 
   protected setEvents(): void {
@@ -56,6 +59,7 @@ export class GrubComponent implements OnInit, OnDestroy {
     LoadsComponent.Systems = GrubComponent.Systems[this.selected];
     Boot();
   }
+
   /**
    *Returns all system names from the drive
    * @param {System} system - Array of all systems
