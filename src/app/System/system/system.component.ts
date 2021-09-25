@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { System } from 'src/app/Sys/System';
+import { GrubComponent } from '../grub/grub.component';
 
 @Component({
   selector: 'app-system',
   templateUrl: './system.component.html',
-  styleUrls: ['./system.component.scss'],
+  styleUrls: ['./system.component.scss']
 })
-export class  SystemComponent implements OnInit {
-  public static System: System; //TODO
-  constructor() {}
+export class SystemComponent implements OnInit {
 
-  ngOnInit(): void {}
+  constructor() { }
+
+  ngOnInit(): void {
+    
+  }
+
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Loading } from 'src/app/Scripts/LoadingAnimations';
 import { System } from 'src/app/Sys/System';
 import { NapicuOS } from 'src/app/Sys/Systems/NapicuOS/system.napicuos';
-import { SystemComponent } from '../system/system.component';
+import { GrubComponent } from 'src/app/System/grub/grub.component';
+
 
 @Component({
   selector: 'app-loads',
@@ -14,7 +16,7 @@ export class LoadsComponent implements OnInit {
   ngOnInit(): void {}
 
   get Img(): string {
-    var logo = SystemComponent.System.boot.logo; // TODO Remove zero index
+    var logo = GrubComponent.ActiveSystem.boot.logo; // TODO Remove zero index
     if (logo) {
       return logo;
     }

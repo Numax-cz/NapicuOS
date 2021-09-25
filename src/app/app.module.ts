@@ -18,13 +18,34 @@ import { environment } from '../environments/environment';
 import { FlashComponent } from './Bios/flash/flash.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
 import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
-import { LoadsComponent } from './System/loads/loads.component';
+import { LoadsComponent } from './Sys/Systems/NapicuOS/loads/loads.component';
 import { GrubComponent } from './System/grub/grub.component';
-import { SystemComponent } from './System/system/system.component';
+
 import { NapicuOSComponent } from './Sys/Systems/NapicuOS/napicu-os/napicu-os.component';
+import { SystemComponent } from './System/system/system.component';
 
 @NgModule({
-  declarations: [AppComponent, BootComponent, BiosComponent, BiosMainComponent, TweakerComponent, AdvancedComponent, PowerComponent, BootbComponent, ToolsComponent, ExitComponent, OptionPanelComponent, SettingsTemplateComponent, FlashComponent, BlackloadingComponent, BlackscreenComponent, LoadsComponent, GrubComponent, SystemComponent, NapicuOSComponent],
+  declarations: [
+    AppComponent,
+    BootComponent,
+    BiosComponent,
+    BiosMainComponent,
+    TweakerComponent,
+    AdvancedComponent,
+    PowerComponent,
+    BootbComponent,
+    ToolsComponent,
+    ExitComponent,
+    OptionPanelComponent,
+    SettingsTemplateComponent,
+    FlashComponent,
+    BlackloadingComponent,
+    BlackscreenComponent,
+    LoadsComponent,
+    GrubComponent,
+    NapicuOSComponent,
+    SystemComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

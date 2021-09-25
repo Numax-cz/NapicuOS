@@ -15,9 +15,9 @@ import { TweakerComponent } from './Bios/tweaker/tweaker.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
 import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
 import { BlackscreenGuard } from './blackscreen.guard';
-import { LoadsComponent } from './System/loads/loads.component';
+
 import { GrubComponent } from './System/grub/grub.component';
-import { BootingGuard } from './booting.guard';
+
 import { SystemComponent } from './System/system/system.component';
 
 const routes: Routes = [
@@ -39,9 +39,12 @@ const routes: Routes = [
   //todo: ?BiosGuard
   { path: 'blackloading', component: BlackloadingComponent },
   { path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent },
-  { path: 'booting', canActivate: [BootingGuard], component: LoadsComponent },
   { path: 'grub', component: GrubComponent }, //TODO Guard
-  { path: 'system', canActivate: [BootingGuard], component: SystemComponent },
+
+  {
+    path: 'system',
+    component: SystemComponent,
+  },
 ];
 
 @NgModule({

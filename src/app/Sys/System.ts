@@ -1,5 +1,8 @@
+import { Type } from "@angular/core";
+
 export class System {
   public SystemRunning: boolean;
+  public declare component: Type<any>;
   public static Title: string;
   declare boot: {
     title: string;

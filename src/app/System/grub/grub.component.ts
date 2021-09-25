@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as key from 'src/app/Config/KeyMaps';
 import { Boot } from 'src/app/Scripts/exit/Boot';
 import { System } from 'src/app/Sys/System';
-import { SystemComponent } from '../system/system.component';
 
 @Component({
   selector: 'app-grub',
@@ -10,8 +9,8 @@ import { SystemComponent } from '../system/system.component';
   styleUrls: ['./grub.component.scss'],
 })
 export class GrubComponent implements OnInit, OnDestroy {
-  constructor() { }
-  
+  constructor() {}
+
   /**
    * Number indicates the selected options
    */
@@ -21,6 +20,8 @@ export class GrubComponent implements OnInit, OnDestroy {
    * Loaded all systems from the drive
    */
   public static Systems: System[];
+
+  public static ActiveSystem: System;
 
   ngOnInit(): void {
     this.setEvents();
@@ -54,7 +55,7 @@ export class GrubComponent implements OnInit, OnDestroy {
    * The function that is invoked when the selection is complete
    */
   public Enter(): void {
-    SystemComponent.System = GrubComponent.Systems[this.selected];
+    GrubComponent.ActiveSystem = GrubComponent.Systems[this.selected];
     Boot();
   }
 
