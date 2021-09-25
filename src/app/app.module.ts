@@ -18,11 +18,9 @@ import { environment } from '../environments/environment';
 import { FlashComponent } from './Bios/flash/flash.component';
 import { BlackloadingComponent } from './Bios/blackloading/blackloading.component';
 import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
-import { LoadsComponent } from './Sys/Systems/NapicuOS/loads/loads.component';
 import { GrubComponent } from './System/grub/grub.component';
-
-import { NapicuOSComponent } from './Sys/Systems/NapicuOS/napicu-os/napicu-os.component';
 import { SystemComponent } from './System/system/system.component';
+import { NapicuOSComponent } from './Sys/Systems/NapicuOS/napicu-os/napicu-os.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +39,9 @@ import { SystemComponent } from './System/system/system.component';
     FlashComponent,
     BlackloadingComponent,
     BlackscreenComponent,
-    LoadsComponent,
     GrubComponent,
-    NapicuOSComponent,
     SystemComponent,
+    NapicuOSComponent,
   ],
   imports: [
     BrowserModule,
