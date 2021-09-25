@@ -6,7 +6,7 @@ import { System } from 'src/app/Sys/System';
   templateUrl: './system.component.html',
   styleUrls: ['./system.component.scss'],
 })
-export class SystemComponent implements OnInit {
+export class  SystemComponent implements OnInit {
   public static System: System; //TODO
   constructor() {}
 
