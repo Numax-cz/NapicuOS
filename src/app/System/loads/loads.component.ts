@@ -8,12 +8,17 @@ import { NapicuOS } from 'src/app/Sys/Systems/NapicuOS/system.napicuos';
   styleUrls: ['./loads.component.scss'],
 })
 export class LoadsComponent implements OnInit {
-  public static Systems: System[] = []; //TODO
+  public static Systems: System; //TODO
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
+  
+
+
   get Img(): string {
-    var logo = LoadsComponent.Systems[0].boot.logo; // TODO Remove zero index
+    var logo = LoadsComponent.Systems.boot.logo; // TODO Remove zero index
     if (logo) {
       return logo;
     }

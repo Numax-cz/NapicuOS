@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { drive } from 'src/app/Array/Drives';
 import * as key from 'src/app/Config/KeyMaps';
+import { Boot } from 'src/app/Scripts/exit/Boot';
 import { Loading } from 'src/app/Scripts/LoadingAnimations';
 import { System } from 'src/app/Sys/System';
 import { LoadsComponent } from '../loads/loads.component';
@@ -11,10 +13,16 @@ import { LoadsComponent } from '../loads/loads.component';
 })
 export class GrubComponent implements OnInit, OnDestroy {
   constructor() {}
-
+  /**
+   * Number indicates the selected options
+   */
   public selected: number = 0;
+  /**
+   * Loaded all systems from the drive
+   */
+  public static Systems: System[];
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.setEvents();
   }
 
@@ -33,7 +41,7 @@ export class GrubComponent implements OnInit, OnDestroy {
         this.selected -= 1;
       }
     } else if (e.keyCode == key.ArrowDown) {
-      if (this.selected < LoadsComponent.Systems.length - 1) {
+      if (this.selected < GrubComponent.Systems.length - 1) {
         this.selected += 1;
       }
     } else if (e.keyCode == key.Enter) {
@@ -41,20 +49,26 @@ export class GrubComponent implements OnInit, OnDestroy {
     }
   };
 
+  /**
+   * The function that is invoked when the selection is complete
+   */
   public Enter(): void {
-    if (!LoadsComponent.Systems[this.selected]) return;
-    LoadsComponent.Systems = [LoadsComponent.Systems[this.selected]];
-    this.Exit();
+    LoadsComponent.Systems = GrubComponent.Systems[this.selected];
+    Boot();
   }
-
-  public Exit(): void {
-    Loading('/booting', 500, 200); //TODO Time to config
-  }
-
+  /**
+   *Returns all system names from the drive
+   * @param {System} system - Array of all systems
+   * @returns {string} System name
+   */
   public SystemName(system: System): string {
     return system.constructor.name;
   }
+
+  /**
+   * Returns all systems from the unit
+   */
   get Systems(): System[] {
-    return LoadsComponent.Systems;
+    return GrubComponent.Systems;
   }
 }

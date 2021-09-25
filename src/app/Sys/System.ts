@@ -1,5 +1,6 @@
 export class System {
   public SystemRunning: boolean;
+  public static Title: string;
   declare boot: {
     title: string;
     logo: string;
@@ -15,7 +16,7 @@ export class System {
     this.SystemRunning = false;
   }
 
-  private onStartup(): void {}
+  protected onStartup(): void {}
 
-  private onShutDown(): void {}
+  protected onShutDown(): void {}
 }

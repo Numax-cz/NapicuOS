@@ -2,6 +2,7 @@ import { drive } from 'src/app/Array/Drives';
 import { BiosOptionsST, BiosSettings } from 'src/app/Array/ToolSettings';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
+import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { LoadsComponent } from 'src/app/System/loads/loads.component';
 import { copy } from '../DeepClone';
 import { Loading } from '../LoadingAnimations';
@@ -11,21 +12,27 @@ import { animationCursor, setDisplayText } from './text';
  * Main part of the system bootloader
  */
 export class BootLoader {
+  /**
+   * Selected disk priority
+   */
   protected selectedBootPriority: number;
+  /**
+   * Full bios config
+   */
   protected biosConfig: BiosOptionsST;
   /**
    *
-   * @param biosConfig - Bios Settings
+   * @param biosConfig - Bios config
    */
   constructor(biosConfig: BiosOptionsST) {
     this.biosConfig = biosConfig;
     this.selectedBootPriority = this.biosConfig.Boot.settings.boot_priority.selected;
   }
+
   /**
    * Checks all necessary parts of the setup
    */
   public check(): void {
-    console.log(LoadsComponent.Systems);
     BlackscreenComponent.cursor = new animationCursor();
     BlackscreenComponent.cursor.blinking();
     setTimeout(() => {
@@ -34,6 +41,7 @@ export class BootLoader {
       }
     }, 1350);
   }
+  
   /**
    * Functions to continue to the system
    */
@@ -41,11 +49,12 @@ export class BootLoader {
     setTimeout(() => {
       var system = drive[this.selectedBootPriority].data.system;
       if (system) {
-        LoadsComponent.Systems = system;
-        if (system.length && (system.length - 1) >= 1) {
-          Loading('/grub', 500, 1050); //TODO Time
+        if (system.length && system.length - 1 >= 1 && !LoadsComponent.Systems) {
+          GrubComponent.Systems = system;
+          Loading('/grub', 500, 1050); //TODO TimeSame
         } else {
-          Loading('/booting', 500, 1050); //TODO Time
+          LoadsComponent.Systems = system[0];
+          Loading('/booting', 500, 1050); //TODO TimeSame
         }
       } else {
         //TODO Error system boot
@@ -69,3 +78,9 @@ export class BootLoader {
     }
   }
 }
+
+
+
+
+
+
