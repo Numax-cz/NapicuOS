@@ -26,3 +26,22 @@
    ```sh
    npm run build
    ```
+
+## Vytvoření nového systému
+
+Upozornění, tento script je jednoduchý,
+jakákoli změny názvů cesty ke složkám mohou ovlivnit funkčnost scriptu.
+Pro nastavení vlastních cest prosím upravce script.js
+
+1. Spustíme script
+   ```sh
+   node script.js <Název systému>
+   ```
+2. Přidáme url cestu k systému ve složce app-routing.module.ts
+   ```ts
+    path: 'system',
+    component: SystemComponent,
+    children: [
+      { path: 'NAZEV SYSTEMU', component: "COMPONENT"}
+    ]
+   ```
