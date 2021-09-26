@@ -37,11 +37,3 @@ Pro nastavení vlastních cest prosím upravce script.js
    ```sh
    node script.js <Název systému>
    ```
-2. Přidáme url cestu k systému ve složce app-routing.module.ts
-   ```ts
-    path: 'system',
-    component: SystemComponent,
-    children: [
-      { path: 'NAZEV SYSTEMU', component: "COMPONENT"}
-    ]
-   ```
