@@ -1,5 +1,16 @@
-const fs = require('fs');
+/**
+ * @author Numax-cz
+ * @version 1.2.6
+ * This script will create the basic structure of the new system.
+ *
+ * Warning, this script is simple,
+ * any change to the folder path may affect the functionality of the script.
+ *
+ * When you run the script it will generate the folders and the required files,
+ * then you need to add the url path to the system in app-routing.module.ts.
+ */
 
+const fs = require('fs');
 const { exec } = require('child_process');
 
 var SystemTitle;
@@ -14,37 +25,48 @@ process.argv.forEach(function (val, index, array) {
   }
 });
 
+/**
+ * Default path to systems
+ */
 const defaultDir = './src/app/Sys/Systems';
 
-const fileClassconstructor = `
-  import { System } from '../../System';
-  export class ${SystemTitle} extends System { }
-`;
+const fileClassconstructor = `import { System } from '../../System';
+
+export class ${SystemTitle} extends System { }`;
+
+const fileConfigBootPath = `export const ${SystemTitle}SystemPathName = '${SystemTitle.toLowerCase()}'`;
 
 Run();
 
 function Run() {
   if (!SystemTitle) return;
   var path = `${defaultDir}/${SystemTitle}`;
+  var pathConfig = `${defaultDir}/${SystemTitle}/config`;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path, {
       recursive: true,
     });
 
-    creatFile(path);
+    creatFile(`${path}`, `system.${SystemTitle}.ts`, fileClassconstructor);
+
+    if (!fs.existsSync(pathConfig)) {
+      fs.mkdirSync(pathConfig, {
+        recursive: true,
+      });
+      creatFile(`${pathConfig}`, `boot.ts`, fileConfigBootPath);
+    }
 
     creatAngularComponent();
   } else {
-    console.error('The file exists'); //TODO Error
+    console.error('The file exists');
     return;
   }
 }
 
-function creatFile(path) {
-  var fileName = `${path}/system.${SystemTitle}.ts`;
-
-  fs.writeFile(fileName, fileClassconstructor, function (err) {
+function creatFile(path, file, text) {
+  var fileName = `${path}/${file}`;
+  fs.writeFile(fileName, text, function (err) {
     if (!err) return;
     console.log(err);
   });
@@ -52,12 +74,21 @@ function creatFile(path) {
 
 function creatAngularComponent() {
   var path = `Sys/Systems/${SystemTitle}/${SystemTitle.toLowerCase()}`;
-
-  var yourscript = exec(`ng g c ${path}`, (error, stdout, stderr) => {
+  exec(`ng g c ${path}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     if (error !== null) {
       console.error(error);
+    } else {
+      EndMessage();
     }
   });
+}
+
+function EndMessage() {
+  const text = `
+          A new system has been created!
+    **Need to add router in app-routing.module.ts** 
+  `;
+  console.error(text);
 }
