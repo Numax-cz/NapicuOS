@@ -3,6 +3,8 @@ import { BiosOptionsST } from 'src/app/Array/ToolSettings';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
+import { SystemComponent } from 'src/app/System/system/system.component';
+import { Navigate } from '../BiosRouter';
 import { copy } from '../DeepClone';
 import { Loading } from '../LoadingAnimations';
 import { animationCursor, setDisplayText } from './text';
@@ -53,7 +55,8 @@ export class BootLoader {
           Loading('/grub', 500, 1050); //TODO TimeSame
         } else {
           GrubComponent.ActiveSystem = system[0];
-          // GrubComponent.ActiveSystem.Start();
+          GrubComponent.ActiveSystem.Start();
+          Navigate('/system');
         }
       } else {
         //TODO Error system boot

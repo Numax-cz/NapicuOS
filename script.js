@@ -6,8 +6,6 @@
  * Warning, this script is simple,
  * any change to the folder path may affect the functionality of the script.
  *
- * When you run the script it will generate the folders and the required files,
- * then you need to add the url path to the system in app-routing.module.ts.
  */
 
 const fs = require('fs');
@@ -88,7 +86,6 @@ function creatAngularComponent() {
 function EndMessage() {
   const text = `
           A new system has been created!
-    **Need to add router in app-routing.module.ts** 
   `;
   console.error(text);
 }

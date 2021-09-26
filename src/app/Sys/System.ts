@@ -1,4 +1,5 @@
 import { Type } from "@angular/core";
+import { SystemComponent } from "../System/system/system.component";
 
 export class System {
   public SystemRunning: boolean;
@@ -14,6 +15,7 @@ export class System {
 
   public Start(): void {
     this.SystemRunning = true;
+    SystemComponent.SysComponent = this.component;
   }
   public shutDown(): void {
     this.SystemRunning = false;

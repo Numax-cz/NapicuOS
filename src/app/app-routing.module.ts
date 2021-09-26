@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdvancedComponent } from './Bios/advanced/advanced.component';
 import { BiosMainComponent } from './Bios/bios-main/bios-main.component';
@@ -19,6 +19,7 @@ import { BlackscreenGuard } from './blackscreen.guard';
 import { GrubComponent } from './System/grub/grub.component';
 
 import { SystemComponent } from './System/system/system.component';
+import { System } from './Sys/System';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
   {
     path: 'system',
     component: SystemComponent,
+
   },
 ];
 
