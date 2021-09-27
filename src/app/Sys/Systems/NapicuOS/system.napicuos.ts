@@ -9,7 +9,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override boot = {
     title: 'NapicuOS',
-    logo: 'assets/icons/icon-384x384.png',
+    logo: 'assets/systems/NapicuOS/logo.webp',
   };
 
   public override onStart(): void {
