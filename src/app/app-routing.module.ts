@@ -21,6 +21,7 @@ import { GrubComponent } from './System/grub/grub.component';
 import { SystemComponent } from './System/system/system.component';
 import { System } from './Sys/System';
 import { SystemGuard } from './system.guard';
+import { GrubGuard } from './grub.guard';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -41,7 +42,7 @@ const routes: Routes = [
   //todo: ?BiosGuard
   { path: 'blackloading', component: BlackloadingComponent },
   { path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent },
-  { path: 'grub', component: GrubComponent }, //TODO Guard
+  { path: 'grub', canActivate: [GrubGuard], component: GrubComponent },
 
   {
     path: 'system',
