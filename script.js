@@ -6,13 +6,32 @@
  * Warning, this script is simple,
  * any change to the folder path may affect the functionality of the script.
  *
+ * @todo Clean up script
+ * @todo File with configuration path
  */
 
 const fs = require('fs');
 const { exec } = require('child_process');
 
+//? Names of folder
+const configName = 'config';
+const scriptsName = 'scripts';
+const componentsName = 'components';
+
+//? Prefix for default script
+const prefixFile = 'system';
+
+//? Default path to systems
+const appDir = 'Sys/Systems';
+const defaultDir = `./src/app/${appDir}`;
+
+//? Texts in files
+const fileClassconstructor = `import { System } from '../../System';
+
+export class ${SystemTitle} extends System { }`;
+
 var SystemTitle;
-process.argv.forEach(function (val, index, array) {
+process.argv.forEach(function (val, index) {
   switch (index) {
     case 2:
       SystemTitle = val;
@@ -23,39 +42,39 @@ process.argv.forEach(function (val, index, array) {
   }
 });
 
-/**
- * Default path to systems
- */
-const defaultDir = './src/app/Sys/Systems';
-
-const fileClassconstructor = `import { System } from '../../System';
-
-export class ${SystemTitle} extends System { }`;
-
-const fileConfigBootPath = `export const ${SystemTitle}SystemPathName = '${SystemTitle.toLowerCase()}'`;
-
-Run();
-
 function Run() {
   if (!SystemTitle) return;
   var path = `${defaultDir}/${SystemTitle}`;
-  var pathConfig = `${defaultDir}/${SystemTitle}/config`;
+  var pathConfig = `${defaultDir}/${SystemTitle}/${configName}`;
+  var pathComponents = `${defaultDir}/${SystemTitle}/${componentsName}`;
+  var pathScripts = `${defaultDir}/${SystemTitle}/${scriptsName}`;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path, {
       recursive: true,
     });
 
-    creatFile(`${path}`, `system.${SystemTitle}.ts`, fileClassconstructor);
+    creatFile(`${path}`, `${prefixFile}.${SystemTitle}.ts`, fileClassconstructor);
 
     if (!fs.existsSync(pathConfig)) {
       fs.mkdirSync(pathConfig, {
         recursive: true,
       });
-      creatFile(`${pathConfig}`, `boot.ts`, fileConfigBootPath);
     }
 
-    creatAngularComponent();
+    if (!fs.existsSync(pathScripts)) {
+      fs.mkdirSync(pathScripts, {
+        recursive: true,
+      });
+    }
+
+    if (!fs.existsSync(pathComponents)) {
+      fs.mkdirSync(pathComponents, {
+        recursive: true,
+      });
+
+      creatAngularComponent();
+    }
   } else {
     console.error('The file exists');
     return;
@@ -71,7 +90,8 @@ function creatFile(path, file, text) {
 }
 
 function creatAngularComponent() {
-  var path = `Sys/Systems/${SystemTitle}/${SystemTitle.toLowerCase()}`;
+  var path = `${appDir}/${SystemTitle}/${componentsName}/${SystemTitle.toLowerCase()}`;
+  console.log(path);
   exec(`ng g c ${path}`, (error, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
@@ -85,7 +105,9 @@ function creatAngularComponent() {
 
 function EndMessage() {
   const text = `
-          A new system has been created!
+      * * * A new system has been created! * * * 
   `;
   console.error(text);
 }
+
+Run();
