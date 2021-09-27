@@ -5,9 +5,6 @@
  *
  * Warning, this script is simple,
  * any change to the folder path may affect the functionality of the script.
- *
- * @todo Clean up script
- * @todo File with configuration path
  */
 
 const fs = require('fs');
