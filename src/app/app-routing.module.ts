@@ -20,6 +20,7 @@ import { GrubComponent } from './System/grub/grub.component';
 
 import { SystemComponent } from './System/system/system.component';
 import { System } from './Sys/System';
+import { SystemGuard } from './system.guard';
 
 const routes: Routes = [
   { path: '', component: BootComponent },
@@ -45,7 +46,7 @@ const routes: Routes = [
   {
     path: 'system',
     component: SystemComponent,
-
+    canActivate: [SystemGuard],
   },
 ];
 
