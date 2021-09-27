@@ -4,6 +4,7 @@
   "version": "1.5.2",
   "scripts": {
     "start": "ng serve",
+    "newsystem": "node ./scripts/newsystem.js",
     "build": "ng build --prod=true",
     "buildDev": "ng build --prod=false"
   },
