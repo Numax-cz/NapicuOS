@@ -41,10 +41,10 @@ process.argv.forEach(function (val, index) {
 
 function Run() {
   if (!SystemTitle) return;
-  var path = `${defaultDir}/${SystemTitle}`;
-  var pathConfig = `${defaultDir}/${SystemTitle}/${configName}`;
-  var pathComponents = `${defaultDir}/${SystemTitle}/${componentsName}`;
-  var pathScripts = `${defaultDir}/${SystemTitle}/${scriptsName}`;
+  const path = `${defaultDir}/${SystemTitle}`;
+  const pathConfig = `${defaultDir}/${SystemTitle}/${configName}`;
+  const pathComponents = `${defaultDir}/${SystemTitle}/${componentsName}`;
+  const pathScripts = `${defaultDir}/${SystemTitle}/${scriptsName}`;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path, {
