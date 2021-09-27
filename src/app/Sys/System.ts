@@ -1,11 +1,14 @@
-import { Type } from "@angular/core";
-import { SystemComponent } from "../System/system/system.component";
+import { Type } from '@angular/core';
+
+import { GrubComponent } from '../System/grub/grub.component';
+import { SystemComponent } from '../System/system/system.component';
+import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 
 export class System {
-  public SystemRunning: boolean;
+  public declare SystemRunning: boolean;
   public declare component: Type<any>;
-  public static Title: string;
-  declare boot: {
+
+  public declare boot: {
     title: string;
     logo: string;
   };
@@ -13,15 +16,24 @@ export class System {
     this.SystemRunning = false;
   }
 
-  public Start(): void {
+  public readonly Start = (): void => {
     this.SystemRunning = true;
-    SystemComponent.SysComponent = this.component;
-  }
-  public shutDown(): void {
+    SystemComponent.SysComponent = GrubComponent;
+
+    this.onStart();
+  };
+
+  public readonly shutDown = (): void => {
     this.SystemRunning = false;
-  }
+    this.onShutDown();
+  };
 
-  protected onStartup(): void {}
-
-  protected onShutDown(): void {}
+  /**
+   * This function is called after the Start function
+   */
+  public onStart(): void {}
+  /**
+   * This function is called after the shutDown function
+   */
+  public onShutDown(): void {}
 }

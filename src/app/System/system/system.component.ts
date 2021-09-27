@@ -7,13 +7,13 @@ import { GrubComponent } from '../grub/grub.component';
   styleUrls: ['./system.component.scss'],
 })
 export class SystemComponent implements OnInit, OnDestroy {
-  public static SysComponent: Type<any> = GrubComponent;
+  public static SysComponent: Type<any>;
 
   ngOnInit(): void {}
   ngOnDestroy(): void {}
 
   get Component(): Type<any> {
-    //TODO If component... else return error component 
+    //TODO If component... else return error component
     return SystemComponent.SysComponent;
   }
 }
