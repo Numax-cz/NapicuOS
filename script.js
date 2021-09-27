@@ -1,5 +1,5 @@
 /**
- * @author Numax-cz
+ * @author Numax
  * @version 1.2.6
  * This script will create the basic structure of the new system.
  *

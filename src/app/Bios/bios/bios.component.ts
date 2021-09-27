@@ -21,7 +21,7 @@ import { cookiesForBisoSettingsAr } from 'src/app/Config/Cookies';
 import { setCookiesBiosinf } from 'src/app/Array/FlashInformation';
 
 /**
- * @author Numax-cz
+ * @author Numax
  * @version 1.2.0
  */
 
