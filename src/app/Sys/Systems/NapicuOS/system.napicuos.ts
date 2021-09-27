@@ -1,6 +1,8 @@
+import { SystemComponent } from 'src/app/System/system/system.component';
 import { onStartUp, onShutDown, Os } from '../../interface/system';
 import { System } from '../../System';
-import { NapicuOSComponent } from './napicu-os/napicu-os.component';
+import { LoadsComponent } from './components/loads/loads.component';
+import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -10,7 +12,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     logo: 'assets/icons/icon-384x384.png',
   };
 
-  public override onStart(): void {}
+  public override onStart(): void {
+    this.SystemBoot();
+  }
 
   public override onShutDown(): void {}
+
+  
+  public SystemBoot(): void {
+    SystemComponent.SysComponent = LoadsComponent;
+  }
 }

@@ -1,1 +1,0 @@
-export const napicuOsSystemPathName = 'napicu-os'

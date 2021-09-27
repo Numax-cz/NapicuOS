@@ -20,7 +20,7 @@ import { BlackloadingComponent } from './Bios/blackloading/blackloading.componen
 import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
 import { GrubComponent } from './System/grub/grub.component';
 import { SystemComponent } from './System/system/system.component';
-import { NapicuOSComponent } from './Sys/Systems/NapicuOS/napicu-os/napicu-os.component';
+import { NapicuOSComponent } from './Sys/Systems/NapicuOS/components/napicu-os/napicu-os.component';
 
 @NgModule({
   declarations: [

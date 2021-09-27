@@ -18,7 +18,7 @@ export class System {
 
   public readonly Start = (): void => {
     this.SystemRunning = true;
-    SystemComponent.SysComponent = GrubComponent;
+    SystemComponent.SysComponent = this.component;
 
     this.onStart();
   };
