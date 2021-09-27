@@ -31,7 +31,7 @@
 
 Upozornění, tento script je jednoduchý,
 jakákoli změny názvů cesty ke složkám mohou ovlivnit funkčnost scriptu.
-Pro nastavení vlastních cest prosím upravce script.js
+Pro nastavení vlastních cest prosím upravte script.js
 
 1. Spustíme script
    ```sh
