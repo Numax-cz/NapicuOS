@@ -7,13 +7,14 @@ import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 export class System {
   public declare SystemRunning: boolean;
   public declare component: Type<any>;
-
+  public declare boot_time: number;
   public declare boot: {
     title: string;
     logo: string;
   };
   constructor() {
     this.SystemRunning = false;
+    this.boot_time = 0;
   }
 
   public readonly Start = (): void => {

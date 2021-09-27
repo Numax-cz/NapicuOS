@@ -6,7 +6,7 @@ import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
-
+  public override boot_time = 10; //TODO Config
   public override boot = {
     title: 'NapicuOS',
     logo: 'assets/systems/NapicuOS/logo.webp',
@@ -18,8 +18,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onShutDown(): void {}
 
-  
   public SystemBoot(): void {
     SystemComponent.SysComponent = LoadsComponent;
+    setTimeout(() => {
+      SystemComponent.SysComponent = this.component
+    }, 3000); //TODO Random Number BootTime &  => Config
   }
 }
