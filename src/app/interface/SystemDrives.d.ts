@@ -4,6 +4,6 @@ export interface SystemDrives {
   title: string;
   data: {
     system?: System[]
-  }; //TODO add ?
+  };
 }
 

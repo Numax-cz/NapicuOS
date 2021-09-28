@@ -30,7 +30,6 @@ export function ProgressBar(time: number, htmlID: string, callback: () => void, 
         function Move() {
           if (width >= MaxLoad) {
             clearInterval(id);
-            //TODO Exit witch setTimeOut
             if (i == 0) return;
             i = 0;
             if (FlashComponent.ezFlashWindow) {

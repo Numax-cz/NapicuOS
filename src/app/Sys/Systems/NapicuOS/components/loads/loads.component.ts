@@ -16,7 +16,7 @@ export class LoadsComponent implements OnInit {
   ngOnInit(): void {}
 
   get Img(): string {
-    var logo = GrubComponent.ActiveSystem.boot.logo; // TODO Remove zero index
+    var logo = GrubComponent.ActiveSystem.boot.logo;
     if (logo) {
       return logo;
     }

@@ -13,7 +13,6 @@ export class SystemComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   get Component(): Type<any> {
-    //TODO If component... else return error component
     return SystemComponent.SysComponent;
   }
 }

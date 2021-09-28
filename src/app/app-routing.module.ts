@@ -39,7 +39,6 @@ const routes: Routes = [
     ],
   },
   { path: 'flash', canActivate: [BiosGuard], component: FlashComponent },
-  //todo: ?BiosGuard
   { path: 'blackloading', component: BlackloadingComponent },
   { path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent },
   { path: 'grub', canActivate: [GrubGuard], component: GrubComponent },

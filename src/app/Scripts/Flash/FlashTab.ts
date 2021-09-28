@@ -1,6 +1,6 @@
 import { FlashComponent } from "src/app/Bios/flash/flash.component";
 
-
+//TODO @Document
 export function FlashTab(): void {
   if (FlashComponent.SelectedWindow == 0) {
     if (FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir.length) {

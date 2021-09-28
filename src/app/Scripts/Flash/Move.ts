@@ -35,7 +35,6 @@ export const Move = (e: KeyboardEvent) => {
           FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
         }
       } else if (e.keyCode == key.Tab) {
-        //TODO FLASH TAB
         FlashTab();
         e.preventDefault(); //TODO Move => End
       } else if (e.keyCode == key.Escape) {

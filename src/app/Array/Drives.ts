@@ -1,16 +1,9 @@
 import { SystemDrives } from '../interface/SystemDrives';
 import { NapicuOS } from '../Sys/Systems/NapicuOS/system.napicuos';
-//TODO
+
 //? Samsung - Main System
 //? IBM - Low graphic interface operating system
 //? Segate - No operating system
-
-// export const NapicuOS: systemdata = {
-//   boot: {
-//     title: 'NapicuOS',
-//     logo: '/assets/icons/icon-192x192.png',
-//   },
-// };
 
 /**
  * Main disks

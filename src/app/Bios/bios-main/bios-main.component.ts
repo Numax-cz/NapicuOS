@@ -20,7 +20,6 @@ export class BiosMainComponent implements OnInit {
   public MainOption: ToolSettings = BiosSettings.Main;
   public MainOptionInfo: Informations[] = MainInfo;
   ngOnInit(): void {
-    //TODO Get All
     Object.values(this.MainOption.settings).forEach((e: settings, i: number) => {
       if (isTime(e)) {    
         setTimeInterval(Object.values(this.MainOption.settings), i);
