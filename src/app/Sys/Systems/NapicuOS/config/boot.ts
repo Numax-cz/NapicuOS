@@ -1,5 +1,5 @@
 /**
- * time of displaying system logo
+ * Time of displaying system logo
  */
 export const boot_time: number = 0; //TODO 9250
 /**
