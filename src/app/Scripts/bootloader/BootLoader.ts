@@ -2,6 +2,7 @@ import { drive } from 'src/app/Array/Drives';
 import { BiosOptionsST } from 'src/app/Array/ToolSettings';
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
+import { grub_time_out, grub_time_in, system_enter } from 'src/app/Config/BootLoader';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
 import { Navigate } from '../BiosRouter';
@@ -52,7 +53,7 @@ export class BootLoader {
       if (system) {
         if (system.length && system.length - 1 >= 1 && !GrubComponent.ActiveSystem) {
           GrubComponent.Systems = system;
-          Loading('/grub', 500, 1050); //TODO TimeSame
+          Loading('/grub', grub_time_out, grub_time_in);
         } else {
           GrubComponent.ActiveSystem = system[0];
           GrubComponent.ActiveSystem.Start();
@@ -61,7 +62,7 @@ export class BootLoader {
       } else {
         //TODO Error system boot
       }
-    }, 1250); //TODO Config
+    }, system_enter);
   }
 
   /**
