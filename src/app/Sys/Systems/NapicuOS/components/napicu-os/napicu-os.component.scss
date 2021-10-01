@@ -2,6 +2,14 @@
   font-family: 'Cantarell', sans-serif;
   font-weight: bold;
 }
+#TopPanelIcons {
+  width: 30px;
+  padding: 2px;
+  img {
+    padding: 2px;
+    margin: 0px 2.5px;
+  }
+}
 
 #wallpaper {
   width: 100%;
@@ -12,8 +20,17 @@
   background-size: cover;
 }
 
-.TopPanel {
-  padding: 4px;
+.TopRightButtons {
   display: flex;
+  justify-content: flex-end;
+}
+.TopPanel {
+  display: flex;
+  padding: 4px 20px;
+  align-items: center;
+
   justify-content: space-between;
+  color: #d6dce0;
+  font-size: 0.8rem;
+  background-color: rgb(12, 11, 11);
 }

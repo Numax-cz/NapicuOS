@@ -12,13 +12,11 @@ export class NapicuOSComponent implements OnInit {
   constructor() {
     this.time = this.GetTime();
   }
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-  
-  private GetTime(): string{
+  private GetTime(): string {
     let now = new Date();
-    return formatDate(now, 'MMM d h:mm a  ', 'en-US');
+    return formatDate(now, 'MMM d, h:mm a  ', 'en-US'); //TODO Settings
   }
   get wallpaper(): string {
     return wallpaper;
