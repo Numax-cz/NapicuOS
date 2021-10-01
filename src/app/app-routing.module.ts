@@ -22,9 +22,10 @@ import { SystemComponent } from './System/system/system.component';
 import { System } from './Sys/System';
 import { SystemGuard } from './system.guard';
 import { GrubGuard } from './grub.guard';
+import { MobileGuard } from './mobile.guard';
 
 const routes: Routes = [
-  { path: '', component: BootComponent },
+  { path: '', component: BootComponent, canActivate: [MobileGuard] },
   {
     path: 'bios',
     component: BiosComponent,
