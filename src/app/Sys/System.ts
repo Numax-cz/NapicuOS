@@ -2,6 +2,7 @@ import { Type } from '@angular/core';
 
 import { GrubComponent } from '../System/grub/grub.component';
 import { SystemComponent } from '../System/system/system.component';
+import { NapicuOSComponent } from './Systems/NapicuOS/components/napicu-os/napicu-os.component';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 
 export class System {
@@ -13,6 +14,7 @@ export class System {
   };
   constructor() {
     this.SystemRunning = false;
+    SystemComponent.SysComponent = NapicuOSComponent; //! TODO
   }
 
   public readonly Start = (): void => {
