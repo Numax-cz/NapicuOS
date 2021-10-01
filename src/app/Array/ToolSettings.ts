@@ -145,7 +145,7 @@ export var BiosSettings: BiosOptionsST = {
       },
       boot_priority: {
         title: lang.Boot.boot_priority_title,
-        options: GetDrives(true),
+        options: GetDrives(true, true),
         description: lang.Boot.boot_priority_description,
         selected: 0,
       },
