@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-
+import { Component, OnInit } from '@angular/core';
+import { wallpaper } from '../../config/wallpaper';
 
 @Component({
   selector: 'app-napicu-os',
@@ -10,4 +10,8 @@ export class NapicuOSComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  get wallpaper(): string {
+    return wallpaper;
+  }
 }
