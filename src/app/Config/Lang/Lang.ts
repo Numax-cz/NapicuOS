@@ -70,46 +70,59 @@ export const English = {
 };
 
 export const Japanes = {
+  title_enabled: '有効',
+  title_disabled: '無効化',
+  MainInfoTitle: {
+    cpu_type: 'プロセッサタイプ',
+    cpu_speed: 'プロセッサの速度',
+    cache_size: 'キャッシュサイズ',
+    memory_size: '総メモリ',
+    se_number: 'シリアルナンバー',
+  },
   Main: {
-    title: 'System Overview',
-    lang_title: 'System Language',
-    lang_description: 'Choose the default language',
-    time_title: 'System Time',
-    time_description: 'Change system time',
-    date_title: 'System Date',
-    date_description: 'Change system date',
-    network_boot_title: 'Network Boot',
-    network_boot_description: 'Enable/Disable PXE boot on to LAN',
-    wake_on_lan_title: 'Wake on LAN',
-    wake_on_lan_description: 'Enable/Disable Integrated LAN to wake the system',
+    title: 'システム概要',
+    lang_title: 'システム言語',
+    lang_description: 'デフォルト言語の選択',
+    time_title: 'システム時間',
+    time_description: 'システム時間の変更',
+    date_title: 'システムの日付',
+    date_description: 'システムの日付を変更',
+    network_boot_title: 'ネットワークブート',
+    network_boot_description: 'LAN上でのPXEブートの有効化／無効化',
+    wake_on_lan_title: 'ウェイクオンLAN',
+    wake_on_lan_description: 'システムを起動するための統合LANの有効化/無効化',
+  },
+  Advanced: {
+    virtual_description: 'これはAMDの仮想化機能スイッチです',
   },
   Boot: {
     title: '',
-    boot_mode_title: 'Boot Mode',
-    boot_mode_description: 'Set System Boot Mode',
-    fast_boot_title: 'Fast Boot',
-    fast_boot_description: 'Enable/Disable Fast Boot',
-    secure_boot_title: 'Secure Boot',
-    secure_boot_description: 'Enable/Disable Secure Boot',
-    boot_priority_title: 'Boot priority order',
-    boot_priority_description: 'Set Boot Priority',
+    boot_mode_title: 'ブートモード',
+    boot_mode_description: 'システムブートモードの設定',
+    fast_boot_title: '高速起動',
+    fast_boot_description: '高速起動の有効化／無効化',
+    secure_boot_title: 'セキュアブート',
+    secure_boot_description: 'セキュアブートの有効化／無効化',
+    boot_priority_title: 'ブートの優先順位',
+    boot_priority_description: 'ブート優先順位の設定',
   },
   Exit: {
     title: '',
-    default_title: 'Load Optimized Defaults',
-    default_description: 'Restores/loads the default values for all the setup options',
-    save_title: 'Save Changes & Reset',
-    save_description: 'Exit Bios and save your changes to CMOS',
-    discard_title: 'Discard Changes & Exit',
-    discard_description: 'Exit Bios without saving any changes',
+    default_title: '最適化されたデフォルトのロード',
+    default_description: 'すべてのセットアップオプションのデフォルト値を復元/ロードします',
+    save_title: '変更の保存とリセット',
+    save_description: 'Biosを終了して、変更をCMOSに保存します',
+    discard_title: '変更を破棄して終了',
+    discard_description: '変更を保存せずにBiosを終了',
   },
   Tools: {
     title: '',
     flash_title: 'Ez Flash',
-    flash_description:
-      'Run the utility to select and update BIOS. This utility supports Fat 12/16/32, NTFS, CD-DISC',
+    flash_description: `ユーティリティーを実行して、BIOSの選択と更新を行います。このユーティリティはFat 12/16/32, NTFS, CD-DISCに対応しています」。`,
   },
 };
+
+
 
 export const Slovakia = {
   Main: {

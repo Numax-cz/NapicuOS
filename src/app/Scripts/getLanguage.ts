@@ -10,7 +10,7 @@ export function getLanguage(): any {
   var selected = (cookiesArray && cookiesArray.Main.settings.lang.selected) || 0;
 
   switch (LangMenu[selected].title) {
-    case 'Korea':
+    case 'Japanes':
       pack = Japanes;
       break;
     case 'Slovakia':
