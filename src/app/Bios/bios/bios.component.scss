@@ -1,11 +1,13 @@
 $Padding: 10.234px;
 .BiosBackground {
   background-color: blue;
-
   width: 100%;
-  height: 100vh;
   color: white;
   user-select: none;
+}
+.Menu {
+  height: 100vh;
+  width: 100%;
 }
 .Top {
   text-align: center;
@@ -43,6 +45,6 @@ $Padding: 10.234px;
   color: white;
 }
 
-.GridOptionsBox{
+.GridOptionsBox {
   padding: 0px 30px;
 }
