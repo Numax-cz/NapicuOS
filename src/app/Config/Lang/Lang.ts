@@ -88,9 +88,9 @@ export const Japanes = {
     date_title: 'システムの日付',
     date_description: 'システムの日付を変更',
     network_boot_title: 'ネットワークブート',
-    network_boot_description: 'LAN上でのPXEブートの有効化／無効化',
-    wake_on_lan_title: 'ウェイクオンLAN',
-    wake_on_lan_description: 'システムを起動するための統合LANの有効化/無効化',
+    network_boot_description: 'ネットワーク上でのPXEブートの有効／無効を設定しま',
+    wake_on_lan_title: 'ウェイクオンネットワーク',
+    wake_on_lan_description: 'システムを起動するための統合ネットワークの有効化／無効化',
   },
   Advanced: {
     virtual_description: 'これはAMDの仮想化機能スイッチです',
