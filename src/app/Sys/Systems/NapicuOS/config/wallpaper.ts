@@ -1,0 +1,1 @@
+export const wallpaper = '/assets/systems/NapicuOS/NapicuOSWallpaper.webp';
