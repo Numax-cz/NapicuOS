@@ -8,14 +8,18 @@ import { wallpaper } from '../../config/wallpaper';
   styleUrls: ['./napicu-os.component.scss'],
 })
 export class NapicuOSComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {
-    let now = new Date();
-    var date = formatDate(now, 'MMM d h:mm a  ', 'en-US');
-    console.log(date);
+  public time: string;
+  constructor() {
+    this.time = this.GetTime();
   }
+  ngOnInit(): void {
 
+  }
+  
+  private GetTime(): string{
+    let now = new Date();
+    return formatDate(now, 'MMM d h:mm a  ', 'en-US');
+  }
   get wallpaper(): string {
     return wallpaper;
   }
