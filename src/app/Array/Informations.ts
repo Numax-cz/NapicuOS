@@ -4,23 +4,23 @@ import { lang } from './ToolSettings';
 
 export var MainInfo: Informations[] = [
   {
-    title: 'Processor Type',
+    title: lang.MainInfoTitle.cpu_type,
     value: 'AMD Celeron (tm) II B45 Processor @ 2.6 GHz (64bit)',
   },
   {
-    title: 'Processor Speed',
+    title: lang.MainInfoTitle.cpu_speed,
     value: '2666MHz',
   },
   {
-    title: 'Cache Size',
+    title: lang.MainInfoTitle.cache_size,
     value: '8192KB',
   },
   {
-    title: 'Total Memory',
+    title: lang.MainInfoTitle.memory_size,
     value: '8192MB',
   },
   {
-    title: 'Serial Number',
+    title: lang.MainInfoTitle.se_number,
     value: 'HRV54JFKD54FJ34FJfj333',
   },
 ];

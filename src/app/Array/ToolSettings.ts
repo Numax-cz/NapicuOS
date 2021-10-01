@@ -45,10 +45,10 @@ export var BiosSettings: BiosOptionsST = {
         title: lang.Main.network_boot_title,
         options: [
           {
-            title: 'Disabled',
+            title: lang.title_enabled,
           },
           {
-            title: 'Enabled',
+            title: lang.title_disabled,
           },
         ],
         description: lang.Main.network_boot_description,
@@ -58,10 +58,10 @@ export var BiosSettings: BiosOptionsST = {
         title: lang.Main.wake_on_lan_title,
         options: [
           {
-            title: 'Disabled',
+            title: lang.title_enabled,
           },
           {
-            title: 'Enabled',
+            title: lang.title_disabled,
           },
         ],
         optionsFast: null,
@@ -145,7 +145,7 @@ export var BiosSettings: BiosOptionsST = {
       },
       boot_priority: {
         title: lang.Boot.boot_priority_title,
-        options: GetDrives(true, true),
+        options: GetDrives(true),
         description: lang.Boot.boot_priority_description,
         selected: 0,
       },
