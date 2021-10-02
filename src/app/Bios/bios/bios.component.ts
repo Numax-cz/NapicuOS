@@ -56,14 +56,13 @@ export class BiosComponent implements OnInit, OnDestroy {
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     BiosComponent.BiosRouter = this.router;
+    setBiosSettings();
   }
   
   ngOnInit(): void {
     this.setEvents();
     BootComponent.EnterBios = true;
     setCookiesBiosinf();
-    //! TODO Add more Items
-    setBiosSettings();
   }
 
   ngOnDestroy(): void {
