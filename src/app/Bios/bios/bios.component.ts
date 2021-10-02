@@ -60,7 +60,6 @@ export class BiosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setEvents();
     BootComponent.EnterBios = true;
-    getLanguage();
     setCookiesBiosinf();
   }
 
