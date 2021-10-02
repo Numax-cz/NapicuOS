@@ -14,7 +14,7 @@ export class System {
 
   public declare SystemBooted: boolean;
 
-  public declare SystemProcess: systemProcess;
+  public declare SystemProcess: systemProcess[];
 
   public declare component: Type<any>;
   public declare boot: {
