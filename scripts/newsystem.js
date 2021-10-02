@@ -14,6 +14,7 @@ const { exec } = require('child_process');
 const configName = 'config';
 const scriptsName = 'scripts';
 const componentsName = 'components';
+const appsName = 'Apps';
 
 //? Prefix for default script
 const prefixFile = 'system';
@@ -45,6 +46,7 @@ function Run() {
   const pathConfig = `${defaultDir}/${SystemTitle}/${configName}`;
   const pathComponents = `${defaultDir}/${SystemTitle}/${componentsName}`;
   const pathScripts = `${defaultDir}/${SystemTitle}/${scriptsName}`;
+  const appsName = `${defaultDir}/${SystemTitle}/${appsName}`;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path, {
@@ -61,6 +63,12 @@ function Run() {
 
     if (!fs.existsSync(pathScripts)) {
       fs.mkdirSync(pathScripts, {
+        recursive: true,
+      });
+    }
+
+    if (!fs.existsSync(appsName)) {
+      fs.mkdirSync(appsName, {
         recursive: true,
       });
     }
