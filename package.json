@@ -5,6 +5,7 @@
   "scripts": {
     "start": "ng serve",
     "newsystem": "node ./scripts/newsystem.js",
+    "newapp": "node ./scripts/newapp.js",
     "build": "ng build --prod=true",
     "buildDev": "ng build --prod=false"
   },
