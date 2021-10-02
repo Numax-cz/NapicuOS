@@ -13,7 +13,7 @@ import { wallpaper } from '../../config/wallpaper';
       transition('* => *', [
         query(
           ':self',
-          stagger('20ms', [style({ transform: 'scale(0.2)', opacity: 0, transformOrigin: 'bottom' }), animate('1400ms ease-in-out')])
+          stagger('20ms', [style({ transform: 'scale(0.2)', opacity: 0, transformOrigin: 'bottom' }), animate(`${boot_animation_time}ms ease-in-out`)])
         ),
       ]),
     ]),
