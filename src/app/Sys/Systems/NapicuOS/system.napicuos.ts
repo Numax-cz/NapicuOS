@@ -9,9 +9,6 @@ import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
 
-  public openApps = [];
-  public minApps = [];
-
   public override boot = {
     title: 'NapicuOS',
     logo: 'assets/systems/NapicuOS/logo.webp',
