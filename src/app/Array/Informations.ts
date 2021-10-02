@@ -1,6 +1,7 @@
 import { Informations } from '../interface/Informations';
+import { lang } from './BiosMenu';
 import { Current } from './FlashInformation';
-import { lang } from './ToolSettings';
+
 
 export var MainInfo: Informations[] = [
   {

@@ -9,6 +9,7 @@ import { FlashBios } from '../Scripts/Flash/FlashBios';
 import { getLanguage } from '../Scripts/getLanguage';
 import { setDate, setTime } from '../Scripts/TimeDate';
 import { isDate, isOption, isTime } from '../Scripts/Type';
+import { lang } from './BiosMenu';
 export interface BiosOptionsST {
   [index: string]: ToolSettings;
 }
@@ -18,7 +19,7 @@ export var BiosInfo: BiosIf = {
   version: 'v2.69',
   date: '1985 - 2021',
 };
-export var lang = getLanguage();
+
 export var BiosSettings: BiosOptionsST = {
   Main: {
     title: lang.Main.title,
