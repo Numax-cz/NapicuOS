@@ -4,6 +4,7 @@
  */
 
 const fs = require('fs');
+const { exec } = require('child_process');
 const appDir = 'Sys/Systems';
 const defaultDir = `./src/app/${appDir}`;
 //const componentsName = 'components';
@@ -34,7 +35,7 @@ function Run() {
         fs.mkdirSync(pathNewApp, {
           recursive: true,
         });
-        creatAngularComponent(pathNewApp);
+        creatAngularComponent();
       } else {
         console.error(`
              The "${AppTitle}"" app already exists
@@ -55,9 +56,9 @@ function Run() {
   }
 }
 
-function creatAngularComponent(x) {
-  if (!x) return;
-  var path = `${x}/${AppTitle.toLowerCase()}`;
+function creatAngularComponent() {
+
+  var path = `${appDir}/${SystemTitle}/${appName}/${AppTitle}/${AppTitle.toLowerCase()}`;
   console.log(path);
   exec(`ng g c ${path}`, (error, stdout, stderr) => {
     console.log(stdout);

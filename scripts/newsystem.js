@@ -46,7 +46,7 @@ function Run() {
   const pathConfig = `${defaultDir}/${SystemTitle}/${configName}`;
   const pathComponents = `${defaultDir}/${SystemTitle}/${componentsName}`;
   const pathScripts = `${defaultDir}/${SystemTitle}/${scriptsName}`;
-  const appsName = `${defaultDir}/${SystemTitle}/${appsName}`;
+  const pathApps = `${defaultDir}/${SystemTitle}/${appsName}`;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path, {
@@ -67,8 +67,8 @@ function Run() {
       });
     }
 
-    if (!fs.existsSync(appsName)) {
-      fs.mkdirSync(appsName, {
+    if (!fs.existsSync(pathApps)) {
+      fs.mkdirSync(pathApps, {
         recursive: true,
       });
     }

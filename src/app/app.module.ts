@@ -44,7 +44,6 @@ import { WindowComponent } from './Sys/Systems/NapicuOS/template/window/window.c
     GrubComponent,
     SystemComponent,
     NapicuOSComponent,
-    WindowComponent
   ],
   imports: [
     BrowserModule,
