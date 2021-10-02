@@ -22,6 +22,7 @@ import { GrubComponent } from './System/grub/grub.component';
 import { SystemComponent } from './System/system/system.component';
 import { NapicuOSComponent } from './Sys/Systems/NapicuOS/components/napicu-os/napicu-os.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WindowComponent } from './Sys/Systems/NapicuOS/template/window/window.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GrubComponent,
     SystemComponent,
     NapicuOSComponent,
-
+    WindowComponent
   ],
   imports: [
     BrowserModule,
