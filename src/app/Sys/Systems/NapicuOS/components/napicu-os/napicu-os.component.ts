@@ -1,6 +1,7 @@
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
 
@@ -32,5 +33,8 @@ export class NapicuOSComponent implements OnInit {
   }
   get wallpaper(): string {
     return wallpaper;
+  }
+  get SystemBoot(): boolean{
+    return GrubComponent.ActiveSystem.SystemBooted
   }
 }

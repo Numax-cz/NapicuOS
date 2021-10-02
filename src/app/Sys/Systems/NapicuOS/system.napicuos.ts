@@ -4,10 +4,13 @@ import { onStartUp, onShutDown, Os } from '../../interface/system';
 import { System } from '../../System';
 import { LoadsComponent } from './components/loads/loads.component';
 import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
-import { boot_time, soft_boot_time } from './config/boot';
+import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
+
+  public openApps = [];
+  public minApps = [];
 
   public override boot = {
     title: 'NapicuOS',
@@ -25,17 +28,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
       setTimeout(() => {
-        this.load();
+        SystemComponent.SysComponent = this.component;
+        setTimeout(() => {
+          this.load();
+        }, boot_animation_time + 100);
       }, soft_boot_time);
     }, boot_time);
   }
 
-  public override onKeyPress(ev: KeyboardEvent) {
-    
-    
-  }
+  public override onKeyPress(ev: KeyboardEvent) {}
 
-  public override onLoad(): void {
-    SystemComponent.SysComponent = this.component;
-  }
+  public override onLoad(): void {}
 }
