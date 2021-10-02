@@ -26,11 +26,20 @@ process.argv.forEach(function (val, index) {
   }
 });
 
-
-
 function Run() {
   if (SystemTitle && AppTitle) {
     if (fs.existsSync(`${defaultDir}/${SystemTitle}`)) {
+      var pathNewApp = `${defaultDir}/${SystemTitle}/${appName}/${AppTitle}`;
+      if (!fs.existsSync(pathNewApp)) {
+        fs.mkdirSync(pathNewApp, {
+          recursive: true,
+        });
+        creatAngularComponent(pathNewApp);
+      } else {
+        console.error(`
+             The "${AppTitle}"" app already exists
+        `);
+      }
     } else {
       console.error(`
              System "${SystemTitle}" does not exist
@@ -46,9 +55,9 @@ function Run() {
   }
 }
 
-
-function creatAngularComponent() {
-  var path = `${appDir}/${SystemTitle}/${appName}/${SystemTitle.toLowerCase()}`;
+function creatAngularComponent(x) {
+  if (!x) return;
+  var path = `${x}/${AppTitle.toLowerCase()}`;
   console.log(path);
   exec(`ng g c ${path}`, (error, stdout, stderr) => {
     console.log(stdout);
