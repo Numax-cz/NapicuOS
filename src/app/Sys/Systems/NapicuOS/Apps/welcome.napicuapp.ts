@@ -1,5 +1,8 @@
-import { Software } from "src/app/Sys/Software ";
+import { Process } from 'src/app/Sys/Process';
 
-export class Welcome extends Software{
-    
+export class Welcome extends Process {
+  public AppTitle: string = 'NapicuAPP';
+
+  public readonly Run = (): void => {};
+  public readonly Close = (): void => {};
 }
