@@ -1,1 +1,3 @@
-export declare interface systemProcess {}
+export declare interface systemProcess {
+    [index: number]: any //TODO App
+}
