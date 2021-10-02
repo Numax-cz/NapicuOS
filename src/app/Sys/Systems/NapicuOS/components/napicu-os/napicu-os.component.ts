@@ -14,7 +14,10 @@ import { wallpaper } from '../../config/wallpaper';
       transition('* => *', [
         query(
           ':self',
-          stagger('20ms', [style({ transform: 'scale(0.2)', opacity: 0, transformOrigin: 'bottom' }), animate(`${boot_animation_time}ms ease-in-out`)])
+          stagger('20ms', [
+            style({ transform: 'scale(0.2)', opacity: 0, transformOrigin: 'bottom' }),
+            animate(`${boot_animation_time}ms ease-in-out`),
+          ])
         ),
       ]),
     ]),
@@ -34,7 +37,7 @@ export class NapicuOSComponent implements OnInit {
   get wallpaper(): string {
     return wallpaper;
   }
-  get SystemBoot(): boolean{
-    return GrubComponent.ActiveSystem.SystemBooted
+  get SystemBoot(): boolean {
+    return GrubComponent.ActiveSystem.SystemBooted;
   }
 }

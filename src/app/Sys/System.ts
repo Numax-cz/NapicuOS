@@ -24,6 +24,7 @@ export class System {
   constructor() {
     this.SystemRunning = false;
     this.SystemBooted = false;
+    this.SystemProcess = [];
     SystemComponent.SysComponent = NapicuOSComponent; //! TODO
   }
 
