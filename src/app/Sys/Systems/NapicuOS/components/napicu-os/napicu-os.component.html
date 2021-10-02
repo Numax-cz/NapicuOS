@@ -1,5 +1,5 @@
-<section id="System">
-  <section [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
+<div id="SystemBackground">
+  <section id="System">
     <div class="TopPanel">
       <div>TEST</div>
       <div>{{ time }}</div>
@@ -10,7 +10,9 @@
       </div>
     </div>
 
-    <!-- MainPanel -->
-    <section></section>
+    <section [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
+      <!-- MainPanel -->
+      <section></section>
+    </section>
   </section>
-</section>
+</div>

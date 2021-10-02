@@ -8,6 +8,7 @@ import { boot_time, soft_boot_time } from './config/boot';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
+
   public override boot = {
     title: 'NapicuOS',
     logo: 'assets/systems/NapicuOS/logo.webp',
@@ -24,8 +25,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
       setTimeout(() => {
-        SystemComponent.SysComponent = this.component;
+        this.load();
       }, soft_boot_time);
-    }, boot_time); 
+    }, boot_time);
+  }
+
+  public override onLoad(): void {
+    SystemComponent.SysComponent = this.component;
   }
 }

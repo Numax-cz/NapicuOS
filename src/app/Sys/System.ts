@@ -1,4 +1,5 @@
 import { Type } from '@angular/core';
+import { system_enter } from '../Config/BootLoader';
 
 import { GrubComponent } from '../System/grub/grub.component';
 import { SystemComponent } from '../System/system/system.component';
@@ -6,7 +7,11 @@ import { NapicuOSComponent } from './Systems/NapicuOS/components/napicu-os/napic
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 
 export class System {
+  //TODO Doc
   public declare SystemRunning: boolean;
+
+  public declare SystemBooted: boolean;
+
   public declare component: Type<any>;
   public declare boot: {
     title: string;
@@ -14,6 +19,7 @@ export class System {
   };
   constructor() {
     this.SystemRunning = false;
+    this.SystemBooted = false;
     SystemComponent.SysComponent = NapicuOSComponent; //! TODO
   }
 
@@ -29,6 +35,11 @@ export class System {
     this.onShutDown();
   };
 
+  public readonly load = (): void => {
+    this.SystemBooted = true;
+    this.onLoad();
+  };
+
   /**
    * This function is called after the Start function
    */
@@ -37,4 +48,6 @@ export class System {
    * This function is called after the shutDown function
    */
   public onShutDown(): void {}
+
+  public onLoad(): void {}
 }

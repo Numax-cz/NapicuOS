@@ -1,7 +1,21 @@
+$BlackColor: rgb(12, 11, 11);
+#SystemBackground{
+  background-color: $BlackColor;
+  overflow-y: hidden;
+
+}
+#System {
+  background-color: $BlackColor;
+  width: 100%;
+  height: 100vh;
+  animation-name: Start;
+  animation-duration: 2s;
+}
 #System * {
   font-family: 'Cantarell', sans-serif;
   font-weight: bold;
 }
+
 #TopPanelIcons {
   width: 30px;
   padding: 2px;
@@ -11,13 +25,28 @@
   }
 }
 
+//? Animations
+@keyframes Start {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+    animation-name: Start;
+    transform-origin: bottom;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
 #wallpaper {
   width: 100%;
-  height: 100vh;
-  background-color: #040d21;
+  height: 100%;
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
+  padding: 10px;
+  border-top-left-radius: 20px 20px;
+  border-top-right-radius: 20px 20px;
 }
 
 .TopRightButtons {
@@ -28,9 +57,8 @@
   display: flex;
   padding: 4px 20px;
   align-items: center;
-
   justify-content: space-between;
   color: #d6dce0;
-  font-size: 0.8rem;
-  background-color: rgb(12, 11, 11);
+  font-size: 1rem;
+  background-color: $BlackColor;
 }
