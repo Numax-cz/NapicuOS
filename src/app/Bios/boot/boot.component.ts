@@ -9,6 +9,7 @@ import * as key from 'src/app/Config/KeyMaps';
 import { Navigate } from 'src/app/Scripts/BiosRouter';
 import { Boot } from 'src/app/Scripts/exit/Boot';
 import { setBiosSettings } from 'src/app/Scripts/setBiosSettings';
+import { setLanguage } from 'src/app/Array/BiosMenu';
 
 @Component({
   selector: 'app-boot',
@@ -25,6 +26,7 @@ export class BootComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     setBiosSettings();
+    setLanguage();
     this.ClearRouter();
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;

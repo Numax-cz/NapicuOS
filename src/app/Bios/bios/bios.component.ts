@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { Menu } from '../../Array/BiosMenu';
+import { getMenu, setLanguage } from '../../Array/BiosMenu';
 import { MoveOption } from '../../Scripts/MoveOption';
 import { SetWindowOption } from '../../Scripts/SetWindowOption';
 import { MoveWindowOptions } from '../../Scripts/MoveWindowOptions';
@@ -19,6 +19,7 @@ import { OptionPanelComponent } from '../option-panel/option-panel.component';
 import { Loading } from 'src/app/Scripts/LoadingAnimations';
 import { cookiesForBisoSettingsAr } from 'src/app/Config/Cookies';
 import { setCookiesBiosinf } from 'src/app/Array/FlashInformation';
+import { setBiosSettings } from 'src/app/Array/ToolSettings';
 
 /**
  * @author Numax
@@ -35,7 +36,7 @@ export class BiosComponent implements OnInit, OnDestroy {
   /**
    * All items displayed in the top panel
    */
-  public BiosMenu: BiosMenu[] = Menu;
+  public BiosMenu: BiosMenu[] = getMenu();
   /**
    * Saves bios settings before changing
    */
@@ -56,11 +57,12 @@ export class BiosComponent implements OnInit, OnDestroy {
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     BiosComponent.BiosRouter = this.router;
   }
-
+  
   ngOnInit(): void {
     this.setEvents();
-    BootComponent.EnterBios = true;    
+    BootComponent.EnterBios = true;
     setCookiesBiosinf();
+    setBiosSettings();
   }
 
   ngOnDestroy(): void {
@@ -101,7 +103,12 @@ export class BiosComponent implements OnInit, OnDestroy {
             SetWindowOption();
           }
         } else {
-          if (e.keyCode == key.ArrowDown || e.keyCode == key.ArrowRight || e.keyCode == key.ArrowUp || e.keyCode == key.ArrowLeft) {
+          if (
+            e.keyCode == key.ArrowDown ||
+            e.keyCode == key.ArrowRight ||
+            e.keyCode == key.ArrowUp ||
+            e.keyCode == key.ArrowLeft
+          ) {
             MoveWindowOptions(e.keyCode);
           }
           //* Close --save
@@ -124,7 +131,9 @@ export class BiosComponent implements OnInit, OnDestroy {
   };
 
   public UpdateComponent(): void {
-    this.router.navigate([`bios/`, this.BiosMenu[BiosComponent.selected].router], { skipLocationChange: true });
+    this.router.navigate([`bios/`, this.BiosMenu[BiosComponent.selected].router], {
+      skipLocationChange: true,
+    });
     BiosComponent.BiosRouter = this.router;
   }
 

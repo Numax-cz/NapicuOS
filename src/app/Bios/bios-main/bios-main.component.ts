@@ -18,7 +18,7 @@ export class BiosMainComponent implements OnInit {
   constructor() {}
 
   public MainOption: ToolSettings = BiosSettings.Main;
-  public MainOptionInfo: Informations[] = MainInfo;
+  public MainOptionInfo: Informations[] = MainInfo();
   ngOnInit(): void {
     Object.values(this.MainOption.settings).forEach((e: settings, i: number) => {
       if (isTime(e)) {    
