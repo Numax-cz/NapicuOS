@@ -18,6 +18,13 @@ export const LangMenu: Options[] = [
 export const English = {
   title_enabled: 'Enabled',
   title_disabled: 'Disabled',
+  TopMenu: {
+    main_title: 'Main',
+    advanced_title: 'Advanced',
+    boot_title: 'Boot',
+    tools_title: 'Tools',
+    exit_title: 'Exit',
+  },
   MainInfoTitle: {
     cpu_type: 'Processor Type',
     cpu_speed: 'Processor Speed',
@@ -72,6 +79,13 @@ export const English = {
 export const Japanes = {
   title_enabled: '有効',
   title_disabled: '無効化',
+  TopMenu: {
+    main_title: 'Main',
+    advanced_title: 'Advanced',
+    boot_title: 'Boot',
+    tools_title: 'Tools',
+    exit_title: 'Exit',
+  },
   MainInfoTitle: {
     cpu_type: 'プロセッサタイプ',
     cpu_speed: 'プロセッサの速度',
@@ -125,6 +139,13 @@ export const Japanes = {
 export const Slovenia = {
   title_enabled: 'Omogočeno',
   title_disabled: 'Onemogočeno',
+  TopMenu: {
+    main_title: 'Main',
+    advanced_title: 'Advanced',
+    boot_title: 'Boot',
+    tools_title: 'Tools',
+    exit_title: 'Exit',
+  },
   MainInfoTitle: {
     cpu_type: 'Vrsta procesorja',
     cpu_speed: 'Hitrost procesorja',
@@ -179,6 +200,13 @@ export const Slovenia = {
 export const Deutschland = {
   title_enabled: 'Aktiviert',
   title_disabled: 'Deaktiviert',
+  TopMenu: {
+    main_title: 'Main',
+    advanced_title: 'Advanced',
+    boot_title: 'Boot',
+    tools_title: 'Tools',
+    exit_title: 'Exit',
+  },
   MainInfoTitle: {
     cpu_type: 'Prozessor-Typ',
     cpu_speed: 'Geschwindigkeit des Prozessors',
