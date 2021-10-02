@@ -8,7 +8,7 @@ import { FlashComponent } from '../flash/flash.component';
 import * as key from 'src/app/Config/KeyMaps';
 import { Navigate } from 'src/app/Scripts/BiosRouter';
 import { Boot } from 'src/app/Scripts/exit/Boot';
-import { setBiosSettings } from 'src/app/Scripts/setBiosSettings';
+import { setBiosSettingsFromCookies } from 'src/app/Scripts/setBiosSettings';
 import { setLanguage } from 'src/app/Array/BiosMenu';
 
 @Component({
@@ -25,7 +25,7 @@ export class BootComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    setBiosSettings();
+    setBiosSettingsFromCookies();
     setLanguage();
     this.ClearRouter();
     BootComponent.EnterBios = false;

@@ -7,7 +7,7 @@ import { copy } from './DeepClone';
 /**
  * Sets bios settings according to cookies, or sets default bios settings
  */
-export function setBiosSettings(): void {
+export function setBiosSettingsFromCookies(): void {
   /**
    * Default Bios settings
    */
