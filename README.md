@@ -4,6 +4,7 @@
 - Na této stránce najdete základní nastavení biosu
 - Vytvořeno v [Angular](https://angular.io/)
 - Použitý font [Perfect DOS VGA 437](https://www.dafont.com/perfect-dos-vga-437.font)
+- Překlad [DeepL](https://www.deepl.com/)
 
 ## Instalace
 
