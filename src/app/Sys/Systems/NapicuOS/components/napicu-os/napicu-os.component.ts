@@ -1,3 +1,4 @@
+import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { boot_animation_time } from '../../config/boot';
@@ -7,23 +8,29 @@ import { wallpaper } from '../../config/wallpaper';
   selector: 'app-napicu-os',
   templateUrl: './napicu-os.component.html',
   styleUrls: ['./napicu-os.component.scss'],
+  animations: [
+    trigger('NapicuOSfeoreStartUp', [
+      transition('* => *', [
+        query(
+          ':self',
+          stagger('20ms', [style({ transform: 'scale(0.2)', opacity: 0, transformOrigin: 'bottom' }), animate('1400ms ease-in-out')])
+        ),
+      ]),
+    ]),
+  ],
 })
 export class NapicuOSComponent implements OnInit {
   public time: string;
   constructor() {
     this.time = this.GetTime();
-    
   }
   ngOnInit(): void {}
-  
+
   private GetTime(): string {
     let now = new Date();
     return formatDate(now, 'MMM d, h:mm a  ', 'en-US'); //TODO Settings
   }
   get wallpaper(): string {
     return wallpaper;
-  }
-  get animationBootTime(): number{
-    return boot_animation_time;
   }
 }

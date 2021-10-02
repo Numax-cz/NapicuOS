@@ -30,6 +30,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }, boot_time);
   }
 
+  public override onKeyPress(ev: KeyboardEvent) {
+    
+    
+  }
+
   public override onLoad(): void {
     SystemComponent.SysComponent = this.component;
   }

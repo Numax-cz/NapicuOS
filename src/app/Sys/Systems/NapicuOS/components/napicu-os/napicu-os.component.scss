@@ -1,15 +1,12 @@
 $BlackColor: rgb(12, 11, 11);
-#SystemBackground{
+#SystemBackground {
   background-color: $BlackColor;
   overflow-y: hidden;
-
 }
 #System {
   background-color: $BlackColor;
   width: 100%;
   height: 100vh;
-  animation-name: Start;
-  animation-duration: 2s;
 }
 #System * {
   font-family: 'Cantarell', sans-serif;
@@ -22,19 +19,6 @@ $BlackColor: rgb(12, 11, 11);
   img {
     padding: 2px;
     margin: 0px 2.5px;
-  }
-}
-
-//? Animations
-@keyframes Start {
-  from {
-    opacity: 0;
-    transform: scale(0.2);
-    animation-name: Start;
-    transform-origin: bottom;
-  }
-  to {
-    opacity: 100%;
   }
 }
 

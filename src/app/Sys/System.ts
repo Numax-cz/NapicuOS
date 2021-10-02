@@ -1,5 +1,6 @@
 import { Type } from '@angular/core';
 import { system_enter } from '../Config/BootLoader';
+import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 
 import { GrubComponent } from '../System/grub/grub.component';
 import { SystemComponent } from '../System/system/system.component';
@@ -37,8 +38,11 @@ export class System {
 
   public readonly load = (): void => {
     this.SystemBooted = true;
+    window.addEventListener('keydown', (ev: KeyboardEvent) => this.onKeyPress(ev));
     this.onLoad();
   };
+
+  public onKeyPress(ev: KeyboardEvent): void {}
 
   /**
    * This function is called after the Start function

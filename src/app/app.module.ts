@@ -21,7 +21,7 @@ import { BlackscreenComponent } from './Bios/blackscreen/blackscreen.component';
 import { GrubComponent } from './System/grub/grub.component';
 import { SystemComponent } from './System/system/system.component';
 import { NapicuOSComponent } from './Sys/Systems/NapicuOS/components/napicu-os/napicu-os.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +46,7 @@ import { NapicuOSComponent } from './Sys/Systems/NapicuOS/components/napicu-os/n
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
