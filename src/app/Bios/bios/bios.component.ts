@@ -62,6 +62,7 @@ export class BiosComponent implements OnInit, OnDestroy {
     this.setEvents();
     BootComponent.EnterBios = true;
     setCookiesBiosinf();
+    //! TODO Add more Items
     setBiosSettings();
   }
 
