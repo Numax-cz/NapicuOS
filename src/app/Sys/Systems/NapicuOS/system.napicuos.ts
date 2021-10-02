@@ -31,8 +31,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         setTimeout(() => {
           this.load();
           newProcess(new Process());
-          console.log(GrubComponent.ActiveSystem.SystemProcess);
-          
         }, boot_animation_time + 100);
       }, soft_boot_time);
     }, boot_time);
