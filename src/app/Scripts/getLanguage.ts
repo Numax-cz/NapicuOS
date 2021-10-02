@@ -1,6 +1,6 @@
 import { BiosOptionsST } from '../Array/ToolSettings';
 import { cookiesForBisoSettingsAr } from '../Config/Cookies';
-import { Deutschland, English, Japanes, LangMenu, Slovakia } from '../Config/Lang/Lang';
+import { Deutschland, English, Japanes, LangMenu, Slovenia } from '../Config/Lang/Lang';
 import { getCookies } from './Cookies';
 
 export function getLanguage(): any {
@@ -13,8 +13,8 @@ export function getLanguage(): any {
     case 'Japanes':
       pack = Japanes;
       break;
-    case 'Slovakia':
-      pack = Slovakia;
+    case 'Slovenia':
+      pack = Slovenia;
       break;
     case 'Deutschland':
       pack = Deutschland;
