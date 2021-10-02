@@ -25,7 +25,7 @@ export var BiosSettings: BiosOptionsST = getBiosData();
 /**
  * @returns Returns the basic structure of the bios settings 
  */
-function getBiosData(): BiosOptionsST {
+export function getBiosData(): BiosOptionsST {
   return {
     Main: {
       title: lang.Main.title,
