@@ -31,7 +31,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         SystemComponent.SysComponent = this.component;
         setTimeout(() => {
           this.load();
-          newProcess(new Process(WelcomeComponent));
         }, boot_animation_time + 100);
       }, soft_boot_time);
     }, boot_time);
@@ -39,5 +38,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onKeyPress(ev: KeyboardEvent) {}
 
-  public override onLoad(): void {}
+  public override onLoad(): void {
+    
+  }
 }
