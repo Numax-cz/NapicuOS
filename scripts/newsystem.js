@@ -10,6 +10,18 @@
 const fs = require('fs');
 const { exec } = require('child_process');
 
+var SystemTitle;
+process.argv.forEach(function (val, index) {
+  switch (index) {
+    case 2:
+      SystemTitle = val;
+      break;
+
+    default:
+      break;
+  }
+});
+
 //? Names of folder
 const configName = 'config';
 const scriptsName = 'scripts';
@@ -28,17 +40,7 @@ const fileClassconstructor = `import { System } from '../../System';
 
 export class ${SystemTitle} extends System { }`;
 
-var SystemTitle;
-process.argv.forEach(function (val, index) {
-  switch (index) {
-    case 2:
-      SystemTitle = val;
-      break;
 
-    default:
-      break;
-  }
-});
 
 function Run() {
   if (!SystemTitle) return;

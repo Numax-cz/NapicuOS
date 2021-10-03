@@ -5,14 +5,9 @@
 
 const fs = require('fs');
 const { exec } = require('child_process');
-const appDir = 'Sys/Systems';
-const defaultDir = `./src/app/${appDir}`;
-//const componentsName = 'components';
-const appName = 'Apps';
 
 var AppTitle;
 var SystemTitle;
-
 process.argv.forEach(function (val, index) {
   switch (index) {
     case 2:
@@ -27,6 +22,19 @@ process.argv.forEach(function (val, index) {
   }
 });
 
+const appDir = 'Sys/Systems';
+const defaultDir = `./src/app/${appDir}`;
+const prefixFile = 'system';
+const appName = 'Apps';
+
+const fileClassconstructor = `import { Process } from 'src/app/Sys/Process';
+
+export class ${AppTitle} extends Process {
+  public override title: string = '${AppTitle}';
+}`;
+
+
+
 function Run() {
   if (SystemTitle && AppTitle) {
     if (fs.existsSync(`${defaultDir}/${SystemTitle}`)) {
@@ -35,6 +43,7 @@ function Run() {
         fs.mkdirSync(pathNewApp, {
           recursive: true,
         });
+        creatFile(`${pathNewApp}`, `${prefixFile}.${AppTitle}.ts`, fileClassconstructor);
         creatAngularComponent();
       } else {
         console.error(`
@@ -56,8 +65,15 @@ function Run() {
   }
 }
 
-function creatAngularComponent() {
+function creatFile(path, file, text) {
+  var fileName = `${path}/${file}`;
+  fs.writeFile(fileName, text, function (err) {
+    if (!err) return;
+    console.log(err);
+  });
+}
 
+function creatAngularComponent() {
   var path = `${appDir}/${SystemTitle}/${appName}/${AppTitle}/${AppTitle.toLowerCase()}`;
   console.log(path);
   exec(`ng g c ${path}`, (error, stdout, stderr) => {
