@@ -46,6 +46,7 @@ import { WelcomeComponent } from './Sys/Systems/NapicuOS/Apps/welcome/welcome/we
     SystemComponent,
     NapicuOSComponent,
     WelcomeComponent,
+    WindowComponent,
   ],
   imports: [
     BrowserModule,
