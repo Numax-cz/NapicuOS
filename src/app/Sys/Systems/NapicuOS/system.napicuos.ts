@@ -41,6 +41,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onKeyPress(ev: KeyboardEvent) {}
 
   public override onLoad(): void {
-    newProcess(new welcome());
+    newProcess(new welcome({ loop: [] }));
   }
 }

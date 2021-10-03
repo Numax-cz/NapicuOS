@@ -7,6 +7,12 @@ interface data {
   width: number;
   height: number;
 }
+
+
+
+interface Inter{
+  loop: string[]
+}
 export class Process {
   public title: string = 'NapicuAPP';
   public declare Interval: number;
@@ -19,7 +25,7 @@ export class Process {
   public declare component: Type<any>;
   public readonly run = (): void => {};
   public readonly close = (): void => {};
-  constructor() {
+  constructor(data?: Inter) {
     //this.Interval = i.Interval
   }
   public onRun(): void {}
