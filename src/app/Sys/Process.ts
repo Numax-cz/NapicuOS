@@ -12,5 +12,5 @@ export class Process {
 }
 
 export function newProcess(p: Process): void {
-  GrubComponent.ActiveSystem.SystemProcess.push([p]);
+  GrubComponent.ActiveSystem.SystemProcess.push(p);
 }

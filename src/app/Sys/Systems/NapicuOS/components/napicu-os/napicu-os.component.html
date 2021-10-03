@@ -17,6 +17,12 @@
   </section>
 </div>
 
+<section *ngIf="SystemBoot">
+  <app-window *ngFor="let i of ProcessComponents">
+    {{i.title}}
+  </app-window>
+</section>
+
 
 
 

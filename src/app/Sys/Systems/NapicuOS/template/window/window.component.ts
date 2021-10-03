@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Type } from '@angular/core';
 
 @Component({
   selector: 'app-window',
   templateUrl: './window.component.html',
-  styleUrls: ['./window.component.scss']
+  styleUrls: ['./window.component.scss'],
 })
 export class WindowComponent implements OnInit {
+  @Input() Component: any;
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  get AppComponent(): any {
+    return this.Component;
   }
-
 }

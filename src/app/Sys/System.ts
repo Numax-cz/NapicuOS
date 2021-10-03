@@ -4,7 +4,7 @@ import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
 
 import { GrubComponent } from '../System/grub/grub.component';
 import { SystemComponent } from '../System/system/system.component';
-import { systemProcess } from './interface/systemProcess';
+import { Process } from './Process';
 import { NapicuOSComponent } from './Systems/NapicuOS/components/napicu-os/napicu-os.component';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 
@@ -14,7 +14,7 @@ export class System {
 
   public declare SystemBooted: boolean;
 
-  public declare SystemProcess: systemProcess[];
+  public declare SystemProcess: Process[];
 
   public declare component: Type<any>;
   public declare boot: {
