@@ -23,6 +23,7 @@ import { SystemComponent } from './System/system/system.component';
 import { NapicuOSComponent } from './Sys/Systems/NapicuOS/components/napicu-os/napicu-os.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WindowComponent } from './Sys/Systems/NapicuOS/template/window/window.component';
+import { WelcomeComponent } from './Sys/Systems/NapicuOS/Apps/welcome/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { WindowComponent } from './Sys/Systems/NapicuOS/template/window/window.c
     GrubComponent,
     SystemComponent,
     NapicuOSComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
