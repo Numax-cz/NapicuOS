@@ -1,8 +1,9 @@
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Process } from 'src/app/Sys/Process';
+import { newProcess, Process } from 'src/app/Sys/Process';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
+import { welcome } from '../../Apps/welcome/system.welcome';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
 
@@ -16,7 +17,7 @@ import { wallpaper } from '../../config/wallpaper';
         query(
           ':self',
           stagger('20ms', [
-            style({ transform: 'scale(0.2)', opacity: 0, transformOrigin: 'bottom' }),
+            style({ transform: 'scale(0.2) rotateX(70deg)', opacity: 0, transformOrigin: 'bottom' }),
             animate(`${boot_animation_time}ms ease-in-out`),
           ])
         ),
@@ -29,7 +30,10 @@ export class NapicuOSComponent implements OnInit {
   constructor() {
     this.time = this.GetTime();
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    
+  }
 
   private GetTime(): string {
     let now = new Date();
@@ -42,7 +46,6 @@ export class NapicuOSComponent implements OnInit {
     return GrubComponent.ActiveSystem.SystemBooted;
   }
   get ProcessComponents(): Process[] {
-    
     return GrubComponent.ActiveSystem.SystemProcess;
   }
 }

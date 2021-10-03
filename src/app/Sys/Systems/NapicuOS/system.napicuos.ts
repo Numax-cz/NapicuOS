@@ -1,9 +1,11 @@
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
+import { setTimeInterval } from 'src/app/Scripts/TimeController';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
 import { onStartUp, onShutDown, Os } from '../../interface/system';
 import { newProcess, Process } from '../../Process';
 import { System } from '../../System';
+import { welcome } from './Apps/welcome/system.welcome';
 import { WelcomeComponent } from './Apps/welcome/welcome/welcome.component';
 import { LoadsComponent } from './components/loads/loads.component';
 import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
@@ -39,6 +41,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onKeyPress(ev: KeyboardEvent) {}
 
   public override onLoad(): void {
-    newProcess(new Process())
+    newProcess(new welcome());
   }
 }

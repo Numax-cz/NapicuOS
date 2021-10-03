@@ -1,4 +1,4 @@
-export const startTimeIn = 0; //! 2055
-export const startTimeOut = 1055;
+export const startTimeIn = 0; //TODO 2055
+export const startTimeOut = 0; //TODO 1055
 
-export const exitTime = 2500;
+export const exitTime = 0; //TODO 2500
