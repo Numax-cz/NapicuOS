@@ -17,12 +17,8 @@
   </section>
 </div>
 
-<section *ngIf="SystemBoot">
-  <app-window *ngFor="let i of ProcessComponents">
-    {{i.title}}
-  </app-window>
+<section *ngIf="SystemBoot" id="App">
+  <div *ngFor="let i of ProcessComponents">
+    <app-window [Component]="i.component"></app-window>
+  </div>
 </section>
-
-
-
-

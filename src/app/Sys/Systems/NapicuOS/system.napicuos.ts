@@ -4,6 +4,7 @@ import { SystemComponent } from 'src/app/System/system/system.component';
 import { onStartUp, onShutDown, Os } from '../../interface/system';
 import { newProcess, Process } from '../../Process';
 import { System } from '../../System';
+import { WelcomeComponent } from './Apps/welcome/welcome/welcome.component';
 import { LoadsComponent } from './components/loads/loads.component';
 import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
 import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
@@ -30,7 +31,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         SystemComponent.SysComponent = this.component;
         setTimeout(() => {
           this.load();
-          newProcess(new Process());
+          newProcess(new Process(WelcomeComponent));
         }, boot_animation_time + 100);
       }, soft_boot_time);
     }, boot_time);
