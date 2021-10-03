@@ -1,7 +1,7 @@
 /**
  * @author Numax
  * @version 1.1.0
- *
+ * This script creates the required application structure for the system
  *
  * Warning, this script is simple,
  * any change to the folder path may affect the functionality of the script.
