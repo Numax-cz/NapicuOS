@@ -17,8 +17,17 @@
   </section>
 </div>
 
-<section *ngIf="SystemBoot" id="napicuos-App-window">
-  <div *ngFor="let i of ProcessComponents">
+<div *ngFor="let i of ProcessComponents">
+  <section
+    *ngIf="SystemBoot"
+    id="napicuos-App-window"
+    [ngStyle]="{
+      'width.px': i.appData.width,
+      'height.px': i.appData.height,
+      'top.%': i.appData.posY,
+      'left.%': i.appData.posX
+    }"
+  >
     <app-window [Component]="i.component"></app-window>
-  </div>
-</section>
+  </section>
+</div>
