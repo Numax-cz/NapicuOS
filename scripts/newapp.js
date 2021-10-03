@@ -1,6 +1,10 @@
 /**
  * @author Numax
- * @version 1.0.0
+ * @version 1.1.0
+ *
+ *
+ * Warning, this script is simple,
+ * any change to the folder path may affect the functionality of the script.
  */
 
 const fs = require('fs');
@@ -32,8 +36,6 @@ const fileClassconstructor = `import { Process } from 'src/app/Sys/Process';
 export class ${AppTitle} extends Process {
   public override title: string = '${AppTitle}';
 }`;
-
-
 
 function Run() {
   if (SystemTitle && AppTitle) {
