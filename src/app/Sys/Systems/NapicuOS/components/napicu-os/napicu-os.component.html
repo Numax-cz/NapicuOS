@@ -22,10 +22,10 @@
     *ngIf="SystemBoot"
     id="napicuos-App-window"
     [ngStyle]="{
-      'width.px': i.appData.width,
-      'height.px': i.appData.height,
-      'top.%': i.appData.posY,
-      'left.%': i.appData.posX
+      'width.px': i.Window.appData.width,
+      'height.px': i.Window.appData.height,
+      'top.%': i.Window.appData.posY,
+      'left.%': i.Window.appData.posX
     }"
   >
     <app-window [Component]="i.component"></app-window>

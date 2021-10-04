@@ -10,7 +10,7 @@ import { WelcomeComponent } from './Apps/welcome/welcome/welcome.component';
 import { LoadsComponent } from './components/loads/loads.component';
 import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
 import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
-
+import { Window } from '../../Window';
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
 
@@ -41,6 +41,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onKeyPress(ev: KeyboardEvent) {}
 
   public override onLoad(): void {
-    newProcess(new welcome({ loop: [] }));
+    newProcess(new welcome({ Window: new Window() }));
   }
+  //TODO
+  // new Window()
 }

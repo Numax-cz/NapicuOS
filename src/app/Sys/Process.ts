@@ -1,31 +1,19 @@
 import { Type } from '@angular/core';
 import { GrubComponent } from '../System/grub/grub.component';
 import { SystemComponent } from '../System/system/system.component';
-interface data {
-  posX: number;
-  posY: number;
-  width: number;
-  height: number;
-}
+import { Window } from './Window';
 
-
-
-interface Inter{
-  loop: string[]
+interface Inter {
+  loop: string[];
 }
 export class Process {
   public title: string = 'NapicuAPP';
   public declare Interval: number;
-  public appData: data = {
-    posX: 30,
-    posY: 30,
-    width: 700,
-    height: 400,
-  };
+  public declare Window: Window; 
   public declare component: Type<any>;
   public readonly run = (): void => {};
   public readonly close = (): void => {};
-  constructor(data?: Inter) {
+  constructor(data?: {Window?: Window}) {
     //this.Interval = i.Interval
   }
   public onRun(): void {}
