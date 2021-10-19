@@ -19,7 +19,7 @@
 
 <div *ngFor="let i of ProcessComponents">
   <section
-    *ngIf="SystemBoot"
+    *ngIf="SystemBoot && i.Window?.appData"
     id="napicuos-App-window"
     [ngStyle]="{
       'width.px': i.Window.appData.width,

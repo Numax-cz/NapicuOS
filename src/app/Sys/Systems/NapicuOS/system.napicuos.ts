@@ -24,10 +24,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onStart(): void {
     this.SystemBoot();
   }
-  
+
   public override onShutDown(): void {}
-  
+
   public SystemBoot(): void {
+    //? This is the main place to load all necessary processes
+    newProcess(new time());
+
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
@@ -39,12 +42,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }, soft_boot_time);
     }, boot_time);
   }
-  
+
   public override onKeyPress(ev: KeyboardEvent) {}
-  
+
   public override onLoad(): void {
     newProcess(new welcome({ Window: new Window(WelcomeComponent) }));
-    newProcess(new time()); //TODO MOVE
   }
   //TODO
   // new Window()
