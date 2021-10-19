@@ -10,7 +10,6 @@ import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 
 export class System {
   //TODO Doc
-  public declare SystemRunning: boolean;
 
   public declare SystemBooted: boolean;
 
@@ -22,21 +21,18 @@ export class System {
     logo: string;
   };
   constructor() {
-    this.SystemRunning = false;
     this.SystemBooted = false;
     this.SystemProcess = [];
     SystemComponent.SysComponent = NapicuOSComponent; //! TODO
   }
 
   public readonly Start = (): void => {
-    this.SystemRunning = true;
     SystemComponent.SysComponent = this.component;
 
     this.onStart();
   };
 
   public readonly shutDown = (): void => {
-    this.SystemRunning = false;
     this.onShutDown();
   };
 

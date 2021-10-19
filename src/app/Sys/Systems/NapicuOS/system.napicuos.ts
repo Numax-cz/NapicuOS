@@ -12,6 +12,7 @@ import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
 import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
+import { time } from './scripts/time';
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
   public static systemTime: string;
@@ -23,9 +24,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onStart(): void {
     this.SystemBoot();
   }
-
+  
   public override onShutDown(): void {}
-
+  
   public SystemBoot(): void {
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
@@ -38,12 +39,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }, soft_boot_time);
     }, boot_time);
   }
-
+  
   public override onKeyPress(ev: KeyboardEvent) {}
-
+  
   public override onLoad(): void {
     newProcess(new welcome({ Window: new Window(WelcomeComponent) }));
-
+    newProcess(new time()); //TODO MOVE
   }
   //TODO
   // new Window()
@@ -51,7 +52,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   //* * * * *//
   //* * * * *//
 
-  public getTime(): string {
+  public static getTime(): string {
     let now = new Date();
     return formatDate(now, 'MMM d, h:mm a  ', 'en-US'); //TODO Settings
   }
