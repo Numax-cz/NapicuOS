@@ -2,7 +2,7 @@
   <section @NapicuOSfeoreStartUp id="System">
     <div class="TopPanel">
       <div>TEST</div>
-      <div>{{ time }}</div>
+      <div>{{ systemTime }}</div>
 
       <div class="TopRightButtons" id="TopPanelIcons">
         <img src="/assets/systems/NapicuOS/audio.svg" />
@@ -17,8 +17,17 @@
   </section>
 </div>
 
-<section *ngIf="SystemBoot" id="napicuos-App-window">
-  <div *ngFor="let i of ProcessComponents">
+<div *ngFor="let i of ProcessComponents">
+  <section
+    *ngIf="SystemBoot"
+    id="napicuos-App-window"
+    [ngStyle]="{
+      'width.px': i.Window.appData.width,
+      'height.px': i.Window.appData.height,
+      'top.%': i.Window.appData.posY,
+      'left.%': i.Window.appData.posX
+    }"
+  >
     <app-window [Component]="i.component"></app-window>
-  </div>
-</section>
+  </section>
+</div>

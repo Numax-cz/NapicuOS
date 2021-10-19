@@ -47,7 +47,7 @@ const routes: Routes = [
   {
     path: 'system',
     component: SystemComponent,
-    /*canActivate: [SystemGuard],*/ //! TODO
+    canActivate: [SystemGuard],
   },
 ];
 
