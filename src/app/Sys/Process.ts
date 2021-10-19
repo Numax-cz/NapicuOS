@@ -13,7 +13,7 @@ export class Process {
   public declare component: Type<any>;
   public readonly run = (): void => {};
   public readonly close = (): void => {};
-  constructor(data?: {Window?: Window}) {
+  constructor(data?: {Window?: Window, loop?: any}) {
     //this.Interval = i.Interval
   }
   public onRun(): void {}

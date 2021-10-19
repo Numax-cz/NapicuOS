@@ -16,4 +16,13 @@ export class Window {
     width: 700,
     height: 400,
   };
+  constructor(component: Type<any>) {
+    
+  }
+
+  public readonly open = () => {
+
+  };
+
+  public readonly close =() => {};
 }

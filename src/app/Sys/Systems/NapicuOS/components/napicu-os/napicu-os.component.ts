@@ -3,6 +3,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { newProcess, Process } from 'src/app/Sys/Process';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
+import { getSystemTime } from '../../../GET';
 import { welcome } from '../../Apps/welcome/system.welcome';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
@@ -26,18 +27,12 @@ import { wallpaper } from '../../config/wallpaper';
   ],
 })
 export class NapicuOSComponent implements OnInit {
-  public time: string;
-  constructor() {
-    this.time = this.GetTime();
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
-  private GetTime(): string {
-    let now = new Date();
-    return formatDate(now, 'MMM d, h:mm a  ', 'en-US'); //TODO Settings
+  get systemTime(): string {
+    return getSystemTime();
   }
   get wallpaper(): string {
     return wallpaper;
