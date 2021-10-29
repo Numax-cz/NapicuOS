@@ -17,7 +17,9 @@ export class Window {
     width: 700,
     height: 400,
   };
-  constructor(component: Type<any>) {}
+  constructor(component: Type<any>) {
+    this.WindowComponent = component;
+  }
 
   public readonly open = (): void => {
     this.display = true;

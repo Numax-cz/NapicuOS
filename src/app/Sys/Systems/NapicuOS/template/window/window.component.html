@@ -3,8 +3,9 @@
 </section> -->
 
 <div *ngFor="let i of AppComponent">
+  {{ log(i) }}
   <section
-    *ngIf="SystemBoot && i.Window?.appData && i.display"
+    *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
     id="napicuos-App-window"
     [ngStyle]="{
       'width.px': i.Window.appData.width,
@@ -14,7 +15,7 @@
     }"
   >
     <section>
-      <ng-component *ngComponentOutlet="AppComponent.component"></ng-component>
+      <ng-component *ngComponentOutlet="AppComponent.Window.WindowComponent"></ng-component>
     </section>
   </section>
 </div>

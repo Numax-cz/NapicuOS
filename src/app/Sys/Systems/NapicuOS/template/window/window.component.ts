@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Type } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SystemBoot } from '../../../GET';
 
 @Component({
@@ -10,8 +10,13 @@ export class WindowComponent implements OnInit {
   @Input() Component: any;
   constructor() {}
 
-  ngOnInit(): void {}
 
+
+
+  ngOnInit(): void {}
+  log(e: any) {
+    console.log(e.Window);
+  }
   get AppComponent(): any {
     return this.Component;
   }
