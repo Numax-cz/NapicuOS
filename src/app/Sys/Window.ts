@@ -19,7 +19,11 @@ export class Window {
   };
   constructor(component: Type<any>) {}
 
-  public readonly open = (): void  => {};
+  public readonly open = (): void => {
+    this.display = true;
+  };
 
-  public readonly close = (): void  => {};
+  public readonly close = (): void => {
+    this.display = false;
+  };
 }
