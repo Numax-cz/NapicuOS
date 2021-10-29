@@ -10,13 +10,8 @@ export class WindowComponent implements OnInit {
   @Input() Component: any;
   constructor() {}
 
-
-
-
   ngOnInit(): void {}
-  log(e: any) {
-    console.log(e.Window);
-  }
+
   get AppComponent(): any {
     return this.Component;
   }
