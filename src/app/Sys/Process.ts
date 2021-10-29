@@ -2,9 +2,7 @@ import { Type } from '@angular/core';
 import { GrubComponent } from '../System/grub/grub.component';
 import { Window } from './Window';
 
-interface Inter {
-  loop: string[];
-}
+
 export class Process {
   public title: string = 'NapicuAPP';
   public declare Interval: any;
