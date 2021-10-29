@@ -1,13 +1,15 @@
 // This is the main setting of the Bernadd theme
+// Html to change the class theme is in system.component.html
 
 .NapicuThemeFeraDark {
+  //TopPanel
   --NapicuTopMenuBackgroundColor: rgb(0, 0, 0);
   --NapicuTopMenuTextColor: #d6dce0;
-
   --NapicuWindowBorder: 17px;
   --NapicuWindowColor: rgb(0, 0, 0);
   --NapicuWindowPadding: 7px;
   --NapicuWindowBoxShadow: 0px 0px 44px 3px rgba(0, 0, 0, 0.48);
+  //MenuButtons
   --NapicuWindowButtonColor-Close: #fc5753;
   --NapicuWindowButtonColor-Full: #33c748;
   --NapicuWindowButtonColor-Mini: #fdbc40;
