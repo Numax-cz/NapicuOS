@@ -1,3 +1,20 @@
-<section *ngIf="AppComponent">
-  <ng-component *ngComponentOutlet="AppComponent"></ng-component>
-</section>
+<!-- <section *ngIf="AppComponent && AppComponent.Window && AppComponent.display">
+  <ng-component *ngComponentOutlet="AppComponent.component"></ng-component>
+</section> -->
+
+<div *ngFor="let i of AppComponent">
+  <section
+    *ngIf="SystemBoot && i.Window?.appData"
+    id="napicuos-App-window"
+    [ngStyle]="{
+      'width.px': i.Window.appData.width,
+      'height.px': i.Window.appData.height,
+      'top.%': i.Window.appData.posY,
+      'left.%': i.Window.appData.posX
+    }"
+  >
+    <section>
+      <ng-component *ngComponentOutlet="AppComponent.component"></ng-component>
+    </section>
+  </section>
+</div>
