@@ -2,5 +2,34 @@
 
 #napicuos-App-window {
   position: absolute;
+  padding: $NapicuWindowPadding;
+  border-radius: $NapicuWindowBorder;
   background-color: $NapicuWindowColor;
+  box-shadow: $NapicuWindowBoxShadow;
+  -webkit-box-shadow: $NapicuWindowBoxShadow;
+  -moz-box-shadow: $NapicuWindowBoxShadow;
+}
+
+.napicuos-App-window-M {
+  display: flex;
+  justify-content: flex-end;
+  div {
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    margin-left: 2px;
+    cursor: pointer;
+  }
+}
+#CloseButton {
+  background-color: $NapicuWindowButtonColor-Close;
+  border: 2px solid $NapicuWindowButtonColor-Close-Border;
+}
+#FullButton {
+  background-color: $NapicuWindowButtonColor-Full;
+  border: 2px solid $NapicuWindowButtonColor-Full-Border;
+}
+#MinButton {
+  background-color: $NapicuWindowButtonColor-Mini;
+  border: 2px solid $NapicuWindowButtonColor-Mini-Border;
 }

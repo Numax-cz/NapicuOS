@@ -3,7 +3,6 @@
 </section> -->
 
 <div *ngFor="let i of AppComponent">
-
   <section
     *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
     id="napicuos-App-window"
@@ -14,7 +13,12 @@
       'left.%': i.Window.appData.posX
     }"
   >
-    <section>
+    <div class="napicuos-App-window-M">
+      <div id="MinButton"></div>
+      <div id="FullButton"></div>
+      <div id="CloseButton"></div>
+    </div>
+    <section id="napicuos-App-content">
       <ng-component *ngComponentOutlet="AppComponent.Window.WindowComponent"></ng-component>
     </section>
   </section>
