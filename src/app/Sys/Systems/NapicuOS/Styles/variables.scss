@@ -5,6 +5,9 @@
   //TopPanel
   --NapicuTopMenuBackgroundColor: rgb(0, 0, 0);
   --NapicuTopMenuTextColor: #d6dce0;
+  --NapicuTopMenuIconFilter: none;
+
+  //Window
   --NapicuWindowBorder: 17px;
   --NapicuWindowColor: rgb(0, 0, 0);
   --NapicuWindowPadding: 7px;
@@ -17,14 +20,18 @@
   --NapicuWindowButtonColor-Full-Border: #27aa35;
   --NapicuWindowButtonColor-Mini-Border: #de9f34;
 }
-.NapicuThemeFeraWhite {
-  --NapicuTopMenuBackgroundColor: rgb(255, 255, 255);
-  --NapicuTopMenuTextColor: rgb(0, 0, 0);
 
+.NapicuThemeFeraWhite {
+  //TopPanel
+  --NapicuTopMenuBackgroundColor: white;
+  --NapicuTopMenuTextColor: black;
+  --NapicuTopMenuIconFilter: invert(1);
+  //Window
   --NapicuWindowBorder: 17px;
   --NapicuWindowColor: white;
   --NapicuWindowPadding: 7px;
   --NapicuWindowBoxShadow: 0px 0px 44px 3px rgba(0, 0, 0, 0.48);
+  //MenuButtons
   --NapicuWindowButtonColor-Close: #fc5753;
   --NapicuWindowButtonColor-Full: #33c748;
   --NapicuWindowButtonColor-Mini: #fdbc40;
