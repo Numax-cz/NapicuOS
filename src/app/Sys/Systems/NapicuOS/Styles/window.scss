@@ -1,11 +1,6 @@
-$NapicuWindowBorder: 17px;
-$NapicuWindowColor: white;
-$NapicuWindowPadding: 7px;
-$NapicuWindowBoxShadow: 0px 0px 44px 3px rgba(0, 0, 0, 0.48);
-
-$NapicuWindowButtonColor-Close: #fc5753;
-$NapicuWindowButtonColor-Full: #33c748;
-$NapicuWindowButtonColor-Mini: #fdbc40;
-$NapicuWindowButtonColor-Close-Border: #df4744;
-$NapicuWindowButtonColor-Full-Border: #27aa35;
-$NapicuWindowButtonColor-Mini-Border: #de9f34;
+.WindowContent {
+  background-color: white;
+  height: 100%;
+  border-bottom-left-radius:  var(--NapicuWindowBorder);
+  border-bottom-right-radius:  var(--NapicuWindowBorder);
+}

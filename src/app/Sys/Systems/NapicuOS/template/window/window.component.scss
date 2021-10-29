@@ -2,7 +2,8 @@
 
 #napicuos-App-window {
   position: absolute;
-  padding: var(--NapicuWindowPadding);
+  display: flex;
+  flex-direction: column;
   border-radius: var(--NapicuWindowBorder);
   background-color: var(--NapicuWindowColor);
   box-shadow: var(--NapicuWindowBoxShadow);
@@ -13,6 +14,7 @@
 .napicuos-App-window-M {
   display: flex;
   justify-content: flex-end;
+  padding: var(--NapicuWindowPadding);
   div {
     border-radius: 50%;
     height: 13px;
@@ -21,6 +23,7 @@
     cursor: pointer;
   }
 }
+
 #CloseButton {
   background-color: var(--NapicuWindowButtonColor-Close);
   border: 2px solid var(--NapicuWindowButtonColor-Close-Border);
@@ -33,4 +36,3 @@
   background-color: var(--NapicuWindowButtonColor-Mini);
   border: 2px solid var(--NapicuWindowButtonColor-Mini-Border);
 }
-

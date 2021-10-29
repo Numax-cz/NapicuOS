@@ -1,4 +1,6 @@
 @import '/src/app/Sys/Systems/NapicuOS/Styles/variables.scss';
+@import '/src/app/Sys/Systems/NapicuOS/Styles/buttons.scss';
+@import '/src/app/Sys/Systems/NapicuOS/Styles/window.scss';
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: 'DosVGA';
@@ -6,17 +8,17 @@
   src: url('assets/font/Perfect DOS VGA 437.ttf') format('truetype');
 }
 
-
 $BorderTopABottom: 2px solid blue;
 $BorderLeftARight: 4px solid blue;
 $FrameSizeHeight: 100%;
 * {
-  font-family: 'DosVGA';
   padding: 0;
+  font-family: 'DosVGA';
   margin: 0;
   box-sizing: border-box;
   user-select: none;
 }
+
 html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
