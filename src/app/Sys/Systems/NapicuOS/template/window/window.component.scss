@@ -2,12 +2,12 @@
 
 #napicuos-App-window {
   position: absolute;
-  padding: $NapicuWindowPadding;
-  border-radius: $NapicuWindowBorder;
-  background-color: $NapicuWindowColor;
-  box-shadow: $NapicuWindowBoxShadow;
-  -webkit-box-shadow: $NapicuWindowBoxShadow;
-  -moz-box-shadow: $NapicuWindowBoxShadow;
+  padding: var(--NapicuWindowPadding);
+  border-radius: var(--NapicuWindowBorder);
+  background-color: var(--NapicuWindowColor);
+  box-shadow: var(--NapicuWindowBoxShadow);
+  -webkit-box-shadow: var(--apicuWindowBoxShadow);
+  -moz-box-shadow: var(--NapicuWindowBoxShadow);
 }
 
 .napicuos-App-window-M {
@@ -22,14 +22,14 @@
   }
 }
 #CloseButton {
-  background-color: $NapicuWindowButtonColor-Close;
-  border: 2px solid $NapicuWindowButtonColor-Close-Border;
+  background-color: var(--NapicuWindowButtonColor-Close);
+  border: 2px solid var(--NapicuWindowButtonColor-Close-Border);
 }
 #FullButton {
-  background-color: $NapicuWindowButtonColor-Full;
-  border: 2px solid $NapicuWindowButtonColor-Full-Border;
+  background-color: var(--NapicuWindowButtonColor-Full);
+  border: 2px solid var(--NapicuWindowButtonColor-Full-Border);
 }
 #MinButton {
-  background-color: $NapicuWindowButtonColor-Mini;
-  border: 2px solid $NapicuWindowButtonColor-Mini-Border;
+  background-color: var(--NapicuWindowButtonColor-Mini);
+  border: 2px solid var(--NapicuWindowButtonColor-Mini-Border);
 }

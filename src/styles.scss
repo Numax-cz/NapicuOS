@@ -1,9 +1,11 @@
+@import '/src/app/Sys/Systems/NapicuOS/Styles/variables.scss';
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: 'DosVGA';
   //overflow-y: hidden;
   src: url('assets/font/Perfect DOS VGA 437.ttf') format('truetype');
 }
+
 
 $BorderTopABottom: 2px solid blue;
 $BorderLeftARight: 4px solid blue;
@@ -98,4 +100,3 @@ html {
 .Options-Arrow {
   font-size: 20px;
 }
-
