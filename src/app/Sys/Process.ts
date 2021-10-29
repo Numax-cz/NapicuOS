@@ -8,7 +8,6 @@ export class Process {
   public declare Interval: any;
 
   public declare Window: Window;
-  public declare component: Type<any>;
   public readonly run = (): void => {};
   public readonly close = (): void => {};
   constructor(data?: { Window?: Window }) {
