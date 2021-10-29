@@ -33,7 +33,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     newProcess(new time());
     var app = new welcome({ Window: new Window(WelcomeComponent) });
     newProcess(app);
-    app.open();
+    app.Window.open();
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {

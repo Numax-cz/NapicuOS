@@ -8,7 +8,7 @@ interface Inter {
 export class Process {
   public title: string = 'NapicuAPP';
   public declare Interval: any;
-  public declare display: boolean;
+
   public declare Window: Window;
   public declare component: Type<any>;
   public readonly run = (): void => {};
@@ -16,10 +16,6 @@ export class Process {
   constructor(data?: { Window?: Window }) {
     if (data?.Window) this.Window = data.Window;
   }
-
-  public readonly open = (): void => {
-    this.display = true;
-  };
 
   public onRun(): void {}
 

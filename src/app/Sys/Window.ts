@@ -9,6 +9,7 @@ interface data {
 
 export class Window {
   public WindowTitle: string = 'Window';
+  public declare display: boolean;
   public declare WindowComponent: Type<any>;
   public appData: data = {
     posX: 30,
@@ -16,13 +17,9 @@ export class Window {
     width: 700,
     height: 400,
   };
-  constructor(component: Type<any>) {
-    
-  }
+  constructor(component: Type<any>) {}
 
-  public readonly open = () => {
+  public readonly open = () => {};
 
-  };
-
-  public readonly close =() => {};
+  public readonly close = () => {};
 }

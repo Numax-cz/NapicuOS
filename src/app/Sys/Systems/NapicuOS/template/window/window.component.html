@@ -4,7 +4,7 @@
 
 <div *ngFor="let i of AppComponent">
   <section
-    *ngIf="SystemBoot && i.Window?.appData"
+    *ngIf="SystemBoot && i.Window?.appData && i.display"
     id="napicuos-App-window"
     [ngStyle]="{
       'width.px': i.Window.appData.width,
