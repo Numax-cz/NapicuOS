@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Type } from '@angular/core';
+import { SystemBoot } from '../../../GET';
 
 @Component({
   selector: 'app-window',
@@ -13,5 +14,8 @@ export class WindowComponent implements OnInit {
 
   get AppComponent(): any {
     return this.Component;
+  }
+  get SystemBoot(): boolean {
+    return SystemBoot();
   }
 }

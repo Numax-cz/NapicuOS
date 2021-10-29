@@ -3,7 +3,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { newProcess, Process } from 'src/app/Sys/Process';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
-import { getSystemTime } from '../../../GET';
+import { getSystemTime, SystemBoot } from '../../../GET';
 import { welcome } from '../../Apps/welcome/system.welcome';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
@@ -38,7 +38,7 @@ export class NapicuOSComponent implements OnInit {
     return wallpaper;
   }
   get SystemBoot(): boolean {
-    return GrubComponent.ActiveSystem.SystemBooted;
+    return SystemBoot();
   }
   get ProcessComponents(): Process[] {
     return GrubComponent.ActiveSystem.SystemProcess;

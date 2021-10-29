@@ -15,6 +15,7 @@ import { formatDate } from '@angular/common';
 import { time } from './scripts/time';
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
+
   public static systemTime: string;
   public override boot = {
     title: 'NapicuOS',
@@ -30,6 +31,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
     newProcess(new time());
+    var app = new welcome({ Window: new Window(WelcomeComponent) });
+    newProcess(app);
+    app.open();
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
@@ -45,9 +49,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onKeyPress(ev: KeyboardEvent) {}
 
-  public override onLoad(): void {
-    newProcess(new welcome({ Window: new Window(WelcomeComponent) }));
-  }
+  public override onLoad(): void {}
   //TODO
   // new Window()
 
