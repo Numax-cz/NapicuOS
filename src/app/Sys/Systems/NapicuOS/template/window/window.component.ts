@@ -12,6 +12,10 @@ export class WindowComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public close(): void {}
+  public full(): void {}
+  public minimized(): void {}
+
   get AppComponent(): any {
     return this.Component;
   }

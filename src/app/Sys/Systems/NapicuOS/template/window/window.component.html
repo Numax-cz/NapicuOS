@@ -14,9 +14,9 @@
     }"
   >
     <div class="napicuos-App-window-M">
-      <div id="MinButton"></div>
-      <div id="FullButton"></div>
-      <div id="CloseButton"></div>
+      <div id="MinButton" (click)="minimized()"></div>
+      <div id="FullButton" (click)="full()"></div>
+      <div id="CloseButton" (click)="close()"></div>
     </div>
     <div style="height: 100%">
       <ng-component *ngComponentOutlet="i.Window.WindowComponent"></ng-component>
