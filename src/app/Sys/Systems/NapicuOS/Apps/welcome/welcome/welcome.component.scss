@@ -1,9 +1,21 @@
-
 .Title {
   text-align: center;
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.75rem;
 }
 .MainBox {
   padding: 10px;
+}
+.NapicuInputSelect-Welcome {
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  option:hover {
+    background-color: rebeccapurple;
+  }
+}
+.LangMenu {
+  display: flex;
+  padding: 10px 5px;
+  
 }
