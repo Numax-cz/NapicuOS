@@ -10,8 +10,9 @@ export class Process {
   public declare Window: Window;
   public readonly run = (): void => {};
   public readonly close = (): void => {};
-  constructor(data?: { Window?: Window }) {
+  constructor(data?: { Window?: Window, title?: string  }) {
     if (data?.Window) this.Window = data.Window;
+    if (data?.title) this.title = data.title;
   }
 
   public onRun(): void {}
@@ -19,6 +20,3 @@ export class Process {
   public onClose(): void {}
 }
 
-export function newProcess(p: Process): void {
-  GrubComponent.ActiveSystem.SystemProcess.push(p);
-}

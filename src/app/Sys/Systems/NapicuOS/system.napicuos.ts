@@ -3,9 +3,8 @@ import { setTimeInterval } from 'src/app/Scripts/TimeController';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
 import { onStartUp, onShutDown, Os } from '../../interface/system';
-import { newProcess, Process } from '../../Process';
+import { Process } from '../../Process';
 import { System } from '../../System';
-import { welcome } from './Apps/welcome/system.welcome';
 import { WelcomeComponent } from './Apps/welcome/welcome/welcome.component';
 import { LoadsComponent } from './components/loads/loads.component';
 import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
@@ -30,10 +29,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
-    newProcess(new time());
-    var app = new welcome({ Window: new Window(WelcomeComponent) });
-    newProcess(app);
-    app.Window.open();
+    // newProcess(new time());
+    // var app = new Process({ Window: new Window(WelcomeComponent), title: 'Welcome' });
+    // newProcess(app);
+    // app.Window.open();
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
