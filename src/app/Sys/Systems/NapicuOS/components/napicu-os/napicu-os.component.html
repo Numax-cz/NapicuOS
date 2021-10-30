@@ -1,22 +1,24 @@
-<div id="SystemBackground">
-  <section @NapicuOSfeoreStartUp id="System">
-    <div class="TopPanel">
-      <div>Activities</div>
-      <div>{{ systemTime }}</div>
+<div id="VerdanaFont">
+  <div id="SystemBackground">
+    <section @NapicuOSfeoreStartUp id="System">
+      <div class="TopPanel">
+        <div>Activities</div>
+        <div>{{ systemTime }}</div>
 
-      <div class="TopRightButtons" id="TopPanelIcons">
-        <img src="/assets/systems/NapicuOS/audio.svg" />
-        <img src="/assets/systems/NapicuOS/on-off.svg" />
+        <div class="TopRightButtons" id="TopPanelIcons">
+          <img src="/assets/systems/NapicuOS/audio.svg" />
+          <img src="/assets/systems/NapicuOS/on-off.svg" />
+        </div>
       </div>
-    </div>
 
-    <section [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
-      <!-- MainPanel -->
-      <section></section>
+      <section [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
+        <!-- MainPanel -->
+        <section></section>
+      </section>
     </section>
+  </div>
+
+  <section>
+    <app-window [Component]="ProcessComponents"></app-window>
   </section>
 </div>
-
-<section>
-  <app-window [Component]="ProcessComponents"></app-window>
-</section>
