@@ -11,7 +11,7 @@ import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
 import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
-import { time } from './scripts/time';
+
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
 
@@ -27,16 +27,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onShutDown(): void {}
 
-  public SystemBoot(): void {
-    //? This is the main place to load all necessary processes
-    // newProcess(new time());
-    // var app = new Process({ Window: new Window(WelcomeComponent), title: 'Welcome' });
-    // newProcess(app);
-    // app.Window.open();
-
-    new Process(new time());
+  protected setProcess(): void {
+    new Process({
+      interval: {
+        fun: () => {
+          NapicuOS.systemTime = NapicuOS.getTime();
+        },
+        time: 1000,
+      },
+    });
 
     new Process({ Window: new Window(WelcomeComponent), title: 'Welcome' }).Window.open();
+  }
+
+  public SystemBoot(): void {
+    //? This is the main place to load all necessary processes
+    this.setProcess();
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
@@ -53,14 +59,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onKeyPress(ev: KeyboardEvent) {}
 
   public override onLoad(): void {}
-  //TODO
-  // new Window()
-
-  //* * * * *//
-  //* * * * *//
 
   public static getTime(): string {
     let now = new Date();
     return formatDate(now, 'MMM d, h:mm a  ', 'en-US'); //TODO Settings
   }
+
+  // override Interval = setInterval(() => {
+  //   NapicuOS.systemTime = NapicuOS.getTime();
+  // }, 1000);
 }
