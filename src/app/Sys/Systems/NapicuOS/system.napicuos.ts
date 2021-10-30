@@ -35,6 +35,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     // app.Window.open();
 
     new Process(new time());
+
+    new Process({ Window: new Window(WelcomeComponent), title: 'Welcome' }).Window.open();
+
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
