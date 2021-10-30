@@ -45,7 +45,7 @@ function Run() {
         fs.mkdirSync(pathNewApp, {
           recursive: true,
         });
-        creatFile(`${pathNewApp}`, `${prefixFile}.${AppTitle}.ts`, fileClassconstructor);
+        //creatFile(`${pathNewApp}`, `${prefixFile}.${AppTitle}.ts`, fileClassconstructor);
         creatAngularComponent();
       } else {
         console.error(`
