@@ -13,6 +13,9 @@ export class Process {
   constructor(data?: { Window?: Window, title?: string  }) {
     if (data?.Window) this.Window = data.Window;
     if (data?.title) this.title = data.title;
+
+
+    GrubComponent.ActiveSystem.SystemProcess.push(this);
   }
 
   public onRun(): void {}
