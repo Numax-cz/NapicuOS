@@ -8,7 +8,7 @@ export class Process {
 
   public declare Window: Window;
   public readonly run = (): void => {};
-  public readonly close = (): void => {};
+  public readonly kill = (): void => {};
   constructor(data?: { title?: string; interval?: { fun: () => void; time: number }; Window?: Window }) {
     if (data?.Window) this.Window = data.Window;
     if (data?.title) this.title = data.title;
