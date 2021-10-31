@@ -76,7 +76,7 @@ function creatFile(path, file, text) {
 }
 
 function creatAngularComponent() {
-  var path = `${appDir}/${SystemTitle}/${appName}/${AppTitle}/${AppTitle.toLowerCase()}`;
+  var path = `${appDir}/${SystemTitle}/${appName}/${AppTitle.toLowerCase()}`;
   console.log(path);
   exec(`ng g c ${path}`, (error, stdout, stderr) => {
     console.log(stdout);
