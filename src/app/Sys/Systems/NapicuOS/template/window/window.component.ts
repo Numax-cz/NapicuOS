@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Process } from 'src/app/Sys/Process';
 import { SystemBoot } from '../../GET';
 
 @Component({
@@ -7,14 +8,14 @@ import { SystemBoot } from '../../GET';
   styleUrls: ['./window.component.scss'],
 })
 export class WindowComponent implements OnInit {
-  @Input() ApplicationProcess: any;
+  @Input() ApplicationProcess: Process[] = [];
   constructor() {}
 
   ngOnInit(): void {}
 
-  public close(): void {}
-  public full(): void {}
-  public minimized(): void {}
+  public close(process: Process): void {}
+  public full(process: Process): void {}
+  public minimized(process: Process): void {}
 
   get AppProcess(): any {
     return this.ApplicationProcess;
