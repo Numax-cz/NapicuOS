@@ -7,7 +7,7 @@ import { SystemBoot } from '../../GET';
   styleUrls: ['./window.component.scss'],
 })
 export class WindowComponent implements OnInit {
-  @Input() Component: any;
+  @Input() ApplicationProcess: any;
   constructor() {}
 
   ngOnInit(): void {}
@@ -16,8 +16,8 @@ export class WindowComponent implements OnInit {
   public full(): void {}
   public minimized(): void {}
 
-  get AppComponent(): any {
-    return this.Component;
+  get AppProcess(): any {
+    return this.ApplicationProcess;
   }
   get SystemBoot(): boolean {
     return SystemBoot();

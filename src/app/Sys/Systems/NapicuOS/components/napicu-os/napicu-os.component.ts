@@ -39,10 +39,7 @@ export class NapicuOSComponent implements OnInit {
   get SystemBoot(): boolean {
     return SystemBoot();
   }
-  get ProcessComponents(): Process[] {
-    return GrubComponent.ActiveSystem.SystemProcess;
-  }
-  get Process(): Process[]{
+  get Process(): Process[] {
     return getSystemProcess();
   }
 }

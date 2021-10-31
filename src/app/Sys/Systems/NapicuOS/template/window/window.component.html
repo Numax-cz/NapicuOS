@@ -1,8 +1,4 @@
-<!-- <section *ngIf="AppComponent && AppComponent.Window && AppComponent.display">
-  <ng-component *ngComponentOutlet="AppComponent.component"></ng-component>
-</section> -->
-
-<div *ngFor="let i of AppComponent">
+<div *ngFor="let i of AppProcess">
   <section
     *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
     id="napicuos-App-window"
