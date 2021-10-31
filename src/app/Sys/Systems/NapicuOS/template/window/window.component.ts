@@ -13,7 +13,9 @@ export class WindowComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public close(process: Process): void {}
+  public close(process: Process): void {
+    process.Window.close();
+  }
   public full(process: Process): void {}
   public minimized(process: Process): void {}
 
