@@ -19,8 +19,7 @@ export class Process {
     }
 
     GrubComponent.ActiveSystem.SystemProcess.push(this);
-    var PID = GrubComponent.ActiveSystem.SystemProcess.length - 1;
-    console.log(PID);
+   
   }
 
   public onRun(): void {}

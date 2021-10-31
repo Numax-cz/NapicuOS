@@ -21,6 +21,10 @@ export class WindowComponent implements OnInit {
 
   public minimized(process: Process): void {}
 
+  public moveWindow(): void {
+
+  }
+  
   get AppProcess(): any {
     return this.ApplicationProcess;
   }
