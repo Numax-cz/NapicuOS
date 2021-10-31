@@ -1,6 +1,6 @@
 import { GrubComponent } from 'src/app/System/grub/grub.component';
-import { Process } from '../Process';
-import { NapicuOS } from './NapicuOS/system.napicuos';
+import { Process } from '../../Process';
+import { NapicuOS } from './system.napicuos';
 /**
  * Returns system time
  */

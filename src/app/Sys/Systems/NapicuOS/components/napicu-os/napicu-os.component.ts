@@ -3,7 +3,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
-import { getSystemProcess, getSystemTime, SystemBoot } from '../../../GET';
+import { getSystemProcess, getSystemTime, SystemBoot } from '../../GET';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
 

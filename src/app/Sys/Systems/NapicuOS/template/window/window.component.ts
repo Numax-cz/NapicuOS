@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SystemBoot } from '../../../GET';
+import { SystemBoot } from '../../GET';
 
 @Component({
   selector: 'app-window',
