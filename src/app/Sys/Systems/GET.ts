@@ -1,4 +1,5 @@
 import { GrubComponent } from 'src/app/System/grub/grub.component';
+import { Process } from '../Process';
 import { NapicuOS } from './NapicuOS/system.napicuos';
 /**
  * Returns system time
@@ -12,4 +13,8 @@ export function getSystemTime(): string {
  */
 export function SystemBoot(): boolean {
   return GrubComponent.ActiveSystem.SystemBooted;
+}
+
+export function getSystemProcess(): Process[]{
+  return GrubComponent.ActiveSystem.SystemProcess;
 }
