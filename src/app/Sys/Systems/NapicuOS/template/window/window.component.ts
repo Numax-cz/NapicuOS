@@ -16,7 +16,9 @@ export class WindowComponent implements OnInit {
   public close(process: Process): void {
     process.Window.close();
   }
+
   public full(process: Process): void {}
+
   public minimized(process: Process): void {}
 
   get AppProcess(): any {
