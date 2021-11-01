@@ -26,7 +26,9 @@ import { wallpaper } from '../../config/wallpaper';
   ],
 })
 export class NapicuOSComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    document.addEventListener('keydown', (event: KeyboardEvent) => {});
+  }
 
   ngOnInit(): void {}
 
