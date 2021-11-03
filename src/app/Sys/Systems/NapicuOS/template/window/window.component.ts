@@ -19,11 +19,16 @@ export class WindowComponent implements OnInit {
     //TODO nezobrazuje se, protože je display (Window) na Flase
     // console.log(this.doc.getElementById('napicuos-App-window'));
     // process.Window.close();
+    event.stopPropagation();
   }
 
-  public full(process: Process, event: Event): void {}
+  public full(process: Process, event: Event): void {
+    event.stopPropagation();
+  }
 
-  public minimized(process: Process, event: Event): void {}
+  public minimized(process: Process, event: Event): void {
+    event.stopPropagation();
+  }
 
   public moveWindow(): void {}
 
