@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { SystemBoot } from '../../GET';
 
@@ -10,20 +10,20 @@ import { SystemBoot } from '../../GET';
 })
 export class WindowComponent implements OnInit {
   @Input() ApplicationProcess: Process[] = [];
-  public win: any;
+  @ViewChild('Panel') declare panel: ElementRef;
   constructor(@Inject(DOCUMENT) private doc: Document) {}
 
   ngOnInit(): void {}
 
-  public close(process: Process): void {
+  public close(process: Process, event: Event): void {
     //TODO nezobrazuje se, protože je display (Window) na Flase
     // console.log(this.doc.getElementById('napicuos-App-window'));
     // process.Window.close();
   }
 
-  public full(process: Process): void {}
+  public full(process: Process, event: Event): void {}
 
-  public minimized(process: Process): void {}
+  public minimized(process: Process, event: Event): void {}
 
   public moveWindow(): void {}
 
