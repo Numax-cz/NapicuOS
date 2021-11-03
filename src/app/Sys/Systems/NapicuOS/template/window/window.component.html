@@ -9,11 +9,11 @@
       'left.%': i.Window.appData.posX
     }"
   >
-    <div class="napicuos-App-window-M" (click)="log2('sdf')">
+    <div class="napicuos-App-window-M">
       <section>
-        <div id="MinButton" (click)="minimized(i)"></div>
-        <div id="FullButton" (click)="full(i)"></div>
-        <div id="CloseButton" (click)="close(i)"></div>
+        <div id="MinButton" (click)="minimized(i, $event)"></div>
+        <div id="FullButton" (click)="full(i, $event)"></div>
+        <div id="CloseButton" (click)="close(i, $event)"></div>
       </section>
     </div>
     <div style="height: 100%">
