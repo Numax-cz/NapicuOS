@@ -9,7 +9,7 @@
       'left.%': i.Window.appData.posX
     }"
   >
-    <div class="napicuos-App-window-M" (mousedown)="moveWindow(i, $event)">
+    <div class="napicuos-App-window-M" (mousemove)="moveWindow(i, $event)" (mousedown)="moveWindowIn()">
       <div id="MinButton" (click)="minimized(i, $event)"></div>
       <div id="FullButton" (click)="full(i, $event)"></div>
       <div id="CloseButton" (click)="close(i, $event)"></div>

@@ -1,7 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { LoadingFlashComponent } from 'src/app/Config/Animation/Flash';
 import { Process } from 'src/app/Sys/Process';
-import { SystemBoot } from '../../GET';
+import { getSystemProcess, SystemBoot } from '../../GET';
+import { percentage } from '../../scripts/getPercentage';
 
 @Component({
   selector: 'app-window',
@@ -11,10 +13,14 @@ import { SystemBoot } from '../../GET';
 export class WindowComponent implements OnInit {
   @Input() ApplicationProcess: Process[] = [];
   @ViewChild('Panel') declare panel: ElementRef;
-
+  public move: boolean = false;
   constructor(@Inject(DOCUMENT) private doc: Document) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    window.addEventListener('mouseout', () => {
+      this.move = false;
+    });
+  }
 
   public close(process: Process, event: Event): void {
     process.Window.close();
@@ -30,10 +36,17 @@ export class WindowComponent implements OnInit {
   }
 
   public moveWindow(process: Process, event: any): void {
-    this.setLeft(process, event.clientX);
-    console.log(`Update: ${this.getLeft(process)} set to: ${event.clientX}`);
+    var MousevalueX = event.clientX;
+
+    var percentageMouseValueX = Math.round(percentage(MousevalueX, window.innerWidth));
+
+    console.log(2 * percentageMouseValueX - this.getLeft(process));
+
+    this.setLeft(process, percentage(MousevalueX, window.innerWidth));
   }
-  public moveWindowOut(): void {}
+  public moveWindowIn(): void {
+    this.move = true;
+  }
 
   get AppProcess(): any {
     return this.ApplicationProcess;
