@@ -9,12 +9,10 @@
       'left.%': i.Window.appData.posX
     }"
   >
-    <div class="napicuos-App-window-M">
-      <section>
-        <div id="MinButton" (click)="minimized(i, $event)"></div>
-        <div id="FullButton" (click)="full(i, $event)"></div>
-        <div id="CloseButton" (click)="close(i, $event)"></div>
-      </section>
+    <div class="napicuos-App-window-M" (click)="moveWindow()">
+      <div id="MinButton" (click)="minimized(i, $event)"></div>
+      <div id="FullButton" (click)="full(i, $event)"></div>
+      <div id="CloseButton" (click)="close(i, $event)"></div>
     </div>
     <div style="height: 100%">
       <ng-component *ngComponentOutlet="i.Window.WindowComponent"></ng-component>
