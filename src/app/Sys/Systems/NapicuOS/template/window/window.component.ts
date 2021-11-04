@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { SystemBoot } from '../../GET';
 
@@ -39,8 +39,16 @@ export class WindowComponent implements OnInit {
     return SystemBoot();
   }
 
-  public getTop(process: Process): void {}
-  public getLeft(process: Process): void {}
-  public getWidth(process: Process): void {}
-  public getHeight(process: Process): void {}
+  public getTop(process: Process): number {
+    return process.Window.appData.posY;
+  }
+  public getLeft(process: Process): number {
+    return process.Window.appData.posX;
+  }
+  public getWidth(process: Process): number {
+    return process.Window.appData.width;
+  }
+  public getHeight(process: Process): number {
+    return process.Window.appData.height;
+  }
 }
