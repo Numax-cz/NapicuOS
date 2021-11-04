@@ -16,9 +16,7 @@ export class WindowComponent implements OnInit {
   ngOnInit(): void {}
 
   public close(process: Process, event: Event): void {
-    //TODO nezobrazuje se, protože je display (Window) na Flase
-    // console.log(this.doc.getElementById('napicuos-App-window'));
-    // process.Window.close();
+    process.Window.close();
     event.stopPropagation();
   }
 
@@ -30,7 +28,9 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
 
-  public moveWindow(): void {}
+  public moveWindow(): void {
+    alert('Move');
+  }
 
   get AppProcess(): any {
     return this.ApplicationProcess;
@@ -38,4 +38,9 @@ export class WindowComponent implements OnInit {
   get SystemBoot(): boolean {
     return SystemBoot();
   }
+
+  public getTop(process: Process): void {}
+  public getLeft(process: Process): void {}
+  public getWidth(process: Process): void {}
+  public getHeight(process: Process): void {}
 }
