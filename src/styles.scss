@@ -18,6 +18,8 @@ $FrameSizeHeight: 100%;
   font-family: 'DosVGA';
   margin: 0;
   box-sizing: border-box;
+  overflow-y: hidden;
+  overflow-x: hidden;
   user-select: none;
 }
 
