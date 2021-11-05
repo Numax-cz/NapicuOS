@@ -59,9 +59,7 @@ export class WindowComponent implements OnInit {
   public moveWindowOut(): void {
     this.move = false;
   }
-  public collisions(): void {
-    
-  }
+
   get AppProcess(): any {
     return this.ApplicationProcess;
   }
