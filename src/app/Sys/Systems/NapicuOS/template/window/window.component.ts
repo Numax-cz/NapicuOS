@@ -46,12 +46,12 @@ export class WindowComponent implements OnInit {
     var x = MousevalueX + this.x;
     var y = MousevalueY + this.y;
 
-    this.setLeft(process, percentage(x, window.innerWidth));
-    this.setTop(process, percentage(y, window.innerHeight));
+    process.Window.setLeft(percentage(x, window.innerWidth));
+    process.Window.setTop(percentage(y, window.innerHeight));
   }
   public moveWindowIn(process: Process, event: any): void {
-    this.x = percentageValue(this.getLeft(process), window.innerWidth) - event.clientX;
-    this.y = percentageValue(this.getTop(process), window.innerHeight) - event.clientY;
+    this.x = percentageValue(process.Window.getLeft(), window.innerWidth) - event.clientX;
+    this.y = percentageValue(process.Window.getTop(), window.innerHeight) - event.clientY;
 
     this.move = true;
     event.stopPropagation();
@@ -62,31 +62,5 @@ export class WindowComponent implements OnInit {
   }
   get SystemBoot(): boolean {
     return SystemBoot();
-  }
-
-  public getTop(process: Process): number {
-    return process.Window.appData.posY;
-  }
-  public getLeft(process: Process): number {
-    return process.Window.appData.posX;
-  }
-  public getWidth(process: Process): number {
-    return process.Window.appData.width;
-  }
-  public getHeight(process: Process): number {
-    return process.Window.appData.height;
-  }
-
-  public setTop(process: Process, value: number): void {
-    process.Window.appData.posY = value;
-  }
-  public setLeft(process: Process, value: number): void {
-    process.Window.appData.posX = value;
-  }
-  public setWidth(process: Process, value: number): void {
-    process.Window.appData.width = value;
-  }
-  public setHeight(process: Process, value: number): void {
-    process.Window.appData.height = value;
   }
 }
