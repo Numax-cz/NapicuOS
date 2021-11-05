@@ -43,8 +43,8 @@ export class WindowComponent implements OnInit {
     var MousevalueX = event.clientX;
     var MousevalueY = event.clientY;
 
-    var x = MousevalueX + this.x;
-    var y = MousevalueY + this.y;
+    var x = Math.round(MousevalueX + this.x);
+    var y = Math.round(MousevalueY + this.y);
 
     process.Window.setLeft(percentage(x, window.innerWidth));
     process.Window.setTop(percentage(y, window.innerHeight));
@@ -57,7 +57,7 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
   public moveWindowOut(): void {
-//    this.move = false;
+    this.move = false;
   }
 
   get AppProcess(): any {
