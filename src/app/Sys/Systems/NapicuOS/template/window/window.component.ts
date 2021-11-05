@@ -3,7 +3,7 @@ import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angula
 import { LoadingFlashComponent } from 'src/app/Config/Animation/Flash';
 import { Process } from 'src/app/Sys/Process';
 import { getSystemProcess, SystemBoot } from '../../GET';
-import { percentage } from '../../scripts/getPercentage';
+import { percentage, percentageValue } from '../../scripts/getPercentage';
 
 @Component({
   selector: 'app-window',
@@ -14,6 +14,9 @@ export class WindowComponent implements OnInit {
   @Input() ApplicationProcess: Process[] = [];
   @ViewChild('Panel') declare panel: ElementRef;
   public move: boolean = false;
+  protected x: number = 0;
+  protected y: number = 0;
+
   constructor(@Inject(DOCUMENT) private doc: Document) {}
 
   ngOnInit(): void {
@@ -36,16 +39,22 @@ export class WindowComponent implements OnInit {
   }
 
   public moveWindow(process: Process, event: any): void {
+    if (!this.move) return;
     var MousevalueX = event.clientX;
+    var MousevalueY = event.clientY;
 
-    var percentageMouseValueX = Math.round(percentage(MousevalueX, window.innerWidth));
+    var x = MousevalueX + this.x;
+    var y = MousevalueY + this.y;
 
-    console.log(2 * percentageMouseValueX - this.getLeft(process));
-
-    this.setLeft(process, percentage(MousevalueX, window.innerWidth));
+    this.setLeft(process, percentage(x, window.innerWidth));
+    this.setTop(process, percentage(y, window.innerHeight));
   }
-  public moveWindowIn(): void {
+  public moveWindowIn(process: Process, event: any): void {
+    this.x = percentageValue(this.getLeft(process), window.innerWidth) - event.clientX;
+    this.y = percentageValue(this.getTop(process), window.innerHeight) - event.clientY;
+
     this.move = true;
+    event.stopPropagation();
   }
 
   get AppProcess(): any {
