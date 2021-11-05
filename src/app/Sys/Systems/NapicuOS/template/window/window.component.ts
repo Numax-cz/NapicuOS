@@ -57,7 +57,7 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
   public moveWindowOut(): void {
-    this.move = false;
+//    this.move = false;
   }
 
   get AppProcess(): any {
