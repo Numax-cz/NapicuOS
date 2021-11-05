@@ -21,7 +21,7 @@ export class WindowComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('mouseout', () => {
-      this.move = false;
+      this.moveWindowOut();
     });
   }
 
@@ -56,7 +56,12 @@ export class WindowComponent implements OnInit {
     this.move = true;
     event.stopPropagation();
   }
-
+  public moveWindowOut(): void {
+    this.move = false;
+  }
+  public collisions(): void {
+    
+  }
   get AppProcess(): any {
     return this.ApplicationProcess;
   }
