@@ -47,8 +47,8 @@ export class WindowComponent implements OnInit {
 
   protected moveWindow(event: MouseEvent): void {
     if (!this.move || this.resize) return;
-    var MousevalueX = event.pageX; 
-    var MousevalueY = event.pageY; 
+    var MousevalueX = event.pageX;
+    var MousevalueY = event.pageY;
 
     var x = Math.round(MousevalueX + this.X);
     var y = Math.round(MousevalueY + this.Y);
@@ -58,13 +58,14 @@ export class WindowComponent implements OnInit {
   }
   protected resizeWindow(event: MouseEvent): void {
     if (this.move || !this.resize) return;
-    var MousevalueX = event.pageX; 
-    var MousevalueY = event.pageY; 
+    var MousevalueX = event.pageX;
+    var MousevalueY = event.pageY;
     if (this.selectedDiv.classList.contains('bottom-right')) {
       var x = percentage(MousevalueX, window.innerWidth) - this.procesMove.Window.getLeft();
       var y = percentage(MousevalueY, window.innerHeight) - this.procesMove.Window.getTop();
       this.procesMove.Window.setWidth(x);
       this.procesMove.Window.setHeight(y);
+    } else if (this.selectedDiv.classList.contains('bottom-left')) {
     }
   }
 
