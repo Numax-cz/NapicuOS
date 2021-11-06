@@ -1,5 +1,6 @@
 import { Type } from '@angular/core';
 import { Process } from './Process';
+import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 
 interface data {
   posX: number;
@@ -30,29 +31,62 @@ export class Window {
     this.display = false;
   };
   //? Getters
+  /**
+   * Returns top in pixels
+   * @returns {number} value in pixels
+   */
   public getTop(): number {
-    return this.appData.posY;
+    return percentageValue(this.appData.posY, window.innerHeight);
   }
+  /**
+   * Returns left in pixels
+   * @returns {number} value in pixels
+   */
   public getLeft(): number {
-    return this.appData.posX;
+    return percentageValue(this.appData.posX, window.innerWidth);
   }
+  /**
+   * Returns width in pixels
+   * @returns {number} value in pixels
+   */
   public getWidth(): number {
-    return this.appData.width;
+    return percentageValue(this.appData.width, window.innerWidth);
   }
+  /**
+   * Returns height in pixels
+   * @returns {number} value in pixels
+   */
   public getHeight(): number {
-    return this.appData.height;
+    return percentageValue(this.appData.height, window.innerHeight);
   }
+
   //? Setters
-  public setTop(value: number): void {
-    this.appData.posY = value;
+  /**
+   * Sets the top in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setTop(valuePX: number): void {
+    this.appData.posY = percentage(valuePX, window.innerHeight);
   }
-  public setLeft(value: number): void {
-    this.appData.posX = value;
+  /**
+   *Sets the left in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setLeft(valuePX: number): void {
+    this.appData.posX = percentage(valuePX, window.innerWidth);
   }
-  public setWidth(value: number): void {
-    this.appData.width = value;
+  /**
+   *Sets the width in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setWidth(valuePX: number): void {
+    this.appData.width = percentage(valuePX, window.innerWidth);
   }
-  public setHeight(value: number): void {
-    this.appData.height = value;
+  /**
+   *Sets the height in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setHeight(valuePX: number): void {
+    this.appData.height = percentage(valuePX, window.innerHeight);
   }
 }
