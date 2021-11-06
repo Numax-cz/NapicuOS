@@ -9,8 +9,38 @@
   box-shadow: var(--NapicuWindowBoxShadow);
   -webkit-box-shadow: var(--apicuWindowBoxShadow);
   -moz-box-shadow: var(--NapicuWindowBoxShadow);
+  min-width: 350px;
+  min-height: 250px;
 }
 
+.resizer {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #4286f4;
+  position: absolute;
+}
+.resizer.top-left {
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize; /*resizer cursor*/
+}
+.resizer.top-right {
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
+}
+.resizer.bottom-left {
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
+}
+.resizer.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
+}
 
 .napicuos-App-window-M {
   display: flex;

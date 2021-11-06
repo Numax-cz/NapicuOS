@@ -15,8 +15,8 @@ export class Window {
   public appData: data = {
     posX: 30,
     posY: 30,
-    width: 700,
-    height: 400,
+    width: 40,
+    height: 40,
   };
   constructor(component: Type<any>) {
     this.WindowComponent = component;

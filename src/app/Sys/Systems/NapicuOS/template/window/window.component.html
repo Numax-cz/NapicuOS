@@ -3,21 +3,26 @@
     *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
     id="napicuos-App-window"
     [ngStyle]="{
-      'width.px': i.Window.appData.width,
-      'height.px': i.Window.appData.height,
+      'width.%': i.Window.appData.width,
+      'height.%': i.Window.appData.height,
       'top.%': i.Window.appData.posY,
       'left.%': i.Window.appData.posX
     }"
   >
-    <div
-      class="napicuos-App-window-M"
-      (mousedown)="moveWindowIn(i, $event)"
-    >
+    <div class="resizers" (mousedown)="resizersIn(i, $event)">
+      <div class="resizer top-left"></div>
+      <div class="resizer top-right"></div>
+      <div class="resizer bottom-left"></div>
+      <div class="resizer bottom-right"></div>
+    </div>
+
+    <div class="napicuos-App-window-M" (mousedown)="moveWindowIn(i, $event)">
       <div id="MinButton" (click)="minimized(i, $event)"></div>
       <div id="FullButton" (click)="full(i, $event)"></div>
       <div id="CloseButton" (click)="close(i, $event)"></div>
     </div>
-    <div style="height: 100%">
+
+    <div style="height: 100%; overflow: auto; display: grid;">
       <ng-component *ngComponentOutlet="i.Window.WindowComponent"></ng-component>
     </div>
   </section>
