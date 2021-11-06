@@ -1,4 +1,4 @@
- <!-- MainSystem -->
+<!-- MainSystem -->
 <div id="VerdanaFont">
   <div id="SystemBackground">
     <section @NapicuOSfeoreStartUp id="System">
@@ -14,12 +14,10 @@
 
       <section [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
         <!-- MainPanel -->
-        <section></section>
+        <section>
+          <app-window [ApplicationProcess]="Process"></app-window>
+        </section>
       </section>
     </section>
   </div>
-
-  <section>
-    <app-window [ApplicationProcess]="Process"></app-window>
-  </section>
 </div>
