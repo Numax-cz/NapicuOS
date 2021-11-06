@@ -11,9 +11,7 @@
   >
     <div
       class="napicuos-App-window-M"
-      (mousemove)="moveWindow(i, $event)"
       (mousedown)="moveWindowIn(i, $event)"
-      (mouseup)="moveWindowOut()"
     >
       <div id="MinButton" (click)="minimized(i, $event)"></div>
       <div id="FullButton" (click)="full(i, $event)"></div>

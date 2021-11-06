@@ -1,8 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { LoadingFlashComponent } from 'src/app/Config/Animation/Flash';
+
 import { Process } from 'src/app/Sys/Process';
-import { getSystemProcess, SystemBoot } from '../../GET';
+import { SystemBoot } from '../../GET';
 import { percentage, percentageValue } from '../../scripts/getPercentage';
 
 @Component({
@@ -16,12 +16,15 @@ export class WindowComponent implements OnInit {
   public move: boolean = false;
   protected x: number = 0;
   protected y: number = 0;
-
+  protected declare procesMove: Process;
   constructor(@Inject(DOCUMENT) private doc: Document) {}
 
   ngOnInit(): void {
-    window.addEventListener('mouseout', () => {
+    window.addEventListener('mouseup', () => {
       this.moveWindowOut();
+    });
+    window.addEventListener('mousemove', (event: any) => {
+      this.moveWindow(event);
     });
   }
 
@@ -38,7 +41,7 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
 
-  public moveWindow(process: Process, event: any): void {
+  public moveWindow(event: any): void {
     if (!this.move) return;
     var MousevalueX = event.clientX;
     var MousevalueY = event.clientY;
@@ -46,14 +49,14 @@ export class WindowComponent implements OnInit {
     var x = Math.round(MousevalueX + this.x);
     var y = Math.round(MousevalueY + this.y);
 
-    process.Window.setLeft(percentage(x, window.innerWidth));
-    process.Window.setTop(percentage(y, window.innerHeight));
+    this.procesMove.Window.setLeft(percentage(x, window.innerWidth));
+    this.procesMove.Window.setTop(percentage(y, window.innerHeight));
   }
   public moveWindowIn(process: Process, event: any): void {
     this.x = percentageValue(process.Window.getLeft(), window.innerWidth) - event.clientX;
     this.y = percentageValue(process.Window.getTop(), window.innerHeight) - event.clientY;
-
     this.move = true;
+    this.procesMove = process;
     event.stopPropagation();
   }
   public moveWindowOut(): void {
