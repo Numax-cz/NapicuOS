@@ -19,7 +19,6 @@ export class Process {
     }
 
     GrubComponent.ActiveSystem.SystemProcess.push(this);
-   
   }
 
   public onRun(): void {}
