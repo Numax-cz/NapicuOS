@@ -43,7 +43,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
     this.setProcess();
-    console.log("ZDAR");
     
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {

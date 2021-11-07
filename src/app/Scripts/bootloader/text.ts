@@ -29,7 +29,7 @@ export class animationCursor {
   /**
    * Starts a blinking cursor animation
    */
-  blinking(): void {
+  public blinking(): void {
     setDisplayText(['']);
     this.interval = setInterval(() => {
       setTimeout(() => {
@@ -44,7 +44,7 @@ export class animationCursor {
   /**
    * Moves the cursor down in blackscreen
    */
-  moveDown(fun?: Function): void {
+  public moveDown(fun?: Function): void {
     var i: number = 0;
     var maxTime: number = 10;
     var id: any;
@@ -63,7 +63,7 @@ export class animationCursor {
   /**
    * Stop blinking (Deletes the interval function)
    */
-  stop(): void {
+  public stop(): void {
     clearInterval(this.interval);
   }
 }

@@ -28,7 +28,6 @@ export class System {
 
   public readonly Start = (): void => {
     SystemComponent.SysComponent = this.component;
-
     this.onStart();
   };
 
