@@ -39,7 +39,7 @@ export class BootLoader {
     BlackscreenComponent.cursor.blinking();
     setTimeout(() => {
       if (this.checkBootSector()) {
-        BlackscreenComponent.cursor?.moveDown(() => this.system());
+        BlackscreenComponent.cursor?.moveDown();
       }
     }, 1350);
   }

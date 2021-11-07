@@ -4,7 +4,6 @@ import {
   CursorAnimationIN,
   CursorAnimationTimeIn,
   CursorMoveDown,
-  CUrsorTimeOut,
 } from 'src/app/Config/Animation/animationCursor';
 
 export function setDisplayText(text: string[], index?: number): void {
@@ -33,10 +32,16 @@ export class animationCursor {
     setDisplayText(['']);
     this.interval = setInterval(() => {
       setTimeout(() => {
+        // if (BlackscreenComponent.text[BlackscreenComponent.text.length - 1] === '_') return;
+        if (BlackscreenComponent.text[BlackscreenComponent.text.length - 1] === '_') {
+          BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
+          return;
+        }
         BlackscreenComponent.text.push('_');
         setTimeout(() => {
           BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
         }, 500);
+        console.log(BlackscreenComponent.text);
       }, CursorAnimationTimeIn);
     }, CursorAnimationIN);
   }
@@ -46,18 +51,18 @@ export class animationCursor {
    */
   public moveDown(fun?: Function): void {
     var i: number = 0;
-    var maxTime: number = 10;
+    var maxTime: number = 15;
     var id: any;
     id = setInterval(() => {
-      setTimeout(() => {
-        if (i <= maxTime) {
-          BlackscreenComponent.text.unshift(' ');
-          i++;
-        } else {
-          clearInterval(id);
-          if (fun) fun();
-        }
-      }, CUrsorTimeOut);
+      if (i <= maxTime) {
+        BlackscreenComponent.text.unshift(' ');
+        i++;
+      } else {
+        clearInterval(id);
+        console.log('run fun');
+
+        if (fun) fun();
+      }
     }, CursorMoveDown);
   }
   /**
