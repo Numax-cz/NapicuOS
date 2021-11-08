@@ -41,7 +41,6 @@ export class animationCursor {
         setTimeout(() => {
           BlackscreenComponent.text.splice(BlackscreenComponent.text.length - 1, 1);
         }, 500);
-        console.log(BlackscreenComponent.text);
       }, CursorAnimationTimeIn);
     }, CursorAnimationIN);
   }
@@ -59,8 +58,6 @@ export class animationCursor {
         i++;
       } else {
         clearInterval(id);
-        console.log('run fun');
-
         if (fun) fun();
       }
     }, CursorMoveDown);
