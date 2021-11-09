@@ -18,7 +18,7 @@ import { wallpaper } from '../../config/wallpaper';
           ':self',
           stagger('20ms', [
             style({ transform: 'scale(0.2) rotateX(70deg)', opacity: 0, transformOrigin: 'bottom' }),
-            animate(`${100000}ms ease-in-out`),
+            animate(`${boot_animation_time}ms ease-in-out`),
           ])
         ),
       ]),
