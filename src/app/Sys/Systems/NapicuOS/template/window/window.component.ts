@@ -1,13 +1,31 @@
+import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { copy } from 'src/app/Scripts/DeepClone';
 import { Process } from 'src/app/Sys/Process';
+import { boot_animation_time } from '../../config/boot';
+import { window_open_time } from '../../config/windowAnimations';
 import { getSystemProcess, SystemBoot } from '../../GET';
 
 @Component({
   selector: 'app-window',
   templateUrl: './window.component.html',
   styleUrls: ['./window.component.scss'],
+  animations: [
+    trigger('NapicuOSMaximizeWindow', [
+      transition('void => *', [
+        query(
+          ':self',
+          stagger('20ms', [
+            style({
+              transform: 'scale(0.2)',
+            }),
+            animate(`${window_open_time}ms ease-in-out`),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
 export class WindowComponent implements OnInit {
   //TODO DOC
@@ -54,6 +72,7 @@ export class WindowComponent implements OnInit {
   }
 
   public full(process: Process, event: Event): void {
+    process.Window.maximize();
     event.stopPropagation();
   }
 
@@ -98,8 +117,6 @@ export class WindowComponent implements OnInit {
       top = this.originalY + (MousevalueY - this.originalMouseY);
       left = this.originalMouseX + (MousevalueX - this.originalMouseX);
     }
-
-
 
     if (x > WindowComponent.MinWindowWidth) {
       this.procesMove.Window.setWidth(x);

@@ -12,6 +12,7 @@ interface data {
 export class Window {
   public WindowTitle: string = 'Window';
   public declare display: boolean;
+  public maximized: boolean = false;
   public declare WindowComponent: Type<any>;
   public appData: data = {
     posX: 30,
@@ -30,6 +31,11 @@ export class Window {
   public readonly close = (): void => {
     this.display = false;
   };
+
+  public readonly maximize = (): void => {
+    this.maximized = true;
+  };
+
   //? Getters
   /**
    * Returns top in pixels

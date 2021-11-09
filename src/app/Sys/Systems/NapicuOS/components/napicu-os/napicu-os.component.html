@@ -2,7 +2,7 @@
 <div id="VerdanaFont">
   <div id="SystemBackground">
     <section @NapicuOSfeoreStartUp id="System">
-      <section style="width: 100%; display: flex; height: 100%; flex-direction: column">
+      <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
         <div class="TopPanel">
           <div>Activities</div>
           <div>{{ systemTime }}</div>
@@ -12,13 +12,13 @@
             <img src="/assets/systems/NapicuOS/on-off.svg" />
           </div>
         </div>
-
-        
-        <div [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
-          <!-- MainPanel -->
-          <section>
-            <app-window [ApplicationProcess]="Process"></app-window>
-          </section>
+        <div style="display: contents; background-color: white;">
+          <div [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
+            <!-- MainPanel -->
+            <section>
+              <app-window [ApplicationProcess]="Process"></app-window>
+            </section>
+          </div>
         </div>
       </section>
     </section>

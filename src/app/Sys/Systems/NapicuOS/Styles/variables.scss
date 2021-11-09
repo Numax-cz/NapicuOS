@@ -3,13 +3,13 @@
 
 .NapicuThemeFeraDark {
   //TopPanel
-  --NapicuTopMenuBackgroundColor: rgb(0, 0, 0);
+  --NapicuTopMenuBackgroundColor: #161616;
   --NapicuTopMenuTextColor: #d6dce0;
   --NapicuTopMenuIconFilter: none;
 
   //Window
   --NapicuWindowBorder: 7px;
-  --NapicuWindowColor: rgb(0, 0, 0);
+  --NapicuWindowColor: var(--NapicuTopMenuBackgroundColor);
   --NapicuWindowPadding: 7px;
   --NapicuWindowBoxShadow: 0px 0px 44px 3px rgba(0, 0, 0, 0.48);
   //MenuButtons
