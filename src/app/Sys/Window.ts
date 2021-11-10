@@ -33,7 +33,9 @@ export class Window {
   };
 
   public readonly maximize = (): void => {
-    this.maximized = true;
+    this.maximized ? (this.maximized = false) : (this.maximized = true);
+    console.log(this.appData);
+    
   };
 
   //? Getters

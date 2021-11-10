@@ -38,25 +38,21 @@
 //   justify-content: flex-end;
 // }
 
-
 .TopPanel {
   display: flex;
   padding: 3px 20px;
   align-items: center;
   justify-content: space-between;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--NapicuTopMenuTextColor);
-  font-size: 0.9rem;
+  font-size: 0.94rem;
   background-color: var(--NapicuTopMenuBackgroundColor);
-  >div {
+  > div {
     padding: 6px 10px;
     border-radius: 20px;
     cursor: pointer;
   }
-  >div:hover{
-
+  > div:hover {
     background-color: #333333;
   }
 }
-
-

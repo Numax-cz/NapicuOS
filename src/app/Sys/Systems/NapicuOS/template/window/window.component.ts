@@ -1,26 +1,42 @@
-import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
+import { trigger, transition, query, stagger, style, animate, state } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { copy } from 'src/app/Scripts/DeepClone';
 import { Process } from 'src/app/Sys/Process';
 import { boot_animation_time } from '../../config/boot';
-import { window_open_time } from '../../config/windowAnimations';
+import { window_animations } from '../../config/windowAnimations';
 import { getSystemProcess, SystemBoot } from '../../GET';
 
 @Component({
   selector: 'app-window',
   templateUrl: './window.component.html',
   styleUrls: ['./window.component.scss'],
+
   animations: [
-    trigger('NapicuOSMaximizeWindow', [
+    trigger('NapicuOSWindowAnimationOpenClose', [
       transition(':enter', [
         style({ transform: 'scale(0)' }),
-        animate(window_open_time, style({ transform: 'scale(1)' })),
+        animate(window_animations, style({ transform: 'scale(1)' })),
       ]),
       transition(':leave', [
         style({ transform: 'scale(1)' }),
-        animate(window_open_time, style({ transform: 'scale(0)' })),
+        animate(window_animations, style({ transform: 'scale(0)' })),
       ]),
+    ]),
+    trigger('NapicuOSMaximizeWindow', [
+      state(
+        'true',
+
+        style({
+          width: '100%',
+          height: '100%',
+          top: '0%',
+          left: '0%',
+        })
+      ),
+      state('false', style({})),
+      transition('*=>true', animate(window_animations)),
+      transition('*=>false', animate(window_animations)),
     ]),
   ],
 })
@@ -70,6 +86,7 @@ export class WindowComponent implements OnInit {
 
   public full(process: Process, event: Event): void {
     process.Window.maximize();
+
     event.stopPropagation();
   }
 

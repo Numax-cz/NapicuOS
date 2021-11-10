@@ -1,6 +1,7 @@
 <div *ngFor="let i of AppProcess">
   <section
-    @NapicuOSMaximizeWindow
+    @NapicuOSWindowAnimationOpenClose
+    [@NapicuOSMaximizeWindow]="i.Window.maximized"
     *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
     id="napicuos-App-window"
     [ngStyle]="{

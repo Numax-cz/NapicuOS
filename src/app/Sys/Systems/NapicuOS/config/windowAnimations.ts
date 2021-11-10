@@ -1,4 +1,4 @@
 /**
- * Animation time when opening the window 
+ * All window animation times
  */
-export const window_open_time = 120;
+export const window_animations = 120;
