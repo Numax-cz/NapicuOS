@@ -1,1 +1,1 @@
-export const wallpaper = '/assets/systems/NapicuOS/NapicuOSWallpaper.webp';
+export const wallpaper = '/assets/systems/NapicuOS/NapicuOSWallpaper2.jpg';

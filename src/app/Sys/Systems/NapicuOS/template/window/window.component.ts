@@ -13,16 +13,13 @@ import { getSystemProcess, SystemBoot } from '../../GET';
   styleUrls: ['./window.component.scss'],
   animations: [
     trigger('NapicuOSMaximizeWindow', [
-      transition('void => *', [
-        query(
-          ':self',
-          stagger('20ms', [
-            style({
-              transform: 'scale(0.2)',
-            }),
-            animate(`${window_open_time}ms ease-in-out`),
-          ])
-        ),
+      transition(':enter', [
+        style({ transform: 'scale(0)' }),
+        animate(window_open_time, style({ transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        style({ transform: 'scale(1)' }),
+        animate(window_open_time, style({ transform: 'scale(0)' })),
       ]),
     ]),
   ],
