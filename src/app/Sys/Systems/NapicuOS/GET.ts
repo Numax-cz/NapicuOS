@@ -7,7 +7,6 @@ import { NapicuOS } from './system.napicuos';
 export function getSystemTime(): string {
   return NapicuOS.systemTime;
 }
-
 /**
  * Returns whether the system has been started
  */
