@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { WindowStatus } from './Systems/NapicuOS/interface/WindowStatus.';
+import { WindowStatus } from './Systems/NapicuOS/interface/WindowStatus';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 
 interface data {
