@@ -5,6 +5,7 @@ import { copy } from 'src/app/Scripts/DeepClone';
 import { Process } from 'src/app/Sys/Process';
 import { boot_animation_time } from '../../config/boot';
 import { window_animations } from '../../config/windowAnimations';
+import { maximized, minimized } from '../../config/windowStatus';
 import { getSystemProcess, SystemBoot } from '../../GET';
 
 @Component({
@@ -25,8 +26,7 @@ import { getSystemProcess, SystemBoot } from '../../GET';
     ]),
     trigger('NapicuOSMaximizeWindow', [
       state(
-        'true',
-
+        maximized,
         style({
           width: '100%',
           height: '100%',
@@ -35,7 +35,7 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         })
       ),
       state(
-        'false',
+        minimized,
         style({
           width: '{{width}}%',
           height: '{{height}}%',
@@ -44,8 +44,8 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         }),
         { params: { width: 0, height: 0, top: 0, left: 0 } }
       ),
-      transition('*=>true', animate(window_animations)),
-      transition('*=>false', animate(window_animations)),
+      transition(`*=>${maximized}`, animate(window_animations)),
+      transition(`*=>${minimized}`, animate(window_animations)),
     ]),
   ],
 })

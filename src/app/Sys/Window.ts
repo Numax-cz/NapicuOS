@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { Process } from './Process';
+import { WindowStatus } from './Systems/NapicuOS/interface/WindowStatus.';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 
 interface data {
@@ -12,7 +12,7 @@ interface data {
 export class Window {
   public WindowTitle: string = 'Window';
   public declare display: boolean;
-  public maximized: boolean = false;
+  public status: WindowStatus = 'closed';
   public declare WindowComponent: Type<any>;
   public appData: data = {
     posX: 30,
@@ -29,13 +29,12 @@ export class Window {
   };
 
   public readonly close = (): void => {
+    this.status = 'closed';
     this.display = false;
   };
 
   public readonly maximize = (): void => {
-    this.maximized ? (this.maximized = false) : (this.maximized = true);
-    console.log(this.appData);
-    
+    this.status = this.status == 'maximized' ? 'minimized' : 'maximized';
   };
 
   //? Getters

@@ -2,7 +2,7 @@ import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.compo
 import { setTimeInterval } from 'src/app/Scripts/TimeController';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
-import { onStartUp, onShutDown, Os } from '../../interface/system';
+import { onStartUp, onShutDown, Os } from './interface/system';
 import { Process } from '../../Process';
 import { System } from '../../System';
 import { WelcomeComponent } from './Apps/welcome/welcome.component';
