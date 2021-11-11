@@ -34,7 +34,16 @@ import { getSystemProcess, SystemBoot } from '../../GET';
           left: '0%',
         })
       ),
-      state('false', style({})),
+      state(
+        'false',
+        style({
+          width: '{{width}}%',
+          height: '{{height}}%',
+          top: '{{top}}%',
+          left: '{{left}}%',
+        }),
+        { params: { width: 0, height: 0, top: 0, left: 0 } }
+      ),
       transition('*=>true', animate(window_animations)),
       transition('*=>false', animate(window_animations)),
     ]),
