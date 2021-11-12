@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-import { maximized, minimized } from '../../config/windowStatus';
+
 import { getSystemProcess, SystemBoot } from '../../GET';
 
 @Component({
