@@ -24,19 +24,14 @@
 }
 
 #TopPanelIcons {
-  width: 30px;
-  padding: 2px;
+  display: flex;
   img {
-    padding: 2px;
-    margin: 0px 2.5px;
+    width: 0.94rem;
+    margin: 0px 3.5px;
     filter: var(--NapicuTopMenuIconFilter);
   }
 }
 
-// .TopRightButtons {
-//   display: flex;
-//   justify-content: flex-end;
-// }
 
 .TopPanel {
   display: flex;

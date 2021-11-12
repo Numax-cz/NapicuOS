@@ -104,7 +104,7 @@ export class WindowComponent implements OnInit {
   }
 
   protected moveWindow(event: MouseEvent): void {
-    if (this.procesMove.Window.status === 'maximized') return;
+    if (this.procesMove?.Window?.status === 'maximized') return;
     if (!this.move || this.resize) return;
     var MousevalueX = event.pageX;
     var MousevalueY = event.pageY;
@@ -116,7 +116,7 @@ export class WindowComponent implements OnInit {
     this.procesMove.Window.setTop(y);
   }
   protected resizeWindow(event: MouseEvent): void {
-    if (this.procesMove.Window.status === 'maximized') return;
+    if (this.procesMove?.Window?.status === 'maximized') return;
 
     if (this.move || !this.resize) return;
     var MousevalueX: number = event.pageX;
