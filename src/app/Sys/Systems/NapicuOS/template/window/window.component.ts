@@ -14,7 +14,8 @@ import { getSystemProcess, SystemBoot } from '../../GET';
   styleUrls: ['./window.component.scss'],
 
   animations: [
-    trigger('NapicuOSWindowAnimationOpenClose', [
+
+    trigger('NapicuOSWindowAnimation', [
       transition(':enter', [
         style({ transform: 'scale(0)' }),
         animate(window_animations, style({ transform: 'scale(1)' })),
@@ -23,8 +24,6 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         style({ transform: 'scale(1)' }),
         animate(window_animations, style({ transform: 'scale(0)' })),
       ]),
-    ]),
-    trigger('NapicuOSMaximizeWindow', [
       state(
         maximized,
         style({

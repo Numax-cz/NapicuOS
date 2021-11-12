@@ -1,7 +1,6 @@
 <div *ngFor="let i of AppProcess">
   <section
-    @NapicuOSWindowAnimationOpenClose
-    [@NapicuOSMaximizeWindow]="{
+    [@NapicuOSWindowAnimation]="{
       value: i.Window.status,
       params: {
         width: i.Window.appData.width,
