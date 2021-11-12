@@ -8,10 +8,25 @@
   padding: 15px;
 }
 
-
 #sweetBorder {
   border: 0;
   border: 1px solid #0000007a;
   border-radius: 4px;
   outline: none;
+}
+
+#WindowScrollBar {
+  overflow: auto;
+}
+#WindowScrollBar::-webkit-scrollbar {
+  width: 7px;
+}
+#WindowScrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+#WindowScrollBar::-webkit-scrollbar-thumb {
+  display: block;
+  border-radius: 9999px;
+  background-color: var(--NapicuWindowScrollBar);
 }

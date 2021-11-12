@@ -32,7 +32,7 @@
       <div id="CloseButton" (click)="close(i, $event)"></div>
     </div>
 
-    <div style="height: 100%; overflow: auto; display: grid">
+    <div id="INAppWindow">
       <ng-component *ngComponentOutlet="i.Window.WindowComponent"></ng-component>
     </div>
   </section>
