@@ -1,9 +1,7 @@
-import { trigger, transition, query, stagger, style, animate, state } from '@angular/animations';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { copy } from 'src/app/Scripts/DeepClone';
 import { Process } from 'src/app/Sys/Process';
-import { boot_animation_time } from '../../config/boot';
 import { window_animations } from '../../config/windowAnimations';
 import { maximized, minimized } from '../../config/windowStatus';
 import { getSystemProcess, SystemBoot } from '../../GET';
@@ -14,7 +12,6 @@ import { getSystemProcess, SystemBoot } from '../../GET';
   styleUrls: ['./window.component.scss'],
 
   animations: [
-
     trigger('NapicuOSWindowAnimation', [
       transition(':enter', [
         style({ transform: 'scale(0)' }),
@@ -112,7 +109,10 @@ export class WindowComponent implements OnInit {
     var y = MousevalueY + this.originalY;
 
     this.procesMove.Window.setLeft(x);
-    this.procesMove.Window.setTop(y);
+
+    if (MousevalueY > 0) {
+      this.procesMove.Window.setTop(y);
+    }
   }
   protected resizeWindow(event: MouseEvent): void {
     if (typeof this.procesMove?.Window?.status == maximized) return;
@@ -147,6 +147,7 @@ export class WindowComponent implements OnInit {
       this.procesMove.Window.setWidth(x);
       if (left) this.procesMove.Window.setLeft(left);
     }
+
     if (y > WindowComponent.MinWindowHeight) {
       this.procesMove.Window.setHeight(y);
       if (top) this.procesMove.Window.setTop(top);
