@@ -144,15 +144,23 @@ export class WindowComponent implements OnInit {
    */
   protected moveWindow(event: MouseEvent): void {
     if (!this.move || this.resize) return;
-
     var MousevalueX = event.pageX;
     var MousevalueY = event.pageY;
+
+    // if (this.maximized) {
+    //   this.procesMove.Window.setTop(event.pageY);
+    //   this.procesMove.Window.setLeft(event.pageX);
+
+    //   this.originalX = this.procesMove.Window.getLeft();
+    //   this.originalY = this.procesMove.Window.getTop();
+
+    //   this.maximized = false;
+    // }
 
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
 
     this.procesMove.Window.setLeft(x);
-
     if (MousevalueY > 0) {
       this.procesMove.Window.setTop(y);
     }
@@ -205,7 +213,7 @@ export class WindowComponent implements OnInit {
   /**
    * Functions for saving parameters
    * @param process
-   * @param event - The mouse event  
+   * @param event - The mouse event
    */
   public resizersIn(process: Process, event: MouseEvent): void {
     this.resize = true;
@@ -223,7 +231,7 @@ export class WindowComponent implements OnInit {
   /**
    * Functions for saving parameters
    * @param process
-   * @param event - The mouse event 
+   * @param event - The mouse event
    */
   public moveWindowIn(process: Process, event: MouseEvent): void {
     this.originalX = process.Window.getLeft() - event.pageX;
