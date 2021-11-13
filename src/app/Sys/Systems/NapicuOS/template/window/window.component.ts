@@ -22,7 +22,7 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         animate(window_animations, style({ transform: 'scale(0)' })),
       ]),
       state(
-        "maximized",
+        'true',
         style({
           width: '100%',
           height: '100%',
@@ -31,7 +31,7 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         })
       ),
       state(
-        "minimized",
+        'false',
         style({
           width: '{{width}}%',
           height: '{{height}}%',
@@ -40,8 +40,9 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         }),
         { params: { width: 0, height: 0, top: 0, left: 0 } }
       ),
-      transition(`*=>maximized`, animate(window_animations)),
-      transition(`*=>minimized`, animate(window_animations)),
+
+      transition(`*=>true`, animate(window_animations)),
+      transition(`*=>false`, animate(window_animations)),
     ]),
   ],
 })
@@ -84,7 +85,6 @@ export class WindowComponent implements OnInit {
   }
 
   public close(process: Process, event: Event): void {
-    console.log(getSystemProcess()); //TODO For Debug
     process.Window.close();
     event.stopPropagation();
   }
@@ -100,8 +100,8 @@ export class WindowComponent implements OnInit {
   }
 
   protected moveWindow(event: MouseEvent): void {
-    if (this.procesMove?.Window?.status == "maximized") return;
     if (!this.move || this.resize) return;
+    
     var MousevalueX = event.pageX;
     var MousevalueY = event.pageY;
 
@@ -113,9 +113,10 @@ export class WindowComponent implements OnInit {
     if (MousevalueY > 0) {
       this.procesMove.Window.setTop(y);
     }
+    // this.procesMove.Window.status = 'moved';
   }
   protected resizeWindow(event: MouseEvent): void {
-    if (this.procesMove?.Window?.status == "maximized") return;
+    if (this.procesMove?.Window?.maximized) return;
 
     if (this.move || !this.resize) return;
     var MousevalueX: number = event.pageX;
