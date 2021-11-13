@@ -1,16 +1,13 @@
 import { trigger, transition, style, animate, state } from '@angular/animations';
-import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-
-import { getSystemProcess, SystemBoot } from '../../GET';
+import { SystemBoot } from '../../GET';
 
 @Component({
   selector: 'app-window',
   templateUrl: './window.component.html',
   styleUrls: ['./window.component.scss'],
-
   animations: [
     trigger('NapicuOSWindowAnimation', [
       transition(':enter', [
@@ -57,7 +54,6 @@ export class WindowComponent implements OnInit {
    * Minimum window height in pixels
    */
   static readonly MinWindowHeight: number = 150;
-
   /**
    * Specifies whether the window can be moved
    */
@@ -107,7 +103,7 @@ export class WindowComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
-      this.moveWindowOut();
+      this.WindowOut();
     });
     window.addEventListener('mousemove', (event: any) => {
       this.moveWindow(event);
@@ -115,20 +111,37 @@ export class WindowComponent implements OnInit {
     });
   }
 
-  public close(process: Process, event: Event): void {
+  /**
+   * Function that closes the application window
+   * @param process
+   * @param event
+   */
+  public close(process: Process, event: MouseEvent): void {
     process.Window.close();
     event.stopPropagation();
   }
 
-  public maximize(process: Process, event: Event): void {
+  /**
+   * Function that maximizes or minimizes the window
+   * @param event - The mouse event
+   */
+  public maximize(event: MouseEvent): void {
     this.maximized = this.maximized ? false : true;
     event.stopPropagation();
   }
 
-  public minimized(process: Process, event: Event): void {
+  /**
+   * Function that minimizes the window into a bar
+   * @param event - The mouse event
+   */
+  public minimized(event: MouseEvent): void {
     event.stopPropagation();
   }
 
+  /**
+   *  Functions for moving the application window
+   * @param event - The mouse event
+   */
   protected moveWindow(event: MouseEvent): void {
     if (!this.move || this.resize) return;
 
@@ -144,6 +157,11 @@ export class WindowComponent implements OnInit {
       this.procesMove.Window.setTop(y);
     }
   }
+
+  /**
+   * Function to enlarge/reduce the window along the edges of the application window
+   * @param event - The mouse event
+   */
   protected resizeWindow(event: MouseEvent): void {
     if (this.maximized) return;
 
@@ -184,6 +202,11 @@ export class WindowComponent implements OnInit {
     }
   }
 
+  /**
+   * Functions for saving parameters
+   * @param process
+   * @param event - The mouse event  
+   */
   public resizersIn(process: Process, event: MouseEvent): void {
     this.resize = true;
     this.procesMove = process;
@@ -197,7 +220,11 @@ export class WindowComponent implements OnInit {
     this.originalY = process.Window.getTop();
     this.selectedDiv = event.target as HTMLElement;
   }
-
+  /**
+   * Functions for saving parameters
+   * @param process
+   * @param event - The mouse event 
+   */
   public moveWindowIn(process: Process, event: MouseEvent): void {
     this.originalX = process.Window.getLeft() - event.pageX;
     this.originalY = process.Window.getTop() - event.pageY;
@@ -205,14 +232,23 @@ export class WindowComponent implements OnInit {
     this.procesMove = process;
     event.stopPropagation();
   }
-  public moveWindowOut(): void {
+
+  /**
+   * Function to cancel active events when
+   */
+  public WindowOut(): void {
     this.move = false;
     this.resize = false;
   }
-
+  /**
+   * Application process rollback function
+   */
   get AppProcess(): any {
     return this.ApplicationProcess;
   }
+  /**
+   * Returns whether the system has been started
+   */
   get SystemBoot(): boolean {
     return SystemBoot();
   }
