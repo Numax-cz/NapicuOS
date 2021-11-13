@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-
+import { minimized, maximized, closed, open } from '../../config/WindowStatus';
 import { getSystemProcess, SystemBoot } from '../../GET';
 
 @Component({
@@ -100,7 +100,7 @@ export class WindowComponent implements OnInit {
   }
 
   protected moveWindow(event: MouseEvent): void {
-    if (typeof this.procesMove?.Window?.status == maximized) return;
+    if (this.procesMove?.Window?.status == maximized) return;
     if (!this.move || this.resize) return;
     var MousevalueX = event.pageX;
     var MousevalueY = event.pageY;
@@ -115,7 +115,7 @@ export class WindowComponent implements OnInit {
     }
   }
   protected resizeWindow(event: MouseEvent): void {
-    if (typeof this.procesMove?.Window?.status == maximized) return;
+    if (this.procesMove?.Window?.status == maximized) return;
 
     if (this.move || !this.resize) return;
     var MousevalueX: number = event.pageX;
