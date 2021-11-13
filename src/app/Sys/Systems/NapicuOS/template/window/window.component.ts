@@ -47,7 +47,8 @@ import { getSystemProcess, SystemBoot } from '../../GET';
   ],
 })
 export class WindowComponent implements OnInit {
-  //TODO DOC
+  @Input() ApplicationProcess: Process[] = [];
+  @ViewChild('Panel') declare panel: ElementRef;
   /**
    * Minimum window width in pixels
    */
@@ -56,26 +57,53 @@ export class WindowComponent implements OnInit {
    * Minimum window height in pixels
    */
   static readonly MinWindowHeight: number = 150;
-  @Input() ApplicationProcess: Process[] = [];
-  @ViewChild('Panel') declare panel: ElementRef;
 
+  /**
+   * Specifies whether the window can be moved
+   */
   public move: boolean = false;
+  /**
+   * Specifies whether the window can be resized
+   */
   public resize: boolean = false;
+  /**
+   * Specifies whether the window is maximized
+   */
   public maximized: boolean = false;
-
+  /**
+   * Original window X location
+   */
   protected originalX: number = 0;
+  /**
+   * Original window Y location
+   */
   protected originalY: number = 0;
-
+  /**
+   * Original mouse location X
+   */
   protected declare originalMouseX: number;
+  /**
+   * Original mouse location Y
+   */
   protected declare originalMouseY: number;
-
+  /**
+   * Original window width
+   */
   protected declare originalWidth: number;
+  /**
+   * Original window height
+   */
   protected declare originalHeight: number;
-
+  /**
+   * Specifies the selected window border when resizing
+   */
   public declare selectedDiv: HTMLElement;
+  /**
+   * Specifies the selected application window
+   */
   protected declare procesMove: Process;
 
-  constructor(@Inject(DOCUMENT) private doc: Document) {}
+  constructor() {}
 
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
