@@ -58,8 +58,11 @@ export class WindowComponent implements OnInit {
   static readonly MinWindowHeight: number = 150;
   @Input() ApplicationProcess: Process[] = [];
   @ViewChild('Panel') declare panel: ElementRef;
+
   public move: boolean = false;
   public resize: boolean = false;
+  public maximized: boolean = false;
+
   protected originalX: number = 0;
   protected originalY: number = 0;
 
@@ -89,9 +92,8 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
 
-  public full(process: Process, event: Event): void {
-    process.Window.maximize();
-
+  public maximize(process: Process, event: Event): void {
+    this.maximized = this.maximized ? false : true;
     event.stopPropagation();
   }
 
@@ -101,7 +103,7 @@ export class WindowComponent implements OnInit {
 
   protected moveWindow(event: MouseEvent): void {
     if (!this.move || this.resize) return;
-    
+
     var MousevalueX = event.pageX;
     var MousevalueY = event.pageY;
 
@@ -113,10 +115,9 @@ export class WindowComponent implements OnInit {
     if (MousevalueY > 0) {
       this.procesMove.Window.setTop(y);
     }
-    // this.procesMove.Window.status = 'moved';
   }
   protected resizeWindow(event: MouseEvent): void {
-    if (this.procesMove?.Window?.maximized) return;
+    if (this.maximized) return;
 
     if (this.move || !this.resize) return;
     var MousevalueX: number = event.pageX;
