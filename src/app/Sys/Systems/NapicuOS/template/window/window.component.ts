@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-import { minimized, maximized, closed, open } from '../../config/WindowStatus';
+
 import { getSystemProcess, SystemBoot } from '../../GET';
 
 @Component({
@@ -22,7 +22,7 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         animate(window_animations, style({ transform: 'scale(0)' })),
       ]),
       state(
-        maximized,
+        "maximized",
         style({
           width: '100%',
           height: '100%',
@@ -31,7 +31,7 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         })
       ),
       state(
-        minimized,
+        "minimized",
         style({
           width: '{{width}}%',
           height: '{{height}}%',
@@ -40,8 +40,8 @@ import { getSystemProcess, SystemBoot } from '../../GET';
         }),
         { params: { width: 0, height: 0, top: 0, left: 0 } }
       ),
-      transition(`*=>${maximized}`, animate(window_animations)),
-      transition(`*=>${minimized}`, animate(window_animations)),
+      transition(`*=>maximized`, animate(window_animations)),
+      transition(`*=>minimized`, animate(window_animations)),
     ]),
   ],
 })
@@ -100,7 +100,7 @@ export class WindowComponent implements OnInit {
   }
 
   protected moveWindow(event: MouseEvent): void {
-    if (this.procesMove?.Window?.status == maximized) return;
+    if (this.procesMove?.Window?.status == "maximized") return;
     if (!this.move || this.resize) return;
     var MousevalueX = event.pageX;
     var MousevalueY = event.pageY;
@@ -115,7 +115,7 @@ export class WindowComponent implements OnInit {
     }
   }
   protected resizeWindow(event: MouseEvent): void {
-    if (this.procesMove?.Window?.status == maximized) return;
+    if (this.procesMove?.Window?.status == "maximized") return;
 
     if (this.move || !this.resize) return;
     var MousevalueX: number = event.pageX;

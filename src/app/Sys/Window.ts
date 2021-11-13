@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { WindowStatus } from './Systems/NapicuOS/interface/WindowStatus';
+import { WindowStatusType } from './Systems/NapicuOS/interface/WindowStatus';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 
 interface data {
@@ -12,7 +12,7 @@ interface data {
 export class Window {
   public WindowTitle: string = 'Window';
   public declare display: boolean;
-  public status: WindowStatus = 'closed';
+  public status: WindowStatusType = 'closed';
   public declare WindowComponent: Type<any>;
   public appData: data = {
     posX: 30,
