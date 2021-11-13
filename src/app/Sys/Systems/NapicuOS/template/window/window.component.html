@@ -1,7 +1,7 @@
 <div *ngFor="let i of AppProcess">
   <section
     [@NapicuOSWindowAnimation]="{
-      value: i.Window.status,
+      value: i.Window.maximized,
       params: {
         width: i.Window.appData.width,
         height: i.Window.appData.height,
