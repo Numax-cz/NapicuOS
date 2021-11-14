@@ -147,15 +147,22 @@ export class WindowComponent implements OnInit {
     var MousevalueX = event.pageX;
     var MousevalueY = event.pageY;
 
-    // if (this.maximized) {
-    //   this.procesMove.Window.setTop(event.pageY);
-    //   this.procesMove.Window.setLeft(event.pageX);
+    if (this.maximized) {
+      this.procesMove.Window.setTop(0);
+      this.procesMove.Window.setLeft(0);
 
-    //   this.originalX = this.procesMove.Window.getLeft();
-    //   this.originalY = this.procesMove.Window.getTop();
+      this.originalY = this.procesMove.Window.getTop();
 
-    //   this.maximized = false;
-    // }
+
+
+      
+
+
+
+
+      
+      this.maximized = false;
+    }
 
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
