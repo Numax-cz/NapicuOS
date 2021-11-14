@@ -18,7 +18,7 @@
       'left.%': i.Window.appData.posX
     }"
   >
-    <div class="resizers" (mousedown)="resizersIn(i, $event)">
+    <div *ngIf="!maximized" class="resizers" (mousedown)="resizersIn(i, $event)">
       <div class="resizer top-left"></div>
       <div class="resizer top-right"></div>
       <div class="resizer bottom-left"></div>
