@@ -3,6 +3,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
 import { SystemBoot } from '../../GET';
+import { percentage, percentageValue } from '../../scripts/getPercentage';
 
 @Component({
   selector: 'app-window',
@@ -144,23 +145,21 @@ export class WindowComponent implements OnInit {
    */
   protected moveWindow(event: MouseEvent): void {
     if (!this.move || this.resize) return;
-    var MousevalueX = event.pageX;
-    var MousevalueY = event.pageY;
+    const MousevalueX = event.pageX;
+    const MousevalueY = event.pageY;
 
     if (this.maximized) {
-      this.procesMove.Window.setTop(0);
-      this.procesMove.Window.setLeft(0);
+      var perNowX = percentageValue(
+        percentage(MousevalueX, window.innerWidth),
+        this.procesMove.Window.getWidth()
+      );
+      this.originalX = -perNowX;
+      var perNowY = percentageValue(
+        percentage(event.screenY - MousevalueY, window.innerHeight),
+        this.procesMove.Window.getHeight()
+      );
+      this.originalY = -perNowY;
 
-      this.originalY = this.procesMove.Window.getTop();
-
-
-
-      
-
-
-
-
-      
       this.maximized = false;
     }
 
@@ -243,6 +242,7 @@ export class WindowComponent implements OnInit {
   public moveWindowIn(process: Process, event: MouseEvent): void {
     this.originalX = process.Window.getLeft() - event.pageX;
     this.originalY = process.Window.getTop() - event.pageY;
+
     this.move = true;
     this.procesMove = process;
     event.stopPropagation();
