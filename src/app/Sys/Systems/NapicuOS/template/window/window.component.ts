@@ -71,6 +71,10 @@ export class WindowComponent implements OnInit {
    * Original window X location
    */
   protected originalX: number = 0;
+  //TODO DOC
+  public topFocusWindow: boolean = false;
+  public rightFocusWindow: boolean = false;
+  public leftFocusWindow: boolean = false;
   /**
    * Original window Y location
    */
@@ -105,6 +109,11 @@ export class WindowComponent implements OnInit {
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
       this.WindowOut();
+      if (this.leftFocusWindow) {
+        this.setAllWindowPar(window.innerWidth / 2, window.outerHeight);
+      } else if (this.rightFocusWindow) {
+        this.setAllWindowPar(window.innerWidth / 2, window.outerHeight, window.innerWidth / 2);
+      }
     });
     window.addEventListener('mousemove', (event: any) => {
       this.moveWindow(event);
@@ -144,9 +153,13 @@ export class WindowComponent implements OnInit {
    * @param event - The mouse event
    */
   protected moveWindow(event: MouseEvent): void {
-    if (!this.move || this.resize) return;
     const MousevalueX = event.pageX;
     const MousevalueY = event.pageY;
+    this.leftFocusWindow = MousevalueX <= 0 ? true : false;
+    this.rightFocusWindow = MousevalueX + 2 >= window.outerWidth ? true : false;
+    this.topFocusWindow = MousevalueY <= 0 ? true : false;
+
+    if (!this.move || this.resize) return;
 
     if (this.maximized) {
       var perNowX = percentageValue(
@@ -163,13 +176,17 @@ export class WindowComponent implements OnInit {
       this.maximized = false;
     }
 
+    if (MousevalueX <= 0) {
+      console.log(event);
+    } else if (MousevalueX + 2 >= window.outerWidth) {
+    }
+
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
 
+    this.procesMove.Window.setTop(y);
+
     this.procesMove.Window.setLeft(x);
-    if (MousevalueY > 0) {
-      this.procesMove.Window.setTop(y);
-    }
   }
 
   /**
@@ -256,6 +273,13 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
 
+  protected setAllWindowPar(width: number, height: number, left?: number): void {
+    if (!left) left = 0;
+    this.procesMove.Window.setTop(0);
+    this.procesMove.Window.setLeft(left);
+    this.procesMove.Window.setWidth(width);
+    this.procesMove.Window.setHeight(height);
+  }
   /**
    * Function to cancel active events when
    */
