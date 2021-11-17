@@ -18,11 +18,18 @@
       'left.%': i.Window.appData.posX
     }"
   >
-    <div *ngIf="!maximized" class="resizers" (mousedown)="resizersIn(i, $event)">
+  <div *ngIf="!maximized" class="resizers" (mousedown)="resizersIn(i, $event)">
+    
+      <div class="resizer left"></div>
+      <div class="resizer right"></div>
+      <div class="resizer bottom"></div>
+      <div class="resizer top"></div>
+
       <div class="resizer top-left"></div>
       <div class="resizer top-right"></div>
       <div class="resizer bottom-left"></div>
       <div class="resizer bottom-right"></div>
+
     </div>
 
     <div class="napicuos-App-window-M" (mousedown)="moveWindowIn(i, $event)">

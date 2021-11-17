@@ -198,19 +198,29 @@ export class WindowComponent implements OnInit {
       x = this.originalWidth + (MousevalueX - this.originalMouseX);
       y = this.originalHeight - (MousevalueY - this.originalMouseY);
       top = this.originalY + (MousevalueY - this.originalMouseY);
-    } else {
+    } else if (this.selectedDiv.classList.contains('top-left')) {
       x = this.originalWidth - (MousevalueX - this.originalMouseX);
       y = this.originalHeight - (MousevalueY - this.originalMouseY);
       top = this.originalY + (MousevalueY - this.originalMouseY);
       left = this.originalMouseX + (MousevalueX - this.originalMouseX);
+    } else if (this.selectedDiv.classList.contains('right')) {
+      x = this.originalWidth + (MousevalueX - this.originalMouseX);
+    } else if (this.selectedDiv.classList.contains('left')) {
+      x = this.originalWidth - (MousevalueX - this.originalMouseX);
+      left = this.originalX + (MousevalueX - this.originalMouseX);
+    } else if (this.selectedDiv.classList.contains('bottom')) {
+      y = this.originalHeight + (MousevalueY - this.originalMouseY);
+    } else {
+      y = this.originalHeight - (MousevalueY - this.originalMouseY);
+      top = this.originalY + (MousevalueY - this.originalMouseY);
     }
-
-    if (x > WindowComponent.MinWindowWidth) {
+    
+    if (x && x > WindowComponent.MinWindowWidth) {
       this.procesMove.Window.setWidth(x);
       if (left) this.procesMove.Window.setLeft(left);
     }
 
-    if (y > WindowComponent.MinWindowHeight) {
+    if (y && y > WindowComponent.MinWindowHeight) {
       this.procesMove.Window.setHeight(y);
       if (top) this.procesMove.Window.setTop(top);
     }
