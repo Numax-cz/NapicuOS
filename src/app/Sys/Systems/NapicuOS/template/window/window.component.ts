@@ -214,12 +214,10 @@ export class WindowComponent implements OnInit {
       y = this.originalHeight - (MousevalueY - this.originalMouseY);
       top = this.originalY + (MousevalueY - this.originalMouseY);
     }
-    
     if (x && x > WindowComponent.MinWindowWidth) {
       this.procesMove.Window.setWidth(x);
       if (left) this.procesMove.Window.setLeft(left);
     }
-
     if (y && y > WindowComponent.MinWindowHeight) {
       this.procesMove.Window.setHeight(y);
       if (top) this.procesMove.Window.setTop(top);
