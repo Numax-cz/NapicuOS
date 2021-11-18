@@ -3,7 +3,8 @@
   <div id="SystemBackground">
     <section @NapicuOSfeoreStartUp id="System">
       <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
-        <div class="TopPanel">
+        <!-- Top panel -->
+        <section class="TopPanel">
           <div>Activities</div>
           <div>{{ systemTime }}</div>
 
@@ -11,15 +12,29 @@
             <img src="/assets/systems/NapicuOS/audio.svg" />
             <img src="/assets/systems/NapicuOS/on-off.svg" />
           </div>
-        </div>
-        <div style="display: contents; background-color: white">
+        </section>
+        <!-- Main Panel -->
+        <section style="display: contents; background-color: white">
           <div [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
-            <!-- MainPanel -->
+            <!-- Apps -->
             <section>
               <app-window [ApplicationProcess]="Process"></app-window>
             </section>
           </div>
-        </div>
+        </section>
+        <!-- Bottom AppPanel -->
+        <section class="BottomPanel">
+          <div style="display: flex; align-items: center; justify-content: space-between">
+            <div>
+              <!-- Applications -->
+              <img src="/assets/systems/NapicuOS/SystemIcons/XFD/term.svg" />
+            </div>
+            <div>
+              <!-- Menu -->
+              <img src="/assets/systems/NapicuOS/SystemIcons/XFD/menu.svg" />
+            </div>
+          </div>
+        </section>
       </section>
     </section>
   </div>
