@@ -17,3 +17,7 @@ export function SystemBoot(): boolean {
 export function getSystemProcess(): Process[]{
   return GrubComponent.ActiveSystem.SystemProcess;
 }
+
+// export function getSystemBottomMenu(): number{
+
+// } 

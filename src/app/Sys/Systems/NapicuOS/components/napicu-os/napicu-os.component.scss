@@ -26,7 +26,7 @@
 #TopPanelIcons {
   display: flex;
   img {
-    width: 0.94rem;
+    width: var(--NapicuSystemFontSize);
     margin: 0px 3.5px;
     filter: var(--NapicuTopMenuIconFilter);
   }
@@ -39,7 +39,7 @@
   justify-content: space-between;
   font-weight: 600;
   color: var(--NapicuTopMenuTextColor);
-  font-size: 0.94rem;
+  font-size: var(--NapicuSystemFontSize);
   background-color: var(--NapicuTopMenuBackgroundColor);
   > div {
     padding: 6px 10px;
@@ -57,13 +57,13 @@
   right: 0;
   width: 100%;
   max-width: 40%;
-  background-color: #33333396;
+  background-color: #3d3d3dd6;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5px;
   border-radius: 20px;
   padding: 10px;
-  img{
+  img {
     cursor: pointer;
   }
 }
