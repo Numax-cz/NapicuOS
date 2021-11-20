@@ -22,8 +22,9 @@
             </section>
           </div>
         </section>
+        
         <!-- Bottom AppPanel -->
-        <section #BottomBar class="BottomPanel" style="z-index: 10000">
+        <section *ngIf="DockDisplay" @NapicuOSDock #BottomBar class="BottomPanel" style="z-index: 10000">
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section>
               <!-- Applications -->
