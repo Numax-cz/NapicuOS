@@ -1,4 +1,6 @@
 import { Type } from '@angular/core';
+import { Process } from './Process';
+import { getSystemProcess } from './Systems/NapicuOS/GET';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 
 interface data {
@@ -12,6 +14,7 @@ export class Window {
   public WindowTitle: string = 'Window';
   public declare display: boolean;
   public declare WindowComponent: Type<any>;
+  public declare activated: boolean;
   public appData: data = {
     posX: 30,
     posY: 30,
@@ -30,12 +33,20 @@ export class Window {
     this.display = false;
   };
 
-  // public readonly maximize = (): void => {
-  //   this.maximized = this.maximized ? false : true;
-
-  // };
-
   //? Getters
+  /**
+   * Returns applications that can be run in gui mode
+   */
+  public getWindowApps(): Process[] {
+    var process = getSystemProcess();
+    var array: Process[] = [];
+    for (let i = 0; i < process.length; i++) {
+      if (process[i]?.Window) {
+        array.push(process[i]);
+      }
+    }
+    return array;
+  }
   /**
    * Returns top in pixels
    * @returns {number} value in pixels
