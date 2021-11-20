@@ -5,11 +5,18 @@
   display: flex;
   flex-direction: column;
   border-radius: var(--NapicuWindowBorder);
-  background-color: var(--NapicuWindowColor);
   box-shadow: var(--NapicuWindowBoxShadow);
   -webkit-box-shadow: var(--apicuWindowBoxShadow);
   -moz-box-shadow: var(--NapicuWindowBoxShadow);
 }
+
+.SelectedWindow {
+  background-color: var(--NapicuSelectedWindowColor);
+}
+.UnSelectedWindow {
+  background-color: var(--NapicuUnSelectedWindowColor);
+}
+
 #INAppWindow {
   height: 100%;
   overflow: hidden;
