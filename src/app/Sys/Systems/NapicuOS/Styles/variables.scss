@@ -1,17 +1,26 @@
 // This is the main setting of the Bernadd theme
 // Html to change the class theme is in system.component.html
 
-.NapicuThemeFeraDark {
+.NapicuGlobalVariables {
   //FontsSizes
   --NapicuSystemFontSize: 16px;
+  --NapicuBottomMenuBorderRadius: 20px;
+  --NapicuBottomMenuPadding: 10px;
+  //Window
+  --NapicuWindowBorder: 7px;
+  --NapicuWindowPadding: 7px;
+}
+
+.NapicuThemeFeraDark {
   //TopPanel
   --NapicuTopMenuBackgroundColor: #000000;
   --NapicuTopMenuTextColor: #d5d5d5;
   --NapicuTopMenuIconFilter: none;
+  //BottomPanel
+  --NapicuBottomMenuBackgroundColor: #3d3d3dd6;
+
   //Window
-  --NapicuWindowBorder: 7px;
   --NapicuWindowColor: #161616;
-  --NapicuWindowPadding: 7px;
   --NapicuWindowBoxShadow: 0px 0px 44px 3px rgba(0, 0, 0, 0.48);
   --NapicuWindowScrollBar: #000000;
   //MenuButtons
@@ -24,21 +33,4 @@
 }
 
 .NapicuThemeFeraWhite {
-  //TopPanel
-  --NapicuTopMenuBackgroundColor: white;
-  --NapicuTopMenuTextColor: black;
-  --NapicuTopMenuIconFilter: invert(1);
-  //Window
-  --NapicuWindowBorder: 7px;
-  --NapicuWindowColor: rgb(233, 233, 233);
-  --NapicuWindowPadding: 9px;
-  --NapicuWindowBoxShadow: 0px 0px 44px 3px rgba(0, 0, 0, 0.48);
-  --NapicuWindowScrollBar: #000000;
-  //MenuButtons
-  --NapicuWindowButtonColor-Close: #fc5753;
-  --NapicuWindowButtonColor-Full: #33c748;
-  --NapicuWindowButtonColor-Mini: #fdbc40;
-  --NapicuWindowButtonColor-Close-Border: #df4744;
-  --NapicuWindowButtonColor-Full-Border: #27aa35;
-  --NapicuWindowButtonColor-Mini-Border: #de9f34;
 }
