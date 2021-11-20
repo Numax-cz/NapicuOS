@@ -1,11 +1,10 @@
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
-import { formatDate } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
-import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { getSystemBottomDockDisplay, getSystemProcess, getSystemTime, SystemBoot } from '../../GET';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
+import { system_dock_animations } from '../../config/systemAnimations';
 
 @Component({
   selector: 'app-napicu-os',
@@ -23,6 +22,16 @@ import { wallpaper } from '../../config/wallpaper';
         ),
       ]),
     ]),
+    trigger('NapicuOSDock', [
+      transition(':enter', [
+        style({ transform: 'translateY(100px)' }),
+        animate(system_dock_animations, style({ transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateY(0)' }),
+        animate(system_dock_animations, style({ transform: 'translateY(100px)' })),
+      ]),
+    ]),
   ],
 })
 export class NapicuOSComponent implements OnInit {
@@ -32,7 +41,11 @@ export class NapicuOSComponent implements OnInit {
   public static BottomDockDisplay: boolean = false;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(() => {
+      NapicuOSComponent.BottomDockDisplay = true;
+    }, 5000);
+  }
 
   get systemTime(): string {
     return getSystemTime();

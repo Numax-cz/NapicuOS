@@ -1,4 +1,4 @@
-<div *ngFor="let i of AppProcess">
+<div *ngFor="let i of AppProcess; let index = index" (mousedown)="activeWindow(i, $event, index)">
   <section
     [@NapicuOSWindowAnimation]="{
       value: maximized,
@@ -15,8 +15,10 @@
       'width.%': i.Window.appData.width,
       'height.%': i.Window.appData.height,
       'top.%': i.Window.appData.posY,
-      'left.%': i.Window.appData.posX
+      'left.%': i.Window.appData.posX,
+      'z-index': SystemActivated(i) ? 1000 : 1
     }"
+    [ngClass]="SystemActivated(i) ? 'SelectedWindow' : 'UnSelectedWindow'"
   >
     <div *ngIf="!maximized && !move" class="resizers" (mousedown)="resizersIn(i, $event)">
       <div class="resizer left"></div>
