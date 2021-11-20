@@ -1,8 +1,10 @@
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { CompileNgModuleSummary } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { withModule } from '@angular/core/testing';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-import { SystemBoot } from '../../GET';
+import { getSystemProcess, SystemBoot } from '../../GET';
 import { percentage, percentageValue } from '../../scripts/getPercentage';
 
 @Component({
@@ -119,6 +121,12 @@ export class WindowComponent implements OnInit {
       this.moveWindow(event);
       this.resizeWindow(event);
     });
+    window.addEventListener('mousedown', (e: MouseEvent) => {
+      // var p = e.target as HTMLElement;
+      // if (p.id !== 'napicuos-App-window' && this.procesMove.Window.activated) {
+      //   this.procesMove.Window.activated = false;
+      // }
+    });
   }
 
   /**
@@ -146,6 +154,10 @@ export class WindowComponent implements OnInit {
    */
   public minimized(event: MouseEvent): void {
     event.stopPropagation();
+  }
+
+  public SystemActivated(i: Process): boolean {
+    return i.Window?.activated;
   }
 
   /**
@@ -241,6 +253,13 @@ export class WindowComponent implements OnInit {
     }
   }
 
+  public activeWindow(i: Process, event: MouseEvent, index: number): void {
+    // this.lastWindow = i.Window
+
+    this.procesMove = i;
+    i.Window.activated = true;
+  }
+
   /**
    * Functions for saving parameters
    * @param process
@@ -267,7 +286,6 @@ export class WindowComponent implements OnInit {
   public moveWindowIn(process: Process, event: MouseEvent): void {
     this.originalX = process.Window.getLeft() - event.pageX;
     this.originalY = process.Window.getTop() - event.pageY;
-
     this.move = true;
     this.procesMove = process;
     event.stopPropagation();
