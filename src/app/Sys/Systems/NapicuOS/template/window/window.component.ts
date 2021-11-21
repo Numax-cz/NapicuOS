@@ -4,7 +4,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { withModule } from '@angular/core/testing';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-import { getSystemProcess, SystemBoot } from '../../GET';
+import { getSystemProcess, getWindowApps, SystemBoot } from '../../GET';
 import { percentage, percentageValue } from '../../scripts/getPercentage';
 
 @Component({
@@ -258,6 +258,7 @@ export class WindowComponent implements OnInit {
   public activeWindow(i: Process, index: number): void {
     if (this?.lastWindowIndex !== index) {
       if (this.procesMove) this.procesMove.Window.activated = false;
+      var guiProcess = getWindowApps();
     }
     this.procesMove = i;
     i.Window.activated = true;

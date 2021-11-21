@@ -40,6 +40,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     new Process({ Window: new Window(WelcomeComponent), title: 'Welcome' }).Window.open();
     new Process({ Window: new Window(WelcomeComponent), title: 'Welcome' }).Window.open();
+    new Process({ Window: new Window(WelcomeComponent), title: 'Welcome' }).Window.open();
   }
 
   public SystemBoot(): void {
