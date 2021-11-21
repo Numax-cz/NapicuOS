@@ -8,6 +8,7 @@ interface data {
   posY: number;
   width: number;
   height: number;
+  z_index: number;
 }
 
 export class Window {
@@ -20,6 +21,7 @@ export class Window {
     posY: 30,
     width: 40,
     height: 40,
+    z_index: 1,
   };
   constructor(component: Type<any>) {
     this.WindowComponent = component;
