@@ -2,9 +2,10 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { CompileNgModuleSummary } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { withModule } from '@angular/core/testing';
+import { filter } from 'rxjs';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-import { getSystemProcess, getWindowApps, SystemBoot } from '../../GET';
+import { getSystemDisplayedWindowApps, getSystemProcess, getSystemWindowApps, SystemBoot } from '../../GET';
 import { percentage, percentageValue } from '../../scripts/getPercentage';
 
 @Component({
@@ -124,10 +125,10 @@ export class WindowComponent implements OnInit {
       this.resizeWindow(event);
     });
     window.addEventListener('mousedown', (e: MouseEvent) => {
-      // var p = e.target as HTMLElement;
-      // if (p.id !== 'napicuos-App-window' && this.procesMove.Window.activated) {
-      //   this.procesMove.Window.activated = false;
-      // }
+      var p = e.target as HTMLElement;
+      if (p.id !== 'napicuos-App-window') {
+        this.procesMove.Window.activated = false;
+      }
     });
   }
 
@@ -258,8 +259,14 @@ export class WindowComponent implements OnInit {
   public activeWindow(i: Process, index: number): void {
     if (this?.lastWindowIndex !== index) {
       if (this.procesMove) this.procesMove.Window.activated = false;
-      var guiProcess = getWindowApps();
     }
+    var windows = getSystemDisplayedWindowApps();
+    windows.slice(index, 1);
+    windows.push(i);
+    windows.forEach((element: Process, index: number) => {
+      element.Window.appData.z_index = index;
+    });
+
     this.procesMove = i;
     i.Window.activated = true;
     this.lastWindowIndex = index;
