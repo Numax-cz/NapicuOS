@@ -16,7 +16,7 @@
       'height.%': i.Window.appData.height,
       'top.%': i.Window.appData.posY,
       'left.%': i.Window.appData.posX,
-      'z-index': SystemActivated(i) ? 1000 : 1
+      'z-index': i.Window.appData.z_index
     }"
     [ngClass]="SystemActivated(i) ? 'SelectedWindow' : 'UnSelectedWindow'"
   >
