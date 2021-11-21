@@ -35,19 +35,6 @@ export class Window {
 
   //? Getters
   /**
-   * Returns applications that can be run in gui mode
-   */
-  public getWindowApps(): Process[] {
-    var process = getSystemProcess();
-    var array: Process[] = [];
-    for (let i = 0; i < process.length; i++) {
-      if (process[i]?.Window) {
-        array.push(process[i]);
-      }
-    }
-    return array;
-  }
-  /**
    * Returns top in pixels
    * @returns {number} value in pixels
    */
