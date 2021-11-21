@@ -1,4 +1,4 @@
-<div *ngFor="let i of AppProcess; let index = index" (mousedown)="activeWindow(i, $event, index)">
+<div *ngFor="let i of AppProcess; let index = index" (mousedown)="activeWindow(i, index)">
   <section
     [@NapicuOSWindowAnimation]="{
       value: maximized,
@@ -32,7 +32,7 @@
       <div class="resizer bottom-right"></div>
     </div>
 
-    <div class="napicuos-App-window-M" (mousedown)="moveWindowIn(i, $event)">
+    <div class="napicuos-App-window-M" (mousedown)="activeWindow(i, index); moveWindowIn(i, $event)">
       <div id="MinButton" (click)="minimized(i)"></div>
       <div id="FullButton" (click)="maximize(i)"></div>
       <div id="CloseButton" (click)="close(i, $event)"></div>
