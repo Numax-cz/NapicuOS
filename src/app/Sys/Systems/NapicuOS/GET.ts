@@ -30,7 +30,7 @@ export function getSystemBottomDockDisplay(): boolean {
 /**
  * Returns applications that can be run in gui mode
  */
-export function getWindowApps(): Process[] {
+export function getSystemWindowApps(): Process[] {
   var process = getSystemProcess();
   var array: Process[] = [];
   for (let i = 0; i < process.length; i++) {
@@ -39,4 +39,10 @@ export function getWindowApps(): Process[] {
     }
   }
   return array;
+}
+
+export function getSystemDisplayedWindowApps(): Process[]{
+  return getSystemProcess().filter((element: Process) => {
+    return element.Window?.display == true;
+  })
 }

@@ -126,7 +126,8 @@ export class WindowComponent implements OnInit {
     });
     window.addEventListener('mousedown', (e: MouseEvent) => {
       var p = e.target as HTMLElement;
-      if (p.id !== 'napicuos-App-window') {
+
+      if (p.offsetParent?.id !== 'napicuos-App-window' && this.procesMove.Window.activated) {
         this.procesMove.Window.activated = false;
       }
     });
@@ -260,12 +261,12 @@ export class WindowComponent implements OnInit {
     if (this?.lastWindowIndex !== index) {
       if (this.procesMove) this.procesMove.Window.activated = false;
     }
-    var windows = getSystemDisplayedWindowApps();
-    windows.slice(index, 1);
-    windows.push(i);
-    windows.forEach((element: Process, index: number) => {
-      element.Window.appData.z_index = index;
-    });
+    // var windows = getSystemDisplayedWindowApps();
+    // windows.slice(index, 1);
+    // windows.push(i);
+    // windows.forEach((element: Process, index: number) => {
+    //   element.Window.appData.z_index = index;
+    // });
 
     this.procesMove = i;
     i.Window.activated = true;
