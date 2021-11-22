@@ -68,6 +68,50 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return formatDate(now, time_formate, 'en-US'); //TODO Settings
   }
 
+  //? * * * Getters * * *
+  /**
+   * Returns system time
+   */
+  public static get_system_time(): string {
+    return this.systemTime;
+  }
+  /**
+   * Returns whether the system has been started
+   */
+  public static get_system_boot(): boolean {
+    return GrubComponent.ActiveSystem.SystemBooted;
+  }
+  /**
+   * Returns if the system dock is displayed
+   */
+  public static get_system_bottom_dock_display(): boolean {
+    return NapicuOSComponent.BottomDockDisplay;
+  }
+  /**
+   * Returns the system processes
+   */
+  public static get_system_process(): Process[] {
+    return GrubComponent.ActiveSystem.SystemProcess;
+  }
+  /**
+   * Returns applications that can be run in gui mode
+   */
+  public static get_system_window_apps(): Process[] {
+    var process = this.get_system_process();
+    var array: Process[] = [];
+    for (let i = 0; i < process.length; i++) {
+      if (process[i]?.Window) {
+        array.push(process[i]);
+      }
+    }
+    return array;
+  }
+  public static get_system_displayed_window_apps(): Process[] {
+    return this.get_system_process().filter((element: Process) => {
+      return element.Window?.display == true;
+    });
+  }
+
   // override Interval = setInterval(() => {
   //   NapicuOS.systemTime = NapicuOS.getTime();
   // }, 1000);
