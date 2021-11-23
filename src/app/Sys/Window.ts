@@ -1,5 +1,9 @@
 import { Type } from '@angular/core';
+import { GrubComponent } from '../System/grub/grub.component';
+import { Process } from './Process';
+import { System } from './System';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
+import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 
 interface data {
   posX: number;
@@ -27,6 +31,7 @@ export class Window {
 
   public readonly open = (): void => {
     this.display = true;
+    GrubComponent.ActiveSystem.SystemProcessUI.push(this);
   };
 
   public readonly close = (): void => {

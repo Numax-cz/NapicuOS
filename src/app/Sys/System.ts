@@ -1,12 +1,8 @@
 import { Type } from '@angular/core';
-import { system_enter } from '../Config/BootLoader';
-import { MoveWindowOptions } from '../Scripts/MoveWindowOptions';
-
-import { GrubComponent } from '../System/grub/grub.component';
+import { Window } from './Window';
 import { SystemComponent } from '../System/system/system.component';
 import { Process } from './Process';
 import { NapicuOSComponent } from './Systems/NapicuOS/components/napicu-os/napicu-os.component';
-import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 
 export class System {
   //TODO Doc
@@ -14,6 +10,8 @@ export class System {
   public declare SystemBooted: boolean;
 
   public declare SystemProcess: Process[];
+
+  public declare SystemProcessUI: Window[];
 
   public declare component: Type<any>;
   public declare boot: {
@@ -23,6 +21,7 @@ export class System {
   constructor() {
     this.SystemBooted = false;
     this.SystemProcess = [];
+    this.SystemProcessUI = [];
     SystemComponent.SysComponent = NapicuOSComponent; //! TODO
   }
 
