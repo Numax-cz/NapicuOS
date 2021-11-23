@@ -1,6 +1,4 @@
 import { Type } from '@angular/core';
-import { Process } from './Process';
-import { getSystemProcess } from './Systems/NapicuOS/GET';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 
 interface data {

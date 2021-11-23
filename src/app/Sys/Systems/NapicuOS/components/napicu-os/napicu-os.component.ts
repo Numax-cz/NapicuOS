@@ -1,10 +1,10 @@
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
-import { getSystemBottomDockDisplay, getSystemProcess, getSystemTime, SystemBoot } from '../../GET';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
 import { system_dock_animations } from '../../config/systemAnimations';
+import { NapicuOS } from '../../system.napicuos';
 
 @Component({
   selector: 'app-napicu-os',
@@ -48,18 +48,18 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get systemTime(): string {
-    return getSystemTime();
+    return NapicuOS.get_system_time();
   }
   get wallpaper(): string {
     return wallpaper;
   }
   get SystemBoot(): boolean {
-    return SystemBoot();
+    return NapicuOS.get_system_boot();
   }
   get Process(): Process[] {
-    return getSystemProcess();
+    return NapicuOS.get_system_process();
   }
   get DockDisplay(): boolean {
-    return getSystemBottomDockDisplay();
+    return NapicuOS.get_system_bottom_dock_display();
   }
 }

@@ -1,12 +1,9 @@
 import { trigger, transition, style, animate, state } from '@angular/animations';
-import { CompileNgModuleSummary } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { withModule } from '@angular/core/testing';
-import { filter } from 'rxjs';
 import { Process } from 'src/app/Sys/Process';
 import { window_animations } from '../../config/windowAnimations';
-import { getSystemDisplayedWindowApps, getSystemProcess, getSystemWindowApps, SystemBoot } from '../../GET';
 import { percentage, percentageValue } from '../../scripts/getPercentage';
+import { NapicuOS } from '../../system.napicuos';
 
 @Component({
   selector: 'app-window',
@@ -328,6 +325,6 @@ export class WindowComponent implements OnInit {
    * Returns whether the system has been started
    */
   get SystemBoot(): boolean {
-    return SystemBoot();
+    return NapicuOS.get_system_boot();
   }
 }
