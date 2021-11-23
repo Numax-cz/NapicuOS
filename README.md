@@ -27,14 +27,3 @@
    ```sh
    npm run build
    ```
-
-<!-- ## Vytvoření nového systému
-
-Upozornění, tento script je jednoduchý,
-jakákoli změny názvů cesty ke složkám mohou ovlivnit funkčnost scriptu.
-Pro nastavení vlastních cest prosím upravte script.js
-
-1. Spustíme script
-   ```sh
-   node script.js <Název systému>
-   ``` -->
