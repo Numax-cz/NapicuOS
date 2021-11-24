@@ -31,7 +31,6 @@ export class Window {
 
   public readonly open = (): void => {
     this.display = true;
-    GrubComponent.ActiveSystem.SystemProcessUI.push(this);
   };
 
   public readonly close = (): void => {

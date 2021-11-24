@@ -45,6 +45,7 @@ import { NapicuOS } from '../../system.napicuos';
   ],
 })
 export class WindowComponent implements OnInit {
+  public static UI: Process[] = [];
   @Input() ApplicationProcess: Process[] = [];
   @ViewChild('Panel') declare panel: ElementRef;
   /**

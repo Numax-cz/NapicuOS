@@ -1,6 +1,6 @@
 <div *ngFor="let i of AppProcess; let index = index" (mousedown)="activeWindow(i, index)">
   <section
-    *ngIf="SystemBoot && i.Window.display"
+    *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
     [@NapicuOSWindowAnimation]="{
       value: maximized,
       params: {

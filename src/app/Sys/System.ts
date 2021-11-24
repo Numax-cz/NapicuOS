@@ -11,8 +11,6 @@ export class System {
 
   public declare SystemProcess: Process[];
 
-  public declare SystemProcessUI: Window[];
-
   public declare component: Type<any>;
   public declare boot: {
     title: string;
@@ -21,7 +19,6 @@ export class System {
   constructor() {
     this.SystemBooted = false;
     this.SystemProcess = [];
-    this.SystemProcessUI = [];
     SystemComponent.SysComponent = NapicuOSComponent; //! TODO
   }
 
