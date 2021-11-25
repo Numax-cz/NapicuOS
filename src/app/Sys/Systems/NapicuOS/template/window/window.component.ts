@@ -48,9 +48,10 @@ import { NapicuOS } from '../../system.napicuos';
   ],
 })
 export class WindowComponent implements OnInit {
-  public static UI: Window[] = [];
-  @Input() ApplicationProcess: Process[] = [];
-  @ViewChild('Panel') declare panel: ElementRef;
+  /**
+   * History of overlay windows
+   */
+  public static WindowHistory: Window[] = [];
   /**
    * Minimum window width in pixels
    */
@@ -263,9 +264,9 @@ export class WindowComponent implements OnInit {
     // x.slice(index, 1);
     // x.push(i);
 
-    WindowComponent.UI.slice(index, 1);
-    WindowComponent.UI.push(i);
-    WindowComponent.UI.forEach((element: Window, index: number) => {
+    WindowComponent.WindowHistory.slice(index, 1);
+    WindowComponent.WindowHistory.push(i);
+    WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
       element.appData.z_index = index;
     });
 
