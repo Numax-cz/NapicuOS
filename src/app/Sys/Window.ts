@@ -34,12 +34,12 @@ export class Window {
 
   public readonly open = (): void => {
     this.display = true;
-    WindowComponent.UI.push(this);
+    WindowComponent.WindowHistory.push(this);
   };
 
   public readonly close = (): void => {
     this.display = false;
-    WindowComponent.UI.slice(WindowComponent.UI.indexOf(this, 0), 1);
+    WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
   };
 
   //? Getters
