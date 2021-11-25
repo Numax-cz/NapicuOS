@@ -4,6 +4,7 @@ import { Process } from './Process';
 import { System } from './System';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
+import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
 interface data {
   posX: number;
@@ -11,6 +12,7 @@ interface data {
   width: number;
   height: number;
   z_index: number;
+  maximized: boolean;
 }
 
 export class Window {
@@ -24,6 +26,7 @@ export class Window {
     width: 40,
     height: 40,
     z_index: 1,
+    maximized: false,
   };
   constructor(component: Type<any>) {
     this.WindowComponent = component;
@@ -31,10 +34,12 @@ export class Window {
 
   public readonly open = (): void => {
     this.display = true;
+    WindowComponent.UI.push(this);
   };
 
   public readonly close = (): void => {
     this.display = false;
+    WindowComponent.UI.slice(WindowComponent.UI.indexOf(this, 0), 1);
   };
 
   //? Getters

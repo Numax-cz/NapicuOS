@@ -1,6 +1,9 @@
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { throwIfEmpty, windowToggle } from 'rxjs';
 import { Process } from 'src/app/Sys/Process';
+import { Window } from 'src/app/Sys/Window';
+import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { window_animations } from '../../config/windowAnimations';
 import { percentage, percentageValue } from '../../scripts/getPercentage';
 import { NapicuOS } from '../../system.napicuos';
@@ -45,7 +48,7 @@ import { NapicuOS } from '../../system.napicuos';
   ],
 })
 export class WindowComponent implements OnInit {
-  public static UI: Process[] = [];
+  public static UI: Window[] = [];
   @Input() ApplicationProcess: Process[] = [];
   @ViewChild('Panel') declare panel: ElementRef;
   /**
@@ -103,7 +106,7 @@ export class WindowComponent implements OnInit {
   /**
    * Specifies the selected application window
    */
-  protected declare procesMove: Process;
+  protected declare procesMove: Window;
 
   protected declare lastWindowIndex: number;
 
@@ -125,8 +128,8 @@ export class WindowComponent implements OnInit {
     window.addEventListener('mousedown', (e: MouseEvent) => {
       var p = e.target as HTMLElement;
 
-      if (p.offsetParent?.id !== 'napicuos-App-window' && this.procesMove.Window.activated) {
-        this.procesMove.Window.activated = false;
+      if (p.offsetParent?.id !== 'napicuos-App-window' && this.procesMove.activated) {
+        this.procesMove.activated = false;
       }
     });
   }
@@ -136,8 +139,8 @@ export class WindowComponent implements OnInit {
    * @param process
    * @param event
    */
-  public close(process: Process, event: MouseEvent): void {
-    process.Window.close();
+  public close(window: Window, event: MouseEvent): void {
+    window.close();
     event.stopPropagation();
   }
 
@@ -145,8 +148,8 @@ export class WindowComponent implements OnInit {
    * Function that maximizes or minimizes the window
    * @param event - The mouse event
    */
-  public maximize(event: MouseEvent): void {
-    this.maximized = this.maximized ? false : true;
+  public maximize(window: Window, event: MouseEvent): void {
+    window.appData.maximized = window.appData.maximized ? false : true;
     event.stopPropagation();
   }
 
@@ -158,8 +161,8 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
 
-  public SystemActivated(i: Process): boolean {
-    return i.Window?.activated;
+  public SystemActivated(i: Window): boolean {
+    return i?.activated;
   }
 
   /**
@@ -176,14 +179,11 @@ export class WindowComponent implements OnInit {
     if (!this.move || this.resize) return;
 
     if (this.maximized) {
-      var perNowX = percentageValue(
-        percentage(MousevalueX, window.innerWidth),
-        this.procesMove.Window.getWidth()
-      );
+      var perNowX = percentageValue(percentage(MousevalueX, window.innerWidth), this.procesMove.getWidth());
       this.originalX = -perNowX;
       var perNowY = percentageValue(
         percentage(event.screenY - MousevalueY, window.innerHeight),
-        this.procesMove.Window.getHeight()
+        this.procesMove.getHeight()
       );
       this.originalY = -perNowY;
 
@@ -198,9 +198,9 @@ export class WindowComponent implements OnInit {
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
 
-    this.procesMove.Window.setTop(y);
+    this.procesMove.setTop(y);
 
-    this.procesMove.Window.setLeft(x);
+    this.procesMove.setLeft(x);
   }
 
   /**
@@ -246,28 +246,31 @@ export class WindowComponent implements OnInit {
       top = this.originalY + (MousevalueY - this.originalMouseY);
     }
     if (x && x > WindowComponent.MinWindowWidth) {
-      this.procesMove.Window.setWidth(x);
-      if (left) this.procesMove.Window.setLeft(left);
+      this.procesMove.setWidth(x);
+      if (left) this.procesMove.setLeft(left);
     }
     if (y && y > WindowComponent.MinWindowHeight) {
-      this.procesMove.Window.setHeight(y);
-      if (top) this.procesMove.Window.setTop(top);
+      this.procesMove.setHeight(y);
+      if (top) this.procesMove.setTop(top);
     }
   }
 
-  public activeWindow(i: Process, index: number): void {
+  public activeWindow(i: Window, index: number): void {
     if (this?.lastWindowIndex !== index) {
-      if (this.procesMove) this.procesMove.Window.activated = false;
+      if (this.procesMove?.activated) this.procesMove.activated = false;
     }
-    // var windows = getSystemDisplayedWindowApps();
-    // windows.slice(index, 1);
-    // windows.push(i);
-    // windows.forEach((element: Process, index: number) => {
-    //   element.Window.appData.z_index = index;
-    // });
+    // var x = copy(WindowComponent.UI) as Window[];
+    // x.slice(index, 1);
+    // x.push(i);
+
+    WindowComponent.UI.slice(index, 1);
+    WindowComponent.UI.push(i);
+    WindowComponent.UI.forEach((element: Window, index: number) => {
+      element.appData.z_index = index;
+    });
 
     this.procesMove = i;
-    i.Window.activated = true;
+    i.activated = true;
     this.lastWindowIndex = index;
   }
 
@@ -276,17 +279,17 @@ export class WindowComponent implements OnInit {
    * @param process
    * @param event - The mouse event
    */
-  public resizersIn(process: Process, event: MouseEvent): void {
+  public resizersIn(process: Window, event: MouseEvent): void {
     this.resize = true;
     this.procesMove = process;
     this.originalMouseX = event.pageX;
     this.originalMouseY = event.pageY;
 
-    this.originalWidth = process.Window.getWidth();
-    this.originalHeight = process.Window.getHeight();
+    this.originalWidth = process.getWidth();
+    this.originalHeight = process.getHeight();
 
-    this.originalX = process.Window.getLeft();
-    this.originalY = process.Window.getTop();
+    this.originalX = process.getLeft();
+    this.originalY = process.getTop();
     this.selectedDiv = event.target as HTMLElement;
   }
   /**
@@ -294,9 +297,9 @@ export class WindowComponent implements OnInit {
    * @param process
    * @param event - The mouse event
    */
-  public moveWindowIn(process: Process, event: MouseEvent): void {
-    this.originalX = process.Window.getLeft() - event.pageX;
-    this.originalY = process.Window.getTop() - event.pageY;
+  public moveWindowIn(process: Window, event: MouseEvent): void {
+    this.originalX = process.getLeft() - event.pageX;
+    this.originalY = process.getTop() - event.pageY;
     this.move = true;
     this.procesMove = process;
     event.stopPropagation();
@@ -304,10 +307,10 @@ export class WindowComponent implements OnInit {
 
   protected setAllWindowPar(width: number, height: number, left?: number): void {
     if (!left) left = 0;
-    this.procesMove.Window.setTop(0);
-    this.procesMove.Window.setLeft(left);
-    this.procesMove.Window.setWidth(width);
-    this.procesMove.Window.setHeight(height);
+    this.procesMove.setTop(0);
+    this.procesMove.setLeft(left);
+    this.procesMove.setWidth(width);
+    this.procesMove.setHeight(height);
   }
   /**
    * Function to cancel active events when
@@ -319,8 +322,8 @@ export class WindowComponent implements OnInit {
   /**
    * Application process rollback function
    */
-  get AppProcess(): any {
-    return this.ApplicationProcess;
+  get AppProcess(): Process[] {
+    return NapicuOS.get_system_displayed_window_apps();
   }
   /**
    * Returns whether the system has been started

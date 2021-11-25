@@ -1,8 +1,8 @@
-<div *ngFor="let i of AppProcess; let index = index" (mousedown)="activeWindow(i, index)">
+<div *ngFor="let i of AppProcess; let index = index" (mousedown)="activeWindow(i.Window, index)">
   <section
-    *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
+    *ngIf="SystemBoot && i?.Window?.appData && i.Window.display"
     [@NapicuOSWindowAnimation]="{
-      value: maximized,
+      value: i.Window.appData.maximized,
       params: {
         width: i.Window.appData.width,
         height: i.Window.appData.height,
@@ -18,9 +18,9 @@
       'left.%': i.Window.appData.posX,
       'z-index': i.Window.appData.z_index
     }"
-    [ngClass]="SystemActivated(i) ? 'SelectedWindow' : 'UnSelectedWindow'"
+    [ngClass]="SystemActivated(i.Window) ? 'SelectedWindow' : 'UnSelectedWindow'"
   >
-    <div *ngIf="!maximized && !move" class="resizers" (mousedown)="resizersIn(i, $event)">
+    <div *ngIf="!maximized && !move" class="resizers" (mousedown)="resizersIn(i.Window, $event)">
       <div class="resizer left"></div>
       <div class="resizer right"></div>
       <div class="resizer bottom"></div>
@@ -32,10 +32,10 @@
       <div class="resizer bottom-right"></div>
     </div>
 
-    <div class="napicuos-App-window-M" (mousedown)="activeWindow(i, index); moveWindowIn(i, $event)">
-      <div id="MinButton" (click)="minimized(i)"></div>
-      <div id="FullButton" (click)="maximize(i)"></div>
-      <div id="CloseButton" (click)="close(i, $event)"></div>
+    <div class="napicuos-App-window-M" (mousedown)="activeWindow(i.Window, index); moveWindowIn(i.Window, $event)">
+      <div id="MinButton" (click)="minimized($event)"></div>
+      <div id="FullButton" (click)="maximize(i.Window, $event)"></div>
+      <div id="CloseButton" (click)="close(i.Window, $event)"></div>
     </div>
 
     <div id="INAppWindow">
