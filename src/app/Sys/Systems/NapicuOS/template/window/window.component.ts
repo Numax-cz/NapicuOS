@@ -135,7 +135,7 @@ export class WindowComponent implements OnInit {
 
   /**
    * Function that closes the application window
-   * @param process
+   * @param Window
    * @param event
    */
   public close(window: Window, event: MouseEvent): void {
@@ -273,7 +273,7 @@ export class WindowComponent implements OnInit {
 
   /**
    * Functions for saving parameters
-   * @param process
+   * @param Window
    * @param event - The mouse event
    */
   public resizersIn(process: Window, event: MouseEvent): void {
@@ -291,7 +291,7 @@ export class WindowComponent implements OnInit {
   }
   /**
    * Functions for saving parameters
-   * @param process
+   * @param Window
    * @param event - The mouse event
    */
   public moveWindowIn(process: Window, event: MouseEvent): void {
