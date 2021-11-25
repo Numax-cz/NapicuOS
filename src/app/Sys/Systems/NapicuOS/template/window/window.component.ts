@@ -109,8 +109,6 @@ export class WindowComponent implements OnInit {
    */
   protected declare procesMove: Window;
 
-  protected declare lastWindowIndex: number;
-
   constructor() {}
 
   ngOnInit(): void {
@@ -257,9 +255,8 @@ export class WindowComponent implements OnInit {
   }
 
   public activeWindow(i: Window, index: number): void {
-    if (this?.lastWindowIndex !== index) {
-      if (this.procesMove?.activated) this.procesMove.activated = false;
-    }
+    if (this.procesMove?.activated) this.procesMove.activated = false;
+
     // var x = copy(WindowComponent.UI) as Window[];
     // x.slice(index, 1);
     // x.push(i);
@@ -272,7 +269,6 @@ export class WindowComponent implements OnInit {
 
     this.procesMove = i;
     i.activated = true;
-    this.lastWindowIndex = index;
   }
 
   /**
