@@ -20,7 +20,7 @@
     }"
     [ngClass]="SystemActivated(i.Window) ? 'SelectedWindow' : 'UnSelectedWindow'"
   >
-    <div *ngIf="!maximized && !move" class="resizers" (mousedown)="resizersIn(i.Window, $event)">
+    <div *ngIf="!i.Window.appData.maximized && !move" class="resizers" (mousedown)="resizersIn(i.Window, $event)">
       <div class="resizer left"></div>
       <div class="resizer right"></div>
       <div class="resizer bottom"></div>
