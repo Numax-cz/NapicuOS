@@ -107,7 +107,7 @@ export class WindowComponent implements OnInit {
   /**
    * Specifies the selected application window
    */
-  protected declare procesMove: Window;
+  protected declare selectedWindow: Window;
 
   constructor() {}
 
@@ -127,8 +127,8 @@ export class WindowComponent implements OnInit {
     window.addEventListener('mousedown', (e: MouseEvent) => {
       var p = e.target as HTMLElement;
 
-      if (p.offsetParent?.id !== 'napicuos-App-window' && this.procesMove.activated) {
-        this.procesMove.activated = false;
+      if (p.offsetParent?.id !== 'napicuos-App-window' && this.selectedWindow.activated) {
+        this.selectedWindow.activated = false;
       }
     });
   }
@@ -178,11 +178,11 @@ export class WindowComponent implements OnInit {
     if (!this.move || this.resize) return;
 
     if (this.maximized) {
-      var perNowX = percentageValue(percentage(MousevalueX, window.innerWidth), this.procesMove.getWidth());
+      var perNowX = percentageValue(percentage(MousevalueX, window.innerWidth), this.selectedWindow.getWidth());
       this.originalX = -perNowX;
       var perNowY = percentageValue(
         percentage(event.screenY - MousevalueY, window.innerHeight),
-        this.procesMove.getHeight()
+        this.selectedWindow.getHeight()
       );
       this.originalY = -perNowY;
 
@@ -197,9 +197,9 @@ export class WindowComponent implements OnInit {
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
 
-    this.procesMove.setTop(y);
+    this.selectedWindow.setTop(y);
 
-    this.procesMove.setLeft(x);
+    this.selectedWindow.setLeft(x);
   }
 
   /**
@@ -245,17 +245,17 @@ export class WindowComponent implements OnInit {
       top = this.originalY + (MousevalueY - this.originalMouseY);
     }
     if (x && x > WindowComponent.MinWindowWidth) {
-      this.procesMove.setWidth(x);
-      if (left) this.procesMove.setLeft(left);
+      this.selectedWindow.setWidth(x);
+      if (left) this.selectedWindow.setLeft(left);
     }
     if (y && y > WindowComponent.MinWindowHeight) {
-      this.procesMove.setHeight(y);
-      if (top) this.procesMove.setTop(top);
+      this.selectedWindow.setHeight(y);
+      if (top) this.selectedWindow.setTop(top);
     }
   }
 
   public activeWindow(i: Window, index: number): void {
-    if (this.procesMove?.activated) this.procesMove.activated = false;
+    if (this.selectedWindow?.activated) this.selectedWindow.activated = false;
 
     // var x = copy(WindowComponent.UI) as Window[];
     // x.slice(index, 1);
@@ -267,7 +267,7 @@ export class WindowComponent implements OnInit {
       element.appData.z_index = index;
     });
 
-    this.procesMove = i;
+    this.selectedWindow = i;
     i.activated = true;
   }
 
@@ -278,7 +278,7 @@ export class WindowComponent implements OnInit {
    */
   public resizersIn(process: Window, event: MouseEvent): void {
     this.resize = true;
-    this.procesMove = process;
+    this.selectedWindow = process;
     this.originalMouseX = event.pageX;
     this.originalMouseY = event.pageY;
 
@@ -298,16 +298,16 @@ export class WindowComponent implements OnInit {
     this.originalX = process.getLeft() - event.pageX;
     this.originalY = process.getTop() - event.pageY;
     this.move = true;
-    this.procesMove = process;
+    this.selectedWindow = process;
     event.stopPropagation();
   }
 
   protected setAllWindowPar(width: number, height: number, left?: number): void {
     if (!left) left = 0;
-    this.procesMove.setTop(0);
-    this.procesMove.setLeft(left);
-    this.procesMove.setWidth(width);
-    this.procesMove.setHeight(height);
+    this.selectedWindow.setTop(0);
+    this.selectedWindow.setLeft(left);
+    this.selectedWindow.setWidth(width);
+    this.selectedWindow.setHeight(height);
   }
   /**
    * Function to cancel active events when
