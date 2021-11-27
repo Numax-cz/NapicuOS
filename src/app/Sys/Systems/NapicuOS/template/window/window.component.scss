@@ -6,14 +6,15 @@
   flex-direction: column;
   border-radius: var(--NapicuWindowBorder);
   box-shadow: var(--NapicuWindowBoxShadow);
-  -webkit-box-shadow: var(--apicuWindowBoxShadow);
-  -moz-box-shadow: var(--NapicuWindowBoxShadow);
+  // -webkit-box-shadow: var(--apicuWindowBoxShadow);
+  // -moz-box-shadow: var(--NapicuWindowBoxShadow);
 }
 
 .SelectedWindow {
   background-color: var(--NapicuSelectedWindowColor);
 }
 .UnSelectedWindow {
+  filter: contrast(0.9);
   background-color: var(--NapicuUnSelectedWindowColor);
 }
 
@@ -21,7 +22,17 @@
   height: 100%;
   overflow: hidden;
 }
-
+#TopWindowAppBar {
+  display: flex;
+  align-items: center;
+  color: var(--NapicuTitleTextColor);
+  justify-content: flex-end;
+}
+.WindowAppTitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .resizer {
   width: 10px;
   height: 10px;

@@ -32,10 +32,13 @@
       <div class="resizer bottom-right"></div>
     </div>
 
-    <div class="napicuos-App-window-M" (mousedown)="activeWindow(i.Window, index); moveWindowIn(i.Window, $event)">
-      <div id="MinButton" (click)="minimized($event)"></div>
-      <div id="FullButton" (click)="maximize(i.Window, $event)"></div>
-      <div id="CloseButton" (click)="close(i.Window, $event)"></div>
+    <div id="TopWindowAppBar" (mousedown)="activeWindow(i.Window, index); moveWindowIn(i.Window, $event)">
+      <div class="WindowAppTitle">{{ i.Window.WindowTitle }}</div>
+      <div class="napicuos-App-window-M">
+        <div id="MinButton" (click)="minimized($event)"></div>
+        <div id="FullButton" (click)="maximize(i.Window, $event)"></div>
+        <div id="CloseButton" (click)="close(i.Window, $event)"></div>
+      </div>
     </div>
 
     <div id="INAppWindow">
