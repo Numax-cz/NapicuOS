@@ -69,17 +69,13 @@ export class WindowComponent implements OnInit {
    */
   public resize: boolean = false;
   /**
-   * Specifies whether the window is maximized
-   */
-  public maximized: boolean = false;
-  /**
    * Original window X location
    */
   protected originalX: number = 0;
   //TODO DOC
-  public topFocusWindow: boolean = false;
-  public rightFocusWindow: boolean = false;
-  public leftFocusWindow: boolean = false;
+  public declare FocusWindow: string;
+  // public rightFocusWindow: boolean = false;
+  // public leftFocusWindow: boolean = false;
   /**
    * Original window Y location
    */
@@ -114,11 +110,11 @@ export class WindowComponent implements OnInit {
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
       this.WindowOut();
-      if (this.leftFocusWindow) {
-        this.setAllWindowPar(window.innerWidth / 2, window.outerHeight);
-      } else if (this.rightFocusWindow) {
-        this.setAllWindowPar(window.innerWidth / 2, window.outerHeight, window.innerWidth / 2);
-      }
+      // if (this.leftFocusWindow) {
+      //   this.setAllWindowPar(window.innerWidth / 2, window.outerHeight);
+      // } else if (this.rightFocusWindow) {
+      //   this.setAllWindowPar(window.innerWidth / 2, window.outerHeight, window.innerWidth / 2);
+      // }
     });
     window.addEventListener('mousemove', (event: any) => {
       this.moveWindow(event);
@@ -171,14 +167,29 @@ export class WindowComponent implements OnInit {
   protected moveWindow(event: MouseEvent): void {
     const MousevalueX = event.pageX;
     const MousevalueY = event.pageY;
-    this.leftFocusWindow = MousevalueX <= 0 ? true : false;
-    this.rightFocusWindow = MousevalueX + 2 >= window.outerWidth ? true : false;
-    this.topFocusWindow = MousevalueY <= 0 ? true : false;
 
-    if (!this.move || this.resize) return;
+    // this.leftFocusWindow = MousevalueX <= 0 ? 'left' : '';
+    // this.rightFocusWindow = MousevalueX + 2 >= window.outerWidth ? 'right' : '';
+    // this.topFocusWindow = MousevalueY <= 0 ? 'top' : '';
+    if (!this.move || this.resize || !this.selectedWindow) return;
+    if (MousevalueX <= 0) {
+      //this.FocusWindow = 'left';
+      this.selectedWindow.focus = 'left';
+    } else if (MousevalueX + 2 >= window.outerWidth) {
+      // this.FocusWindow = 'right';
+      this.selectedWindow.focus = 'right';
+    } else if (MousevalueY <= 0) {
+      //this.FocusWindow = 'top';
+      this.selectedWindow.focus = 'top';
+    } else {
+      this.selectedWindow.focus = null;
+    }
 
-    if (this.maximized) {
-      var perNowX = percentageValue(percentage(MousevalueX, window.innerWidth), this.selectedWindow.getWidth());
+    if (this.selectedWindow.appData.maximized) {
+      var perNowX = percentageValue(
+        percentage(MousevalueX, window.innerWidth),
+        this.selectedWindow.getWidth()
+      );
       this.originalX = -perNowX;
       var perNowY = percentageValue(
         percentage(event.screenY - MousevalueY, window.innerHeight),
@@ -186,19 +197,17 @@ export class WindowComponent implements OnInit {
       );
       this.originalY = -perNowY;
 
-      this.maximized = false;
+      this.selectedWindow.appData.maximized = false;
     }
 
     if (MousevalueX <= 0) {
-      console.log(event);
     } else if (MousevalueX + 2 >= window.outerWidth) {
     }
 
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
-
-    this.selectedWindow.setTop(y);
-
+    //TODO přehodit to if a dát return
+    if (MousevalueY > 0) this.selectedWindow.setTop(y);
     this.selectedWindow.setLeft(x);
   }
 
@@ -207,7 +216,7 @@ export class WindowComponent implements OnInit {
    * @param event - The mouse event
    */
   protected resizeWindow(event: MouseEvent): void {
-    if (this.maximized) return;
+    if (this.selectedWindow?.appData?.maximized) return;
 
     if (this.move || !this.resize) return;
     var MousevalueX: number = event.pageX;
@@ -256,11 +265,6 @@ export class WindowComponent implements OnInit {
 
   public activeWindow(i: Window, index: number): void {
     if (this.selectedWindow?.activated) this.selectedWindow.activated = false;
-
-    // var x = copy(WindowComponent.UI) as Window[];
-    // x.slice(index, 1);
-    // x.push(i);
-
     WindowComponent.WindowHistory.slice(index, 1);
     WindowComponent.WindowHistory.push(i);
     WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
@@ -287,6 +291,7 @@ export class WindowComponent implements OnInit {
 
     this.originalX = process.getLeft();
     this.originalY = process.getTop();
+
     this.selectedDiv = event.target as HTMLElement;
   }
   /**
@@ -297,6 +302,7 @@ export class WindowComponent implements OnInit {
   public moveWindowIn(process: Window, event: MouseEvent): void {
     this.originalX = process.getLeft() - event.pageX;
     this.originalY = process.getTop() - event.pageY;
+
     this.move = true;
     this.selectedWindow = process;
     event.stopPropagation();

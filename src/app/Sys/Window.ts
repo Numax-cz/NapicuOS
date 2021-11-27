@@ -2,25 +2,32 @@ import { Type } from '@angular/core';
 import { GrubComponent } from '../System/grub/grub.component';
 import { Process } from './Process';
 import { System } from './System';
+import { windowData } from './Systems/NapicuOS/interface/Window/windowData';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
-interface data {
-  posX: number;
-  posY: number;
-  width: number;
-  height: number;
-  z_index: number;
-  maximized: boolean;
-}
 
 export class Window {
+  /**
+   * Title of the application window
+   */
   public WindowTitle: string = 'Window';
+  /**
+   * Specifies whether the application window is displayed
+   */
   public declare display: boolean;
+  /**
+   * Main component of the application window
+   */
   public declare WindowComponent: Type<any>;
+  /**
+   * Determines whether the application window is selected by the user
+   */
   public declare activated: boolean;
-  public appData: data = {
+
+  public declare focus: string | null;
+  public appData: windowData = {
     posX: 30,
     posY: 30,
     width: 40,
