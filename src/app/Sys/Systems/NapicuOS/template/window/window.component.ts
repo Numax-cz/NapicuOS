@@ -14,6 +14,10 @@ import { NapicuOS } from '../../system.napicuos';
   styleUrls: ['./window.component.scss'],
   animations: [
     trigger('NapicuOSWindowAnimation', [
+      //All application window animations
+      //All parts of the animation depend on the state of the application window
+      //Remember: Animation normal will return the application window
+      // to the default position where the animation started.
       transition(':enter', [
         style({ transform: 'scale(0)' }),
         animate(window_animations, style({ transform: 'scale(1)' })),
@@ -23,7 +27,7 @@ import { NapicuOS } from '../../system.napicuos';
         animate(window_animations, style({ transform: 'scale(0)' })),
       ]),
       state(
-        'true',
+        'maximized',
         style({
           width: '100%',
           height: '100%',
@@ -32,7 +36,7 @@ import { NapicuOS } from '../../system.napicuos';
         })
       ),
       state(
-        'false',
+        'normal',
         style({
           width: '{{width}}%',
           height: '{{height}}%',
@@ -41,9 +45,29 @@ import { NapicuOS } from '../../system.napicuos';
         }),
         { params: { width: 0, height: 0, top: 0, left: 0 } }
       ),
+      state(
+        'left',
+        style({
+          width: '50%',
+          height: '100%',
+          top: '0%',
+          left: '0%',
+        })
+      ),
+      state(
+        'right',
+        style({
+          width: '50%',
+          height: '100%',
+          top: '0%',
+          left: '50%',
+        })
+      ),
 
-      transition(`*=>true`, animate(window_animations)),
-      transition(`*=>false`, animate(window_animations)),
+      transition(`*=>maximized`, animate(window_animations)),
+      transition(`*=>normal`, animate(window_animations)),
+      transition(`*=>left`, animate(window_animations)),
+      transition(`*=>right`, animate(window_animations)),
     ]),
   ],
 })
@@ -110,11 +134,6 @@ export class WindowComponent implements OnInit {
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
       this.WindowOut();
-      // if (this.leftFocusWindow) {
-      //   this.setAllWindowPar(window.innerWidth / 2, window.outerHeight);
-      // } else if (this.rightFocusWindow) {
-      //   this.setAllWindowPar(window.innerWidth / 2, window.outerHeight, window.innerWidth / 2);
-      // }
     });
     window.addEventListener('mousemove', (event: any) => {
       this.moveWindow(event);
@@ -144,7 +163,9 @@ export class WindowComponent implements OnInit {
    * @param event - The mouse event
    */
   public maximize(window: Window, event: MouseEvent): void {
-    window.appData.maximized = window.appData.maximized ? false : true;
+    //window.appData.maximized = window.appData.maximized ? false : true;
+    window.state = window.isStateMaximized() ? 'normal' : 'maximized';
+
     event.stopPropagation();
   }
 
@@ -173,19 +194,16 @@ export class WindowComponent implements OnInit {
     // this.topFocusWindow = MousevalueY <= 0 ? 'top' : '';
     if (!this.move || this.resize || !this.selectedWindow) return;
     if (MousevalueX <= 0) {
-      //this.FocusWindow = 'left';
-      this.selectedWindow.focus = 'left';
+      this.selectedWindow.state = 'left';
     } else if (MousevalueX + 2 >= window.outerWidth) {
-      // this.FocusWindow = 'right';
-      this.selectedWindow.focus = 'right';
+      this.selectedWindow.state = 'right';
     } else if (MousevalueY <= 0) {
-      //this.FocusWindow = 'top';
-      this.selectedWindow.focus = 'top';
+      this.selectedWindow.state = 'maximized';
     } else {
-      this.selectedWindow.focus = null;
+      this.selectedWindow.state = 'normal';
     }
 
-    if (this.selectedWindow.appData.maximized) {
+    if (this.selectedWindow.isStateMaximized()) {
       var perNowX = percentageValue(
         percentage(MousevalueX, window.innerWidth),
         this.selectedWindow.getWidth()
@@ -197,7 +215,7 @@ export class WindowComponent implements OnInit {
       );
       this.originalY = -perNowY;
 
-      this.selectedWindow.appData.maximized = false;
+      this.selectedWindow.state = 'normal';
     }
 
     if (MousevalueX <= 0) {
@@ -216,7 +234,7 @@ export class WindowComponent implements OnInit {
    * @param event - The mouse event
    */
   protected resizeWindow(event: MouseEvent): void {
-    if (this.selectedWindow?.appData?.maximized) return;
+    if (this.selectedWindow?.isStateMaximized()) return;
 
     if (this.move || !this.resize) return;
     var MousevalueX: number = event.pageX;
@@ -307,14 +325,6 @@ export class WindowComponent implements OnInit {
     this.selectedWindow = process;
     event.stopPropagation();
   }
-
-  protected setAllWindowPar(width: number, height: number, left?: number): void {
-    if (!left) left = 0;
-    this.selectedWindow.setTop(0);
-    this.selectedWindow.setLeft(left);
-    this.selectedWindow.setWidth(width);
-    this.selectedWindow.setHeight(height);
-  }
   /**
    * Function to cancel active events when
    */
@@ -326,7 +336,7 @@ export class WindowComponent implements OnInit {
    * Application process rollback function
    */
   get AppProcess(): Process[] {
-    return NapicuOS.get_system_displayed_window_apps();
+    return NapicuOS.get_system_process();
   }
   /**
    * Returns whether the system has been started
