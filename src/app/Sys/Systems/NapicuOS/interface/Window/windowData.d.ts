@@ -19,8 +19,12 @@ export declare interface windowData {
    * Window z-index
    */
   z_index: number;
-  /**
-   * Specifies whether the window is maximized
-   */
-  maximized: boolean;
 }
+
+/**
+ * * `Normal` - The application window is free
+ * * `Maximized` - The application window is maximized
+ * * `Left` - The application window is pinned on the left side of the screen
+ * * `Right` - The application window is pinned on the right side of the screen
+ */
+export declare type windowState = 'maximized' | 'left' | 'right' | 'normal';
