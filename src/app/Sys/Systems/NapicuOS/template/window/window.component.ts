@@ -195,13 +195,15 @@ export class WindowComponent implements OnInit {
     if (!this.move || this.resize || !this.selectedWindow) return;
     if (MousevalueX <= 0) {
       this.selectedWindow.state = 'left';
-    } else if (MousevalueX + 2 >= window.outerWidth) {
+    } else if (MousevalueX + 2 >= window.innerWidth) {
       this.selectedWindow.state = 'right';
-    } else if (MousevalueY <= 0) {
-      this.selectedWindow.state = 'maximized';
-    } else {
+    }
+    // else if (MousevalueY <= 0) {
+    //   this.selectedWindow.state = 'maximized';
+    else {
       this.selectedWindow.state = 'normal';
     }
+
 
     if (this.selectedWindow.isStateMaximized()) {
       var perNowX = percentageValue(
@@ -216,10 +218,6 @@ export class WindowComponent implements OnInit {
       this.originalY = -perNowY;
 
       this.selectedWindow.state = 'normal';
-    }
-
-    if (MousevalueX <= 0) {
-    } else if (MousevalueX + 2 >= window.outerWidth) {
     }
 
     var x = MousevalueX + this.originalX;
