@@ -191,16 +191,22 @@ export class WindowComponent implements OnInit {
 
     if (!this.move || this.resize || !this.selectedWindow) return;
 
-    if (this.selectedWindow.isStateMaximized()) {
+    if (
+      this.selectedWindow.isStateMaximized() ||
+      this.selectedWindow.isStateLeft() ||
+      this.selectedWindow.isStateRight()
+    ) {
       var perNowX = percentageValue(
         percentage(MousevalueX, window.innerWidth),
         this.selectedWindow.getWidth()
       );
-      this.originalX = -perNowX;
       var perNowY = percentageValue(
-        percentage(event.screenY - MousevalueY, window.outerHeight),
+        percentage(MousevalueY + 50, window.innerHeight),
         this.selectedWindow.getHeight()
       );
+      //Return
+
+      this.originalX = -perNowX;
       this.originalY = -perNowY;
 
       this.selectedWindow.state = 'normal';
