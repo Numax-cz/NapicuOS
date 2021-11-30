@@ -189,21 +189,7 @@ export class WindowComponent implements OnInit {
     const MousevalueX = event.pageX;
     const MousevalueY = event.pageY;
 
-    // this.leftFocusWindow = MousevalueX <= 0 ? 'left' : '';
-    // this.rightFocusWindow = MousevalueX + 2 >= window.outerWidth ? 'right' : '';
-    // this.topFocusWindow = MousevalueY <= 0 ? 'top' : '';
     if (!this.move || this.resize || !this.selectedWindow) return;
-    if (MousevalueX <= 0) {
-      this.selectedWindow.state = 'left';
-    } else if (MousevalueX + 2 >= window.innerWidth) {
-      this.selectedWindow.state = 'right';
-    }
-    // else if (MousevalueY <= 0) {
-    //   this.selectedWindow.state = 'maximized';
-    else {
-      this.selectedWindow.state = 'normal';
-    }
-
 
     if (this.selectedWindow.isStateMaximized()) {
       var perNowX = percentageValue(
@@ -212,11 +198,24 @@ export class WindowComponent implements OnInit {
       );
       this.originalX = -perNowX;
       var perNowY = percentageValue(
-        percentage(event.screenY - MousevalueY, window.innerHeight),
+        percentage(event.screenY - MousevalueY, window.outerHeight),
         this.selectedWindow.getHeight()
       );
       this.originalY = -perNowY;
 
+      this.selectedWindow.state = 'normal';
+    }
+    //Animation of the application window stretching along the edges of the screen
+    if (MousevalueX <= 0) {
+      this.selectedWindow.state = 'left';
+      return;
+    } else if (MousevalueX + 2 >= window.innerWidth) {
+      this.selectedWindow.state = 'right';
+      return;
+    } else if (MousevalueY <= 27) {
+      this.selectedWindow.state = 'maximized';
+      return;
+    } else {
       this.selectedWindow.state = 'normal';
     }
 
@@ -226,6 +225,8 @@ export class WindowComponent implements OnInit {
     if (MousevalueY > 0) this.selectedWindow.setTop(y);
     this.selectedWindow.setLeft(x);
   }
+
+  protected moveWindowAnimations(): void {}
 
   /**
    * Function to enlarge/reduce the window along the edges of the application window
