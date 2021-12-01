@@ -129,6 +129,8 @@ export class WindowComponent implements OnInit {
    */
   protected declare selectedWindow: Window;
 
+  protected declare activeWindowState: boolean;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -192,9 +194,10 @@ export class WindowComponent implements OnInit {
     if (!this.move || this.resize || !this.selectedWindow) return;
 
     if (
-      this.selectedWindow.isStateMaximized() ||
-      this.selectedWindow.isStateLeft() ||
-      this.selectedWindow.isStateRight()
+      this.activeWindowState &&
+      (this.selectedWindow.isStateMaximized() ||
+        this.selectedWindow.isStateLeft() ||
+        this.selectedWindow.isStateRight())
     ) {
       var perNowX = percentageValue(
         percentage(MousevalueX, window.innerWidth),
@@ -211,6 +214,7 @@ export class WindowComponent implements OnInit {
 
       this.selectedWindow.state = 'normal';
     }
+
     //Animation of the application window stretching along the edges of the screen
     if (MousevalueX <= 0) {
       this.selectedWindow.state = 'left';
@@ -325,7 +329,7 @@ export class WindowComponent implements OnInit {
   public moveWindowIn(process: Window, event: MouseEvent): void {
     this.originalX = process.getLeft() - event.pageX;
     this.originalY = process.getTop() - event.pageY;
-
+    this.activeWindowState = !process.isStateNormal() ? true : false;
     this.move = true;
     this.selectedWindow = process;
     event.stopPropagation();
