@@ -63,11 +63,20 @@ import { NapicuOS } from '../../system.napicuos';
           left: '50%',
         })
       ),
-
+      state(
+        'left-top',
+        style({
+          width: '50%',
+          height: '50%',
+          top: '0%',
+          left: '0%',
+        })
+      ),
       transition(`*=>maximized`, animate(window_animations)),
       transition(`*=>normal`, animate(window_animations)),
       transition(`*=>left`, animate(window_animations)),
       transition(`*=>right`, animate(window_animations)),
+      transition(`*=>left-top`, animate(window_animations)),
     ]),
   ],
 })
@@ -222,8 +231,12 @@ export class WindowComponent implements OnInit {
     } else if (MousevalueX + 2 >= window.innerWidth) {
       this.selectedWindow.state = 'right';
       return;
-    } else if (MousevalueY <= 27) {
+    } else if (MousevalueY <= 0) {
+      //TODO odečíst horní menu
       this.selectedWindow.state = 'maximized';
+      return;
+    } else if (MousevalueX <= 10 && MousevalueY <= 10) {
+      this.selectedWindow.state = 'left-top';
       return;
     } else {
       this.selectedWindow.state = 'normal';
