@@ -81,6 +81,7 @@ import { NapicuOS } from '../../system.napicuos';
   ],
 })
 export class WindowComponent implements OnInit {
+  protected readonly sizeSnappingEdgeBox: number = 10;
   /**
    * History of overlay windows
    */
@@ -225,21 +226,26 @@ export class WindowComponent implements OnInit {
     }
 
     //Animation of the application window stretching along the edges of the screen
-    if (MousevalueX <= 0) {
-      this.selectedWindow.state = 'left';
-      return;
-    } else if (MousevalueX + 2 >= window.innerWidth) {
-      this.selectedWindow.state = 'right';
-      return;
-    } else if (MousevalueY <= 0) {
-      //TODO odečíst horní menu
-      this.selectedWindow.state = 'maximized';
-      return;
-    } else if (MousevalueX <= 10 && MousevalueY <= 10) {
-      this.selectedWindow.state = 'left-top';
-      return;
-    } else {
-      this.selectedWindow.state = 'normal';
+    // if (MousevalueX <= 0) {
+    //   this.selectedWindow.state = 'left';
+    //   return;
+    // } else if (MousevalueX + 2 >= window.innerWidth) {
+    //   this.selectedWindow.state = 'right';
+    //   return;
+    // } else if (MousevalueY <= 0) {
+    //   //TODO odečíst horní menu
+    //   this.selectedWindow.state = 'maximized';
+    //   return;
+    // } else if (MousevalueX <= 10 && MousevalueY <= 10) {
+    //   this.selectedWindow.state = 'left-top';
+    //   return;
+    // } else {
+    //   this.selectedWindow.state = 'normal';
+    // }
+    if (MousevalueX <= 0 && MousevalueY >= this.sizeSnappingEdgeBox) {
+      //TOP-RIGHT
+    } else if (MousevalueX >= window.innerWidth + 2 && MousevalueY <= this.sizeSnappingEdgeBox) {
+      //TOP-LEFT
     }
 
     var x = MousevalueX + this.originalX;
