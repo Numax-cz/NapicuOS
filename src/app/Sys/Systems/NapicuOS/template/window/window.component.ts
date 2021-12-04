@@ -203,50 +203,10 @@ export class WindowComponent implements OnInit {
   protected moveWindow(event: MouseEvent): void {
     const MousevalueX = event.pageX;
     const MousevalueY = event.pageY;
-
+    const p = event.target as HTMLElement;
     if (!this.move || this.resize || !this.selectedWindow) return;
-
-    if (
-      this.activeWindowState &&
-      (this.selectedWindow.isStateMaximized() ||
-        this.selectedWindow.isStateLeft() ||
-        this.selectedWindow.isStateRight())
-    ) {
-      var perNowX = percentageValue(
-        percentage(MousevalueX, window.innerWidth),
-        this.selectedWindow.getWidth()
-      );
-      var perNowY = percentageValue(
-        percentage(MousevalueY + 50, window.innerHeight),
-        this.selectedWindow.getHeight()
-      );
-
-      this.originalX = -perNowX;
-      this.originalY = -perNowY;
-
-      this.selectedWindow.state = 'normal';
-    }
-
-    var p = event.target as HTMLElement;
-
-    if (p.classList.contains('left')) {
-      this.selectedWindow.setStateLeft();
-    } else if (p.classList.contains('right')) {
-      this.selectedWindow.setStateRight();
-      return;
-    } else if (MousevalueY <= 0 && !p.classList.contains('resizer')) {
-      this.selectedWindow.setStateMaximized();
-      return;
-    } else if (p.classList.contains('top-left')) {
-      this.selectedWindow.setStateTopLeft();
-      return;
-    } else if (p.classList.contains('top-right')) {
-      this.selectedWindow.setStateTopRight();
-      return;
-    } else {
-      this.selectedWindow.setStateNormal();
-    }
-
+    this.unSnappingWindow(event);
+    this.snappingWindow(event);
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
 
@@ -353,6 +313,59 @@ export class WindowComponent implements OnInit {
     this.move = true;
     this.selectedWindow = process;
     event.stopPropagation();
+  }
+  /**
+   * Function for unsnapping the application window
+   */
+  protected unSnappingWindow(event: MouseEvent): void {
+    if (
+      this.activeWindowState &&
+      (this.selectedWindow.isStateMaximized() ||
+        this.selectedWindow.isStateLeft() ||
+        this.selectedWindow.isStateRight())
+    ) {
+      var w: number = window.innerWidth;
+      var h: number = window.innerHeight;
+      var v: Window = this.selectedWindow;
+      // if (v.isStateLeft() || v.isStateRight()) {
+      //   w /= 2;
+      //   if (v.isStateRight()) w -= v.getLeft();
+      // } else if (v.isStateTopLeft() || v.isStateTopRight()) {
+      //   w /= 2;
+      //   h /= 2;
+      // }
+
+      var perNowX = percentageValue(percentage(event.pageX, w), this.selectedWindow.getWidth());
+      var perNowY = percentageValue(percentage(event.pageY + 50, h), this.selectedWindow.getHeight());
+
+      this.originalX = -perNowX;
+      this.originalY = -perNowY;
+
+      this.selectedWindow.state = 'normal';
+    }
+  }
+  /**
+   * Function for snapping the application window
+   */
+  protected snappingWindow(event: MouseEvent): void {
+    const p = event.target as HTMLElement;
+    if (p.classList.contains('left')) {
+      this.selectedWindow.setStateLeft();
+    } else if (p.classList.contains('right')) {
+      this.selectedWindow.setStateRight();
+      return;
+    } else if (event.pageY <= 0 && !p.classList.contains('resizer')) {
+      this.selectedWindow.setStateMaximized();
+      return;
+    } else if (p.classList.contains('top-left')) {
+      this.selectedWindow.setStateTopLeft();
+      return;
+    } else if (p.classList.contains('top-right')) {
+      this.selectedWindow.setStateTopRight();
+      return;
+    } else {
+      this.selectedWindow.setStateNormal();
+    }
   }
   /**
    * Function to cancel active events when
