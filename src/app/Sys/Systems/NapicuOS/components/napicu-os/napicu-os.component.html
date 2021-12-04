@@ -1,5 +1,13 @@
 <!-- MainSystem -->
 <div id="VerdanaFont">
+  <!-- Resizers -->
+  <div class="snappingEdge">
+    <div style="cursor: unset" class="resizer snapping left"></div>
+    <div style="cursor: unset" class="resizer snapping right"></div>
+
+    <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-left"></div>
+    <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-right"></div>
+  </div>
   <div id="SystemBackground">
     <section @NapicuOSfeoreStartUp id="System">
       <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
@@ -22,9 +30,16 @@
             </section>
           </div>
         </section>
-        
+
         <!-- Bottom AppPanel -->
-        <section *ngIf="DockDisplay" @NapicuOSDock #BottomBar class="BottomPanel" style="z-index: 10000">
+        <section
+          *ngIf="DockDisplay"
+          @NapicuOSDock
+          #BottomBar
+          class="BottomPanel"
+          style="z-index: 10000"
+          id="Dock"
+        >
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section>
               <!-- Applications -->
