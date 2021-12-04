@@ -1,4 +1,5 @@
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { throwIfEmpty, windowToggle } from 'rxjs';
 import { Process } from 'src/app/Sys/Process';
@@ -64,7 +65,7 @@ import { NapicuOS } from '../../system.napicuos';
         })
       ),
       state(
-        'left-top',
+        'top-left',
         style({
           width: '50%',
           height: '50%',
@@ -72,16 +73,20 @@ import { NapicuOS } from '../../system.napicuos';
           left: '0%',
         })
       ),
-      transition(`*=>maximized`, animate(window_animations)),
-      transition(`*=>normal`, animate(window_animations)),
-      transition(`*=>left`, animate(window_animations)),
-      transition(`*=>right`, animate(window_animations)),
-      transition(`*=>left-top`, animate(window_animations)),
+      state(
+        'top-right',
+        style({
+          width: '50%',
+          height: '50%',
+          top: '0%',
+          left: '50%',
+        })
+      ),
+      transition(`*=>*`, animate(window_animations)),
     ]),
   ],
 })
 export class WindowComponent implements OnInit {
-  protected readonly sizeSnappingEdgeBox: number = 10;
   /**
    * History of overlay windows
    */
@@ -106,10 +111,6 @@ export class WindowComponent implements OnInit {
    * Original window X location
    */
   protected originalX: number = 0;
-  //TODO DOC
-  public declare FocusWindow: string;
-  // public rightFocusWindow: boolean = false;
-  // public leftFocusWindow: boolean = false;
   /**
    * Original window Y location
    */
@@ -138,7 +139,9 @@ export class WindowComponent implements OnInit {
    * Specifies the selected application window
    */
   protected declare selectedWindow: Window;
-
+  /**
+   * Indicates whether a mode other than normal mode was activated when you clicked on the application window.
+   */
   protected declare activeWindowState: boolean;
 
   constructor() {}
@@ -217,7 +220,6 @@ export class WindowComponent implements OnInit {
         percentage(MousevalueY + 50, window.innerHeight),
         this.selectedWindow.getHeight()
       );
-      //Return
 
       this.originalX = -perNowX;
       this.originalY = -perNowY;
@@ -225,32 +227,29 @@ export class WindowComponent implements OnInit {
       this.selectedWindow.state = 'normal';
     }
 
-    //Animation of the application window stretching along the edges of the screen
-    // if (MousevalueX <= 0) {
-    //   this.selectedWindow.state = 'left';
-    //   return;
-    // } else if (MousevalueX + 2 >= window.innerWidth) {
-    //   this.selectedWindow.state = 'right';
-    //   return;
-    // } else if (MousevalueY <= 0) {
-    //   //TODO odečíst horní menu
-    //   this.selectedWindow.state = 'maximized';
-    //   return;
-    // } else if (MousevalueX <= 10 && MousevalueY <= 10) {
-    //   this.selectedWindow.state = 'left-top';
-    //   return;
-    // } else {
-    //   this.selectedWindow.state = 'normal';
-    // }
-    if (MousevalueX <= 0 && MousevalueY >= this.sizeSnappingEdgeBox) {
-      //TOP-RIGHT
-    } else if (MousevalueX >= window.innerWidth + 2 && MousevalueY <= this.sizeSnappingEdgeBox) {
-      //TOP-LEFT
+    var p = event.target as HTMLElement;
+
+    if (p.classList.contains('left')) {
+      this.selectedWindow.setStateLeft();
+    } else if (p.classList.contains('right')) {
+      this.selectedWindow.setStateRight();
+      return;
+    } else if (MousevalueY <= 0 && !p.classList.contains('resizer')) {
+      this.selectedWindow.setStateMaximized();
+      return;
+    } else if (p.classList.contains('top-left')) {
+      this.selectedWindow.setStateTopLeft();
+      return;
+    } else if (p.classList.contains('top-right')) {
+      this.selectedWindow.setStateTopRight();
+      return;
+    } else {
+      this.selectedWindow.setStateNormal();
     }
 
     var x = MousevalueX + this.originalX;
     var y = MousevalueY + this.originalY;
-    //TODO přehodit to if a dát return
+
     if (MousevalueY > 0) this.selectedWindow.setTop(y);
     this.selectedWindow.setLeft(x);
   }
@@ -272,32 +271,34 @@ export class WindowComponent implements OnInit {
     var left;
     var top;
 
-    if (this.selectedDiv.classList.contains('bottom-right')) {
-      x = this.originalWidth + (MousevalueX - this.originalMouseX);
-      y = this.originalHeight + (MousevalueY - this.originalMouseY);
-    } else if (this.selectedDiv.classList.contains('bottom-left')) {
-      x = this.originalWidth - (MousevalueX - this.originalMouseX);
-      y = this.originalHeight + (MousevalueY - this.originalMouseY);
-      left = this.originalX + (MousevalueX - this.originalMouseX);
-    } else if (this.selectedDiv.classList.contains('top-right')) {
-      x = this.originalWidth + (MousevalueX - this.originalMouseX);
-      y = this.originalHeight - (MousevalueY - this.originalMouseY);
-      top = this.originalY + (MousevalueY - this.originalMouseY);
-    } else if (this.selectedDiv.classList.contains('top-left')) {
-      x = this.originalWidth - (MousevalueX - this.originalMouseX);
-      y = this.originalHeight - (MousevalueY - this.originalMouseY);
-      top = this.originalY + (MousevalueY - this.originalMouseY);
-      left = this.originalMouseX + (MousevalueX - this.originalMouseX);
-    } else if (this.selectedDiv.classList.contains('right')) {
-      x = this.originalWidth + (MousevalueX - this.originalMouseX);
-    } else if (this.selectedDiv.classList.contains('left')) {
-      x = this.originalWidth - (MousevalueX - this.originalMouseX);
-      left = this.originalX + (MousevalueX - this.originalMouseX);
-    } else if (this.selectedDiv.classList.contains('bottom')) {
-      y = this.originalHeight + (MousevalueY - this.originalMouseY);
-    } else {
-      y = this.originalHeight - (MousevalueY - this.originalMouseY);
-      top = this.originalY + (MousevalueY - this.originalMouseY);
+    if (this.selectedDiv.classList.contains('resizer')) {
+      if (this.selectedDiv.classList.contains('bottom-right')) {
+        x = this.originalWidth + (MousevalueX - this.originalMouseX);
+        y = this.originalHeight + (MousevalueY - this.originalMouseY);
+      } else if (this.selectedDiv.classList.contains('bottom-left')) {
+        x = this.originalWidth - (MousevalueX - this.originalMouseX);
+        y = this.originalHeight + (MousevalueY - this.originalMouseY);
+        left = this.originalX + (MousevalueX - this.originalMouseX);
+      } else if (this.selectedDiv.classList.contains('top-right')) {
+        x = this.originalWidth + (MousevalueX - this.originalMouseX);
+        y = this.originalHeight - (MousevalueY - this.originalMouseY);
+        top = this.originalY + (MousevalueY - this.originalMouseY);
+      } else if (this.selectedDiv.classList.contains('top-left')) {
+        x = this.originalWidth - (MousevalueX - this.originalMouseX);
+        y = this.originalHeight - (MousevalueY - this.originalMouseY);
+        top = this.originalY + (MousevalueY - this.originalMouseY);
+        left = this.originalMouseX + (MousevalueX - this.originalMouseX);
+      } else if (this.selectedDiv.classList.contains('right')) {
+        x = this.originalWidth + (MousevalueX - this.originalMouseX);
+      } else if (this.selectedDiv.classList.contains('left')) {
+        x = this.originalWidth - (MousevalueX - this.originalMouseX);
+        left = this.originalX + (MousevalueX - this.originalMouseX);
+      } else if (this.selectedDiv.classList.contains('bottom')) {
+        y = this.originalHeight + (MousevalueY - this.originalMouseY);
+      } else {
+        y = this.originalHeight - (MousevalueY - this.originalMouseY);
+        top = this.originalY + (MousevalueY - this.originalMouseY);
+      }
     }
     if (x && x > WindowComponent.MinWindowWidth) {
       this.selectedWindow.setWidth(x);
