@@ -27,4 +27,4 @@ export declare interface windowData {
  * * `Left` - The application window is pinned on the left side of the screen
  * * `Right` - The application window is pinned on the right side of the screen
  */
-export declare type windowState = 'maximized' | 'left' | 'right' | 'normal' | 'left-top';
+export declare type windowState = 'maximized' | 'left' | 'right' | 'normal' | 'top-left' | 'top-right';
