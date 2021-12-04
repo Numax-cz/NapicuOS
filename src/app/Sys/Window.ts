@@ -47,23 +47,50 @@ export class Window {
 
   public readonly close = (): void => {
     this.display = false;
-   // WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
+    // WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
   };
 
+  //* * * *  Getters * * *
+
+  //? Getters State
+  /**
+   * Returns if the application window state is maximized
+   */
   public isStateMaximized(): boolean {
     return this.state == 'maximized' ? true : false;
   }
+  /**
+   * Returns if the application window state is left
+   */
   public isStateLeft(): boolean {
     return this.state == 'left' ? true : false;
   }
+  /**
+   * Returns if the application window state is right
+   */
   public isStateRight(): boolean {
     return this.state == 'right' ? true : false;
   }
+  /**
+   * Returns if the application window state is normal
+   */
   public isStateNormal(): boolean {
     return this.state == 'normal' ? true : false;
   }
+  /**
+   * Returns if the application window state is top-left
+   */
+  public isStateTopLeft(): boolean {
+    return this.state == 'top-left' ? true : false;
+  }
+  /**
+   * Returns if the application window state is top-right
+   */
+  public isStateTopRight(): boolean {
+    return this.state == 'top-right' ? true : false;
+  }
 
-  //? Getters
+  //? Getters Pos
   /**
    * Returns top in pixels
    * @returns {number} value in pixels
@@ -93,7 +120,47 @@ export class Window {
     return percentageValue(this.appData.height, window.innerHeight);
   }
 
-  //? Setters
+  //* * * *  Setters * * *
+  //
+  //? Window State
+  /**
+   * Sets the application window state to maximized
+   */
+  public setStateMaximized(): void {
+    this.state = 'maximized';
+  }
+  /**
+   * Sets the application window state to left
+   */
+  public setStateLeft(): void {
+    this.state = 'left';
+  }
+  /**
+   * Sets the application window state to right
+   */
+  public setStateRight(): void {
+    this.state = 'right';
+  }
+  /**
+   * Sets the application window state to normal
+   */
+  public setStateNormal(): void {
+    this.state = 'normal';
+  }
+  /**
+   * Sets the application window state to top-left
+   */
+  public setStateTopLeft(): void {
+    this.state = 'top-left';
+  }
+  /**
+   * Sets the application window state to top-right
+   */
+  public setStateTopRight(): void {
+    this.state = 'top-right';
+  }
+
+  //? Window Pos
   /**
    * Sets the top in percentage
    * @param {number} valuePX - In pixels
