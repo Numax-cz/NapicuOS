@@ -42,20 +42,20 @@
     border-radius: 50%;
     height: 13px;
     width: 13px;
-    margin-left: 2px;
+    margin-left: 5px;
     cursor: pointer;
   }
 }
 
 #CloseButton {
   background-color: var(--NapicuWindowButtonColor-Close);
-  border: 2px solid var(--NapicuWindowButtonColor-Close-Border);
+  //border: 2px solid var(--NapicuWindowButtonColor-Close-Border);
 }
 #FullButton {
   background-color: var(--NapicuWindowButtonColor-Full);
-  border: 2px solid var(--NapicuWindowButtonColor-Full-Border);
+  //border: 2px solid var(--NapicuWindowButtonColor-Full-Border);
 }
 #MinButton {
   background-color: var(--NapicuWindowButtonColor-Mini);
-  border: 2px solid var(--NapicuWindowButtonColor-Mini-Border);
+  //border: 2px solid var(--NapicuWindowButtonColor-Mini-Border);
 }
