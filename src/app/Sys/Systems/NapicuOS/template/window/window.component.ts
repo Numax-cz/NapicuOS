@@ -324,18 +324,23 @@ export class WindowComponent implements OnInit {
         this.selectedWindow.isStateLeft() ||
         this.selectedWindow.isStateRight())
     ) {
+      const v: Window = this.selectedWindow;
       var w: number = window.innerWidth;
       var h: number = window.innerHeight;
-      var v: Window = this.selectedWindow;
-      // if (v.isStateLeft() || v.isStateRight()) {
-      //   w /= 2;
-      //   if (v.isStateRight()) w -= v.getLeft();
-      // } else if (v.isStateTopLeft() || v.isStateTopRight()) {
-      //   w /= 2;
-      //   h /= 2;
-      // }
+      var x: number = event.pageX;
+      var y: number = event.pageY;
 
-      var perNowX = percentageValue(percentage(event.pageX, w), this.selectedWindow.getWidth());
+      if (v.isStateLeft() || v.isStateRight()) {
+        w /= 2;
+      } else if (v.isStateTopLeft() || v.isStateTopRight()) {
+        w /= 2;
+        h /= 2;
+      }
+
+      var perNowX = percentageValue(
+        percentage(event.pageX - (v.isStateRight() ? window.innerWidth / 2 : 0), w),
+        this.selectedWindow.getWidth()
+      );
       var perNowY = percentageValue(percentage(event.pageY + 50, h), this.selectedWindow.getHeight());
 
       this.originalX = -perNowX;
