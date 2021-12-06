@@ -9,6 +9,9 @@
   //Window
   --NapicuWindowBorder: 7px;
   --NapicuWindowPadding: 7px;
+
+  --NapicuWindowButtonsSize: 14px;
+  --NapicuWindowButtonsMargin: 5px;
 }
 
 .NapicuThemeFeraDark {
@@ -23,7 +26,7 @@
   --NapicuSelectedWindowColor: #161616;
   --NapicuUnSelectedWindowColor: #414141;
   --NapicuTitleTextColor: #ffffff;
-  --NapicuWindowBoxShadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.50);
+  --NapicuWindowBoxShadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.5);
   --NapicuWindowScrollBar: #000000;
   //MenuButtons
   --NapicuWindowButtonColor-Close: #fc5753;

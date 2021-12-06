@@ -40,9 +40,9 @@
   padding: var(--NapicuWindowPadding);
   div {
     border-radius: 50%;
-    height: 13px;
-    width: 13px;
-    margin-left: 5px;
+    height: var(--NapicuWindowButtonsSize);
+    width: var(--NapicuWindowButtonsSize);
+    margin-left: var(--NapicuWindowButtonsMargin);
     cursor: pointer;
   }
 }
