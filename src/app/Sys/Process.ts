@@ -1,21 +1,22 @@
 import { Type } from '@angular/core';
 import { GrubComponent } from '../System/grub/grub.component';
+import { processConstructor } from './Systems/NapicuOS/interface/process';
 import { Window } from './Window';
 
 export class Process {
-  public title: string = 'NapicuAPP';
+  public processTitle: string = 'NapicuAPP';
   public declare Interval: any;
 
   public declare Window: Window;
   public readonly run = (): void => {};
   public readonly kill = (): void => {};
-  constructor(data?: { title?: string; interval?: { fun: () => void; time: number }; Window?: Window }) {
+  constructor(data: processConstructor) {
     if (data?.Window) this.Window = data.Window;
-    if (data?.title) this.title = data.title;
-    if (data?.interval) {
+    if (data?.processTitle) this.processTitle = data.processTitle;
+    if (data?.processInterval) {
       this.Interval = setInterval(() => {
-        data.interval?.fun();
-      }, data.interval.time);
+        data.processInterval?.fun();
+      }, data.processInterval.time);
     }
 
     GrubComponent.ActiveSystem.SystemProcess.push(this);

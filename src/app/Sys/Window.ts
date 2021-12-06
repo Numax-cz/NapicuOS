@@ -36,8 +36,9 @@ export class Window {
     height: 40,
     z_index: 1,
   };
-  constructor(component: Type<any>) {
+  constructor(component: Type<any>, WindowTitle?: string) {
     this.WindowComponent = component;
+    if (WindowTitle) this.WindowTitle = WindowTitle;
   }
 
   public readonly open = (): void => {
@@ -47,7 +48,7 @@ export class Window {
 
   public readonly close = (): void => {
     this.display = false;
-    // WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
+    //WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
   };
 
   //* * * *  Getters * * *
@@ -189,4 +190,9 @@ export class Window {
   public setHeight(valuePX: number): void {
     this.appData.height = percentage(valuePX, window.innerHeight);
   }
+
+  //? WindowTitle
+  public setWindowTitle(title: string): void{
+    this.WindowTitle = title;
+  } 
 }
