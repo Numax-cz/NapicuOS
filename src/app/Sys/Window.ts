@@ -48,7 +48,7 @@ export class Window {
 
   public readonly close = (): void => {
     this.display = false;
-    //WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
+    WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1); //TODO Kontrolovat chybnost
   };
 
   //* * * *  Getters * * *
@@ -192,7 +192,7 @@ export class Window {
   }
 
   //? WindowTitle
-  public setWindowTitle(title: string): void{
+  public setWindowTitle(title: string): void {
     this.WindowTitle = title;
-  } 
+  }
 }

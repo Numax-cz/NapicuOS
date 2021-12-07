@@ -144,6 +144,7 @@ export class WindowComponent implements OnInit {
    */
   protected declare activeWindowState: boolean;
 
+  @ViewChild('kokot') public declare kokot: ElementRef;
   constructor() {}
 
   ngOnInit(): void {

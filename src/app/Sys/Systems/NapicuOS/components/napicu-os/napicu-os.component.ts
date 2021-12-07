@@ -1,10 +1,10 @@
 import { trigger, transition, query, stagger, style, animate } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Process } from 'src/app/Sys/Process';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
 import { system_dock_animations } from '../../config/systemAnimations';
-import { NapicuOS } from '../../system.napicuos';
+import { NapicuOS } from '../../system.napicuos';;
 
 @Component({
   selector: 'app-napicu-os',
@@ -22,7 +22,7 @@ import { NapicuOS } from '../../system.napicuos';
         ),
       ]),
     ]),
-    trigger('NapicuOSDock', [
+    trigger('NapicuOSDockAnimation', [
       transition(':enter', [
         style({ transform: 'translateY(100px)' }),
         animate(system_dock_animations, style({ transform: 'translateY(0)' })),
@@ -39,10 +39,12 @@ export class NapicuOSComponent implements OnInit {
    * Determines if the bottom dock is displayed
    */
   public static BottomDockDisplay: boolean = false;
+
+
   constructor() {}
 
   ngOnInit(): void {
-    setInterval(() => {
+    setTimeout(() => {
       NapicuOSComponent.BottomDockDisplay = true;
     }, 5000);
   }
@@ -62,7 +64,7 @@ export class NapicuOSComponent implements OnInit {
   // get Process(): Process[]{
   //   return Napicu
   // }
-  get DockDisplay(): boolean {
+  get BottomDockDisplay(): boolean {
     return NapicuOS.get_system_bottom_dock_display();
   }
 }
