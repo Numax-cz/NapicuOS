@@ -12,6 +12,10 @@ import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
+import { WindowComponent } from './template/window/window.component';
+import { elementAt } from 'rxjs';
+import { ConsoleComponent } from './Apps/console/console.component';
+import { Command } from '../../command';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -38,9 +42,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       },
     });
 
-    new Process({ Window: new Window(WelcomeComponent, 'NapicuOS - Setup'), processTitle: 'SetupAPP' }).Window.open();
-    //new Process({ Window: new Window(WelcomeComponent), title: 'Welcome2' }).Window.open();
-    //new Process({ Window: new Window(WelcomeComponent), title: 'Welcomw3' }).Window.open();
+    new Process({
+      Window: new Window(WelcomeComponent, 'NapicuOS - Setup'),
+      processTitle: 'SetupAPP',
+    }).Window.open();
+
+    new Process({
+      Window: new Window(ConsoleComponent, 'Terminal'),
+      processTitle: 'console',
+    }).Window.open();
   }
 
   public SystemBoot(): void {
@@ -110,6 +120,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.get_system_process().filter((element: Process) => {
       return element.Window?.display == true;
     });
+  }
+
+  public static get_system_activated_window_app(): Process {
+    return this.get_system_displayed_window_apps().filter((element: Process) => {
+      return element.Window?.activated == true;
+    })[0];
+  }
+
+  public static registerCommand(cmd: Command): void {
+    //Command.commands.push()
   }
 
   // override Interval = setInterval(() => {
