@@ -2,9 +2,12 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { throwIfEmpty, windowToggle } from 'rxjs';
+import { Command } from 'src/app/Sys/command';
 import { Process } from 'src/app/Sys/Process';
+import { System } from 'src/app/Sys/System';
 import { Window } from 'src/app/Sys/Window';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
+import { SystemComponent } from 'src/app/System/system/system.component';
 import { window_animations } from '../../config/windowAnimations';
 import { percentage, percentageValue } from '../../scripts/getPercentage';
 import { NapicuOS } from '../../system.napicuos';
@@ -281,8 +284,14 @@ export class WindowComponent implements OnInit {
 
     this.selectedWindow = i;
     i.activated = true;
-  }
 
+    new Command('arg', () => {
+      alert('Hi')
+    });
+
+
+
+  }
   /**
    * Functions for saving parameters
    * @param Window
