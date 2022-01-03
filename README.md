@@ -27,3 +27,9 @@
    ```sh
    npm run build
    ```
+
+## Vytovření nové aplikace pro operační systém
+
+```sh
+npm run newapp <nazev_systemu> <nazev_aplikace>
+```
