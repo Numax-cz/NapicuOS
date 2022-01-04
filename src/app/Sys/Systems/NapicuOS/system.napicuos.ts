@@ -42,6 +42,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       },
     });
 
+ 
     new Process({
       Window: new Window(WelcomeComponent, 'NapicuOS - Setup'),
       processTitle: 'SetupAPP',
@@ -128,8 +129,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     })[0];
   }
 
-  public static registerCommand(cmd: Command): void {
-    //Command.commands.push()
+  public static get_available_commands(): Command[] {
+    return Command.commands;
+  }
+
+  public static registerCommand(name: string, cmd: Command): void {
+    
   }
 
   // override Interval = setInterval(() => {

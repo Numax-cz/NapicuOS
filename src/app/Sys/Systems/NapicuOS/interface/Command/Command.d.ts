@@ -1,6 +1,2 @@
+import { Command } from 'src/app/Sys/command';
 
-
-export declare interface CommandVal{
-    command: string,
-    fun: () => void
-}

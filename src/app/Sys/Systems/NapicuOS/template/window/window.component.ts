@@ -285,9 +285,6 @@ export class WindowComponent implements OnInit {
     this.selectedWindow = i;
     i.activated = true;
 
-    new Command('arg', () => {
-      alert('Hi')
-    });
 
 
 
