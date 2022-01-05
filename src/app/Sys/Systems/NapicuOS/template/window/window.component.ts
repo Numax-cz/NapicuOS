@@ -2,7 +2,7 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { throwIfEmpty, windowToggle } from 'rxjs';
-import { Command } from 'src/app/Sys/command';
+import { Command } from 'src/app/Sys/Command';
 import { Process } from 'src/app/Sys/Process';
 import { System } from 'src/app/Sys/System';
 import { Window } from 'src/app/Sys/Window';

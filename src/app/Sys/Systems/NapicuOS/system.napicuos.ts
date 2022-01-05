@@ -1,5 +1,4 @@
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
-import { setTimeInterval } from 'src/app/Scripts/TimeController';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
 import { onStartUp, onShutDown, Os } from './interface/system';
@@ -12,10 +11,8 @@ import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
-import { WindowComponent } from './template/window/window.component';
-import { elementAt } from 'rxjs';
 import { ConsoleComponent } from './Apps/console/console.component';
-import { Command } from '../../command';
+import { Command } from '../../Command';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -42,7 +39,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       },
     });
 
- 
     new Process({
       Window: new Window(WelcomeComponent, 'NapicuOS - Setup'),
       processTitle: 'SetupAPP',
@@ -52,6 +48,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       Window: new Window(ConsoleComponent, 'Terminal'),
       processTitle: 'console',
     }).Window.open();
+
+    NapicuOS.register_command(
+      new Command('Terminal', 'shell', () => {
+        console.log('Ahoj');
+      })
+    );
+    NapicuOS.register_command(
+      new Command('Terminal', 'shell2', () => {
+        console.log('Ahoj');
+      })
+    );
+
+    console.log(NapicuOS.get_command_by_command_name('Terminal'));
   }
 
   public SystemBoot(): void {
@@ -117,25 +126,77 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     return array;
   }
+  /**
+   * Returns the displayed windows
+   */
   public static get_system_displayed_window_apps(): Process[] {
     return this.get_system_process().filter((element: Process) => {
       return element.Window?.display == true;
     });
   }
 
+  /**
+   * Return the activated window
+   */
   public static get_system_activated_window_app(): Process {
     return this.get_system_displayed_window_apps().filter((element: Process) => {
       return element.Window?.activated == true;
     })[0];
   }
 
+  /**
+   * Returns the available commands
+   */
   public static get_available_commands(): Command[] {
     return Command.commands;
   }
 
-  public static registerCommand(name: string, cmd: Command): void {
-    
+  /**
+   * Returns the command classes by specified command name
+   * @param commandName Name of command/commands
+   * @returns Array of commands
+   */
+  public static get_command_by_command_name(commandName: string): Command[] {
+    var i: Command[] = [];
+    i = this.get_available_commands().filter((element: Command) => {
+      return element.commandName === commandName;
+    });
+    return i;
   }
+
+  /**
+   * Returns the command class by specified command
+   * @param command command
+   * @returns Command class
+   */
+  public static get_command_by_commandStr(command: string): Command {
+    var i: Command[] = [];
+    i = this.get_available_commands().filter((element: Command) => {
+      return element.command === command;
+    });
+    return i[0];
+  }
+
+  //? * * * Functions * * *
+  /**
+   * Register the command
+   */
+  public static register_command(cmd: Command): void {
+    var i: boolean = false;
+    for (let index = 0; index < Command.commands.length; index++) {
+      const element = Command.commands[index];
+      if (element.command == cmd.command) {
+        i = true;
+      }
+    }
+    if (!i) {
+      Command.commands.push(cmd);
+    } else {
+      console.warn(`The ${cmd.command} command is already registered`);
+    }
+  }
+
+  
 
   // override Interval = setInterval(() => {
   //   NapicuOS.systemTime = NapicuOS.getTime();
