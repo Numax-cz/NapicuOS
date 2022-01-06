@@ -14,7 +14,7 @@ export class Command {
   /**
    * Command Function
    */
-  public declare fun: () => void;
+  private declare fun: () => Promise<void | string>;
 
   /**
    *
@@ -22,7 +22,7 @@ export class Command {
    * @param {string}command The expression after which the command function is executed
    * @param {Function}fun Command Function
    */
-  constructor(commandName: string, command: string, fun: () => void) {
+  constructor(commandName: string, command: string, fun: () => Promise<void | string>) {
     this.commandName = commandName;
     this.command = command;
     this.fun = fun;
@@ -31,7 +31,7 @@ export class Command {
   /**
    * Function that executes the function in the command
    */
-  public static run = () => {
-    //TODO Promise
+  public run = async (): Promise<void | string> => {
+    return await this.fun()
   };
 }

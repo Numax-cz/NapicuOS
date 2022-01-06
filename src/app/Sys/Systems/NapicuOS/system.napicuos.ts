@@ -51,14 +51,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     NapicuOS.register_command(
       new Command('Terminal', 'shell', () => {
-        console.log('Ahoj');
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            console.log('ConsoleLog');
+            resolve('Resolve test');
+          }, 3000);
+        });
       })
     );
-    NapicuOS.register_command(
-      new Command('Terminal', 'shell2', () => {
-        console.log('Ahoj');
-      })
-    );
+
+    NapicuOS.run_command('shell');
+    //NapicuOS.get_command_by_command_name('Terminal')[0].run();
 
     console.log(NapicuOS.get_command_by_command_name('Terminal'));
   }
@@ -196,7 +199,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
-  
+  public static async run_command(cmd: string): Promise<void> { //TODO Void or String 
+    var i: Command = NapicuOS.get_command_by_commandStr(cmd);
+    await i.run().then((value) => {
+      if (value) {
+       
+      }
+    });
+  }
 
   // override Interval = setInterval(() => {
   //   NapicuOS.systemTime = NapicuOS.getTime();
