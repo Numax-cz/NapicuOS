@@ -147,7 +147,6 @@ export class WindowComponent implements OnInit {
    */
   protected declare activeWindowState: boolean;
 
-  @ViewChild('kokot') public declare kokot: ElementRef;
   constructor() {}
 
   ngOnInit(): void {
@@ -285,9 +284,7 @@ export class WindowComponent implements OnInit {
     this.selectedWindow = i;
     i.activated = true;
 
-
-
-
+    WindowComponent
   }
   /**
    * Functions for saving parameters
