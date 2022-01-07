@@ -1,0 +1,20 @@
+.BackgroundColor {
+  background-color: var(--NapicuAPPSTerminalBackgroundColor);
+}
+#CommandShellInput {
+  * {
+    color: var(--NapicuAPPSTerminalTextColor);
+    font-size: var(--NapicuAPPSTerminalFontSize);
+  }
+  width: 100%;
+  padding: 4px;
+}
+.inputLine {
+  outline: none;
+  min-width: calc(100% - 200px);
+  margin-left: 10px;
+}
+
+.line {
+    display: flex;
+}
