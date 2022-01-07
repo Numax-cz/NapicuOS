@@ -1,1 +1,22 @@
-<p>console works!</p>
+<section class="WindowContent BackgroundColor MainBoxPadding-15" id="WindowScrollBar">
+  <section id="CommandShellInput">
+    <div *ngFor="let i of lines">
+      <div class="line">{{i}}</div>
+    </div>
+
+    <div class="line">
+        <div>user@napicu-os:~$</div>
+      <p
+        contenteditable="true"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        class="inputLine"
+        (keyup.enter)="onEnter($event)"
+      >
+        xd
+      </p>
+    </div>
+  </section>
+</section>
