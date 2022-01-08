@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NapicuOS } from '../../system.napicuos';
-import { commandLineSt } from './console';
+import { commandLineSt, historyCommandsSt, terminalColors } from './console';
+
+export class Lines {
+  public lines: string[] = [];
+  public colors: terminalColors = 'white';
+  constructor(lined: string[], color: terminalColors) {}
+  public Write(): void {}
+}
 
 @Component({
   selector: 'app-console',
@@ -13,11 +20,16 @@ export class ConsoleComponent implements OnInit {
     compName: 'napicu-os',
     path: '~',
   };
-  private static lines: string[] = [];
+  private static lines: historyCommandsSt[] = [];
   private static historyCommands: string[] = [];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.creatCommandLine(['white', 'white', 'white', 'white'], 'white');
+    this.creatCommandLine(['red', 'red', 'red', 'red'], 'red');
+    this.creatCommandLine(['blue', 'blue', 'blue', 'blue'], 'blue');
+    this.creatCommandLine(['green', 'green', 'green', 'green'], 'green');
+  }
 
   public async onEnter(event: Event): Promise<void> {
     const lines = ConsoleComponent.getCommandLines();
@@ -25,24 +37,40 @@ export class ConsoleComponent implements OnInit {
 
     var i: HTMLElement = event.target as HTMLElement;
     var input = i.innerText;
-    var inputWithoutSpace = input.replace(/\s+/g, '');
+    var inputSplit = input.split(' ');
+    var inputCmd = inputSplit[0];
+    inputSplit.splice(0, 1);
+
     i.innerText = '';
-    if (inputWithoutSpace) {
-      await NapicuOS.run_command(inputWithoutSpace).then((value: any) => {
-        lines.push(value);
+
+    if (inputCmd) {
+      await NapicuOS.run_command(inputCmd, inputSplit).then((value: any) => {
+        this.creatCommandLine(value, 'white', input); //TODO cahge to value
+        this.historyCommands.push(input);
       });
     } else {
-      lines.push('');
+      this.creatCommandLine([''], 'white');
     }
-    historyCommands.push(input);
+    // historyCommands.push(input);
+
+    // console.log(historyCommands);
+
     event.preventDefault();
   }
+
+  public creatCommandLine(value: string[], color: terminalColors, enteredCommand?: string): void {
+    ConsoleComponent.lines.push({ value: value, color: color, enteredCommand: enteredCommand });
+  }
+
+  // public creatErrorCommandLine(value: string): void {
+  //   ConsoleComponent.lines.push(value);
+  // }
 
   get getCommandLineAc(): commandLineSt {
     return ConsoleComponent.commandAc;
   }
 
-  get lines(): string[] {
+  get lines(): historyCommandsSt[] {
     return ConsoleComponent.lines;
   }
 
@@ -53,7 +81,7 @@ export class ConsoleComponent implements OnInit {
   /**
    * Function for getting the command lines history
    */
-  public static getCommandLines(): string[] {
+  public static getCommandLines(): historyCommandsSt[] {
     return ConsoleComponent.lines;
   }
   /**

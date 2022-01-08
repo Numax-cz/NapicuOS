@@ -1,4 +1,4 @@
-export class Command {
+  export class Command {
   /**
    * All available commands
    */
@@ -14,7 +14,7 @@ export class Command {
   /**
    * Command Function
    */
-  private declare fun: () => Promise<void | string>;
+  private declare fun: (params: string[] | undefined) => Promise<void | string | string[]>;
 
   /**
    *
@@ -22,7 +22,11 @@ export class Command {
    * @param {string}command The expression after which the command function is executed
    * @param {Function}fun Command Function
    */
-  constructor(commandName: string, command: string, fun: () => Promise<void | string>) {
+  constructor(
+    commandName: string,
+    command: string,
+    fun: (params: string[] | undefined) => Promise<void | string | string[]>
+  ) {
     this.commandName = commandName;
     this.command = command;
     this.fun = fun;
@@ -31,7 +35,7 @@ export class Command {
   /**
    * Function that executes the function in the command
    */
-  public run = async (): Promise<void | string> => {
-    return await this.fun()
+  public run = async (params?: string[]): Promise<void | string | string[]> => {
+    return await this.fun(params);
   };
 }

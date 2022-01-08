@@ -5,10 +5,10 @@
         <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span
           class="TerminalPath"
           >{{ getCommandLineAc.path }}</span
-        >$<span class="inputMargin">{{ historyCommands[index] }}</span>
+        >$<span class="inputMargin">{{ i.enteredCommand }}</span>
       </div>
-      <div class="line">
-        {{ i }}
+      <div *ngFor="let x of i.value" class="line">
+        {{ x }}
       </div>
     </div>
 
@@ -27,9 +27,7 @@
         spellcheck="false"
         class="inputLine inputMargin"
         (keydown.enter)="onEnter($event)"
-      >
-        xd
-      </p>
+      ></p>
     </div>
   </section>
 </section>

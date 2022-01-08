@@ -1,6 +1,7 @@
 import { Command } from '../../Command';
 import { ConsoleComponent } from './Apps/console/console.component';
 import { NapicuOS } from './system.napicuos';
+import { Process } from '../../Process';
 
 export function initAllCommands(): void {
   //? This is test for debugging
@@ -12,9 +13,8 @@ export function initAllCommands(): void {
     })
   );
 
-
   initClearConsole();
-
+  initGetSystemInformation();
 }
 
 function initClearConsole(): void {
@@ -27,3 +27,20 @@ function initClearConsole(): void {
     })
   );
 }
+
+function initGetSystemInformation(): void {
+  NapicuOS.register_command(
+    new Command('SystemGetter', 'get', (params) => {
+      return new Promise((resolve, reject) => {
+        if (params) {
+          if (params[0] === 'systemprocess') {
+            var p = NapicuOS.get_system_process();
+
+            resolve('Done');
+          }
+        }
+      });
+    })
+  );
+}
+

@@ -1,11 +1,11 @@
 @import './variables.scss';
 
 .BackgroundColor {
-  background-color: var(--NapicuAPPSTerminalBackgroundColor);
+  background-color: var(--NapicuTerminal-background);
 }
 #CommandShellInput {
   * {
-    font-size: var(--NapicuAPPSTerminalFontSize);
+    font-size: var(--NapicuTerminal-FontSize);
   }
   color: var(--NapicuAPPSTerminalTextColor);
   width: 100%;
@@ -21,10 +21,13 @@
 
 .line {
   display: flex;
+  * .line-red {
+    color: red;
+  }
 }
 .TerminalNames {
-  color: var(--NapicuAPPSTerminalInfoColorNames);
+  color: var(--NapicuTerminal-green);
 }
 .TerminalPath {
-  color: var(--NapicuAPPSTerminalInfoColorPath);
+  color: var(--NapicuTerminal-blue);
 }

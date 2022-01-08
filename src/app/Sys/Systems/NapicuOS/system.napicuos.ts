@@ -188,10 +188,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
-  public static async run_command(cmd: string): Promise<any> {
+  //TODO parameters
+  public static async run_command(cmd: string, params?: string[]): Promise<any> {
     var i: Command = NapicuOS.get_command_by_commandStr(cmd);
     if (i) {
-      return await i.run();
+      return await i.run(params);
     } else {
       return command_not_found_message(cmd);
     }
