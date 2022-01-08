@@ -8,33 +8,65 @@ import { commandLineSt } from './console';
   styleUrls: ['./console.component.scss'],
 })
 export class ConsoleComponent implements OnInit {
-  public static commandLineAc: commandLineSt = {
+  public static commandAc: commandLineSt = {
     user: 'user',
     compName: 'napicu-os',
     path: '~',
   };
-  public lines: string[] = [];
-  public historyCommands: string[] = [];
+  private static lines: string[] = [];
+  private static historyCommands: string[] = [];
   constructor() {}
 
   ngOnInit(): void {}
 
   public async onEnter(event: Event): Promise<void> {
+    const lines = ConsoleComponent.getCommandLines();
+    const historyCommands = ConsoleComponent.gethistoryCommands();
+
     var i: HTMLElement = event.target as HTMLElement;
     var input = i.innerText;
     var inputWithoutSpace = input.replace(/\s+/g, '');
     i.innerText = '';
     if (inputWithoutSpace) {
       await NapicuOS.run_command(inputWithoutSpace).then((value: any) => {
-        this.lines.push(value);
+        lines.push(value);
       });
     } else {
-      this.lines.push('');
+      lines.push('');
     }
-    this.historyCommands.push(input);
+    historyCommands.push(input);
     event.preventDefault();
   }
+
   get getCommandLineAc(): commandLineSt {
-    return ConsoleComponent.commandLineAc;
+    return ConsoleComponent.commandAc;
+  }
+
+  get lines(): string[] {
+    return ConsoleComponent.lines;
+  }
+
+  get historyCommands(): string[] {
+    return ConsoleComponent.historyCommands;
+  }
+
+  /**
+   * Function for getting the command lines history
+   */
+  public static getCommandLines(): string[] {
+    return ConsoleComponent.lines;
+  }
+  /**
+   * Function for getting the history commands
+   */
+  public static gethistoryCommands(): string[] {
+    return ConsoleComponent.historyCommands;
+  }
+  /**
+   * Funcion for deleting the history of console
+   */
+  public static delete_all_history(): void {
+    this.lines = [];
+    this.historyCommands = [];
   }
 }

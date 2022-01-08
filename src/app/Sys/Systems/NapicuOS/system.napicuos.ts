@@ -196,4 +196,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return command_not_found_message(cmd);
     }
   }
+
+  public static delete_command(cmd: string): any {
+    //TODO Do this 
+  }
 }
