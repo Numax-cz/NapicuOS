@@ -1,19 +1,32 @@
-<section class="WindowContent BackgroundColor MainBoxPadding-15" id="WindowScrollBar">
+<section class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15" id="WindowScrollBar">
   <section id="CommandShellInput">
-    <div *ngFor="let i of lines">
-      <div class="line">{{i}}</div>
+    <div *ngFor="let i of lines; let index = index">
+      <div>
+        <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span
+          class="TerminalPath"
+          >{{ getCommandLineAc.path }}</span
+        >$<span class="inputMargin">{{ historyCommands[index] }}</span>
+      </div>
+      <div class="line">
+        {{ i }}
+      </div>
     </div>
 
     <div class="line">
-        <div>user@napicu-os:~$</div>
+      <div>
+        <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span
+          class="TerminalPath"
+          >{{ getCommandLineAc.path }}</span
+        >$
+      </div>
       <p
         contenteditable="true"
         autocomplete="off"
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        class="inputLine"
-        (keyup.enter)="onEnter($event)"
+        class="inputLine inputMargin"
+        (keydown.enter)="onEnter($event)"
       >
         xd
       </p>

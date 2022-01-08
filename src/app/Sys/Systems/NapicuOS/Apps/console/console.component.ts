@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NapicuOS } from '../../system.napicuos';
+import { commandLineSt } from './console';
 
 @Component({
   selector: 'app-console',
@@ -7,7 +8,13 @@ import { NapicuOS } from '../../system.napicuos';
   styleUrls: ['./console.component.scss'],
 })
 export class ConsoleComponent implements OnInit {
+  public static commandLineAc: commandLineSt = {
+    user: 'user',
+    compName: 'napicu-os',
+    path: '~',
+  };
   public lines: string[] = [];
+  public historyCommands: string[] = [];
   constructor() {}
 
   ngOnInit(): void {}
@@ -15,12 +22,19 @@ export class ConsoleComponent implements OnInit {
   public async onEnter(event: Event): Promise<void> {
     var i: HTMLElement = event.target as HTMLElement;
     var input = i.innerText;
-
+    var inputWithoutSpace = input.replace(/\s+/g, '');
     i.innerText = '';
-    await NapicuOS.run_command(input.replace(/\s/g, '')).then((value: any) => {
-      this.lines.push(value);
-      console.log(this.lines);
-      
-    });
+    if (inputWithoutSpace) {
+      await NapicuOS.run_command(inputWithoutSpace).then((value: any) => {
+        this.lines.push(value);
+      });
+    } else {
+      this.lines.push('');
+    }
+    this.historyCommands.push(input);
+    event.preventDefault();
+  }
+  get getCommandLineAc(): commandLineSt {
+    return ConsoleComponent.commandLineAc;
   }
 }
