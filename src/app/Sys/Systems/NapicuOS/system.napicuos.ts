@@ -13,6 +13,8 @@ import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
 import { ConsoleComponent } from './Apps/console/console.component';
 import { Command } from '../../Command';
+import { initAllCommands } from './initCommands.napicuos';
+import { command_not_found_message } from './config/command';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -27,7 +29,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.SystemBoot();
   }
 
-  public override onShutDown(): void {}
+  public override onShutDown(): void { }
 
   protected setProcess(): void {
     new Process({
@@ -49,18 +51,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       processTitle: 'console',
     }).Window.open();
 
-    NapicuOS.register_command(
-      new Command('Terminal', 'shell', () => {
-        return new Promise((resolve, reject) => {
-          resolve('Resolve test');
-        });
-      })
-    );
 
-    NapicuOS.run_command('shell');
-    //NapicuOS.get_command_by_command_name('Terminal')[0].run();
-
-    console.log(NapicuOS.get_command_by_command_name('Terminal'));
+    initAllCommands();
   }
 
   public SystemBoot(): void {
@@ -79,9 +71,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }, boot_time);
   }
 
-  public override onKeyPress(ev: KeyboardEvent) {}
+  public override onKeyPress(ev: KeyboardEvent) { }
 
-  public override onLoad(): void {}
+  public override onLoad(): void { }
 
   public static getTime(): string {
     let now = new Date();
@@ -197,12 +189,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static async run_command(cmd: string): Promise<any> {
-    //TODO Void or String
     var i: Command = NapicuOS.get_command_by_commandStr(cmd);
-    return await i.run();
+    if (i) {
+      return await i.run();
+    } else {
+      return command_not_found_message(cmd);
+    }
   }
-
-  // override Interval = setInterval(() => {
-  //   NapicuOS.systemTime = NapicuOS.getTime();
-  // }, 1000);
 }
