@@ -1,17 +1,16 @@
 <section class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15" id="WindowScrollBar">
   <section id="CommandShellInput">
-    <div *ngFor="let i of lines; let index = index">
+    <div *ngFor="let i of lines; let index = index;">
       <div>
         <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span
           class="TerminalPath"
           >{{ getCommandLineAc.path }}</span
-        >$<span class="inputMargin">{{ i.enteredCommand }}</span>
+        >$<span class="inputMargin">{{ i.Write().enteredCommand }}</span>
       </div>
-      <div *ngFor="let x of i.value" class="line">
+      <div *ngFor="let x of i.Write().value" class="line">
         {{ x }}
       </div>
     </div>
-
     <div class="line">
       <div>
         <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span

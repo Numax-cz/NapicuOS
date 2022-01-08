@@ -1,4 +1,6 @@
-  export class Command {
+import { Lines } from './Systems/NapicuOS/Apps/console/console.component';
+
+export class Command {
   /**
    * All available commands
    */
@@ -14,7 +16,7 @@
   /**
    * Command Function
    */
-  private declare fun: (params: string[] | undefined) => Promise<void | string | string[]>;
+  private declare fun: (params: string[] | undefined) => Promise<void | Lines>;
 
   /**
    *
@@ -25,7 +27,7 @@
   constructor(
     commandName: string,
     command: string,
-    fun: (params: string[] | undefined) => Promise<void | string | string[]>
+    fun: (params: string[] | undefined) => Promise<void | Lines>
   ) {
     this.commandName = commandName;
     this.command = command;
@@ -35,7 +37,7 @@
   /**
    * Function that executes the function in the command
    */
-  public run = async (params?: string[]): Promise<void | string | string[]> => {
+  public run = async (params?: string[]): Promise<void | Lines> => {
     return await this.fun(params);
   };
 }

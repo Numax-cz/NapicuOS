@@ -3,10 +3,26 @@ import { NapicuOS } from '../../system.napicuos';
 import { commandLineSt, historyCommandsSt, terminalColors } from './console';
 
 export class Lines {
-  public lines: string[] = [];
-  public colors: terminalColors = 'white';
-  constructor(lined: string[], color: terminalColors) {}
-  public Write(): void {}
+  private lines: string[] = [];
+  private color: terminalColors = 'white';
+  private enteredCommand?: string;
+  constructor(lines: string[], color: terminalColors, enteredCommand?: string) {
+    this.lines = lines;
+    this.color = color;
+    this.enteredCommand = enteredCommand;
+  }
+
+  public Write(): historyCommandsSt {
+    return { value: this.lines, color: this.color, enteredCommand: this.enteredCommand };
+  }
+
+  public setColor(color: terminalColors): void {
+    this.color = color;
+  }
+
+  public setEnteredCommand(enteredCommand: string): void {
+    this.enteredCommand = enteredCommand;
+  }
 }
 
 @Component({
@@ -20,21 +36,13 @@ export class ConsoleComponent implements OnInit {
     compName: 'napicu-os',
     path: '~',
   };
-  private static lines: historyCommandsSt[] = [];
+  private static lines: Lines[] = [];
   private static historyCommands: string[] = [];
   constructor() {}
 
-  ngOnInit(): void {
-    this.creatCommandLine(['white', 'white', 'white', 'white'], 'white');
-    this.creatCommandLine(['red', 'red', 'red', 'red'], 'red');
-    this.creatCommandLine(['blue', 'blue', 'blue', 'blue'], 'blue');
-    this.creatCommandLine(['green', 'green', 'green', 'green'], 'green');
-  }
+  ngOnInit(): void {}
 
   public async onEnter(event: Event): Promise<void> {
-    const lines = ConsoleComponent.getCommandLines();
-    const historyCommands = ConsoleComponent.gethistoryCommands();
-
     var i: HTMLElement = event.target as HTMLElement;
     var input = i.innerText;
     var inputSplit = input.split(' ');
@@ -44,12 +52,13 @@ export class ConsoleComponent implements OnInit {
     i.innerText = '';
 
     if (inputCmd) {
-      await NapicuOS.run_command(inputCmd, inputSplit).then((value: any) => {
-        this.creatCommandLine(value, 'white', input); //TODO cahge to value
+      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Lines) => {
+        value.setEnteredCommand(input);
+        this.creatCommandLine(value); //TODO cahge to value
         this.historyCommands.push(input);
       });
     } else {
-      this.creatCommandLine([''], 'white');
+      this.creatCommandLine(new Lines([''], 'white'));
     }
     // historyCommands.push(input);
 
@@ -58,8 +67,8 @@ export class ConsoleComponent implements OnInit {
     event.preventDefault();
   }
 
-  public creatCommandLine(value: string[], color: terminalColors, enteredCommand?: string): void {
-    ConsoleComponent.lines.push({ value: value, color: color, enteredCommand: enteredCommand });
+  private creatCommandLine(value: Lines): void {
+    ConsoleComponent.lines.push(value);
   }
 
   // public creatErrorCommandLine(value: string): void {
@@ -70,7 +79,7 @@ export class ConsoleComponent implements OnInit {
     return ConsoleComponent.commandAc;
   }
 
-  get lines(): historyCommandsSt[] {
+  get lines(): Lines[] {
     return ConsoleComponent.lines;
   }
 
@@ -81,7 +90,7 @@ export class ConsoleComponent implements OnInit {
   /**
    * Function for getting the command lines history
    */
-  public static getCommandLines(): historyCommandsSt[] {
+  public static getCommandLines(): Lines[] {
     return ConsoleComponent.lines;
   }
   /**

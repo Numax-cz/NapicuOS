@@ -1,5 +1,5 @@
 import { Command } from '../../Command';
-import { ConsoleComponent } from './Apps/console/console.component';
+import { ConsoleComponent, Lines } from './Apps/console/console.component';
 import { NapicuOS } from './system.napicuos';
 import { Process } from '../../Process';
 
@@ -8,7 +8,7 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', 'shell', () => {
       return new Promise((resolve, reject) => {
-        resolve('Resolve test');
+        resolve(new Lines(['red', 'red', 'red', 'red'], 'white'));
       });
     })
   );
@@ -36,11 +36,10 @@ function initGetSystemInformation(): void {
           if (params[0] === 'systemprocess') {
             var p = NapicuOS.get_system_process();
 
-            resolve('Done');
+            resolve(new Lines(['Done'], 'white'));
           }
         }
       });
     })
   );
 }
-
