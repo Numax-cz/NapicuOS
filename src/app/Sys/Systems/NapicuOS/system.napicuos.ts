@@ -11,10 +11,9 @@ import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
-import { ConsoleComponent } from './Apps/console/console.component';
+import { ConsoleComponent, Lines } from './Apps/console/console.component';
 import { Command } from '../../Command';
 import { initAllCommands } from './initCommands.napicuos';
-import { command_not_found_message } from './config/command';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -29,7 +28,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.SystemBoot();
   }
 
-  public override onShutDown(): void { }
+  public override onShutDown(): void {}
 
   protected setProcess(): void {
     new Process({
@@ -52,7 +51,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       processTitle: 'console',
     }).Window.open();
 
-
     initAllCommands();
   }
 
@@ -72,9 +70,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }, boot_time);
   }
 
-  public override onKeyPress(ev: KeyboardEvent) { }
+  public override onKeyPress(ev: KeyboardEvent) {}
 
-  public override onLoad(): void { }
+  public override onLoad(): void {}
 
   public static getTime(): string {
     let now = new Date();
@@ -190,16 +188,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   //TODO parameters
-  public static async run_command(cmd: string, params?: string[]): Promise<any> {
+  public static async run_command(cmd: string, params?: string[]): Promise<void | Lines> {
     var i: Command = NapicuOS.get_command_by_commandStr(cmd);
     if (i) {
       return await i.run(params);
     } else {
-      return command_not_found_message(cmd);
+      return new Lines([`${cmd}: command not found`], 'red');
     }
   }
 
   public static delete_command(cmd: string): any {
-    //TODO Do this 
+    //TODO Do this
   }
 }

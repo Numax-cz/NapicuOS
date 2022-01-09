@@ -31,6 +31,7 @@ export class Lines {
   styleUrls: ['./console.component.scss'],
 })
 export class ConsoleComponent implements OnInit {
+  private selectedCommandHistory: number = 0;
   public static commandAc: commandLineSt = {
     user: 'user',
     compName: 'napicu-os',
@@ -52,9 +53,11 @@ export class ConsoleComponent implements OnInit {
     i.innerText = '';
 
     if (inputCmd) {
-      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Lines) => {
-        value.setEnteredCommand(input);
-        this.creatCommandLine(value); //TODO cahge to value
+      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Lines | void) => {
+        if (value) {          
+          value.setEnteredCommand(input);
+          this.creatCommandLine(value); //TODO cahge to value
+        }
         this.historyCommands.push(input);
       });
     } else {
@@ -65,6 +68,16 @@ export class ConsoleComponent implements OnInit {
     // console.log(historyCommands);
 
     event.preventDefault();
+  }
+
+  public onArrow(event: KeyboardEvent): void {
+    if (this.selectedCommandHistory > 0) {
+      if (event.keyCode == 38) {
+        this.selectedCommandHistory -= 1;
+      } else if (event.keyCode == 40) {
+        this.selectedCommandHistory -= 1;
+      }
+    }
   }
 
   private creatCommandLine(value: Lines): void {
