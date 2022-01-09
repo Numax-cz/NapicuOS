@@ -33,6 +33,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   protected setProcess(): void {
     new Process({
+      processTitle: 'SystemTime',
       processInterval: {
         fun: () => {
           NapicuOS.systemTime = NapicuOS.getTime();

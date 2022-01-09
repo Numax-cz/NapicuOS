@@ -40,4 +40,5 @@ export class Command {
   public run = async (params?: string[]): Promise<void | Lines> => {
     return await this.fun(params);
   };
+   
 }

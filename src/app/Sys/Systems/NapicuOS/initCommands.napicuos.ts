@@ -35,8 +35,10 @@ function initGetSystemInformation(): void {
         if (params) {
           if (params[0] === 'systemprocess') {
             var p = NapicuOS.get_system_process();
-
-            resolve(new Lines(['Done'], 'white'));
+            var i: string[] = p.map((value: Process, index: number) => {
+              return  `${index} | ${value.processTitle} `;
+            });
+            resolve(new Lines(i, 'white'));
           }
         }
       });
