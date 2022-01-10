@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { removeSpace } from '../../scripts/removeSpaceInString';
 import { NapicuOS } from '../../system.napicuos';
 import { commandLineSt, historyCommandsSt, terminalColors } from './console';
 
@@ -51,7 +52,7 @@ export class ConsoleComponent implements OnInit {
     inputSplit.splice(0, 1);
 
     i.innerText = '';
-
+    
     if (inputCmd) {
       await NapicuOS.run_command(inputCmd, inputSplit).then((value: Lines | void) => {
         if (value) {          
@@ -63,13 +64,10 @@ export class ConsoleComponent implements OnInit {
     } else {
       this.creatCommandLine(new Lines([''], 'white'));
     }
-    // historyCommands.push(input);
-
-    // console.log(historyCommands);
-
     event.preventDefault();
   }
 
+  //TODO
   public onArrow(event: KeyboardEvent): void {
     if (this.selectedCommandHistory > 0) {
       if (event.keyCode == 38) {

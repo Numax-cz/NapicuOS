@@ -48,7 +48,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     new Process({
       Window: new Window(ConsoleComponent, 'Terminal'),
-      processTitle: 'console',
+      processTitle: 'Terminal',
     }).Window.open();
 
     initAllCommands();
