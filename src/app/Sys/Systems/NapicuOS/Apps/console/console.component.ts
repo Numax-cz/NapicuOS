@@ -1,28 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { removeSpace } from '../../scripts/removeSpaceInString';
 import { NapicuOS } from '../../system.napicuos';
-import { commandLineSt, historyCommandsSt, terminalColors } from './console';
+import { commandLineSt, historyCommandsMetadata, inputMetadata, terminalColors } from './console';
 
-export class Lines {
-  private lines: string[] = [];
+export class Line {
+  private declare line: string;
   private color: terminalColors = 'white';
-  private enteredCommand?: string;
-  constructor(lines: string[], color: terminalColors, enteredCommand?: string) {
-    this.lines = lines;
+  constructor(line: string, color: terminalColors) {
+    this.line = line;
     this.color = color;
-    this.enteredCommand = enteredCommand;
   }
 
-  public Write(): historyCommandsSt {
-    return { value: this.lines, color: this.color, enteredCommand: this.enteredCommand };
+  public Write(): historyCommandsMetadata {
+    return { value: this.line, color: this.color };
   }
 
   public setColor(color: terminalColors): void {
     this.color = color;
-  }
-
-  public setEnteredCommand(enteredCommand: string): void {
-    this.enteredCommand = enteredCommand;
   }
 }
 
@@ -38,7 +32,7 @@ export class ConsoleComponent implements OnInit {
     compName: 'napicu-os',
     path: '~',
   };
-  private static lines: Lines[] = [];
+  private static lines: inputMetadata[] = [];
   private static historyCommands: string[] = [];
   constructor() {}
 
@@ -52,17 +46,16 @@ export class ConsoleComponent implements OnInit {
     inputSplit.splice(0, 1);
 
     i.innerText = '';
-    
+
     if (inputCmd) {
-      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Lines | void) => {
-        if (value) {          
-          value.setEnteredCommand(input);
-          this.creatCommandLine(value); //TODO cahge to value
+      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
+        if (value) {
+          this.creatCommandLine(value, input);
         }
         this.historyCommands.push(input);
       });
     } else {
-      this.creatCommandLine(new Lines([''], 'white'));
+      this.creatCommandLine([new Line('', 'white')]);
     }
     event.preventDefault();
   }
@@ -78,19 +71,15 @@ export class ConsoleComponent implements OnInit {
     }
   }
 
-  private creatCommandLine(value: Lines): void {
-    ConsoleComponent.lines.push(value);
+  private creatCommandLine(value: Line[], enteredCommand?: string): void {
+    ConsoleComponent.lines.push({ lines: value, enteredCommand: enteredCommand });
   }
-
-  // public creatErrorCommandLine(value: string): void {
-  //   ConsoleComponent.lines.push(value);
-  // }
 
   get getCommandLineAc(): commandLineSt {
     return ConsoleComponent.commandAc;
   }
 
-  get lines(): Lines[] {
+  get lines(): inputMetadata[] {
     return ConsoleComponent.lines;
   }
 
@@ -101,14 +90,14 @@ export class ConsoleComponent implements OnInit {
   /**
    * Function for getting the command lines history
    */
-  public static getCommandLines(): Lines[] {
-    return ConsoleComponent.lines;
+  public static getCommandLines(): inputMetadata[] {
+    return this.lines;
   }
   /**
    * Function for getting the history commands
    */
   public static gethistoryCommands(): string[] {
-    return ConsoleComponent.historyCommands;
+    return this.historyCommands;
   }
   /**
    * Funcion for deleting the history of console

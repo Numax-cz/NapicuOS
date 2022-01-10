@@ -1,18 +1,22 @@
 import { Command } from '../../Command';
-import { ConsoleComponent, Lines } from './Apps/console/console.component';
+import { ConsoleComponent, Line } from './Apps/console/console.component';
 import { NapicuOS } from './system.napicuos';
 import { Process } from '../../Process';
 import { removeSpace } from './scripts/removeSpaceInString';
 
-function unknownOption(param: string): Lines {
-  return new Lines([`Invalid option '${removeSpace(param)}'`], 'white');
+function unknownOption(param: string): Line {
+  return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
 
 export function initAllCommands(): void {
   //? This is test for debugging
   NapicuOS.register_command(
     new Command('Terminal', 'shell', () => {
-      return new Lines(['red', 'red', 'red', 'red'], 'white');
+      return [
+        new Line('HELLO WORLD', 'white'),
+        new Line('HELLO WORLD', 'white'),
+        new Line('HELLO WORLD', 'white'),
+      ];
     })
   );
 
@@ -34,13 +38,24 @@ function initGetSystemInformation(): void {
       if (params) {
         switch (params[0]) {
           case 'systemprocess':
-            var p = NapicuOS.get_system_process();
-            var i: string[] = p.map((value: Process, index: number) => {
+            var process = NapicuOS.get_system_process();
+            var i: string[] = process.map((value: Process, index: number) => {
               return `${index} | ${value.processTitle} `;
             });
-            return new Lines(i, 'white');
+            return i.forEach((value: string) => {
+              return new Line(value, 'white');
+            });
+          case 'commands':
+            var commands = NapicuOS.get_available_commands();
+            var i: string[] = commands.map((value: Command, index: number) => {
+              return `${index} | ${value.commandName} : ${value.command} `;
+            });
+            return i.forEach((value: string) => {
+              return new Line(value, 'white');
+            });
+
           default:
-            return unknownOption(params[0]);
+            return [unknownOption(params[0])];
         }
       }
       return;

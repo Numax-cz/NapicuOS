@@ -11,7 +11,7 @@ import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
-import { ConsoleComponent, Lines } from './Apps/console/console.component';
+import { ConsoleComponent, Line } from './Apps/console/console.component';
 import { Command } from '../../Command';
 import { initAllCommands } from './initCommands.napicuos';
 
@@ -188,12 +188,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   //TODO parameters
-  public static async run_command(cmd: string, params?: string[]): Promise<void | Lines> {
+  public static async run_command(cmd: string, params?: string[]): Promise<void | Line[]> {
     var i: Command = NapicuOS.get_command_by_commandStr(cmd);
     if (i) {
       return await i.run(params);
     } else {
-      return new Lines([`${cmd}: command not found`], 'red');
+      return [new Line(`${cmd}: command not found`, 'red')];
     }
   }
 
