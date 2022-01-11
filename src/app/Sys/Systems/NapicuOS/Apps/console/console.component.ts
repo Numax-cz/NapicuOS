@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { removeSpace } from '../../scripts/removeSpaceInString';
 import { NapicuOS } from '../../system.napicuos';
-import { commandLineSt, historyCommandsMetadata, inputMetadata, terminalColors } from './console';
+import {
+  commandLineStMetadata,
+  historyCommandsMetadata,
+  inputMetadata,
+  terminalColorsMetadata,
+} from './console';
 
 export class Line {
   private declare line: string;
-  private color: terminalColors = 'white';
-  constructor(line: string, color: terminalColors) {
+  private color: terminalColorsMetadata = 'white';
+  constructor(line: string, color: terminalColorsMetadata) {
     this.line = line;
     this.color = color;
   }
@@ -15,7 +20,7 @@ export class Line {
     return { value: this.line, color: this.color };
   }
 
-  public setColor(color: terminalColors): void {
+  public setColor(color: terminalColorsMetadata): void {
     this.color = color;
   }
 }
@@ -27,7 +32,8 @@ export class Line {
 })
 export class ConsoleComponent implements OnInit {
   private selectedCommandHistory: number = 0;
-  public static commandAc: commandLineSt = {
+  // @ViewChild('InputValue') public declare d: ElementRef;
+  public static commandAc: commandLineStMetadata = {
     user: 'user',
     compName: 'napicu-os',
     path: '~',
@@ -62,27 +68,39 @@ export class ConsoleComponent implements OnInit {
 
   //TODO
   public onArrow(event: KeyboardEvent): void {
-    if (this.selectedCommandHistory > 0) {
-      if (event.keyCode == 38) {
-        this.selectedCommandHistory -= 1;
-      } else if (event.keyCode == 40) {
-        this.selectedCommandHistory -= 1;
-      }
+    if (event.keyCode == 38 && this.selectedCommandHistory < 0) {
+      this.selectedCommandHistory -= 1;
+    } else if (event.keyCode == 40 && this.selectedCommandHistory < this.historyCommands.length) {
+      this.selectedCommandHistory += 1;
     }
   }
 
+  /**
+   * Creates a new line
+   * @param value - Array of lines to be displayed
+   * @param enteredCommand - The command that appears as entered
+   */
   private creatCommandLine(value: Line[], enteredCommand?: string): void {
     ConsoleComponent.lines.push({ lines: value, enteredCommand: enteredCommand });
   }
 
-  get getCommandLineAc(): commandLineSt {
+  /**
+   * Returns basic command line information
+   */
+  get getCommandLineAc(): commandLineStMetadata {
     return ConsoleComponent.commandAc;
   }
 
+  /**
+   * Returns array of all rows
+   */
   get lines(): inputMetadata[] {
     return ConsoleComponent.lines;
   }
 
+  /**
+   * History of commands used
+   */
   get historyCommands(): string[] {
     return ConsoleComponent.historyCommands;
   }
@@ -93,12 +111,14 @@ export class ConsoleComponent implements OnInit {
   public static getCommandLines(): inputMetadata[] {
     return this.lines;
   }
+
   /**
    * Function for getting the history commands
    */
   public static gethistoryCommands(): string[] {
     return this.historyCommands;
   }
+
   /**
    * Funcion for deleting the history of console
    */

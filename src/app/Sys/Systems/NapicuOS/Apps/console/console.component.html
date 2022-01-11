@@ -1,6 +1,6 @@
 <section class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15" id="WindowScrollBar">
   <section id="CommandShellInput" (keydown)="onArrow($event)">
-    <div *ngFor="let i of lines; let index = index;">
+    <div *ngFor="let i of lines; let index = index">
       <div>
         <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span
           class="TerminalPath"
@@ -19,6 +19,7 @@
         >$
       </div>
       <p
+        #InputValue
         contenteditable="true"
         autocomplete="off"
         autocorrect="off"

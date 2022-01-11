@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WindowComponent } from './Sys/Systems/NapicuOS/template/window/window.component';
 import { WelcomeComponent } from './Sys/Systems/NapicuOS/Apps/welcome/welcome.component';
 import { ConsoleComponent } from './Sys/Systems/NapicuOS/Apps/console/console.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ConsoleComponent } from './Sys/Systems/NapicuOS/Apps/console/console.co
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
