@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { removeSpace } from '../../scripts/removeSpaceInString';
 import { NapicuOS } from '../../system.napicuos';
 import {
   commandLineStMetadata,
@@ -32,7 +31,7 @@ export class Line {
 })
 export class ConsoleComponent implements OnInit {
   private selectedCommandHistory: number = 0;
-  // @ViewChild('InputValue') public declare d: ElementRef;
+  @ViewChild('InputValue') public declare inputValue: ElementRef;
   public static commandAc: commandLineStMetadata = {
     user: 'user',
     compName: 'napicu-os',
@@ -67,12 +66,17 @@ export class ConsoleComponent implements OnInit {
   }
 
   //TODO
-  public onArrow(event: KeyboardEvent): void {
-    if (event.keyCode == 38 && this.selectedCommandHistory < 0) {
-      this.selectedCommandHistory -= 1;
-    } else if (event.keyCode == 40 && this.selectedCommandHistory < this.historyCommands.length) {
-      this.selectedCommandHistory += 1;
+  public onArrowUp(event: Event): void {
+    var eventIn = event as KeyboardEvent;
+    if (this.historyCommands.length) {
     }
+    event.preventDefault();
+  }
+  public onArrowDown(event: Event): void {
+    var eventIn = event as KeyboardEvent;
+    if (this.selectedCommandHistory < this.historyCommands.length) {
+    }
+    event.preventDefault();
   }
 
   /**
