@@ -66,15 +66,24 @@ export class ConsoleComponent implements OnInit {
   }
 
   //TODO
+  private setCommandFromCommandHistory(): void {
+    this.inputValue.nativeElement.innerText = this.historyCommands[this.selectedCommandHistory];
+  }
+
   public onArrowUp(event: Event): void {
     var eventIn = event as KeyboardEvent;
-    if (this.historyCommands.length) {
+    if (this.historyCommands.length > 0) {
+      this.selectedCommandHistory -= 1;
+      this.setCommandFromCommandHistory();
     }
     event.preventDefault();
   }
   public onArrowDown(event: Event): void {
     var eventIn = event as KeyboardEvent;
+
     if (this.selectedCommandHistory < this.historyCommands.length) {
+      this.selectedCommandHistory += 1;
+      this.setCommandFromCommandHistory();
     }
     event.preventDefault();
   }
