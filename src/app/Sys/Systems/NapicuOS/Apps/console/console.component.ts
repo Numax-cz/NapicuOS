@@ -56,8 +56,8 @@ export class ConsoleComponent implements OnInit {
       await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
         if (value) {
           this.creatCommandLine(value, input);
+          this.historyCommands.push(input);
         }
-        this.historyCommands.push(input);
       });
     } else {
       this.creatCommandLine([new Line('', 'white')]);
@@ -70,18 +70,20 @@ export class ConsoleComponent implements OnInit {
     this.inputValue.nativeElement.innerText = this.historyCommands[this.selectedCommandHistory];
   }
 
+
+
+  //Tu je někde problom 
   public onArrowUp(event: Event): void {
-    var eventIn = event as KeyboardEvent;
-    if (this.historyCommands.length > 0) {
+    if (this.selectedCommandHistory > 0) {
       this.selectedCommandHistory -= 1;
       this.setCommandFromCommandHistory();
+    } else {
+      this.selectedCommandHistory = this.historyCommands.length - 1;
     }
     event.preventDefault();
   }
   public onArrowDown(event: Event): void {
-    var eventIn = event as KeyboardEvent;
-
-    if (this.selectedCommandHistory < this.historyCommands.length) {
+    if (this.selectedCommandHistory < this.historyCommands.length - 1) {
       this.selectedCommandHistory += 1;
       this.setCommandFromCommandHistory();
     }
