@@ -71,7 +71,7 @@ export class ConsoleComponent implements OnInit {
   private setCommandFromCommandHistory(): void {
     this.inputValue.nativeElement.innerText = ConsoleComponent.historyCommands[this.selectedCommandHistory];
   }
-  
+
   /**
    * Auto scroll down function
    */
@@ -90,14 +90,22 @@ export class ConsoleComponent implements OnInit {
     ConsoleComponent.historyCommands.push(input);
   }
 
-  //Tu je někde problom
+  /**
+   * Function that is triggered by pressing arrow up
+   */
   public onArrowUp(event: Event): void {
     if (this.selectedCommandHistory > 0) {
       this.selectedCommandHistory -= 1;
-      this.setCommandFromCommandHistory();
+    } else {
+      this.selectedCommandHistory = ConsoleComponent.historyCommands.length - 1;
     }
+    this.setCommandFromCommandHistory();
     event.preventDefault();
   }
+
+  /**
+   * Function that is triggered by pressing arrow down
+   */
   public onArrowDown(event: Event): void {
     if (this.selectedCommandHistory < ConsoleComponent.historyCommands.length - 1) {
       this.selectedCommandHistory += 1;
