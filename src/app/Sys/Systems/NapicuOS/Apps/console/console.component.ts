@@ -31,6 +31,7 @@ export class Line {
 })
 export class ConsoleComponent implements OnInit {
   private selectedCommandHistory: number = 0;
+  @ViewChild('AppScreen') public declare appScreen: ElementRef;
   @ViewChild('InputValue') public declare inputValue: ElementRef;
   public static commandAc: commandLineStMetadata = {
     user: 'user',
@@ -56,34 +57,49 @@ export class ConsoleComponent implements OnInit {
       await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
         if (value) {
           this.creatCommandLine(value, input);
-          this.historyCommands.push(input);
+          this.setHistoryCommand(input);
         }
       });
     } else {
       this.creatCommandLine([new Line('', 'white')]);
     }
+    this.scrollBottom();
     event.preventDefault();
   }
 
   //TODO
   private setCommandFromCommandHistory(): void {
-    this.inputValue.nativeElement.innerText = this.historyCommands[this.selectedCommandHistory];
+    this.inputValue.nativeElement.innerText = ConsoleComponent.historyCommands[this.selectedCommandHistory];
+  }
+  
+  /**
+   * Auto scroll down function
+   */
+  private scrollBottom(): void {
+    this.appScreen.nativeElement.scrollTo({ top: this.appScreen.nativeElement.scrollHeight });
   }
 
+  /**
+   * Sets and filters commands
+   * @param input - Command entered
+   */
+  private setHistoryCommand(input: string): void {
+    ConsoleComponent.historyCommands = ConsoleComponent.historyCommands.filter((value: string) => {
+      return value !== input;
+    });
+    ConsoleComponent.historyCommands.push(input);
+  }
 
-
-  //Tu je někde problom 
+  //Tu je někde problom
   public onArrowUp(event: Event): void {
     if (this.selectedCommandHistory > 0) {
       this.selectedCommandHistory -= 1;
       this.setCommandFromCommandHistory();
-    } else {
-      this.selectedCommandHistory = this.historyCommands.length - 1;
     }
     event.preventDefault();
   }
   public onArrowDown(event: Event): void {
-    if (this.selectedCommandHistory < this.historyCommands.length - 1) {
+    if (this.selectedCommandHistory < ConsoleComponent.historyCommands.length - 1) {
       this.selectedCommandHistory += 1;
       this.setCommandFromCommandHistory();
     }
@@ -102,21 +118,21 @@ export class ConsoleComponent implements OnInit {
   /**
    * Returns basic command line information
    */
-  get getCommandLineAc(): commandLineStMetadata {
+  get GetCommandLineAc(): commandLineStMetadata {
     return ConsoleComponent.commandAc;
   }
 
   /**
    * Returns array of all rows
    */
-  get lines(): inputMetadata[] {
+  get Getlines(): inputMetadata[] {
     return ConsoleComponent.lines;
   }
 
   /**
    * History of commands used
    */
-  get historyCommands(): string[] {
+  get GethistoryCommands(): string[] {
     return ConsoleComponent.historyCommands;
   }
 

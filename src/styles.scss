@@ -108,3 +108,17 @@ html {
 .Options-Arrow {
   font-size: 20px;
 }
+
+//Author: https://stackoverflow.com/questions/6831482/contenteditable-single-line-input
+[contenteditable='true'].single-line {
+  white-space: nowrap;
+  width: 200px;
+  overflow: hidden;
+}
+[contenteditable='true'].single-line br {
+  display: none;
+}
+[contenteditable='true'].single-line * {
+  display: inline;
+  white-space: nowrap;
+}

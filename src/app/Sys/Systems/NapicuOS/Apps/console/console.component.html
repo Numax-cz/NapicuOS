@@ -1,10 +1,16 @@
-<section class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15" id="WindowScrollBar">
+<section
+  #AppScreen
+  class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15"
+  id="WindowScrollBar"
+  (keydown.arrowup)="onArrowUp($event)"
+  (keydown.arrowdown)="onArrowDown($event)"
+>
   <section id="CommandShellInput">
-    <div *ngFor="let i of lines; let index = index">
+    <div *ngFor="let i of Getlines; let index = index">
       <div>
-        <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span
+        <span class="TerminalNames"> {{ GetCommandLineAc.user }}@{{ GetCommandLineAc.compName }} </span>:<span
           class="TerminalPath"
-          >{{ getCommandLineAc.path }}</span
+          >{{ GetCommandLineAc.path }}</span
         >$<span class="inputMargin">{{ i.enteredCommand }}</span>
       </div>
       <div *ngFor="let x of i.lines" class="line">
@@ -13,23 +19,22 @@
     </div>
     <div class="line">
       <div>
-        <span class="TerminalNames"> {{ getCommandLineAc.user }}@{{ getCommandLineAc.compName }} </span>:<span
+        <span class="TerminalNames"> {{ GetCommandLineAc.user }}@{{ GetCommandLineAc.compName }} </span>:<span
           class="TerminalPath"
-          >{{ getCommandLineAc.path }}</span
+          >{{ GetCommandLineAc.path }}</span
         >$
       </div>
-      <p
+      <div
         #InputValue
         contenteditable="true"
         autocomplete="off"
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        class="inputLine inputMargin"
+        id="inputLineID"
+        class="inputLine inputMargin single-line"
         (keydown.enter)="onEnter($event)"
-        (keydown.arrowup)="onArrowUp($event)"
-        (keydown.arrowdown)="onArrowDown($event)"
-      ></p>
+      ></div>
     </div>
   </section>
 </section>
