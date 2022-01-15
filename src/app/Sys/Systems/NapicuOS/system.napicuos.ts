@@ -88,7 +88,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return GrubComponent.ActiveSystem.SystemProcess;
   }
   /**
-   * Returns applications that can be run in gui mode
+   * Returns the command by name
+   * @param processTitle The name of the command you want to search for
+   */
+  public static get_system_process_by_title(processTitle: string): Process {
+    return this.get_system_process().filter((element: Process) => {
+      return element.processTitle === processTitle;
+    })[0];
+  }
+  /**
+   * Return applications
    */
   public static get_system_window_apps(): Process[] {
     var process = this.get_system_process();
