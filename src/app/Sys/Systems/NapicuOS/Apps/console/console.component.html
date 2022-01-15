@@ -17,7 +17,7 @@
         {{ x.Write().value }}
       </div>
     </div>
-    <div class="line">
+    <div *ngIf="!GetactiveCommand" class="line">
       <div>
         <span class="TerminalNames"> {{ GetCommandLineAc.user }}@{{ GetCommandLineAc.compName }} </span>:<span
           class="TerminalPath"

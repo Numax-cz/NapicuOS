@@ -10,9 +10,9 @@ import {
 export class Line {
   private declare line: string;
   private color: terminalColorsMetadata = 'white';
-  constructor(line: string, color: terminalColorsMetadata) {
+  constructor(line: string, color?: terminalColorsMetadata) {
     this.line = line;
-    this.color = color;
+    this.color = color ? color : 'white';
   }
 
   public Write(): historyCommandsMetadata {
@@ -33,6 +33,7 @@ export class ConsoleComponent implements OnInit {
   private selectedCommandHistory: number = 0;
   @ViewChild('AppScreen') public declare appScreen: ElementRef;
   @ViewChild('InputValue') public declare inputValue: ElementRef;
+  private activeCommand: boolean = false;
   public static commandAc: commandLineStMetadata = {
     user: 'user',
     compName: 'napicu-os',
@@ -52,17 +53,20 @@ export class ConsoleComponent implements OnInit {
     inputSplit.splice(0, 1);
 
     i.innerText = '';
+    this.activeCommand = true;
 
     if (inputCmd) {
+      this.creatCommandLine([], input);
       await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
         if (value) {
-          this.creatCommandLine(value, input);
+          ConsoleComponent.lines[ConsoleComponent.lines.length - 1].lines = value;
           this.setHistoryCommand(input);
         }
       });
     } else {
-      this.creatCommandLine([new Line('', 'white')]);
+      this.creatCommandLine([]);
     }
+    this.activeCommand = false;
     this.scrollBottom();
     event.preventDefault();
   }
@@ -142,6 +146,10 @@ export class ConsoleComponent implements OnInit {
    */
   get GethistoryCommands(): string[] {
     return ConsoleComponent.historyCommands;
+  }
+
+  get GetactiveCommand(): boolean{
+    return this.activeCommand;
   }
 
   /**
