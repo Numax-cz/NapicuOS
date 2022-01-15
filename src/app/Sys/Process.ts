@@ -14,10 +14,14 @@ export class Process {
   public run = (): void => {};
 
   public kill = (): void => {
-    if (this.Window) this.Window.close();
+    var x = 0;
+    if (this.Window) {
+      this.Window.close();
+      x = window_animations * 2;
+    }
     setTimeout(() => {
       GrubComponent.ActiveSystem.SystemProcess.slice(this.pid, 1);
-    }, window_animations * 2);
+    }, x);
   };
 
   constructor(data: processConstructor) {
