@@ -12,7 +12,7 @@ import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
 import { ConsoleComponent, Line } from './Apps/console/console.component';
-import { Command } from '../../Command';
+import { Command } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
