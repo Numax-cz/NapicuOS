@@ -67,11 +67,21 @@ export class ConsoleComponent implements OnInit {
       this.creatCommandLine([]);
     }
     this.activeCommand = false;
+    this.inputValue.nativeElement.focus();
     this.scrollBottom();
     event.preventDefault();
   }
 
-  //TODO
+  /**
+   * Focus cursor on the input
+   */
+  public inputFocus(): void {
+    this.inputValue.nativeElement.focus();
+  }
+
+  /**
+   * Sets the input value to the value according to the selected command from the histo
+   */
   private setCommandFromCommandHistory(): void {
     this.inputValue.nativeElement.innerText = ConsoleComponent.historyCommands[this.selectedCommandHistory];
   }
@@ -148,7 +158,7 @@ export class ConsoleComponent implements OnInit {
     return ConsoleComponent.historyCommands;
   }
 
-  get GetactiveCommand(): boolean{
+  get GetactiveCommand(): boolean {
     return this.activeCommand;
   }
 

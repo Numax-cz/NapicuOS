@@ -4,6 +4,7 @@
   id="WindowScrollBar"
   (keydown.arrowup)="onArrowUp($event)"
   (keydown.arrowdown)="onArrowDown($event)"
+  (click)="inputFocus()"
 >
   <section id="CommandShellInput">
     <div *ngFor="let i of Getlines; let index = index">
@@ -17,7 +18,7 @@
         {{ x.Write().value }}
       </div>
     </div>
-    <div *ngIf="!GetactiveCommand" class="line">
+    <div [style.display]="GetactiveCommand? 'none' : ''" class="line">
       <div>
         <span class="TerminalNames"> {{ GetCommandLineAc.user }}@{{ GetCommandLineAc.compName }} </span>:<span
           class="TerminalPath"

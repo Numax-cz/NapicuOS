@@ -1,5 +1,6 @@
 import { Type } from '@angular/core';
 import { GrubComponent } from '../System/grub/grub.component';
+import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
 import { processConstructor } from './Systems/NapicuOS/interface/process';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { Window } from './Window';
@@ -13,11 +14,10 @@ export class Process {
   public run = (): void => {};
 
   public kill = (): void => {
-    // console.log(NapicuOS.get_system_process()[this.pid]);
-
-    // if (this.Window) this.Window.close();
-    // delete NapicuOS.get_system_process()[this.pid];
-    // console.log(NapicuOS.get_system_process()[this.pid]);
+    if (this.Window) this.Window.close();
+    setTimeout(() => {
+      GrubComponent.ActiveSystem.SystemProcess.slice(this.pid, 1);
+    }, window_animations * 2);
   };
 
   constructor(data: processConstructor) {
