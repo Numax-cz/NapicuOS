@@ -4,11 +4,15 @@ import { NapicuOS } from './system.napicuos';
 import { Process } from '../../Process';
 import { removeSpace } from './scripts/removeSpaceInString';
 import { napicu_os_terminal } from './systemApps.napicuos';
+import { of } from 'rxjs';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
 function helpCommandTemplate(cmd: string, text: string): Line {
   return new Line(`\t${cmd} - ${text}`);
+}
+function usageCommand(cmd: string): Line {
+  return new Line(`usage: ${cmd}`);
 }
 
 export function initAllCommands(): void {
@@ -33,6 +37,8 @@ export function initAllCommands(): void {
   initGetSystemInformation();
   initExitFromConsole();
   initSetSystemInformation();
+  // initOpenCommand();
+  initKillProcess();
 }
 
 function initGetSystemInformation(): void {
@@ -85,16 +91,60 @@ function initSetSystemInformation(): void {
               resolve([unknownOption(params[0])]);
           }
         } else {
-          resolve([
-            new Line(`Options:`),
-            helpCommandTemplate('systemprocess', 'Returns system processes running in the background'),
-            helpCommandTemplate('commands', 'Returns available commands'),
-          ]);
+          resolve([new Line(`Options:`), helpCommandTemplate('processtitle', 'Sets the terminal name')]);
         }
       });
     })
   );
 }
+
+function initKillProcess(): void {
+  NapicuOS.register_command(
+    new Command('SystemProcessKiller', 'kill', (params) => {
+      return new Promise((resolve) => {
+        if (params?.length) {
+          if (params[0]) {
+            var x = NapicuOS.get_system_process_by_title(params[0]);
+            if (x) resolve(x.kill());
+            resolve([new Line(`Process '${params[0]}' not found`)]);
+          }
+        } else {
+          resolve([usageCommand(`kill <process_name>`)]);
+        }
+      });
+    })
+  );
+}
+
+// function initOpenCommand(): void {
+//   NapicuOS.register_command(
+//     new Command('SystemOpen', 'open', (params) => {
+//       return new Promise((resolve) => {
+//         if (params?.length) {
+//           if (params[0]) {
+//             resolve(
+//               NapicuOS.get_system_window_apps().forEach((element: Process) => {
+//                 console.log(element);
+
+//                 if (element.processTitle.toLocaleLowerCase() === params[0].toLocaleLowerCase()) {
+//                   element.Window.open();
+//                   return;
+//                 }
+//               })
+//             );
+//           } else {
+//           }
+//         } else {
+//           resolve([
+//             new Line(`Options:`),
+//             helpCommandTemplate('systemprocess', 'Returns system processes running in the background'),
+//             helpCommandTemplate('commands', 'Returns available commands'),
+//           ]);
+//         }
+//       });
+//     })
+//   );
+// }
 
 function initExitFromConsole(): void {
   NapicuOS.register_command(
