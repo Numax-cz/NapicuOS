@@ -7,6 +7,9 @@ import { napicu_os_terminal } from './systemApps.napicuos';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
+function helpCommandTemplate(cmd: string, text: string): Line {
+  return new Line(`\t${cmd} - ${text}`);
+}
 
 export function initAllCommands(): void {
   //? This is test for debugging
@@ -27,16 +30,16 @@ export function initAllCommands(): void {
     })
   );
 
-  //initClearConsole();
   initGetSystemInformation();
   initExitFromConsole();
+  initSetSystemInformation();
 }
 
 function initGetSystemInformation(): void {
   NapicuOS.register_command(
     new Command('SystemGetter', 'get', (params) => {
       return new Promise((resolve) => {
-        if (params) {
+        if (params?.length) {
           switch (params[0]) {
             case 'systemprocess':
               var process = NapicuOS.get_system_process();
@@ -57,6 +60,36 @@ function initGetSystemInformation(): void {
             default:
               resolve([unknownOption(params[0])]);
           }
+        } else {
+          resolve([
+            new Line(`Options:`),
+            helpCommandTemplate('systemprocess', 'Returns system processes running in the background'),
+            helpCommandTemplate('commands', 'Returns available commands'),
+          ]);
+        }
+      });
+    })
+  );
+}
+
+function initSetSystemInformation(): void {
+  NapicuOS.register_command(
+    new Command('SystemSetter', 'set', (params, activatedWindow) => {
+      return new Promise((resolve) => {
+        if (params?.length) {
+          switch (params[0]) {
+            case 'processtitle':
+              return resolve(activatedWindow?.Window.setWindowTitle(params[1]));
+
+            default:
+              resolve([unknownOption(params[0])]);
+          }
+        } else {
+          resolve([
+            new Line(`Options:`),
+            helpCommandTemplate('systemprocess', 'Returns system processes running in the background'),
+            helpCommandTemplate('commands', 'Returns available commands'),
+          ]);
         }
       });
     })

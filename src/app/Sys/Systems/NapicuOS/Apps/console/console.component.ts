@@ -63,14 +63,12 @@ export class ConsoleComponent implements OnInit {
     }
     if (inputCmd) {
       this.creatCommandLine([], input);
-      await NapicuOS.run_command(inputCmd.toLocaleLowerCase(), inputSplit).then(
-        (value: Line[] | void) => {
-          if (value) {
-            this.lines[this.lines.length - 1].lines = value;
-            this.setHistoryCommand(input);
-          }
+      await NapicuOS.run_command(inputCmd.toLocaleLowerCase(), inputSplit).then((value: Line[] | void) => {
+        if (value) {
+          this.lines[this.lines.length - 1].lines = value;
+          this.setHistoryCommand(input);
         }
-      );
+      });
     } else {
       this.creatCommandLine([]);
     }
