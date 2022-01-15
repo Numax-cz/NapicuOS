@@ -48,7 +48,7 @@ export class Window {
 
   public readonly close = (): void => {
     this.display = false;
-    WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1); //TODO Kontrolovat chybnost
+    delete WindowComponent.WindowHistory[WindowComponent.WindowHistory.indexOf(this, 0)]; //TODO Kontrolovat chybnost
   };
 
   //* * * *  Getters * * *

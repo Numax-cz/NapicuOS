@@ -14,6 +14,7 @@ import { time_formate } from './config/time';
 import { ConsoleComponent, Line } from './Apps/console/console.component';
 import { Command } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
+import { initAllSystemApps } from './systemApps.napicuos';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -31,25 +32,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onShutDown(): void {}
 
   protected setProcess(): void {
-    new Process({
-      processTitle: 'SystemTime',
-      processInterval: {
-        fun: () => {
-          NapicuOS.systemTime = NapicuOS.getTime();
-        },
-        time: 1000,
-      },
-    });
-
-    new Process({
-      Window: new Window(WelcomeComponent, 'NapicuOS - Setup'),
-      processTitle: 'SetupAPP',
-    }).Window.open();
-
-    new Process({
-      Window: new Window(ConsoleComponent, 'Terminal'),
-      processTitle: 'Terminal',
-    }).Window.open();
+    initAllSystemApps();
 
     initAllCommands();
   }
@@ -190,8 +173,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   //TODO parameters
   public static async run_command(cmd: string, params?: string[]): Promise<void | Line[]> {
     var i: Command = NapicuOS.get_command_by_commandStr(cmd);
+    var x: Process = NapicuOS.get_system_activated_window_app();
+    if (!x) console.error('No window activated');
     if (i) {
-      return await i.run(params);
+      return await i.run(params, x);
     } else {
       return [new Line(`${cmd}: command not found`, 'red')];
     }

@@ -1,3 +1,4 @@
+import { Process } from './Process';
 import { Line } from './Systems/NapicuOS/Apps/console/console.component';
 
 export class Command {
@@ -16,7 +17,7 @@ export class Command {
   /**
    * Command Function
    */
-  private declare fun: (params: string[] | undefined) => Line[] | void;
+  private declare fun: (params: string[] | undefined, activatedWindow: Process | undefined) => Line[] | void;
 
   /**
    *
@@ -24,7 +25,11 @@ export class Command {
    * @param {string}command The expression after which the command function is executed
    * @param {Function}fun Command Function
    */
-  constructor(commandName: string, command: string, fun: (params: string[] | undefined) => Line[] | void) {
+  constructor(
+    commandName: string,
+    command: string,
+    fun: (params: string[] | undefined, activatedWindow?: Process) => Line[] | void
+  ) {
     this.commandName = commandName;
     this.command = command;
     this.fun = fun;
@@ -33,9 +38,9 @@ export class Command {
   /**
    * Function that executes the function in the command
    */
-  public run = async (params?: string[]): Promise<void | Line[]> => {
+  public run = async (params?: string[], activatedWindow?: Process): Promise<void | Line[]> => {
     return await new Promise((resolve, reject) => {
-      resolve(this.fun(params));
+      resolve(this.fun(params, activatedWindow));
     });
   };
 }

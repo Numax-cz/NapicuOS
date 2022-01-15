@@ -1,9 +1,8 @@
-import { Command } from '../../Command';
+import { Command } from '../../command';
 import { ConsoleComponent, Line } from './Apps/console/console.component';
 import { NapicuOS } from './system.napicuos';
 import { Process } from '../../Process';
 import { removeSpace } from './scripts/removeSpaceInString';
-
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
@@ -22,6 +21,7 @@ export function initAllCommands(): void {
 
   initClearConsole();
   initGetSystemInformation();
+  initExitFromConsole();
 }
 
 function initClearConsole(): void {
@@ -39,26 +39,33 @@ function initGetSystemInformation(): void {
         switch (params[0]) {
           case 'systemprocess':
             var process = NapicuOS.get_system_process();
-            var i: string[] = process.map((value: Process, index: number) => {
-              return `${index} | ${value.processTitle} `;
+            var exportLines: Line[] = [];
+            exportLines.push(new Line('Processes running in the background: ', 'white'));
+            process.forEach((value: Process, index: number) => {
+              exportLines.push(new Line(`${index} | ${value.processTitle}`, 'white'));
             });
-            return i.forEach((value: string) => {
-              return new Line(value, 'white');
-            });
+            return exportLines;
           case 'commands':
             var commands = NapicuOS.get_available_commands();
-            var i: string[] = commands.map((value: Command, index: number) => {
-              return `${index} | ${value.commandName} : ${value.command} `;
+            var exportLines: Line[] = [];
+            commands.forEach((value: Command, index: number) => {
+              exportLines.push(new Line(`${index} | ${value.commandName} : ${value.command} `, 'white'));
             });
-            return i.forEach((value: string) => {
-              return new Line(value, 'white');
-            });
+            return exportLines;
 
           default:
             return [unknownOption(params[0])];
         }
       }
       return;
+    })
+  );
+}
+
+function initExitFromConsole(): void {
+  NapicuOS.register_command(
+    new Command('Exit', 'exit', (params, activatedWindow) => {
+      activatedWindow?.kill();
     })
   );
 }
