@@ -3,6 +3,7 @@ import { ConsoleComponent, Line } from './Apps/console/console.component';
 import { NapicuOS } from './system.napicuos';
 import { Process } from '../../Process';
 import { removeSpace } from './scripts/removeSpaceInString';
+import { napicu_os_terminal } from './systemApps.napicuos';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
@@ -10,9 +11,12 @@ function unknownOption(param: string): Line {
 export function initAllCommands(): void {
   //? This is test for debugging
   NapicuOS.register_command(
-    new Command('Terminal', 'shell', () => {
+    new Command('Terminal', 'shell', (params, activatedWindow) => {
       return new Promise((resolve) => {
+        activatedWindow?.kill();
         setTimeout(() => {
+          napicu_os_terminal().Window.open();
+          napicu_os_terminal().Window.open();
           resolve([
             new Line('HELLO WORLD', 'white'),
             new Line('HELLO WORLD', 'white'),
@@ -23,20 +27,20 @@ export function initAllCommands(): void {
     })
   );
 
-  initClearConsole();
+  //initClearConsole();
   initGetSystemInformation();
   initExitFromConsole();
 }
 
-function initClearConsole(): void {
-  NapicuOS.register_command(
-    new Command('ClearConsole', 'clear', () => {
-      return new Promise((resolve) => {
-        resolve(ConsoleComponent.delete_all_history());
-      });
-    })
-  );
-}
+// function initClearConsole(): void {
+//   NapicuOS.register_command(
+//     new Command('ClearConsole', 'clear', () => {
+//       return new Promise((resolve) => {
+//         resolve(ConsoleComponent.delete_all_history());
+//       });
+//     })
+//   );
+// }
 
 function initGetSystemInformation(): void {
   NapicuOS.register_command(

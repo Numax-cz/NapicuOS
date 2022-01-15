@@ -34,13 +34,13 @@ export class ConsoleComponent implements OnInit {
   @ViewChild('AppScreen') public declare appScreen: ElementRef;
   @ViewChild('InputValue') public declare inputValue: ElementRef;
   private activeCommand: boolean = false;
-  public static commandAc: commandLineStMetadata = {
+  private static historyCommands: string[] = [];
+  public commandAc: commandLineStMetadata = {
     user: 'user',
     compName: 'napicu-os',
     path: '~',
   };
-  private static lines: inputMetadata[] = [];
-  private static historyCommands: string[] = [];
+  private lines: inputMetadata[] = [];
   constructor() {}
 
   ngOnInit(): void {}
@@ -59,7 +59,7 @@ export class ConsoleComponent implements OnInit {
       this.creatCommandLine([], input);
       await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
         if (value) {
-          ConsoleComponent.lines[ConsoleComponent.lines.length - 1].lines = value;
+          this.lines[this.lines.length - 1].lines = value;
           this.setHistoryCommand(input);
         }
       });
@@ -134,21 +134,21 @@ export class ConsoleComponent implements OnInit {
    * @param enteredCommand - The command that appears as entered
    */
   private creatCommandLine(value: Line[], enteredCommand?: string): void {
-    ConsoleComponent.lines.push({ lines: value, enteredCommand: enteredCommand });
+    this.lines.push({ lines: value, enteredCommand: enteredCommand });
   }
 
   /**
    * Returns basic command line information
    */
   get GetCommandLineAc(): commandLineStMetadata {
-    return ConsoleComponent.commandAc;
+    return this.commandAc;
   }
 
   /**
    * Returns array of all rows
    */
   get Getlines(): inputMetadata[] {
-    return ConsoleComponent.lines;
+    return this.lines;
   }
 
   /**
@@ -165,7 +165,7 @@ export class ConsoleComponent implements OnInit {
   /**
    * Function for getting the command lines history
    */
-  public static getCommandLines(): inputMetadata[] {
+  public getCommandLines(): inputMetadata[] {
     return this.lines;
   }
 
@@ -179,8 +179,8 @@ export class ConsoleComponent implements OnInit {
   /**
    * Funcion for deleting the history of console
    */
-  public static delete_all_history(): void {
+  public delete_all_history(): void {
     this.lines = [];
-    this.historyCommands = [];
+    ConsoleComponent.historyCommands = [];
   }
 }

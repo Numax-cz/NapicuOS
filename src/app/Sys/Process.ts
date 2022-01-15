@@ -28,7 +28,6 @@ export class Process {
         data.processInterval?.fun();
       }, data.processInterval.time);
     }
-
     GrubComponent.ActiveSystem.SystemProcess.push(this);
     this.pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
   }
