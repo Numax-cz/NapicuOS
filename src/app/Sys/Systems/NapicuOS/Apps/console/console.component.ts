@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Command } from 'src/app/Sys/command';
 import { NapicuOS } from '../../system.napicuos';
 import {
   commandLineStMetadata,
@@ -51,18 +52,25 @@ export class ConsoleComponent implements OnInit {
     var inputSplit = input.split(' ');
     var inputCmd = inputSplit[0];
     inputSplit.splice(0, 1);
-
     i.innerText = '';
     this.activeCommand = true;
 
+    if (inputCmd.toLocaleLowerCase() === 'clear') {
+      ConsoleComponent.historyCommands = [];
+      this.lines = [];
+      this.activeCommand = false;
+      return;
+    }
     if (inputCmd) {
       this.creatCommandLine([], input);
-      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
-        if (value) {
-          this.lines[this.lines.length - 1].lines = value;
-          this.setHistoryCommand(input);
+      await NapicuOS.run_command(inputCmd.toLocaleLowerCase(), inputSplit).then(
+        (value: Line[] | void) => {
+          if (value) {
+            this.lines[this.lines.length - 1].lines = value;
+            this.setHistoryCommand(input);
+          }
         }
-      });
+      );
     } else {
       this.creatCommandLine([]);
     }

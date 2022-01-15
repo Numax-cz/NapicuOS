@@ -32,16 +32,6 @@ export function initAllCommands(): void {
   initExitFromConsole();
 }
 
-// function initClearConsole(): void {
-//   NapicuOS.register_command(
-//     new Command('ClearConsole', 'clear', () => {
-//       return new Promise((resolve) => {
-//         resolve(ConsoleComponent.delete_all_history());
-//       });
-//     })
-//   );
-// }
-
 function initGetSystemInformation(): void {
   NapicuOS.register_command(
     new Command('SystemGetter', 'get', (params) => {
