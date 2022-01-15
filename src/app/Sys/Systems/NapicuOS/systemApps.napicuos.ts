@@ -11,7 +11,7 @@ export function initAllSystemApps() {
   napicu_os_terminal().Window.open();
 }
 
-function napicu_os_time(): Process {
+export function napicu_os_time(): Process {
   return new Process({
     processTitle: 'SystemTime',
     processInterval: {
@@ -23,14 +23,14 @@ function napicu_os_time(): Process {
   });
 }
 
-function napicu_os_welcomeapp(): Process {
+export function napicu_os_welcomeapp(): Process {
   return new Process({
     Window: new Window(WelcomeComponent, 'NapicuOS - Setup'),
     processTitle: 'SetupAPP',
   });
 }
 
-function napicu_os_terminal(): Process {
+export function napicu_os_terminal(): Process {
   return new Process({
     Window: new Window(ConsoleComponent, 'Terminal'),
     processTitle: 'Terminal',
