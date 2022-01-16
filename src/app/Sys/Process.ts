@@ -6,14 +6,42 @@ import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { Window } from './Window';
 
 export class Process {
+  /**
+   * Default icons directory
+   */
+  public static readonly defaultIconsPath = '/assets/systems/NapicuOS/SystemIcons';
   public processTitle: string = 'NapicuAPP';
   public declare pid: number;
   public declare Interval: any;
-
   public declare Window: Window;
-  public run = (): void => {};
+  public onDock: boolean = false;
 
-  public kill = (): void => {
+  private declare processInterval: { fun: () => void; time: number };
+
+  /**
+   * Path to the icon (svg)
+   */
+  public iconPath: string = `${Process.defaultIconsPath}/XFD/download.svg`;
+
+  public install(): this {
+    NapicuOS.get_installed_apps().push(this);
+    return this;
+  }
+
+  public run(): this {
+    if (this.processInterval) {
+      this.Interval = setInterval(() => {
+        this.processInterval?.fun();
+      }, this.processInterval.time);
+    }
+    GrubComponent.ActiveSystem.SystemProcess.push(this);
+    this.pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
+    if (this.onDock) NapicuOS.get_apps_in_dock().push(this);
+
+    return this;
+  }
+
+  public kill(): void {
     var x = 0;
     if (this.Window) {
       this.Window.close();
@@ -22,24 +50,17 @@ export class Process {
     setTimeout(() => {
       GrubComponent.ActiveSystem.SystemProcess.splice(this.pid, 1);
     }, x);
-
-    console.log(GrubComponent.ActiveSystem.SystemProcess);
-    
-  };
+  }
 
   constructor(data: processConstructor) {
     if (data?.Window) this.Window = data.Window;
     if (data?.processTitle) this.processTitle = data.processTitle;
-    if (data?.processInterval) {
-      this.Interval = setInterval(() => {
-        data.processInterval?.fun();
-      }, data.processInterval.time);
-    }
-    GrubComponent.ActiveSystem.SystemProcess.push(this);
-    this.pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
+    if (data?.processInterval) this.processInterval = data.processInterval;
+    if (data?.onDock) this.onDock = true;
+    if (data?.iconPath) this.iconPath = data.iconPath;
   }
 
-  public onRun(): void {}
+  // public onRun(): void {}
 
-  public onClose(): void {}
+  // public onClose(): void {}
 }

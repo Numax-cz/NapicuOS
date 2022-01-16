@@ -18,7 +18,7 @@ import { initAllSystemApps } from './systemApps.napicuos';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
-
+  private static instaledApps: Process[] = [];
   public static systemTime: string;
   public override boot = {
     title: 'NapicuOS',
@@ -62,7 +62,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return formatDate(now, time_formate, 'en-US'); //TODO Settings
   }
 
-  //? * * * Getters * * *
+  // * * * Getters * * *
   /**
    * Returns system time
    */
@@ -165,8 +165,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     return i[0];
   }
+  /**
+   * Returns installed applications
+   */
+  public static get_installed_apps(): Process[] {
+    return this.instaledApps;
+  }
+  /**
+   * Returns apps in dock
+   */
+  public static get_apps_in_dock(): Process[] {
+    return this.get_system_process().filter((element: Process) => {
+      return element.onDock;
+    });
+  }
 
-  //? * * * Functions * * *
+  // * * * Functions * * *
   /**
    * Register the command
    */

@@ -8,10 +8,7 @@ import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
 export class Window {
-  /**
-   * Default icons directory
-   */
-  public static readonly defaultIconsPath = '/assets/systems/NapicuOS/';
+
   /**
    * Title of the application window
    */
@@ -33,10 +30,7 @@ export class Window {
    */
   public state: windowState = 'normal';
 
-  /**
-   * Path to the icon (svg)
-   */
-  public iconPath: string = `${Window.defaultIconsPath}/XFD/download.svg`;
+
 
   public appData: windowData = {
     posX: 30,
@@ -128,12 +122,6 @@ export class Window {
    */
   public getHeight(): number {
     return percentageValue(this.appData.height, window.innerHeight);
-  }
-  /**
-   * Returns full path to images
-   */
-  public getFullIconPath(): string {
-    return this.iconPath;
   }
   //* * * *  Setters * * *
   //

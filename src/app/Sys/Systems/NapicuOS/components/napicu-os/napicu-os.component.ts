@@ -58,9 +58,9 @@ export class NapicuOSComponent implements OnInit {
   get Process(): Process[] {
     return NapicuOS.get_system_process();
   }
-  // get Process(): Process[]{
-  //   return Napicu
-  // }
+  get GetitemsOnDock(): Process[]{
+    return NapicuOS.get_apps_in_dock();
+  }
   get BottomDockDisplay(): boolean {
     return NapicuOS.get_system_bottom_dock_display();
   }

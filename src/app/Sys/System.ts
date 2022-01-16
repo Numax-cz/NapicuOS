@@ -6,11 +6,8 @@ import { NapicuOSComponent } from './Systems/NapicuOS/components/napicu-os/napic
 
 export class System {
   //TODO Doc
-
   public declare SystemBooted: boolean;
-
   public declare SystemProcess: Process[];
-
   public declare component: Type<any>;
   public declare boot: {
     title: string;

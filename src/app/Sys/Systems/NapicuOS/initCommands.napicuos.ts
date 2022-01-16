@@ -3,7 +3,7 @@ import { Line } from './Apps/console/console.component';
 import { NapicuOS } from './system.napicuos';
 import { Process } from '../../Process';
 import { removeSpace } from './scripts/removeSpaceInString';
-import { napicu_os_terminal } from './systemApps.napicuos';
+
 import { getHelpCommand, getHelpCommandAPPS } from './config/commands/help/getCommand';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
@@ -22,8 +22,6 @@ export function initAllCommands(): void {
       return new Promise((resolve) => {
         activatedWindow?.kill();
         setTimeout(() => {
-          napicu_os_terminal().Window.open();
-          napicu_os_terminal().Window.open();
           resolve([
             new Line('HELLO WORLD', 'white'),
             new Line('HELLO WORLD', 'white'),
