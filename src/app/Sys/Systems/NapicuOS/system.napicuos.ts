@@ -110,30 +110,36 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return array;
   }
   /**
-   * Returns the displayed windows
+   * Returns displayed windows
    */
   public static get_system_displayed_window_apps(): Process[] {
     return this.get_system_process().filter((element: Process) => {
       return element.Window?.display == true;
     });
   }
+  /**
+   * Returns non-displayed windows
+   */
+  public static get_system_no_displayed_window_apps(): Process[] {
+    return this.get_system_process().filter((element: Process) => {
+      return element.Window?.display == false;
+    });
+  }
 
   /**
-   * Return the activated window
+   * Return activated window
    */
   public static get_system_activated_window_app(): Process {
     return this.get_system_displayed_window_apps().filter((element: Process) => {
       return element.Window?.activated == true;
     })[0];
   }
-
   /**
-   * Returns the available commands
+   * Returns available commands
    */
   public static get_available_commands(): Command[] {
     return Command.commands;
   }
-
   /**
    * Returns the command classes by specified command name
    * @param commandName Name of command/commands
