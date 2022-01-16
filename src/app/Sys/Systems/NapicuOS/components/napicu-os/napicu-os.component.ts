@@ -4,7 +4,7 @@ import { Process } from 'src/app/Sys/Process';
 import { boot_animation_time } from '../../config/boot';
 import { wallpaper } from '../../config/wallpaper';
 import { system_dock_animations } from '../../config/systemAnimations';
-import { NapicuOS } from '../../system.napicuos';;
+import { NapicuOS } from '../../system.napicuos';
 
 @Component({
   selector: 'app-napicu-os',
@@ -40,13 +40,10 @@ export class NapicuOSComponent implements OnInit {
    */
   public static BottomDockDisplay: boolean = false;
 
-
   constructor() {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      NapicuOSComponent.BottomDockDisplay = true;
-    }, 5000);
+    NapicuOSComponent.BottomDockDisplay = true;
   }
 
   get systemTime(): string {
