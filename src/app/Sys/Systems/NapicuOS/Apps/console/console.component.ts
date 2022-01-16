@@ -50,12 +50,12 @@ export class ConsoleComponent implements OnInit {
     var i: HTMLElement = event.target as HTMLElement;
     var input = i.innerText;
     var inputSplit = input.split(' ');
-    var inputCmd = inputSplit[0];
+    var inputCmd = inputSplit[0].toLocaleLowerCase().replace(/\s/g, '');
     inputSplit.splice(0, 1);
     i.innerText = '';
     this.activeCommand = true;
 
-    if (inputCmd.toLocaleLowerCase() === 'clear') {
+    if (inputCmd === 'clear') {
       ConsoleComponent.historyCommands = [];
       this.lines = [];
       this.activeCommand = false;
@@ -63,7 +63,7 @@ export class ConsoleComponent implements OnInit {
     }
     if (inputCmd) {
       this.creatCommandLine([], input);
-      await NapicuOS.run_command(inputCmd.toLocaleLowerCase(), inputSplit).then((value: Line[] | void) => {
+      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
         if (value) {
           this.lines[this.lines.length - 1].lines = value;
           this.setHistoryCommand(input);
