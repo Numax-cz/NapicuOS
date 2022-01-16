@@ -7,7 +7,7 @@ import { Window } from '../../Window';
 export function initAllSystemApps() {
   napicu_os_time();
 
-  napicu_os_welcomeapp();
+  napicu_os_welcomeapp().Window.open();
   napicu_os_terminal().Window.open();
 }
 
