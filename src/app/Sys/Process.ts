@@ -20,8 +20,11 @@ export class Process {
       x = window_animations * 2;
     }
     setTimeout(() => {
-      GrubComponent.ActiveSystem.SystemProcess.slice(this.pid, 1);
+      GrubComponent.ActiveSystem.SystemProcess.splice(this.pid, 1);
     }, x);
+
+    console.log(GrubComponent.ActiveSystem.SystemProcess);
+    
   };
 
   constructor(data: processConstructor) {
