@@ -9,6 +9,10 @@ import { WindowComponent } from './Systems/NapicuOS/template/window/window.compo
 
 export class Window {
   /**
+   * Default icons directory
+   */
+  public static readonly defaultIconsPath = '/assets/systems/NapicuOS/';
+  /**
    * Title of the application window
    */
   public WindowTitle: string = 'Window';
@@ -28,6 +32,11 @@ export class Window {
    *  Specifies the state of the application window
    */
   public state: windowState = 'normal';
+
+  /**
+   * Path to the icon (svg)
+   */
+  public iconPath: string = `${Window.defaultIconsPath}/XFD/download.svg`;
 
   public appData: windowData = {
     posX: 30,
@@ -120,7 +129,12 @@ export class Window {
   public getHeight(): number {
     return percentageValue(this.appData.height, window.innerHeight);
   }
-
+  /**
+   * Returns full path to images
+   */
+  public getFullIconPath(): string {
+    return this.iconPath;
+  }
   //* * * *  Setters * * *
   //
   //? Window State
@@ -160,6 +174,11 @@ export class Window {
   public setStateTopRight(): void {
     this.state = 'top-right';
   }
+  /**
+   * Sets the exact image in the icon directory
+   * @param path Path to the icon
+   */
+  public setIcon(path: string): void {}
 
   //? Window Pos
   /**
