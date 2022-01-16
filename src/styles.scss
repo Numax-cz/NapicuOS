@@ -122,3 +122,6 @@ html {
   display: inline;
   white-space: nowrap;
 }
+[contenteditable='true'].single-line img {
+  display: none;
+}
