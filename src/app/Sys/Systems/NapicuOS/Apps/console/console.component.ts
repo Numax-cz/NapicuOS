@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Command } from 'src/app/Sys/command';
+import { system_computer_name, system_user_name } from '../../config/systemInfo';
+import { removeSpace } from '../../scripts/removeSpaceInString';
 import { NapicuOS } from '../../system.napicuos';
 import {
   commandLineStMetadata,
@@ -37,9 +39,9 @@ export class ConsoleComponent implements OnInit {
   private activeCommand: boolean = false;
   private static historyCommands: string[] = [];
   public commandAc: commandLineStMetadata = {
-    user: 'user',
-    compName: 'napicu-os',
-    path: '~',
+    user: system_user_name,
+    compName: system_computer_name,
+    path: '~', //TODO ENUM?
   };
   private lines: inputMetadata[] = [];
   constructor() {}
@@ -50,7 +52,7 @@ export class ConsoleComponent implements OnInit {
     var i: HTMLElement = event.target as HTMLElement;
     var input = i.innerText;
     var inputSplit = input.split(' ');
-    var inputCmd = inputSplit[0].toLocaleLowerCase().replace(/\s/g, '');
+    var inputCmd = removeSpace(inputSplit[0].toLocaleLowerCase());
     inputSplit.splice(0, 1);
     i.innerText = '';
     this.activeCommand = true;

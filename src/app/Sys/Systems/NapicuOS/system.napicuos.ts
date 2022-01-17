@@ -15,14 +15,18 @@ import { ConsoleComponent, Line } from './Apps/console/console.component';
 import { Command } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
 import { initAllSystemApps } from './systemApps.napicuos';
+import { SystemFile } from '../../File';
+import { systemDirMetadata } from './interface/FilesDirs/systemDir';
+import { system_boot_screen_logo, system_boot_screen_title } from './config/systemInfo';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
   private static instaledApps: Process[] = [];
+  private static files: systemDirMetadata[]= [];
   public static systemTime: string;
   public override boot = {
-    title: 'NapicuOS',
-    logo: 'assets/systems/NapicuOS/logo.webp',
+    title: system_boot_screen_title,
+    logo: system_boot_screen_logo,
   };
 
   public override onStart(): void {
@@ -174,10 +178,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns apps in dock
    */
-  public static get_apps_in_dock(): Process[] {
-    return this.get_system_process().filter((element: Process) => {
-      return element.onDock;
-    });
+  public static get_apps_in_dock(): SystemFile[] {
+    return [];
   }
 
   // * * * Functions * * *
@@ -198,6 +200,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       console.warn(`The ${cmd.command} command is already registered`);
     }
   }
+
+  public static creat_app_runner(): void {}
 
   //TODO parameters
   public static async run_command(cmd: string, params?: string[]): Promise<void | Line[]> {
