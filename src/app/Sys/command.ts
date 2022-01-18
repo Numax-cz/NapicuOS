@@ -2,10 +2,7 @@ import { Process } from './Process';
 import { Line } from './Systems/NapicuOS/Apps/console/console.component';
 
 export class Command {
-  /**
-   * All available commands
-   */
-  public static commands: Command[] = [];
+
   /**
    * Full command name
    */

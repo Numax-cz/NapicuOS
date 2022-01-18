@@ -4,25 +4,24 @@ import { SystemComponent } from 'src/app/System/system/system.component';
 import { onStartUp, onShutDown, Os } from './interface/system';
 import { Process } from '../../Process';
 import { System } from '../../System';
-import { WelcomeComponent } from './Apps/welcome/welcome.component';
 import { LoadsComponent } from './components/loads/loads.component';
 import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
 import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
-import { Window } from '../../Window';
 import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
-import { ConsoleComponent, Line } from './Apps/console/console.component';
+import { Line } from './Apps/console/console.component';
 import { Command } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
 import { initAllSystemApps } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
-import { systemDirMetadata } from './interface/FilesDirs/systemDir';
+import { systemDirMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
 import { system_boot_screen_logo, system_boot_screen_title } from './config/systemInfo';
+import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
+import { copy } from 'src/app/Scripts/DeepClone';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
-  private static instaledApps: Process[] = [];
-  private static files: systemDirMetadata[]= [];
+  private static drives: systemDrivesMetadata = NapicuOSSystemDir;
   public static systemTime: string;
   public override boot = {
     title: system_boot_screen_title,
@@ -141,18 +140,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns available commands
    */
-  public static get_available_commands(): Command[] {
-    return Command.commands;
+  public static get_available_commands(): SystemFile[] {
+    return this.get_cmd_dir()?.files || [];
   }
   /**
    * Returns the command classes by specified command name
    * @param commandName Name of command/commands
    * @returns Array of commands
    */
-  public static get_command_by_command_name(commandName: string): Command[] {
-    var i: Command[] = [];
-    i = this.get_available_commands().filter((element: Command) => {
-      return element.commandName === commandName;
+  public static get_command_by_command_name(commandName: string): SystemFile[] {
+    var i: SystemFile[] = [];
+    i = this.get_available_commands().filter((element: SystemFile) => {
+      var p = element.value as Command;
+      return p.commandName === commandName;
     });
     return i;
   }
@@ -162,19 +162,41 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param command command
    * @returns Command class
    */
-  public static get_command_by_commandStr(command: string): Command {
-    var i: Command[] = [];
-    i = this.get_available_commands().filter((element: Command) => {
-      return element.command === command;
+  public static get_command_by_commandStr(command: string): SystemFile {
+    var i: SystemFile[] = [];
+    i = this.get_available_commands().filter((element: SystemFile) => {
+      var p = element.value as Command;
+      console.log(p);
+
+      return p.command === command;
     });
     return i[0];
   }
   /**
-   * Returns installed applications
+   * Returns root directory
    */
-  public static get_installed_apps(): Process[] {
-    return this.instaledApps;
+  public static get_root_dir(): systemDirMetadata {
+    return this.drives[napicu_os_root_part];
   }
+  /**
+   * Returns main home directory
+   */
+  public static get_home_dir(): systemDirMetadata | undefined {
+    return this.get_root_dir().dir?.['home'];
+  }
+  /**
+   * Returns main apps directory
+   */
+  public static get_apps_dir(): systemDirMetadata | undefined {
+    return this.get_root_dir().dir?.['usr'];
+  }
+  /**
+   * Returns main bin directory
+   */
+  public static get_cmd_dir(): systemDirMetadata | undefined {
+    return this.get_root_dir().dir?.['bin'];
+  }
+
   /**
    * Returns apps in dock
    */
@@ -187,25 +209,39 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Register the command
    */
   public static register_command(cmd: Command): void {
-    var i: boolean = false;
-    for (let index = 0; index < Command.commands.length; index++) {
-      const element = Command.commands[index];
-      if (element.command == cmd.command) {
-        i = true;
-      }
-    }
-    if (!i) {
-      Command.commands.push(cmd);
-    } else {
-      console.warn(`The ${cmd.command} command is already registered`);
-    }
+    this.get_cmd_dir()?.files?.push(
+      new SystemFile({ value: cmd, fileName: cmd.commandName, fileType: 'executable' })
+    );
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    // var i: boolean = false;
+    // for (let index = 0; index < Command.commands.length; index++) {
+    //   const element = Command.commands[index];
+    //   if (element.command == cmd.command) {
+    //     i = true;
+    //   }
+    // }
+    // if (!i) {
+
+    // } else {
+    //   console.warn(`The ${cmd.command} command is already registered`);
+    // }
   }
 
   public static creat_app_runner(): void {}
 
+  public static install_app(file: SystemFile): void {}
+
   //TODO parameters
   public static async run_command(cmd: string, params?: string[]): Promise<void | Line[]> {
-    var i: Command = NapicuOS.get_command_by_commandStr(cmd);
+    var i: Command = NapicuOS.get_command_by_commandStr(cmd).value as Command;
     var x: Process = NapicuOS.get_system_activated_window_app();
     if (!x) console.error('No window activated');
     if (i) {

@@ -5,6 +5,7 @@ import { Process } from '../../Process';
 import { removeSpace } from './scripts/removeSpaceInString';
 
 import { getHelpCommand, getHelpCommandAPPS } from './config/commands/help/getCommand';
+import { SystemFile } from '../../File';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
@@ -20,7 +21,6 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', 'shell', (params, activatedWindow) => {
       return new Promise((resolve) => {
-        activatedWindow?.kill();
         setTimeout(() => {
           resolve([
             new Line('HELLO WORLD', 'white'),
@@ -82,12 +82,12 @@ function initGetSystemInformation(): void {
               });
               return resolve(exportLines);
             case 'commands':
-              var commands = NapicuOS.get_available_commands();
-              var exportLines: Line[] = [];
-              commands.forEach((value: Command, index: number) => {
-                exportLines.push(new Line(`${index} | ${value.commandName} : ${value.command} `, 'white'));
-              });
-              return resolve(exportLines);
+            // var commands = NapicuOS.get_available_commands() ;
+            // var exportLines: Line[] = [];
+            // commands.forEach((value: Command, index: number) => {
+            //   exportLines.push(new Line(`${index} | ${value.commandName} : ${value.command} `, 'white'));
+            // });
+            // return resolve(exportLines);
 
             default:
               resolve([unknownOption(params[0]), getHelpCommand]);

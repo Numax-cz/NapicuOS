@@ -14,7 +14,7 @@ export class Process {
   private declare processInterval: { fun: () => void; time: number };
 
   public install(): this {
-    NapicuOS.get_installed_apps().push(this);
+    //NapicuOS.get_installed_apps().push(this);
     return this;
   }
 
