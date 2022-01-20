@@ -18,10 +18,12 @@ import { systemDirMetadata, systemDrivesMetadata } from './interface/FilesDirs/s
 import { system_boot_screen_logo, system_boot_screen_title } from './config/systemInfo';
 import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
 import { copy } from 'src/app/Scripts/DeepClone';
+import { User } from '../../User';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
+  private static users: User[] = [];
   public static systemTime: string;
   public override boot = {
     title: system_boot_screen_title,
@@ -202,6 +204,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_apps_in_dock(): SystemFile[] {
     return [];
+  }
+  /**
+   * Returns all system users
+   */
+  public static get_users(): User[] {
+    return this.users;
   }
 
   // * * * Functions * * *
