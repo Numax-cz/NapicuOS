@@ -10,7 +10,7 @@ import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
 import { formatDate } from '@angular/common';
 import { time_formate } from './config/time';
 import { Line } from './Apps/console/console.component';
-import { Command } from '../../command';
+import { Command, CommandFunMetadata } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
 import { initAllSystemApps } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
@@ -260,7 +260,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static install_app(file: SystemFile): void {}
 
   //TODO parameters
-  public static async run_command(cmd: string, params?: string[]): Promise<void | Line[]> {
+  public static async run_command(cmd: string, params?: string[]): CommandFunMetadata {
     var i: Command = NapicuOS.get_command_by_commandStr(cmd).value as Command;
     var x: Process = NapicuOS.get_system_activated_window_app();
     if (!x) console.error('No window activated');
@@ -274,7 +274,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static log_user(user: string): void {}
 
   public static creat_user(user: User): void {
-
     //TODO run in cmd
     // var x = this.users.filter((value) => {
     //   return value.get_username() === user.get_username();

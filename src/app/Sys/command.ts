@@ -1,8 +1,7 @@
 import { Process } from './Process';
 import { Line } from './Systems/NapicuOS/Apps/console/console.component';
-
+export declare type CommandFunMetadata = Promise<Line[]|void>
 export class Command {
-
   /**
    * Full command name
    */
@@ -17,7 +16,7 @@ export class Command {
   private declare fun: (
     params: string[] | undefined,
     activatedWindow: Process | undefined
-  ) => Promise<Line[] | void>;
+  ) => CommandFunMetadata;
 
   /**
    *
@@ -28,7 +27,7 @@ export class Command {
   constructor(
     commandName: string,
     command: string,
-    fun: (params: string[] | undefined, activatedWindow?: Process) => Promise<Line[] | void>
+    fun: (params: string[] | undefined, activatedWindow?: Process) => CommandFunMetadata
   ) {
     this.commandName = commandName;
     this.command = command;
@@ -38,7 +37,7 @@ export class Command {
   /**
    * Function that executes the function in the command
    */
-  public run = async (params?: string[], activatedWindow?: Process): Promise<void | Line[]> => {
+  public run = async (params?: string[], activatedWindow?: Process): CommandFunMetadata => {
     return await this.fun(params, activatedWindow);
   };
 }
