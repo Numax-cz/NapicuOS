@@ -1,6 +1,6 @@
 import { Process } from './Process';
 import { Line } from './Systems/NapicuOS/Apps/console/console.component';
-export declare type CommandFunMetadata = Promise<Line[]|void>
+export declare type CommandFunMetadata = Promise<Line[] | void>;
 export class Command {
   /**
    * Full command name
@@ -13,10 +13,7 @@ export class Command {
   /**
    * Command Function
    */
-  private declare fun: (
-    params: string[] | undefined,
-    activatedWindow: Process | undefined
-  ) => CommandFunMetadata;
+  private declare fun: (params?: string[], activatedWindow?: Process) => CommandFunMetadata;
 
   /**
    *
