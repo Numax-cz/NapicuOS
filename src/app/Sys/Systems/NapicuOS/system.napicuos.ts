@@ -15,7 +15,7 @@ import { initAllCommands } from './initCommands.napicuos';
 import { initAllSystemApps } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
 import { systemDirMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
-import { system_boot_screen_logo, system_boot_screen_title } from './config/systemInfo';
+import { system_boot_screen_logo, system_boot_screen_title, system_default_user } from './config/systemInfo';
 import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
 import { copy } from 'src/app/Scripts/DeepClone';
 import { User } from '../../User';
@@ -32,7 +32,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   };
 
   public override onStart(): void {
-    
+    //TODO Login & root creat
+    NapicuOS.activeUser = system_default_user;
+    NapicuOS.creat_user(system_default_user);
+    NapicuOS.creat_user(system_default_user);
+
     this.SystemBoot();
   }
 
@@ -265,6 +269,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     } else {
       return [new Line(`${cmd}: command not found`, 'red')];
     }
+  }
+
+  public static log_user(user: string): void {}
+
+  public static creat_user(user: User): void {
+
+    //TODO run in cmd
+    // var x = this.users.filter((value) => {
+    //   return value.get_username() === user.get_username();
+    // });
+    // if (!x.length) {
+    //   this.users.push(user);
+    // } else {
+    //   console.log('není');
+    // }
   }
 
   public static delete_command(cmd: string): any {
