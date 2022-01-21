@@ -24,6 +24,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
   private static users: User[] = [];
+  private static activeUser: User;
   public static systemTime: string;
   public override boot = {
     title: system_boot_screen_title,
@@ -31,6 +32,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   };
 
   public override onStart(): void {
+    
     this.SystemBoot();
   }
 
@@ -210,6 +212,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_users(): User[] {
     return this.users;
+  }
+  /**
+   * Returns the logged-in user.
+   */
+  public static get_active_user(): User {
+    return this.activeUser;
   }
 
   // * * * Functions * * *

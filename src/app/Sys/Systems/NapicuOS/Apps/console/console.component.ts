@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Command } from 'src/app/Sys/command';
-import { system_computer_name, system_user_name } from '../../config/systemInfo';
+import { User } from 'src/app/Sys/User';
+import { system_computer_name, system_default_user } from '../../config/systemInfo';
 import { removeSpace } from '../../scripts/removeSpaceInString';
 import { NapicuOS } from '../../system.napicuos';
 import {
@@ -36,18 +36,29 @@ export class ConsoleComponent implements OnInit {
   private selectedCommandHistory: number = 0;
   @ViewChild('AppScreen') public declare appScreen: ElementRef;
   @ViewChild('InputValue') public declare inputValue: ElementRef;
+  /**
+   * Determines if the specified command is currently running
+   */
   private activeCommand: boolean = false;
+  /**
+   * Store the history of commands
+   */
   private static historyCommands: string[] = [];
-  public commandAc: commandLineStMetadata = {
-    user: system_user_name,
-    compName: system_computer_name,
-    path: '~', //TODO ENUM?
-  };
+  /**
+   * The path the user is currently in
+   */
+  private path: string = '~';
+  /**
+   * Command line lines
+   */
   private lines: inputMetadata[] = [];
   constructor() {}
 
   ngOnInit(): void {}
 
+  /**
+   * Function that is triggered by pressing enter
+   */
   public async onEnter(event: Event): Promise<void> {
     var i: HTMLElement = event.target as HTMLElement;
     var input = i.innerText;
@@ -79,28 +90,24 @@ export class ConsoleComponent implements OnInit {
     this.scrollBottom();
     event.preventDefault();
   }
-
   /**
    * Focus cursor on the input
    */
   public inputFocus(): void {
     this.inputValue.nativeElement.focus();
   }
-
   /**
    * Sets the input value to the value according to the selected command from the histo
    */
   private setCommandFromCommandHistory(): void {
     this.inputValue.nativeElement.innerText = ConsoleComponent.historyCommands[this.selectedCommandHistory];
   }
-
   /**
    * Auto scroll down function
    */
   private scrollBottom(): void {
     this.appScreen.nativeElement.scrollTo({ top: this.appScreen.nativeElement.scrollHeight });
   }
-
   /**
    * Sets and filters commands
    * @param input - Command entered
@@ -111,7 +118,6 @@ export class ConsoleComponent implements OnInit {
     });
     ConsoleComponent.historyCommands.push(input);
   }
-
   /**
    * Function that is triggered by pressing arrow up
    */
@@ -124,7 +130,6 @@ export class ConsoleComponent implements OnInit {
     this.setCommandFromCommandHistory();
     event.preventDefault();
   }
-
   /**
    * Function that is triggered by pressing arrow down
    */
@@ -135,7 +140,6 @@ export class ConsoleComponent implements OnInit {
     }
     event.preventDefault();
   }
-
   /**
    * Creates a new line
    * @param value - Array of lines to be displayed
@@ -144,21 +148,30 @@ export class ConsoleComponent implements OnInit {
   private creatCommandLine(value: Line[], enteredCommand?: string): void {
     this.lines.push({ lines: value, enteredCommand: enteredCommand });
   }
-
   /**
-   * Returns basic command line information
+   * Returns the username
    */
-  get GetCommandLineAc(): commandLineStMetadata {
-    return this.commandAc;
+  get GetUserName(): string {
+    return NapicuOS.get_active_user().get_username();
   }
-
+  /**
+   * Returns the computer's name
+   */
+  get GetcompName(): string {
+    return system_computer_name;
+  }
+  /**
+   * Returns the path the user is in
+   */
+  get Getpath(): string {
+    return this.path;
+  }
   /**
    * Returns array of all rows
    */
   get Getlines(): inputMetadata[] {
     return this.lines;
   }
-
   /**
    * History of commands used
    */
@@ -169,21 +182,18 @@ export class ConsoleComponent implements OnInit {
   get GetactiveCommand(): boolean {
     return this.activeCommand;
   }
-
   /**
    * Function for getting the command lines history
    */
   public getCommandLines(): inputMetadata[] {
     return this.lines;
   }
-
   /**
    * Function for getting the history commands
    */
   public static gethistoryCommands(): string[] {
     return this.historyCommands;
   }
-
   /**
    * Funcion for deleting the history of console
    */
