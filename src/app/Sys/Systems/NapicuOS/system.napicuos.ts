@@ -19,6 +19,7 @@ import { system_boot_screen_logo, system_boot_screen_title, system_default_user 
 import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
 import { copy } from 'src/app/Scripts/DeepClone';
 import { User } from '../../User';
+import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -34,23 +35,24 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onStart(): void {
     //TODO Login & root creat
     NapicuOS.activeUser = system_default_user;
-    NapicuOS.creat_user(system_default_user);
-    NapicuOS.creat_user(system_default_user);
 
     this.SystemBoot();
   }
 
   public override onShutDown(): void {}
 
-  protected setProcess(): void {
+  protected init(): void {
     initAllSystemApps();
-
     initAllCommands();
   }
 
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
-    this.setProcess();
+    this.init();
+
+    NapicuOS.creat_user('root', 'napicuos');
+
+    console.log(NapicuOS.get_active_user());
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
@@ -174,8 +176,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     var i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
       var p = element.value as Command;
-      console.log(p);
-
       return p.command === command;
     });
     return i[0];
@@ -260,29 +260,35 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static install_app(file: SystemFile): void {}
 
   //TODO parameters
-  public static async run_command(cmd: string, params?: string[]): CommandFunMetadata {
-    var i: Command = NapicuOS.get_command_by_commandStr(cmd).value as Command;
+  public static async run_command(cmd: string, params?: string[]): Promise<CommandFunMetadata> {
+    var i: Command = NapicuOS.get_command_by_commandStr(cmd)?.value as Command;
     var x: Process = NapicuOS.get_system_activated_window_app();
-    if (!x) console.error('No window activated');
     if (i) {
       return await i.run(params, x);
     } else {
-      return [new Line(`${cmd}: command not found`, 'red')];
+      return {
+        linesForCMD: [new Line(`${cmd}: command not found`, 'red')],
+        stateCode: CommandStateCodeMetadata.CommandNotFound,
+      };
     }
   }
 
   public static log_user(user: string): void {}
 
-  public static creat_user(user: User): void {
-    //TODO run in cmd
-    // var x = this.users.filter((value) => {
-    //   return value.get_username() === user.get_username();
-    // });
-    // if (!x.length) {
-    //   this.users.push(user);
-    // } else {
-    //   console.log('není');
-    // }
+  /**
+   * Create and add users
+   * @param username New user's username
+   * @param password New user's password
+   */
+  public static creat_user(username: string, password: string): void  {
+    //TODO return
+    NapicuOS.run_command('adduser', [username, password]);
+  }
+  /**
+   * Add user
+   */
+  public static add_user(user: User): void {
+    this.users.push(user);
   }
 
   public static delete_command(cmd: string): any {

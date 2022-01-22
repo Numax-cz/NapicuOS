@@ -1,5 +1,4 @@
 import { Line } from '../../../Apps/console/console.component';
-import { helpCommandTemplate } from '../../../initCommands.napicuos';
 
 export const getHelpCommandAPPS: Line = new Line(
   `\t\t--open - Returns open GUI applications
@@ -7,8 +6,9 @@ export const getHelpCommandAPPS: Line = new Line(
 );
 
 export const getHelpCommand: Line = new Line(
-    `Options:
+  `Options:
     systemprocess - Returns system processes running in the background
     commands - Returns available commands
     apps - Returns running GUI applications
-    ${getHelpCommandAPPS.Write().value}`);
+    ${getHelpCommandAPPS.Write().value}`
+);

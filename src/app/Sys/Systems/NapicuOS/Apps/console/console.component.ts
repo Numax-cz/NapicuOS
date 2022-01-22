@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CommandFunMetadata } from 'src/app/Sys/command';
 import { User } from 'src/app/Sys/User';
 import { system_computer_name, system_default_user } from '../../config/systemInfo';
 import { removeSpace } from '../../scripts/removeSpaceInString';
@@ -76,9 +77,9 @@ export class ConsoleComponent implements OnInit {
     }
     if (inputCmd) {
       this.creatCommandLine([], input);
-      await NapicuOS.run_command(inputCmd, inputSplit).then((value: Line[] | void) => {
+      await NapicuOS.run_command(inputCmd, inputSplit).then((value: CommandFunMetadata) => {
         if (value) {
-          this.lines[this.lines.length - 1].lines = value;
+          this.lines[this.lines.length - 1].lines = value.linesForCMD;
           this.setHistoryCommand(input);
         }
       });

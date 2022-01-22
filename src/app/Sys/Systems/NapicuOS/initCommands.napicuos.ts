@@ -3,15 +3,16 @@ import { Line } from './Apps/console/console.component';
 import { NapicuOS } from './system.napicuos';
 import { Process } from '../../Process';
 import { removeSpace } from './scripts/removeSpaceInString';
-
 import { getHelpCommand, getHelpCommandAPPS } from './config/commands/help/getCommand';
 import { SystemFile } from '../../File';
+import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
+import { setHelpCommand } from './config/commands/help/setCommand';
+import { addUserUsage } from './config/commands/help/addUserCommand';
+import { User } from '../../User';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
-export function helpCommandTemplate(cmd: string, text: string): Line {
-  return new Line(`\t${cmd} - ${text}`);
-}
+
 function usageCommand(cmd: string): Line {
   return new Line(`usage: ${cmd}`);
 }
@@ -22,21 +23,39 @@ export function initAllCommands(): void {
     new Command('Terminal', 'shell', (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve([
-            new Line('HELLO WORLD', 'white'),
-            new Line('HELLO WORLD', 'white'),
-            new Line('HELLO WORLD', 'white'),
-          ]);
+          resolve({ linesForCMD: [], stateCode: 0 });
         }, 1000);
       });
     })
   );
-
   initGetSystemInformation();
   initExitFromConsole();
   initSetSystemInformation();
-  // initOpenCommand();
   initKillProcess();
+  initCreatUser();
+}
+
+function initCreatUser(): void {
+  NapicuOS.register_command(
+    new Command('CreatUser', 'adduser', (params) => {
+      return new Promise((resolve) => {
+        if (params?.length == 2) {
+          var username = params[0];
+          var password = params[1];
+          var x = NapicuOS.get_users().filter((value) => {
+            return value.get_username() === username;
+          });
+          if (!x.length) {
+            resolve(NapicuOS.add_user(new User(username, password)));
+          } else {
+            console.log('není');
+          }
+        } else {
+          resolve({ linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand });
+        }
+      });
+    })
+  );
 }
 
 function initGetSystemInformation(): void {
@@ -46,7 +65,7 @@ function initGetSystemInformation(): void {
         if (params?.length) {
           switch (params[0]) {
             case '--help':
-              resolve([getHelpCommand]);
+              resolve({ linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
               break;
             case 'systemprocess':
               var process = NapicuOS.get_system_process();
@@ -55,7 +74,7 @@ function initGetSystemInformation(): void {
               process.forEach((value: Process, index: number) => {
                 exportLines.push(new Line(`${index} | ${value.processTitle}`, 'white'));
               });
-              return resolve(exportLines);
+              return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
             case 'apps':
               var exportLines: Line[] = [];
               var apps: Process[] = NapicuOS.get_system_window_apps();
@@ -70,7 +89,10 @@ function initGetSystemInformation(): void {
                     apps = NapicuOS.get_system_no_displayed_window_apps();
                     break;
                   default:
-                    resolve([unknownOption(params[1]), getHelpCommandAPPS]);
+                    resolve({
+                      linesForCMD: [unknownOption(params[1]), getHelpCommandAPPS],
+                      stateCode: CommandStateCodeMetadata.UnknownOption,
+                    });
                     break;
                 }
               } else {
@@ -80,20 +102,26 @@ function initGetSystemInformation(): void {
               apps.forEach((value: Process, index: number) => {
                 exportLines.push(new Line(`${index} | ${value.processTitle}`, 'white'));
               });
-              return resolve(exportLines);
+              return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
+
             case 'commands':
-            // var commands = NapicuOS.get_available_commands() ;
-            // var exportLines: Line[] = [];
-            // commands.forEach((value: Command, index: number) => {
-            //   exportLines.push(new Line(`${index} | ${value.commandName} : ${value.command} `, 'white'));
-            // });
-            // return resolve(exportLines);
+              var commands = NapicuOS.get_available_commands();
+              var exportLines: Line[] = [];
+              commands.forEach((value: SystemFile, index: number) => {
+                exportLines.push(
+                  new Line(`${index} | ${value.value.commandName} : ${value.value.command} `, 'white')
+                );
+              });
+              return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
 
             default:
-              resolve([unknownOption(params[0]), getHelpCommand]);
+              resolve({
+                linesForCMD: [unknownOption(params[1]), getHelpCommandAPPS],
+                stateCode: CommandStateCodeMetadata.UnknownOption,
+              });
           }
         } else {
-          resolve([getHelpCommand]);
+          resolve({ linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
         }
       });
     })
@@ -108,12 +136,15 @@ function initSetSystemInformation(): void {
           switch (params[0]) {
             case 'processtitle':
               return resolve(activatedWindow?.Window.setWindowTitle(params[1]));
-
             default:
-              resolve([unknownOption(params[0])]);
+              resolve({
+                linesForCMD: [unknownOption(params[0])],
+                stateCode: CommandStateCodeMetadata.UnknownOption,
+              });
           }
         } else {
-          resolve([new Line(`Options:`), helpCommandTemplate('processtitle', 'Sets the terminal name')]);
+          //TODO
+          resolve({ linesForCMD: [setHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
         }
       });
     })
@@ -128,45 +159,21 @@ function initKillProcess(): void {
           if (params[0]) {
             var x = NapicuOS.get_system_process_by_title(params[0]);
             if (x) resolve(x.kill());
-            resolve([new Line(`Process '${params[0]}' not found`)]);
+            resolve({
+              linesForCMD: [new Line(`Process '${params[0]}' not found`)],
+              stateCode: CommandStateCodeMetadata.ProcessNotFound,
+            });
           }
         } else {
-          resolve([usageCommand(`kill <process_name>`)]);
+          resolve({
+            linesForCMD: [usageCommand(`kill <process_name>`)],
+            stateCode: CommandStateCodeMetadata.success,
+          });
         }
       });
     })
   );
 }
-
-// function initOpenCommand(): void {
-//   NapicuOS.register_command(
-//     new Command('SystemOpen', 'open', (params) => {
-//       return new Promise((resolve) => {
-//         if (params?.length) {
-//           if (params[0]) {
-//             resolve(
-//               NapicuOS.get_system_window_apps().forEach((element: Process) => {
-//                 console.log(element);
-
-//                 if (element.processTitle.toLocaleLowerCase() === params[0].toLocaleLowerCase()) {
-//                   element.Window.open();
-//                   return;
-//                 }
-//               })
-//             );
-//           } else {
-//           }
-//         } else {
-//           resolve([
-//             new Line(`Options:`),
-//             helpCommandTemplate('systemprocess', 'Returns system processes running in the background'),
-//             helpCommandTemplate('commands', 'Returns available commands'),
-//           ]);
-//         }
-//       });
-//     })
-//   );
-// }
 
 function initExitFromConsole(): void {
   NapicuOS.register_command(
@@ -177,4 +184,3 @@ function initExitFromConsole(): void {
     })
   );
 }
-
