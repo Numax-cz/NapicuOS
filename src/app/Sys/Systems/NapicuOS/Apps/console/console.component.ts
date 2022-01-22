@@ -62,7 +62,7 @@ export class ConsoleComponent implements OnInit {
    */
   public async onEnter(event: Event): Promise<void> {
     var i: HTMLElement = event.target as HTMLElement;
-    var input = i.innerText;
+    const input = i.innerText;
     var inputSplit = input.split(' ');
     var inputCmd = removeSpace(inputSplit[0].toLocaleLowerCase());
     inputSplit.splice(0, 1);
@@ -80,6 +80,7 @@ export class ConsoleComponent implements OnInit {
       await NapicuOS.run_command(inputCmd, inputSplit).then((value: CommandFunMetadata) => {
         if (value) {
           this.lines[this.lines.length - 1].lines = value.linesForCMD;
+          console.log(input);          
           this.setHistoryCommand(input);
         }
       });

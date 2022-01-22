@@ -15,7 +15,7 @@ import { initAllCommands } from './initCommands.napicuos';
 import { initAllSystemApps } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
 import { systemDirMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
-import { system_boot_screen_logo, system_boot_screen_title, system_default_user } from './config/systemInfo';
+import { system_boot_screen_logo, system_boot_screen_title, system_default_user, system_root_user } from './config/systemInfo';
 import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
 import { copy } from 'src/app/Scripts/DeepClone';
 import { User } from '../../User';
@@ -35,7 +35,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onStart(): void {
     //TODO Login & root creat
-    // NapicuOS.activeUser = system_default_user;
+
+    NapicuOS.add_user(system_default_user);
+    NapicuOS.add_user(system_root_user);
+    NapicuOS.log_user(system_default_user.get_username());
+
     this.SystemBoot();
   }
 
@@ -61,7 +65,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
           }, boot_animation_time + 100);
         }, soft_boot_time);
       } else {
-        SystemComponent.SysComponent = LoginscreenComponent
+        SystemComponent.SysComponent = LoginscreenComponent;
       }
     }, boot_time);
   }
@@ -218,6 +222,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.users;
   }
   /**
+   * Returns the user by username if the user exists
+   * @param username Username of searched user
+   */
+  public static get_user(username: string): User | undefined {
+    return (
+      this.users.filter((value: User) => {
+        return value.get_username() === username;
+      })[0] 
+    );
+  }
+  /**
    * Returns the logged-in user.
    */
   public static get_active_user(): User {
@@ -272,9 +287,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       };
     }
   }
-
-  public static log_user(user: string): void {}
-
   /**
    * Create and add users
    * @param username New user's username
@@ -289,6 +301,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static add_user(user: User): void {
     this.users.push(user);
+  }
+
+  public static log_user(username: string): void {
+    var u = this.get_user(username);
+    console.log(u);
+    
+    if (u) this.activeUser = u;
   }
 
   public static delete_command(cmd: string): any {
