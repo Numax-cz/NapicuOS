@@ -1,0 +1,44 @@
+.InputElements {
+  input {
+    font-size: 1.2rem;
+    outline: none;
+    margin: 6px 0px;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 10px;
+  }
+}
+.LoginButton {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+
+  button {
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 5px;
+    border: 0;
+    background-color: #2777ff;
+    border-bottom: 5px solid #1f60cb;
+    margin-top: 5%;
+    border-radius: 13px;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+.TimeContainer {
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+.Box {
+  position: absolute;
+  top: 50%;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: #23252e;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
