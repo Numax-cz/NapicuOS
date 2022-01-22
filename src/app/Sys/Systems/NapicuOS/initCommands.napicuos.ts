@@ -134,7 +134,7 @@ function initSetSystemInformation(): void {
       return new Promise((resolve) => {
         if (params?.length) {
           switch (params[0]) {
-            case 'processtitle':
+            case 'windowtitle':
               return resolve(activatedWindow?.Window.setWindowTitle(params[1]));
             default:
               resolve({
