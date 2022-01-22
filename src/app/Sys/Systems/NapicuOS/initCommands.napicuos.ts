@@ -33,6 +33,7 @@ export function initAllCommands(): void {
   initSetSystemInformation();
   initKillProcess();
   initCreatUser();
+  initLogout();
 }
 
 function initCreatUser(): void {
@@ -170,6 +171,16 @@ function initKillProcess(): void {
             stateCode: CommandStateCodeMetadata.success,
           });
         }
+      });
+    })
+  );
+}
+
+function initLogout(): void {
+  NapicuOS.register_command(
+    new Command('UserLogout', 'logout', (params) => {
+      return new Promise((resolve) => {
+        NapicuOS.logout_user();
       });
     })
   );

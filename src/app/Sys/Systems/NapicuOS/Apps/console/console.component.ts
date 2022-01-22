@@ -154,7 +154,7 @@ export class ConsoleComponent implements OnInit {
    * Returns the username
    */
   get GetUserName(): string {
-    return NapicuOS.get_active_user().get_username();
+    return NapicuOS.get_active_user()?.get_username() || 'NULL';
   }
   /**
    * Returns the computer's name

@@ -15,7 +15,12 @@ import { initAllCommands } from './initCommands.napicuos';
 import { initAllSystemApps } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
 import { systemDirMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
-import { system_boot_screen_logo, system_boot_screen_title, system_default_user, system_root_user } from './config/systemInfo';
+import {
+  system_boot_screen_logo,
+  system_boot_screen_title,
+  system_default_user,
+  system_root_user,
+} from './config/systemInfo';
 import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
 import { copy } from 'src/app/Scripts/DeepClone';
 import { User } from '../../User';
@@ -26,7 +31,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
   private static users: User[] = [];
-  private static activeUser: User;
+  private static activeUser: User | null;
   public static systemTime: string;
   public override boot = {
     title: system_boot_screen_title,
@@ -226,16 +231,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username Username of searched user
    */
   public static get_user(username: string): User | undefined {
-    return (
-      this.users.filter((value: User) => {
-        return value.get_username() === username;
-      })[0] 
-    );
+    return this.users.filter((value: User) => {
+      return value.get_username() === username;
+    })[0];
   }
   /**
    * Returns the logged-in user.
    */
-  public static get_active_user(): User {
+  public static get_active_user(): User | null {
     return this.activeUser;
   }
 
@@ -302,12 +305,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static add_user(user: User): void {
     this.users.push(user);
   }
-
+  /**
+   * logs the user in
+   * @param username User's name
+   */
   public static log_user(username: string): void {
     var u = this.get_user(username);
-    console.log(u);
-    
     if (u) this.activeUser = u;
+  }
+  /**
+   * Logs the user out
+   */
+  public static logout_user(): void {
+    this.activeUser = null;
+    SystemComponent.SysComponent = LoginscreenComponent;
   }
 
   public static delete_command(cmd: string): any {
