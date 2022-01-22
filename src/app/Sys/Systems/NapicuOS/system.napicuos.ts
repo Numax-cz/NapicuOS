@@ -28,7 +28,6 @@ import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
 import { LoginscreenComponent } from './components/loginscreen/loginscreen.component';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
-  public override component = NapicuOSComponent;
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
   private static users: User[] = [];
   private static activeUser: User | null;
@@ -43,7 +42,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     NapicuOS.add_user(system_default_user);
     NapicuOS.add_user(system_root_user);
-    NapicuOS.log_user(system_default_user.get_username());
+    NapicuOS.log_user(system_default_user.get_username(), system_default_user.get_password());
 
     this.SystemBoot();
   }
@@ -64,7 +63,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       SystemComponent.SysComponent = BlackscreenComponent;
       if (NapicuOS.activeUser) {
         setTimeout(() => {
-          SystemComponent.SysComponent = this.component;
+          SystemComponent.SysComponent = NapicuOSComponent;
           setTimeout(() => {
             this.load();
           }, boot_animation_time + 100);
@@ -310,11 +309,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username User's name
    */
   public static log_user(
-    username: string
+    username: string,
+    password: string
   ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSucces {
     var u = this.get_user(username);
-    if (u) this.activeUser = u;
-    else {
+    if (u && u.get_password() === password) {
+      this.activeUser = u;
+    } else {
       return SystemStateMetadata.UserFailLogin;
     }
     return SystemStateMetadata.UserLoginSucces;

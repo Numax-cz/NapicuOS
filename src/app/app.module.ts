@@ -26,6 +26,7 @@ import { WindowComponent } from './Sys/Systems/NapicuOS/template/window/window.c
 import { WelcomeComponent } from './Sys/Systems/NapicuOS/Apps/welcome/welcome.component';
 import { ConsoleComponent } from './Sys/Systems/NapicuOS/Apps/console/console.component';
 import { FormsModule } from '@angular/forms';
+import { LoginscreenComponent } from './Sys/Systems/NapicuOS/components/loginscreen/loginscreen.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FormsModule } from '@angular/forms';
     WelcomeComponent,
     WindowComponent,
     ConsoleComponent,
+    LoginscreenComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,16 +19,16 @@
             style="filter: blur(10px)"
           ></div>
 
-          <section  class="Box">
+          <section class="Box">
             <div class="InputElements">
               <div>
-                <input type="text" placeholder="Username" />
+                <input [(ngModel)]="username" type="text" name="username" placeholder="Username" />
               </div>
               <div>
-                <input type="password" placeholder="Password" />
+                <input [(ngModel)]="password" type="password" name="password" placeholder="Password" />
               </div>
               <div class="LoginButton">
-                <button type="button">Login</button>
+                <button type="button" (click)="login()">Login</button>
               </div>
             </div>
           </section>
