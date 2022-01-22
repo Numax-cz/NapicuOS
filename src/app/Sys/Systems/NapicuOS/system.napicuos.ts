@@ -281,6 +281,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     var i: Command = NapicuOS.get_command_by_commandStr(cmd)?.value as Command;
     var x: Process = NapicuOS.get_system_activated_window_app();
     if (i) {
+      if (i.permissions === 'superUser' && this.activeUser?.get_permissions() !== 'superUser') {
+        return {
+          linesForCMD: [new Line(`${cmd}: Permission denied`, 'red')],
+          stateCode: CommandStateCodeMetadata.PermissionsError,
+        };
+      }
       return await i.run(params, x);
     } else {
       return {

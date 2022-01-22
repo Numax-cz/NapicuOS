@@ -32,30 +32,35 @@ export function initAllCommands(): void {
   initExitFromConsole();
   initSetSystemInformation();
   initKillProcess();
-  initCreatUser();
+  initCreateUser();
   initLogout();
 }
 
-function initCreatUser(): void {
+function initCreateUser(): void {
   NapicuOS.register_command(
-    new Command('CreatUser', 'adduser', (params) => {
-      return new Promise((resolve) => {
-        if (params?.length == 2) {
-          var username = params[0];
-          var password = params[1];
-          var x = NapicuOS.get_users().filter((value) => {
-            return value.get_username() === username;
-          });
-          if (!x.length) {
-            resolve(NapicuOS.add_user(new User(username, password)));
+    new Command(
+      'CreateUser',
+      'adduser',
+      (params) => {
+        return new Promise((resolve) => {
+          if (params?.length == 2) {
+            var username = params[0];
+            var password = params[1];
+            var x = NapicuOS.get_users().filter((value) => {
+              return value.get_username() === username;
+            });
+            if (!x.length) {
+              resolve(NapicuOS.add_user(new User(username, password)));
+            } else {
+              console.log('není');
+            }
           } else {
-            console.log('není');
+            resolve({ linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand });
           }
-        } else {
-          resolve({ linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand });
-        }
-      });
-    })
+        });
+      },
+      'superUser'
+    )
   );
 }
 
@@ -154,25 +159,30 @@ function initSetSystemInformation(): void {
 
 function initKillProcess(): void {
   NapicuOS.register_command(
-    new Command('SystemProcessKiller', 'kill', (params) => {
-      return new Promise((resolve) => {
-        if (params?.length) {
-          if (params[0]) {
-            var x = NapicuOS.get_system_process_by_title(params[0]);
-            if (x) resolve(x.kill());
+    new Command(
+      'SystemProcessKiller',
+      'kill',
+      (params) => {
+        return new Promise((resolve) => {
+          if (params?.length) {
+            if (params[0]) {
+              var x = NapicuOS.get_system_process_by_title(params[0]);
+              if (x) resolve(x.kill());
+              resolve({
+                linesForCMD: [new Line(`Process '${params[0]}' not found`)],
+                stateCode: CommandStateCodeMetadata.ProcessNotFound,
+              });
+            }
+          } else {
             resolve({
-              linesForCMD: [new Line(`Process '${params[0]}' not found`)],
-              stateCode: CommandStateCodeMetadata.ProcessNotFound,
+              linesForCMD: [usageCommand(`kill <process_name>`)],
+              stateCode: CommandStateCodeMetadata.success,
             });
           }
-        } else {
-          resolve({
-            linesForCMD: [usageCommand(`kill <process_name>`)],
-            stateCode: CommandStateCodeMetadata.success,
-          });
-        }
-      });
-    })
+        });
+      },
+      'superUser'
+    )
   );
 }
 
