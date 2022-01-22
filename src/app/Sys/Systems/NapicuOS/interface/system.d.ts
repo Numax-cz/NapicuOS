@@ -15,3 +15,8 @@ export declare interface Os {
     logo: string;
   };
 }
+
+export declare const enum SystemStateMetadata {
+  UserFailLogin = 3033,
+  UserLoginSucces = 3000,
+}

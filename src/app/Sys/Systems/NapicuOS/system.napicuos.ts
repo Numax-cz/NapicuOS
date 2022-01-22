@@ -1,7 +1,7 @@
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
-import { onStartUp, onShutDown, Os } from './interface/system';
+import { onStartUp, onShutDown, Os, SystemStateMetadata } from './interface/system';
 import { Process } from '../../Process';
 import { System } from '../../System';
 import { LoadsComponent } from './components/loads/loads.component';
@@ -309,9 +309,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * logs the user in
    * @param username User's name
    */
-  public static log_user(username: string): void {
+  public static log_user(
+    username: string
+  ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSucces {
     var u = this.get_user(username);
     if (u) this.activeUser = u;
+    else {
+      return SystemStateMetadata.UserFailLogin;
+    }
+    return SystemStateMetadata.UserLoginSucces;
   }
   /**
    * Logs the user out

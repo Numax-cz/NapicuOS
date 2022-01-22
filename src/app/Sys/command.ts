@@ -1,7 +1,7 @@
 import { Process } from './Process';
 import { Line } from './Systems/NapicuOS/Apps/console/console.component';
 import { CommandStateCodeMetadata } from './Systems/NapicuOS/interface/Commands/commandsCodes';
-export declare type CommandFunMetadata = { linesForCMD: Line[]; stateCode:   number } | void;
+export declare type CommandFunMetadata = { linesForCMD: Line[]; stateCode:number } | void;
 export class Command {
   /**
    * Full command name
