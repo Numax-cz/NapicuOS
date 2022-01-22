@@ -5,12 +5,14 @@
 @import '/src/app/Sys/Systems/NapicuOS/Styles/font.scss';
 @import '/src/app/Sys/Systems/NapicuOS/Styles/App.scss';
 @import '/src/app/Sys/Systems/NapicuOS/Styles/resizer.scss';
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:wght@500&display=swap');
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: 'DosVGA';
   //overflow-y: hidden;
   src: url('assets/font/Perfect DOS VGA 437.ttf') format('truetype');
 }
+
 
 $BorderTopABottom: 2px solid blue;
 $BorderLeftARight: 4px solid blue;

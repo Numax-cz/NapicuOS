@@ -20,6 +20,7 @@ import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
 import { copy } from 'src/app/Scripts/DeepClone';
 import { User } from '../../User';
 import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
+import { LoginscreenComponent } from './components/loginscreen/loginscreen.component';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override component = NapicuOSComponent;
@@ -34,8 +35,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onStart(): void {
     //TODO Login & root creat
-    NapicuOS.activeUser = system_default_user;
-
+    // NapicuOS.activeUser = system_default_user;
     this.SystemBoot();
   }
 
@@ -50,19 +50,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //? This is the main place to load all necessary processes
     this.init();
 
-    NapicuOS.creat_user('root', 'napicuos');
-
-    console.log(NapicuOS.get_active_user());
-
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
-      setTimeout(() => {
-        SystemComponent.SysComponent = this.component;
+      if (NapicuOS.activeUser) {
         setTimeout(() => {
-          this.load();
-        }, boot_animation_time + 100);
-      }, soft_boot_time);
+          SystemComponent.SysComponent = this.component;
+          setTimeout(() => {
+            this.load();
+          }, boot_animation_time + 100);
+        }, soft_boot_time);
+      } else {
+        SystemComponent.SysComponent = LoginscreenComponent
+      }
     }, boot_time);
   }
 
@@ -280,7 +280,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username New user's username
    * @param password New user's password
    */
-  public static creat_user(username: string, password: string): void  {
+  public static creat_user(username: string, password: string): void {
     //TODO return
     NapicuOS.run_command('adduser', [username, password]);
   }
