@@ -46,4 +46,8 @@ export class System {
   public onShutDown(): void {}
 
   public onLoad(): void {}
+  /**
+   * This function is called after the user logs in
+   */
+  public onLogin(): void {}
 }

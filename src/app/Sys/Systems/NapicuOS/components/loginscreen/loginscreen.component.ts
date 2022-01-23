@@ -28,6 +28,7 @@ import { NapicuOSComponent } from '../napicu-os/napicu-os.component';
 export class LoginscreenComponent implements OnInit {
   public declare username: string;
   public declare password: string;
+  public isErrorLogin: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}
@@ -36,11 +37,12 @@ export class LoginscreenComponent implements OnInit {
   }
   public login(): void {
     var x = NapicuOS.log_user(this.username, this.password);
-    
+
     if (x === SystemStateMetadata.UserLoginSucces) {
-     SystemComponent.SysComponent = NapicuOSComponent
+      this.isErrorLogin = false;
+      SystemComponent.SysComponent = NapicuOSComponent;
     } else if (x === SystemStateMetadata.UserFailLogin) {
-      //TODO
+      this.isErrorLogin = true;
     } else {
       //TODO
     }

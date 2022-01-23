@@ -42,7 +42,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     NapicuOS.add_user(system_default_user);
     NapicuOS.add_user(system_root_user);
-    NapicuOS.log_user(system_default_user.get_username(), system_default_user.get_password());
+    //  NapicuOS.log_user(system_default_user.get_username(), system_default_user.get_password());
 
     this.SystemBoot();
   }
@@ -61,18 +61,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
+      this.load();
       if (NapicuOS.activeUser) {
         setTimeout(() => {
           SystemComponent.SysComponent = NapicuOSComponent;
-          setTimeout(() => {
-            this.load();
-          }, boot_animation_time + 100);
+          // setTimeout(() => {
+
+          // }, boot_animation_time + 100);
         }, soft_boot_time);
       } else {
         SystemComponent.SysComponent = LoginscreenComponent;
       }
     }, boot_time);
   }
+
+  public override onLogin(): void {}
 
   public override onKeyPress(ev: KeyboardEvent) {}
 
@@ -324,6 +327,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     } else {
       return SystemStateMetadata.UserFailLogin;
     }
+    GrubComponent.ActiveSystem.onLogin();
     return SystemStateMetadata.UserLoginSucces;
   }
   /**
