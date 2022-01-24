@@ -7,10 +7,10 @@ import { Window } from './Window';
 
 export class Process {
   public processTitle: string = 'NapicuAPP';
+  public declare launchedBy: string;
   public declare pid: number;
   public declare Interval: any;
   public declare Window: Window;
-
   private declare processInterval: { fun: () => void; time: number };
 
   public install(): this {
@@ -26,8 +26,11 @@ export class Process {
     }
     GrubComponent.ActiveSystem.SystemProcess.push(this);
     this.pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
-
     return this;
+  }
+  public runAsSystem(): this{
+    this.launchedBy = 'System';
+    return this.run();
   }
 
   public kill(): void {
@@ -45,6 +48,7 @@ export class Process {
     if (data?.Window) this.Window = data.Window;
     if (data?.processTitle) this.processTitle = data.processTitle;
     if (data?.processInterval) this.processInterval = data.processInterval;
+    this.launchedBy = NapicuOS.get_active_user()?.get_username() || 'System';
   }
 
   // public onRun(): void {}
