@@ -12,7 +12,7 @@ import { time_formate } from './config/time';
 import { Line } from './Apps/console/console.component';
 import { Command, CommandFunMetadata } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
-import { initAllSystemApps } from './systemApps.napicuos';
+import { initAllStartUpApps, initAllSystemProcess } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
 import { systemDirMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
 import {
@@ -32,6 +32,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static users: User[] = [];
   private static activeUser: User | null;
   public static systemTime: string;
+  public static systemData = {
+    instaled: true,
+  };
   public override boot = {
     title: system_boot_screen_title,
     logo: system_boot_screen_logo,
@@ -40,23 +43,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onStart(): void {
     //TODO Login & root creat
 
-    NapicuOS.add_user(system_default_user);
-    NapicuOS.add_user(system_root_user);
-    //  NapicuOS.log_user(system_default_user.get_username(), system_default_user.get_password());
-
     this.SystemBoot();
   }
 
   public override onShutDown(): void {}
 
-  protected init(): void {
-    initAllSystemApps();
-    initAllCommands();
-  }
-
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
-    this.init();
+    //TODO Create a function for init
+    initAllCommands();
+    initAllSystemProcess();
+    NapicuOS.add_user(system_default_user);
+    NapicuOS.add_user(system_root_user);
+    NapicuOS.log_user(system_default_user.get_username(), system_default_user.get_password());
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
@@ -75,7 +74,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }, boot_time);
   }
 
-  public override onLogin(): void {}
+  public override onLogin(): void {
+    initAllStartUpApps();
+  }
 
   public override onKeyPress(ev: KeyboardEvent) {}
 
@@ -110,6 +111,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_system_process(): Process[] {
     return GrubComponent.ActiveSystem.SystemProcess;
+  }
+  /**
+   * Returns the user processes
+   * @param username User's name
+   */
+  public static get_user_process(username: string | undefined): Process[] {
+    return this.get_system_process().filter((value: Process) => {
+      return value.launchedBy === username;
+    });
   }
   /**
    * Returns the command by name
@@ -336,6 +346,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static logout_user(): void {
     this.activeUser = null;
     SystemComponent.SysComponent = LoginscreenComponent;
+  }
+  /**
+   * Log out the user and terminate their running processes
+   */
+  public static logout_user_and_kill_user_process(): void {
+    this.get_user_process(this.activeUser?.get_username()).forEach((value: Process) => {
+      value.kill();
+    });
+    this.logout_user();
   }
 
   public static delete_command(cmd: string): any {

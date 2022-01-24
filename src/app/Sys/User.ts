@@ -1,7 +1,9 @@
+import { Process } from './Process';
 import { SystemUserPermissionsMetadata } from './Systems/NapicuOS/interface/User/user';
 
 export class User {
   private username: string = 'user';
+  private process: Process[] = [];
   private declare password: string;
   private declare permissions: SystemUserPermissionsMetadata;
   constructor(username: string, password: string, userpermissions?: SystemUserPermissionsMetadata) {

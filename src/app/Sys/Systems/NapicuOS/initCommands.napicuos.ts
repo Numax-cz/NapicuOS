@@ -78,7 +78,7 @@ function initGetSystemInformation(): void {
               var exportLines: Line[] = [];
               exportLines.push(new Line('Processes running in the background: ', 'white'));
               process.forEach((value: Process, index: number) => {
-                exportLines.push(new Line(`${index} | ${value.processTitle}`, 'white'));
+                exportLines.push(new Line(`${index} | ${value.processTitle} : ${value.launchedBy}`, 'white'));
               });
               return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
             case 'apps':
@@ -190,7 +190,7 @@ function initLogout(): void {
   NapicuOS.register_command(
     new Command('UserLogout', 'logout', (params) => {
       return new Promise((resolve) => {
-        NapicuOS.logout_user();
+        resolve(NapicuOS.logout_user_and_kill_user_process());
       });
     })
   );

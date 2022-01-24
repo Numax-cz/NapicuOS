@@ -16,6 +16,10 @@ export declare interface Os {
   };
 }
 
+export declare interface systemData{
+  installed: boolean
+}
+
 export declare const enum SystemStateMetadata {
   UserFailLogin = 3033,
   UserLoginSucces = 3000,
