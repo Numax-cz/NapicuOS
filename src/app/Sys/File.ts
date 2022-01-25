@@ -13,11 +13,11 @@ export class SystemFile {
    */
   private iconPath: string = `${SystemFile.defaultIconsPath}/XFD/download.svg`;
 
-  public value: any;
+  private value: any;
 
   private declare fileType: SystemFileTypeMetadata;
 
-  public fileName: string = 'New_File';
+  private fileName: string = 'New_File';
 
   private permission: any;
 
@@ -33,6 +33,18 @@ export class SystemFile {
     this.fileName = data.fileName;
     this.fileType = data.fileType;
     //TODO permissions
+  }
+
+  public get_value(): any {
+    return this.value;
+  }
+
+  public get_file_name(): string {
+    return this.fileName;
+  }
+
+  public get_icon_path(): string{
+    return this.iconPath;
   }
 
   public open(): void {

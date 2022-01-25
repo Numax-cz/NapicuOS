@@ -115,7 +115,7 @@ function initGetSystemInformation(): void {
               var exportLines: Line[] = [];
               commands.forEach((value: SystemFile, index: number) => {
                 exportLines.push(
-                  new Line(`${index} | ${value.value.commandName} : ${value.value.command} `, 'white')
+                  new Line(`${index} | ${value.get_value().commandName} : ${value.get_value().command} `, 'white')
                 );
               });
               return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });

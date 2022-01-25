@@ -1,5 +1,7 @@
 import { Type } from '@angular/core';
 import { GrubComponent } from '../System/grub/grub.component';
+import { SystemFile } from './File';
+import { System } from './System';
 import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
 import { processConstructor } from './Systems/NapicuOS/interface/process';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
@@ -14,7 +16,13 @@ export class Process {
   private declare processInterval: { fun: () => void; time: number };
 
   public install(): this {
-    //NapicuOS.get_installed_apps().push(this);
+    NapicuOS.get_apps_dir()?.files?.push(
+      new SystemFile({
+        fileName: this.Window.WindowTitle,
+        value: this,
+        fileType: 'executable',
+      })
+    );
     return this;
   }
 
@@ -28,7 +36,7 @@ export class Process {
     this.pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
     return this;
   }
-  public runAsSystem(): this{
+  public runAsSystem(): this {
     this.launchedBy = 'System';
     return this.run();
   }

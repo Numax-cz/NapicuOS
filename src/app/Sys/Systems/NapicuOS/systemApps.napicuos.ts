@@ -12,6 +12,9 @@ export function initAllSystemProcess(): void {
 export function initAllStartUpApps(): void {
   napicu_os_terminal().install().run().Window.open();
   
+  
+
+
   if (!NapicuOS.systemData.instaled) {
     napicu_os_welcomeapp().install().run().Window.open();
   }

@@ -182,7 +182,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_command_by_command_name(commandName: string): SystemFile[] {
     var i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
-      var p = element.value as Command;
+      var p = element.get_value() as Command;
       return p.commandName === commandName;
     });
     return i;
@@ -196,7 +196,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_command_by_commandStr(command: string): SystemFile {
     var i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
-      var p = element.value as Command;
+      var p = element.get_value() as Command;
       return p.command === command;
     });
     return i[0];
@@ -230,7 +230,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns apps in dock
    */
   public static get_apps_in_dock(): SystemFile[] {
-    return [];
+    return this.get_active_user()?.get_user_settings().appsInDock || [];
   }
   /**
    * Returns all system users
@@ -285,13 +285,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     // }
   }
 
-  public static creat_app_runner(): void {}
-
-  public static install_app(file: SystemFile): void {}
-
   //TODO parameters
   public static async run_command(cmd: string, params?: string[]): Promise<CommandFunMetadata> {
-    var i: Command = NapicuOS.get_command_by_commandStr(cmd)?.value as Command;
+    var i: Command = NapicuOS.get_command_by_commandStr(cmd)?.get_value() as Command;
     var x: Process = NapicuOS.get_system_activated_window_app();
     if (i) {
       if (i.permissions === 'superUser' && this.activeUser?.get_permissions() !== 'superUser') {
@@ -308,6 +304,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       };
     }
   }
+
+  public static add_file_to_dock(file: SystemFile): void {
+    this.get_active_user()?.get_user_settings().appsInDock.push(file);
+  }
+
   /**
    * Create and add users
    * @param username New user's username
