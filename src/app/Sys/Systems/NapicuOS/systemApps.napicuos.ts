@@ -7,13 +7,18 @@ import { SystemFile } from '../../File';
 
 export function initAllSystemProcess(): void {
   napicu_os_time().install().runAsSystem();
+
+  NapicuOS.add_file_to_dir(
+    NapicuOS.get_apps_dir(),
+    new SystemFile({ fileName: 'TestFile', value: 'YourMuM', fileType: 'text' })
+  );
+
+  console.log(NapicuOS.get_apps_dir());
+  
 }
 
 export function initAllStartUpApps(): void {
   napicu_os_terminal().install().run().Window.open();
-  
-  
-
 
   if (!NapicuOS.systemData.instaled) {
     napicu_os_welcomeapp().install().run().Window.open();

@@ -16,7 +16,9 @@ export const NapicuOSSystemDir: systemDrivesMetadata = {
           Videos: {},
         },
       },
-      usr: {},
+      usr: {
+        files: [],
+      },
       bin: {
         files: [],
       },

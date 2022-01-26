@@ -14,7 +14,11 @@ import { Command, CommandFunMetadata } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
 import { initAllStartUpApps, initAllSystemProcess } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
-import { systemDirAFileMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
+import {
+  systemDirAFileMetadata,
+  systemDirMetadata,
+  systemDrivesMetadata,
+} from './interface/FilesDirs/systemDir';
 import {
   system_boot_screen_logo,
   system_boot_screen_title,
@@ -201,11 +205,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     return i[0];
   }
+  public static get_dir(): systemDrivesMetadata {
+    return this.drives;
+  }
   /**
    * Returns root directory
    */
   public static get_root_dir(): systemDirAFileMetadata {
-    return this.drives[napicu_os_root_part];
+    return this.get_dir()[napicu_os_root_part];
   }
   /**
    * Returns main home directory
@@ -309,8 +316,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.get_active_user()?.get_user_settings().appsInDock.push(file);
   }
 
-  public static add_file_to_dir(dir: any): void {
-    
+  public static add_file_to_dir(
+    dir: systemDirAFileMetadata | undefined,
+    file: SystemFile
+  ): SystemStateMetadata.FileAlreadyExists | SystemStateMetadata.FileAddedSuccess {
+    if (dir?.files) {
+      dir.files.push(file);
+    } else {
+      return SystemStateMetadata.FileAlreadyExists;
+    }
+    return SystemStateMetadata.FileAddedSuccess;
   }
 
   /**
@@ -335,7 +350,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static log_user(
     username: string,
     password: string
-  ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSucces {
+  ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSuccess {
     var u = this.get_user(username);
     if (u && u.get_password() === password) {
       this.activeUser = u;
@@ -343,7 +358,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return SystemStateMetadata.UserFailLogin;
     }
     GrubComponent.ActiveSystem.onLogin();
-    return SystemStateMetadata.UserLoginSucces;
+    return SystemStateMetadata.UserLoginSuccess;
   }
   /**
    * Logs the user out

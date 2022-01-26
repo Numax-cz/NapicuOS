@@ -2,6 +2,7 @@ import { GrubComponent } from '../System/grub/grub.component';
 import { SystemFile } from './File';
 import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
 import { processConstructor } from './Systems/NapicuOS/interface/process';
+import { SystemStateMetadata } from './Systems/NapicuOS/interface/system';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { Window } from './Window';
 
@@ -14,13 +15,18 @@ export class Process {
   private declare processInterval: { fun: () => void; time: number };
 
   public install(): this {
-    NapicuOS.get_apps_dir()?.files?.push(
-      new SystemFile({
-        fileName: this.Window.WindowTitle,
-        value: this,
-        fileType: 'executable',
-      })
-    );
+    if (
+      NapicuOS.get_apps_dir()?.files?.push(
+        new SystemFile({
+          fileName: this.processTitle,
+          value: this,
+          fileType: 'executable',
+        })
+      ) == SystemStateMetadata.FileAlreadyExists
+    ) {
+      //TODO REMOVE
+      console.error('[DEBUG] Adding a file to the directory was done with an error');
+    }
     return this;
   }
 
