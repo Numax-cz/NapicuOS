@@ -14,7 +14,7 @@ import { Command, CommandFunMetadata } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
 import { initAllStartUpApps, initAllSystemProcess } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
-import { systemDirMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
+import { systemDirAFileMetadata, systemDrivesMetadata } from './interface/FilesDirs/systemDir';
 import {
   system_boot_screen_logo,
   system_boot_screen_title,
@@ -204,25 +204,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns root directory
    */
-  public static get_root_dir(): systemDirMetadata {
+  public static get_root_dir(): systemDirAFileMetadata {
     return this.drives[napicu_os_root_part];
   }
   /**
    * Returns main home directory
    */
-  public static get_home_dir(): systemDirMetadata | undefined {
+  public static get_home_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['home'];
   }
   /**
    * Returns main apps directory
    */
-  public static get_apps_dir(): systemDirMetadata | undefined {
+  public static get_apps_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['usr'];
   }
   /**
    * Returns main bin directory
    */
-  public static get_cmd_dir(): systemDirMetadata | undefined {
+  public static get_cmd_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['bin'];
   }
 
@@ -307,6 +307,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public static add_file_to_dock(file: SystemFile): void {
     this.get_active_user()?.get_user_settings().appsInDock.push(file);
+  }
+
+  public static add_file_to_dir(dir: any): void {
+    
   }
 
   /**

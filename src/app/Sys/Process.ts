@@ -1,7 +1,5 @@
-import { Type } from '@angular/core';
 import { GrubComponent } from '../System/grub/grub.component';
 import { SystemFile } from './File';
-import { System } from './System';
 import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
 import { processConstructor } from './Systems/NapicuOS/interface/process';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
