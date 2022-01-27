@@ -3,7 +3,6 @@ import { ConsoleComponent } from './Apps/console/console.component';
 import { WelcomeComponent } from './Apps/welcome/welcome.component';
 import { NapicuOS } from './system.napicuos';
 import { Window } from '../../Window';
-import { SystemFile } from '../../File';
 
 export function initAllSystemProcess(): void {
   napicu_os_time().install().runAsSystem();

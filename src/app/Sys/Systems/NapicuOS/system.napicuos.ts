@@ -266,30 +266,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Register the command
    */
   public static register_command(cmd: Command): void {
-    this.get_cmd_dir()?.files?.push(
-      new SystemFile({ value: cmd, fileName: cmd.commandName, fileType: 'executable' })
-    );
-    //TODO
-    //TODO
-    //TODO
-    //TODO
-    //TODO
-    //TODO
-    //TODO
-    //TODO
-    //TODO
-    // var i: boolean = false;
-    // for (let index = 0; index < Command.commands.length; index++) {
-    //   const element = Command.commands[index];
-    //   if (element.command == cmd.command) {
-    //     i = true;
-    //   }
-    // }
-    // if (!i) {
+    const commands = this.get_available_commands();
+    var x = commands.filter((value: SystemFile) => {
+      var x = value.get_value() as Command;
+      return x.command === cmd.command;
+    });
 
-    // } else {
-    //   console.warn(`The ${cmd.command} command is already registered`);
-    // }
+    if (!x.length) {
+      commands.push(new SystemFile({ value: cmd, fileName: cmd.commandName, fileType: 'executable' }));
+    } else {
+      //return error
+    }
   }
 
   //TODO parameters
