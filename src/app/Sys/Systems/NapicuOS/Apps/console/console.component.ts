@@ -80,7 +80,6 @@ export class ConsoleComponent implements OnInit {
       await NapicuOS.run_command(inputCmd, inputSplit).then((value: CommandFunMetadata) => {
         if (value) {
           this.lines[this.lines.length - 1].lines = value.linesForCMD;
-          console.log(input);          
           this.setHistoryCommand(input);
         }
       });

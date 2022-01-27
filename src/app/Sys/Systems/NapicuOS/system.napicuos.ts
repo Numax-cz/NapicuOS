@@ -311,23 +311,38 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       };
     }
   }
-
+  //TODO DOC
   public static add_file_to_dock(file: SystemFile): void {
     this.get_active_user()?.get_user_settings().appsInDock.push(file);
   }
-
+  /**
+   * Adds the file to the directory
+   *
+   * Checks if the same file name is in the directory
+   * @param dir Directory to which the file should be added
+   * @param file The file to be added to the directory
+   */
   public static add_file_to_dir(
     dir: systemDirAFileMetadata | undefined,
     file: SystemFile
-  ): SystemStateMetadata.FileAlreadyExists | SystemStateMetadata.FileAddedSuccess {
+  ):
+    | SystemStateMetadata.FileAlreadyExists
+    | SystemStateMetadata.FileAddedSuccess
+    | SystemStateMetadata.DirNotExist {
     if (dir?.files) {
+      if (
+        dir.files.filter((value: SystemFile) => {
+          return value.get_file_name() === file.get_file_name();
+        })?.length
+      ) {
+        return SystemStateMetadata.FileAlreadyExists;
+      }
       dir.files.push(file);
     } else {
-      return SystemStateMetadata.FileAlreadyExists;
+      return SystemStateMetadata.DirNotExist;
     }
     return SystemStateMetadata.FileAddedSuccess;
   }
-
   /**
    * Create and add users
    * @param username New user's username
@@ -376,7 +391,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     this.logout_user();
   }
-
+  //TODO Dock
   public static delete_command(cmd: string): any {
     //TODO Do this
   }
