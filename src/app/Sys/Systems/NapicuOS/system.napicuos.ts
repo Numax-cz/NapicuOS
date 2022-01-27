@@ -191,7 +191,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     return i;
   }
-
   /**
    * Returns the command class by specified command
    * @param command command
@@ -265,22 +264,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Register the command
    */
-  public static register_command(cmd: Command): void {
+  public static register_command(
+    cmd: Command
+  ): SystemStateMetadata.RegisterCommandAlreadyExists | SystemStateMetadata.RegisterCommandSuccess {
     const commands = this.get_available_commands();
     var x = commands.filter((value: SystemFile) => {
       var x = value.get_value() as Command;
       return x.get_command() === cmd.get_command();
     });
-
     if (!x.length) {
       commands.push(new SystemFile({ value: cmd, fileName: cmd.get_command_name(), fileType: 'executable' }));
+      return SystemStateMetadata.RegisterCommandSuccess;
     } else {
-      //return error
+      return SystemStateMetadata.RegisterCommandAlreadyExists;
     }
-
   }
 
-  //TODO parameters
   public static async run_command(cmd: string, params?: string[]): Promise<CommandFunMetadata> {
     var i: Command = NapicuOS.get_command_by_commandStr(cmd)?.get_value() as Command;
     var x: Process = NapicuOS.get_system_activated_window_app();

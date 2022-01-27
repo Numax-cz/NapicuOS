@@ -27,4 +27,7 @@ export declare const enum SystemStateMetadata {
   FileAlreadyExists = 1059,
   FileAddedSuccess = 1060,
   DirNotExist = 1050,
+
+  RegisterCommandAlreadyExists = 9059,
+  RegisterCommandSuccess = 9060,
 }
