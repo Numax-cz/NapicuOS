@@ -38,7 +38,7 @@ export class LoginscreenComponent implements OnInit {
   public login(): void {
     var x = NapicuOS.log_user(this.username, this.password);
 
-    if (x === SystemStateMetadata.UserLoginSucces) {
+    if (x === SystemStateMetadata.UserLoginSuccess) {
       this.isErrorLogin = false;
       SystemComponent.SysComponent = NapicuOSComponent;
     } else if (x === SystemStateMetadata.UserFailLogin) {
