@@ -35,3 +35,4 @@ export function napicu_os_welcomeapp(): SystemFile {
 export function napicu_os_terminal(): SystemFile{
   return NapicuOS.create_app('Terminal', 'Terminal', ConsoleComponent);
 }
+ 
