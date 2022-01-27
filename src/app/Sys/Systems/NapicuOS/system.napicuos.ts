@@ -390,9 +390,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
   /**
    * Adds and installs the application
-   * @param appTitle Application name
-   * @param processTitle Application process name
-   * @param appComponent Application component (GUI)
+   * @param appTitle Application's name
+   * @param processTitle Application's process name
+   * @param appComponent Application's component (GUI)
    */
   public static creat_app(appTitle: string, processTitle: string, appComponent: Type<any>): SystemFile {
     var Application = new SystemFile({
