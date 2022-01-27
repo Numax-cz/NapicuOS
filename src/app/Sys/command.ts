@@ -7,11 +7,11 @@ export class Command {
   /**
    * Full command name
    */
-  public declare commandName: string;
+  private declare commandName: string;
   /**
    * The expression after which the command function is executed
    */
-  public declare command: string;
+  private declare command: string;
   /**
    * Command Function
    */
@@ -32,11 +32,22 @@ export class Command {
     permissions?: SystemUserPermissionsMetadata
   ) {
     this.commandName = commandName;
-    this.command = command;
+    this.command = command.toLocaleLowerCase();
     this.fun = fun;
     this.permissions = permissions ? permissions : 'user';
   }
-
+  /**
+   * Returns the command prefix
+   */
+  public get_command(): string {
+    return this.command;
+  }
+  /**
+   * Returns the command name
+   */
+  public get_command_name(): string {
+    return this.commandName;
+  }
   /**
    * Function that executes the function in the command
    */

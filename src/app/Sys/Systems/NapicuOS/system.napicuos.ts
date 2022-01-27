@@ -187,7 +187,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     var i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
       var p = element.get_value() as Command;
-      return p.commandName === commandName;
+      return p.get_command_name() === commandName;
     });
     return i;
   }
@@ -201,7 +201,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     var i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
       var p = element.get_value() as Command;
-      return p.command === command;
+      return p.get_command() === command;
     });
     return i[0];
   }
@@ -269,14 +269,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     const commands = this.get_available_commands();
     var x = commands.filter((value: SystemFile) => {
       var x = value.get_value() as Command;
-      return x.command === cmd.command;
+      return x.get_command() === cmd.get_command();
     });
 
     if (!x.length) {
-      commands.push(new SystemFile({ value: cmd, fileName: cmd.commandName, fileType: 'executable' }));
+      commands.push(new SystemFile({ value: cmd, fileName: cmd.get_command_name(), fileType: 'executable' }));
     } else {
       //return error
     }
+
   }
 
   //TODO parameters
