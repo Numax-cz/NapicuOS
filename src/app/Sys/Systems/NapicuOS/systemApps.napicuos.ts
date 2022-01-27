@@ -13,6 +13,7 @@ export function initAllStartUpApps(): void {
 
   napicu_os_welcomeapp().open();
   napicu_os_terminal().open();
+
 }
 
 export function napicu_os_time(): Process {
@@ -28,9 +29,9 @@ export function napicu_os_time(): Process {
 }
 
 export function napicu_os_welcomeapp(): SystemFile {
- return NapicuOS.creat_app('Installer', 'Install NapicuOS', WelcomeComponent);
+ return NapicuOS.create_app('Installer', 'Install NapicuOS', WelcomeComponent);
 }
 
 export function napicu_os_terminal(): SystemFile{
-  return NapicuOS.creat_app('Terminal', 'Terminal', ConsoleComponent);
+  return NapicuOS.create_app('Terminal', 'Terminal', ConsoleComponent);
 }
