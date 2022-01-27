@@ -29,13 +29,13 @@ export class Process {
     });
   }
 
-  public install(): this {
-    if (NapicuOS.get_apps_dir()?.files?.push(this.file) == SystemStateMetadata.FileAlreadyExists) {
-      //TODO REMOVE
-      console.error('[DEBUG] Adding a file to the directory was done with an error');
-    }
-    return this;
-  }
+  // public install(): this {
+  //   if (NapicuOS.get_apps_dir()?.files?.push(this.file) == SystemStateMetadata.FileAlreadyExists) {
+  //     //TODO REMOVE
+  //     console.error('[DEBUG] Adding a file to the directory was done with an error');
+  //   }
+  //   return this;
+  // }
 
   public addToDock(): this {
     NapicuOS.add_file_to_dock(this.file);

@@ -2,20 +2,17 @@ import { Process } from '../../Process';
 import { ConsoleComponent } from './Apps/console/console.component';
 import { WelcomeComponent } from './Apps/welcome/welcome.component';
 import { NapicuOS } from './system.napicuos';
-import { Window } from '../../Window';
-import { copy } from 'src/app/Scripts/DeepClone';
 import { SystemFile } from '../../File';
 
+
 export function initAllSystemProcess(): void {
-  napicu_os_time().install().runAsSystem();
+  napicu_os_time().runAsSystem();
 }
 
 export function initAllStartUpApps(): void {
-  napicu_os_terminal().install().addToDock().run().Window.open();
 
-  if (!NapicuOS.systemData.instaled) {
-    napicu_os_welcomeapp().install().run().Window.open();
-  }
+  napicu_os_welcomeapp().open();
+  napicu_os_terminal().open();
 }
 
 export function napicu_os_time(): Process {
@@ -30,16 +27,10 @@ export function napicu_os_time(): Process {
   });
 }
 
-export function napicu_os_welcomeapp(): Process {
-  return new Process({
-    Window: new Window(WelcomeComponent, 'Installer'),
-    processTitle: 'Install NapicuOS',
-  });
+export function napicu_os_welcomeapp(): SystemFile {
+ return NapicuOS.creat_app('Installer', 'Install NapicuOS', WelcomeComponent);
 }
 
-export function napicu_os_terminal(): Process {
-  return new Process({
-    Window: new Window(ConsoleComponent, 'Terminal'),
-    processTitle: 'Terminal',
-  });
+export function napicu_os_terminal(): SystemFile{
+  return NapicuOS.creat_app('Terminal', 'Terminal', ConsoleComponent);
 }

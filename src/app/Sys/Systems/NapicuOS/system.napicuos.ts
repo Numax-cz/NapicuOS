@@ -30,6 +30,8 @@ import { copy } from 'src/app/Scripts/DeepClone';
 import { User } from '../../User';
 import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
 import { LoginscreenComponent } from './components/loginscreen/loginscreen.component';
+import { Type } from '@angular/core';
+import { Window } from '../../Window';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -386,6 +388,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     GrubComponent.ActiveSystem.onLogin();
     return SystemStateMetadata.UserLoginSuccess;
   }
+  /**
+   * Adds and installs the application
+   * @param appTitle Application name
+   * @param processTitle Application process name
+   * @param appComponent Application component (GUI)
+   */
+  public static creat_app(appTitle: string, processTitle: string, appComponent: Type<any>): SystemFile {
+    var Application = new SystemFile({
+      fileName: appTitle,
+      fileType: 'executable',
+      value: new Process({
+        Window: new Window(appComponent, appTitle),
+        processTitle: processTitle,
+      }),
+    });
+    this.get_apps_dir()?.files?.push(Application);
+    return Application;
+  }
+
   /**
    * Logs the user out
    */
