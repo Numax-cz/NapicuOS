@@ -331,6 +331,30 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return SystemStateMetadata.FileAddedSuccess;
   }
   /**
+   * Opens a file in a specific directory
+   * @param dir The directory in which you want to open the specific file
+   * @param fileName The name of the file you want to open
+   */
+  public static open_file_in_dir(
+    dir: systemDirAFileMetadata | undefined,
+    fileName: string
+  ):
+    | SystemStateMetadata.DirNotExist
+    | SystemStateMetadata.FileNotExist
+    | SystemStateMetadata.FileOpenSuccess {
+    if (dir?.files) {
+      var x = dir.files.filter((value: SystemFile) => {
+        return value.get_file_name() === fileName;
+      })[0];
+      if (x) {
+        x.open();
+        return SystemStateMetadata.FileOpenSuccess;
+      }
+      return SystemStateMetadata.FileNotExist;
+    }
+    return SystemStateMetadata.DirNotExist;
+  }
+  /**
    * Create and add users
    * @param username New user's username
    * @param password New user's password

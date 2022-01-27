@@ -3,16 +3,15 @@ import { ConsoleComponent } from './Apps/console/console.component';
 import { WelcomeComponent } from './Apps/welcome/welcome.component';
 import { NapicuOS } from './system.napicuos';
 import { Window } from '../../Window';
+import { copy } from 'src/app/Scripts/DeepClone';
+import { SystemFile } from '../../File';
 
 export function initAllSystemProcess(): void {
   napicu_os_time().install().runAsSystem();
-
-
-
 }
 
 export function initAllStartUpApps(): void {
-  napicu_os_terminal().install().run().Window.open();
+  napicu_os_terminal().install().addToDock().run().Window.open();
 
   if (!NapicuOS.systemData.instaled) {
     napicu_os_welcomeapp().install().run().Window.open();

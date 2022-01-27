@@ -9,6 +9,7 @@ import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
 import { setHelpCommand } from './config/commands/help/setCommand';
 import { addUserUsage } from './config/commands/help/addUserCommand';
 import { User } from '../../User';
+import { NapicuOSSystemDir } from './config/drive';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
 }
@@ -22,9 +23,11 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', 'shell', (params, activatedWindow) => {
       return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({ linesForCMD: [], stateCode: 0 });
-        }, 1000);
+        function testFunction(): void {
+          console.log(NapicuOS.get_apps_dir());
+          
+        }
+        resolve(testFunction());
       });
     })
   );
@@ -35,6 +38,7 @@ export function initAllCommands(): void {
   initCreateUser();
   initLogout();
   initLogout();
+  initOpenApp();
 }
 
 function initCreateUser(): void {
@@ -116,7 +120,10 @@ function initGetSystemInformation(): void {
               var exportLines: Line[] = [];
               commands.forEach((value: SystemFile, index: number) => {
                 exportLines.push(
-                  new Line(`${index} | ${value.get_value().commandName} : ${value.get_value().command} `, 'white')
+                  new Line(
+                    `${index} | ${value.get_value().commandName} : ${value.get_value().command} `,
+                    'white'
+                  )
                 );
               });
               return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
@@ -202,6 +209,20 @@ function initExitFromConsole(): void {
     new Command('Exit', 'exit', (params, activatedWindow) => {
       return new Promise((resolve) => {
         resolve(activatedWindow?.kill());
+      });
+    })
+  );
+}
+
+function initOpenApp(): void {
+  NapicuOS.register_command(
+    new Command('OpenApp', 'openapp', (params, activatedWindow) => {
+      return new Promise((resolve) => {
+        if (params?.length) {
+          var x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);
+
+          resolve({ linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x });
+        }
       });
     })
   );

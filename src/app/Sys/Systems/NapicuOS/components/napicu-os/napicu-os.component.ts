@@ -6,6 +6,7 @@ import { wallpaper } from '../../config/wallpaper';
 import { system_dock_animations } from '../../config/systemAnimations';
 import { NapicuOS } from '../../system.napicuos';
 import { SystemFile } from 'src/app/Sys/File';
+import { System } from 'src/app/Sys/System';
 
 @Component({
   selector: 'app-napicu-os',
@@ -47,8 +48,8 @@ export class NapicuOSComponent implements OnInit {
     NapicuOSComponent.BottomDockDisplay = true;
   }
 
-  public dockRunner(process: Process): void {
-    process.run();
+  public dockRunner(file: SystemFile): void {
+    file.open();
   }
 
   get systemTime(): string {

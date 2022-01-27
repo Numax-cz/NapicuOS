@@ -1,5 +1,7 @@
+import { copy } from '../Scripts/DeepClone';
 import { GrubComponent } from '../System/grub/grub.component';
 import { SystemFile } from './File';
+import { System } from './System';
 import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
 import { processConstructor } from './Systems/NapicuOS/interface/process';
 import { SystemStateMetadata } from './Systems/NapicuOS/interface/system';
@@ -12,21 +14,31 @@ export class Process {
   public declare pid: number;
   public declare Interval: any;
   public declare Window: Window;
+  private declare file: SystemFile;
   private declare processInterval: { fun: () => void; time: number };
 
+  constructor(data: processConstructor) {
+    if (data?.Window) this.Window = data.Window;
+    if (data?.processTitle) this.processTitle = data.processTitle;
+    if (data?.processInterval) this.processInterval = data.processInterval;
+    this.launchedBy = NapicuOS.get_active_user()?.get_username() || 'System';
+    this.file = new SystemFile({
+      fileName: this.processTitle,
+      value: this,
+      fileType: 'executable',
+    });
+  }
+
   public install(): this {
-    if (
-      NapicuOS.get_apps_dir()?.files?.push(
-        new SystemFile({
-          fileName: this.processTitle,
-          value: this,
-          fileType: 'executable',
-        })
-      ) == SystemStateMetadata.FileAlreadyExists
-    ) {
+    if (NapicuOS.get_apps_dir()?.files?.push(this.file) == SystemStateMetadata.FileAlreadyExists) {
       //TODO REMOVE
       console.error('[DEBUG] Adding a file to the directory was done with an error');
     }
+    return this;
+  }
+
+  public addToDock(): this {
+    NapicuOS.add_file_to_dock(this.file);
     return this;
   }
 
@@ -55,14 +67,6 @@ export class Process {
       GrubComponent.ActiveSystem.SystemProcess.splice(this.pid, 1);
     }, x);
   }
-
-  constructor(data: processConstructor) {
-    if (data?.Window) this.Window = data.Window;
-    if (data?.processTitle) this.processTitle = data.processTitle;
-    if (data?.processInterval) this.processInterval = data.processInterval;
-    this.launchedBy = NapicuOS.get_active_user()?.get_username() || 'System';
-  }
-
   // public onRun(): void {}
 
   // public onClose(): void {}
