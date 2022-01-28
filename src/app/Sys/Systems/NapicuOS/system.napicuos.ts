@@ -32,6 +32,7 @@ import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
 import { LoginscreenComponent } from './components/loginscreen/loginscreen.component';
 import { Type } from '@angular/core';
 import { Window } from '../../Window';
+import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -277,7 +278,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return x.get_command() === cmd.get_command();
     });
     if (!x.length) {
-      commands.push(new SystemFile({ value: cmd, fileName: cmd.get_command_name(), fileType: 'executable' }));
+      commands.push(
+        new SystemFile({ value: cmd, fileName: cmd.get_command_name(), fileType: 'shell-command' })
+      );
       return SystemStateMetadata.RegisterCommandSuccess;
     } else {
       return SystemStateMetadata.RegisterCommandAlreadyExists;
@@ -285,16 +288,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static async run_command(cmd: string, params?: string[]): Promise<CommandFunMetadata> {
-    var i: Command = NapicuOS.get_command_by_commandStr(cmd)?.get_value() as Command;
+    var i: SystemFile = NapicuOS.get_command_by_commandStr(cmd);
     var x: Process = NapicuOS.get_system_activated_window_app();
     if (i) {
-      if (i.permissions === 'superUser' && this.activeUser?.get_permissions() !== 'superUser') {
+      if (
+        i.get_permissions().read === SystemUserPermissionsEnumMetadata.SuperUser &&
+        this.activeUser?.get_permissions() !== SystemUserPermissionsEnumMetadata.SuperUser
+      ) {
         return {
           linesForCMD: [new Line(`${cmd}: Permission denied`, 'red')],
           stateCode: CommandStateCodeMetadata.PermissionsError,
         };
       }
-      return await i.run(params, x);
+      return await i.open();
     } else {
       return {
         linesForCMD: [new Line(`${cmd}: command not found`, 'red')],

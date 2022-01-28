@@ -10,6 +10,7 @@ import { setHelpCommand } from './config/commands/help/setCommand';
 import { addUserUsage } from './config/commands/help/addUserCommand';
 import { User } from '../../User';
 import { NapicuOSSystemDir } from './config/drive';
+import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
 }
@@ -23,10 +24,9 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', 'shell', (params, activatedWindow) => {
       return new Promise((resolve) => {
-        function testFunction(): void {
-          console.log(NapicuOS.get_apps_dir());
-        }
-        resolve(testFunction());
+        setTimeout(() => {
+          resolve({linesForCMD : [new Line('se')], stateCode: 12  })
+        }, 1000);
       });
     })
   );
@@ -42,29 +42,24 @@ export function initAllCommands(): void {
 
 function initCreateUser(): void {
   NapicuOS.register_command(
-    new Command(
-      'CreateUser',
-      'adduser',
-      (params) => {
-        return new Promise((resolve) => {
-          if (params?.length == 2) {
-            var username = params[0];
-            var password = params[1];
-            var x = NapicuOS.get_users().filter((value) => {
-              return value.get_username() === username;
-            });
-            if (!x.length) {
-              resolve(NapicuOS.add_user(new User(username, password)));
-            } else {
-              console.log('není');
-            }
+    new Command('CreateUser', 'adduser', (params) => {
+      return new Promise((resolve) => {
+        if (params?.length == 2) {
+          var username = params[0];
+          var password = params[1];
+          var x = NapicuOS.get_users().filter((value) => {
+            return value.get_username() === username;
+          });
+          if (!x.length) {
+            resolve(NapicuOS.add_user(new User(username, password)));
           } else {
-            resolve({ linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand });
+            console.log('není');
           }
-        });
-      },
-      'superUser'
-    )
+        } else {
+          resolve({ linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand });
+        }
+      });
+    })
   );
 }
 
@@ -166,30 +161,25 @@ function initSetSystemInformation(): void {
 
 function initKillProcess(): void {
   NapicuOS.register_command(
-    new Command(
-      'SystemProcessKiller',
-      'kill',
-      (params) => {
-        return new Promise((resolve) => {
-          if (params?.length) {
-            if (params[0]) {
-              var x = NapicuOS.get_system_process_by_title(params[0]);
-              if (x) resolve(x.kill());
-              resolve({
-                linesForCMD: [new Line(`Process '${params[0]}' not found`)],
-                stateCode: CommandStateCodeMetadata.ProcessNotFound,
-              });
-            }
-          } else {
+    new Command('SystemProcessKiller', 'kill', (params) => {
+      return new Promise((resolve) => {
+        if (params?.length) {
+          if (params[0]) {
+            var x = NapicuOS.get_system_process_by_title(params[0]);
+            if (x) resolve(x.kill());
             resolve({
-              linesForCMD: [usageCommand(`kill <process_name>`)],
-              stateCode: CommandStateCodeMetadata.success,
+              linesForCMD: [new Line(`Process '${params[0]}' not found`)],
+              stateCode: CommandStateCodeMetadata.ProcessNotFound,
             });
           }
-        });
-      },
-      'superUser'
-    )
+        } else {
+          resolve({
+            linesForCMD: [usageCommand(`kill <process_name>`)],
+            stateCode: CommandStateCodeMetadata.success,
+          });
+        }
+      });
+    })
   );
 }
 

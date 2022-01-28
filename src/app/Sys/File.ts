@@ -1,5 +1,8 @@
+import { Command } from './command';
 import { Process } from './Process';
 import { SystemFileConsMetadata, SystemFileTypeMetadata } from './Systems/NapicuOS/interface/FilesDirs/file';
+import { SystemFilePermissionsMetadata } from './Systems/NapicuOS/interface/permissions';
+import { SystemUserPermissionsEnumMetadata } from './Systems/NapicuOS/interface/User/user';
 
 export class SystemFile {
   //TODO DOC
@@ -19,7 +22,7 @@ export class SystemFile {
 
   private fileName: string = 'New_File';
 
-  private permission: any;
+  private declare permissions: SystemFilePermissionsMetadata;
 
   //TODO DOC
   /**
@@ -32,6 +35,8 @@ export class SystemFile {
     this.value = data.value;
     this.fileName = data.fileName;
     this.fileType = data.fileType;
+    this.permissions = data.permissions ? data.permissions : { read: SystemUserPermissionsEnumMetadata.User };
+
     //TODO permissions
   }
 
@@ -43,20 +48,29 @@ export class SystemFile {
     return this.fileName;
   }
 
-  public get_icon_path(): string{
+  public get_icon_path(): string {
     return this.iconPath;
   }
 
-  public open(): void {
-    switch (this.fileType) {
-      case 'executable':
-        var x = this.value() as Process;
-        x.run().Window.open();
+  public get_permissions(): SystemFilePermissionsMetadata {
+    return this.permissions;
+  }
 
-        break;
+  public open(): Promise<any> {
+    return new Promise(async (resolve) => {
+      switch (this.fileType) {
+        case 'executable':
+          let process = this.value() as Process;
+          resolve(process.run().Window.open());
+          break;
+        case 'shell-command':
+          let command = this.value as Command;
+          resolve(await command.run());
+          break;
 
-      default:
-        break;
-    }
+        default:
+          break;
+      }
+    });
   }
 }

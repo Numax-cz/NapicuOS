@@ -1,21 +1,21 @@
 import { Process } from './Process';
 import {
   SystemUserDataMetadata,
-  SystemUserPermissionsMetadata,
+  SystemUserPermissionsEnumMetadata,
 } from './Systems/NapicuOS/interface/User/user';
 
 export class User {
   private username: string = 'user';
   public running: boolean = false;
   private declare password: string;
-  private declare permissions: SystemUserPermissionsMetadata;
+  private declare permissions: SystemUserPermissionsEnumMetadata;
   private userSetting: SystemUserDataMetadata = {
     appsInDock: [],
   };
-  constructor(username: string, password: string, userpermissions?: SystemUserPermissionsMetadata) {
+  constructor(username: string, password: string, userpermissions?: SystemUserPermissionsEnumMetadata) {
     this.username = username;
     this.password = password;
-    this.permissions = userpermissions ? userpermissions : 'user';
+    this.permissions = userpermissions ? userpermissions : SystemUserPermissionsEnumMetadata.User;
   }
 
   //* * * *  Getters * * *
@@ -34,7 +34,7 @@ export class User {
   /**
    * Returns the user's permissions
    */
-  public get_permissions(): SystemUserPermissionsMetadata {
+  public get_permissions(): SystemUserPermissionsEnumMetadata {
     return this.permissions;
   }
   /**
@@ -60,7 +60,7 @@ export class User {
   /**
    * Sets the user's permissions
    */
-  public set_permissions(value: SystemUserPermissionsMetadata): void {
+  public set_permissions(value: SystemUserPermissionsEnumMetadata): void {
     this.permissions = value;
   }
 }

@@ -1,7 +1,6 @@
 import { Process } from './Process';
 import { Line } from './Systems/NapicuOS/Apps/console/console.component';
 import { CommandStateCodeMetadata } from './Systems/NapicuOS/interface/Commands/commandsCodes';
-import { SystemUserPermissionsMetadata } from './Systems/NapicuOS/interface/User/user';
 export declare type CommandFunMetadata = { linesForCMD: Line[]; stateCode: number } | void;
 export class Command {
   /**
@@ -17,8 +16,6 @@ export class Command {
    */
   private declare fun: (params?: string[], activatedWindow?: Process) => Promise<CommandFunMetadata>;
 
-  public declare permissions: SystemUserPermissionsMetadata;
-
   /**
    *
    * @param {string}commandName Full command name
@@ -28,13 +25,11 @@ export class Command {
   constructor(
     commandName: string,
     command: string,
-    fun: (params: string[] | undefined, activatedWindow?: Process) => Promise<CommandFunMetadata>,
-    permissions?: SystemUserPermissionsMetadata
+    fun: (params: string[] | undefined, activatedWindow?: Process) => Promise<CommandFunMetadata>
   ) {
     this.commandName = commandName;
     this.command = command.toLocaleLowerCase();
     this.fun = fun;
-    this.permissions = permissions ? permissions : 'user';
   }
   /**
    * Returns the command prefix
