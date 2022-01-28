@@ -4,18 +4,16 @@ import { WelcomeComponent } from './Apps/welcome/welcome.component';
 import { NapicuOS } from './system.napicuos';
 import { SystemFile } from '../../File';
 import { AlertComponent } from './Apps/alert/alert.component';
-
+import { Window } from '../../Window';
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
 }
 
 export function initAllStartUpApps(): void {
-
   //napicu_os_welcomeapp().open();
   napicu_os_terminal().open();
-  napicu_os_alertwindow().open()
-
+  napicu_os_alertwindow().open();
 }
 
 export function napicu_os_time(): Process {
@@ -31,13 +29,13 @@ export function napicu_os_time(): Process {
 }
 
 export function napicu_os_welcomeapp(): SystemFile {
- return NapicuOS.create_app('Installer', 'Install NapicuOS', WelcomeComponent);
+  return NapicuOS.create_app('Installer', 'Install NapicuOS', WelcomeComponent);
 }
 
-export function napicu_os_terminal(): SystemFile{
+export function napicu_os_terminal(): SystemFile {
   return NapicuOS.create_app('Terminal', 'Terminal', ConsoleComponent);
 }
- 
-export function napicu_os_alertwindow(): SystemFile{
-  return NapicuOS.create_app('WindowAlert', 'WindowAlert', AlertComponent);
+
+export function napicu_os_alertwindow(): SystemFile {
+  return NapicuOS.create_app('WindowAlert', 'WindowAlert', AlertComponent, Window.centerPos(15,15));
 }

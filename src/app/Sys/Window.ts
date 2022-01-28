@@ -44,6 +44,7 @@ export class Window {
     this.WindowComponent = component;
     if (WindowTitle) this.WindowTitle = WindowTitle;
     if (windowData) this.appData = windowData;
+    this.appData.z_index = 1;
   }
 
   public readonly open = (): void => {
@@ -57,7 +58,14 @@ export class Window {
   };
 
   //* * * *  Getters * * *
-
+  public static centerPos(width: number, height: number): windowData {
+    return {
+      width: width,
+      height: height,
+      posX: 50 - Math.round(width / 2),
+      posY: 50 - Math.round(height / 2),
+    };
+  }
   //? Getters State
   /**
    * Returns if the application window state is maximized

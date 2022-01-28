@@ -18,7 +18,7 @@ export declare interface windowData {
   /**
    * Window z-index
    */
-  z_index: number;
+  z_index?: number;
 }
 
 /**

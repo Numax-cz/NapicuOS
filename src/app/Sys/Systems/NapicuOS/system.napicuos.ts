@@ -408,6 +408,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param appTitle Application's name
    * @param processTitle Application's process name
    * @param appComponent Application's component (GUI)
+   * @param windowData Application's settings (size & position)
    */
   public static create_app(
     appTitle: string,
