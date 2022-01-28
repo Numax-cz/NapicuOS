@@ -6,6 +6,7 @@ import {
 
 export class User {
   private username: string = 'user';
+  public running: boolean = false;
   private declare password: string;
   private declare permissions: SystemUserPermissionsMetadata;
   private userSetting: SystemUserDataMetadata = {

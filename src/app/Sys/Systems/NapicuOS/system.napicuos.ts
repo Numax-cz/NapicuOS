@@ -382,6 +382,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     var u = this.get_user(username);
     if (u && u.get_password() === password) {
       this.activeUser = u;
+      this.activeUser.running = true;
     } else {
       return SystemStateMetadata.UserFailLogin;
     }
@@ -419,10 +420,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Log out the user and terminate their running processes
    */
   public static logout_user_and_kill_user_process(): void {
-    this.get_user_process(this.activeUser?.get_username()).forEach((value: Process) => {
-      value.kill();
-    });
-    this.logout_user();
+    const acUser = this.activeUser;
+    if (acUser) {
+      this.get_user_process(acUser.get_username()).forEach((value: Process) => {
+        value.kill();
+      });
+      acUser.running = false;
+      this.logout_user();
+    }
   }
   //TODO Dock
   public static delete_command(cmd: string): any {

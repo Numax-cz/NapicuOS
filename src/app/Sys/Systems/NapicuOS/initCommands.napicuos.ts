@@ -197,7 +197,7 @@ function initLogout(): void {
   NapicuOS.register_command(
     new Command('UserLogout', 'logout', (params) => {
       return new Promise((resolve) => {
-        resolve(NapicuOS.logout_user_and_kill_user_process());
+        resolve(NapicuOS.logout_user());
       });
     })
   );
