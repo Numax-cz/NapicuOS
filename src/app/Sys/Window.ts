@@ -11,12 +11,7 @@ export class Window {
   /**
    * Default application window settings
    */
-  public static defaultWindowAppData: windowData = {
-    posX: 30,
-    posY: 30,
-    width: 40,
-    height: 40,
-  };
+  public static defaultWindowAppData: windowData = Window.centerPos(40, 40);
   /**
    * Window z-index
    */
@@ -58,8 +53,11 @@ export class Window {
     this.display = false;
     WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
   };
-
-  //* * * *  Getters * * *
+  /**
+   * Returns centered application window settings
+   * @param width Window width
+   * @param height Window height
+   */
   public static centerPos(width: number, height: number): windowData {
     return {
       width: width,
@@ -68,6 +66,7 @@ export class Window {
       posY: 50 - Math.round(height / 2),
     };
   }
+  //* * * *  Getters * * *
   //? Getters State
   /**
    * Returns if the application window state is maximized

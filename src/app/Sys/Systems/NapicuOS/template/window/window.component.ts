@@ -154,7 +154,7 @@ export class WindowComponent implements OnInit {
     window.addEventListener('mousedown', (e: MouseEvent) => {
       var p = e.target as HTMLElement;
 
-      if (p.offsetParent?.id !== 'napicuos-App-window' && this.selectedWindow.activated) {
+      if (p.offsetParent?.id !== 'napicuos-App-window' && this.selectedWindow?.activated) {
         this.selectedWindow.activated = false;
       }
     });
@@ -269,16 +269,17 @@ export class WindowComponent implements OnInit {
 
   public activeWindow(i: Window, index: number): void {
     if (this.selectedWindow?.activated) this.selectedWindow.activated = false;
-    WindowComponent.WindowHistory.slice(index, 1);
+    WindowComponent.WindowHistory = WindowComponent.WindowHistory.slice(index, 1);
     WindowComponent.WindowHistory.push(i);
+    console.log(WindowComponent.WindowHistory);
+
     WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
       element.z_index = index;
     });
+    console.log(WindowComponent.WindowHistory);
 
     this.selectedWindow = i;
     i.activated = true;
-
-    WindowComponent;
   }
   /**
    * Functions for saving parameters
@@ -334,12 +335,11 @@ export class WindowComponent implements OnInit {
         w /= 2;
         h /= 2;
       }
-
       var perNowX = percentageValue(
-        percentage(event.pageX - (v.isStateRight() ? window.innerWidth / 2 : 0), w),
+        percentage(x - (v.isStateRight() ? window.innerWidth / 2 : 0), w),
         this.selectedWindow.getWidth()
       );
-      var perNowY = percentageValue(percentage(event.pageY + 50, h), this.selectedWindow.getHeight());
+      var perNowY = percentageValue(percentage(y + 50, h), this.selectedWindow.getHeight());
 
       this.originalX = -perNowX;
       this.originalY = -perNowY;
