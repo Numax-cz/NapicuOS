@@ -3,6 +3,7 @@ import { ConsoleComponent } from './Apps/console/console.component';
 import { WelcomeComponent } from './Apps/welcome/welcome.component';
 import { NapicuOS } from './system.napicuos';
 import { SystemFile } from '../../File';
+import { AlertComponent } from './Apps/alert/alert.component';
 
 
 export function initAllSystemProcess(): void {
@@ -11,8 +12,9 @@ export function initAllSystemProcess(): void {
 
 export function initAllStartUpApps(): void {
 
-  napicu_os_welcomeapp().open();
+  //napicu_os_welcomeapp().open();
   napicu_os_terminal().open();
+  napicu_os_alertwindow().open()
 
 }
 
@@ -36,3 +38,6 @@ export function napicu_os_terminal(): SystemFile{
   return NapicuOS.create_app('Terminal', 'Terminal', ConsoleComponent);
 }
  
+export function napicu_os_alertwindow(): SystemFile{
+  return NapicuOS.create_app('WindowAlert', 'WindowAlert', AlertComponent);
+}

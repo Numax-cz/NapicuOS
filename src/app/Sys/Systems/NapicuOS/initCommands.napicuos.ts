@@ -52,9 +52,8 @@ function initCreateUser(): void {
           });
           if (!x.length) {
             resolve(NapicuOS.add_user(new User(username, password)));
-          } else {
-            console.log('není');
-          }
+          } 
+          //TODO ERROR ELSE
         } else {
           resolve({ linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand });
         }
