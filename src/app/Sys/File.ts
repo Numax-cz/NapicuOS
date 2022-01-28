@@ -50,7 +50,7 @@ export class SystemFile {
   public open(): void {
     switch (this.fileType) {
       case 'executable':
-        var x = this.value as Process;
+        var x = this.value() as Process;
         x.run().Window.open();
 
         break;

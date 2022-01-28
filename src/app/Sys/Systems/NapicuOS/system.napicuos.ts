@@ -398,10 +398,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     var Application = new SystemFile({
       fileName: appTitle,
       fileType: 'executable',
-      value: new Process({
-        Window: new Window(appComponent, appTitle),
-        processTitle: processTitle,
-      }),
+      value: () => {
+        return new Process({
+          Window: new Window(appComponent, appTitle),
+          processTitle: processTitle,
+        });
+      },
     });
     this.get_apps_dir()?.files?.push(Application);
     return Application;
