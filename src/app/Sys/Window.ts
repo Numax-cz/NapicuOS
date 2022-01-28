@@ -8,7 +8,16 @@ import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
 export class Window {
-
+  /**
+   * Default application window settings
+   */
+  public static defaultWindowAppData: windowData = {
+    posX: 30,
+    posY: 30,
+    width: 40,
+    height: 40,
+    z_index: 1,
+  };
   /**
    * Title of the application window
    */
@@ -30,18 +39,11 @@ export class Window {
    */
   public state: windowState = 'normal';
 
-
-
-  public appData: windowData = {
-    posX: 30,
-    posY: 30,
-    width: 40,
-    height: 40,
-    z_index: 1,
-  };
-  constructor(component: Type<any>, WindowTitle?: string) {
+  public appData: windowData = Window.defaultWindowAppData;
+  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData) {
     this.WindowComponent = component;
     if (WindowTitle) this.WindowTitle = WindowTitle;
+    if (windowData) this.appData = windowData;
   }
 
   public readonly open = (): void => {

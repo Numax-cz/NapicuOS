@@ -34,6 +34,7 @@ import { Type } from '@angular/core';
 import { Window } from '../../Window';
 import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
 import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
+import { windowData } from './interface/Window/windowData';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -280,7 +281,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     if (!x.length) {
       commands.push(
-        new SystemFile({ value: cmd, fileName: cmd.get_command_name(), fileType: SystemFileTypeEnumMetadata.executable })
+        new SystemFile({
+          value: cmd,
+          fileName: cmd.get_command_name(),
+          fileType: SystemFileTypeEnumMetadata.executable,
+        })
       );
       return SystemStateMetadata.RegisterCommandSuccess;
     } else {
@@ -404,13 +409,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param processTitle Application's process name
    * @param appComponent Application's component (GUI)
    */
-  public static create_app(appTitle: string, processTitle: string, appComponent: Type<any>): SystemFile {
+  public static create_app(
+    appTitle: string,
+    processTitle: string,
+    appComponent: Type<any>,
+    windowData?: windowData
+  ): SystemFile {
     var Application = new SystemFile({
       fileName: appTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return new Process({
-          Window: new Window(appComponent, appTitle),
+          Window: new Window(appComponent, appTitle, windowData),
           processTitle: processTitle,
         });
       },
