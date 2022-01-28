@@ -81,7 +81,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onLogin(): void {
-    initAllStartUpApps();
+    if (!NapicuOS.activeUser?.running) {
+      initAllStartUpApps();
+    }
   }
 
   public override onKeyPress(ev: KeyboardEvent) {}
@@ -382,11 +384,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     var u = this.get_user(username);
     if (u && u.get_password() === password) {
       this.activeUser = u;
-      this.activeUser.running = true;
     } else {
       return SystemStateMetadata.UserFailLogin;
     }
     GrubComponent.ActiveSystem.onLogin();
+    if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
     return SystemStateMetadata.UserLoginSuccess;
   }
   /**

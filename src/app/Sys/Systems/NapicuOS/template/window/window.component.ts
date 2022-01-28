@@ -381,7 +381,7 @@ export class WindowComponent implements OnInit {
    * Application process rollback function
    */
   get AppProcess(): Process[] {
-    return NapicuOS.get_system_process();
+    return NapicuOS.get_user_process(NapicuOS.get_active_user()?.get_username()) || [];
   }
   /**
    * Returns whether the system has been started
