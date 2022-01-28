@@ -15,10 +15,6 @@ export declare interface windowData {
    * Window height
    */
   height: number;
-  /**
-   * Window z-index
-   */
-  z_index?: number;
 }
 
 /**

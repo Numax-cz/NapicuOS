@@ -16,8 +16,11 @@ export class Window {
     posY: 30,
     width: 40,
     height: 40,
-    z_index: 1,
   };
+  /**
+   * Window z-index
+   */
+  public z_index: number = 1;
   /**
    * Title of the application window
    */
@@ -44,7 +47,6 @@ export class Window {
     this.WindowComponent = component;
     if (WindowTitle) this.WindowTitle = WindowTitle;
     if (windowData) this.appData = windowData;
-    this.appData.z_index = 1;
   }
 
   public readonly open = (): void => {

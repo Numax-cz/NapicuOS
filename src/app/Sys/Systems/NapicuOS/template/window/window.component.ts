@@ -272,7 +272,7 @@ export class WindowComponent implements OnInit {
     WindowComponent.WindowHistory.slice(index, 1);
     WindowComponent.WindowHistory.push(i);
     WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
-      element.appData.z_index = index;
+      element.z_index = index;
     });
 
     this.selectedWindow = i;
