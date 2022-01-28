@@ -362,7 +362,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param password New user's password
    */
   public static create_user(username: string, password: string): void {
-    //TODO return
+    //TODO return if the user exists
     NapicuOS.run_command('adduser', [username, password]);
   }
   /**
@@ -406,7 +406,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.get_apps_dir()?.files?.push(Application);
     return Application;
   }
-
   /**
    * Logs the user out
    */

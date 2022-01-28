@@ -11,7 +11,7 @@ import { addUserUsage } from './config/commands/help/addUserCommand';
 import { User } from '../../User';
 import { NapicuOSSystemDir } from './config/drive';
 function unknownOption(param: string): Line {
-  return new Line(`Invalid option '${removeSpace(param)}'`, 'white');
+  return new Line(`Invalid option '${param}'`, 'white');
 }
 
 function usageCommand(cmd: string): Line {
@@ -25,7 +25,6 @@ export function initAllCommands(): void {
       return new Promise((resolve) => {
         function testFunction(): void {
           console.log(NapicuOS.get_apps_dir());
-          
         }
         resolve(testFunction());
       });
@@ -130,13 +129,13 @@ function initGetSystemInformation(): void {
 
             default:
               resolve({
-                linesForCMD: [unknownOption(params[1]), getHelpCommandAPPS],
+                linesForCMD: [unknownOption(removeSpace(params[0])), getHelpCommand],
                 stateCode: CommandStateCodeMetadata.UnknownOption,
               });
+              break;
           }
-        } else {
-          resolve({ linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
         }
+        resolve({ linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
       });
     })
   );
