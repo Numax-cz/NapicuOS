@@ -1,11 +1,17 @@
 import { Process } from 'src/app/Sys/Process';
 import { SystemFilePermissionsMetadata } from '../permissions';
 
-export declare type SystemFileTypeMetadata = 'executable' | 'text' | 'shell-command';
+declare const enum SystemFileTypeEnumMetadata {
+  executable = 'Executable',
+  text = 'txt',
+  apps = 'Applications',
+}
+
 
 export declare interface SystemFileConsMetadata {
   value: any;
   fileName: string;
-  fileType: SystemFileTypeMetadata;
+  fileType: SystemFileTypeEnumMetadata;
   permissions?: SystemFilePermissionsMetadata;
 }
+

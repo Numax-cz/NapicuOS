@@ -3,6 +3,7 @@ import { GrubComponent } from '../System/grub/grub.component';
 import { SystemFile } from './File';
 import { System } from './System';
 import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
+import { SystemFileTypeEnumMetadata } from './Systems/NapicuOS/interface/FilesDirs/file';
 import { processConstructor } from './Systems/NapicuOS/interface/process';
 import { SystemStateMetadata } from './Systems/NapicuOS/interface/system';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
@@ -25,7 +26,7 @@ export class Process {
     this.file = new SystemFile({
       fileName: this.processTitle,
       value: this,
-      fileType: 'executable',
+      fileType: SystemFileTypeEnumMetadata.executable,
     });
   }
 

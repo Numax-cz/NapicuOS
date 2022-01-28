@@ -33,6 +33,7 @@ import { LoginscreenComponent } from './components/loginscreen/loginscreen.compo
 import { Type } from '@angular/core';
 import { Window } from '../../Window';
 import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
+import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -279,7 +280,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     if (!x.length) {
       commands.push(
-        new SystemFile({ value: cmd, fileName: cmd.get_command_name(), fileType: 'shell-command' })
+        new SystemFile({ value: cmd, fileName: cmd.get_command_name(), fileType: SystemFileTypeEnumMetadata.executable })
       );
       return SystemStateMetadata.RegisterCommandSuccess;
     } else {
@@ -406,7 +407,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static create_app(appTitle: string, processTitle: string, appComponent: Type<any>): SystemFile {
     var Application = new SystemFile({
       fileName: appTitle,
-      fileType: 'executable',
+      fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return new Process({
           Window: new Window(appComponent, appTitle),

@@ -1,6 +1,9 @@
 import { Command } from './command';
 import { Process } from './Process';
-import { SystemFileConsMetadata, SystemFileTypeMetadata } from './Systems/NapicuOS/interface/FilesDirs/file';
+import {
+  SystemFileConsMetadata,
+  SystemFileTypeEnumMetadata,
+} from './Systems/NapicuOS/interface/FilesDirs/file';
 import { SystemFilePermissionsMetadata } from './Systems/NapicuOS/interface/permissions';
 import { SystemUserPermissionsEnumMetadata } from './Systems/NapicuOS/interface/User/user';
 
@@ -18,7 +21,7 @@ export class SystemFile {
 
   private value: any;
 
-  private declare fileType: SystemFileTypeMetadata;
+  private declare fileType: SystemFileTypeEnumMetadata;
 
   private fileName: string = 'New_File';
 
@@ -59,11 +62,11 @@ export class SystemFile {
   public open(): Promise<any> {
     return new Promise(async (resolve) => {
       switch (this.fileType) {
-        case 'executable':
+        case SystemFileTypeEnumMetadata.apps:
           let process = this.value() as Process;
           resolve(process.run().Window.open());
           break;
-        case 'shell-command':
+        case SystemFileTypeEnumMetadata.executable:
           let command = this.value as Command;
           resolve(await command.run());
           break;
