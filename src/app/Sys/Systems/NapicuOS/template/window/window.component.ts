@@ -269,15 +269,11 @@ export class WindowComponent implements OnInit {
 
   public activeWindow(i: Window, index: number): void {
     if (this.selectedWindow?.activated) this.selectedWindow.activated = false;
-    WindowComponent.WindowHistory = WindowComponent.WindowHistory.slice(index, 1);
+    WindowComponent.WindowHistory.splice(index, 1);
     WindowComponent.WindowHistory.push(i);
-    console.log(WindowComponent.WindowHistory);
-
     WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
       element.z_index = index;
     });
-    console.log(WindowComponent.WindowHistory);
-
     this.selectedWindow = i;
     i.activated = true;
   }
