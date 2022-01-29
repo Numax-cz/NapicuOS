@@ -272,8 +272,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Creates and opens a new alert
    * @param windowTitle Title of the new alert window
    */
-  public static open_new_alert(windowTitle: string) {
-    napicu_os_alertwindow(windowTitle).open();
+  public static open_new_alert(windowTitle: string, value: string) {
+    napicu_os_alertwindow(windowTitle, value).open();
   }
   /**
    * Register the command
@@ -424,7 +424,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return new Process({
-          Window: new Window(data.appComponent, data.appTitle, data.windowData),
+          Window: new Window(data.appComponent, data.appTitle, data.windowData, { msg: data.appData?.msg }),
           processTitle: data.processTitle,
         });
       },

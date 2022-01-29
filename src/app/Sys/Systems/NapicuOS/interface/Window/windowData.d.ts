@@ -18,7 +18,7 @@ export declare interface windowData {
 }
 
 export declare interface windowAppData {
-  msg?: 'string';
+  msg?: string;
 }
 
 /**
