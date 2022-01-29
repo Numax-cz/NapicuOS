@@ -13,7 +13,6 @@ export function initAllSystemProcess(): void {
 export function initAllStartUpApps(): void {
   //napicu_os_welcomeapp().open();
   napicu_os_terminal().open();
-  napicu_os_alertwindow().open();
 }
 
 export function napicu_os_time(): Process {
@@ -36,6 +35,6 @@ export function napicu_os_terminal(): SystemFile {
   return NapicuOS.create_app('Terminal', 'Terminal', ConsoleComponent);
 }
 
-export function napicu_os_alertwindow(): SystemFile {
-  return NapicuOS.create_app('WindowAlert', 'WindowAlert', AlertComponent, Window.centerPos(15,15));
+export function napicu_os_alertwindow(windowTitle: string): SystemFile {
+  return NapicuOS.create_app(windowTitle, 'WindowAlert', AlertComponent, Window.centerPos(15, 15));
 }

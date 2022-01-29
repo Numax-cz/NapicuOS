@@ -12,7 +12,7 @@ import { time_formate } from './config/time';
 import { Line } from './Apps/console/console.component';
 import { Command, CommandFunMetadata } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
-import { initAllStartUpApps, initAllSystemProcess } from './systemApps.napicuos';
+import { initAllStartUpApps, initAllSystemProcess, napicu_os_alertwindow } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
 import {
   systemDirAFileMetadata,
@@ -268,6 +268,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   // * * * Functions * * *
+  /**
+   * Creates and opens a new alert
+   * @param windowTitle Title of the new alert window
+   */
+  public static open_new_alert(windowTitle: string) {
+    napicu_os_alertwindow(windowTitle).open();
+  }
   /**
    * Register the command
    */
