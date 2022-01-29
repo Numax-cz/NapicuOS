@@ -1,10 +1,6 @@
 import { Type } from '@angular/core';
-import { GrubComponent } from '../System/grub/grub.component';
-import { Process } from './Process';
-import { System } from './System';
 import { windowData, windowState } from './Systems/NapicuOS/interface/Window/windowData';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
-import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
 export class Window {
