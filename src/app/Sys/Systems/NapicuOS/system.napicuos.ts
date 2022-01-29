@@ -1,7 +1,7 @@
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
-import { onStartUp, onShutDown, Os, SystemStateMetadata } from './interface/system';
+import { onStartUp, onShutDown, Os, SystemStateMetadata, AppCreatMetadata } from './interface/system';
 import { Process } from '../../Process';
 import { System } from '../../System';
 import { LoadsComponent } from './components/loads/loads.component';
@@ -415,21 +415,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param appTitle Application's name
    * @param processTitle Application's process name
    * @param appComponent Application's component (GUI)
-   * @param windowData Application's settings (size & position)
+   * @param windowData Window's settings (size & position)
+   * @param appData Application's data
    */
-  public static create_app(
-    appTitle: string,
-    processTitle: string,
-    appComponent: Type<any>,
-    windowData?: windowData
-  ): SystemFile {
+  public static create_app(data: AppCreatMetadata): SystemFile {
     var Application = new SystemFile({
-      fileName: appTitle,
+      fileName: data.appTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return new Process({
-          Window: new Window(appComponent, appTitle, windowData),
-          processTitle: processTitle,
+          Window: new Window(data.appComponent, data.appTitle, data.windowData),
+          processTitle: data.processTitle,
         });
       },
     });

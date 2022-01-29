@@ -1,4 +1,5 @@
 import { Type } from '@angular/core';
+import { windowData } from './Window/windowData';
 
 export declare interface onStartUp {
   onStart(): void;
@@ -18,6 +19,31 @@ export declare interface Os {
 
 export declare interface systemData {
   installed: boolean;
+}
+
+export declare interface AppCreatMetadata {
+  /**
+   * Application's title
+   */
+  appTitle: string;
+  /**
+   * Application's process name
+   */
+  processTitle: string;
+  /**
+   * Application's component (GUI)
+   */
+  appComponent: Type<any>;
+  /**
+   * Application's data
+   */
+  appData?: {
+    masg: string;
+  };
+  /**
+   * Window's settings (size & position)
+   */
+  windowData?: windowData;
 }
 
 export declare const enum SystemStateMetadata {
