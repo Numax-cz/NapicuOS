@@ -3,19 +3,19 @@
     [@NapicuOSWindowAnimation]="{
       value: i.Window.state,
       params: {
-        width: i.Window.appData.width,
-        height: i.Window.appData.height,
-        top: i.Window.appData.posY,
-        left: i.Window.appData.posX
+        width: i.Window.windowData.width,
+        height: i.Window.windowData.height,
+        top: i.Window.windowData.posY,
+        left: i.Window.windowData.posX
       }
     }"
-    *ngIf="SystemBoot && i.Window?.appData && i.Window.display"
+    *ngIf="SystemBoot && i.Window?.windowData && i.Window.display"
     id="napicuos-App-window"
     [ngStyle]="{
-      'width.%': i.Window.appData.width,
-      'height.%': i.Window.appData.height,
-      'top.%': i.Window.appData.posY,
-      'left.%': i.Window.appData.posX,
+      'width.%': i.Window.windowData.width,
+      'height.%': i.Window.windowData.height,
+      'top.%': i.Window.windowData.posY,
+      'left.%': i.Window.windowData.posX,
       'z-index': i.Window.z_index
     }"
     [ngClass]="SystemActivated(i.Window) ? 'SelectedWindow' : 'UnSelectedWindow'"
@@ -46,7 +46,7 @@
     </div>
 
     <div id="INAppWindow">
-      <ng-component *ngComponentOutlet="i.Window.WindowComponent"></ng-component>
+      <ng-component *ngComponentOutlet="i.Window.WindowComponent; content: getWindowContent(i)"></ng-component>
     </div>
   </section>
 </div>

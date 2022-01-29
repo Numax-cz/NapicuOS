@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { windowData, windowState } from './Systems/NapicuOS/interface/Window/windowData';
+import { windowAppData,  windowData, windowState } from './Systems/NapicuOS/interface/Window/windowData';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
@@ -33,11 +33,15 @@ export class Window {
    */
   public state: windowState = 'normal';
 
-  public appData: windowData = Window.defaultWindowAppData;
-  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData) {
+  public windowData: windowData = Window.defaultWindowAppData;
+
+  public declare appData: windowAppData;
+
+  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData, appData?: windowAppData) {
     this.WindowComponent = component;
     if (WindowTitle) this.WindowTitle = WindowTitle;
-    if (windowData) this.appData = windowData;
+    if (windowData) this.windowData = windowData;
+    if (appData) this.appData = appData;
   }
 
   public readonly open = (): void => {
@@ -107,29 +111,36 @@ export class Window {
    * @returns {number} value in pixels
    */
   public getTop(): number {
-    return percentageValue(this.appData.posY, window.innerHeight);
+    return percentageValue(this.windowData.posY, window.innerHeight);
   }
   /**
    * Returns left in pixels
    * @returns {number} value in pixels
    */
   public getLeft(): number {
-    return percentageValue(this.appData.posX, window.innerWidth);
+    return percentageValue(this.windowData.posX, window.innerWidth);
   }
   /**
    * Returns width in pixels
    * @returns {number} value in pixels
    */
   public getWidth(): number {
-    return percentageValue(this.appData.width, window.innerWidth);
+    return percentageValue(this.windowData.width, window.innerWidth);
   }
   /**
    * Returns height in pixels
    * @returns {number} value in pixels
    */
   public getHeight(): number {
-    return percentageValue(this.appData.height, window.innerHeight);
+    return percentageValue(this.windowData.height, window.innerHeight);
   }
+  /**
+   * Returns the application's data
+   */
+  public getAppData(): windowAppData {
+    return this.appData;
+  }
+
   //* * * *  Setters * * *
   //
   //? Window State
@@ -181,28 +192,28 @@ export class Window {
    * @param {number} valuePX - In pixels
    */
   public setTop(valuePX: number): void {
-    this.appData.posY = percentage(valuePX, window.innerHeight);
+    this.windowData.posY = percentage(valuePX, window.innerHeight);
   }
   /**
    *Sets the left in percentage
    * @param {number} valuePX - In pixels
    */
   public setLeft(valuePX: number): void {
-    this.appData.posX = percentage(valuePX, window.innerWidth);
+    this.windowData.posX = percentage(valuePX, window.innerWidth);
   }
   /**
    *Sets the width in percentage
    * @param {number} valuePX - In pixels
    */
   public setWidth(valuePX: number): void {
-    this.appData.width = percentage(valuePX, window.innerWidth);
+    this.windowData.width = percentage(valuePX, window.innerWidth);
   }
   /**
    *Sets the height in percentage
    * @param {number} valuePX - In pixels
    */
   public setHeight(valuePX: number): void {
-    this.appData.height = percentage(valuePX, window.innerHeight);
+    this.windowData.height = percentage(valuePX, window.innerHeight);
   }
 
   //? WindowTitle

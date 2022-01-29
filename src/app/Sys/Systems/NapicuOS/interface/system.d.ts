@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { windowData } from './Window/windowData';
+import { windowAppData, windowData } from './Window/windowData';
 
 export declare interface onStartUp {
   onStart(): void;
@@ -37,9 +37,7 @@ export declare interface AppCreatMetadata {
   /**
    * Application's data
    */
-  appData?: {
-    masg: string;
-  };
+  appData?: windowAppData;
   /**
    * Window's settings (size & position)
    */

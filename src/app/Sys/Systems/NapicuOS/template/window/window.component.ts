@@ -180,7 +180,6 @@ export class WindowComponent implements OnInit {
 
     event.stopPropagation();
   }
-
   /**
    * Function that minimizes the window into a bar
    * @param event - The mouse event
@@ -365,6 +364,15 @@ export class WindowComponent implements OnInit {
     } else {
       this.selectedWindow.setStateNormal();
     }
+  }
+  /**
+   * Returns application's window content
+   * @param i Application's window process
+   */
+  public getWindowContent(i: Process): Text[][] {
+    var x = i.Window.getAppData()?.msg;
+    if (x) return [[document.createTextNode(x)]];
+    return [[]];
   }
   /**
    * Function to cancel active events when
