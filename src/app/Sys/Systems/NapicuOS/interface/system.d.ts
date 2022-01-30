@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { windowAppData, windowData } from './Window/windowData';
+import { windowData } from './Window/windowData';
 
 export declare interface onStartUp {
   onStart(): void;
@@ -34,10 +34,6 @@ export declare interface AppCreatMetadata {
    * Application's component (GUI)
    */
   appComponent: Type<any>;
-  /**
-   * Application's data
-   */
-  appData?: windowAppData;
   /**
    * Window's settings (size & position)
    */

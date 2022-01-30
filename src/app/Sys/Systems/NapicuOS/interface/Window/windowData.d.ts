@@ -17,10 +17,6 @@ export declare interface windowData {
   height: number;
 }
 
-export declare interface windowAppData {
-  msg?: string;
-}
-
 /**
  * * `Normal` - The application window is free
  * * `Maximized` - The application window is maximized

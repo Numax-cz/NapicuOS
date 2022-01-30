@@ -5,6 +5,9 @@ import { NapicuOS } from './system.napicuos';
 import { SystemFile } from '../../File';
 import { AlertComponent } from './Apps/alert/alert.component';
 import { Window } from '../../Window';
+import { SystemAlert } from '../../Alert';
+import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
+import { systemAlertTypeEnumMetadata } from './interface/Alert/alert';
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -13,7 +16,7 @@ export function initAllSystemProcess(): void {
 export function initAllStartUpApps(): void {
   //napicu_os_welcomeapp().open();
   napicu_os_terminal().open();
-  NapicuOS.open_new_alert('Title', 'Test');
+  NapicuOS.open_new_alert('Title');
 }
 
 export function napicu_os_time(): Process {
@@ -44,14 +47,11 @@ export function napicu_os_terminal(): SystemFile {
   });
 }
 
-export function napicu_os_alertwindow(windowTitle: string, value: string): SystemFile {
+export function napicu_os_alertwindow(windowTitle: string): SystemFile {
   return NapicuOS.create_app({
     appTitle: windowTitle,
     processTitle: 'WindowAlert',
     appComponent: AlertComponent,
     windowData: Window.centerPos(15, 15),
-    appData: {
-      msg: value,
-    },
   });
 }

@@ -70,7 +70,6 @@ export class SystemFile {
           let command = this.value as Command;
           resolve(await command.run());
           break;
-
         default:
           break;
       }

@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { windowAppData,  windowData, windowState } from './Systems/NapicuOS/interface/Window/windowData';
+import {  windowData, windowState } from './Systems/NapicuOS/interface/Window/windowData';
 import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
 import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
@@ -35,13 +35,11 @@ export class Window {
 
   public windowData: windowData = Window.defaultWindowAppData;
 
-  public declare appData: windowAppData;
 
-  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData, appData?: windowAppData) {
+  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData) {
     this.WindowComponent = component;
     if (WindowTitle) this.WindowTitle = WindowTitle;
     if (windowData) this.windowData = windowData;
-    if (appData) this.appData = appData;
   }
 
   public readonly open = (): void => {
@@ -133,12 +131,6 @@ export class Window {
    */
   public getHeight(): number {
     return percentageValue(this.windowData.height, window.innerHeight);
-  }
-  /**
-   * Returns the application's data
-   */
-  public getAppData(): windowAppData {
-    return this.appData;
   }
 
   //* * * *  Setters * * *

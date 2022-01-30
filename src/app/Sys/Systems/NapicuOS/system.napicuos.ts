@@ -1,8 +1,14 @@
 import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
 import { GrubComponent } from 'src/app/System/grub/grub.component';
 import { SystemComponent } from 'src/app/System/system/system.component';
-import { onStartUp, onShutDown, Os, SystemStateMetadata, AppCreatMetadata } from './interface/system';
-import { Process } from '../../Process';
+import {
+  onStartUp,
+  onShutDown,
+  Os,
+  SystemStateMetadata,
+  AppCreatMetadata,
+} from './interface/system';
+import { Process, ProcessWindowValueMetadata } from '../../Process';
 import { System } from '../../System';
 import { LoadsComponent } from './components/loads/loads.component';
 import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
@@ -35,6 +41,7 @@ import { Window } from '../../Window';
 import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
 import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
 import { windowData } from './interface/Window/windowData';
+import { SystemAlert } from '../../Alert';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -272,8 +279,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Creates and opens a new alert
    * @param windowTitle Title of the new alert window
    */
-  public static open_new_alert(windowTitle: string, value: string) {
-    napicu_os_alertwindow(windowTitle, value).open();
+  public static open_new_alert(windowTitle: string) {
+    napicu_os_alertwindow(windowTitle).open();
   }
   /**
    * Register the command
@@ -424,7 +431,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return new Process({
-          Window: new Window(data.appComponent, data.appTitle, data.windowData, { msg: data.appData?.msg }),
+          //TODO Window dynamically
+          //TODO Window dynamically
+          //TODO Window dynamically
+          //TODO Window dynamically
+          //TODO Window dynamically
+          //TODO Window dynamically
+          //TODO Window dynamically
+          Window: new Window(data.appComponent, data.appTitle, data.windowData),
           processTitle: data.processTitle,
         });
       },
@@ -432,6 +446,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.get_apps_dir()?.files?.push(Application);
     return Application;
   }
+
+
   /**
    * Logs the user out
    */

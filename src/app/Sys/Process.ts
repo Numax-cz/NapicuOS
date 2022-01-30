@@ -1,5 +1,6 @@
 import { copy } from '../Scripts/DeepClone';
 import { GrubComponent } from '../System/grub/grub.component';
+import { SystemAlert } from './Alert';
 import { SystemFile } from './File';
 import { System } from './System';
 import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
@@ -8,13 +9,13 @@ import { processConstructor } from './Systems/NapicuOS/interface/process';
 import { SystemStateMetadata } from './Systems/NapicuOS/interface/system';
 import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
 import { Window } from './Window';
-
+export declare type ProcessWindowValueMetadata = Window | SystemAlert;
 export class Process {
   public processTitle: string = 'NapicuAPP';
   public declare launchedBy: string;
   public declare pid: number;
   public declare Interval: any;
-  public declare Window: Window;
+  public declare Window: ProcessWindowValueMetadata;
   private declare file: SystemFile;
   private declare processInterval: { fun: () => void; time: number };
 

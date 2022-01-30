@@ -1,5 +1,6 @@
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { SystemAlert } from 'src/app/Sys/Alert';
 import { Process } from 'src/app/Sys/Process';
 import { Window } from 'src/app/Sys/Window';
 import { window_animations } from '../../config/windowAnimations';
@@ -370,8 +371,8 @@ export class WindowComponent implements OnInit {
    * @param i Application's window process
    */
   public getWindowContent(i: Process): Text[][] {
-    var x = i.Window.getAppData()?.msg;
-    if (x) return [[document.createTextNode(x)]];
+    var x = i.Window as SystemAlert;
+    if (x?.value) return [[document.createTextNode(x.value)]];
     return [[]];
   }
   /**
