@@ -480,7 +480,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.create_app_file({
       appTitle: data.appTitle,
       processTitle: data.processTitle,
-      appWindow: new Window({component: data.appComponent, WindowTitle: data.appTitle, windowData: data.windowData}),
+      appWindow: new Window({component: data.appComponent, windowTitle: data.appTitle, windowData: data.windowData}),
     });
   }
 

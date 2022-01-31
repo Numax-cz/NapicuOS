@@ -11,9 +11,14 @@ export class SystemAlert extends Window {
   constructor(public title: string, public value: string, public type: systemAlertTypeEnumMetadata) {
     super({
       component: SystemAlert.defaultComponent,
-      WindowTitle: title,
+      windowTitle: title,
       windowData: SystemAlert.defaultSize,
       resizeAllowed: false,
+      windowButtons: {
+        close: true,
+        maximize: false,
+        minimized: false
+      }
     });
   }
 }

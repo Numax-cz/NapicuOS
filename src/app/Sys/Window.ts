@@ -41,23 +41,28 @@ export class Window {
    */
   public windowData: windowData = Window.defaultWindowAppData;
 
-
-  private windowButtons: windowButtonsMetadata = {
-    minimized: true,
-    maximize: true,
-    close: true
-  }
+  /**
+   * Setting which buttons to display on the application window
+   */
+  public declare windowButtons: windowButtonsMetadata;
 
 
   constructor(data: {
     component: Type<any>,
-    WindowTitle?: string,
+    windowTitle?: string,
     windowData?: windowData,
-    resizeAllowed?: boolean
+    windowButtons?: windowButtonsMetadata,
+    resizeAllowed?: boolean,
+
   }) {
     this.WindowComponent = data.component;
-    if (data.WindowTitle) this.WindowTitle = data.WindowTitle;
+    if (data.windowTitle) this.WindowTitle = data.windowTitle;
     if (data.windowData) this.windowData = data.windowData;
+    this.windowButtons = data.windowButtons || {
+      minimized: true,
+      maximize: true,
+      close: true
+    }
 
     this.resizeAllowed = data.resizeAllowed || data.resizeAllowed === undefined;
   }
