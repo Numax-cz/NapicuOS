@@ -1,7 +1,7 @@
-import { Type } from '@angular/core';
-import {  windowData, windowState } from './Systems/NapicuOS/interface/Window/windowData';
-import { percentage, percentageValue } from './Systems/NapicuOS/scripts/getPercentage';
-import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
+import {Type} from '@angular/core';
+import {windowData, windowState} from './Systems/NapicuOS/interface/Window/windowData';
+import {percentage, percentageValue} from './Systems/NapicuOS/scripts/getPercentage';
+import {WindowComponent} from './Systems/NapicuOS/template/window/window.component';
 
 export class Window {
   /**
@@ -12,6 +12,10 @@ export class Window {
    * Window z-index
    */
   public z_index: number = 1;
+  /**
+   * Specifies whether the application window can be resized
+   */
+  public declare resizeAllowed: boolean;
   /**
    * Title of the application window
    */
@@ -35,12 +39,15 @@ export class Window {
 
   public windowData: windowData = Window.defaultWindowAppData;
 
-
-  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData) {
+  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData, resizeAllowed?: boolean) {
     this.WindowComponent = component;
     if (WindowTitle) this.WindowTitle = WindowTitle;
     if (windowData) this.windowData = windowData;
+
+
+    this.resizeAllowed = resizeAllowed || resizeAllowed === undefined;
   }
+
 
   public readonly open = (): void => {
     this.display = true;
@@ -51,6 +58,7 @@ export class Window {
     this.display = false;
     WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
   };
+
   /**
    * Returns centered application window settings
    * @param width Window width
@@ -64,43 +72,49 @@ export class Window {
       posY: 50 - Math.round(height / 2),
     };
   }
+
   //* * * *  Getters * * *
   //? Getters State
   /**
    * Returns if the application window state is maximized
    */
   public isStateMaximized(): boolean {
-    return this.state == 'maximized' ? true : false;
+    return this.state == 'maximized';
   }
+
   /**
    * Returns if the application window state is left
    */
   public isStateLeft(): boolean {
-    return this.state == 'left' ? true : false;
+    return this.state == 'left';
   }
+
   /**
    * Returns if the application window state is right
    */
   public isStateRight(): boolean {
-    return this.state == 'right' ? true : false;
+    return this.state == 'right';
   }
+
   /**
    * Returns if the application window state is normal
    */
   public isStateNormal(): boolean {
-    return this.state == 'normal' ? true : false;
+    return this.state == 'normal';
   }
+
   /**
    * Returns if the application window state is top-left
    */
   public isStateTopLeft(): boolean {
-    return this.state == 'top-left' ? true : false;
+    return this.state == 'top-left';
   }
+
   /**
    * Returns if the application window state is top-right
    */
   public isStateTopRight(): boolean {
-    return this.state == 'top-right' ? true : false;
+    return this.state == 'top-right';
   }
 
   //? Getters Pos
@@ -111,6 +125,7 @@ export class Window {
   public getTop(): number {
     return percentageValue(this.windowData.posY, window.innerHeight);
   }
+
   /**
    * Returns left in pixels
    * @returns {number} value in pixels
@@ -118,6 +133,7 @@ export class Window {
   public getLeft(): number {
     return percentageValue(this.windowData.posX, window.innerWidth);
   }
+
   /**
    * Returns width in pixels
    * @returns {number} value in pixels
@@ -125,6 +141,7 @@ export class Window {
   public getWidth(): number {
     return percentageValue(this.windowData.width, window.innerWidth);
   }
+
   /**
    * Returns height in pixels
    * @returns {number} value in pixels
@@ -142,41 +159,48 @@ export class Window {
   public setStateMaximized(): void {
     this.state = 'maximized';
   }
+
   /**
    * Sets the application window state to left
    */
   public setStateLeft(): void {
     this.state = 'left';
   }
+
   /**
    * Sets the application window state to right
    */
   public setStateRight(): void {
     this.state = 'right';
   }
+
   /**
    * Sets the application window state to normal
    */
   public setStateNormal(): void {
     this.state = 'normal';
   }
+
   /**
    * Sets the application window state to top-left
    */
   public setStateTopLeft(): void {
     this.state = 'top-left';
   }
+
   /**
    * Sets the application window state to top-right
    */
   public setStateTopRight(): void {
     this.state = 'top-right';
   }
+
   /**
    * Sets the exact image in the icon directory
    * @param path Path to the icon
    */
-  public setIcon(path: string): void {}
+  public setIcon(path: string): void {
+  }
 
   //? Window Pos
   /**
@@ -186,6 +210,7 @@ export class Window {
   public setTop(valuePX: number): void {
     this.windowData.posY = percentage(valuePX, window.innerHeight);
   }
+
   /**
    *Sets the left in percentage
    * @param {number} valuePX - In pixels
@@ -193,6 +218,7 @@ export class Window {
   public setLeft(valuePX: number): void {
     this.windowData.posX = percentage(valuePX, window.innerWidth);
   }
+
   /**
    *Sets the width in percentage
    * @param {number} valuePX - In pixels
@@ -200,6 +226,7 @@ export class Window {
   public setWidth(valuePX: number): void {
     this.windowData.width = percentage(valuePX, window.innerWidth);
   }
+
   /**
    *Sets the height in percentage
    * @param {number} valuePX - In pixels
