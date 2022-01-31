@@ -1,24 +1,19 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
-import { MoveOption } from '../../Scripts/MoveOption';
-import { SetWindowOption } from '../../Scripts/SetWindowOption';
-import { MoveWindowOptions } from '../../Scripts/MoveWindowOptions';
-import { BiosMenu } from '../../interface/BiosMenu';
-import { TimeDateSet } from '../../Scripts/TimeDateSet';
-import { getCookies, setCookies } from '../../Scripts/Cookies';
-import { BiosInfo, BiosOptionsST, BiosSettings, setSettingsValue } from '../../Array/ToolSettings';
-import { BootComponent } from '../boot/boot.component';
-import { copy } from '../../Scripts/DeepClone';
-import { FlashComponent } from '../flash/flash.component';
-import { getLanguage } from '../../Scripts/getLanguage';
-import { GlobalEvents } from '../../Scripts/GlobalEvents';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+import {Router} from '@angular/router';
+import {MoveOption} from '../../Scripts/MoveOption';
+import {SetWindowOption} from '../../Scripts/SetWindowOption';
+import {MoveWindowOptions} from '../../Scripts/MoveWindowOptions';
+import {BiosMenu} from '../../interface/BiosMenu';
+import {TimeDateSet} from '../../Scripts/TimeDateSet';
+import {BiosInfo, BiosOptionsST} from '../../Array/ToolSettings';
+import {BootComponent} from '../boot/boot.component';
+import {FlashComponent} from '../flash/flash.component';
+import {GlobalEvents} from '../../Scripts/GlobalEvents';
 import * as key from 'src/app/Config/KeyMaps';
-import { OptionPanelComponent } from '../option-panel/option-panel.component';
-import { Loading } from 'src/app/Scripts/LoadingAnimations';
-import { cookiesForBisoSettingsAr } from 'src/app/Config/Cookies';
-import { setCookiesBiosinf } from 'src/app/Array/FlashInformation';
-import { getMenu } from 'src/app/Array/BiosMenu';
+import {OptionPanelComponent} from '../option-panel/option-panel.component';
+import {setCookiesBiosinf} from 'src/app/Array/FlashInformation';
+import {getMenu} from 'src/app/Array/BiosMenu';
 
 /**
  * @author Numax
@@ -72,6 +67,7 @@ export class BiosComponent implements OnInit, OnDestroy {
     window.removeEventListener('keydown', this.Move, true);
     window.addEventListener('keydown', this.Move, true);
   }
+
   get selected(): number {
     return BiosComponent.selected;
   }
@@ -124,7 +120,7 @@ export class BiosComponent implements OnInit, OnDestroy {
   };
 
   public UpdateComponent(): void {
-    this.router.navigate([`bios/`, this.BiosMenu[BiosComponent.selected].router], { skipLocationChange: true });
+    this.router.navigate([`bios/`, this.BiosMenu[BiosComponent.selected].router], {skipLocationChange: true});
     BiosComponent.BiosRouter = this.router;
   }
 

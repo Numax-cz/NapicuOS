@@ -1,13 +1,12 @@
-
-import { BiosComponent } from 'src/app/Bios/bios/bios.component';
-import { FlashComponent } from 'src/app/Bios/flash/flash.component';
-import { OptionPanelComponent } from 'src/app/Bios/option-panel/option-panel.component';
+import {BiosComponent} from 'src/app/Bios/bios/bios.component';
+import {FlashComponent} from 'src/app/Bios/flash/flash.component';
+import {OptionPanelComponent} from 'src/app/Bios/option-panel/option-panel.component';
 import * as key from 'src/app/Config/KeyMaps';
-import { GlobalEvents } from '../GlobalEvents';
-import { MoveWindowOptions } from '../MoveWindowOptions';
-import { CheckFile } from './CheckFile';
-import { FlashBiosExit } from './FlashBiosExit';
-import { FlashTab } from './FlashTab';
+import {GlobalEvents} from '../GlobalEvents';
+import {MoveWindowOptions} from '../MoveWindowOptions';
+import {CheckFile} from './CheckFile';
+import {FlashBiosExit} from './FlashBiosExit';
+import {FlashTab} from './FlashTab';
 
 export const Move = (e: KeyboardEvent) => {
   if (FlashComponent.ezFlashWindow) {

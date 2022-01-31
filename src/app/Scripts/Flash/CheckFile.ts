@@ -1,7 +1,6 @@
-
-import { FlashComponent } from 'src/app/Bios/flash/flash.component';
-import { CheckBIOSFile } from './Flash';
-import { FileIsUnsupported } from './OpenWindow';
+import {FlashComponent} from 'src/app/Bios/flash/flash.component';
+import {CheckBIOSFile} from './Flash';
+import {FileIsUnsupported} from './OpenWindow';
 
 export function CheckFile(): void {
   const exit = '..';
@@ -9,7 +8,7 @@ export function CheckFile(): void {
   if (path.noEnter) return;
   if (path && path.dir) {
     if ((path.dir[0] && path.dir[0].title !== exit) || !path.dir[0]) {
-      path.dir.unshift({ title: exit });
+      path.dir.unshift({title: exit});
     }
 
     FlashComponent.PathFile.push(path);

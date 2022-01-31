@@ -1,11 +1,11 @@
-import { trigger, transition, style, animate, state } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { SystemAlert } from 'src/app/Sys/Alert';
-import { Process } from 'src/app/Sys/Process';
-import { Window } from 'src/app/Sys/Window';
-import { window_animations } from '../../config/windowAnimations';
-import { percentage, percentageValue } from '../../scripts/getPercentage';
-import { NapicuOS } from '../../system.napicuos';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Component, OnInit} from '@angular/core';
+import {SystemAlert} from 'src/app/Sys/Alert';
+import {Process} from 'src/app/Sys/Process';
+import {Window} from 'src/app/Sys/Window';
+import {window_animations} from '../../config/windowAnimations';
+import {percentage, percentageValue} from '../../scripts/getPercentage';
+import {NapicuOS} from '../../system.napicuos';
 
 @Component({
   selector: 'app-window',
@@ -18,12 +18,12 @@ import { NapicuOS } from '../../system.napicuos';
       //Remember: Animation normal will return the application window
       // to the default position where the animation started.
       transition(':enter', [
-        style({ transform: 'scale(0)' }),
-        animate(window_animations, style({ transform: 'scale(1)' })),
+        style({transform: 'scale(0)'}),
+        animate(window_animations, style({transform: 'scale(1)'})),
       ]),
       transition(':leave', [
-        style({ transform: 'scale(1)' }),
-        animate(window_animations, style({ transform: 'scale(0)' })),
+        style({transform: 'scale(1)'}),
+        animate(window_animations, style({transform: 'scale(0)'})),
       ]),
       state(
         'maximized',
@@ -42,7 +42,7 @@ import { NapicuOS } from '../../system.napicuos';
           top: '{{top}}%',
           left: '{{left}}%',
         }),
-        { params: { width: 0, height: 0, top: 0, left: 0 } }
+        {params: {width: 0, height: 0, top: 0, left: 0}}
       ),
       state(
         'left',
@@ -142,7 +142,8 @@ export class WindowComponent implements OnInit {
    */
   protected declare activeWindowState: boolean;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
@@ -181,6 +182,7 @@ export class WindowComponent implements OnInit {
 
     event.stopPropagation();
   }
+
   /**
    * Function that minimizes the window into a bar
    * @param event - The mouse event
@@ -211,7 +213,8 @@ export class WindowComponent implements OnInit {
     this.selectedWindow.setLeft(x);
   }
 
-  protected moveWindowAnimations(): void {}
+  protected moveWindowAnimations(): void {
+  }
 
   /**
    * Function to enlarge/reduce the window along the edges of the application window
@@ -277,6 +280,7 @@ export class WindowComponent implements OnInit {
     this.selectedWindow = i;
     i.activated = true;
   }
+
   /**
    * Functions for saving parameters
    * @param Window
@@ -296,6 +300,7 @@ export class WindowComponent implements OnInit {
 
     this.selectedDiv = event.target as HTMLElement;
   }
+
   /**
    * Functions for saving parameters
    * @param Window
@@ -309,6 +314,7 @@ export class WindowComponent implements OnInit {
     this.selectedWindow = process;
     event.stopPropagation();
   }
+
   /**
    * Function for unsnapping the application window
    */
@@ -343,6 +349,7 @@ export class WindowComponent implements OnInit {
       this.selectedWindow.state = 'normal';
     }
   }
+
   /**
    * Function for snapping the application window
    */
@@ -366,6 +373,7 @@ export class WindowComponent implements OnInit {
       this.selectedWindow.setStateNormal();
     }
   }
+
   /**
    * Returns application's window content
    * @param i Application's window process
@@ -375,6 +383,7 @@ export class WindowComponent implements OnInit {
     if (x?.value) return [[document.createTextNode(x.value)]];
     return [[]];
   }
+
   /**
    * Function to cancel active events when
    */
@@ -382,12 +391,14 @@ export class WindowComponent implements OnInit {
     this.move = false;
     this.resize = false;
   }
+
   /**
    * Application process rollback function
    */
   get AppProcess(): Process[] {
     return NapicuOS.get_user_process(NapicuOS.get_active_user()?.get_username()) || [];
   }
+
   /**
    * Returns whether the system has been started
    */

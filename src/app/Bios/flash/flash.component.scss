@@ -5,11 +5,13 @@
   color: white;
   user-select: none;
 }
+
 .Title {
   text-align: center;
   font-size: 2rem;
   padding: 20px;
 }
+
 // rgb(221, 221, 9);
 $yellow: rgb(0, 0, 0);
 $MarginPath: 40px;
@@ -18,6 +20,7 @@ $MarginPath: 40px;
   display: grid;
   grid-template-columns: 50% 50%;
 }
+
 .Grid30 {
   display: grid;
   grid-template-columns: 30% 70%;
@@ -32,12 +35,14 @@ $MarginPath: 40px;
   max-width: 60%;
   margin: auto;
 }
+
 .TitleWindow {
   text-align: center;
   color: magenta;
   font-size: 2rem;
   margin-bottom: 7px;
 }
+
 .Window {
   margin: 15px;
   padding: 20px;
@@ -50,12 +55,15 @@ $MarginPath: 40px;
 .txt {
   font-size: 1.67rem;
 }
+
 .Notetxt {
   font-size: 1.35rem;
 }
+
 .Column {
   display: grid;
   grid-template-columns: 50% 50%;
+
   div {
     div {
       margin: 10px;
@@ -63,6 +71,7 @@ $MarginPath: 40px;
     }
   }
 }
+
 .leftNote {
   text-align: left;
   margin-left: 2%;
@@ -76,11 +85,13 @@ $MarginPath: 40px;
 #Path {
   margin-right: $MarginPath;
 }
+
 .Yellow {
   background-color: cyan;
   padding: 2px;
   color: $yellow;
 }
+
 .Selected {
   background-color: magenta;
 }
@@ -95,13 +106,16 @@ $MarginPath: 40px;
   background-color: lightgray;
   background-repeat: repeat;
 }
+
 .hidden {
   visibility: 0;
   display: none;
 }
+
 #Scroll {
   overflow-y: hidden;
 }
+
 #fileid {
   height: 220px;
 }
@@ -109,18 +123,22 @@ $MarginPath: 40px;
 .grey {
   background-color: grey;
 }
+
 .width0 {
   width: 0;
 }
+
 .cya {
   background-color: cyan;
 }
+
 .CenterScreen {
   display: table;
   z-index: 1;
   height: 100vh;
   min-height: 500px;
   width: 100%;
+
   div {
     display: table-cell;
     vertical-align: middle;

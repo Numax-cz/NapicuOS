@@ -10,9 +10,11 @@
   box-shadow: 10px 10px black;
   z-index: 100000;
 }
+
 .BiosOptionMenuError {
   background-color: red;
 }
+
 .BiosPanel {
   padding: 20px;
   border-left: 4px solid white;
@@ -20,11 +22,13 @@
   border-top: 2px solid white;
   border-bottom: 2px solid white;
 }
+
 .selected {
   p {
     background-color: black;
   }
 }
+
 .OptionFun {
   padding: 10px;
 }

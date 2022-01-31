@@ -1,14 +1,13 @@
-import { drive } from 'src/app/Array/Drives';
-import { BiosOptionsST } from 'src/app/Array/ToolSettings';
-import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
-import { NoBootDevice } from 'src/app/Config/BlackScreenTexts';
-import { grub_time_out, grub_time_in, system_enter, bootloader_blackscreen_timeout } from 'src/app/Config/BootLoader';
-import { GrubComponent } from 'src/app/System/grub/grub.component';
-import { SystemComponent } from 'src/app/System/system/system.component';
-import { Navigate } from '../BiosRouter';
-import { copy } from '../DeepClone';
-import { Loading } from '../LoadingAnimations';
-import { animationCursor, setDisplayText } from './text';
+import {drive} from 'src/app/Array/Drives';
+import {BiosOptionsST} from 'src/app/Array/ToolSettings';
+import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.component';
+import {NoBootDevice} from 'src/app/Config/BlackScreenTexts';
+import {bootloader_blackscreen_timeout, grub_time_in, grub_time_out, system_enter} from 'src/app/Config/BootLoader';
+import {GrubComponent} from 'src/app/System/grub/grub.component';
+import {Navigate} from '../BiosRouter';
+import {copy} from '../DeepClone';
+import {Loading} from '../LoadingAnimations';
+import {animationCursor, setDisplayText} from './text';
 
 /**
  * Main part of the system bootloader
@@ -22,6 +21,7 @@ export class BootLoader {
    * Full bios config
    */
   protected biosConfig: BiosOptionsST;
+
   /**
    *
    * @param biosConfig - Bios config

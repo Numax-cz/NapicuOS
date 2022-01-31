@@ -1,6 +1,6 @@
-import { drive } from 'src/app/Array/Drives';
-import { SystemDrives } from 'src/app/interface/SystemDrives';
-import { Options } from 'src/app/interface/ToolSettings';
+import {drive} from 'src/app/Array/Drives';
+import {SystemDrives} from 'src/app/interface/SystemDrives';
+import {Options} from 'src/app/interface/ToolSettings';
 
 /**
  * Function that converts an object of type Drives[] to type Options[]
@@ -15,7 +15,7 @@ export function GetDrives(num?: boolean, systemName?: boolean): Options[] {
     if (systemName && element.data.system && element.data.system.length == 1) {
       text += `(${element.data.system[0].boot.title})`;
     }
-    D.push({ title: text });
+    D.push({title: text});
   });
   return D;
 }

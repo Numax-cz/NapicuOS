@@ -1,8 +1,9 @@
-import { BiosMenu } from '../interface/BiosMenu';
-import { getLanguage } from '../Scripts/getLanguage';
+import {BiosMenu} from '../interface/BiosMenu';
+import {getLanguage} from '../Scripts/getLanguage';
 
 setLanguage();
 export var lang: any;
+
 /**
  * @returns Returns the top main menu
  */

@@ -1,8 +1,7 @@
-import { Informations } from '../interface/Informations';
-import { lang } from './BiosMenu';
-import { Current } from './FlashInformation';
+import {Informations} from '../interface/Informations';
+import {lang} from './BiosMenu';
 
-export function MainInfo(): Informations[] {  
+export function MainInfo(): Informations[] {
   return [
     {
       title: lang.MainInfoTitle.cpu_type,

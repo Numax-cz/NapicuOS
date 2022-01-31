@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BiosSettings } from 'src/app/Array/ToolSettings';
-import { ToolSettings } from 'src/app/interface/ToolSettings';
-import { Informations } from 'src/app/interface/Informations';
+import {Component, OnInit} from '@angular/core';
+import {BiosSettings} from 'src/app/Array/ToolSettings';
+import {ToolSettings} from 'src/app/interface/ToolSettings';
+
 @Component({
   selector: 'app-advanced',
   templateUrl: './advanced.component.html',
@@ -10,7 +10,9 @@ import { Informations } from 'src/app/interface/Informations';
 export class AdvancedComponent implements OnInit {
   public MainOption: ToolSettings = BiosSettings.Advanced;
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

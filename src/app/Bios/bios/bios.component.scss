@@ -6,17 +6,21 @@ $Padding: 10.234px;
   color: white;
   user-select: none;
 }
+
 .Menu {
   height: 100vh;
   width: 100%;
 }
+
 .Top {
   text-align: center;
   padding: $Padding;
+
   p {
     font-size: 1.8rem;
   }
 }
+
 .Bottom {
   margin-top: 1%;
   text-align: center;
@@ -24,12 +28,15 @@ $Padding: 10.234px;
   left: 0;
   right: 0;
   padding: $Padding;
+
   p {
     font-size: 1.8rem;
   }
 }
+
 .root {
   font-size: 1.45rem;
+
   div {
     display: flex;
     justify-content: space-evenly;
@@ -37,10 +44,12 @@ $Padding: 10.234px;
     max-width: 70%;
   }
 }
+
 .selected {
   background-color: lightgray;
   color: blue;
 }
+
 .nonselected {
   background-color: none;
   color: white;

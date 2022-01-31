@@ -9,8 +9,6 @@ import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {setHelpCommand} from './config/commands/help/setCommand';
 import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from '../../User';
-import {NapicuOSSystemDir} from './config/drive';
-import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');

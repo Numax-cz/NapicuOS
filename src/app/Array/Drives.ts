@@ -1,5 +1,5 @@
-import { SystemDrives } from '../interface/SystemDrives';
-import { NapicuOS } from '../Sys/Systems/NapicuOS/system.napicuos';
+import {SystemDrives} from '../interface/SystemDrives';
+import {NapicuOS} from '../Sys/Systems/NapicuOS/system.napicuos';
 
 //? Samsung - Main System
 //? IBM - Low graphic interface operating system

@@ -1,4 +1,4 @@
-import { FlashComponent } from 'src/app/Bios/flash/flash.component';
+import {FlashComponent} from 'src/app/Bios/flash/flash.component';
 
 export function ProgressBar(time: number, htmlID: string, callback: () => void, max?: number): void {
   FlashComponent.Flashing = true;
@@ -14,6 +14,7 @@ export function ProgressBar(time: number, htmlID: string, callback: () => void, 
       i = 1;
       var width = 10;
       var id = setInterval(frame, time);
+
       function frame() {
         var d = Math.random();
         if (d < 0.5) {
@@ -27,6 +28,7 @@ export function ProgressBar(time: number, htmlID: string, callback: () => void, 
         } else {
           Move();
         }
+
         function Move() {
           if (width >= MaxLoad) {
             clearInterval(id);

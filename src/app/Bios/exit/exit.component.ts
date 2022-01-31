@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BiosSettings } from 'src/app/Array/ToolSettings';
-import { ToolSettings } from 'src/app/interface/ToolSettings';
+import {Component, OnInit} from '@angular/core';
+import {BiosSettings} from 'src/app/Array/ToolSettings';
+import {ToolSettings} from 'src/app/interface/ToolSettings';
+
 @Component({
   selector: 'app-exit',
   templateUrl: './exit.component.html',
@@ -9,5 +10,6 @@ import { ToolSettings } from 'src/app/interface/ToolSettings';
 export class ExitComponent implements OnInit {
   public MainOption: ToolSettings = BiosSettings.Exit;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

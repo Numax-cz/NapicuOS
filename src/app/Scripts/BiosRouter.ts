@@ -1,4 +1,4 @@
-import { BootComponent } from '../Bios/boot/boot.component';
+import {BootComponent} from '../Bios/boot/boot.component';
 
 /**
  * Redirects to the required path

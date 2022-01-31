@@ -2,19 +2,19 @@ import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.compone
 import {GrubComponent} from 'src/app/System/grub/grub.component';
 import {SystemComponent} from 'src/app/System/system/system.component';
 import {
-  onStartUp,
+  AlertCreatMetadata,
+  AppCreatFileMetadata,
+  AppCreatMetadata,
   onShutDown,
+  onStartUp,
   Os,
   SystemStateMetadata,
-  AppCreatMetadata,
-  AppCreatFileMetadata,
-  AlertCreatMetadata,
 } from './interface/system';
-import {Process, ProcessWindowValueMetadata} from '../../Process';
+import {Process} from '../../Process';
 import {System} from '../../System';
 import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
-import {boot_animation_time, boot_time, soft_boot_time} from './config/boot';
+import {boot_time, soft_boot_time} from './config/boot';
 import {formatDate} from '@angular/common';
 import {time_formate} from './config/time';
 import {Line} from './Apps/console/console.component';
@@ -22,29 +22,21 @@ import {Command, CommandFunMetadata} from '../../command';
 import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess} from './systemApps.napicuos';
 import {SystemFile} from '../../File';
-import {
-  systemDirAFileMetadata,
-  systemDirMetadata,
-  systemDrivesMetadata,
-} from './interface/FilesDirs/systemDir';
+import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
 import {
   system_boot_screen_logo,
   system_boot_screen_title,
   system_default_user,
   system_root_user,
 } from './config/systemInfo';
-import {NapicuOSSystemDir, napicu_os_root_part} from './config/drive';
-import {copy} from 'src/app/Scripts/DeepClone';
+import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from '../../User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
-import {Type} from '@angular/core';
 import {Window} from '../../Window';
 import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
-import {windowData} from './interface/Window/windowData';
 import {SystemAlert} from '../../Alert';
-import {systemAlertTypeEnumMetadata} from './interface/Alert/alert';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;

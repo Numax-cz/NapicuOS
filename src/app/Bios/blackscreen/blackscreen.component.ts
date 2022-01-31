@@ -1,4 +1,3 @@
-import {keyframes} from '@angular/animations';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as key from 'src/app/Config/KeyMaps';
 import {animationCursor} from 'src/app/Scripts/bootloader/text';

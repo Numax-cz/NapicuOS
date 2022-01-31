@@ -1,3 +1,3 @@
-export declare interface SystemFileMetadata{
-    
+export declare interface SystemFileMetadata {
+
 }

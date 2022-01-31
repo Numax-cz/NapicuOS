@@ -1,8 +1,7 @@
-import { Type } from '@angular/core';
-import { Window } from './Window';
-import { SystemComponent } from '../System/system/system.component';
-import { Process } from './Process';
-import { NapicuOSComponent } from './Systems/NapicuOS/components/napicu-os/napicu-os.component';
+import {Type} from '@angular/core';
+import {SystemComponent} from '../System/system/system.component';
+import {Process} from './Process';
+import {NapicuOSComponent} from './Systems/NapicuOS/components/napicu-os/napicu-os.component';
 
 export class System {
   //TODO Doc
@@ -13,6 +12,7 @@ export class System {
     title: string;
     logo: string;
   };
+
   constructor() {
     this.SystemBooted = false;
     this.SystemProcess = [];
@@ -34,20 +34,27 @@ export class System {
     this.onLoad();
   };
 
-  public onKeyPress(ev: KeyboardEvent): void {}
+  public onKeyPress(ev: KeyboardEvent): void {
+  }
 
   /**
    * This function is called after the Start function
    */
-  public onStart(): void {}
+  public onStart(): void {
+  }
+
   /**
    * This function is called after the shutDown function
    */
-  public onShutDown(): void {}
+  public onShutDown(): void {
+  }
 
-  public onLoad(): void {}
+  public onLoad(): void {
+  }
+
   /**
    * This function is called after the user logs in
    */
-  public onLogin(): void {}
+  public onLogin(): void {
+  }
 }

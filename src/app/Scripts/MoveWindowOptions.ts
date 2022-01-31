@@ -1,5 +1,5 @@
-import { BiosComponent } from "../Bios/bios/bios.component";
-import { OptionPanelComponent } from "../Bios/option-panel/option-panel.component";
+import {BiosComponent} from "../Bios/bios/bios.component";
+import {OptionPanelComponent} from "../Bios/option-panel/option-panel.component";
 
 export function MoveWindowOptions(keyCode: number): void {
   if (!OptionPanelComponent.window) return;

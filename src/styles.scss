@@ -32,6 +32,7 @@ html {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+
 #black {
   background-color: black;
   width: 100%;
@@ -46,6 +47,7 @@ html {
   height: 85vh;
   padding: 20px 10px;
 }
+
 #Frame {
   border-left: $BorderLeftARight;
   border-right: $BorderLeftARight;
@@ -53,24 +55,29 @@ html {
   border-bottom: $BorderTopABottom;
   height: $FrameSizeHeight;
 }
+
 .Grid {
   display: grid;
   grid-template-columns: 60% 40%;
   height: 100%;
 }
+
 .Grid-ItemHoz {
   display: grid;
   grid-template-rows: 50% 50%;
 }
+
 #Grid-BiosItems {
   display: grid;
   grid-template-columns: 60% 40%;
   padding: 3px 0px;
 }
+
 .colon {
   float: right;
   margin-right: 10%;
 }
+
 #Title {
   font-size: 1.8rem;
   padding: 20px;
@@ -78,14 +85,17 @@ html {
 
   font-weight: bold;
 }
+
 .Information {
   font-size: 1.7rem;
 
   color: gray;
 }
+
 .blue {
   color: blue;
 }
+
 .Hin {
   border-top: $BorderTopABottom;
 }
@@ -103,6 +113,7 @@ html {
 .Right {
   border-left: $BorderLeftARight;
 }
+
 .Right > div {
   padding: 10px;
 }
@@ -117,13 +128,16 @@ html {
   width: 200px;
   overflow: hidden;
 }
+
 [contenteditable='true'].single-line br {
   display: none;
 }
+
 [contenteditable='true'].single-line * {
   display: inline;
   white-space: nowrap;
 }
+
 [contenteditable='true'].single-line img {
   display: none;
 }

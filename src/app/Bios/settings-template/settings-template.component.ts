@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BiosComponent } from '../bios/bios.component';
-import { ComponentClass } from '../../interface/ComponentClass';
-import { Informations } from '../../interface/Informations';
-import { settings, ToolSettings } from '../../interface/ToolSettings';
-import { isOption, isTime, isDate, isOptionsFast } from '../../Scripts/Type';
-import { objectKeys } from 'src/app/Scripts/objectKeys';
+import {Component, Input, OnInit} from '@angular/core';
+import {BiosComponent} from '../bios/bios.component';
+import {Informations} from '../../interface/Informations';
+import {settings} from '../../interface/ToolSettings';
+import {isDate, isOption, isOptionsFast, isTime} from '../../Scripts/Type';
+import {objectKeys} from 'src/app/Scripts/objectKeys';
 
 @Component({
   selector: 'app-settings-template',
@@ -21,7 +20,9 @@ export class SettingsTemplateComponent implements OnInit {
    */
   public static selected: number = 0;
 
-  constructor() {}
+  constructor() {
+  }
+
   ngOnInit(): void {
     if (this.MainOption) {
       SettingsTemplateComponent.MainOption = this.MainOption.settings;
@@ -36,37 +37,46 @@ export class SettingsTemplateComponent implements OnInit {
   get Selected(): number {
     return BiosComponent.WindowSelectedOption;
   }
+
   get localSelected(): number {
     return SettingsTemplateComponent.selected;
   }
+
   get CursorDisplay(): boolean {
     return BiosComponent.WindowFastOptionDisplay;
   }
+
   get ComponentTitle(): string {
     return SettingsTemplateComponent.MainOption[0].title;
   }
+
   get Description(): string {
     return SettingsTemplateComponent.MainOption[
       objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
-    ].description;
+      ].description;
   }
 
   public isOption(component: settings): boolean {
     return isOption(component);
   }
+
   public isTime(component: settings): boolean {
     return isTime(component);
   }
+
   public isDate(component: settings): boolean {
     return isDate(component);
   }
+
   public isOptionFast(component: settings): boolean {
     return isOptionsFast(component);
   }
+
   static errorType(): string {
     console.error('Array Error');
     return '{[Bios_Main]TYPE ERROR}';
   }
+
   objectKeys(obj: any): any {
     return Object.keys(obj);
   }

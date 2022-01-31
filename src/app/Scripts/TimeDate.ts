@@ -1,5 +1,4 @@
-import { DatePipe } from '@angular/common';
-import { Time, Date } from '../interface/ToolSettings';
+import {Date, Time} from '../interface/ToolSettings';
 
 /**
  * Index 1 is the `hour`

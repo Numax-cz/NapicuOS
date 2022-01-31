@@ -1,14 +1,10 @@
-import {DOCUMENT} from '@angular/common';
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Current, Drive, Update} from '../../Array/FlashInformation';
 import {BiosInfo} from '../../Array/ToolSettings';
-import {BiosComponent} from '../bios/bios.component';
-import {directories, Drives} from '../../interface/Directorie';
+import {directories} from '../../interface/Directorie';
 import {FlashInformation} from '../../interface/FlashInformation';
 import {OptionPanelComponent} from '../option-panel/option-panel.component';
 import {Move} from '../../Scripts/Flash/Move';
-import {getCookies} from 'src/app/Scripts/Cookies';
-import {cookiesForBiosVersion} from 'src/app/Config/Cookies';
 
 @Component({
   selector: 'app-flash',

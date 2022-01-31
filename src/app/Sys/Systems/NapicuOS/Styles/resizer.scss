@@ -5,21 +5,25 @@
   position: absolute;
   z-index: 999999;
 }
+
 .resizer.top-right {
   right: -5px;
   top: -5px;
   cursor: nesw-resize;
 }
+
 .resizer.top-left {
   left: -5px;
   top: -5px;
   cursor: nwse-resize; /*resizer cursor*/
 }
+
 .resizer.bottom-left {
   left: -5px;
   bottom: -5px;
   cursor: nesw-resize;
 }
+
 .resizer.bottom-right {
   right: -5px;
   bottom: -5px;
@@ -32,18 +36,21 @@
   width: 100%;
   cursor: ns-resize;
 }
+
 .resizer.left {
   left: -5px;
   top: -5px;
   height: 100%;
   cursor: ew-resize;
 }
+
 .resizer.right {
   right: -5px;
   top: -5px;
   height: 100%;
   cursor: ew-resize;
 }
+
 .resizer.bottom {
   bottom: -5px;
   width: 100%;

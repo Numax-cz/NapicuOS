@@ -1,11 +1,8 @@
-import { Command } from './command';
-import { Process } from './Process';
-import {
-  SystemFileConsMetadata,
-  SystemFileTypeEnumMetadata,
-} from './Systems/NapicuOS/interface/FilesDirs/file';
-import { SystemFilePermissionsMetadata } from './Systems/NapicuOS/interface/permissions';
-import { SystemUserPermissionsEnumMetadata } from './Systems/NapicuOS/interface/User/user';
+import {Command} from './command';
+import {Process} from './Process';
+import {SystemFileConsMetadata, SystemFileTypeEnumMetadata,} from './Systems/NapicuOS/interface/FilesDirs/file';
+import {SystemFilePermissionsMetadata} from './Systems/NapicuOS/interface/permissions';
+import {SystemUserPermissionsEnumMetadata} from './Systems/NapicuOS/interface/User/user';
 
 export class SystemFile {
   //TODO DOC
@@ -38,7 +35,7 @@ export class SystemFile {
     this.value = data.value;
     this.fileName = data.fileName;
     this.fileType = data.fileType;
-    this.permissions = data.permissions ? data.permissions : { read: SystemUserPermissionsEnumMetadata.User };
+    this.permissions = data.permissions ? data.permissions : {read: SystemUserPermissionsEnumMetadata.User};
 
     //TODO permissions
   }

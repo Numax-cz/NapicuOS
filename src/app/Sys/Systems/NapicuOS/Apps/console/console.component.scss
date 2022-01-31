@@ -3,14 +3,17 @@
 .BackgroundColor {
   background-color: var(--NapicuTerminal-background);
 }
+
 #CommandShellInput {
   * {
     font-size: var(--NapicuTerminal-FontSize);
   }
+
   color: var(--NapicuAPPSTerminalTextColor);
   width: 100%;
   padding: 4px;
 }
+
 .inputLine {
   outline: none;
   min-width: calc(100% - 200px);
@@ -22,13 +25,16 @@
 
 .line {
   display: flex;
+
   *.line-red {
     color: red;
   }
 }
+
 .TerminalNames {
   color: var(--NapicuTerminal-green);
 }
+
 .TerminalPath {
   color: var(--NapicuTerminal-blue);
 }

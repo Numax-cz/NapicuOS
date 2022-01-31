@@ -1,4 +1,4 @@
-import { Line } from '../../../Apps/console/console.component';
+import {Line} from '../../../Apps/console/console.component';
 
 export const getHelpCommandAPPS: Line = new Line(
   `\t\t--open - Returns open GUI applications

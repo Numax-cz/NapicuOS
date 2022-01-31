@@ -1,21 +1,25 @@
-.Container{
-    padding: 20px;
+.Container {
+  padding: 20px;
 }
-.TopText{
-    padding: 25px;
-    text-align: center;
-    font-size: 1.2rem;
+
+.TopText {
+  padding: 25px;
+  text-align: center;
+  font-size: 1.2rem;
 }
-.SelectedMenu{
-    width: 100%;
-    min-height: 75vh;
-    padding: 15px 20px;
-    border: 2px solid white;
+
+.SelectedMenu {
+  width: 100%;
+  min-height: 75vh;
+  padding: 15px 20px;
+  border: 2px solid white;
 }
-.BottomText{
-    padding: 20px 100px;
+
+.BottomText {
+  padding: 20px 100px;
 }
-.selected{
-    background-color: white;
-    color: black;
+
+.selected {
+  background-color: white;
+  color: black;
 }

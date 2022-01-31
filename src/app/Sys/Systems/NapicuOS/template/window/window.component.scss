@@ -13,6 +13,7 @@
 .SelectedWindow {
   background-color: var(--NapicuSelectedWindowColor);
 }
+
 .UnSelectedWindow {
   filter: contrast(0.9);
   background-color: var(--NapicuUnSelectedWindowColor);
@@ -22,12 +23,14 @@
   height: 100%;
   overflow: hidden;
 }
+
 #TopWindowAppBar {
   display: flex;
   align-items: center;
   color: var(--NapicuTitleTextColor);
   justify-content: flex-end;
 }
+
 .WindowAppTitle {
   position: absolute;
   left: 50%;
@@ -38,6 +41,7 @@
   display: flex;
   justify-content: flex-end;
   padding: var(--NapicuWindowPadding);
+
   div {
     border-radius: 50%;
     height: var(--NapicuWindowButtonsSize);
@@ -51,10 +55,12 @@
   background-color: var(--NapicuWindowButtonColor-Close);
   //border: 2px solid var(--NapicuWindowButtonColor-Close-Border);
 }
+
 #FullButton {
   background-color: var(--NapicuWindowButtonColor-Full);
   //border: 2px solid var(--NapicuWindowButtonColor-Full-Border);
 }
+
 #MinButton {
   background-color: var(--NapicuWindowButtonColor-Mini);
   //border: 2px solid var(--NapicuWindowButtonColor-Mini-Border);

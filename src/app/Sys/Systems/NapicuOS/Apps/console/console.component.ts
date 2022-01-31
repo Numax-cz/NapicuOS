@@ -1,26 +1,21 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CommandFunMetadata } from 'src/app/Sys/command';
-import { User } from 'src/app/Sys/User';
-import { system_computer_name, system_default_user } from '../../config/systemInfo';
-import { removeSpace } from '../../scripts/removeSpaceInString';
-import { NapicuOS } from '../../system.napicuos';
-import {
-  commandLineStMetadata,
-  historyCommandsMetadata,
-  inputMetadata,
-  terminalColorsMetadata,
-} from './console';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {CommandFunMetadata} from 'src/app/Sys/command';
+import {system_computer_name} from '../../config/systemInfo';
+import {removeSpace} from '../../scripts/removeSpaceInString';
+import {NapicuOS} from '../../system.napicuos';
+import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from './console';
 
 export class Line {
   private declare line: string;
   private color: terminalColorsMetadata = 'white';
+
   constructor(line: string, color?: terminalColorsMetadata) {
     this.line = line;
     this.color = color ? color : 'white';
   }
 
   public Write(): historyCommandsMetadata {
-    return { value: this.line, color: this.color };
+    return {value: this.line, color: this.color};
   }
 
   public setColor(color: terminalColorsMetadata): void {
@@ -53,9 +48,12 @@ export class ConsoleComponent implements OnInit {
    * Command line lines
    */
   private lines: inputMetadata[] = [];
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
 
   /**
    * Function that is triggered by pressing enter
@@ -91,24 +89,28 @@ export class ConsoleComponent implements OnInit {
     this.scrollBottom();
     event.preventDefault();
   }
+
   /**
    * Focus cursor on the input
    */
   public inputFocus(): void {
     this.inputValue.nativeElement.focus();
   }
+
   /**
    * Sets the input value to the value according to the selected command from the histo
    */
   private setCommandFromCommandHistory(): void {
     this.inputValue.nativeElement.innerText = ConsoleComponent.historyCommands[this.selectedCommandHistory];
   }
+
   /**
    * Auto scroll down function
    */
   private scrollBottom(): void {
-    this.appScreen.nativeElement.scrollTo({ top: this.appScreen.nativeElement.scrollHeight });
+    this.appScreen.nativeElement.scrollTo({top: this.appScreen.nativeElement.scrollHeight});
   }
+
   /**
    * Sets and filters commands
    * @param input - Command entered
@@ -119,6 +121,7 @@ export class ConsoleComponent implements OnInit {
     });
     ConsoleComponent.historyCommands.push(input);
   }
+
   /**
    * Function that is triggered by pressing arrow up
    */
@@ -131,6 +134,7 @@ export class ConsoleComponent implements OnInit {
     this.setCommandFromCommandHistory();
     event.preventDefault();
   }
+
   /**
    * Function that is triggered by pressing arrow down
    */
@@ -141,38 +145,44 @@ export class ConsoleComponent implements OnInit {
     }
     event.preventDefault();
   }
+
   /**
    * Creates a new line
    * @param value - Array of lines to be displayed
    * @param enteredCommand - The command that appears as entered
    */
   private creatCommandLine(value: Line[], enteredCommand?: string): void {
-    this.lines.push({ lines: value, enteredCommand: enteredCommand });
+    this.lines.push({lines: value, enteredCommand: enteredCommand});
   }
+
   /**
    * Returns the username
    */
   get GetUserName(): string {
     return NapicuOS.get_active_user()?.get_username() || 'NULL';
   }
+
   /**
    * Returns the computer's name
    */
   get GetcompName(): string {
     return system_computer_name;
   }
+
   /**
    * Returns the path the user is in
    */
   get Getpath(): string {
     return this.path;
   }
+
   /**
    * Returns array of all rows
    */
   get Getlines(): inputMetadata[] {
     return this.lines;
   }
+
   /**
    * History of commands used
    */
@@ -183,18 +193,21 @@ export class ConsoleComponent implements OnInit {
   get GetactiveCommand(): boolean {
     return this.activeCommand;
   }
+
   /**
    * Function for getting the command lines history
    */
   public getCommandLines(): inputMetadata[] {
     return this.lines;
   }
+
   /**
    * Function for getting the history commands
    */
   public static gethistoryCommands(): string[] {
     return this.historyCommands;
   }
+
   /**
    * Funcion for deleting the history of console
    */

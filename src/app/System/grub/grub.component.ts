@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as key from 'src/app/Config/KeyMaps';
-import { Boot } from 'src/app/Scripts/exit/Boot';
-import { System } from 'src/app/Sys/System';
+import {Boot} from 'src/app/Scripts/exit/Boot';
+import {System} from 'src/app/Sys/System';
 
 @Component({
   selector: 'app-grub',
@@ -9,7 +9,8 @@ import { System } from 'src/app/Sys/System';
   styleUrls: ['./grub.component.scss'],
 })
 export class GrubComponent implements OnInit, OnDestroy {
-  constructor() {}
+  constructor() {
+  }
 
   /**
    * Number indicates the selected options

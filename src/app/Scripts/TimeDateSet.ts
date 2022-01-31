@@ -1,7 +1,8 @@
-import { BiosComponent } from '../Bios/bios/bios.component';
-import { Time } from '../interface/ToolSettings';
-import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
-import { isDate, isTime } from './Type';
+import {BiosComponent} from '../Bios/bios/bios.component';
+import {Time} from '../interface/ToolSettings';
+import {SettingsTemplateComponent} from '../Bios/settings-template/settings-template.component';
+import {isDate, isTime} from './Type';
+
 export const maxMinutes: number = 60;
 export const maxSeconds: number = 60;
 export const maxHours: number = 24;

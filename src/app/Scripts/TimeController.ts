@@ -1,6 +1,6 @@
-import { BootComponent } from '../Bios/boot/boot.component';
-import { settings, struc } from '../interface/ToolSettings';
-import { maxMinutes, maxSeconds, maxHours } from './TimeDateSet';
+import {BootComponent} from '../Bios/boot/boot.component';
+import {settings} from '../interface/ToolSettings';
+import {maxHours, maxMinutes, maxSeconds} from './TimeDateSet';
 
 /**
  * Sets the correct tick of the clock

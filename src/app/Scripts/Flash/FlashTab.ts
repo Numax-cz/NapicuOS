@@ -1,4 +1,4 @@
-import { FlashComponent } from "src/app/Bios/flash/flash.component";
+import {FlashComponent} from "src/app/Bios/flash/flash.component";
 
 //TODO @Document
 export function FlashTab(): void {

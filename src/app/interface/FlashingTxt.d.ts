@@ -1,3 +1,3 @@
-export interface FlashingTxt{
-    [index: number]: string
+export interface FlashingTxt {
+  [index: number]: string
 }

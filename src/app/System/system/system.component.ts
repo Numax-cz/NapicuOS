@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit, Type } from '@angular/core';
-import { GrubComponent } from '../grub/grub.component';
+import {Component, OnDestroy, OnInit, Type} from '@angular/core';
 
 @Component({
   selector: 'app-system',
@@ -9,8 +8,11 @@ import { GrubComponent } from '../grub/grub.component';
 export class SystemComponent implements OnInit, OnDestroy {
   public static SysComponent: Type<any>;
 
-  ngOnInit(): void {}
-  ngOnDestroy(): void {}
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+  }
 
   get Component(): Type<any> {
     return SystemComponent.SysComponent;

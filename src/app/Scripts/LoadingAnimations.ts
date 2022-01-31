@@ -1,4 +1,5 @@
-import { Navigate } from './BiosRouter';
+import {Navigate} from './BiosRouter';
+
 /**
  * Loading animation (black screen)
  * @param redirect Redirection path after the end of amination
@@ -10,7 +11,7 @@ export function Loading(redirect: string, outTime: number, inTime?: number): voi
   setTimeout(() => {
     Navigate('/blackloading');
     setTimeout(() => {
-      Navigate(redirect); 
+      Navigate(redirect);
     }, outTime);
   }, inTime);
 }

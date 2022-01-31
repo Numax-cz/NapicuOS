@@ -1,4 +1,4 @@
-import { Options } from 'src/app/interface/ToolSettings';
+import {Options} from 'src/app/interface/ToolSettings';
 
 export const LangMenu: Options[] = [
   {

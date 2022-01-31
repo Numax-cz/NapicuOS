@@ -1,10 +1,11 @@
-import { Line } from './console.component';
+import {Line} from './console.component';
 
 export declare interface commandLineStMetadata {
   user: string;
   compName: string;
   path: string;
 }
+
 export declare type terminalColorsMetadata =
   | 'blue'
   | 'brightBlack'
@@ -15,6 +16,7 @@ export declare type terminalColorsMetadata =
   | 'red'
   | 'white'
   | 'yellow';
+
 export declare interface historyCommandsMetadata {
   value: string;
   color: terminalColorsMetadata;

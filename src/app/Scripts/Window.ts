@@ -1,12 +1,12 @@
-import { setTimeInterval } from './TimeController';
-import { isTime, isOption, isDate, isOptionsFast } from './Type';
-import { WindowItems } from './Type';
-import { settings, Time } from '../interface/ToolSettings';
-import { ItemsDateInit } from './SetWindowOption';
-import { BiosComponent } from '../Bios/bios/bios.component';
-import { OptionPanelComponent } from '../Bios/option-panel/option-panel.component';
-import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
-import { objectKeys } from './objectKeys';
+import {setTimeInterval} from './TimeController';
+import {isDate, isOption, isTime, WindowItems} from './Type';
+import {settings} from '../interface/ToolSettings';
+import {ItemsDateInit} from './SetWindowOption';
+import {BiosComponent} from '../Bios/bios/bios.component';
+import {OptionPanelComponent} from '../Bios/option-panel/option-panel.component';
+import {SettingsTemplateComponent} from '../Bios/settings-template/settings-template.component';
+import {objectKeys} from './objectKeys';
+
 //TODO clear code
 /**
  * Class for pop up window
@@ -66,7 +66,7 @@ export class Window {
     let selected: settings =
       SettingsTemplateComponent.MainOption[
         objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
-      ];
+        ];
     if (BiosComponent.WindowFastOptionDisplay) {
       if (isTime(selected)) {
         selected.time = ItemsDateInit;
@@ -81,7 +81,7 @@ export class Window {
     let selected: settings =
       SettingsTemplateComponent.MainOption[
         objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
-      ];
+        ];
     if (isOption(selected)) {
       selected.selected =
         BiosComponent.WindowSelectedOption;

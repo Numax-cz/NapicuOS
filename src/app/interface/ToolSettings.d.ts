@@ -13,9 +13,11 @@ export interface settings {
   description: string;
   selected: number;
 }
+
 export interface struc {
   [index: string]: settings;
 }
+
 export interface Options {
   title: string;
 }

@@ -1,8 +1,8 @@
-import { BiosOptionsST, BiosSettings, setSettingsValue } from '../Array/ToolSettings';
-import { BiosComponent } from '../Bios/bios/bios.component';
-import { cookiesForBisoSettingsAr } from '../Config/Cookies';
-import { getCookies } from './Cookies';
-import { copy } from './DeepClone';
+import {BiosOptionsST, BiosSettings, setSettingsValue} from '../Array/ToolSettings';
+import {BiosComponent} from '../Bios/bios/bios.component';
+import {cookiesForBisoSettingsAr} from '../Config/Cookies';
+import {getCookies} from './Cookies';
+import {copy} from './DeepClone';
 
 /**
  * Sets bios settings according to cookies, or sets default bios settings

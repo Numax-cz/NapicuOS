@@ -1,10 +1,8 @@
-import { FlashingText } from 'src/app/Array/FlashInformation';
-import { FlashComponent } from 'src/app/Bios/flash/flash.component';
-import { Checking, Erasing, Verifying, Writing } from 'src/app/Config/Animation/Flash';
-
-import { Window } from '../Window';
-import { ReadyToFlash, SuccesFlash } from './OpenWindow';
-import { ProgressBar } from './ProgressBar';
+import {FlashingText} from 'src/app/Array/FlashInformation';
+import {FlashComponent} from 'src/app/Bios/flash/flash.component';
+import {Checking, Erasing, Verifying, Writing} from 'src/app/Config/Animation/Flash';
+import {ReadyToFlash, SuccesFlash} from './OpenWindow';
+import {ProgressBar} from './ProgressBar';
 
 export function CheckBIOSFile() {
   FlashComponent.Flashing = true;
@@ -13,6 +11,7 @@ export function CheckBIOSFile() {
     ReadyToFlash();
   });
 }
+
 export function ErasingBIOS() {
   FlashComponent.FlashingText = FlashingText[1];
   ProgressBar(
@@ -24,6 +23,7 @@ export function ErasingBIOS() {
     80
   );
 }
+
 export function WritingBIOS() {
   FlashComponent.FlashingText = FlashingText[2];
   ProgressBar(Writing, 'Bar2', () => {

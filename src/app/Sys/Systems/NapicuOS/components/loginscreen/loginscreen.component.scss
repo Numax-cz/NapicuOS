@@ -2,6 +2,7 @@ $BoxPadding: 20px;
 $BoxBRadius: 8px;
 .InputElements {
   padding: $BoxPadding;
+
   input {
     font-size: 1.2rem;
     outline: none;
@@ -12,6 +13,7 @@ $BoxBRadius: 8px;
     padding: 7px 10px;
   }
 }
+
 .LoginButton {
   width: 70%;
   margin-left: auto;
@@ -32,11 +34,13 @@ $BoxBRadius: 8px;
     user-select: none;
   }
 }
+
 .TimeContainer {
   text-align: center;
   font-size: 3.5rem;
   font-weight: 600;
 }
+
 .Box {
   position: absolute;
   top: 50%;

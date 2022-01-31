@@ -1,8 +1,4 @@
-import {Process} from './Process';
-import {
-  SystemUserDataMetadata,
-  SystemUserPermissionsEnumMetadata,
-} from './Systems/NapicuOS/interface/User/user';
+import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata,} from './Systems/NapicuOS/interface/User/user';
 
 export class User {
   private username: string = 'user';

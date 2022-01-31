@@ -1,4 +1,4 @@
-import { cookiesTime } from "../Config/Cookies";
+import {cookiesTime} from "../Config/Cookies";
 
 /**
  * Sets the value of cookies

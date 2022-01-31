@@ -5,6 +5,7 @@
   color: white;
   user-select: none;
 }
+
 .BootScreen {
   display: table;
   z-index: 1;
@@ -12,6 +13,7 @@
   min-height: 500px;
   width: 100%;
 }
+
 .Logo {
   text-align: center;
 
@@ -20,11 +22,13 @@
     background-color: blue;
   }
 }
+
 .Center {
   display: table-cell;
   vertical-align: middle;
   padding-bottom: 355px;
 }
+
 .BottomText {
   position: absolute;
   bottom: 20%;

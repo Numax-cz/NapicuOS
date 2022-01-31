@@ -1,5 +1,5 @@
-import { User } from "src/app/Sys/User";
-import { SystemUserPermissionsEnumMetadata } from "../interface/User/user";
+import {User} from "src/app/Sys/User";
+import {SystemUserPermissionsEnumMetadata} from "../interface/User/user";
 
 
 export const system_computer_name = 'napicu-os';

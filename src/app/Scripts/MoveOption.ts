@@ -1,6 +1,5 @@
-import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
-import { LoadingFlashComponent } from '../Config/Animation/Flash';
-import { objectKeys } from './objectKeys';
+import {SettingsTemplateComponent} from '../Bios/settings-template/settings-template.component';
+import {objectKeys} from './objectKeys';
 
 export function MoveOption(keyCode: number): void {
   // ArrowDown

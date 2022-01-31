@@ -1,5 +1,4 @@
-import { Process } from 'src/app/Sys/Process';
-import { SystemFilePermissionsMetadata } from '../permissions';
+import {SystemFilePermissionsMetadata} from '../permissions';
 
 declare const enum SystemFileTypeEnumMetadata {
   executable = 'Executable',

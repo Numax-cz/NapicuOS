@@ -1,7 +1,7 @@
-import { ComponentClass } from '../interface/ComponentClass';
-import { Options, settings, Time, Date } from '../interface/ToolSettings';
+import {Date, Options, settings, Time} from '../interface/ToolSettings';
 
 export type WindowItems = Options[] | Time[] | Date[];
+
 /**
  *
  * @param {settings} component - Interface in ToolSettings.ts
@@ -14,6 +14,7 @@ export function isOption(component: settings): boolean {
   }
   return false;
 }
+
 /**
  *
  * @param {settings} component - Interface in ToolSettings.ts
@@ -26,6 +27,7 @@ export function isTime(component: settings): boolean {
   }
   return false;
 }
+
 /**
  *
  * @param {settings} component - Interface in ToolSettings.ts
@@ -38,6 +40,7 @@ export function isDate(component: settings): boolean {
   }
   return false;
 }
+
 /**
  *
  * @param {settings} component - Interface in ToolSettings.ts
