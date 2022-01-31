@@ -7,6 +7,8 @@ import {
   Os,
   SystemStateMetadata,
   AppCreatMetadata,
+  AppCreatFileMetadata,
+  AlertCreatMetadata,
 } from './interface/system';
 import { Process, ProcessWindowValueMetadata } from '../../Process';
 import { System } from '../../System';
@@ -18,7 +20,7 @@ import { time_formate } from './config/time';
 import { Line } from './Apps/console/console.component';
 import { Command, CommandFunMetadata } from '../../command';
 import { initAllCommands } from './initCommands.napicuos';
-import { initAllStartUpApps, initAllSystemProcess, napicu_os_alertwindow } from './systemApps.napicuos';
+import { initAllStartUpApps, initAllSystemProcess } from './systemApps.napicuos';
 import { SystemFile } from '../../File';
 import {
   systemDirAFileMetadata,
@@ -42,6 +44,7 @@ import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
 import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
 import { windowData } from './interface/Window/windowData';
 import { SystemAlert } from '../../Alert';
+import { systemAlertTypeEnumMetadata } from './interface/Alert/alert';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -274,14 +277,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.activeUser;
   }
 
-  // * * * Functions * * *
-  /**
-   * Creates and opens a new alert
-   * @param windowTitle Title of the new alert window
-   */
-  public static open_new_alert(windowTitle: string) {
-    napicu_os_alertwindow(windowTitle).open();
-  }
   /**
    * Register the command
    */
@@ -417,28 +412,43 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
     return SystemStateMetadata.UserLoginSuccess;
   }
-  /**
-   * Adds and installs the application
-   * @param appTitle Application's name
-   * @param processTitle Application's process name
-   * @param appComponent Application's component (GUI)
-   * @param windowData Window's settings (size & position)
-   * @param appData Application's data
-   */
-  public static create_app(data: AppCreatMetadata): SystemFile {
+  // /**
+  //  * Adds and installs the application
+  //  * @param appTitle Application's name
+  //  * @param processTitle Application's process name
+  //  * @param appComponent Application's component (GUI)
+  //  * @param windowData Window's settings (size & position)
+  //  * @param appData Application's data
+  //  */
+  // public static create_app(data: AppCreatMetadata): SystemFile {
+  //   var Application = new SystemFile({
+  //     fileName: data.appTitle,
+  //     fileType: SystemFileTypeEnumMetadata.apps,
+  //     value: () => {
+  //       return new Process({
+  //         //TODO Window dynamically
+  //         //TODO Window dynamically
+  //         //TODO Window dynamically
+  //         //TODO Window dynamically
+  //         //TODO Window dynamically
+  //         //TODO Window dynamically
+  //         //TODO Window dynamically
+  //         Window: new Window(data.appComponent, data.appTitle, data.windowData),
+  //         processTitle: data.processTitle,
+  //       });
+  //     },
+  //   });
+  //   this.get_apps_dir()?.files?.push(Application);
+  //   return Application;
+  // }
+
+  protected static create_app_file(data: AppCreatFileMetadata): SystemFile {
     var Application = new SystemFile({
       fileName: data.appTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return new Process({
-          //TODO Window dynamically
-          //TODO Window dynamically
-          //TODO Window dynamically
-          //TODO Window dynamically
-          //TODO Window dynamically
-          //TODO Window dynamically
-          //TODO Window dynamically
-          Window: new Window(data.appComponent, data.appTitle, data.windowData),
+          Window: data.appWindow,
           processTitle: data.processTitle,
         });
       },
@@ -446,7 +456,35 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.get_apps_dir()?.files?.push(Application);
     return Application;
   }
-
+  /**
+   * 
+   * @param alertTitle Alert title
+   * @param alertValue Alert value
+   * @param alertType Alert type
+   */
+  public static create_alert(
+    data: AlertCreatMetadata
+  ): SystemFile {
+    return this.create_app_file({
+      appTitle: data.alertTitle,
+      processTitle: 'SystemAlert',
+      appWindow: new SystemAlert(data.alertTitle, data.alertValue, data.alertType),
+    });
+  }
+  /**
+   * Adds and installs the application
+   * @param appTitle Application's name
+   * @param processTitle Application's process name
+   * @param appComponent Application's component (GUI)
+   * @param windowData Window's settings (size & position)
+   */
+  public static create_app(data: AppCreatMetadata): SystemFile {
+    return this.create_app_file({
+      appTitle: data.appTitle,
+      processTitle: data.processTitle,
+      appWindow: new Window(data.appComponent, data.appTitle, data.windowData),
+    });
+  }
 
   /**
    * Logs the user out

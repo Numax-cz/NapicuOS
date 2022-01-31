@@ -1,4 +1,6 @@
 import { Type } from '@angular/core';
+import { ProcessWindowValueMetadata } from 'src/app/Sys/Process';
+import { systemAlertTypeEnumMetadata } from './Alert/alert';
 import { windowData } from './Window/windowData';
 
 export declare interface onStartUp {
@@ -38,6 +40,36 @@ export declare interface AppCreatMetadata {
    * Window's settings (size & position)
    */
   windowData?: windowData;
+}
+
+export declare interface AlertCreatMetadata {
+  /**
+   * Alert title
+   */
+  alertTitle: string;
+  /**
+   * Alert value
+   */
+  alertValue: string;
+  /**
+   * Alert type
+   */
+  alertType: systemAlertTypeEnumMetadata;
+}
+
+export declare interface AppCreatFileMetadata {
+  /**
+   * Application's title
+   */
+  appTitle: string;
+  /**
+   * Application's process name
+   */
+  processTitle: string;
+  /**
+   * Application's Window
+   */
+  appWindow: ProcessWindowValueMetadata;
 }
 
 export declare const enum SystemStateMetadata {

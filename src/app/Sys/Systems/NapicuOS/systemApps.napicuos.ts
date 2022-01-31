@@ -16,7 +16,11 @@ export function initAllSystemProcess(): void {
 export function initAllStartUpApps(): void {
   //napicu_os_welcomeapp().open();
   napicu_os_terminal().open();
-  NapicuOS.open_new_alert('Title');
+  NapicuOS.create_alert({
+    alertTitle: 'Alert',
+    alertValue: 'Tohle je alert',
+    alertType: systemAlertTypeEnumMetadata.Info,
+  }).open();
 }
 
 export function napicu_os_time(): Process {
@@ -44,14 +48,5 @@ export function napicu_os_terminal(): SystemFile {
     appTitle: 'Terminal',
     processTitle: 'Terminal',
     appComponent: ConsoleComponent,
-  });
-}
-
-export function napicu_os_alertwindow(windowTitle: string): SystemFile {
-  return NapicuOS.create_app({
-    appTitle: windowTitle,
-    processTitle: 'WindowAlert',
-    appComponent: AlertComponent,
-    windowData: Window.centerPos(15, 15),
   });
 }
