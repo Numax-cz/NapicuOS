@@ -1,14 +1,14 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Current, Drive, Update } from '../../Array/FlashInformation';
-import { BiosInfo } from '../../Array/ToolSettings';
-import { BiosComponent } from '../bios/bios.component';
-import { directories, Drives } from '../../interface/Directorie';
-import { FlashInformation } from '../../interface/FlashInformation';
-import { OptionPanelComponent } from '../option-panel/option-panel.component';
-import { Move } from '../../Scripts/Flash/Move';
-import { getCookies } from 'src/app/Scripts/Cookies';
-import { cookiesForBiosVersion } from 'src/app/Config/Cookies';
+import {DOCUMENT} from '@angular/common';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Current, Drive, Update} from '../../Array/FlashInformation';
+import {BiosInfo} from '../../Array/ToolSettings';
+import {BiosComponent} from '../bios/bios.component';
+import {directories, Drives} from '../../interface/Directorie';
+import {FlashInformation} from '../../interface/FlashInformation';
+import {OptionPanelComponent} from '../option-panel/option-panel.component';
+import {Move} from '../../Scripts/Flash/Move';
+import {getCookies} from 'src/app/Scripts/Cookies';
+import {cookiesForBiosVersion} from 'src/app/Config/Cookies';
 
 @Component({
   selector: 'app-flash',
@@ -16,7 +16,9 @@ import { cookiesForBiosVersion } from 'src/app/Config/Cookies';
   styleUrls: ['./flash.component.scss'],
 })
 export class FlashComponent implements OnInit {
-  constructor() {}
+  constructor() {
+  }
+
   //TODO @Document
   public static Doc: Document;
   public static Scroll: HTMLElement;
@@ -36,17 +38,17 @@ export class FlashComponent implements OnInit {
    */
   public static PathFile: directories[];
 
-  //Winodw Alerts
+  //Window Alerts
   public static WindowAlert: boolean;
   public static WindowAlertOption: boolean;
 
   ngOnInit(): void {
     this.setEvents();
-    var Scroll = document.getElementById('Scroll');
+    let scroll = document.getElementById('Scroll');
 
-    if (Scroll) {
+    if (scroll) {
       FlashComponent.Doc = document;
-      FlashComponent.Scroll = Scroll;
+      FlashComponent.Scroll = scroll;
     }
 
     FlashComponent.SelectedDir = 0;
@@ -75,46 +77,60 @@ export class FlashComponent implements OnInit {
   get Title(): string {
     return BiosInfo.title;
   }
+
   get Version(): string {
     return BiosInfo.version;
   }
+
   get Current(): FlashInformation {
     return Current;
   }
+
   get Update(): FlashInformation {
     return Update;
   }
+
   get Drive(): any[] {
     return FlashComponent.FlashDrive;
   }
+
   get File(): directories[] {
     return FlashComponent.listDir;
   }
+
   get SelectedDir(): number {
     return FlashComponent.SelectedDir;
   }
+
   get SelectedFile(): number {
     return FlashComponent.SelectedFile;
   }
+
   get LocationPath(): string {
     return FlashComponent.FlashDrive[FlashComponent.SelectedDir].title;
   }
+
   get Path(): directories[] {
     return FlashComponent.PathFile;
   }
+
   get PathFile(): directories[] {
     return FlashComponent.PathFile;
   }
+
   get SelectedWindow(): number {
     return FlashComponent.SelectedWindow;
   }
+
   get Flashing(): boolean {
     return FlashComponent.Flashing;
   }
+
   get FlashingText(): string {
     return FlashComponent.FlashingText;
   }
+
   get Display(): boolean {
-    return OptionPanelComponent.window ? true : false;
+    return !!OptionPanelComponent.window;
   }
 }

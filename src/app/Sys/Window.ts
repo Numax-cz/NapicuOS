@@ -1,5 +1,5 @@
 import {Type} from '@angular/core';
-import {windowData, windowState} from './Systems/NapicuOS/interface/Window/windowData';
+import {windowButtonsMetadata, windowData, windowState} from './Systems/NapicuOS/interface/Window/windowData';
 import {percentage, percentageValue} from './Systems/NapicuOS/scripts/getPercentage';
 import {WindowComponent} from './Systems/NapicuOS/template/window/window.component';
 
@@ -36,8 +36,18 @@ export class Window {
    *  Specifies the state of the application window
    */
   public state: windowState = 'normal';
-
+  /**
+   * Application window settings
+   */
   public windowData: windowData = Window.defaultWindowAppData;
+
+
+  private windowButtons: windowButtonsMetadata = {
+    minimized: true,
+    maximize: true,
+    close: true
+  }
+
 
   constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData, resizeAllowed?: boolean) {
     this.WindowComponent = component;
@@ -148,6 +158,13 @@ export class Window {
    */
   public getHeight(): number {
     return percentageValue(this.windowData.height, window.innerHeight);
+  }
+
+  /**
+   * Return application window button settings
+   */
+  public getWindowButtons(): windowButtonsMetadata {
+    return this.windowButtons;
   }
 
   //* * * *  Setters * * *

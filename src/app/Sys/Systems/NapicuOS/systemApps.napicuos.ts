@@ -1,13 +1,13 @@
-import { Process } from '../../Process';
-import { ConsoleComponent } from './Apps/console/console.component';
-import { WelcomeComponent } from './Apps/welcome/welcome.component';
-import { NapicuOS } from './system.napicuos';
-import { SystemFile } from '../../File';
-import { AlertComponent } from './Apps/alert/alert.component';
-import { Window } from '../../Window';
-import { SystemAlert } from '../../Alert';
-import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
-import { systemAlertTypeEnumMetadata } from './interface/Alert/alert';
+import {Process} from '../../Process';
+import {ConsoleComponent} from './Apps/console/console.component';
+import {WelcomeComponent} from './Apps/welcome/welcome.component';
+import {NapicuOS} from './system.napicuos';
+import {SystemFile} from '../../File';
+import {AlertComponent} from './Apps/alert/alert.component';
+import {Window} from '../../Window';
+import {SystemAlert} from '../../Alert';
+import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
+import {systemAlertTypeEnumMetadata} from './interface/Alert/alert';
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -20,7 +20,7 @@ export function initAllStartUpApps(): void {
     alertTitle: 'Alert',
     alertValue: 'Tohle je alert',
     alertType: systemAlertTypeEnumMetadata.Info,
-  }).open();
+  }).open()
 }
 
 export function napicu_os_time(): Process {

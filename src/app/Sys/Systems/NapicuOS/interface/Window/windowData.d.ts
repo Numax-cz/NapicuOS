@@ -17,6 +17,12 @@ export declare interface windowData {
   height: number;
 }
 
+export declare interface windowButtonsMetadata {
+  minimized: boolean,
+  maximize: boolean,
+  close: boolean
+}
+
 /**
  * * `Normal` - The application window is free
  * * `Maximized` - The application window is maximized
