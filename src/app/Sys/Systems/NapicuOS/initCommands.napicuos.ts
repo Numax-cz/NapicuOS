@@ -164,7 +164,7 @@ function initKillProcess(): void {
       return new Promise((resolve) => {
         if (params?.length) {
           if (params[0]) {
-            var x = NapicuOS.get_system_process_by_title(params[0]);
+            let x = NapicuOS.get_system_process_by_title(params[0]);
             if (x) resolve(x.kill());
             resolve({
               linesForCMD: [new Line(`Process '${params[0]}' not found`)],
@@ -207,8 +207,7 @@ function initOpenApp(): void {
     new Command('OpenApp', 'openapp', (params, activatedWindow) => {
       return new Promise((resolve) => {
         if (params?.length) {
-          var x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);
-
+          let x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);
           resolve({linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x});
         }
       });
