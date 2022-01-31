@@ -1,6 +1,6 @@
-import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
-import { GrubComponent } from 'src/app/System/grub/grub.component';
-import { SystemComponent } from 'src/app/System/system/system.component';
+import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.component';
+import {GrubComponent} from 'src/app/System/grub/grub.component';
+import {SystemComponent} from 'src/app/System/system/system.component';
 import {
   onStartUp,
   onShutDown,
@@ -10,18 +10,18 @@ import {
   AppCreatFileMetadata,
   AlertCreatMetadata,
 } from './interface/system';
-import { Process, ProcessWindowValueMetadata } from '../../Process';
-import { System } from '../../System';
-import { LoadsComponent } from './components/loads/loads.component';
-import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
-import { boot_animation_time, boot_time, soft_boot_time } from './config/boot';
-import { formatDate } from '@angular/common';
-import { time_formate } from './config/time';
-import { Line } from './Apps/console/console.component';
-import { Command, CommandFunMetadata } from '../../command';
-import { initAllCommands } from './initCommands.napicuos';
-import { initAllStartUpApps, initAllSystemProcess } from './systemApps.napicuos';
-import { SystemFile } from '../../File';
+import {Process, ProcessWindowValueMetadata} from '../../Process';
+import {System} from '../../System';
+import {LoadsComponent} from './components/loads/loads.component';
+import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
+import {boot_animation_time, boot_time, soft_boot_time} from './config/boot';
+import {formatDate} from '@angular/common';
+import {time_formate} from './config/time';
+import {Line} from './Apps/console/console.component';
+import {Command, CommandFunMetadata} from '../../command';
+import {initAllCommands} from './initCommands.napicuos';
+import {initAllStartUpApps, initAllSystemProcess} from './systemApps.napicuos';
+import {SystemFile} from '../../File';
 import {
   systemDirAFileMetadata,
   systemDirMetadata,
@@ -33,18 +33,18 @@ import {
   system_default_user,
   system_root_user,
 } from './config/systemInfo';
-import { NapicuOSSystemDir, napicu_os_root_part } from './config/drive';
-import { copy } from 'src/app/Scripts/DeepClone';
-import { User } from '../../User';
-import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
-import { LoginscreenComponent } from './components/loginscreen/loginscreen.component';
-import { Type } from '@angular/core';
-import { Window } from '../../Window';
-import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
-import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
-import { windowData } from './interface/Window/windowData';
-import { SystemAlert } from '../../Alert';
-import { systemAlertTypeEnumMetadata } from './interface/Alert/alert';
+import {NapicuOSSystemDir, napicu_os_root_part} from './config/drive';
+import {copy} from 'src/app/Scripts/DeepClone';
+import {User} from '../../User';
+import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
+import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
+import {Type} from '@angular/core';
+import {Window} from '../../Window';
+import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
+import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
+import {windowData} from './interface/Window/windowData';
+import {SystemAlert} from '../../Alert';
+import {systemAlertTypeEnumMetadata} from './interface/Alert/alert';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -61,11 +61,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onStart(): void {
     //TODO Login & root creat
-
     this.SystemBoot();
   }
 
-  public override onShutDown(): void {}
+  public override onShutDown(): void {
+  }
 
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
@@ -99,9 +99,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
-  public override onKeyPress(ev: KeyboardEvent) {}
+  public override onKeyPress(ev: KeyboardEvent) {
+  }
 
-  public override onLoad(): void {}
+  public override onLoad(): void {
+  }
 
   public static getTime(): string {
     let now = new Date();
@@ -115,24 +117,28 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_system_time(): string {
     return this.systemTime;
   }
+
   /**
    * Returns whether the system has been started
    */
   public static get_system_boot(): boolean {
     return GrubComponent.ActiveSystem.SystemBooted;
   }
+
   /**
    * Returns if the system dock is displayed
    */
   public static get_system_bottom_dock_display(): boolean {
     return NapicuOSComponent.BottomDockDisplay;
   }
+
   /**
    * Returns the system processes
    */
   public static get_system_process(): Process[] {
     return GrubComponent.ActiveSystem.SystemProcess;
   }
+
   /**
    * Returns the user processes
    * @param username User's name
@@ -142,6 +148,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return value.launchedBy === username;
     });
   }
+
   /**
    * Returns the command by name
    * @param processTitle The name of the command you want to search for
@@ -151,6 +158,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return element.processTitle === processTitle;
     })[0];
   }
+
   /**
    * Return applications
    */
@@ -164,6 +172,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     return array;
   }
+
   /**
    * Returns displayed windows
    */
@@ -172,6 +181,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return element.Window?.display == true;
     });
   }
+
   /**
    * Returns non-displayed windows
    */
@@ -189,12 +199,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return element.Window?.activated == true;
     })[0];
   }
+
   /**
    * Returns available commands
    */
   public static get_available_commands(): SystemFile[] {
     return this.get_cmd_dir()?.files || [];
   }
+
   /**
    * Returns the command classes by specified command name
    * @param commandName Name of command/commands
@@ -208,6 +220,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     return i;
   }
+
   /**
    * Returns the command class by specified command
    * @param command command
@@ -221,27 +234,32 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     return i[0];
   }
+
   public static get_dir(): systemDrivesMetadata {
     return this.drives;
   }
+
   /**
    * Returns root directory
    */
   public static get_root_dir(): systemDirAFileMetadata {
     return this.get_dir()[napicu_os_root_part];
   }
+
   /**
    * Returns main home directory
    */
   public static get_home_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['home'];
   }
+
   /**
    * Returns main apps directory
    */
   public static get_apps_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['usr'];
   }
+
   /**
    * Returns main bin directory
    */
@@ -255,12 +273,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_apps_in_dock(): SystemFile[] {
     return this.get_active_user()?.get_user_settings().appsInDock || [];
   }
+
   /**
    * Returns all system users
    */
   public static get_users(): User[] {
     return this.users;
   }
+
   /**
    * Returns the user by username if the user exists
    * @param username Username of searched user
@@ -270,6 +290,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return value.get_username() === username;
     })[0];
   }
+
   /**
    * Returns the logged-in user.
    */
@@ -323,10 +344,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       };
     }
   }
+
   //TODO DOC
   public static add_file_to_dock(file: SystemFile): void {
     this.get_active_user()?.get_user_settings().appsInDock.push(file);
   }
+
   /**
    * Adds the file to the directory
    *
@@ -355,6 +378,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     return SystemStateMetadata.FileAddedSuccess;
   }
+
   /**
    * Opens a file in a specific directory
    * @param dir The directory in which you want to open the specific file
@@ -379,6 +403,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     return SystemStateMetadata.DirNotExist;
   }
+
   /**
    * Create and add users
    * @param username New user's username
@@ -388,15 +413,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //TODO return if the user exists
     NapicuOS.run_command('adduser', [username, password]);
   }
+
   /**
    * Add user
    */
   public static add_user(user: User): void {
     this.users.push(user);
   }
+
   /**
    * logs the user in
    * @param username User's name
+   * @param password User's password
    */
   public static log_user(
     username: string,
@@ -412,38 +440,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
     return SystemStateMetadata.UserLoginSuccess;
   }
-  // /**
-  //  * Adds and installs the application
-  //  * @param appTitle Application's name
-  //  * @param processTitle Application's process name
-  //  * @param appComponent Application's component (GUI)
-  //  * @param windowData Window's settings (size & position)
-  //  * @param appData Application's data
-  //  */
-  // public static create_app(data: AppCreatMetadata): SystemFile {
-  //   var Application = new SystemFile({
-  //     fileName: data.appTitle,
-  //     fileType: SystemFileTypeEnumMetadata.apps,
-  //     value: () => {
-  //       return new Process({
-  //         //TODO Window dynamically
-  //         //TODO Window dynamically
-  //         //TODO Window dynamically
-  //         //TODO Window dynamically
-  //         //TODO Window dynamically
-  //         //TODO Window dynamically
-  //         //TODO Window dynamically
-  //         Window: new Window(data.appComponent, data.appTitle, data.windowData),
-  //         processTitle: data.processTitle,
-  //       });
-  //     },
-  //   });
-  //   this.get_apps_dir()?.files?.push(Application);
-  //   return Application;
-  // }
 
+  /**
+   * Creates a file for the application
+   * @return {SystemFile} Application file
+   */
   protected static create_app_file(data: AppCreatFileMetadata): SystemFile {
-    var Application = new SystemFile({
+    let Application = new SystemFile({
       fileName: data.appTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
@@ -456,11 +459,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.get_apps_dir()?.files?.push(Application);
     return Application;
   }
+
   /**
-   * 
-   * @param alertTitle Alert title
-   * @param alertValue Alert value
-   * @param alertType Alert type
+   * Adds and installs the alert
    */
   public static create_alert(
     data: AlertCreatMetadata
@@ -471,12 +472,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       appWindow: new SystemAlert(data.alertTitle, data.alertValue, data.alertType),
     });
   }
+
   /**
    * Adds and installs the application
-   * @param appTitle Application's name
-   * @param processTitle Application's process name
-   * @param appComponent Application's component (GUI)
-   * @param windowData Window's settings (size & position)
    */
   public static create_app(data: AppCreatMetadata): SystemFile {
     return this.create_app_file({
@@ -493,6 +491,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.activeUser = null;
     SystemComponent.SysComponent = LoginscreenComponent;
   }
+
   /**
    * Log out the user and terminate their running processes
    */
@@ -505,9 +504,5 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       acUser.running = false;
       this.logout_user();
     }
-  }
-  //TODO Dock
-  public static delete_command(cmd: string): any {
-    //TODO Do this
   }
 }

@@ -1,4 +1,4 @@
-import { Process } from './Process';
+import {Process} from './Process';
 import {
   SystemUserDataMetadata,
   SystemUserPermissionsEnumMetadata,
@@ -12,10 +12,11 @@ export class User {
   private userSetting: SystemUserDataMetadata = {
     appsInDock: [],
   };
-  constructor(username: string, password: string, userpermissions?: SystemUserPermissionsEnumMetadata) {
+
+  constructor(username: string, password: string, userPermissions?: SystemUserPermissionsEnumMetadata) {
     this.username = username;
     this.password = password;
-    this.permissions = userpermissions ? userpermissions : SystemUserPermissionsEnumMetadata.User;
+    this.permissions = userPermissions ? userPermissions : SystemUserPermissionsEnumMetadata.User;
   }
 
   //* * * *  Getters * * *
@@ -25,18 +26,21 @@ export class User {
   public get_username(): string {
     return this.username;
   }
+
   /**
    * Returns the user's password
    */
   public get_password(): string {
     return this.password;
   }
+
   /**
    * Returns the user's permissions
    */
   public get_permissions(): SystemUserPermissionsEnumMetadata {
     return this.permissions;
   }
+
   /**
    * Returns the user's settings
    */
@@ -51,12 +55,14 @@ export class User {
   public set_username(value: string): void {
     this.username = value;
   }
+
   /**
    * Sets the user's password
    */
   public set_password(value: string): void {
     this.password = value;
   }
+
   /**
    * Sets the user's permissions
    */
