@@ -40,7 +40,6 @@ export class Window {
    * Application window settings
    */
   public windowData: windowData = Window.defaultWindowAppData;
-
   /**
    * Setting which buttons to display on the application window
    */
