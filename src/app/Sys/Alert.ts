@@ -9,6 +9,11 @@ export class SystemAlert extends Window {
   public static defaultComponent: Type<any> = AlertComponent;
 
   constructor(public title: string, public value: string, public type: systemAlertTypeEnumMetadata) {
-    super(SystemAlert.defaultComponent, title, SystemAlert.defaultSize, false);
+    super({
+      component: SystemAlert.defaultComponent,
+      WindowTitle: title,
+      windowData: SystemAlert.defaultSize,
+      resizeAllowed: false,
+    });
   }
 }

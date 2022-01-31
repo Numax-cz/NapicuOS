@@ -163,8 +163,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Return applications
    */
   public static get_system_window_apps(): Process[] {
-    var process = this.get_system_process();
-    var array: Process[] = [];
+    let process = this.get_system_process();
+    let array: Process[] = [];
     for (let i = 0; i < process.length; i++) {
       if (process[i]?.Window) {
         array.push(process[i]);
@@ -227,9 +227,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @returns Command class
    */
   public static get_command_by_commandStr(command: string): SystemFile {
-    var i: SystemFile[] = [];
+    let i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
-      var p = element.get_value() as Command;
+      let p = element.get_value() as Command;
       return p.get_command() === command;
     });
     return i[0];
@@ -305,8 +305,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     cmd: Command
   ): SystemStateMetadata.RegisterCommandAlreadyExists | SystemStateMetadata.RegisterCommandSuccess {
     const commands = this.get_available_commands();
-    var x = commands.filter((value: SystemFile) => {
-      var x = value.get_value() as Command;
+    let x = commands.filter((value: SystemFile) => {
+      let x = value.get_value() as Command;
       return x.get_command() === cmd.get_command();
     });
     if (!x.length) {
@@ -324,8 +324,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static async run_command(cmd: string, params?: string[]): Promise<CommandFunMetadata> {
-    var i: SystemFile = NapicuOS.get_command_by_commandStr(cmd);
-    var x: Process = NapicuOS.get_system_activated_window_app();
+    let i: SystemFile = NapicuOS.get_command_by_commandStr(cmd);
+    let x: Process = NapicuOS.get_system_activated_window_app();
     if (i) {
       if (
         i.get_permissions().read === SystemUserPermissionsEnumMetadata.SuperUser &&
@@ -430,7 +430,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     username: string,
     password: string
   ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSuccess {
-    var u = this.get_user(username);
+    let u = this.get_user(username);
     if (u && u.get_password() === password) {
       this.activeUser = u;
     } else {
@@ -480,7 +480,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.create_app_file({
       appTitle: data.appTitle,
       processTitle: data.processTitle,
-      appWindow: new Window(data.appComponent, data.appTitle, data.windowData),
+      appWindow: new Window({component: data.appComponent, WindowTitle: data.appTitle, windowData: data.windowData}),
     });
   }
 

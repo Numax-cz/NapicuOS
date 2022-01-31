@@ -49,13 +49,17 @@ export class Window {
   }
 
 
-  constructor(component: Type<any>, WindowTitle?: string, windowData?: windowData, resizeAllowed?: boolean) {
-    this.WindowComponent = component;
-    if (WindowTitle) this.WindowTitle = WindowTitle;
-    if (windowData) this.windowData = windowData;
+  constructor(data: {
+    component: Type<any>,
+    WindowTitle?: string,
+    windowData?: windowData,
+    resizeAllowed?: boolean
+  }) {
+    this.WindowComponent = data.component;
+    if (data.WindowTitle) this.WindowTitle = data.WindowTitle;
+    if (data.windowData) this.windowData = data.windowData;
 
-
-    this.resizeAllowed = resizeAllowed || resizeAllowed === undefined;
+    this.resizeAllowed = data.resizeAllowed || data.resizeAllowed === undefined;
   }
 
 
