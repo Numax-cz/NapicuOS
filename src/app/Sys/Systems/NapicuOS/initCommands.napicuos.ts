@@ -1,16 +1,17 @@
-import { Command } from '../../command';
-import { Line } from './Apps/console/console.component';
-import { NapicuOS } from './system.napicuos';
-import { Process } from '../../Process';
-import { removeSpace } from './scripts/removeSpaceInString';
-import { getHelpCommand, getHelpCommandAPPS } from './config/commands/help/getCommand';
-import { SystemFile } from '../../File';
-import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
-import { setHelpCommand } from './config/commands/help/setCommand';
-import { addUserUsage } from './config/commands/help/addUserCommand';
-import { User } from '../../User';
-import { NapicuOSSystemDir } from './config/drive';
-import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
+import {Command} from '../../command';
+import {Line} from './Apps/console/console.component';
+import {NapicuOS} from './system.napicuos';
+import {Process} from '../../Process';
+import {removeSpace} from './scripts/removeSpaceInString';
+import {getHelpCommand, getHelpCommandAPPS} from './config/commands/help/getCommand';
+import {SystemFile} from '../../File';
+import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
+import {setHelpCommand} from './config/commands/help/setCommand';
+import {addUserUsage} from './config/commands/help/addUserCommand';
+import {User} from '../../User';
+import {NapicuOSSystemDir} from './config/drive';
+import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
+
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
 }
@@ -25,7 +26,7 @@ export function initAllCommands(): void {
     new Command('Terminal', 'shell', (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve({linesForCMD : [new Line('se')], stateCode: 12  })
+          resolve({linesForCMD: [new Line('se')], stateCode: 12})
         }, 1000);
       });
     })
@@ -52,36 +53,36 @@ function initCreateUser(): void {
           });
           if (!x.length) {
             resolve(NapicuOS.add_user(new User(username, password)));
-          } 
+          }
           //TODO ERROR ELSE
         } else {
-          resolve({ linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand });
+          resolve({linesForCMD: [addUserUsage], stateCode: CommandStateCodeMetadata.HelpCommand});
         }
       });
     })
   );
 }
 
+
 function initGetSystemInformation(): void {
   NapicuOS.register_command(
     new Command('SystemGetter', 'get', (params) => {
       return new Promise((resolve) => {
+        let exportLines: Line[] = [];
         if (params?.length) {
           switch (params[0]) {
             case '--help':
-              resolve({ linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
+              resolve({linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand});
               break;
             case 'systemprocess':
-              var process = NapicuOS.get_system_process();
-              var exportLines: Line[] = [];
+              let process = NapicuOS.get_system_process();
               exportLines.push(new Line('Processes running in the background: ', 'white'));
               process.forEach((value: Process, index: number) => {
                 exportLines.push(new Line(`${index} | ${value.processTitle} : ${value.launchedBy}`, 'white'));
               });
-              return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
+              return resolve({linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success});
             case 'apps':
-              var exportLines: Line[] = [];
-              var apps: Process[] = NapicuOS.get_system_window_apps();
+              let apps: Process[] = NapicuOS.get_system_window_apps();
               if (params[1]) {
                 switch (params[1]) {
                   case '--open':
@@ -106,11 +107,10 @@ function initGetSystemInformation(): void {
               apps.forEach((value: Process, index: number) => {
                 exportLines.push(new Line(`${index} | ${value.processTitle}`, 'white'));
               });
-              return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
+              return resolve({linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success});
 
             case 'commands':
-              var commands = NapicuOS.get_available_commands();
-              var exportLines: Line[] = [];
+              let commands = NapicuOS.get_available_commands();
               commands.forEach((value: SystemFile, index: number) => {
                 exportLines.push(
                   new Line(
@@ -119,7 +119,7 @@ function initGetSystemInformation(): void {
                   )
                 );
               });
-              return resolve({ linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success });
+              return resolve({linesForCMD: exportLines, stateCode: CommandStateCodeMetadata.success});
 
             default:
               resolve({
@@ -129,7 +129,7 @@ function initGetSystemInformation(): void {
               break;
           }
         }
-        resolve({ linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
+        resolve({linesForCMD: [getHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand});
       });
     })
   );
@@ -151,7 +151,7 @@ function initSetSystemInformation(): void {
           }
         } else {
           //TODO
-          resolve({ linesForCMD: [setHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand });
+          resolve({linesForCMD: [setHelpCommand], stateCode: CommandStateCodeMetadata.HelpCommand});
         }
       });
     })
@@ -209,7 +209,7 @@ function initOpenApp(): void {
         if (params?.length) {
           var x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);
 
-          resolve({ linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x });
+          resolve({linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x});
         }
       });
     })
