@@ -14,7 +14,7 @@ export function initAllStartUpApps(): void {
   napicu_os_terminal().open();
   NapicuOS.create_alert({
     alertTitle: 'Alert',
-    alertValue: 'Tohle je alert',
+    alertValue: 'Tohle je alert, který je velice kvalitní a dsafadf a je velice fajnový',
     alertType: systemAlertTypeEnumMetadata.Info,
   }).open()
 }

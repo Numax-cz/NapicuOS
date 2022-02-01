@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {windowInjectMetadata} from "../../interface/Window/windowInject";
 import {systemAlertTypeEnumMetadata} from "../../interface/Alert/alert";
 import {directories} from "../../../../../interface/Directorie";
 
@@ -11,15 +10,10 @@ import {directories} from "../../../../../interface/Directorie";
 export class AlertComponent implements OnInit {
 
 
-  constructor(@Inject('windowDataInjector') protected value: windowInjectMetadata) {
+  constructor() {
   }
 
   ngOnInit(): void {
-
-  }
-
-  get GetAlertIcon(): systemAlertTypeEnumMetadata | undefined {
-    return this.value.alertType;
   }
 
 

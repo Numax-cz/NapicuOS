@@ -6,8 +6,6 @@ import {Window} from 'src/app/Sys/Window';
 import {window_animations} from '../../config/windowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
-import {windowInjectMetadata} from "../../interface/Window/windowInject";
-import {systemAlertTypeEnumMetadata} from "../../interface/Alert/alert";
 
 @Component({
   selector: 'app-window',
@@ -145,7 +143,7 @@ export class WindowComponent implements OnInit {
   protected declare activeWindowState: boolean;
 
 
-  constructor(protected injector: Injector) {
+  constructor() {
 
   }
 
@@ -164,18 +162,7 @@ export class WindowComponent implements OnInit {
       }
     });
   }
-
-  public getInjectWindow(i: ProcessWindowValueMetadata): Injector {
-    let x = i as SystemAlert;
-    let injector: windowInjectMetadata = {
-      alertType: x?.type || undefined
-    }
-
-    return ReflectiveInjector.resolveAndCreate([{
-      provide: 'windowDataInjector', useValue: injector
-    }], this.injector);
-
-  }
+  
 
   /**
    * Function that closes the application window
@@ -389,15 +376,6 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  /**
-   * Returns application's window content
-   * @param i Application's window process
-   */
-  public getWindowContent(i: Process): Text[][] {
-    let x = i.Window as SystemAlert;
-    if (x?.value) return [[document.createTextNode(x.value)]];
-    return [[]];
-  }
 
   /**
    * Function to cancel active events when
