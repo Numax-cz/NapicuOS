@@ -8,9 +8,21 @@ declare const enum SystemFileTypeEnumMetadata {
 
 
 export declare interface SystemFileConsMetadata {
+  /**
+   * File value
+   */
   value: any;
+  /**
+   * File name
+   */
   fileName: string;
+  /**
+   * File type
+   */
   fileType: SystemFileTypeEnumMetadata;
+  /**
+   * File permissions
+   */
   permissions?: SystemFilePermissionsMetadata;
 }
 
