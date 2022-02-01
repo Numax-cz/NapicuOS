@@ -151,7 +151,7 @@ export class WindowComponent implements OnInit {
 
   public getInput(i: Process): InputsType {
     let x = i.Window as SystemAlert;
-    return {input: x?.value || ''}
+    return {alertContent: x?.value || '', alertType: x?.type}
   }
 
   ngOnInit(): void {

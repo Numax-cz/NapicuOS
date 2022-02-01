@@ -5,19 +5,18 @@
   <section>
     <div>
       <div class="AlertBox" style="display: flex; align-content: center">
-        <!-- Alert icon-->
-        <!--        <div>-->
-        <!--          <img-->
-        <!--            [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +-->
-        <!--          ( GetAlertIcon === 0 ? 'close.png'  :  GetAlertIcon === 1 ?-->
-        <!--           'warning.png' :  GetAlertIcon === 2 ? 'info.png' : '')"-->
-        <!--            class="alertImgSize"-->
-        <!--            alt="Alert img">-->
-        <!--        </div>-->
-        <!-- Alert content-->
+        <!--         Alert icon-->
+        <div>
+          <img
+            [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +
+                  ( GetAlertType === 0 ? 'close.png'  :  GetAlertType === 1 ?
+                   'warning.png' :  GetAlertType === 2 ? 'info.png' : '')"
+            class="alertImgSize"
+            alt="Alert img">
+        </div>
+        <!--         Alert content-->
         <div class="alertContent alertFontSize">
-
-
+          {{GetAlertValue}}
         </div>
       </div>
       <div class="alertButton">
