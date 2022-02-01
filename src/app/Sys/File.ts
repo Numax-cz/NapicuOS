@@ -25,7 +25,12 @@ export class SystemFile {
   private declare permissions: SystemFilePermissionsMetadata;
 
   //TODO DOC
-
+  /**
+   * @param value df
+   * @param fileName fd
+   * @param fileType fd
+   * @param permission fd
+   */
   constructor(data: SystemFileConsMetadata) {
     this.value = data.value;
     this.fileName = data.fileName;
