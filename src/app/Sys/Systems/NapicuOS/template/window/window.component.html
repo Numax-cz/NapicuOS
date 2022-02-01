@@ -46,7 +46,8 @@
     </div>
 
     <div id="INAppWindow">
-      <ng-component *ngComponentOutlet="i.Window.WindowComponent; content: getWindowContent(i)"></ng-component>
+      <ng-component
+        *ngComponentOutlet="i.Window.WindowComponent; content: getWindowContent(i);injector: getInjectWindow(i.Window) "></ng-component>
     </div>
   </section>
 </div>

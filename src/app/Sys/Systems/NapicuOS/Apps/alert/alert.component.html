@@ -1,5 +1,19 @@
+<script src="alert.component.ts"></script>
+<script src="../../template/window/window.component.ts"></script>
 <section class="WindowContent BgWhite MainBoxPadding-15" id="WindowScrollBar">
   <section>
+    <div>
+      <div class="icon">
+
+        <img
+          [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +
+          ( GetAlertIcon === 0 ? 'close.png'  :  GetAlertIcon === 1 ?
+           'warning.png' :  GetAlertIcon === 2 ? 'info.png' : '')"
+          width="60px"
+          height="60px"
+          alt="Alert img">
+      </div>
+    </div>
     <ng-content></ng-content>
   </section>
 </section>

@@ -1,11 +1,13 @@
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Component, OnInit} from '@angular/core';
+import {Component, Injector, OnInit, ReflectiveInjector} from '@angular/core';
 import {SystemAlert} from 'src/app/Sys/Alert';
-import {Process} from 'src/app/Sys/Process';
+import {Process, ProcessWindowValueMetadata} from 'src/app/Sys/Process';
 import {Window} from 'src/app/Sys/Window';
 import {window_animations} from '../../config/windowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
+import {windowInjectMetadata} from "../../interface/Window/windowInject";
+import {systemAlertTypeEnumMetadata} from "../../interface/Alert/alert";
 
 @Component({
   selector: 'app-window',
@@ -136,13 +138,15 @@ export class WindowComponent implements OnInit {
   /**
    * Specifies the selected application window
    */
-  protected declare selectedWindow: Window;
+  protected declare selectedWindow: ProcessWindowValueMetadata;
   /**
    * Indicates whether a mode other than normal mode was activated when you clicked on the application window.
    */
   protected declare activeWindowState: boolean;
 
-  constructor() {
+
+  constructor(protected injector: Injector) {
+
   }
 
   ngOnInit(): void {
@@ -154,12 +158,23 @@ export class WindowComponent implements OnInit {
       this.resizeWindow(event);
     });
     window.addEventListener('mousedown', (e: MouseEvent) => {
-      var p = e.target as HTMLElement;
-
+      let p = e.target as HTMLElement;
       if (p.offsetParent?.id !== 'napicuos-App-window' && this.selectedWindow?.activated) {
         this.selectedWindow.activated = false;
       }
     });
+  }
+
+  public getInjectWindow(i: ProcessWindowValueMetadata): Injector {
+    let x = i as SystemAlert;
+    let injector: windowInjectMetadata = {
+      alertType: x?.type || undefined
+    }
+
+    return ReflectiveInjector.resolveAndCreate([{
+      provide: 'windowDataInjector', useValue: injector
+    }], this.injector);
+
   }
 
   /**
