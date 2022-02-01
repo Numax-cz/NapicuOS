@@ -1,6 +1,5 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {systemAlertTypeEnumMetadata} from "../../interface/Alert/alert";
-import {directories} from "../../../../../interface/Directorie";
 
 @Component({
   selector: 'app-alert',
