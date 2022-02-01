@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {systemAlertTypeEnumMetadata} from "../../interface/Alert/alert";
 import {directories} from "../../../../../interface/Directorie";
 
@@ -9,11 +9,13 @@ import {directories} from "../../../../../interface/Directorie";
 })
 export class AlertComponent implements OnInit {
 
+  @Input() public declare input: any;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    console.log(this.input)
   }
 
 

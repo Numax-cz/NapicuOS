@@ -28,6 +28,7 @@ import {ConsoleComponent} from './Sys/Systems/NapicuOS/Apps/console/console.comp
 import {FormsModule} from '@angular/forms';
 import {LoginscreenComponent} from './Sys/Systems/NapicuOS/components/loginscreen/loginscreen.component';
 import {AlertComponent} from './Sys/Systems/NapicuOS/Apps/alert/alert.component';
+import {DynamicModule} from "ng-dynamic-component";
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {AlertComponent} from './Sys/Systems/NapicuOS/Apps/alert/alert.component'
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    DynamicModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

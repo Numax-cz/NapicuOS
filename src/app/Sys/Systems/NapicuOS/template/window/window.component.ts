@@ -6,6 +6,8 @@ import {Window} from 'src/app/Sys/Window';
 import {window_animations} from '../../config/windowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
+import {System} from "../../../../System";
+import {InputsType} from "ng-dynamic-component";
 
 @Component({
   selector: 'app-window',
@@ -147,6 +149,11 @@ export class WindowComponent implements OnInit {
 
   }
 
+  public getInput(i: Process): InputsType {
+    let x = i.Window as SystemAlert;
+    return {input: x?.value || ''}
+  }
+
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
       this.WindowOut();
@@ -162,7 +169,7 @@ export class WindowComponent implements OnInit {
       }
     });
   }
-  
+
 
   /**
    * Function that closes the application window
