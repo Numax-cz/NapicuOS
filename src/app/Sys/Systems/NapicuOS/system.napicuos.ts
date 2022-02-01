@@ -66,7 +66,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     initAllSystemProcess();
     NapicuOS.add_user(system_default_user);
     NapicuOS.add_user(system_root_user);
-    NapicuOS.log_user(system_default_user.get_username(), system_default_user.get_password());
+    NapicuOS.log_user(system_default_user.username, system_default_user.password);
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
@@ -205,10 +205,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @returns Array of commands
    */
   public static get_command_by_command_name(commandName: string): SystemFile[] {
-    var i: SystemFile[] = [];
+    let i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
-      var p = element.get_value() as Command;
-      return p.get_command_name() === commandName;
+      let p = element.get_value() as Command;
+      return p.commandName === commandName;
     });
     return i;
   }
@@ -222,7 +222,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     let i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
       let p = element.get_value() as Command;
-      return p.get_command() === command;
+      return p.command === command;
     });
     return i[0];
   }
@@ -263,7 +263,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns apps in dock
    */
   public static get_apps_in_dock(): SystemFile[] {
-    return this.get_active_user()?.get_user_settings().appsInDock || [];
+    return this.get_active_user()?.userSetting.appsInDock || [];
   }
 
   /**
@@ -279,7 +279,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_user(username: string): User | undefined {
     return this.users.filter((value: User) => {
-      return value.get_username() === username;
+      return value.username === username;
     })[0];
   }
 
@@ -299,13 +299,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     const commands = this.get_available_commands();
     let x = commands.filter((value: SystemFile) => {
       let x = value.get_value() as Command;
-      return x.get_command() === cmd.get_command();
+      return x.command === cmd.command;
     });
     if (!x.length) {
       commands.push(
         new SystemFile({
           value: cmd,
-          fileName: cmd.get_command_name(),
+          fileName: cmd.commandName,
           fileType: SystemFileTypeEnumMetadata.executable,
         })
       );
@@ -321,7 +321,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (i) {
       if (
         i.get_permissions().read === SystemUserPermissionsEnumMetadata.SuperUser &&
-        this.activeUser?.get_permissions() !== SystemUserPermissionsEnumMetadata.SuperUser
+        this.activeUser?.permissions !== SystemUserPermissionsEnumMetadata.SuperUser
       ) {
         return {
           linesForCMD: [new Line(`${cmd}: Permission denied`, 'red')],
@@ -339,7 +339,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   //TODO DOC
   public static add_file_to_dock(file: SystemFile): void {
-    this.get_active_user()?.get_user_settings().appsInDock.push(file);
+    this.get_active_user()?.userSetting.appsInDock.push(file);
   }
 
   /**
@@ -423,7 +423,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     password: string
   ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSuccess {
     let u = this.get_user(username);
-    if (u && u.get_password() === password) {
+    if (u && u.password === password) {
       this.activeUser = u;
     } else {
       return SystemStateMetadata.UserFailLogin;
@@ -490,7 +490,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static logout_user_and_kill_user_process(): void {
     const acUser = this.activeUser;
     if (acUser) {
-      this.get_user_process(acUser.get_username()).forEach((value: Process) => {
+      this.get_user_process(acUser.username).forEach((value: Process) => {
         value.kill();
       });
       acUser.running = false;

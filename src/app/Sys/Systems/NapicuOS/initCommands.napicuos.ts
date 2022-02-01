@@ -44,10 +44,10 @@ function initCreateUser(): void {
     new Command('CreateUser', 'adduser', (params) => {
       return new Promise((resolve) => {
         if (params?.length == 2) {
-          var username = params[0];
-          var password = params[1];
-          var x = NapicuOS.get_users().filter((value) => {
-            return value.get_username() === username;
+          let username = params[0];
+          let password = params[1];
+          let x = NapicuOS.get_users().filter((value) => {
+            return value.username === username;
           });
           if (!x.length) {
             resolve(NapicuOS.add_user(new User(username, password)));

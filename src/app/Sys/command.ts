@@ -7,11 +7,11 @@ export class Command {
   /**
    * Full command name
    */
-  private declare readonly commandName: string;
+  private declare readonly _commandName: string;
   /**
    * The expression after which the command function is executed
    */
-  private declare readonly command: string;
+  private declare readonly _command: string;
   /**
    * Command Function
    */
@@ -28,24 +28,25 @@ export class Command {
     command: string,
     fun: (params: string[] | undefined, activatedWindow?: Process) => Promise<CommandFunMetadata>
   ) {
-    this.commandName = commandName;
-    this.command = command.toLocaleLowerCase();
+    this._commandName = commandName;
+    this._command = command.toLocaleLowerCase();
     this.fun = fun;
   }
 
   /**
    * Returns the command prefix
    */
-  public get_command(): string {
-    return this.command;
+  get commandName(): string {
+    return this._commandName;
   }
 
   /**
    * Returns the command name
    */
-  public get_command_name(): string {
-    return this.commandName;
+  get command(): string {
+    return this._command;
   }
+
 
   /**
    * Function that executes the function in the command

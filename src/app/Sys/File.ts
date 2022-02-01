@@ -14,57 +14,77 @@ export class SystemFile {
   /**
    * Path to the icon (svg)
    */
-  private iconPath: string = `${SystemFile.defaultIconsPath}/XFD/download.svg`;
+  private _iconPath: string = `${SystemFile.defaultIconsPath}/XFD/download.svg`;
 
-  private value: any;
+  private _value: any;
 
-  private declare fileType: SystemFileTypeEnumMetadata;
+  private declare _fileType: SystemFileTypeEnumMetadata;
 
-  private fileName: string = 'New_File';
+  private _fileName: string = 'New_File';
 
-  private declare permissions: SystemFilePermissionsMetadata;
+  private declare _permissions: SystemFilePermissionsMetadata;
 
-  //TODO DOC
+
   /**
-   * @param value df
-   * @param fileName fd
-   * @param fileType fd
-   * @param permission fd
+   * The basic system file
+   * @param data File data to create
    */
   constructor(data: SystemFileConsMetadata) {
-    this.value = data.value;
-    this.fileName = data.fileName;
-    this.fileType = data.fileType;
-    this.permissions = data.permissions ? data.permissions : {read: SystemUserPermissionsEnumMetadata.User};
+
+    this._value = data.value;
+    this._fileName = data.fileName;
+    this._fileType = data.fileType;
+    this._permissions = data.permissions ? data.permissions : {read: SystemUserPermissionsEnumMetadata.User};
 
     //TODO permissions
   }
 
+
+  set iconPath(value: string) {
+    this._iconPath = value;
+  }
+
+  set value(value: any) {
+    this._value = value;
+  }
+
+  set fileType(value: SystemFileTypeEnumMetadata) {
+    this._fileType = value;
+  }
+
+  set fileName(value: string) {
+    this._fileName = value;
+  }
+
+  set permissions(value: SystemFilePermissionsMetadata) {
+    this._permissions = value;
+  }
+
   public get_value(): any {
-    return this.value;
+    return this._value;
   }
 
   public get_file_name(): string {
-    return this.fileName;
+    return this._fileName;
   }
 
   public get_icon_path(): string {
-    return this.iconPath;
+    return this._iconPath;
   }
 
   public get_permissions(): SystemFilePermissionsMetadata {
-    return this.permissions;
+    return this._permissions;
   }
 
   public open(): Promise<any> {
     return new Promise(async (resolve) => {
-      switch (this.fileType) {
+      switch (this._fileType) {
         case SystemFileTypeEnumMetadata.apps:
-          let process = this.value() as Process;
+          let process = this._value() as Process;
           resolve(process.run().Window.open());
           break;
         case SystemFileTypeEnumMetadata.executable:
-          let command = this.value as Command;
+          let command = this._value as Command;
           resolve(await command.run());
           break;
         default:
