@@ -1,19 +1,27 @@
+<link rel="stylesheet" href="alert.component.scss">
 <script src="alert.component.ts"></script>
 <script src="../../template/window/window.component.ts"></script>
-<section class="WindowContent BgWhite MainBoxPadding-15" id="WindowScrollBar">
+<section class="WindowContent Bg MainBoxPadding-15" id="WindowScrollBar">
   <section>
     <div>
-      <div class="icon">
-
-        <img
-          [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +
+      <div class="AlertBox" style="display: flex; align-content: center">
+        <!-- Alert icon-->
+        <div>
+          <img
+            [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +
           ( GetAlertIcon === 0 ? 'close.png'  :  GetAlertIcon === 1 ?
            'warning.png' :  GetAlertIcon === 2 ? 'info.png' : '')"
-          width="60px"
-          height="60px"
-          alt="Alert img">
+            class="alertImgSize"
+            alt="Alert img">
+        </div>
+        <!-- Alert content-->
+        <div class="alertContent alertFontSize">
+          <ng-content></ng-content>
+        </div>
+      </div>
+      <div class="alertButton">
+        <button>Ok</button>
       </div>
     </div>
-    <ng-content></ng-content>
   </section>
 </section>

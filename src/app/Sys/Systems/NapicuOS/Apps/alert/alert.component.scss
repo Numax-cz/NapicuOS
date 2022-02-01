@@ -1,0 +1,34 @@
+.Bg {
+  background-color: #282a30;
+}
+
+.alertContent {
+  color: white;
+  padding: 10px 10px;
+}
+
+.alertFontSize {
+  font-size: 1.1rem;
+}
+
+.alertImgSize {
+  width: 57px;
+  height: 57px;
+}
+
+.alertButton {
+  width: 100%;
+  text-align: right;
+
+  button {
+    width: 30%;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    background: #4c4d54;
+    border-bottom: 3px solid #333436;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+}

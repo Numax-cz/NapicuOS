@@ -394,7 +394,7 @@ export class WindowComponent implements OnInit {
    * @param i Application's window process
    */
   public getWindowContent(i: Process): Text[][] {
-    var x = i.Window as SystemAlert;
+    let x = i.Window as SystemAlert;
     if (x?.value) return [[document.createTextNode(x.value)]];
     return [[]];
   }

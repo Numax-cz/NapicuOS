@@ -12,7 +12,6 @@ export class AlertComponent implements OnInit {
 
 
   constructor(@Inject('windowDataInjector') protected value: windowInjectMetadata) {
-
   }
 
   ngOnInit(): void {
