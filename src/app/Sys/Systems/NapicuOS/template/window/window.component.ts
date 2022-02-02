@@ -5,14 +5,14 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { SystemAlert } from 'src/app/Sys/Alert';
-import { Process, ProcessWindowValueMetadata } from 'src/app/Sys/Process';
-import { Window } from 'src/app/Sys/Window';
-import { window_animations } from '../../config/windowAnimations';
-import { percentage, percentageValue } from '../../scripts/getPercentage';
-import { NapicuOS } from '../../system.napicuos';
-import { InputsType } from 'ng-dynamic-component';
+import {Component, OnInit} from '@angular/core';
+import {SystemAlert} from 'src/app/Sys/Alert';
+import {Process, ProcessWindowValueMetadata} from 'src/app/Sys/Process';
+import {Window} from 'src/app/Sys/Window';
+import {window_animations} from '../../config/windowAnimations';
+import {percentage, percentageValue} from '../../scripts/getPercentage';
+import {NapicuOS} from '../../system.napicuos';
+import {InputsType} from 'ng-dynamic-component';
 
 @Component({
   selector: 'app-window',
@@ -25,12 +25,12 @@ import { InputsType } from 'ng-dynamic-component';
       //Remember: Animation normal will return the application window
       // to the default position where the animation started.
       transition(':enter', [
-        style({ transform: 'scale(0)' }),
-        animate(window_animations, style({ transform: 'scale(1)' })),
+        style({transform: 'scale(0)'}),
+        animate(window_animations, style({transform: 'scale(1)'})),
       ]),
       transition(':leave', [
-        style({ transform: 'scale(1)' }),
-        animate(window_animations, style({ transform: 'scale(0)' })),
+        style({transform: 'scale(1)'}),
+        animate(window_animations, style({transform: 'scale(0)'})),
       ]),
       state(
         'maximized',
@@ -49,7 +49,7 @@ import { InputsType } from 'ng-dynamic-component';
           top: '{{top}}%',
           left: '{{left}}%',
         }),
-        { params: { width: 0, height: 0, top: 0, left: 0 } }
+        {params: {width: 0, height: 0, top: 0, left: 0}}
       ),
       state(
         'left',
@@ -149,7 +149,8 @@ export class WindowComponent implements OnInit {
    */
   protected declare activeWindowState: boolean;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
@@ -176,7 +177,7 @@ export class WindowComponent implements OnInit {
    */
   public getInput(p: Process): InputsType {
     let x = p.Window as SystemAlert;
-    return { alertContent: x?.value || '', alertType: x?.type };
+    return {alertContent: x?.value || '', alertType: x?.type};
   }
 
   /**
@@ -217,18 +218,19 @@ export class WindowComponent implements OnInit {
     const MouseValueY = event.pageY;
     const p = event.target as HTMLElement;
     if (!this.move || this.resize || !this.selectedWindow) return;
-    if (
-      this.selectedWindow.windowData.width ||
-      this.selectedWindow.windowData.height
-    ) {
+
+    if (this.selectedWindow.windowData.height && this.selectedWindow.windowData.width) {
       this.unSnappingWindow(event);
       this.snappingWindow(event);
     }
+
     let x = MouseValueX + this.originalX;
     let y = MouseValueY + this.originalY;
+    if (MouseValueY > 0) {
+      this.selectedWindow.setTop(y);
+      this.selectedWindow.setLeft(x);
+    }
 
-    if (MouseValueY > 0) this.selectedWindow.setTop(y);
-    this.selectedWindow.setLeft(x);
   }
 
   /**
@@ -384,6 +386,7 @@ export class WindowComponent implements OnInit {
    * Function for snapping the application window
    */
   protected snappingWindow(event: MouseEvent): void {
+
     const p = event.target as HTMLElement;
     if (p.classList.contains('left')) {
       this.selectedWindow.setStateLeft();

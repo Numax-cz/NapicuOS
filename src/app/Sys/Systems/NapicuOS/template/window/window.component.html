@@ -19,7 +19,8 @@
       'z-index': i.Window.z_index
     }"
     [ngClass]="[i.Window?.activated ? 'SelectedWindow' : 'UnSelectedWindow', !i.Window.windowData.height &&
-    !i.Window.windowData.width ? 'centerTransform' : '']">
+    !i.Window.windowData.width ? 'centerTransform' : '', !i.Window.windowData.height || i.Window.windowData.width ?
+    'fitWindowContent' : '']">
     <!--       // 'transform': translate(10px, 10px)-->
     <div *ngIf="!i.Window.isStateMaximized() && !move &&
       i.Window.resizeAllowed && i.Window.windowData.height &&
