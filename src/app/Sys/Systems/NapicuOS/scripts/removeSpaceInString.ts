@@ -3,5 +3,5 @@
  * @param string
  */
 export function removeSpace(string: string): string {
-  return string.replace(/\s+/g, '');
+    return string.replace(/\s+/g, '');
 }

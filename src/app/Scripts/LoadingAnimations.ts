@@ -7,11 +7,11 @@ import {Navigate} from './BiosRouter';
  * @param inTime Animation loading time
  */
 export function Loading(redirect: string, outTime: number, inTime?: number): void {
-  inTime = inTime || 0;
-  setTimeout(() => {
-    Navigate('/blackloading');
+    inTime = inTime || 0;
     setTimeout(() => {
-      Navigate(redirect);
-    }, outTime);
-  }, inTime);
+        Navigate('/blackloading');
+        setTimeout(() => {
+            Navigate(redirect);
+        }, outTime);
+    }, inTime);
 }

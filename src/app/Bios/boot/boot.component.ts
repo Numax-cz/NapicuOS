@@ -12,69 +12,69 @@ import {setBiosSettingsFromCookies} from 'src/app/Scripts/setBiosSettings';
 import {setLanguage} from 'src/app/Array/BiosMenu';
 
 @Component({
-  selector: 'app-boot',
-  templateUrl: './boot.component.html',
-  styleUrls: ['./boot.component.scss'],
+    selector: 'app-boot',
+    templateUrl: './boot.component.html',
+    styleUrls: ['./boot.component.scss'],
 })
 export class BootComponent implements OnInit, OnDestroy {
-  public static EnterBios: boolean;
-  public static NavigateRouter: Router;
-  protected BiosBootAudio: HTMLAudioElement = new Audio('/assets/sound/Boot.wav');
+    public static EnterBios: boolean;
+    public static NavigateRouter: Router;
+    protected BiosBootAudio: HTMLAudioElement = new Audio('/assets/sound/Boot.wav');
 
-  constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
-    BootComponent.NavigateRouter = this.router;
-  }
-
-  ngOnInit(): void {
-    setLanguage();
-    setBiosSettings();
-    setBiosSettingsFromCookies();
-    this.ClearRouter();
-    BootComponent.EnterBios = false;
-    FlashComponent.ezFlashWindow = false;
-    this.setEvents();
-    setTimeout(() => {
-      if (!BootComponent.EnterBios) {
-        Boot();
-      }
-    }, exitTime);
-  }
-
-  ngOnDestroy(): void {
-    window.removeEventListener('keydown', this.RunBios, true);
-  }
-
-  protected setEvents(): void {
-    window.removeEventListener('keydown', this.RunBios, true);
-    window.addEventListener('keydown', this.RunBios, true);
-  }
-
-  protected PlayBootSound(): void {
-    this.BiosBootAudio.play();
-  }
-
-  public RunBios = (e: KeyboardEvent): void => {
-    if (e.keyCode == key.Delete || e.keyCode == key.F2) {
-      BootComponent.EnterBios = true;
-      setTimeout(() => {
-        Navigate('/blackloading');
-        setTimeout(() => {
-          this.PlayBootSound();
-          setTimeout(() => {
-            this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
-          }, 150);
-        }, startTimeIn);
-      }, 280);
+    constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
+        BootComponent.NavigateRouter = this.router;
     }
-  };
 
-  public ClearRouter(): void {
-    BiosComponent.BiosRouter = this.router;
-    BiosComponent.selected = 0;
-    BootComponent.EnterBios = false;
-  }
+    ngOnInit(): void {
+        setLanguage();
+        setBiosSettings();
+        setBiosSettingsFromCookies();
+        this.ClearRouter();
+        BootComponent.EnterBios = false;
+        FlashComponent.ezFlashWindow = false;
+        this.setEvents();
+        setTimeout(() => {
+            if (!BootComponent.EnterBios) {
+                Boot();
+            }
+        }, exitTime);
+    }
 
-  get biosTitle(): string {
-    return BiosInfo.title;
-  }
+    ngOnDestroy(): void {
+        window.removeEventListener('keydown', this.RunBios, true);
+    }
+
+    protected setEvents(): void {
+        window.removeEventListener('keydown', this.RunBios, true);
+        window.addEventListener('keydown', this.RunBios, true);
+    }
+
+    protected PlayBootSound(): void {
+        this.BiosBootAudio.play();
+    }
+
+    public RunBios = (e: KeyboardEvent): void => {
+        if (e.keyCode == key.Delete || e.keyCode == key.F2) {
+            BootComponent.EnterBios = true;
+            setTimeout(() => {
+                Navigate('/blackloading');
+                setTimeout(() => {
+                    this.PlayBootSound();
+                    setTimeout(() => {
+                        this.router.navigate(['bios/main'] /*{ skipLocationChange: true } */);
+                    }, 150);
+                }, startTimeIn);
+            }, 280);
+        }
+    };
+
+    public ClearRouter(): void {
+        BiosComponent.BiosRouter = this.router;
+        BiosComponent.selected = 0;
+        BootComponent.EnterBios = false;
+    }
+
+    get biosTitle(): string {
+        return BiosInfo.title;
+    }
 }

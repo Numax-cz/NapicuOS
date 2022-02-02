@@ -4,9 +4,9 @@ import {OptionPanelComponent} from 'src/app/Bios/option-panel/option-panel.compo
 import {Reboot} from '../exit/Reboot';
 
 export function FlashingDone(): void {
-  OptionPanelComponent.window = undefined;
-  FlashComponent.Flashing = false;
-  WriteInformationsDefault();
-  setNewBiosinf();
-  Reboot();
+    OptionPanelComponent.window = undefined;
+    FlashComponent.Flashing = false;
+    WriteInformationsDefault();
+    setNewBiosinf();
+    Reboot();
 }

@@ -3,6 +3,6 @@ import {In, Out} from 'src/app/Config/Animation/Flash';
 import {Loading} from '../LoadingAnimations';
 
 export function FlashBios(): void {
-  FlashComponent.ezFlashWindow = true;
-  Loading('flash', Out, In);
+    FlashComponent.ezFlashWindow = true;
+    Loading('flash', Out, In);
 }

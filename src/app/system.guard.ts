@@ -4,20 +4,20 @@ import {Observable} from 'rxjs';
 import {GrubComponent} from './System/grub/grub.component';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class SystemGuard implements CanActivate {
-  constructor(private router: Router) {
-  }
-
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (GrubComponent.ActiveSystem) {
-      return true;
+    constructor(private router: Router) {
     }
-    this.router.navigate(['']);
-    return false;
-  }
+
+    canActivate(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        if (GrubComponent.ActiveSystem) {
+            return true;
+        }
+        this.router.navigate(['']);
+        return false;
+    }
 }

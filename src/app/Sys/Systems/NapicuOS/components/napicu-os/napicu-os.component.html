@@ -1,50 +1,52 @@
 <!-- MainSystem -->
 <div id="SystemFont">
-  <!-- Resizers -->
-  <div class="snappingEdge">
-    <div style="cursor: unset" class="resizer snapping left"></div>
-    <div style="cursor: unset" class="resizer snapping right"></div>
+    <!-- Resizers -->
+    <div class="snappingEdge">
+        <div style="cursor: unset" class="resizer snapping left"></div>
+        <div style="cursor: unset" class="resizer snapping right"></div>
 
-    <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-left"></div>
-    <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-right"></div>
-  </div>
-  <div id="SystemBackground">
-    <section @NapicuOSfeoreStartUp id="System">
-      <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
-        <!-- Top panel -->
-        <section class="TopPanel">
-          <div>Activities</div>
-          <div>{{ systemTime }}</div>
+        <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-left"></div>
+        <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-right"></div>
+    </div>
+    <div id="SystemBackground">
+        <section @NapicuOSfeoreStartUp id="System">
+            <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
+                <!-- Top panel -->
+                <section class="TopPanel">
+                    <div>Activities</div>
+                    <div>{{ systemTime }}</div>
 
-          <div id="TopPanelIcons">
-            <img src="/assets/systems/NapicuOS/audio.svg"/>
-            <img src="/assets/systems/NapicuOS/on-off.svg"/>
-          </div>
-        </section>
-        <!-- Main Panel -->
-        <section style="display: contents; background-color: white">
-          <div [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
-            <!-- Apps -->
-            <section>
-              <app-window></app-window>
+                    <div id="TopPanelIcons">
+                        <img src="/assets/systems/NapicuOS/audio.svg"/>
+                        <img src="/assets/systems/NapicuOS/on-off.svg"/>
+                    </div>
+                </section>
+                <!-- Main Panel -->
+                <section style="display: contents; background-color: white">
+                    <div [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
+                        <!-- Apps -->
+                        <section>
+                            <app-window></app-window>
+                        </section>
+                    </div>
+                </section>
+
+                <!-- Bottom AppPanel -->
+                <section *ngIf="BottomDockDisplay" #BottomBar class="BottomPanel" style="z-index: 10000"
+                         id="Dock">
+                    <div style="display: flex; align-items: center; justify-content: space-between">
+                        <section>
+                            <!-- Applications -->
+                            <img *ngFor="let i of GetitemsInDock" [src]="i.get_icon_path()"
+                                 (click)="dockRunner(i)"/>
+                        </section>
+                        <!-- <section class="rightPanelMenu">
+
+                          <img src="/assets/systems/NapicuOS/SystemIcons/XFD/menu.svg" />
+                        </section> -->
+                    </div>
+                </section>
             </section>
-          </div>
         </section>
-
-        <!-- Bottom AppPanel -->
-        <section *ngIf="BottomDockDisplay" #BottomBar class="BottomPanel" style="z-index: 10000" id="Dock">
-          <div style="display: flex; align-items: center; justify-content: space-between">
-            <section>
-              <!-- Applications -->
-              <img *ngFor="let i of GetitemsInDock" [src]="i.get_icon_path()" (click)="dockRunner(i)"/>
-            </section>
-            <!-- <section class="rightPanelMenu">
-
-              <img src="/assets/systems/NapicuOS/SystemIcons/XFD/menu.svg" />
-            </section> -->
-          </div>
-        </section>
-      </section>
-    </section>
-  </div>
+    </div>
 </div>

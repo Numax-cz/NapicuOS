@@ -5,5 +5,5 @@ import {BootComponent} from '../Bios/boot/boot.component';
  * @param Path - URL Path
  */
 export function Navigate(Path: string) {
-  BootComponent.NavigateRouter.navigate([Path]); //TODO { skipLocationChange: true }
+    BootComponent.NavigateRouter.navigate([Path]); //TODO { skipLocationChange: true }
 }

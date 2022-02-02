@@ -7,23 +7,23 @@ import {setTimeInterval} from '../../Scripts/TimeController';
 import {isTime} from '../../Scripts/Type';
 
 @Component({
-  selector: 'app-bios-main',
-  templateUrl: './bios-main.component.html',
-  styleUrls: ['./bios-main.component.scss'],
+    selector: 'app-bios-main',
+    templateUrl: './bios-main.component.html',
+    styleUrls: ['./bios-main.component.scss'],
 })
 export class BiosMainComponent implements OnInit {
-  constructor() {
-  }
+    constructor() {
+    }
 
-  public MainOption: ToolSettings = BiosSettings.Main;
-  public MainOptionInfo: Informations[] = MainInfo();
+    public MainOption: ToolSettings = BiosSettings.Main;
+    public MainOptionInfo: Informations[] = MainInfo();
 
-  ngOnInit(): void {
-    Object.values(this.MainOption.settings).forEach((e: settings, i: number) => {
-      if (isTime(e)) {
-        setTimeInterval(Object.values(this.MainOption.settings), i);
-      }
-      return;
-    });
-  }
+    ngOnInit(): void {
+        Object.values(this.MainOption.settings).forEach((e: settings, i: number) => {
+            if (isTime(e)) {
+                setTimeInterval(Object.values(this.MainOption.settings), i);
+            }
+            return;
+        });
+    }
 }

@@ -6,78 +6,78 @@ import {isDate, isOption, isOptionsFast, isTime} from '../../Scripts/Type';
 import {objectKeys} from 'src/app/Scripts/objectKeys';
 
 @Component({
-  selector: 'app-settings-template',
-  templateUrl: './settings-template.component.html',
-  styleUrls: ['./settings-template.component.scss'],
+    selector: 'app-settings-template',
+    templateUrl: './settings-template.component.html',
+    styleUrls: ['./settings-template.component.scss'],
 })
 export class SettingsTemplateComponent implements OnInit {
-  @Input() MainOption: any;
-  @Input() MainOptionInfo: Informations[] = [];
+    @Input() MainOption: any;
+    @Input() MainOptionInfo: Informations[] = [];
 
-  public static MainOption: settings[] = [];
-  /**
-   * Number that indicates which item from MainOption is selected
-   */
-  public static selected: number = 0;
+    public static MainOption: settings[] = [];
+    /**
+     * Number that indicates which item from MainOption is selected
+     */
+    public static selected: number = 0;
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-    if (this.MainOption) {
-      SettingsTemplateComponent.MainOption = this.MainOption.settings;
+    constructor() {
     }
-    SettingsTemplateComponent.selected = 0;
-  }
 
-  ngOnDestroy(): void {
-    SettingsTemplateComponent.MainOption = [];
-  }
+    ngOnInit(): void {
+        if (this.MainOption) {
+            SettingsTemplateComponent.MainOption = this.MainOption.settings;
+        }
+        SettingsTemplateComponent.selected = 0;
+    }
 
-  get Selected(): number {
-    return BiosComponent.WindowSelectedOption;
-  }
+    ngOnDestroy(): void {
+        SettingsTemplateComponent.MainOption = [];
+    }
 
-  get localSelected(): number {
-    return SettingsTemplateComponent.selected;
-  }
+    get Selected(): number {
+        return BiosComponent.WindowSelectedOption;
+    }
 
-  get CursorDisplay(): boolean {
-    return BiosComponent.WindowFastOptionDisplay;
-  }
+    get localSelected(): number {
+        return SettingsTemplateComponent.selected;
+    }
 
-  get ComponentTitle(): string {
-    return SettingsTemplateComponent.MainOption[0].title;
-  }
+    get CursorDisplay(): boolean {
+        return BiosComponent.WindowFastOptionDisplay;
+    }
 
-  get Description(): string {
-    return SettingsTemplateComponent.MainOption[
-      objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
-      ].description;
-  }
+    get ComponentTitle(): string {
+        return SettingsTemplateComponent.MainOption[0].title;
+    }
 
-  public isOption(component: settings): boolean {
-    return isOption(component);
-  }
+    get Description(): string {
+        return SettingsTemplateComponent.MainOption[
+            objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
+            ].description;
+    }
 
-  public isTime(component: settings): boolean {
-    return isTime(component);
-  }
+    public isOption(component: settings): boolean {
+        return isOption(component);
+    }
 
-  public isDate(component: settings): boolean {
-    return isDate(component);
-  }
+    public isTime(component: settings): boolean {
+        return isTime(component);
+    }
 
-  public isOptionFast(component: settings): boolean {
-    return isOptionsFast(component);
-  }
+    public isDate(component: settings): boolean {
+        return isDate(component);
+    }
 
-  static errorType(): string {
-    console.error('Array Error');
-    return '{[Bios_Main]TYPE ERROR}';
-  }
+    public isOptionFast(component: settings): boolean {
+        return isOptionsFast(component);
+    }
 
-  objectKeys(obj: any): any {
-    return Object.keys(obj);
-  }
+    static errorType(): string {
+        console.error('Array Error');
+        return '{[Bios_Main]TYPE ERROR}';
+    }
+
+    objectKeys(obj: any): any {
+        return Object.keys(obj);
+    }
 }

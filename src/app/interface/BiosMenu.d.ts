@@ -1,4 +1,4 @@
 export interface BiosMenu {
-  title: string;
-  router: string;
+    title: string;
+    router: string;
 }

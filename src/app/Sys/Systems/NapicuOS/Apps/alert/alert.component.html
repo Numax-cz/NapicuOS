@@ -1,24 +1,24 @@
 <section class="WindowContent Bg MainBoxPadding-15" id="WindowScrollBar">
-  <section>
-    <div>
-      <div class="AlertBox" style="display: flex; align-content: center">
-        <!--         Alert icon-->
+    <section>
         <div>
-          <img
-            [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +
+            <div class="AlertBox" style="display: flex; align-content: center">
+                <!--         Alert icon-->
+                <div>
+                    <img
+                            [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +
                   ( GetAlertType === 0 ? 'close.png'  :  GetAlertType === 1 ?
                    'warning.png' :  GetAlertType === 2 ? 'info.png' : '')"
-            class="alertImgSize"
-            alt="Alert img">
+                            class="alertImgSize"
+                            alt="Alert img">
+                </div>
+                <!--         Alert content-->
+                <div class="alertContent alertFontSize">
+                    {{GetAlertValue}}
+                </div>
+            </div>
+            <div class="alertButton">
+                <button>Ok</button>
+            </div>
         </div>
-        <!--         Alert content-->
-        <div class="alertContent alertFontSize">
-          {{GetAlertValue}}
-        </div>
-      </div>
-      <div class="alertButton">
-        <button>Ok</button>
-      </div>
-    </div>
-  </section>
+    </section>
 </section>

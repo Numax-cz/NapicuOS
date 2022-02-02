@@ -1,12 +1,12 @@
 import {settings, ToolSettings} from './ToolSettings';
 
 export interface ComponentClass {
-  selected: number;
-  MainOption: ToolSettings;
+    selected: number;
+    MainOption: ToolSettings;
 
-  isOption(component: settings): boolean;
+    isOption(component: settings): boolean;
 
-  isTime(component: settings): boolean;
+    isTime(component: settings): boolean;
 
-  isDate(component: settings): boolean;
+    isDate(component: settings): boolean;
 }

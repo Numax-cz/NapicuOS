@@ -24,35 +24,35 @@ import {GrubGuard} from './grub.guard';
 import {MobileGuard} from './mobile.guard';
 
 const routes: Routes = [
-  {path: '', component: BootComponent, canActivate: [MobileGuard]},
-  {
-    path: 'bios',
-    component: BiosComponent,
-    children: [
-      {path: 'main', component: BiosMainComponent},
-      {path: 'tweaker', component: TweakerComponent},
-      {path: 'advanced', component: AdvancedComponent},
-      {path: 'power', component: PowerComponent},
-      {path: 'bootb', component: BootbComponent},
-      {path: 'tools', component: ToolsComponent},
-      {path: 'exit', component: ExitComponent},
-    ],
-  },
-  {path: 'flash', canActivate: [BiosGuard], component: FlashComponent},
-  {path: 'blackloading', component: BlackloadingComponent},
-  {path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent},
-  {path: 'grub', canActivate: [GrubGuard], component: GrubComponent},
+    {path: '', component: BootComponent, canActivate: [MobileGuard]},
+    {
+        path: 'bios',
+        component: BiosComponent,
+        children: [
+            {path: 'main', component: BiosMainComponent},
+            {path: 'tweaker', component: TweakerComponent},
+            {path: 'advanced', component: AdvancedComponent},
+            {path: 'power', component: PowerComponent},
+            {path: 'bootb', component: BootbComponent},
+            {path: 'tools', component: ToolsComponent},
+            {path: 'exit', component: ExitComponent},
+        ],
+    },
+    {path: 'flash', canActivate: [BiosGuard], component: FlashComponent},
+    {path: 'blackloading', component: BlackloadingComponent},
+    {path: 'blackscreen', canActivate: [BlackscreenGuard], component: BlackscreenComponent},
+    {path: 'grub', canActivate: [GrubGuard], component: GrubComponent},
 
-  {
-    path: 'system',
-    component: SystemComponent,
-    canActivate: [SystemGuard],
-  },
+    {
+        path: 'system',
+        component: SystemComponent,
+        canActivate: [SystemGuard],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

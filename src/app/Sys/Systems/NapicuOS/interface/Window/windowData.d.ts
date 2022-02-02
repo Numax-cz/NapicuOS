@@ -1,30 +1,35 @@
 export declare interface windowData {
-  /**
-   * Window position in X (value in percentage)
-   */
-  posX: number;
-  /**
-   * Window position in X (value in percentage)
-   */
-  posY: number;
-  /**
-   * Window width
-   */
-  width: windowDataSizeMetadata;
-  /**
-   * Window height
-   */
-  height: windowDataSizeMetadata;
+    /**
+     * Window position in X (value in percentage)
+     */
+    posX: number;
+    /**
+     * Window position in X (value in percentage)
+     */
+    posY: number;
+    /**
+     * Window width
+     */
+    width: windowDataSizeMetadata;
+    /**
+     * Window height
+     */
+    height: windowDataSizeMetadata;
 }
 
 
-export declare type windowDataSizeMetadata = number;
+/**
+ * null = auto
+ *
+ * number in percentage
+ */
+export declare type windowDataSizeMetadata = number | null;
 
 
 export declare interface windowButtonsMetadata {
-  minimized: boolean,
-  maximize: boolean,
-  close: boolean
+    minimized: boolean,
+    maximize: boolean,
+    close: boolean
 }
 
 /**

@@ -5,12 +5,12 @@ import {setCookies} from '../Cookies';
 import {Reboot} from './Reboot';
 
 export function SaveChanges(): void {
-  Save();
-  Reboot();
+    Save();
+    Reboot();
 }
 
 function Save(): void {
-  BiosComponent.BiosMenuSavePoint = BiosSettings;
-  setCookies(cookiesForBisoSettingsAr, JSON.stringify(BiosSettings));
+    BiosComponent.BiosMenuSavePoint = BiosSettings;
+    setCookies(cookiesForBisoSettingsAr, JSON.stringify(BiosSettings));
 }
 

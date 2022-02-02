@@ -1,28 +1,28 @@
 import {Line} from './console.component';
 
 export declare interface commandLineStMetadata {
-  user: string;
-  compName: string;
-  path: string;
+    user: string;
+    compName: string;
+    path: string;
 }
 
 export declare type terminalColorsMetadata =
-  | 'blue'
-  | 'brightBlack'
-  | 'cyan'
-  | 'green'
-  | 'white'
-  | 'purple'
-  | 'red'
-  | 'white'
-  | 'yellow';
+    | 'blue'
+    | 'brightBlack'
+    | 'cyan'
+    | 'green'
+    | 'white'
+    | 'purple'
+    | 'red'
+    | 'white'
+    | 'yellow';
 
 export declare interface historyCommandsMetadata {
-  value: string;
-  color: terminalColorsMetadata;
+    value: string;
+    color: terminalColorsMetadata;
 }
 
 export declare interface inputMetadata {
-  lines: Line[];
-  enteredCommand: string | undefined;
+    lines: Line[];
+    enteredCommand: string | undefined;
 }

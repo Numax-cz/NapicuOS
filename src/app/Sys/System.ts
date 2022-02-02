@@ -4,57 +4,57 @@ import {Process} from './Process';
 import {NapicuOSComponent} from './Systems/NapicuOS/components/napicu-os/napicu-os.component';
 
 export class System {
-  //TODO Doc
-  public declare SystemBooted: boolean;
-  public declare SystemProcess: Process[];
-  public declare component: Type<any>;
-  public declare boot: {
-    title: string;
-    logo: string;
-  };
+    //TODO Doc
+    public declare SystemBooted: boolean;
+    public declare SystemProcess: Process[];
+    public declare component: Type<any>;
+    public declare boot: {
+        title: string;
+        logo: string;
+    };
 
-  constructor() {
-    this.SystemBooted = false;
-    this.SystemProcess = [];
-    SystemComponent.SysComponent = NapicuOSComponent; //! TODO
-  }
+    constructor() {
+        this.SystemBooted = false;
+        this.SystemProcess = [];
+        SystemComponent.SysComponent = NapicuOSComponent; //! TODO
+    }
 
-  public readonly Start = (): void => {
-    SystemComponent.SysComponent = this.component;
-    this.onStart();
-  };
+    public readonly Start = (): void => {
+        SystemComponent.SysComponent = this.component;
+        this.onStart();
+    };
 
-  public readonly shutDown = (): void => {
-    this.onShutDown();
-  };
+    public readonly shutDown = (): void => {
+        this.onShutDown();
+    };
 
-  public readonly load = (): void => {
-    this.SystemBooted = true;
-    window.addEventListener('keydown', (ev: KeyboardEvent) => this.onKeyPress(ev));
-    this.onLoad();
-  };
+    public readonly load = (): void => {
+        this.SystemBooted = true;
+        window.addEventListener('keydown', (ev: KeyboardEvent) => this.onKeyPress(ev));
+        this.onLoad();
+    };
 
-  public onKeyPress(ev: KeyboardEvent): void {
-  }
+    public onKeyPress(ev: KeyboardEvent): void {
+    }
 
-  /**
-   * This function is called after the Start function
-   */
-  public onStart(): void {
-  }
+    /**
+     * This function is called after the Start function
+     */
+    public onStart(): void {
+    }
 
-  /**
-   * This function is called after the shutDown function
-   */
-  public onShutDown(): void {
-  }
+    /**
+     * This function is called after the shutDown function
+     */
+    public onShutDown(): void {
+    }
 
-  public onLoad(): void {
-  }
+    public onLoad(): void {
+    }
 
-  /**
-   * This function is called after the user logs in
-   */
-  public onLogin(): void {
-  }
+    /**
+     * This function is called after the user logs in
+     */
+    public onLogin(): void {
+    }
 }

@@ -1,69 +1,73 @@
 <div id="Frame">
-  <div class="Grid">
-    <div class="GridOptionsBox">
-      <section class="Information">
-        <div>
-          <div id="Title">
-            <ng-container *ngIf="MainOption">
-              {{ MainOption.title }}
-            </ng-container>
-          </div>
-          <ng-container *ngIf="MainOption">
-            <div *ngFor="let i of objectKeys(MainOption.settings); let index = index" id="Grid-BiosItems" class="Option"
-                 [ngClass]="{ BIOSSelectedOption: index == localSelected }">
-              <div>{{ MainOption.settings[i].title }}<span *ngIf="!isOptionFast(MainOption.settings[i])"
-                                                           class="colon">:</span></div>
-              <div *ngIf="isOption(MainOption.settings[i])">
-                [{{ MainOption.settings[i].options[MainOption.settings[i].selected].title }}]
-              </div>
-              <div *ngIf="isTime(MainOption.settings[i])">
-                [<span *ngFor="let time of MainOption.settings[i].time; let timeIndex = index"
-              ><span
-                [ngClass]="{
+    <div class="Grid">
+        <div class="GridOptionsBox">
+            <section class="Information">
+                <div>
+                    <div id="Title">
+                        <ng-container *ngIf="MainOption">
+                            {{ MainOption.title }}
+                        </ng-container>
+                    </div>
+                    <ng-container *ngIf="MainOption">
+                        <div *ngFor="let i of objectKeys(MainOption.settings); let index = index"
+                             id="Grid-BiosItems" class="Option"
+                             [ngClass]="{ BIOSSelectedOption: index == localSelected }">
+                            <div>{{ MainOption.settings[i].title }}<span
+                                    *ngIf="!isOptionFast(MainOption.settings[i])"
+                                    class="colon">:</span></div>
+                            <div *ngIf="isOption(MainOption.settings[i])">
+                                [{{ MainOption.settings[i].options[MainOption.settings[i].selected].title }}]
+                            </div>
+                            <div *ngIf="isTime(MainOption.settings[i])">
+                                [<span *ngFor="let time of MainOption.settings[i].time; let timeIndex = index"
+                            ><span
+                                    [ngClass]="{
                       BIOSSelectedTime: Selected == timeIndex && CursorDisplay && index == localSelected
                     }"
-              >{{ time.title }}</span
-              ><span *ngIf="timeIndex < 2">:</span></span
-              >]
-              </div>
-              <div *ngIf="isDate(MainOption.settings[i])">
-                [<span *ngFor="let date of MainOption.settings[i].date; let dateIndex = index">
+                            >{{ time.title }}</span
+                            ><span *ngIf="timeIndex < 2">:</span></span
+                            >]
+                            </div>
+                            <div *ngIf="isDate(MainOption.settings[i])">
+                                [<span
+                                    *ngFor="let date of MainOption.settings[i].date; let dateIndex = index">
                   <span
-                    [ngClass]="{
+                          [ngClass]="{
                       BIOSSelectedTime: Selected == dateIndex && CursorDisplay && index == localSelected
                     }"
                   >{{ date.title }}</span
                   ><span *ngIf="dateIndex < 2">/</span></span
-              >]
-              </div>
+                            >]
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="MainOptionInfo">
+                        <div id="Grid-BiosItems" *ngFor="let i of MainOptionInfo">
+                            <div>{{ i.title }}<span class="colon">:</span></div>
+                            <div>{{ i.value }}</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </section>
+        </div>
+        <div class="Grid-ItemHoz Right">
+            <div class="Information blue" id="DescriptionTST">
+                <div *ngIf="MainOption">
+                    {{ Description }}
+                </div>
             </div>
-          </ng-container>
-          <ng-container *ngIf="MainOptionInfo">
-            <div id="Grid-BiosItems" *ngFor="let i of MainOptionInfo">
-              <div>{{ i.title }}<span class="colon">:</span></div>
-              <div>{{ i.value }}</div>
+            <div class="Information blue">
+                <div class="Hin">
+                    <div class="Information-Options"><span class="Options-Arrow">►◄</span>: Select Screen
+                    </div>
+                    <div class="Information-Options"><span class="Options-Arrow">▲▼</span>: Select Item</div>
+                    <div class="Information-Options"><span>Enter</span>: Select</div>
+                    <div class="Information-Options"><span>+/-</span>: Change Opt.</div>
+                    <div class="Information-Options"><span>F5</span>: Optimized Defaults</div>
+                    <div class="Information-Options"><span>F10</span>: Save & Exit</div>
+                    <div class="Information-Options"><span>ESC</span>: Exit</div>
+                </div>
             </div>
-          </ng-container>
         </div>
-      </section>
     </div>
-    <div class="Grid-ItemHoz Right">
-      <div class="Information blue" id="DescriptionTST">
-        <div *ngIf="MainOption">
-          {{ Description }}
-        </div>
-      </div>
-      <div class="Information blue">
-        <div class="Hin">
-          <div class="Information-Options"><span class="Options-Arrow">►◄</span>: Select Screen</div>
-          <div class="Information-Options"><span class="Options-Arrow">▲▼</span>: Select Item</div>
-          <div class="Information-Options"><span>Enter</span>: Select</div>
-          <div class="Information-Options"><span>+/-</span>: Change Opt.</div>
-          <div class="Information-Options"><span>F5</span>: Optimized Defaults</div>
-          <div class="Information-Options"><span>F10</span>: Save & Exit</div>
-          <div class="Information-Options"><span>ESC</span>: Exit</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

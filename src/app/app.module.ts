@@ -31,46 +31,46 @@ import {AlertComponent} from './Sys/Systems/NapicuOS/Apps/alert/alert.component'
 import {DynamicModule} from "ng-dynamic-component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BootComponent,
-    BiosComponent,
-    BiosMainComponent,
-    TweakerComponent,
-    AdvancedComponent,
-    PowerComponent,
-    BootbComponent,
-    ToolsComponent,
-    ExitComponent,
-    OptionPanelComponent,
-    SettingsTemplateComponent,
-    FlashComponent,
-    BlackloadingComponent,
-    BlackscreenComponent,
-    GrubComponent,
-    SystemComponent,
-    NapicuOSComponent,
-    WelcomeComponent,
-    WindowComponent,
-    ConsoleComponent,
-    LoginscreenComponent,
-    AlertComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    DynamicModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        BootComponent,
+        BiosComponent,
+        BiosMainComponent,
+        TweakerComponent,
+        AdvancedComponent,
+        PowerComponent,
+        BootbComponent,
+        ToolsComponent,
+        ExitComponent,
+        OptionPanelComponent,
+        SettingsTemplateComponent,
+        FlashComponent,
+        BlackloadingComponent,
+        BlackscreenComponent,
+        GrubComponent,
+        SystemComponent,
+        NapicuOSComponent,
+        WelcomeComponent,
+        WindowComponent,
+        ConsoleComponent,
+        LoginscreenComponent,
+        AlertComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        DynamicModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the app is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000',
+        }),
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {
 }

@@ -1,42 +1,42 @@
 <section
-  #AppScreen
-  class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15"
-  id="WindowScrollBar"
-  (keydown.arrowup)="onArrowUp($event)"
-  (keydown.arrowdown)="onArrowDown($event)"
-  (click)="inputFocus()"
+    #AppScreen
+    class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15"
+    id="WindowScrollBar"
+    (keydown.arrowup)="onArrowUp($event)"
+    (keydown.arrowdown)="onArrowDown($event)"
+    (click)="inputFocus()"
 >
-  <section id="CommandShellInput">
-    <div *ngFor="let i of Getlines; let index = index">
-      <div>
-        <span class="TerminalNames"> {{ GetUserName }}@{{ GetcompName }} </span>:<span
-        class="TerminalPath"
-      >{{ Getpath }}</span
-      >$<span class="inputMargin">{{ i.enteredCommand }}</span>
-      </div>
-      <div *ngFor="let x of i.lines" class="line">
-        <pre>{{ x.Write().value }}</pre>
-      </div>
-    </div>
-    <div [style.display]="GetactiveCommand ? 'none' : ''" class="line">
-      <div>
-        <span class="TerminalNames"> {{ GetUserName }}@{{ GetcompName }} </span>:<span
-        class="TerminalPath"
-      >{{ Getpath }}</span
-      >$
-      </div>
-      <div
-        #InputValue
-        contenteditable="true"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        accept="txt"
-        spellcheck="false"
-        id="inputLineID"
-        class="inputLine inputMargin single-line"
-        (keydown.enter)="onEnter($event)"
-      ></div>
-    </div>
-  </section>
+    <section id="CommandShellInput">
+        <div *ngFor="let i of Getlines; let index = index">
+            <div>
+                <span class="TerminalNames"> {{ GetUserName }}@{{ GetcompName }} </span>:<span
+                    class="TerminalPath"
+            >{{ Getpath }}</span
+            >$<span class="inputMargin">{{ i.enteredCommand }}</span>
+            </div>
+            <div *ngFor="let x of i.lines" class="line">
+                <pre>{{ x.Write().value }}</pre>
+            </div>
+        </div>
+        <div [style.display]="GetactiveCommand ? 'none' : ''" class="line">
+            <div>
+                <span class="TerminalNames"> {{ GetUserName }}@{{ GetcompName }} </span>:<span
+                    class="TerminalPath"
+            >{{ Getpath }}</span
+            >$
+            </div>
+            <div
+                #InputValue
+                contenteditable="true"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                accept="txt"
+                spellcheck="false"
+                id="inputLineID"
+                class="inputLine inputMargin single-line"
+                (keydown.enter)="onEnter($event)"
+            ></div>
+        </div>
+    </section>
 </section>

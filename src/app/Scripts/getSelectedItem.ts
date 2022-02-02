@@ -7,7 +7,7 @@ import {objectKeys} from './objectKeys';
  * @returns Returns the selected item
  */
 export function getSelectedItem(): settings {
-  return SettingsTemplateComponent.MainOption[
-    objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
-    ];
+    return SettingsTemplateComponent.MainOption[
+        objectKeys(SettingsTemplateComponent.MainOption)[SettingsTemplateComponent.selected]
+        ];
 }

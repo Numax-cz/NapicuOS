@@ -6,43 +6,43 @@ import {SystemFile} from '../../File';
 import {systemAlertTypeEnumMetadata} from './interface/Alert/alert';
 
 export function initAllSystemProcess(): void {
-  napicu_os_time().runAsSystem();
+    napicu_os_time().runAsSystem();
 }
 
 export function initAllStartUpApps(): void {
-  //napicu_os_welcomeapp().open();
-  napicu_os_terminal().open();
-  NapicuOS.create_alert({
-    alertTitle: 'Alert',
-    alertValue: 'Tohle je alert, který je velice kvalitní a dsafadf a je velice fajnový',
-    alertType: systemAlertTypeEnumMetadata.Info,
-  }).open();
+    //napicu_os_welcomeapp().open();
+    napicu_os_terminal().open();
+    NapicuOS.create_alert({
+        alertTitle: 'Alert',
+        alertValue: 'Tohle je alert, který je velice kvalitní a dsafadf a je velice fajnový',
+        alertType: systemAlertTypeEnumMetadata.Info,
+    }).open();
 }
 
 export function napicu_os_time(): Process {
-  return new Process({
-    processTitle: 'SystemTime',
-    processInterval: {
-      fun: () => {
-        NapicuOS.systemTime = NapicuOS.getTime();
-      },
-      time: 1000,
-    },
-  });
+    return new Process({
+        processTitle: 'SystemTime',
+        processInterval: {
+            fun: () => {
+                NapicuOS.systemTime = NapicuOS.getTime();
+            },
+            time: 1000,
+        },
+    });
 }
 
 export function napicu_os_welcomeapp(): SystemFile {
-  return NapicuOS.create_app({
-    appTitle: 'Installer',
-    processTitle: 'Install NapicuOS',
-    appComponent: WelcomeComponent,
-  });
+    return NapicuOS.create_app({
+        appTitle: 'Installer',
+        processTitle: 'Install NapicuOS',
+        appComponent: WelcomeComponent,
+    });
 }
 
 export function napicu_os_terminal(): SystemFile {
-  return NapicuOS.create_app({
-    appTitle: 'Terminal',
-    processTitle: 'Terminal',
-    appComponent: ConsoleComponent,
-  });
+    return NapicuOS.create_app({
+        appTitle: 'Terminal',
+        processTitle: 'Terminal',
+        appComponent: ConsoleComponent,
+    });
 }
