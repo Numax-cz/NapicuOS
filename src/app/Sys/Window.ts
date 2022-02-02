@@ -19,7 +19,7 @@ export class Window {
   /**
    * Title of the application window
    */
-  public WindowTitle: string = 'Window';
+  public windowTitle: string = 'Window';
   /**
    * Specifies whether the application window is displayed
    */
@@ -27,7 +27,7 @@ export class Window {
   /**
    * Main component of the application window
    */
-  public declare WindowComponent: Type<any>;
+  public declare windowComponent: Type<any>;
   /**
    * Determines whether the application window is selected by the user
    */
@@ -54,8 +54,8 @@ export class Window {
     resizeAllowed?: boolean,
 
   }) {
-    this.WindowComponent = data.component;
-    if (data.windowTitle) this.WindowTitle = data.windowTitle;
+    this.windowComponent = data.component;
+    if (data.windowTitle) this.windowTitle = data.windowTitle;
     if (data.windowData) this.windowData = data.windowData;
     this.windowButtons = data.windowButtons || {
       minimized: true,
@@ -262,6 +262,6 @@ export class Window {
 
   //? WindowTitle
   public setWindowTitle(title: string): void {
-    this.WindowTitle = title;
+    this.windowTitle = title;
   }
 }

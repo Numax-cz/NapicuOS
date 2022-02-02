@@ -16,7 +16,7 @@ export function initAllStartUpApps(): void {
     alertTitle: 'Alert',
     alertValue: 'Tohle je alert, který je velice kvalitní a dsafadf a je velice fajnový',
     alertType: systemAlertTypeEnumMetadata.Info,
-  })
+  }).open();
 }
 
 export function napicu_os_time(): Process {

@@ -10,12 +10,16 @@ export declare interface windowData {
   /**
    * Window width
    */
-  width: number;
+  width: windowDataSizeMetadata;
   /**
    * Window height
    */
-  height: number;
+  height: windowDataSizeMetadata;
 }
+
+
+export declare type windowDataSizeMetadata = number;
+
 
 export declare interface windowButtonsMetadata {
   minimized: boolean,
