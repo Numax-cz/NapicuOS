@@ -149,10 +149,6 @@ export class WindowComponent implements OnInit {
 
   }
 
-  public getInput(i: Process): InputsType {
-    let x = i.Window as SystemAlert;
-    return {alertContent: x?.value || '', alertType: x?.type}
-  }
 
   ngOnInit(): void {
     window.addEventListener('mouseup', () => {
@@ -170,25 +166,33 @@ export class WindowComponent implements OnInit {
     });
   }
 
+  /**
+   * Returns the value for the dynamic component
+   * @param p Application window process
+   */
+  public getInput(p: Process): InputsType {
+    let x = p.Window as SystemAlert;
+    return {alertContent: x?.value || '', alertType: x?.type}
+  }
 
   /**
    * Function that closes the application window
-   * @param Window
-   * @param event
+   * @param window Application window
+   * @param event The mouse event
    */
-  public close(window: Window, event: MouseEvent): void {
+  public close(window: ProcessWindowValueMetadata, event: MouseEvent): void {
     window.close();
     event.stopPropagation();
   }
 
   /**
    * Function that maximizes or minimizes the window
-   * @param event - The mouse event
+   * @param window Application window
+   * @param event The mouse event
    */
-  public maximize(window: Window, event: MouseEvent): void {
+  public maximize(window: ProcessWindowValueMetadata, event: MouseEvent): void {
     //window.appData.maximized = window.appData.maximized ? false : true;
     window.state = window.isStateMaximized() ? 'normal' : 'maximized';
-
     event.stopPropagation();
   }
 
@@ -200,29 +204,22 @@ export class WindowComponent implements OnInit {
     event.stopPropagation();
   }
 
-  public SystemActivated(i: Window): boolean {
-    return i?.activated;
-  }
-
   /**
    *  Functions for moving the application window
    * @param event - The mouse event
    */
   protected moveWindow(event: MouseEvent): void {
-    const MousevalueX = event.pageX;
-    const MousevalueY = event.pageY;
+    const MouseValueX = event.pageX;
+    const MouseValueY = event.pageY;
     const p = event.target as HTMLElement;
     if (!this.move || this.resize || !this.selectedWindow) return;
     this.unSnappingWindow(event);
     this.snappingWindow(event);
-    var x = MousevalueX + this.originalX;
-    var y = MousevalueY + this.originalY;
+    let x = MouseValueX + this.originalX;
+    let y = MouseValueY + this.originalY;
 
-    if (MousevalueY > 0) this.selectedWindow.setTop(y);
+    if (MouseValueY > 0) this.selectedWindow.setTop(y);
     this.selectedWindow.setLeft(x);
-  }
-
-  protected moveWindowAnimations(): void {
   }
 
   /**
@@ -231,42 +228,41 @@ export class WindowComponent implements OnInit {
    */
   protected resizeWindow(event: MouseEvent): void {
     if (this.selectedWindow?.isStateMaximized()) return;
-
     if (this.move || !this.resize) return;
-    var MousevalueX: number = event.pageX;
-    var MousevalueY: number = event.pageY;
-    var x;
-    var y;
-    var left;
-    var top;
+    let MouseValueX: number = event.pageX;
+    let MouseValueY: number = event.pageY;
+    let x;
+    let y;
+    let left;
+    let top;
 
     if (this.selectedDiv.classList.contains('resizer')) {
       if (this.selectedDiv.classList.contains('bottom-right')) {
-        x = this.originalWidth + (MousevalueX - this.originalMouseX);
-        y = this.originalHeight + (MousevalueY - this.originalMouseY);
+        x = this.originalWidth + (MouseValueX - this.originalMouseX);
+        y = this.originalHeight + (MouseValueY - this.originalMouseY);
       } else if (this.selectedDiv.classList.contains('bottom-left')) {
-        x = this.originalWidth - (MousevalueX - this.originalMouseX);
-        y = this.originalHeight + (MousevalueY - this.originalMouseY);
-        left = this.originalX + (MousevalueX - this.originalMouseX);
+        x = this.originalWidth - (MouseValueX - this.originalMouseX);
+        y = this.originalHeight + (MouseValueY - this.originalMouseY);
+        left = this.originalX + (MouseValueX - this.originalMouseX);
       } else if (this.selectedDiv.classList.contains('top-right')) {
-        x = this.originalWidth + (MousevalueX - this.originalMouseX);
-        y = this.originalHeight - (MousevalueY - this.originalMouseY);
-        top = this.originalY + (MousevalueY - this.originalMouseY);
+        x = this.originalWidth + (MouseValueX - this.originalMouseX);
+        y = this.originalHeight - (MouseValueY - this.originalMouseY);
+        top = this.originalY + (MouseValueY - this.originalMouseY);
       } else if (this.selectedDiv.classList.contains('top-left')) {
-        x = this.originalWidth - (MousevalueX - this.originalMouseX);
-        y = this.originalHeight - (MousevalueY - this.originalMouseY);
-        top = this.originalY + (MousevalueY - this.originalMouseY);
-        left = this.originalMouseX + (MousevalueX - this.originalMouseX);
+        x = this.originalWidth - (MouseValueX - this.originalMouseX);
+        y = this.originalHeight - (MouseValueY - this.originalMouseY);
+        top = this.originalY + (MouseValueY - this.originalMouseY);
+        left = this.originalMouseX + (MouseValueX - this.originalMouseX);
       } else if (this.selectedDiv.classList.contains('right')) {
-        x = this.originalWidth + (MousevalueX - this.originalMouseX);
+        x = this.originalWidth + (MouseValueX - this.originalMouseX);
       } else if (this.selectedDiv.classList.contains('left')) {
-        x = this.originalWidth - (MousevalueX - this.originalMouseX);
-        left = this.originalX + (MousevalueX - this.originalMouseX);
+        x = this.originalWidth - (MouseValueX - this.originalMouseX);
+        left = this.originalX + (MouseValueX - this.originalMouseX);
       } else if (this.selectedDiv.classList.contains('bottom')) {
-        y = this.originalHeight + (MousevalueY - this.originalMouseY);
+        y = this.originalHeight + (MouseValueY - this.originalMouseY);
       } else {
-        y = this.originalHeight - (MousevalueY - this.originalMouseY);
-        top = this.originalY + (MousevalueY - this.originalMouseY);
+        y = this.originalHeight - (MouseValueY - this.originalMouseY);
+        top = this.originalY + (MouseValueY - this.originalMouseY);
       }
     }
     if (x && x > WindowComponent.MinWindowWidth) {
@@ -279,23 +275,27 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  public activeWindow(i: Window, index: number): void {
+  /**
+   * @param process Application window process
+   * @param index Process index
+   */
+  public activeWindow(process: ProcessWindowValueMetadata, index: number): void {
     if (this.selectedWindow?.activated) this.selectedWindow.activated = false;
     WindowComponent.WindowHistory.splice(index, 1);
-    WindowComponent.WindowHistory.push(i);
+    WindowComponent.WindowHistory.push(process);
     WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
       element.z_index = index;
     });
-    this.selectedWindow = i;
-    i.activated = true;
+    this.selectedWindow = process;
+    process.activated = true;
   }
 
   /**
    * Functions for saving parameters
-   * @param Window
-   * @param event - The mouse event
+   * @param process Application window process
+   * @param event The mouse event
    */
-  public resizersIn(process: Window, event: MouseEvent): void {
+  public resizesIn(process: ProcessWindowValueMetadata, event: MouseEvent): void {
     this.resize = true;
     this.selectedWindow = process;
     this.originalMouseX = event.pageX;
@@ -312,13 +312,13 @@ export class WindowComponent implements OnInit {
 
   /**
    * Functions for saving parameters
-   * @param Window
-   * @param event - The mouse event
+   * @param process Application window process
+   * @param event The mouse event
    */
-  public moveWindowIn(process: Window, event: MouseEvent): void {
+  public moveWindowIn(process: ProcessWindowValueMetadata, event: MouseEvent): void {
     this.originalX = process.getLeft() - event.pageX;
     this.originalY = process.getTop() - event.pageY;
-    this.activeWindowState = !process.isStateNormal() ? true : false;
+    this.activeWindowState = !process.isStateNormal();
     this.move = true;
     this.selectedWindow = process;
     event.stopPropagation();
@@ -335,10 +335,10 @@ export class WindowComponent implements OnInit {
         this.selectedWindow.isStateRight())
     ) {
       const v: Window = this.selectedWindow;
-      var w: number = window.innerWidth;
-      var h: number = window.innerHeight;
-      var x: number = event.pageX;
-      var y: number = event.pageY;
+      let w: number = window.innerWidth;
+      let h: number = window.innerHeight;
+      let x: number = event.pageX;
+      let y: number = event.pageY;
 
       if (v.isStateLeft() || v.isStateRight()) {
         w /= 2;
@@ -346,11 +346,11 @@ export class WindowComponent implements OnInit {
         w /= 2;
         h /= 2;
       }
-      var perNowX = percentageValue(
+      let perNowX = percentageValue(
         percentage(x - (v.isStateRight() ? window.innerWidth / 2 : 0), w),
         this.selectedWindow.getWidth()
       );
-      var perNowY = percentageValue(percentage(y + 50, h), this.selectedWindow.getHeight());
+      let perNowY = percentageValue(percentage(y + 50, h), this.selectedWindow.getHeight());
 
       this.originalX = -perNowX;
       this.originalY = -perNowY;
@@ -382,7 +382,6 @@ export class WindowComponent implements OnInit {
       this.selectedWindow.setStateNormal();
     }
   }
-
 
   /**
    * Function to cancel active events when

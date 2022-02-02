@@ -18,12 +18,12 @@
       'left.%': i.Window.windowData.posX,
       'z-index': i.Window.z_index
     }"
-    [ngClass]="SystemActivated(i.Window) ? 'SelectedWindow' : 'UnSelectedWindow'"
+    [ngClass]="i.Window?.activated ? 'SelectedWindow' : 'UnSelectedWindow'"
   >
     <div
       *ngIf="!i.Window.isStateMaximized() && !move && i.Window.resizeAllowed"
       class="resizers-window"
-      (mousedown)="resizersIn(i.Window, $event)"
+      (mousedown)="resizesIn(i.Window, $event)"
     >
       <div class="resizer left"></div>
       <div class="resizer right"></div>
