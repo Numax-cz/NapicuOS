@@ -1,3 +1,3 @@
 export interface FlashingTxt {
-    [index: number]: string
+  [index: number]: string;
 }

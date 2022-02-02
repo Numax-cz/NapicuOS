@@ -1,14 +1,16 @@
-import {SystemFile} from 'src/app/Sys/File';
+import { SystemFile } from 'src/app/Sys/File';
 
 export declare interface systemDrivesMetadata {
-    [index: string]: systemDirAFileMetadata;
+  [index: string]: systemDirAFileMetadata;
 }
 
 export declare interface systemDirAFileMetadata {
-    // name: string;
+  // name: string;
 
-    files?: SystemFile[];
-    dir?: systemDirMetadata;
+  files?: SystemFile[];
+  dir?: systemDirMetadata;
 }
 
-export declare type systemDirMetadata = { [index: string]: systemDirAFileMetadata };
+export declare type systemDirMetadata = {
+  [index: string]: systemDirAFileMetadata;
+};

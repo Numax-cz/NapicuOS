@@ -9,17 +9,17 @@ import {Date, Time} from '../interface/ToolSettings';
  * @returns {Date} Date
  */
 export function setTime(): Time[] {
-    return [
-        {
-            title: '0',
-        },
-        {
-            title: '0',
-        },
-        {
-            title: '0',
-        },
-    ];
+  return [
+    {
+      title: '0',
+    },
+    {
+      title: '0',
+    },
+    {
+      title: '0',
+    },
+  ];
 }
 
 /**
@@ -31,17 +31,17 @@ export function setTime(): Time[] {
  * @returns {Date} Date
  */
 export function setDate(): Date[] {
-    var d = new Date();
-    var out: Time[] = [
-        {
-            title: (d.getMonth() + +1).toString(),
-        },
-        {
-            title: d.getDate().toString(),
-        },
-        {
-            title: d.getFullYear().toString(),
-        },
-    ];
-    return out;
+  var d = new Date();
+  var out: Time[] = [
+    {
+      title: (d.getMonth() + +1).toString(),
+    },
+    {
+      title: d.getDate().toString(),
+    },
+    {
+      title: d.getFullYear().toString(),
+    },
+  ];
+  return out;
 }

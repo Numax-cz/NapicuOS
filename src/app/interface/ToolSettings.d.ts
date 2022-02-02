@@ -1,33 +1,33 @@
 export interface ToolSettings {
-    title: string;
-    settings: struc;
+  title: string;
+  settings: struc;
 }
 
 export interface settings {
-    title: string;
-    options?: Options[];
-    time?: Time[];
-    date?: Date[];
-    optionsFast?: Function | null;
-    interval?: any;
-    description: string;
-    selected: number;
+  title: string;
+  options?: Options[];
+  time?: Time[];
+  date?: Date[];
+  optionsFast?: Function | null;
+  interval?: any;
+  description: string;
+  selected: number;
 }
 
 export interface struc {
-    [index: string]: settings;
+  [index: string]: settings;
 }
 
 export interface Options {
-    title: string;
+  title: string;
 }
 
 export interface Time {
-    title: string;
+  title: string;
 }
 
 export interface Date {
-    title: string;
+  title: string;
 }
 
 // ! When adding it is necessary to initialize in Type.ts

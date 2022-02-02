@@ -1,22 +1,21 @@
 export declare interface windowData {
-    /**
-     * Window position in X (value in percentage)
-     */
-    posX: number;
-    /**
-     * Window position in X (value in percentage)
-     */
-    posY: number;
-    /**
-     * Window width
-     */
-    width: windowDataSizeMetadata;
-    /**
-     * Window height
-     */
-    height: windowDataSizeMetadata;
+  /**
+   * Window position in X (value in percentage)
+   */
+  posX: number;
+  /**
+   * Window position in X (value in percentage)
+   */
+  posY: number;
+  /**
+   * Window width
+   */
+  width: windowDataSizeMetadata;
+  /**
+   * Window height
+   */
+  height: windowDataSizeMetadata;
 }
-
 
 /**
  * null = auto
@@ -25,11 +24,10 @@ export declare interface windowData {
  */
 export declare type windowDataSizeMetadata = number | null;
 
-
 export declare interface windowButtonsMetadata {
-    minimized: boolean,
-    maximize: boolean,
-    close: boolean
+  minimized: boolean;
+  maximize: boolean;
+  close: boolean;
 }
 
 /**
@@ -38,4 +36,10 @@ export declare interface windowButtonsMetadata {
  * * `Left` - The application window is pinned on the left side of the screen
  * * `Right` - The application window is pinned on the right side of the screen
  */
-export declare type windowState = 'maximized' | 'left' | 'right' | 'normal' | 'top-left' | 'top-right';
+export declare type windowState =
+  | 'maximized'
+  | 'left'
+  | 'right'
+  | 'normal'
+  | 'top-left'
+  | 'top-right';

@@ -1,25 +1,25 @@
 <section class="BiosBackground">
-    <div class="Menu">
-        <div class="Top">
-            <p>Napicu BIOS SETUP</p>
-        </div>
-        <section class="root">
-            <div>
-                <p
-                        *ngFor="let i of BiosMenu; let index = index"
-                        [ngClass]="{ selected: index == selected }"
-                >
-                    {{ i.title }}
-                </p>
-            </div>
-        </section>
-        <section id="BiosContainer">
-            <router-outlet></router-outlet>
-        </section>
-
-        <div class="Bottom">
-            <p>{{ biosVersion }} Napicu {{ biosDate }}</p>
-        </div>
+  <div class="Menu">
+    <div class="Top">
+      <p>Napicu BIOS SETUP</p>
     </div>
+    <section class="root">
+      <div>
+        <p
+          *ngFor="let i of BiosMenu; let index = index"
+          [ngClass]="{ selected: index == selected }"
+        >
+          {{ i.title }}
+        </p>
+      </div>
+    </section>
+    <section id="BiosContainer">
+      <router-outlet></router-outlet>
+    </section>
+
+    <div class="Bottom">
+      <p>{{ biosVersion }} Napicu {{ biosDate }}</p>
+    </div>
+  </div>
 </section>
 <app-option-panel *ngIf="Display"></app-option-panel>

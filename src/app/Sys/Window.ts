@@ -1,267 +1,273 @@
-import {Type} from '@angular/core';
-import {windowButtonsMetadata, windowData, windowState} from './Systems/NapicuOS/interface/Window/windowData';
-import {percentage, percentageValue} from './Systems/NapicuOS/scripts/getPercentage';
-import {WindowComponent} from './Systems/NapicuOS/template/window/window.component';
+import { Type } from '@angular/core';
+import {
+  windowButtonsMetadata,
+  windowData,
+  windowState,
+} from './Systems/NapicuOS/interface/Window/windowData';
+import {
+  percentage,
+  percentageValue,
+} from './Systems/NapicuOS/scripts/getPercentage';
+import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
 
 export class Window {
-    /**
-     * Default application window settings
-     */
-    public static defaultWindowAppData: windowData = Window.centerPos(40, 40);
-    /**
-     * Window z-index
-     */
-    public z_index: number = 1;
-    /**
-     * Specifies whether the application window can be resized
-     */
-    public declare resizeAllowed: boolean;
-    /**
-     * Title of the application window
-     */
-    public windowTitle: string = 'Window';
-    /**
-     * Specifies whether the application window is displayed
-     */
-    public declare display: boolean;
-    /**
-     * Main component of the application window
-     */
-    public declare windowComponent: Type<any>;
-    /**
-     * Determines whether the application window is selected by the user
-     */
-    public declare activated: boolean;
-    /**
-     *  Specifies the state of the application window
-     */
-    public state: windowState = 'normal';
-    /**
-     * Application window settings
-     */
-    public windowData: windowData = Window.defaultWindowAppData;
-    /**
-     * Setting which buttons to display on the application window
-     */
-    public declare windowButtons: windowButtonsMetadata;
+  /**
+   * Default application window settings
+   */
+  public static defaultWindowAppData: windowData = Window.centerPos(40, 40);
+  /**
+   * Window z-index
+   */
+  public z_index: number = 1;
+  /**
+   * Specifies whether the application window can be resized
+   */
+  public declare resizeAllowed: boolean;
+  /**
+   * Title of the application window
+   */
+  public windowTitle: string = 'Window';
+  /**
+   * Specifies whether the application window is displayed
+   */
+  public declare display: boolean;
+  /**
+   * Main component of the application window
+   */
+  public declare windowComponent: Type<any>;
+  /**
+   * Determines whether the application window is selected by the user
+   */
+  public declare activated: boolean;
+  /**
+   *  Specifies the state of the application window
+   */
+  public state: windowState = 'normal';
+  /**
+   * Application window settings
+   */
+  public windowData: windowData = Window.defaultWindowAppData;
+  /**
+   * Setting which buttons to display on the application window
+   */
+  public declare windowButtons: windowButtonsMetadata;
 
-
-    constructor(data: {
-        component: Type<any>,
-        windowTitle?: string,
-        windowData?: windowData,
-        windowButtons?: windowButtonsMetadata,
-        resizeAllowed?: boolean,
-
-    }) {
-        this.windowComponent = data.component;
-        if (data.windowTitle) this.windowTitle = data.windowTitle;
-        if (data.windowData) this.windowData = data.windowData;
-        this.windowButtons = data.windowButtons || {
-            minimized: true,
-            maximize: true,
-            close: true
-        }
-
-        this.resizeAllowed = data.resizeAllowed || data.resizeAllowed === undefined;
-    }
-
-
-    public readonly open = (): void => {
-        this.display = true;
-        WindowComponent.WindowHistory.push(this);
+  constructor(data: {
+    component: Type<any>;
+    windowTitle?: string;
+    windowData?: windowData;
+    windowButtons?: windowButtonsMetadata;
+    resizeAllowed?: boolean;
+  }) {
+    this.windowComponent = data.component;
+    if (data.windowTitle) this.windowTitle = data.windowTitle;
+    if (data.windowData) this.windowData = data.windowData;
+    this.windowButtons = data.windowButtons || {
+      minimized: true,
+      maximize: true,
+      close: true,
     };
 
-    public readonly close = (): void => {
-        this.display = false;
-        WindowComponent.WindowHistory.slice(WindowComponent.WindowHistory.indexOf(this, 0), 1);
+    this.resizeAllowed = data.resizeAllowed || data.resizeAllowed === undefined;
+  }
+
+  public readonly open = (): void => {
+    this.display = true;
+    WindowComponent.WindowHistory.push(this);
+  };
+
+  public readonly close = (): void => {
+    this.display = false;
+    WindowComponent.WindowHistory.slice(
+      WindowComponent.WindowHistory.indexOf(this, 0),
+      1
+    );
+  };
+
+  /**
+   * Returns centered application window settings
+   * @param width Window width
+   * @param height Window height
+   */
+  public static centerPos(width: number, height: number): windowData {
+    return {
+      width: width,
+      height: height,
+      posX: 50 - Math.round(width / 2),
+      posY: 50 - Math.round(height / 2),
     };
+  }
 
-    /**
-     * Returns centered application window settings
-     * @param width Window width
-     * @param height Window height
-     */
-    public static centerPos(width: number, height: number): windowData {
-        return {
-            width: width,
-            height: height,
-            posX: 50 - Math.round(width / 2),
-            posY: 50 - Math.round(height / 2),
-        };
-    }
+  //* * * *  Getters * * *
+  //? Getters State
+  /**
+   * Returns if the application window state is maximized
+   */
+  public isStateMaximized(): boolean {
+    return this.state == 'maximized';
+  }
 
-    //* * * *  Getters * * *
-    //? Getters State
-    /**
-     * Returns if the application window state is maximized
-     */
-    public isStateMaximized(): boolean {
-        return this.state == 'maximized';
-    }
+  /**
+   * Returns if the application window state is left
+   */
+  public isStateLeft(): boolean {
+    return this.state == 'left';
+  }
 
-    /**
-     * Returns if the application window state is left
-     */
-    public isStateLeft(): boolean {
-        return this.state == 'left';
-    }
+  /**
+   * Returns if the application window state is right
+   */
+  public isStateRight(): boolean {
+    return this.state == 'right';
+  }
 
-    /**
-     * Returns if the application window state is right
-     */
-    public isStateRight(): boolean {
-        return this.state == 'right';
-    }
+  /**
+   * Returns if the application window state is normal
+   */
+  public isStateNormal(): boolean {
+    return this.state == 'normal';
+  }
 
-    /**
-     * Returns if the application window state is normal
-     */
-    public isStateNormal(): boolean {
-        return this.state == 'normal';
-    }
+  /**
+   * Returns if the application window state is top-left
+   */
+  public isStateTopLeft(): boolean {
+    return this.state == 'top-left';
+  }
 
-    /**
-     * Returns if the application window state is top-left
-     */
-    public isStateTopLeft(): boolean {
-        return this.state == 'top-left';
-    }
+  /**
+   * Returns if the application window state is top-right
+   */
+  public isStateTopRight(): boolean {
+    return this.state == 'top-right';
+  }
 
-    /**
-     * Returns if the application window state is top-right
-     */
-    public isStateTopRight(): boolean {
-        return this.state == 'top-right';
-    }
+  //? Getters Pos
+  /**
+   * Returns top in pixels
+   * @returns {number} value in pixels
+   */
+  public getTop(): number {
+    return percentageValue(this.windowData.posY, window.innerHeight);
+  }
 
-    //? Getters Pos
-    /**
-     * Returns top in pixels
-     * @returns {number} value in pixels
-     */
-    public getTop(): number {
-        return percentageValue(this.windowData.posY, window.innerHeight);
-    }
+  /**
+   * Returns left in pixels
+   * @returns {number} value in pixels
+   */
+  public getLeft(): number {
+    return percentageValue(this.windowData.posX, window.innerWidth);
+  }
 
-    /**
-     * Returns left in pixels
-     * @returns {number} value in pixels
-     */
-    public getLeft(): number {
-        return percentageValue(this.windowData.posX, window.innerWidth);
-    }
+  /**
+   * Returns width in pixels
+   * @returns {number} value in pixels
+   */
+  public getWidth(): number {
+    return percentageValue(this.windowData.width, window.innerWidth);
+  }
 
-    /**
-     * Returns width in pixels
-     * @returns {number} value in pixels
-     */
-    public getWidth(): number {
-        return percentageValue(this.windowData.width, window.innerWidth);
-    }
+  /**
+   * Returns height in pixels
+   * @returns {number} value in pixels
+   */
+  public getHeight(): number {
+    return percentageValue(this.windowData.width, window.innerHeight);
+  }
 
-    /**
-     * Returns height in pixels
-     * @returns {number} value in pixels
-     */
-    public getHeight(): number {
-        return percentageValue(this.windowData.width, window.innerHeight);
-    }
+  /**
+   * Return application window button settings
+   */
+  public getWindowButtons(): windowButtonsMetadata {
+    return this.windowButtons;
+  }
 
-    /**
-     * Return application window button settings
-     */
-    public getWindowButtons(): windowButtonsMetadata {
-        return this.windowButtons;
-    }
+  //* * * *  Setters * * *
+  //
+  //? Window State
+  /**
+   * Sets the application window state to maximized
+   */
+  public setStateMaximized(): void {
+    this.state = 'maximized';
+  }
 
-    //* * * *  Setters * * *
-    //
-    //? Window State
-    /**
-     * Sets the application window state to maximized
-     */
-    public setStateMaximized(): void {
-        this.state = 'maximized';
-    }
+  /**
+   * Sets the application window state to left
+   */
+  public setStateLeft(): void {
+    this.state = 'left';
+  }
 
-    /**
-     * Sets the application window state to left
-     */
-    public setStateLeft(): void {
-        this.state = 'left';
-    }
+  /**
+   * Sets the application window state to right
+   */
+  public setStateRight(): void {
+    this.state = 'right';
+  }
 
-    /**
-     * Sets the application window state to right
-     */
-    public setStateRight(): void {
-        this.state = 'right';
-    }
+  /**
+   * Sets the application window state to normal
+   */
+  public setStateNormal(): void {
+    this.state = 'normal';
+  }
 
-    /**
-     * Sets the application window state to normal
-     */
-    public setStateNormal(): void {
-        this.state = 'normal';
-    }
+  /**
+   * Sets the application window state to top-left
+   */
+  public setStateTopLeft(): void {
+    this.state = 'top-left';
+  }
 
-    /**
-     * Sets the application window state to top-left
-     */
-    public setStateTopLeft(): void {
-        this.state = 'top-left';
-    }
+  /**
+   * Sets the application window state to top-right
+   */
+  public setStateTopRight(): void {
+    this.state = 'top-right';
+  }
 
-    /**
-     * Sets the application window state to top-right
-     */
-    public setStateTopRight(): void {
-        this.state = 'top-right';
-    }
+  /**
+   * Sets the exact image in the icon directory
+   * @param path Path to the icon
+   */
+  public setIcon(path: string): void {}
 
-    /**
-     * Sets the exact image in the icon directory
-     * @param path Path to the icon
-     */
-    public setIcon(path: string): void {
-    }
+  //? Window Pos
+  /**
+   * Sets the top in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setTop(valuePX: number): void {
+    this.windowData.posY = percentage(valuePX, window.innerHeight);
+  }
 
-    //? Window Pos
-    /**
-     * Sets the top in percentage
-     * @param {number} valuePX - In pixels
-     */
-    public setTop(valuePX: number): void {
-        this.windowData.posY = percentage(valuePX, window.innerHeight);
-    }
+  /**
+   *Sets the left in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setLeft(valuePX: number): void {
+    this.windowData.posX = percentage(valuePX, window.innerWidth);
+  }
 
-    /**
-     *Sets the left in percentage
-     * @param {number} valuePX - In pixels
-     */
-    public setLeft(valuePX: number): void {
-        this.windowData.posX = percentage(valuePX, window.innerWidth);
-    }
+  /**
+   *Sets the width in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setWidth(valuePX: number): void {
+    this.windowData.width = percentage(valuePX, window.innerWidth);
+  }
 
-    /**
-     *Sets the width in percentage
-     * @param {number} valuePX - In pixels
-     */
-    public setWidth(valuePX: number): void {
-        this.windowData.width = percentage(valuePX, window.innerWidth);
-    }
+  /**
+   *Sets the height in percentage
+   * @param {number} valuePX - In pixels
+   */
+  public setHeight(valuePX: number): void {
+    this.windowData.height = percentage(valuePX, window.innerHeight);
+  }
 
-    /**
-     *Sets the height in percentage
-     * @param {number} valuePX - In pixels
-     */
-    public setHeight(valuePX: number): void {
-        this.windowData.height = percentage(valuePX, window.innerHeight);
-    }
-
-    //? WindowTitle
-    public setWindowTitle(title: string): void {
-        this.windowTitle = title;
-    }
+  //? WindowTitle
+  public setWindowTitle(title: string): void {
+    this.windowTitle = title;
+  }
 }

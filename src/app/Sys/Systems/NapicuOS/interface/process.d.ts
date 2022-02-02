@@ -1,7 +1,7 @@
-import {ProcessWindowValueMetadata} from 'src/app/Sys/Process';
+import { ProcessWindowValueMetadata } from 'src/app/Sys/Process';
 
 export declare interface processConstructor {
-    processInterval?: { fun: () => void; time: number };
-    processTitle?: string;
-    Window?: ProcessWindowValueMetadata;
+  processInterval?: { fun: () => void; time: number };
+  processTitle?: string;
+  Window?: ProcessWindowValueMetadata;
 }

@@ -1,25 +1,24 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PowerComponent} from './power.component';
+import { PowerComponent } from './power.component';
 
 describe('PowerComponent', () => {
-    let component: PowerComponent;
-    let fixture: ComponentFixture<PowerComponent>;
+  let component: PowerComponent;
+  let fixture: ComponentFixture<PowerComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [PowerComponent]
-        })
-            .compileComponents();
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [PowerComponent],
+    }).compileComponents();
+  });
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(PowerComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PowerComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

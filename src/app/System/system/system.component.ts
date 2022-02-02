@@ -1,20 +1,18 @@
-import {Component, OnDestroy, OnInit, Type} from '@angular/core';
+import { Component, OnDestroy, OnInit, Type } from '@angular/core';
 
 @Component({
-    selector: 'app-system',
-    templateUrl: './system.component.html',
-    styleUrls: ['./system.component.scss'],
+  selector: 'app-system',
+  templateUrl: './system.component.html',
+  styleUrls: ['./system.component.scss'],
 })
 export class SystemComponent implements OnInit, OnDestroy {
-    public static SysComponent: Type<any>;
+  public static SysComponent: Type<any>;
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {}
 
-    ngOnDestroy(): void {
-    }
+  ngOnDestroy(): void {}
 
-    get Component(): Type<any> {
-        return SystemComponent.SysComponent;
-    }
+  get Component(): Type<any> {
+    return SystemComponent.SysComponent;
+  }
 }

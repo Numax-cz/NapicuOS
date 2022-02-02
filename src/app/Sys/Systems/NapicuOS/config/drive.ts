@@ -1,27 +1,27 @@
-import {systemDrivesMetadata} from '../interface/FilesDirs/systemDir';
+import { systemDrivesMetadata } from '../interface/FilesDirs/systemDir';
 
 export const napicu_os_root_part = 'Computer';
 
 export const NapicuOSSystemDir: systemDrivesMetadata = {
-    Computer: {
+  Computer: {
+    dir: {
+      //RootDir
+      home: {
         dir: {
-            //RootDir
-            home: {
-                dir: {
-                    Desktop: {},
-                    Documents: {},
-                    Downloads: {},
-                    Music: {},
-                    Pictures: {},
-                    Videos: {},
-                },
-            },
-            usr: {
-                files: [],
-            },
-            bin: {
-                files: [],
-            },
+          Desktop: {},
+          Documents: {},
+          Downloads: {},
+          Music: {},
+          Pictures: {},
+          Videos: {},
         },
+      },
+      usr: {
+        files: [],
+      },
+      bin: {
+        files: [],
+      },
     },
+  },
 };

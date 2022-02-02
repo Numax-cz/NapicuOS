@@ -1,16 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-blackloading',
-    templateUrl: './blackloading.component.html',
-    styleUrls: ['./blackloading.component.scss']
+  selector: 'app-blackloading',
+  templateUrl: './blackloading.component.html',
+  styleUrls: ['./blackloading.component.scss'],
 })
 export class BlackloadingComponent implements OnInit {
+  constructor() {}
 
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
-
+  ngOnInit(): void {}
 }

@@ -1,132 +1,132 @@
-import {Component, OnInit} from '@angular/core';
-import {Current, Drive, Update} from '../../Array/FlashInformation';
-import {BiosInfo} from '../../Array/ToolSettings';
-import {directories} from '../../interface/Directorie';
-import {FlashInformation} from '../../interface/FlashInformation';
-import {OptionPanelComponent} from '../option-panel/option-panel.component';
-import {Move} from '../../Scripts/Flash/Move';
+import { Component, OnInit } from '@angular/core';
+import { Current, Drive, Update } from '../../Array/FlashInformation';
+import { BiosInfo } from '../../Array/ToolSettings';
+import { directories } from '../../interface/Directorie';
+import { FlashInformation } from '../../interface/FlashInformation';
+import { OptionPanelComponent } from '../option-panel/option-panel.component';
+import { Move } from '../../Scripts/Flash/Move';
 
 @Component({
-    selector: 'app-flash',
-    templateUrl: './flash.component.html',
-    styleUrls: ['./flash.component.scss'],
+  selector: 'app-flash',
+  templateUrl: './flash.component.html',
+  styleUrls: ['./flash.component.scss'],
 })
 export class FlashComponent implements OnInit {
-    constructor() {
+  constructor() {}
+
+  //TODO @Document
+  public static Doc: Document;
+  public static Scroll: HTMLElement;
+  public static FlashingText: string;
+  public static SelectedDir: number;
+  public static ezFlashWindow: boolean;
+
+  public static FlashDrive = Drive;
+  public static SelectedWindow: number;
+  public static SelectedFile: number;
+
+  public static listDir: directories[];
+  //Flash
+  public static Flashing: boolean = true;
+  /**
+   * Saves browsing history
+   */
+  public static PathFile: directories[];
+
+  //Window Alerts
+  public static WindowAlert: boolean;
+  public static WindowAlertOption: boolean;
+
+  ngOnInit(): void {
+    this.setEvents();
+    let scroll = document.getElementById('Scroll');
+
+    if (scroll) {
+      FlashComponent.Doc = document;
+      FlashComponent.Scroll = scroll;
     }
 
-    //TODO @Document
-    public static Doc: Document;
-    public static Scroll: HTMLElement;
-    public static FlashingText: string;
-    public static SelectedDir: number;
-    public static ezFlashWindow: boolean;
+    FlashComponent.SelectedDir = 0;
+    FlashComponent.SelectedFile = 0;
+    FlashComponent.SelectedWindow = 0;
+    FlashComponent.Flashing = false;
 
-    public static FlashDrive = Drive;
-    public static SelectedWindow: number;
-    public static SelectedFile: number;
+    FlashComponent.listDir =
+      FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
+    FlashComponent.PathFile = [];
 
-    public static listDir: directories[];
-    //Flash
-    public static Flashing: boolean = true;
-    /**
-     * Saves browsing history
-     */
-    public static PathFile: directories[];
+    FlashComponent.WindowAlert = false;
+    FlashComponent.WindowAlertOption = false;
+  }
 
-    //Window Alerts
-    public static WindowAlert: boolean;
-    public static WindowAlertOption: boolean;
+  ngOnDestroy(): void {
+    window.removeEventListener('keydown', Move, true);
+    FlashComponent.ezFlashWindow = false;
+    FlashComponent.Flashing = false;
+  }
 
-    ngOnInit(): void {
-        this.setEvents();
-        let scroll = document.getElementById('Scroll');
+  protected setEvents(): void {
+    window.removeEventListener('keydown', Move, true);
+    window.addEventListener('keydown', Move, true);
+  }
 
-        if (scroll) {
-            FlashComponent.Doc = document;
-            FlashComponent.Scroll = scroll;
-        }
+  get Title(): string {
+    return BiosInfo.title;
+  }
 
-        FlashComponent.SelectedDir = 0;
-        FlashComponent.SelectedFile = 0;
-        FlashComponent.SelectedWindow = 0;
-        FlashComponent.Flashing = false;
+  get Version(): string {
+    return BiosInfo.version;
+  }
 
-        FlashComponent.listDir = FlashComponent.FlashDrive[FlashComponent.SelectedDir].dir;
-        FlashComponent.PathFile = [];
+  get Current(): FlashInformation {
+    return Current;
+  }
 
-        FlashComponent.WindowAlert = false;
-        FlashComponent.WindowAlertOption = false;
-    }
+  get Update(): FlashInformation {
+    return Update;
+  }
 
-    ngOnDestroy(): void {
-        window.removeEventListener('keydown', Move, true);
-        FlashComponent.ezFlashWindow = false;
-        FlashComponent.Flashing = false;
-    }
+  get Drive(): any[] {
+    return FlashComponent.FlashDrive;
+  }
 
-    protected setEvents(): void {
-        window.removeEventListener('keydown', Move, true);
-        window.addEventListener('keydown', Move, true);
-    }
+  get File(): directories[] {
+    return FlashComponent.listDir;
+  }
 
-    get Title(): string {
-        return BiosInfo.title;
-    }
+  get SelectedDir(): number {
+    return FlashComponent.SelectedDir;
+  }
 
-    get Version(): string {
-        return BiosInfo.version;
-    }
+  get SelectedFile(): number {
+    return FlashComponent.SelectedFile;
+  }
 
-    get Current(): FlashInformation {
-        return Current;
-    }
+  get LocationPath(): string {
+    return FlashComponent.FlashDrive[FlashComponent.SelectedDir].title;
+  }
 
-    get Update(): FlashInformation {
-        return Update;
-    }
+  get Path(): directories[] {
+    return FlashComponent.PathFile;
+  }
 
-    get Drive(): any[] {
-        return FlashComponent.FlashDrive;
-    }
+  get PathFile(): directories[] {
+    return FlashComponent.PathFile;
+  }
 
-    get File(): directories[] {
-        return FlashComponent.listDir;
-    }
+  get SelectedWindow(): number {
+    return FlashComponent.SelectedWindow;
+  }
 
-    get SelectedDir(): number {
-        return FlashComponent.SelectedDir;
-    }
+  get Flashing(): boolean {
+    return FlashComponent.Flashing;
+  }
 
-    get SelectedFile(): number {
-        return FlashComponent.SelectedFile;
-    }
+  get FlashingText(): string {
+    return FlashComponent.FlashingText;
+  }
 
-    get LocationPath(): string {
-        return FlashComponent.FlashDrive[FlashComponent.SelectedDir].title;
-    }
-
-    get Path(): directories[] {
-        return FlashComponent.PathFile;
-    }
-
-    get PathFile(): directories[] {
-        return FlashComponent.PathFile;
-    }
-
-    get SelectedWindow(): number {
-        return FlashComponent.SelectedWindow;
-    }
-
-    get Flashing(): boolean {
-        return FlashComponent.Flashing;
-    }
-
-    get FlashingText(): string {
-        return FlashComponent.FlashingText;
-    }
-
-    get Display(): boolean {
-        return !!OptionPanelComponent.window;
-    }
+  get Display(): boolean {
+    return !!OptionPanelComponent.window;
+  }
 }
