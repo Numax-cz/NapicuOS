@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {systemAlertTypeEnumMetadata} from '../../interface/Alert/alert';
+import {Event} from "@angular/router";
+import {log_screen_animation_time} from '../../config/logscreen';
+import {ProcessWindowValueMetadata} from "../../../../Process";
 
 @Component({
   selector: 'app-alert',
@@ -7,6 +10,10 @@ import {systemAlertTypeEnumMetadata} from '../../interface/Alert/alert';
   styleUrls: ['./alert.component.scss'],
 })
 export class AlertComponent implements OnInit {
+  /**
+   * Window of the alert
+   */
+  @Input() public declare windowValue: ProcessWindowValueMetadata;
   /**
    * Value of the alert
    */
@@ -20,11 +27,13 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.alertContent);
   }
 
+  /**
+   * The function that is called after clicking the button
+   */
   public onButtonClick(): void {
-
+    this.windowValue.close();
   }
 
   /**
