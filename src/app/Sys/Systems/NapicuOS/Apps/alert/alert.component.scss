@@ -1,5 +1,7 @@
-.Bg {
-  background-color: #282a30;
+@import './variables';
+
+.BackgroundColor {
+  background-color: var(--NapicuAPPSAlertBackgroundColor);
 }
 
 .alertContent {
@@ -8,7 +10,7 @@
 }
 
 .alertFontSize {
-  font-size: 1rem;
+  font-size: var(--NapicuAPPSAlertTextSize);
 }
 
 .alertImgSize {
@@ -21,14 +23,21 @@
   text-align: right;
 
   button {
-    width: 30%;
+    width: 20%;
     outline: none;
     border: none;
     border-radius: 7px;
-    background: #4c4d54;
-    border-bottom: 3px solid #333436;
-    font-size: 1rem;
+    background: var(--NapicuAPPSAlertButtonColor);
+    border-bottom: 4px solid var(--NapicuAPPSAlertButtonBottomColor);
+    color: white;
+    font-size: var(--NapicuAPPSAlertButtonSize);
+    padding: 5px;
     cursor: pointer;
+  }
+
+  button:hover {
+    background: var(--NapicuAPPSButtonHoverColor);
+    border-bottom-color: var(--NapicuAPPSAlertButtonBottomHoverColor);
   }
 
 }

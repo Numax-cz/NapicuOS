@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { systemAlertTypeEnumMetadata } from '../../interface/Alert/alert';
+import {Component, Input, OnInit} from '@angular/core';
+import {systemAlertTypeEnumMetadata} from '../../interface/Alert/alert';
 
 @Component({
   selector: 'app-alert',
@@ -16,10 +16,15 @@ export class AlertComponent implements OnInit {
    */
   @Input() public declare alertType: systemAlertTypeEnumMetadata;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     console.log(this.alertContent);
+  }
+
+  public onButtonClick(): void {
+
   }
 
   /**
