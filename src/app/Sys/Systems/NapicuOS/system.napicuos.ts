@@ -218,7 +218,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_command_by_command_name(commandName: string): SystemFile[] {
     let i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
-      let p = element.get_value() as Command;
+      let p = element.value as Command;
       return p.commandName === commandName;
     });
     return i;
@@ -232,7 +232,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_command_by_commandStr(command: string): SystemFile {
     let i: SystemFile[] = [];
     i = this.get_available_commands().filter((element: SystemFile) => {
-      let p = element.get_value() as Command;
+      let p = element.value as Command;
       return p.command === command;
     });
     return i[0];
@@ -311,7 +311,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     | SystemStateMetadata.RegisterCommandSuccess {
     const commands = this.get_available_commands();
     let x = commands.filter((value: SystemFile) => {
-      let x = value.get_value() as Command;
+      let x = value.value as Command;
       return x.command === cmd.command;
     });
     if (!x.length) {
@@ -341,7 +341,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     let x: Process = NapicuOS.get_system_activated_window_app();
     if (i) {
       if (
-        i.get_permissions().read ===
+        i.permissions.read ===
         SystemUserPermissionsEnumMetadata.SuperUser &&
         this.activeUser?.permissions !==
         SystemUserPermissionsEnumMetadata.SuperUser
@@ -385,7 +385,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (dir?.files) {
       if (
         dir.files.filter((value: SystemFile) => {
-          return value.get_file_name() === file.get_file_name();
+          return value.fileName === file.fileName;
         })?.length
       ) {
         return SystemStateMetadata.FileAlreadyExists;
@@ -411,7 +411,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     | SystemStateMetadata.FileOpenSuccess {
     if (dir?.files) {
       var x = dir.files.filter((value: SystemFile) => {
-        return value.get_file_name() === fileName;
+        return value.fileName === fileName;
       })[0];
       if (x) {
         x.open();

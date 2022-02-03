@@ -1,17 +1,17 @@
-import { Command } from '../../command';
-import { Line } from './Apps/console/console.component';
-import { NapicuOS } from './system.napicuos';
-import { Process } from '../../Process';
-import { removeSpace } from './scripts/removeSpaceInString';
+import {Command} from '../../command';
+import {Line} from './Apps/console/console.component';
+import {NapicuOS} from './system.napicuos';
+import {Process} from '../../Process';
+import {removeSpace} from './scripts/removeSpaceInString';
 import {
   getHelpCommand,
   getHelpCommandAPPS,
 } from './config/commands/help/getCommand';
-import { SystemFile } from '../../File';
-import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
-import { setHelpCommand } from './config/commands/help/setCommand';
-import { addUserUsage } from './config/commands/help/addUserCommand';
-import { User } from '../../User';
+import {SystemFile} from '../../File';
+import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
+import {setHelpCommand} from './config/commands/help/setCommand';
+import {addUserUsage} from './config/commands/help/addUserCommand';
+import {User} from '../../User';
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -27,7 +27,7 @@ export function initAllCommands(): void {
     new Command('Terminal', 'shell', (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve({ linesForCMD: [new Line('se')], stateCode: 12 });
+          resolve({linesForCMD: [new Line('se')], stateCode: 12});
         }, 1000);
       });
     })
@@ -153,8 +153,8 @@ function initGetSystemInformation(): void {
               commands.forEach((value: SystemFile, index: number) => {
                 exportLines.push(
                   new Line(
-                    `${index} | ${value.get_value().commandName} : ${
-                      value.get_value().command
+                    `${index} | ${value.value.commandName} : ${
+                      value.value.command
                     } `,
                     'white'
                   )
@@ -261,7 +261,7 @@ function initOpenApp(): void {
       return new Promise((resolve) => {
         if (params?.length) {
           let x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);
-          resolve({ linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x });
+          resolve({linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x});
         }
       });
     })

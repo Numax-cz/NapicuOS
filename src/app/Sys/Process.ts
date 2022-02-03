@@ -1,12 +1,12 @@
-import { GrubComponent } from '../System/grub/grub.component';
-import { SystemAlert } from './Alert';
-import { SystemFile } from './File';
-import { System } from './System';
-import { window_animations } from './Systems/NapicuOS/config/windowAnimations';
-import { SystemFileTypeEnumMetadata } from './Systems/NapicuOS/interface/FilesDirs/file';
-import { processConstructor } from './Systems/NapicuOS/interface/process';
-import { NapicuOS } from './Systems/NapicuOS/system.napicuos';
-import { Window } from './Window';
+import {GrubComponent} from '../System/grub/grub.component';
+import {SystemAlert} from './Alert';
+import {SystemFile} from './File';
+import {System} from './System';
+import {window_animations} from './Systems/NapicuOS/config/windowAnimations';
+import {SystemFileTypeEnumMetadata} from './Systems/NapicuOS/interface/FilesDirs/file';
+import {processConstructor} from './Systems/NapicuOS/interface/process';
+import {NapicuOS} from './Systems/NapicuOS/system.napicuos';
+import {Window} from './Window';
 
 export declare type ProcessWindowValueMetadata = Window | SystemAlert;
 
@@ -55,10 +55,6 @@ export class Process {
     return this._file;
   }
 
-  public addToDock(): this {
-    NapicuOS.add_file_to_dock(this._file);
-    return this;
-  }
 
   public run(): this {
     if (this.processInterval) {

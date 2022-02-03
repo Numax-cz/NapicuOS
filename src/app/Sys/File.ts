@@ -1,11 +1,11 @@
-import { Command } from './command';
-import { Process } from './Process';
+import {Command} from './command';
+import {Process} from './Process';
 import {
   SystemFileConsMetadata,
   SystemFileTypeEnumMetadata,
 } from './Systems/NapicuOS/interface/FilesDirs/file';
-import { SystemFilePermissionsMetadata } from './Systems/NapicuOS/interface/permissions';
-import { SystemUserPermissionsEnumMetadata } from './Systems/NapicuOS/interface/User/user';
+import {SystemFilePermissionsMetadata} from './Systems/NapicuOS/interface/permissions';
+import {SystemUserPermissionsEnumMetadata} from './Systems/NapicuOS/interface/User/user';
 
 export class SystemFile {
   //TODO DOC
@@ -38,11 +38,12 @@ export class SystemFile {
     this._fileType = data.fileType;
     this._permissions = data.permissions
       ? data.permissions
-      : { read: SystemUserPermissionsEnumMetadata.User };
+      : {read: SystemUserPermissionsEnumMetadata.User};
 
     //TODO permissions
   }
 
+  //Setters
   set iconPath(value: string) {
     this._iconPath = value;
   }
@@ -63,21 +64,25 @@ export class SystemFile {
     this._permissions = value;
   }
 
-  public get_value(): any {
-    return this._value;
-  }
+//Getters
 
-  public get_file_name(): string {
-    return this._fileName;
-  }
 
-  public get_icon_path(): string {
+  get iconPath(): string {
     return this._iconPath;
   }
 
-  public get_permissions(): SystemFilePermissionsMetadata {
+  get value(): any {
+    return this._value;
+  }
+
+  get fileName(): string {
+    return this._fileName;
+  }
+
+  get permissions(): SystemFilePermissionsMetadata {
     return this._permissions;
   }
+
 
   public open(): Promise<any> {
     return new Promise(async (resolve) => {

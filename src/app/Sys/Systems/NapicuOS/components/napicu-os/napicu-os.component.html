@@ -37,7 +37,7 @@
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section>
               <!-- Applications -->
-              <img *ngFor="let i of GetitemsInDock" [src]="i.get_icon_path()"
+              <img *ngFor="let i of GetitemsInDock" [src]="i.iconPath"
                    (click)="dockRunner(i)"/>
             </section>
             <!-- <section class="rightPanelMenu">
