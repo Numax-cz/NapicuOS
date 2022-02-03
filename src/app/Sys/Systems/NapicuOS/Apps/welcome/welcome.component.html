@@ -1,3 +1,9 @@
+<ng-template #Welcome>
+  <div>Welcome to the NapicuOS</div>
+
+</ng-template>
+
+
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
   <!--  <section>-->
   <!--    <div class="Title">Welcome to the NapicuOS</div>-->
@@ -33,27 +39,21 @@
   <section style="display:flex; height: 100%;">
     <!--    Bar-->
     <div id="LeftBox">
-      <div>Welcome</div>
-      <div>Location</div>
-      <div>Theme</div>
-      <div>Users</div>
-      <div>Finish</div>
+      <div *ngFor="let i of GetBarOptions; let index = index" [ngClass]="{selected: index === GetSelectedBarOption}">
+        <p>{{i.value}}</p>
+      </div>
     </div>
     <!--    Mainbox-->
     <div id="MainBox">
-
       <section>
-
         <section>
-          <div>Welcome to the NapicuOS</div>
+          <ng-container *ngIf="GetBarOptions[GetSelectedBarOption]?.template"
+                        [ngTemplateOutlet]="GetBarOptions[GetSelectedBarOption].template"></ng-container>
         </section>
-
       </section>
-
     </div>
-
-
   </section>
-
-
 </section>
+
+
+

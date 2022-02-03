@@ -28,18 +28,25 @@
 #LeftBox {
   height: 100%;
   background-color: #484646;
-  padding: 20px;
+  padding: 20px 0;
 
   > div {
     text-align: center;
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: white;
-    cursor: pointer;
-    padding: 5px;
+
+    p {
+      color: white;
+      font-weight: 400;
+      font-size: 1.4rem;
+      padding: 10px 20px;
+    }
+
   }
 }
 
 #MainBox {
   padding: 10px;
+}
+
+.selected {
+  background-color: #1c1c1c;
 }
