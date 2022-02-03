@@ -4,14 +4,15 @@ import {WelcomeComponent} from './Apps/welcome/welcome.component';
 import {NapicuOS} from './system.napicuos';
 import {SystemFile} from '../../File';
 import {systemAlertTypeEnumMetadata} from './interface/Alert/alert';
+import {Window} from "../../Window";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
 }
 
 export function initAllStartUpApps(): void {
-  //napicu_os_welcomeapp().open();
-  napicu_os_terminal().open();
+  napicu_os_welcomeapp().open();
+  //napicu_os_terminal().open();
 
 }
 
@@ -32,6 +33,8 @@ export function napicu_os_welcomeapp(): SystemFile {
     appTitle: 'Installer',
     processTitle: 'Install NapicuOS',
     appComponent: WelcomeComponent,
+    windowData: Window.centerPos(75, 75),
+    resizeAllowed: false
   });
 }
 

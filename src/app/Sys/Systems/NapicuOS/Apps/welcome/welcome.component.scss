@@ -1,7 +1,13 @@
+@import './variables';
+
 .Title {
   text-align: center;
   font-weight: 900;
   font-size: 1.75rem;
+}
+
+.BackgroundColor {
+  background-color: var(--NapicuAPPSWelcomeBackgroundColor);
 }
 
 .MainBox {
@@ -12,14 +18,28 @@
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
-
-  option:hover {
-    background-color: rebeccapurple;
-  }
 }
 
 .LangMenu {
   display: flex;
   padding: 10px 5px;
+}
 
+#LeftBox {
+  height: 100%;
+  background-color: #484646;
+  padding: 20px;
+
+  > div {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+  }
+}
+
+#MainBox {
+  padding: 10px;
 }

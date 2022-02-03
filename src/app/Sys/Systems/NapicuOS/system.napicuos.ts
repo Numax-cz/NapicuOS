@@ -504,6 +504,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         component: data.appComponent,
         windowTitle: data.appTitle,
         windowData: data.windowData,
+        resizeAllowed: data.resizeAllowed,
       }),
     });
   }

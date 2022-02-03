@@ -1,7 +1,7 @@
-import { Type } from '@angular/core';
-import { ProcessWindowValueMetadata } from 'src/app/Sys/Process';
-import { systemAlertTypeEnumMetadata } from './Alert/alert';
-import { windowData } from './Window/windowData';
+import {Type} from '@angular/core';
+import {ProcessWindowValueMetadata} from 'src/app/Sys/Process';
+import {systemAlertTypeEnumMetadata} from './Alert/alert';
+import {windowData} from './Window/windowData';
 
 export declare interface onStartUp {
   onStart(): void;
@@ -40,6 +40,8 @@ export declare interface AppCreatMetadata {
    * Window's settings (size & position)
    */
   windowData?: windowData;
+
+  resizeAllowed?: boolean;
 }
 
 export declare interface AlertCreatMetadata {
