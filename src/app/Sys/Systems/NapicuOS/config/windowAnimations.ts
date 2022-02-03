@@ -1,4 +1,4 @@
 /**
  * All window animation times
  */
-export const window_animations = 420;
+export const window_animations = 155;

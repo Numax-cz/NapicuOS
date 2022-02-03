@@ -29,8 +29,8 @@ import {InputsType} from 'ng-dynamic-component';
         animate(window_animations, style({transform: 'scale(1)'})),
       ]),
       transition(':leave', [
-        style({transform: 'scale(1)'}),
-        animate(window_animations, style({transform: 'scale(0)'})),
+        style({transform: 'scale(1) translateX(-50%) translateY(-50%)'}),
+        animate(window_animations, style({transform: 'scale(0, 0) translateX(-50%) translateY(-50%)'})),
       ]),
       state(
         'maximized',
@@ -47,7 +47,7 @@ import {InputsType} from 'ng-dynamic-component';
           width: '{{width}}%',
           height: '{{height}}%',
           top: '{{top}}%',
-          left: '{{left}}%',
+          left: '{{left}}%'
         }),
         {params: {width: 0, height: 0, top: 0, left: 0}}
       ),
@@ -89,7 +89,9 @@ import {InputsType} from 'ng-dynamic-component';
       ),
       transition(`*=>*`, animate(window_animations)),
     ]),
+
   ],
+
 })
 export class WindowComponent implements OnInit {
   /**
