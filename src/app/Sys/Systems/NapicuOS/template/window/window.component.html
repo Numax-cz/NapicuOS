@@ -3,10 +3,11 @@
     [@NapicuOSWindowAnimation]="{
       value: i.Window.state,
       params: {
-        width: i.Window.windowData.width || 'fit-content',
-        height: i.Window.windowData.height || 'fit-content',
+        width:  (i.Window.windowData.width ?  (i.Window.windowData.width + '%') : 'fit-content'),
+        height:  (i.Window.windowData.height ?  (i.Window.windowData.height + '%') : 'fit-content'),
         top: i.Window.windowData.posY,
-        left: i.Window.windowData.posX
+        left: i.Window.windowData.posX,
+        translate: !i.Window.windowData.height || !i.Window.windowData.width ? '50' : '0'
       }
     }"
     *ngIf="SystemBoot && i.Window?.windowData && i.Window.display"
@@ -20,9 +21,8 @@
       'transform': !i.Window.windowData.height || !i.Window.windowData.width ? 'translate(-50%, -50%)' : ''
     }"
     [ngClass]="[i.Window?.activated ? 'SelectedWindow' : 'UnSelectedWindow', !i.Window.windowData.height &&
-    !i.Window.windowData.width ? 'centerTransform' : '', !i.Window.windowData.height || i.Window.windowData.width ?
+    !i.Window.windowData.width ? 'centerTransform' : '', !i.Window.windowData.height || !i.Window.windowData.width ?
     'fitWindowContent' : '']">
-    <!--       // 'transform': translae(10px, 10px)-->
     <div *ngIf="!i.Window.isStateMaximized() && !move &&
       i.Window.resizeAllowed && i.Window.windowData.height &&
     i.Window.windowData.width"

@@ -29,9 +29,9 @@ import {InputsType} from 'ng-dynamic-component';
         animate(window_animations, style({transform: 'scale(1)'})),
       ]),
       transition(':leave', [
-        style({transform: 'scale(1) translateX(-50%) translateY(-50%)'}),
-        animate(window_animations, style({transform: 'scale(0, 0) translateX(-50%) translateY(-50%)'})),
-      ]),
+        style({transform: 'scale(1) translateX(-{{translate}}%) translateY(-{{translate}}%)'}),
+        animate(window_animations, style({transform: 'scale(0) translateX(-{{translate}}%) translateY(-{{translate}}%)'})),
+      ], {params: {translate: 0}}),
       state(
         'maximized',
         style({
@@ -44,8 +44,8 @@ import {InputsType} from 'ng-dynamic-component';
       state(
         'normal',
         style({
-          width: '{{width}}%',
-          height: '{{height}}%',
+          width: '{{width}}',
+          height: '{{height}}',
           top: '{{top}}%',
           left: '{{left}}%'
         }),
