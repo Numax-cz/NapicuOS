@@ -1,6 +1,6 @@
-import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
-import { GrubComponent } from 'src/app/System/grub/grub.component';
-import { SystemComponent } from 'src/app/System/system/system.component';
+import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.component';
+import {GrubComponent} from 'src/app/System/grub/grub.component';
+import {SystemComponent} from 'src/app/System/system/system.component';
 import {
   AlertCreatMetadata,
   AppCreatFileMetadata,
@@ -10,21 +10,21 @@ import {
   Os,
   SystemStateMetadata,
 } from './interface/system';
-import { Process } from '../../Process';
-import { System } from '../../System';
-import { LoadsComponent } from './components/loads/loads.component';
-import { NapicuOSComponent } from './components/napicu-os/napicu-os.component';
-import { boot_time, soft_boot_time } from './config/boot';
-import { formatDate } from '@angular/common';
-import { time_formate } from './config/time';
-import { Line } from './Apps/console/console.component';
-import { Command, CommandFunMetadata } from '../../command';
-import { initAllCommands } from './initCommands.napicuos';
+import {Process} from '../../Process';
+import {System} from '../../System';
+import {LoadsComponent} from './components/loads/loads.component';
+import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
+import {boot_time, soft_boot_time} from './config/boot';
+import {formatDate} from '@angular/common';
+import {time_formate} from './config/time';
+import {Line} from './Apps/console/console.component';
+import {Command, CommandFunMetadata} from '../../command';
+import {initAllCommands} from './initCommands.napicuos';
 import {
   initAllStartUpApps,
   initAllSystemProcess,
 } from './systemApps.napicuos';
-import { SystemFile } from '../../File';
+import {SystemFile} from '../../File';
 import {
   systemDirAFileMetadata,
   systemDrivesMetadata,
@@ -35,14 +35,14 @@ import {
   system_default_user,
   system_root_user,
 } from './config/systemInfo';
-import { napicu_os_root_part, NapicuOSSystemDir } from './config/drive';
-import { User } from '../../User';
-import { CommandStateCodeMetadata } from './interface/Commands/commandsCodes';
-import { LoginscreenComponent } from './components/loginscreen/loginscreen.component';
-import { Window } from '../../Window';
-import { SystemUserPermissionsEnumMetadata } from './interface/User/user';
-import { SystemFileTypeEnumMetadata } from './interface/FilesDirs/file';
-import { SystemAlert } from '../../Alert';
+import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
+import {User} from '../../User';
+import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
+import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
+import {Window} from '../../Window';
+import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
+import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
+import {SystemAlert} from '../../Alert';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -62,7 +62,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.SystemBoot();
   }
 
-  public override onShutDown(): void {}
+  public override onShutDown(): void {
+  }
 
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
@@ -99,9 +100,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
-  public override onKeyPress(ev: KeyboardEvent) {}
+  public override onKeyPress(ev: KeyboardEvent) {
+  }
 
-  public override onLoad(): void {}
+  public override onLoad(): void {
+  }
 
   public static getTime(): string {
     let now = new Date();
@@ -325,6 +328,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
+  /**
+   * Executes the command
+   * @param cmd Command prefix
+   * @param params Input parameters
+   */
   public static async run_command(
     cmd: string,
     params?: string[]
@@ -334,9 +342,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (i) {
       if (
         i.get_permissions().read ===
-          SystemUserPermissionsEnumMetadata.SuperUser &&
+        SystemUserPermissionsEnumMetadata.SuperUser &&
         this.activeUser?.permissions !==
-          SystemUserPermissionsEnumMetadata.SuperUser
+        SystemUserPermissionsEnumMetadata.SuperUser
       ) {
         return {
           linesForCMD: [new Line(`${cmd}: Permission denied`, 'red')],
@@ -352,7 +360,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
-  //TODO DOC
+  /**
+   * Function that adds a file to the dock
+   * @param file File to be added to the dock
+   */
   public static add_file_to_dock(file: SystemFile): void {
     this.get_active_user()?.userSetting.appsInDock.push(file);
   }
