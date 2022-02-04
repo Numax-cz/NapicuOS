@@ -24,20 +24,6 @@
 
   button {
     width: 20%;
-    outline: none;
-    border: none;
-    border-radius: 7px;
-    background: var(--NapicuAPPSAlertButtonColor);
-    border-bottom: 4px solid var(--NapicuAPPSAlertButtonBottomColor);
-    color: white;
-    font-size: var(--NapicuAPPSAlertButtonSize);
-    padding: 5px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background: var(--NapicuAPPSButtonHoverColor);
-    border-bottom-color: var(--NapicuAPPSAlertButtonBottomHoverColor);
   }
 
 }
