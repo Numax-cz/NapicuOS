@@ -13,6 +13,8 @@ interface barMetadata {
 })
 export class WelcomeComponent implements OnInit, AfterViewInit {
   @ViewChild('Welcome') public declare Welcome: TemplateRef<any>;
+  @ViewChild('Users') public declare Users: TemplateRef<any>;
+  @ViewChild('Install') public declare Install: TemplateRef<any>;
 
   protected barOptions: barMetadata[] = [];
   protected selectedBarOption: number = 0;
@@ -27,7 +29,10 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     console.log(this.Welcome)
-    this.barOptions = [{value: "Welcome", template: this.Welcome}]
+    this.barOptions = [{value: "Welcome", template: this.Welcome}, {
+      value: "Users",
+      template: this.Users
+    }, {value: "Install", template: this.Install}]
   }
 
   get GetBarOptions(): barMetadata[] {
