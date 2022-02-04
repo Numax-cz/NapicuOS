@@ -1,11 +1,14 @@
-.NapicuSystemButtonWelcome {
-  font-size: 1rem;
-  padding: 7px;
-  outline: none;
-  border-radius: 7px;
-  cursor: pointer;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 15px;
+
+.NapicuOSSimpleButton {
+  button {
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    background: var(--NapicuSimpleButtonColor);
+    border-bottom: 4px solid var(--NapicuSimpleButtonBottomColor);
+    color: white;
+    font-size: var(--NapicuSimpleButtonSize);
+    padding: 5px;
+    cursor: pointer;
+  }
 }

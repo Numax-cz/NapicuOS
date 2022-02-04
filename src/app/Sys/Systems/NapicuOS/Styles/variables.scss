@@ -12,6 +12,8 @@
 
   --NapicuWindowButtonsSize: 14px;
   --NapicuWindowButtonsMargin: 5px;
+  //SimpleButton#1
+  --NapicuSimpleButtonSize: 1.1rem;
 }
 
 .NapicuThemeFeraDark {
@@ -35,6 +37,11 @@
   --NapicuWindowButtonColor-Close-Border: #df4744;
   --NapicuWindowButtonColor-Full-Border: #27aa35;
   --NapicuWindowButtonColor-Mini-Border: #de9f34;
+  //SimpleButton#1
+  --NapicuSimpleButtonColor: #494a4f;
+  --NapicuSimpleButtonBottomColor: #323334;
+  --NapicuSimpleButtonHoverColor: #35353a;
+  --NapicuSimpleButtonBottomHoverColor: #282a2a;
 }
 
 // .NapicuThemeFeraWhite {
