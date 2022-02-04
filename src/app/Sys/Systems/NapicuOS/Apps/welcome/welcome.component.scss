@@ -26,8 +26,7 @@
 }
 
 #LeftBox {
-  height: 100%;
-  background-color: #484646;
+  background-color: #454948;
   padding: 20px 0;
 
   > div {
@@ -44,8 +43,21 @@
 }
 
 #MainBox {
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.MainContent {
+  height: 100%;
+  width: 100%;
+}
+
+.BottomContent {
+  padding: 20px;
+  text-align: right;
+
 }
 
 .selected {
@@ -80,17 +92,24 @@
   justify-content: center;
 
   .title {
-    font-size: 4.25rem;
+    font-size: 5.25rem;
     font-weight: bold;
     color: white;
   }
 
   img {
-    margin-right: 30px;
-    width: 100px;
-    height: 100px;
+    margin-right: 45px;
+    width: 110px;
+    height: 110px;
   }
+}
 
+.titleDesc {
+  padding: 14px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: white;
 }
 
 

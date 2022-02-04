@@ -2,7 +2,7 @@
   <div class="WelcomeTitle" style="font-weight: 600;">Welcome to the NapicuOS installer</div>
   <div class="WelcomeDescription" id="SystemFont">
     <p>
-      NapicuOS is an open source web-based system, which is built on Angular
+      NapicuOS is an open source web-based system.
       Please report any bugs through the application, or email example@example.com
     </p>
     <div class="WelcomeMainContent">
@@ -10,13 +10,14 @@
         <img src="/assets/systems/NapicuOS/Logo.svg" alt="NapicuOSLogo">
         <div class="title">NapicuOS</div>
       </div>
+      <div class="titleDesc">Built on Angular</div>
     </div>
   </div>
 </ng-template>
 
 
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
-  <section style="display:flex; height: 100%;">
+  <section style="display:flex; height: auto;min-height: 100%;">
     <!--    Bar-->
     <div id="LeftBox">
       <div *ngFor="let i of GetBarOptions; let index = index" [ngClass]="{selected: index === GetSelectedBarOption}">
@@ -25,12 +26,15 @@
     </div>
     <!--    Mainbox-->
     <div id="MainBox">
-      <section>
-        <section>
-          <ng-container *ngIf="GetBarOptions[GetSelectedBarOption]?.template"
-                        [ngTemplateOutlet]="GetBarOptions[GetSelectedBarOption].template"></ng-container>
-        </section>
+      <section class="MainContent">
+        <ng-container *ngIf="GetBarOptions[GetSelectedBarOption]?.template"
+                      [ngTemplateOutlet]="GetBarOptions[GetSelectedBarOption].template"></ng-container>
       </section>
+      <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
+        <button>Back</button>
+        <button>Next</button>
+      </section>
+
     </div>
   </section>
 </section>
