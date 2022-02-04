@@ -30,7 +30,7 @@ export function napicu_os_time(): Process {
 
 export function napicu_os_welcomeapp(): SystemFile {
   return NapicuOS.create_app({
-    appTitle: 'Installer',
+    appTitle: '',
     processTitle: 'Install NapicuOS',
     appComponent: WelcomeComponent,
     windowData: Window.centerPos(75, 75),

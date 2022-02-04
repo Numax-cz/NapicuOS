@@ -45,8 +45,57 @@
 
 #MainBox {
   padding: 10px;
+  width: 100%;
 }
 
 .selected {
   background-color: #1c1c1c;
 }
+
+//WelcomeComponent
+.WelcomeTitle {
+  color: white;
+  font-size: 2.8rem;
+  text-align: center;
+  padding: 20px;
+}
+
+.WelcomeDescription {
+  padding: 10px;
+
+  p {
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+  }
+}
+
+.WelcomeMainContent {
+  margin-top: 100px
+}
+
+.WelcomeSystemLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    font-size: 4.25rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  img {
+    margin-right: 30px;
+    width: 100px;
+    height: 100px;
+  }
+
+}
+
+
+
+
+
+
+
