@@ -473,6 +473,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
           processTitle: data.processTitle,
         });
       },
+      iconPath: data.fileIconPath,
     });
     this.get_apps_dir()?.files?.push(Application);
     return Application;
@@ -506,6 +507,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         windowData: data.windowData,
         resizeAllowed: data.resizeAllowed,
       }),
+      fileIconPath: data.fileIconPath
     });
   }
 

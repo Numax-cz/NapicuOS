@@ -42,6 +42,13 @@ export declare interface AppCreatMetadata {
   windowData?: windowData;
 
   resizeAllowed?: boolean;
+
+  /**
+   * Application's file icon
+   */
+  fileIconPath?: string
+
+
 }
 
 export declare interface AlertCreatMetadata {
@@ -72,6 +79,10 @@ export declare interface AppCreatFileMetadata {
    * Application's Window
    */
   appWindow: ProcessWindowValueMetadata;
+  /**
+   * Application's file icon
+   */
+  fileIconPath?: string;
 }
 
 export declare const enum SystemStateMetadata {

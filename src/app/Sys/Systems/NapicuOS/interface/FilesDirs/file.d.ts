@@ -1,4 +1,4 @@
-import { SystemFilePermissionsMetadata } from '../permissions';
+import {SystemFilePermissionsMetadata} from '../permissions';
 
 declare const enum SystemFileTypeEnumMetadata {
   executable = 'Executable',
@@ -23,4 +23,8 @@ export declare interface SystemFileConsMetadata {
    * File permissions
    */
   permissions?: SystemFilePermissionsMetadata;
+  /**
+   * File icon
+   */
+  iconPath?: string
 }

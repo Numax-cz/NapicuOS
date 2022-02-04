@@ -40,6 +40,7 @@ export function napicu_os_welcomeapp(): SystemFile {
     appComponent: WelcomeComponent,
     windowData: Window.centerPos(75, 75),
     resizeAllowed: false,
+    fileIconPath: '/assets/systems/NapicuOS/Logo.svg'
   });
 }
 

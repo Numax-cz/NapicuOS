@@ -6,13 +6,13 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { Process } from 'src/app/Sys/Process';
-import { boot_animation_time } from '../../config/boot';
-import { wallpaper } from '../../config/wallpaper';
-import { system_dock_animations } from '../../config/systemAnimations';
-import { NapicuOS } from '../../system.napicuos';
-import { SystemFile } from 'src/app/Sys/File';
+import {Component, OnInit} from '@angular/core';
+import {Process} from 'src/app/Sys/Process';
+import {boot_animation_time} from '../../config/boot';
+import {wallpaper} from '../../config/wallpaper';
+import {system_dock_animations} from '../../config/systemAnimations';
+import {NapicuOS} from '../../system.napicuos';
+import {SystemFile} from 'src/app/Sys/File';
 
 @Component({
   selector: 'app-napicu-os',
@@ -36,14 +36,14 @@ import { SystemFile } from 'src/app/Sys/File';
     ]),
     trigger('NapicuOSDockAnimation', [
       transition(':enter', [
-        style({ transform: 'translateY(100px)' }),
-        animate(system_dock_animations, style({ transform: 'translateY(0)' })),
+        style({transform: 'translateY(100px)'}),
+        animate(system_dock_animations, style({transform: 'translateY(0)'})),
       ]),
       transition(':leave', [
-        style({ transform: 'translateY(0)' }),
+        style({transform: 'translateY(0)'}),
         animate(
           system_dock_animations,
-          style({ transform: 'translateY(100px)' })
+          style({transform: 'translateY(100px)'})
         ),
       ]),
     ]),
@@ -55,14 +55,16 @@ export class NapicuOSComponent implements OnInit {
    */
   public static BottomDockDisplay: boolean = false;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     NapicuOSComponent.BottomDockDisplay = true;
   }
 
   public dockRunner(file: SystemFile): void {
-    file.open();
+    //TODO Fix
+    //file.open();
   }
 
   get systemTime(): string {
@@ -84,6 +86,7 @@ export class NapicuOSComponent implements OnInit {
   get GetitemsInDock(): SystemFile[] {
     return NapicuOS.get_apps_in_dock();
   }
+
 
   get BottomDockDisplay(): boolean {
     return NapicuOS.get_system_bottom_dock_display();

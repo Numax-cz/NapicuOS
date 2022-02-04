@@ -6,6 +6,7 @@ import {
 } from './Systems/NapicuOS/interface/FilesDirs/file';
 import {SystemFilePermissionsMetadata} from './Systems/NapicuOS/interface/permissions';
 import {SystemUserPermissionsEnumMetadata} from './Systems/NapicuOS/interface/User/user';
+import {NapicuOS} from "./Systems/NapicuOS/system.napicuos";
 
 export class SystemFile {
   //TODO DOC
@@ -18,7 +19,7 @@ export class SystemFile {
   /**
    * Path to the icon (svg)
    */
-  private _iconPath: string = `${SystemFile.defaultIconsPath}/XFD/download.svg`;
+  private declare _iconPath: string;
 
   private _value: any;
 
@@ -36,11 +37,8 @@ export class SystemFile {
     this._value = data.value;
     this._fileName = data.fileName;
     this._fileType = data.fileType;
-    this._permissions = data.permissions
-      ? data.permissions
-      : {read: SystemUserPermissionsEnumMetadata.User};
-
-    //TODO permissions
+    this._permissions = data.permissions || {read: SystemUserPermissionsEnumMetadata.User};
+    this._iconPath = data.iconPath || `${SystemFile.defaultIconsPath}/XFD/download.svg`
   }
 
   //Setters
@@ -89,6 +87,7 @@ export class SystemFile {
       switch (this._fileType) {
         case SystemFileTypeEnumMetadata.apps:
           let process = this._value() as Process;
+          NapicuOS.get_apps_in_dock().push(this);
           resolve(process.run().Window.open());
           break;
         case SystemFileTypeEnumMetadata.executable:
