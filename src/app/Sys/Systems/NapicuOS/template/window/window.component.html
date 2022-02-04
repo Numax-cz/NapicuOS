@@ -19,7 +19,8 @@
       'left.%': i.Window.windowData.posX,
       'z-index': i.Window.z_index,
       'transform': !i.Window.windowData.height || !i.Window.windowData.width ? 'translate(-50%, -50%)' : '',
-      'min-width.px': 350
+      'min-width.px': MinWindowWidth,
+      'min-height.px': MinWindowHeight
     }"
     [ngClass]="[i.Window?.activated ? 'SelectedWindow' : 'UnSelectedWindow', !i.Window.windowData.height &&
     !i.Window.windowData.width ? 'centerTransform' : '', !i.Window.windowData.height || !i.Window.windowData.width ?

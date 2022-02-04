@@ -101,7 +101,7 @@ export class WindowComponent implements OnInit {
   /**
    * Minimum window width in pixels
    */
-  static readonly MinWindowWidth: number = 250;
+  static readonly MinWindowWidth: number = 300;
   /**
    * Minimum window height in pixels
    */
@@ -278,11 +278,11 @@ export class WindowComponent implements OnInit {
         top = this.originalY + (MouseValueY - this.originalMouseY);
       }
     }
-    if (x && x > WindowComponent.MinWindowWidth) {
+    if (x) {
       this.selectedWindow.setWidth(x);
       if (left) this.selectedWindow.setLeft(left);
     }
-    if (y && y > WindowComponent.MinWindowHeight) {
+    if (y) {
       this.selectedWindow.setHeight(y);
       if (top) this.selectedWindow.setTop(top);
     }
@@ -432,4 +432,19 @@ export class WindowComponent implements OnInit {
   get SystemBoot(): boolean {
     return NapicuOS.get_system_boot();
   }
+
+  /**
+   * Returns minimum window width in pixels
+   */
+  get MinWindowWidth(): number {
+    return WindowComponent.MinWindowWidth;
+  }
+
+  /**
+   * Returns minimum window height in pixels
+   */
+  get MinWindowHeight(): number {
+    return WindowComponent.MinWindowHeight;
+  }
+
 }
