@@ -105,7 +105,7 @@ export class WindowComponent implements OnInit {
   /**
    * Minimum window height in pixels
    */
-  static readonly MinWindowHeight: number = 150;
+  //static readonly MinWindowHeight: number = 150;
   /**
    * Specifies whether the window can be moved
    */
@@ -440,11 +440,5 @@ export class WindowComponent implements OnInit {
     return WindowComponent.MinWindowWidth;
   }
 
-  /**
-   * Returns minimum window height in pixels
-   */
-  get MinWindowHeight(): number {
-    return WindowComponent.MinWindowHeight;
-  }
 
 }

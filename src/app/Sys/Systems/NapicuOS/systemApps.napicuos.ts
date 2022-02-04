@@ -13,6 +13,11 @@ export function initAllSystemProcess(): void {
 export function initAllStartUpApps(): void {
   napicu_os_welcomeapp().open();
   //napicu_os_terminal().open();
+  // NapicuOS.create_alert({
+  //   alertTitle: 'Test Alert',
+  //   alertValue: 'This is test alert',
+  //   alertType: systemAlertTypeEnumMetadata.Info
+  // }).open();
 
 }
 
@@ -34,7 +39,7 @@ export function napicu_os_welcomeapp(): SystemFile {
     processTitle: 'Install NapicuOS',
     appComponent: WelcomeComponent,
     windowData: Window.centerPos(75, 75),
-    resizeAllowed: false
+    resizeAllowed: false,
   });
 }
 
