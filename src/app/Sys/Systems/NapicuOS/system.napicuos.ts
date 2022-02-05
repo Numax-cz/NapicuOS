@@ -20,7 +20,7 @@ import {time_formate} from './config/time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from '../../command';
 import {initAllCommands} from './initCommands.napicuos';
-import {initAllStartUpApps, initAllSystemProcess,} from './systemApps.napicuos';
+import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from '../../File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
 import {
@@ -64,6 +64,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //? This is the main place to load all necessary processes
     //TODO Create a function for init
     initAllCommands();
+    installAllApps();
     initAllSystemProcess();
     NapicuOS.add_user(system_default_user);
     NapicuOS.add_user(system_root_user);
@@ -346,7 +347,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
           stateCode: CommandStateCodeMetadata.PermissionsError,
         };
       }
-      return await i.open();
+      return await i.open({params: params});
     } else {
       return {
         linesForCMD: [new Line(`${cmd}: command not found`, 'red')],
@@ -470,7 +471,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       },
       iconPath: data.fileIconPath,
     });
-    if (this.add_file_to_dir(this.get_apps_dir(), Application) !== SystemStateMetadata.FileAddedSuccess) {
+    if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       NapicuOS.create_alert({
         alertTitle: 'CreatAppFile Error',
         alertValue: 'File already exists',

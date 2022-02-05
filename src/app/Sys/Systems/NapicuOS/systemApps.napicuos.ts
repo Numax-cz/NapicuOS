@@ -5,22 +5,21 @@ import {NapicuOS} from './system.napicuos';
 import {SystemFile} from '../../File';
 import {systemAlertTypeEnumMetadata} from './interface/Alert/alert';
 import {Window} from "../../Window";
+import {AppCreatMetadata} from "./interface/system";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
 }
 
 export function initAllStartUpApps(): void {
-  napicu_os_welcomeapp()?.open();
-  NapicuOS.add_file_to_dir()
-  //napicu_os_terminal().open();
-  // NapicuOS.create_alert({
-  //   alertTitle: 'Test Alert',
-  //   alertValue: 'This is test alert',
-  //   alertType: systemAlertTypeEnumMetadata.Info
-  // }).open();
+}
+
+export function installAllApps(): void {
+  napicu_os_welcomeapp();
+  napicu_os_terminal();
 
 }
+
 
 export function napicu_os_time(): Process {
   return new Process({

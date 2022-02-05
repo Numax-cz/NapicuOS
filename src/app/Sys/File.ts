@@ -82,19 +82,16 @@ export class SystemFile {
   }
 
 
-  public open(): Promise<any> {
+  public open(data?: { params?: string[] }): Promise<any> {
     return new Promise(async (resolve) => {
       switch (this._fileType) {
         case SystemFileTypeEnumMetadata.apps:
           let process = this._value() as Process;
-          //TODO
-          //NapicuOS.get_apps_in_dock().push(this);
-          //NapicuOS.get_apps_in_dock().push(this);
           resolve(process.run().Window.open());
           break;
         case SystemFileTypeEnumMetadata.executable:
           let command = this._value as Command;
-          resolve(await command.run());
+          resolve(await command.run(data?.params));
           break;
         default:
           break;
