@@ -12,6 +12,7 @@ import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {setHelpCommand} from './config/commands/help/setCommand';
 import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from '../../User';
+import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -24,11 +25,11 @@ function usageCommand(cmd: string): Line {
 export function initAllCommands(): void {
   //? This is test for debugging
   NapicuOS.register_command(
-    new Command('Terminal', 'shell', (params, activatedWindow) => {
+    new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve({linesForCMD: [new Line('se')], stateCode: 12});
-        }, 1000);
+        }, 200);
       });
     })
   );
@@ -44,7 +45,7 @@ export function initAllCommands(): void {
 
 function initCreateUser(): void {
   NapicuOS.register_command(
-    new Command('CreateUser', 'adduser', (params) => {
+    new Command('CreateUser', SystemCommandsPrefixEnum.addUserCommand, (params) => {
       return new Promise((resolve) => {
         if (params?.length == 2) {
           let username = params[0];
@@ -69,7 +70,7 @@ function initCreateUser(): void {
 
 function initGetSystemInformation(): void {
   NapicuOS.register_command(
-    new Command('SystemGetter', 'get', (params) => {
+    new Command('SystemGetter', SystemCommandsPrefixEnum.getCommand, (params) => {
       return new Promise((resolve) => {
         let exportLines: Line[] = [];
         if (params?.length) {
@@ -187,7 +188,7 @@ function initGetSystemInformation(): void {
 
 function initSetSystemInformation(): void {
   NapicuOS.register_command(
-    new Command('SystemSetter', 'set', (params, activatedWindow) => {
+    new Command('SystemSetter', SystemCommandsPrefixEnum.setCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         if (params?.length) {
           switch (params[0]) {
@@ -213,7 +214,7 @@ function initSetSystemInformation(): void {
 
 function initKillProcess(): void {
   NapicuOS.register_command(
-    new Command('SystemProcessKiller', 'kill', (params) => {
+    new Command('SystemProcessKiller', SystemCommandsPrefixEnum.killCommand, (params) => {
       return new Promise((resolve) => {
         if (params?.length) {
           if (params[0]) {
@@ -237,7 +238,7 @@ function initKillProcess(): void {
 
 function initLogout(): void {
   NapicuOS.register_command(
-    new Command('UserLogout', 'logout', (params) => {
+    new Command('UserLogout', SystemCommandsPrefixEnum.logoutCommand, (params) => {
       return new Promise((resolve) => {
         resolve(NapicuOS.logout_user());
       });
@@ -247,7 +248,7 @@ function initLogout(): void {
 
 function initExitFromConsole(): void {
   NapicuOS.register_command(
-    new Command('Exit', 'exit', (params, activatedWindow) => {
+    new Command('Exit', SystemCommandsPrefixEnum.exitCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         resolve(activatedWindow?.kill());
       });
@@ -257,7 +258,7 @@ function initExitFromConsole(): void {
 
 function initOpenApp(): void {
   NapicuOS.register_command(
-    new Command('OpenApp', 'openapp', (params, activatedWindow) => {
+    new Command('OpenApp', SystemCommandsPrefixEnum.openAppCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         if (params?.length) {
           let x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);

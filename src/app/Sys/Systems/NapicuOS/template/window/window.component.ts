@@ -105,7 +105,7 @@ export class WindowComponent implements OnInit {
   /**
    * Minimum window height in pixels
    */
-  //static readonly MinWindowHeight: number = 150;
+  static readonly MinWindowHeight: number = 150;
   /**
    * Specifies whether the window can be moved
    */
@@ -278,11 +278,11 @@ export class WindowComponent implements OnInit {
         top = this.originalY + (MouseValueY - this.originalMouseY);
       }
     }
-    if (x) {
+    if (x && x > WindowComponent.MinWindowWidth) {
       this.selectedWindow.setWidth(x);
       if (left) this.selectedWindow.setLeft(left);
     }
-    if (y) {
+    if (y && y > WindowComponent.MinWindowHeight) {
       this.selectedWindow.setHeight(y);
       if (top) this.selectedWindow.setTop(top);
     }

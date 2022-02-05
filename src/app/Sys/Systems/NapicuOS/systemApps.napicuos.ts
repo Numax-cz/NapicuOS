@@ -6,17 +6,25 @@ import {SystemFile} from '../../File';
 import {systemAlertTypeEnumMetadata} from './interface/Alert/alert';
 import {Window} from "../../Window";
 import {AppCreatMetadata} from "./interface/system";
+import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
 }
 
 export function initAllStartUpApps(): void {
+
+  napicu_os_terminal()?.open();
+
+  NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
+  NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
+  NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
+
+
 }
 
 export function installAllApps(): void {
   napicu_os_welcomeapp();
-  napicu_os_terminal();
 
 }
 

@@ -1,3 +1,6 @@
+/**
+ * Enum for system commands prefix
+ */
 export const enum SystemCommandsPrefixEnum {
   shellCommand = "shell",
   addUserCommand = "adduser",

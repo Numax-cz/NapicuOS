@@ -38,6 +38,7 @@ import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
+import {copy} from "../../../Scripts/DeepClone";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -471,6 +472,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       },
       iconPath: data.fileIconPath,
     });
+
+
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       NapicuOS.create_alert({
         alertTitle: 'CreatAppFile Error',
