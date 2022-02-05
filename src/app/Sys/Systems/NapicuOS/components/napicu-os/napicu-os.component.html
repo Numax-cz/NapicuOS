@@ -39,6 +39,8 @@
               <!-- Applications -->
               <img *ngFor="let i of GetitemsInDock" [src]="i.iconPath"
                    (click)="dockRunner(i)"/>
+              <img *ngFor="let i of GetRunningAppsInDock" [src]="i.iconPath"
+              />
 
             </section>
             <!-- <section class="rightPanelMenu">

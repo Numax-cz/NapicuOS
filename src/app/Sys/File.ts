@@ -87,7 +87,9 @@ export class SystemFile {
       switch (this._fileType) {
         case SystemFileTypeEnumMetadata.apps:
           let process = this._value() as Process;
-          NapicuOS.get_apps_in_dock().push(this);
+          //TODO
+          //NapicuOS.get_apps_in_dock().push(this);
+          //NapicuOS.get_apps_in_dock().push(this);
           resolve(process.run().Window.open());
           break;
         case SystemFileTypeEnumMetadata.executable:

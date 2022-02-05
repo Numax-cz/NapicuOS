@@ -132,7 +132,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_system_bottom_dock_display(): boolean {
     return NapicuOSComponent.BottomDockDisplay;
   }
-
+  
   /**
    * Returns the system processes
    */

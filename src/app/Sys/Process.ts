@@ -16,7 +16,6 @@ export class Process {
   private declare _pid: number;
   private declare _Interval: any;
   private declare _Window: ProcessWindowValueMetadata;
-  private declare readonly _file: SystemFile;
   private declare processInterval: { fun: () => void; time: number };
 
   constructor(data: processConstructor) {
@@ -24,11 +23,6 @@ export class Process {
     if (data?.processTitle) this._processTitle = data.processTitle;
     if (data?.processInterval) this.processInterval = data.processInterval;
     this._launchedBy = NapicuOS.get_active_user()?.username || 'System';
-    this._file = new SystemFile({
-      fileName: this._processTitle,
-      value: this,
-      fileType: SystemFileTypeEnumMetadata.executable,
-    });
   }
 
   get processTitle(): string {
@@ -49,10 +43,6 @@ export class Process {
 
   get Window(): ProcessWindowValueMetadata {
     return this._Window;
-  }
-
-  get file(): SystemFile {
-    return this._file;
   }
 
 

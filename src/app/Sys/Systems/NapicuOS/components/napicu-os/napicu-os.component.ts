@@ -87,6 +87,12 @@ export class NapicuOSComponent implements OnInit {
     return NapicuOS.get_apps_in_dock();
   }
 
+  get GetRunningAppsInDock(): SystemFile[] {
+    // return NapicuOS.get_system_displayed_window_apps().map((p: Process) => {
+    //
+    // });
+    return [];
+  }
 
   get BottomDockDisplay(): boolean {
     return NapicuOS.get_system_bottom_dock_display();
