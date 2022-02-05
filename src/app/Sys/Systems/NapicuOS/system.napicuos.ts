@@ -465,10 +465,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       fileName: data.processTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
-        return new Process({
+        return {
           Window: data.appWindow,
-          processTitle: data.processTitle,
-        });
+          processTitle: data.processTitle
+        }
+
       },
       iconPath: data.fileIconPath,
     });
