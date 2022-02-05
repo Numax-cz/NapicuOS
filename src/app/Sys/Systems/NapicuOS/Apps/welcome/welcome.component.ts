@@ -28,7 +28,6 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.Welcome)
     this.barOptions = [{value: "Welcome", template: this.Welcome}, {
       value: "Users",
       template: this.Users

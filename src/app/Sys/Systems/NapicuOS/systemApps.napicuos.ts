@@ -11,7 +11,8 @@ export function initAllSystemProcess(): void {
 }
 
 export function initAllStartUpApps(): void {
-  napicu_os_welcomeapp().open();
+  napicu_os_welcomeapp()?.open();
+
   //napicu_os_terminal().open();
   // NapicuOS.create_alert({
   //   alertTitle: 'Test Alert',
@@ -33,10 +34,10 @@ export function napicu_os_time(): Process {
   });
 }
 
-export function napicu_os_welcomeapp(): SystemFile {
+export function napicu_os_welcomeapp(): SystemFile | null {
   return NapicuOS.create_app({
     appTitle: ' ',
-    processTitle: 'Install NapicuOS',
+    processTitle: 'InstallNapicuOS',
     appComponent: WelcomeComponent,
     windowData: Window.centerPos(75, 75),
     resizeAllowed: false,
@@ -44,7 +45,7 @@ export function napicu_os_welcomeapp(): SystemFile {
   });
 }
 
-export function napicu_os_terminal(): SystemFile {
+export function napicu_os_terminal(): SystemFile | null {
   return NapicuOS.create_app({
     appTitle: 'Terminal',
     processTitle: 'Terminal',

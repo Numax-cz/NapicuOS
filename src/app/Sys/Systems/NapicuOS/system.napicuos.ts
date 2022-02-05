@@ -20,15 +20,9 @@ import {time_formate} from './config/time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from '../../command';
 import {initAllCommands} from './initCommands.napicuos';
-import {
-  initAllStartUpApps,
-  initAllSystemProcess,
-} from './systemApps.napicuos';
+import {initAllStartUpApps, initAllSystemProcess,} from './systemApps.napicuos';
 import {SystemFile} from '../../File';
-import {
-  systemDirAFileMetadata,
-  systemDrivesMetadata,
-} from './interface/FilesDirs/systemDir';
+import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
 import {
   system_boot_screen_logo,
   system_boot_screen_title,
@@ -43,6 +37,7 @@ import {Window} from '../../Window';
 import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
+import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -132,7 +127,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_system_bottom_dock_display(): boolean {
     return NapicuOSComponent.BottomDockDisplay;
   }
-  
+
   /**
    * Returns the system processes
    */
@@ -463,9 +458,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Creates a file for the application
    * @return {SystemFile} Application file
    */
-  protected static create_app_file(data: AppCreatFileMetadata): SystemFile {
+  protected static create_app_file(data: AppCreatFileMetadata): SystemFile | null {
     let Application = new SystemFile({
-      fileName: data.appTitle,
+      fileName: data.processTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return new Process({
@@ -475,14 +470,35 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       },
       iconPath: data.fileIconPath,
     });
+    if (this.file_exists(this.get_apps_dir()?.files, data.processTitle)) {
+      NapicuOS.create_alert({
+        alertTitle: 'CreatAppFile Error',
+        alertValue: 'File already exists',
+        alertType: systemAlertTypeEnumMetadata.Error
+      })?.open();
+      return null;
+    }
     this.get_apps_dir()?.files?.push(Application);
     return Application;
   }
 
   /**
+   *
+   * @param filesDir
+   * @param fileName
+   */
+  public static file_exists(filesDir: SystemFile[] | undefined, fileName: string): boolean {
+    let i = filesDir?.filter((file: SystemFile) => {
+      return file.fileName === fileName;
+    });
+    return !!i?.length;
+  }
+
+
+  /**
    * Adds and installs the alert
    */
-  public static create_alert(data: AlertCreatMetadata): SystemFile {
+  public static create_alert(data: AlertCreatMetadata): SystemFile | null {
     return this.create_app_file({
       appTitle: data.alertTitle,
       processTitle: 'SystemAlert',
@@ -497,7 +513,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Adds and installs the application
    */
-  public static create_app(data: AppCreatMetadata): SystemFile {
+  public static create_app(data: AppCreatMetadata): SystemFile | null {
     return this.create_app_file({
       appTitle: data.appTitle,
       processTitle: data.processTitle,

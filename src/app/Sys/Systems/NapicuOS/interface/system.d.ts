@@ -42,7 +42,7 @@ export declare interface AppCreatMetadata {
   windowData?: windowData;
 
   resizeAllowed?: boolean;
-
+  
   /**
    * Application's file icon
    */
@@ -83,6 +83,7 @@ export declare interface AppCreatFileMetadata {
    * Application's file icon
    */
   fileIconPath?: string;
+
 }
 
 export declare const enum SystemStateMetadata {
