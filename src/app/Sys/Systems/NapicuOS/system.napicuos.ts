@@ -470,7 +470,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       },
       iconPath: data.fileIconPath,
     });
-    if (this.file_exists(this.get_apps_dir()?.files, data.processTitle)) {
+    if (this.add_file_to_dir(this.get_apps_dir(), Application) !== SystemStateMetadata.FileAddedSuccess) {
       NapicuOS.create_alert({
         alertTitle: 'CreatAppFile Error',
         alertValue: 'File already exists',
@@ -478,22 +478,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       })?.open();
       return null;
     }
-    this.get_apps_dir()?.files?.push(Application);
     return Application;
   }
-
-  /**
-   *
-   * @param filesDir
-   * @param fileName
-   */
-  public static file_exists(filesDir: SystemFile[] | undefined, fileName: string): boolean {
-    let i = filesDir?.filter((file: SystemFile) => {
-      return file.fileName === fileName;
-    });
-    return !!i?.length;
-  }
-
 
   /**
    * Adds and installs the alert

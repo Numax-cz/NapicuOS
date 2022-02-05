@@ -12,7 +12,7 @@ export function initAllSystemProcess(): void {
 
 export function initAllStartUpApps(): void {
   napicu_os_welcomeapp()?.open();
-
+  NapicuOS.add_file_to_dir()
   //napicu_os_terminal().open();
   // NapicuOS.create_alert({
   //   alertTitle: 'Test Alert',
