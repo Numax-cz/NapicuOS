@@ -28,7 +28,7 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve({linesForCMD: [new Line('se')], stateCode: 12});
+          resolve(console.log(NapicuOS.get_system_displayed_window_apps()));
         }, 200);
       });
     })

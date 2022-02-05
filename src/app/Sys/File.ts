@@ -8,6 +8,7 @@ import {SystemFilePermissionsMetadata} from './Systems/NapicuOS/interface/permis
 import {SystemUserPermissionsEnumMetadata} from './Systems/NapicuOS/interface/User/user';
 import {NapicuOS} from "./Systems/NapicuOS/system.napicuos";
 import {Window} from "./Window";
+import {copy} from "../Scripts/DeepClone";
 
 export class SystemFile {
   //TODO DOC
@@ -87,7 +88,7 @@ export class SystemFile {
     return new Promise(async (resolve) => {
       switch (this._fileType) {
         case SystemFileTypeEnumMetadata.apps:
-          let process = new Process({Window: this.value().Window, processTitle: this.value()});
+          let process = new Process({Window: this.value().Window, processTitle: this.value().processTitle});
           resolve(process.run().Window.open());
           break;
         case SystemFileTypeEnumMetadata.executable:
