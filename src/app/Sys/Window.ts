@@ -1,4 +1,4 @@
-import { Type } from '@angular/core';
+import {Type} from '@angular/core';
 import {
   windowButtonsMetadata,
   windowData,
@@ -8,7 +8,8 @@ import {
   percentage,
   percentageValue,
 } from './Systems/NapicuOS/scripts/getPercentage';
-import { WindowComponent } from './Systems/NapicuOS/template/window/window.component';
+import {WindowComponent} from './Systems/NapicuOS/template/window/window.component';
+import {SystemWindowConstructorMetadata} from "./Systems/NapicuOS/interface/Window/window";
 
 export class Window {
   /**
@@ -52,13 +53,7 @@ export class Window {
    */
   public declare windowButtons: windowButtonsMetadata;
 
-  constructor(data: {
-    component: Type<any>;
-    windowTitle?: string;
-    windowData?: windowData;
-    windowButtons?: windowButtonsMetadata;
-    resizeAllowed?: boolean;
-  }) {
+  constructor(data: SystemWindowConstructorMetadata) {
     this.windowComponent = data.component;
     if (data.windowTitle) this.windowTitle = data.windowTitle;
     if (data.windowData) this.windowData = data.windowData;
@@ -231,7 +226,8 @@ export class Window {
    * Sets the exact image in the icon directory
    * @param path Path to the icon
    */
-  public setIcon(path: string): void {}
+  public setIcon(path: string): void {
+  }
 
   //? Window Pos
   /**
