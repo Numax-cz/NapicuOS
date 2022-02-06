@@ -197,7 +197,14 @@ function initSetSystemInformation(): void {
                 let process = NapicuOS.get_system_process_by_pid(Number(params[1]));
                 if (process) {
                   if (params[2]) {
-                    resolve(process.Window.setWindowTitle(params[2]));
+                    if (process?.Window) {
+                      resolve(process.Window.setWindowTitle(params[2]));
+                    } else {
+                      resolve({
+                        linesForCMD: [new Line('Process is not a GUI application')],
+                        stateCode: CommandStateCodeMetadata.ProcessNotGUI,
+                      });
+                    }
                   } else {
                     resolve({
                       linesForCMD: [setWindowTitleHelpCommand],

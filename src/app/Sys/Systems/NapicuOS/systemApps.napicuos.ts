@@ -13,27 +13,6 @@ export function initAllSystemProcess(): void {
 
 export function initAllStartUpApps(): void {
 
-//   napicu_os_terminal()?.open();
-//
-//   let i = new SystemFile({
-//     fileName: 'xd', fileType: SystemFileTypeEnumMetadata.apps, value: () => {
-//       return {
-//         appTitle: ' ',
-//         processTitle: 'InstallNapicuOS',
-//         appComponent: WelcomeComponent,
-//         windowData: Window.centerPos(75, 75),
-//         resizeAllowed: false,
-//         fileIconPath: '/assets/systems/NapicuOS/Logo.svg'
-//       }
-//     },
-//   })
-//
-// //   i.open(
-// // );
-//   NapicuOS.add_file_to_dir(NapicuOS.get_apps_dir(), i);
-//
-//   NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
-//   NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['xd']);
 
   NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
   NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);

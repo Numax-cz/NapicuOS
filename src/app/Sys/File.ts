@@ -95,7 +95,8 @@ export class SystemFile {
               windowTitle: i.appTitle,
               component: i.appComponent,
               windowData: i.windowData,
-              resizeAllowed: i.resizeAllowed
+              resizeAllowed: i.resizeAllowed,
+              windowButtons: i.windowButtons
             }))
           })
           resolve(p.run().Window.open());

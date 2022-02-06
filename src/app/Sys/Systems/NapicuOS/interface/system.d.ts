@@ -1,7 +1,7 @@
 import {Type} from '@angular/core';
 import {ProcessWindowValueMetadata} from 'src/app/Sys/Process';
 import {systemAlertTypeEnumMetadata} from './Alert/alert';
-import {windowData} from './Window/windowData';
+import {windowButtonsMetadata, windowData} from './Window/windowData';
 import {SystemWindowConstructorMetadata} from "./Window/window";
 
 export declare interface onStartUp {
@@ -47,8 +47,9 @@ export declare interface AppCreatMetadata {
   /**
    * Application's file icon
    */
-  fileIconPath?: string
+  fileIconPath?: string;
 
+  windowButtons?: windowButtonsMetadata
 
 }
 
