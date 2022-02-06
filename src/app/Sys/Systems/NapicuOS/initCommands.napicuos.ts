@@ -9,7 +9,7 @@ import {
 } from './config/commands/help/getCommand';
 import {SystemFile} from '../../File';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
-import {setHelpCommand} from './config/commands/help/setCommand';
+import {setHelpCommand, setWindowTitleHelpCommand} from './config/commands/help/setCommand';
 import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from '../../User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
@@ -193,7 +193,30 @@ function initSetSystemInformation(): void {
         if (params?.length) {
           switch (params[0]) {
             case 'windowtitle':
-              return resolve(activatedWindow?.Window.setWindowTitle(params[1]));
+              if (params[1]) {
+                let process = NapicuOS.get_system_process_by_pid(Number(params[1]));
+                if (process) {
+                  if (params[2]) {
+                    resolve(process.Window.setWindowTitle(params[2]));
+                  } else {
+                    resolve({
+                      linesForCMD: [setWindowTitleHelpCommand],
+                      stateCode: CommandStateCodeMetadata.HelpCommand,
+                    });
+                  }
+                } else {
+                  resolve({
+                    linesForCMD: [new Line('Invalid PID')],
+                    stateCode: CommandStateCodeMetadata.InvalidPID,
+                  });
+                }
+              } else {
+                resolve({
+                  linesForCMD: [setWindowTitleHelpCommand],
+                  stateCode: CommandStateCodeMetadata.HelpCommand,
+                });
+              }
+              break;
             default:
               resolve({
                 linesForCMD: [unknownOption(params[0])],

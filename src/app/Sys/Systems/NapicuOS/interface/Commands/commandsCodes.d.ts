@@ -6,4 +6,6 @@ export const enum CommandStateCodeMetadata {
   PermissionsError = 23,
 
   ProcessNotFound = 203,
+
+  InvalidPID = 1
 }
