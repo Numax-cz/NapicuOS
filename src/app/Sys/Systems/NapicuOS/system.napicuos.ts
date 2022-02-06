@@ -276,6 +276,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns process by process id
+   * @param pid Process identifier
+   */
+  public static get_system_process_by_pid(pid: number): Process {
+    return this.get_system_process()[pid];
+  }
+
+  /**
    * Returns all system users
    */
   public static get_users(): User[] {
