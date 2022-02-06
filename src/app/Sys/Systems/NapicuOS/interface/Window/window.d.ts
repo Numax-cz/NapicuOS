@@ -4,7 +4,7 @@ import {windowButtonsMetadata, windowData} from "./windowData";
 export declare interface SystemWindowConstructorMetadata {
   component: Type<any>;
   windowTitle?: string;
-  windowData?: windowData;
+  windowData: windowData;
   windowButtons?: windowButtonsMetadata;
   resizeAllowed?: boolean;
 }

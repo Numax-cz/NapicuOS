@@ -2,6 +2,7 @@ import {Type} from '@angular/core';
 import {ProcessWindowValueMetadata} from 'src/app/Sys/Process';
 import {systemAlertTypeEnumMetadata} from './Alert/alert';
 import {windowData} from './Window/windowData';
+import {SystemWindowConstructorMetadata} from "./Window/window";
 
 export declare interface onStartUp {
   onStart(): void;
@@ -42,7 +43,7 @@ export declare interface AppCreatMetadata {
   windowData?: windowData;
 
   resizeAllowed?: boolean;
-  
+
   /**
    * Application's file icon
    */
@@ -78,7 +79,7 @@ export declare interface AppCreatFileMetadata {
   /**
    * Application's Window
    */
-  appWindow: ProcessWindowValueMetadata;
+  appWindow: SystemWindowConstructorMetadata;
   /**
    * Application's file icon
    */

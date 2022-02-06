@@ -47,7 +47,7 @@ export class Window {
   /**
    * Application window settings
    */
-  public windowData: windowData = Window.defaultWindowAppData;
+  public declare windowData: windowData;
   /**
    * Setting which buttons to display on the application window
    */
@@ -56,7 +56,7 @@ export class Window {
   constructor(data: SystemWindowConstructorMetadata) {
     this.windowComponent = data.component;
     if (data.windowTitle) this.windowTitle = data.windowTitle;
-    if (data.windowData) this.windowData = data.windowData;
+    this.windowData = data.windowData
     this.windowButtons = data.windowButtons || {
       minimized: true,
       maximize: true,

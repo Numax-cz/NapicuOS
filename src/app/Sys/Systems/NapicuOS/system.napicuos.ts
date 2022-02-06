@@ -39,6 +39,7 @@ import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {copy} from "../../../Scripts/DeepClone";
+import {WelcomeComponent} from "./Apps/welcome/welcome.component";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -461,19 +462,23 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @return {SystemFile} Application file
    */
   protected static create_app_file(data: AppCreatFileMetadata): SystemFile | null {
+
+
     let Application = new SystemFile({
       fileName: data.processTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
       value: () => {
         return {
-          Window: data.appWindow,
-          processTitle: data.processTitle
+          appTitle: data.appTitle,
+          processTitle: data.processTitle,
+          appComponent: data.appWindow.component,
+          windowData: data.appWindow.windowData,
+          resizeAllowed: data.appWindow.resizeAllowed,
+          fileIconPath: data.fileIconPath
         }
-
       },
       iconPath: data.fileIconPath,
     });
-
 
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       NapicuOS.create_alert({
@@ -490,15 +495,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Adds and installs the alert
    */
   public static create_alert(data: AlertCreatMetadata): SystemFile | null {
-    return this.create_app_file({
-      appTitle: data.alertTitle,
-      processTitle: 'SystemAlert',
-      appWindow: new SystemAlert(
-        data.alertTitle,
-        data.alertValue,
-        data.alertType
-      ),
-    });
+    // return this.create_app_file({
+    //   appTitle: data.alertTitle,
+    //   processTitle: 'SystemAlert',
+    //   appWindow: new SystemAlert(
+    //     data.alertTitle,
+    //     data.alertValue,
+    //     data.alertType
+    //   ),
+    // });
+    return null;
   }
 
   /**
@@ -508,12 +514,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.create_app_file({
       appTitle: data.appTitle,
       processTitle: data.processTitle,
-      appWindow: new Window({
+      appWindow: {
         component: data.appComponent,
         windowTitle: data.appTitle,
-        windowData: data.windowData,
-        resizeAllowed: data.resizeAllowed,
-      }),
+        windowData: data.windowData || Window.defaultWindowAppData,
+        resizeAllowed: data.resizeAllowed
+      },
       fileIconPath: data.fileIconPath
     });
   }
