@@ -463,10 +463,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Creates a file for the application
+   * Creates and installs the application
    * @return {SystemFile} Application file
    */
-  protected static create_app_file(data: AppCreatFileMetadata): SystemFile | null {
+  static install_app(data: AppCreatMetadata): void {
 
 
     let Application = new SystemFile({
@@ -476,45 +476,27 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         return {
           appTitle: data.appTitle,
           processTitle: data.processTitle,
-          appComponent: data.appWindow.component,
-          windowData: data.appWindow.windowData,
-          resizeAllowed: data.appWindow.resizeAllowed,
+          appComponent: data.appComponent,
+          windowData: data.windowData,
+          resizeAllowed: data.resizeAllowed,
           fileIconPath: data.fileIconPath,
-          windowButtons: data.appWindow.windowButtons
+          windowButtons: data.windowButtons
         }
       },
       iconPath: data.fileIconPath,
     });
 
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
-      this.alert("CreatAppFile Error", "File already exists", systemAlertTypeEnumMetadata.Error);
-      return null;
+      console.log("CreatAppFile Error - File already exists")
     }
-    return Application;
+
   }
 
   /**
    * Creates and opens a new system alert
    */
   public static alert(title: string, value: string, type: systemAlertTypeEnumMetadata): void {
-    new Process({processTitle: 'SystemAlert', Window: new SystemAlert(title, value, type)}).run().Window.open();
-  }
-
-  /**
-   * Adds and installs the application
-   */
-  public static create_app(data: AppCreatMetadata): SystemFile | null {
-    return this.create_app_file({
-      appTitle: data.appTitle,
-      processTitle: data.processTitle,
-      appWindow: {
-        component: data.appComponent,
-        windowTitle: data.appTitle,
-        windowData: data.windowData || Window.defaultWindowAppData,
-        resizeAllowed: data.resizeAllowed
-      },
-      fileIconPath: data.fileIconPath
-    });
+    new Process({processTitle: 'SystemAlert', Window: new SystemAlert(title, value, type)}).runAsSystem().Window.open();
   }
 
   /**

@@ -53,21 +53,6 @@ export declare interface AppCreatMetadata {
 
 }
 
-export declare interface AlertCreatMetadata {
-  /**
-   * Alert title
-   */
-  alertTitle: string;
-  /**
-   * Alert value
-   */
-  alertValue: string;
-  /**
-   * Alert type
-   */
-  alertType: systemAlertTypeEnumMetadata;
-}
-
 export declare interface AppCreatFileMetadata {
   /**
    * Application's title
