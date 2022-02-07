@@ -2,7 +2,6 @@ import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.compone
 import {GrubComponent} from 'src/app/System/grub/grub.component';
 import {SystemComponent} from 'src/app/System/system/system.component';
 import {
-  AlertCreatMetadata,
   AppCreatFileMetadata,
   AppCreatMetadata,
   onShutDown,
@@ -38,8 +37,6 @@ import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
-import {copy} from "../../../Scripts/DeepClone";
-import {WelcomeComponent} from "./Apps/welcome/welcome.component";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -490,30 +487,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
 
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
-      NapicuOS.create_alert({
-        alertTitle: 'CreatAppFile Error',
-        alertValue: 'File already exists',
-        alertType: systemAlertTypeEnumMetadata.Error
-      })?.open();
+      this.alert("CreatAppFile Error", "File already exists", systemAlertTypeEnumMetadata.Error);
       return null;
     }
     return Application;
   }
 
   /**
-   * Adds and installs the alert
+   * Creates and opens a new system alert
    */
-  public static create_alert(data: AlertCreatMetadata): SystemFile | null {
-    // return this.create_app_file({
-    //   appTitle: data.alertTitle,
-    //   processTitle: 'SystemAlert',
-    //   appWindow: new SystemAlert(
-    //     data.alertTitle,
-    //     data.alertValue,
-    //     data.alertType
-    //   ),
-    // });
-    return null;
+  public static alert(title: string, value: string, type: systemAlertTypeEnumMetadata): void {
+    new Process({processTitle: 'SystemAlert', Window: new SystemAlert(title, value, type)}).run().Window.open();
   }
 
   /**

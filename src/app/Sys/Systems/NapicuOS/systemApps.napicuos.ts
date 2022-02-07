@@ -13,9 +13,9 @@ export function initAllSystemProcess(): void {
 
 export function initAllStartUpApps(): void {
 
-
-  NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
-  NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
+  //
+  // NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
+  // NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
 
 }
 
