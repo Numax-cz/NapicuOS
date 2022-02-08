@@ -1,14 +1,7 @@
 import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.component';
 import {GrubComponent} from 'src/app/System/grub/grub.component';
 import {SystemComponent} from 'src/app/System/system/system.component';
-import {
-  AppCreatFileMetadata,
-  AppCreatMetadata,
-  onShutDown,
-  onStartUp,
-  Os,
-  SystemStateMetadata,
-} from './interface/system';
+import {AppCreatMetadata, onShutDown, onStartUp, Os, SystemStateMetadata,} from './interface/system';
 import {Process} from '../../Process';
 import {System} from '../../System';
 import {LoadsComponent} from './components/loads/loads.component';
@@ -32,7 +25,6 @@ import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from '../../User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
-import {Window} from '../../Window';
 import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
@@ -412,17 +404,36 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     | SystemStateMetadata.DirNotExist
     | SystemStateMetadata.FileNotExist
     | SystemStateMetadata.FileOpenSuccess {
-    if (dir?.files) {
-      var x = dir.files.filter((value: SystemFile) => {
-        return value.fileName === fileName;
-      })[0];
-      if (x) {
-        x.open();
+
+    let file = this.get_file_by_file_title(dir, fileName);
+    if (file !== SystemStateMetadata.DirNotExist) {
+      if (file !== SystemStateMetadata.FileNotExist) {
+        //TODO Return Promise
+        file.open();
         return SystemStateMetadata.FileOpenSuccess;
       }
       return SystemStateMetadata.FileNotExist;
     }
     return SystemStateMetadata.DirNotExist;
+  }
+
+  /**
+   * Returns the file you are looking for
+   * @param dir The directory in which you want to search for a specific file
+   * @param fileName File name
+   */
+  public static get_file_by_file_title(dir: systemDirAFileMetadata | undefined, fileName: string):
+    SystemFile
+    | SystemStateMetadata.DirNotExist
+    | SystemStateMetadata.FileNotExist {
+    if (dir?.files) {
+      let file = dir?.files.filter((value: SystemFile) => {
+        return value.fileName === fileName;
+      })[0];
+      if (file) return file;
+      return SystemStateMetadata.FileNotExist;
+    }
+    return SystemStateMetadata.DirNotExist
   }
 
   /**
@@ -467,8 +478,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @return {SystemFile} Application file
    */
   static install_app(data: AppCreatMetadata): void {
-
-
     let Application = new SystemFile({
       fileName: data.processTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
@@ -487,10 +496,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
 
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
-      console.log("CreatAppFile Error - File already exists")
+      console.error("CreatAppFile Error - File already exists");
     }
-
   }
+
 
   /**
    * Creates and opens a new system alert

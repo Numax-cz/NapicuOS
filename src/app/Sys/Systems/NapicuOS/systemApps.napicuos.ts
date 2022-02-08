@@ -22,8 +22,7 @@ export function initAllStartUpApps(): void {
 export function installAllApps(): void {
 
   napicu_os_terminal();
-  napicu_os_terminal();
-
+  napicu_os_welcomeapp();
 }
 
 

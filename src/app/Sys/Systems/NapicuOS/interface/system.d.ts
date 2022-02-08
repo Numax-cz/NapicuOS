@@ -49,7 +49,7 @@ export declare interface AppCreatMetadata {
    */
   fileIconPath?: string;
 
-  windowButtons?: windowButtonsMetadata
+  windowButtons?: windowButtonsMetadata;
 
 }
 
