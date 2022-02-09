@@ -17,15 +17,18 @@ export function initAllStartUpApps(): void {
   NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
   NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
 
-  let x = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), "Terminal")
-  if (typeof x === "object") NapicuOS.add_file_to_dock(x);
+  // let x = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), "Terminal")
+  // if (typeof x === "object") NapicuOS.add_file_to_dock(x);
 
 }
 
+//Before the user is logged in
 export function installAllApps(): void {
 
   napicu_os_terminal();
   napicu_os_welcomeapp();
+
+  
 }
 
 
@@ -58,7 +61,7 @@ export function napicu_os_terminal(): void {
     processTitle: 'Terminal',
     appComponent: ConsoleComponent,
     windowData: Window.centerPos(35, 35),
-    fileIconPath: '/assets/systems/NapicuOS/SystemIcons/XFD/term.svg'
-
+    fileIconPath: '/assets/systems/NapicuOS/SystemIcons/XFD/term.svg',
+    addToDock: true
   });
 }

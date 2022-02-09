@@ -3,16 +3,14 @@ import {Line} from './Apps/console/console.component';
 import {NapicuOS} from './system.napicuos';
 import {Process} from '../../Process';
 import {removeSpace} from './scripts/removeSpaceInString';
-import {
-  getHelpCommand,
-  getHelpCommandAPPS,
-} from './config/commands/help/getCommand';
+import {getHelpCommand, getHelpCommandAPPS,} from './config/commands/help/getCommand';
 import {SystemFile} from '../../File';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {setHelpCommand, setWindowTitleHelpCommand} from './config/commands/help/setCommand';
 import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from '../../User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
+import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/file";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -28,7 +26,9 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(console.log(NapicuOS.get_apps_dir()));
+
+
+          resolve();
         }, 200);
       });
     })

@@ -2,15 +2,15 @@ import {
   SystemUserDataMetadata,
   SystemUserPermissionsEnumMetadata,
 } from './Systems/NapicuOS/interface/User/user';
+import {SystemFile} from "./File";
 
 export class User {
+  public static defaultUserDock: SystemFile[] = [];
   private _username: string = 'user';
   private _running: boolean = false;
   private declare _password: string;
   private declare _permissions: SystemUserPermissionsEnumMetadata;
-  private _userSetting: SystemUserDataMetadata = {
-    appsInDock: [],
-  };
+  private declare _userSetting: SystemUserDataMetadata;
 
   constructor(
     username: string,
@@ -22,6 +22,10 @@ export class User {
     this._permissions = userPermissions
       ? userPermissions
       : SystemUserPermissionsEnumMetadata.User;
+    this._userSetting = {
+      appsInDock: User.defaultUserDock,
+    };
+
   }
 
   //* * * *  Getters * * *
