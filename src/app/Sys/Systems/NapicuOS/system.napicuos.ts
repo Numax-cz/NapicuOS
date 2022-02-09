@@ -56,13 +56,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //TODO Create a function for init
     initAllCommands();
     installAllApps();
+    this.initUser();
     initAllSystemProcess();
-    NapicuOS.add_user(system_default_user);
-    NapicuOS.add_user(system_root_user);
-    NapicuOS.log_user(
-      system_default_user.username,
-      system_default_user.password
-    );
+
 
     SystemComponent.SysComponent = LoadsComponent;
     setTimeout(() => {
@@ -85,6 +81,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (!NapicuOS.activeUser?.running) {
       initAllStartUpApps();
     }
+  }
+
+  public initUser(): void {
+    NapicuOS.add_user(system_default_user);
+    NapicuOS.add_user(system_root_user);
+    NapicuOS.log_user(
+      system_default_user.username,
+      system_default_user.password
+    );
   }
 
   public override onKeyPress(ev: KeyboardEvent) {
@@ -498,8 +503,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       console.error("CreatAppFile Error - File already exists");
     }
-
-    if (data.addToDock) User.defaultUserDock.push(Application);
+    // if (data.addToDock) User.defaultUserDock.push(Application);
   }
 
 

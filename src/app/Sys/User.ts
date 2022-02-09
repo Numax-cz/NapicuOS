@@ -5,7 +5,6 @@ import {
 import {SystemFile} from "./File";
 
 export class User {
-  public static defaultUserDock: SystemFile[] = [];
   private _username: string = 'user';
   private _running: boolean = false;
   private declare _password: string;
@@ -23,7 +22,7 @@ export class User {
       ? userPermissions
       : SystemUserPermissionsEnumMetadata.User;
     this._userSetting = {
-      appsInDock: User.defaultUserDock,
+      appsInDock: [],
     };
 
   }
