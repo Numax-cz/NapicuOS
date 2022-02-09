@@ -3,10 +3,10 @@ import {SystemAlert} from './Alert';
 import {SystemFile} from './File';
 import {System} from './System';
 import {window_animations} from './Systems/NapicuOS/config/windowAnimations';
-import {SystemFileTypeEnumMetadata} from './Systems/NapicuOS/interface/FilesDirs/file';
 import {processConstructor} from './Systems/NapicuOS/interface/process';
 import {NapicuOS} from './Systems/NapicuOS/system.napicuos';
 import {Window} from './Window';
+import {SystemStateMetadata} from "./Systems/NapicuOS/interface/system";
 
 export declare type ProcessWindowValueMetadata = Window | SystemAlert;
 
@@ -45,6 +45,13 @@ export class Process {
     return this._Window;
   }
 
+  get installer_file(): SystemFile | null {
+    let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), this.processTitle)
+    if (typeof file === 'object') {
+      return file
+    }
+    return null;
+  }
 
   public run(): this {
     if (this.processInterval) {

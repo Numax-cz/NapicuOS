@@ -498,6 +498,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       console.error("CreatAppFile Error - File already exists");
     }
+    
+    if (data.addToDock) this.add_file_to_dock(Application);
   }
 
 

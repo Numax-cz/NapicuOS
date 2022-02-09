@@ -51,6 +51,8 @@ export declare interface AppCreatMetadata {
 
   windowButtons?: windowButtonsMetadata;
 
+  addToDock?: boolean;
+
 }
 
 export declare interface AppCreatFileMetadata {
