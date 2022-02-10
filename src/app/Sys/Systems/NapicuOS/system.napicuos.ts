@@ -103,7 +103,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     //Initialization of all users
     NapicuOS.add_user(system_default_user);
-    //NapicuOS.add_user(system_root_user);
+    NapicuOS.add_user(system_root_user);
 
     //Automatic login of the default user
     NapicuOS.log_user(
