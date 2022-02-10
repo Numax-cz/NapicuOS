@@ -53,11 +53,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
-    //TODO Create a function for init
-    initAllCommands();
-    installAllApps();
-    this.initUser();
+
+    //Initialization of all system processes
     initAllSystemProcess();
+    //Initialize all system commands
+    initAllCommands();
+    //Initialize all system applications
+    installAllApps();
+    //Initialization of all users
+    this.initUsers();
 
 
     SystemComponent.SysComponent = LoadsComponent;
@@ -83,7 +87,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
-  public initUser(): void {
+  public initUsers(): void {
     NapicuOS.add_user(system_default_user);
     NapicuOS.add_user(system_root_user);
     NapicuOS.log_user(
