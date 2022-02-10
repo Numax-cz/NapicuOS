@@ -27,6 +27,7 @@ import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
+import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -468,6 +469,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static create_user(username: string, password: string): void {
     //TODO return if the user exists
     NapicuOS.run_command('adduser', [username, password]);
+  }
+
+  /**
+   * Launches the installed application
+   * @param ApplicationProcessTitle Filename of the installed application (ProcessTitle)
+   */
+  public static open_app(ApplicationProcessTitle: string): void {
+    NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, [ApplicationProcessTitle]);
   }
 
   /**
