@@ -63,8 +63,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public dockRunner(file: SystemFile): void {
-    //TODO Fix
-    //file.open();
+    NapicuOS.open_app(file.fileName);
   }
 
   get systemTime(): string {
@@ -88,10 +87,14 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetRunningAppsInDock(): SystemFile[] {
-    // return NapicuOS.get_system_displayed_window_apps().map((p: Process) => {
-    //
-    // });
-    return [];
+    let i: SystemFile[] = [];
+    NapicuOS.get_system_displayed_window_apps().forEach((App: Process) => {
+      let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), App.processTitle);
+      if (typeof file === "object" && NapicuOS.get_apps_in_dock().filter((file: SystemFile) => {
+        return file.fileName === App.processTitle;
+      }).length === 0) i.push(file);
+    })
+    return i;
   }
 
   get BottomDockDisplay(): boolean {
