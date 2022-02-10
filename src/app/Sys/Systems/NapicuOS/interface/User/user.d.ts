@@ -1,4 +1,4 @@
-import { SystemFile } from 'src/app/Sys/File';
+import {SystemFile} from 'src/app/Sys/File';
 
 export declare type SystemUserPermissionsMetadata = 'superUser' | 'user';
 

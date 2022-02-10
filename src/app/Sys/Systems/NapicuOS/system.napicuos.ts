@@ -17,9 +17,7 @@ import {SystemFile} from '../../File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
 import {
   system_boot_screen_logo,
-  system_boot_screen_title,
-  system_default_user,
-  system_root_user,
+  system_boot_screen_title
 } from './config/systemInfo';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from '../../User';
@@ -88,8 +86,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public initUsers(): void {
+    //Init Root user
+    const system_root_user = new User(
+      'root',
+      'root',
+      SystemUserPermissionsEnumMetadata.SuperUser
+    );
+
+    //Init default basic user
+    const system_default_user = new User(
+      'user',
+      'napicuos',
+      SystemUserPermissionsEnumMetadata.User
+    );
+
+    //Initialization of all users
     NapicuOS.add_user(system_default_user);
-    NapicuOS.add_user(system_root_user);
+    //NapicuOS.add_user(system_root_user);
+
+    //Automatic login of the default user
     NapicuOS.log_user(
       system_default_user.username,
       system_default_user.password
@@ -507,7 +522,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       console.error("CreatAppFile Error - File already exists");
     }
-    // if (data.addToDock) User.defaultUserDock.push(Application);
+    if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application);
   }
 
 

@@ -26,8 +26,7 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-
-
+          User.defaultUserSettings.appsInDock = [];
           resolve();
         }, 200);
       });
