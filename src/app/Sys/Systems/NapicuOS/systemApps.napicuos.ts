@@ -14,8 +14,8 @@ export function initAllSystemProcess(): void {
 export function initAllStartUpApps(): void {
 
   //
-  NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
-  NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, ['Terminal']);
+  NapicuOS.open_app("Terminal");
+  NapicuOS.open_app("Terminal");
 
   // let x = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), "Terminal")
   // if (typeof x === "object") NapicuOS.add_file_to_dock(x);
@@ -28,7 +28,7 @@ export function installAllApps(): void {
   napicu_os_terminal();
   napicu_os_welcomeapp();
 
-  
+
 }
 
 
