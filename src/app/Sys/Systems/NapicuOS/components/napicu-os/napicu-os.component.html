@@ -40,8 +40,10 @@
               <div *ngFor="let i of GetitemsInDock" class="DockIcon">
 
                 <img [src]="i.file.iconPath"
-                     (click)="dockRunner(i.file, i.running)"/>
-                <div [ngClass]="{'widthLine': i.selected, 'smallLine': i.running}" *ngIf="i.running ||
+                     (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(i.file, $event)"/>
+                <div [ngClass]="{'widthLine': i.selected, 'smallLine':
+                i.running}"
+                     *ngIf="i.running ||
                 i.selected" class="line"></div>
 
               </div>

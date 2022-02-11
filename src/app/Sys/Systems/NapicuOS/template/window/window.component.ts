@@ -278,6 +278,7 @@ export class WindowComponent implements OnInit {
         top = this.originalY + (MouseValueY - this.originalMouseY);
       }
     }
+
     if (x && x > WindowComponent.MinWindowWidth) {
       this.selectedWindow.setWidth(x);
       if (left) this.selectedWindow.setLeft(left);

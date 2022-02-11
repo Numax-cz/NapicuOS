@@ -1,7 +1,7 @@
 import {
   animate,
   query,
-  stagger,
+  stagger, state,
   style,
   transition,
   trigger,
@@ -38,6 +38,7 @@ import {window_animations} from "../../config/windowAnimations";
       ]),
     ]),
 
+
   ],
 })
 export class NapicuOSComponent implements OnInit {
@@ -57,6 +58,12 @@ export class NapicuOSComponent implements OnInit {
     if (!running) {
       NapicuOS.open_app(file.fileName);
     }
+    alert('xd')
+  }
+
+  public onRightClick(file: SystemFile, event: Event): void {
+
+    event.preventDefault();
   }
 
   get systemTime(): string {
