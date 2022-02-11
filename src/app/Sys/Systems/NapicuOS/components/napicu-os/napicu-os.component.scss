@@ -62,7 +62,7 @@
   right: 0;
   // width: 100%;
   // max-width: 40%;
-  width: 0;
+  width: fit-content;
   min-width: 15%;
   max-width: 100%;
   background-color: var(--NapicuBottomMenuBackgroundColor);
@@ -83,8 +83,19 @@
     border-left: 2px solid gray;
   }
 
-  .DockIcon {
+  .line {
+    width: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 5px;
+    border-radius: 14px;
+    background-color: white;
+    position: absolute;
+  }
 
+
+  .DockIcon {
+    position: relative;
     margin-right: 10px;
   }
 
