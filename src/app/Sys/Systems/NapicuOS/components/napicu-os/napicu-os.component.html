@@ -38,10 +38,14 @@
             <section style="display: flex;">
               <!-- Applications -->
               <div *ngFor="let i of GetitemsInDock" class="DockIcon">
-                <img [src]="i.iconPath"
-                     (click)="dockRunner(i)"/>
+
+                <img [src]="i.file.iconPath"
+                     (click)="dockRunner(i.file, i.running)"/>
+                <div *ngIf="i.running" class="fullLine">
+
+                </div>
               </div>
-              
+
             </section>
             <!-- <section class="rightPanelMenu">
 
