@@ -83,10 +83,12 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetitemsInDock(): SystemFile[] {
-    return NapicuOS.get_apps_in_dock();
+    let appsInDock: SystemFile[] = NapicuOS.get_apps_in_dock();
+    let activeApps: SystemFile[] = this.GetRunningAppsInDock;
+    return [...new Set([...appsInDock, ...activeApps])];
   }
 
-  get GetRunningAppsInDock(): SystemFile[] {
+  protected get GetRunningAppsInDock(): SystemFile[] {
     let i: SystemFile[] = [];
     NapicuOS.get_system_displayed_window_apps().forEach((App: Process) => {
       let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), App.processTitle);

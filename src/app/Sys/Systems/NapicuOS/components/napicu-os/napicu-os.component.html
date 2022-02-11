@@ -35,13 +35,13 @@
         <section *ngIf="BottomDockDisplay" #BottomBar class="BottomPanel" style="z-index: 10000"
                  id="Dock">
           <div style="display: flex; align-items: center; justify-content: space-between">
-            <section>
+            <section style="display: flex;">
               <!-- Applications -->
-              <img *ngFor="let i of GetitemsInDock" [src]="i.iconPath"
-                   (click)="dockRunner(i)"/>
-              <img *ngFor="let i of GetRunningAppsInDock" [src]="i.iconPath"
-              />
-
+              <div *ngFor="let i of GetitemsInDock" class="DockIcon">
+                <img [src]="i.iconPath"
+                     (click)="dockRunner(i)"/>
+              </div>
+              
             </section>
             <!-- <section class="rightPanelMenu">
 

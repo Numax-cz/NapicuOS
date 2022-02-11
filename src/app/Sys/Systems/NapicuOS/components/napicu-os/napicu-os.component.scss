@@ -74,7 +74,6 @@
 
   img {
     cursor: pointer;
-    //TODO Move => config
     width: 50px;
   }
 
@@ -82,5 +81,18 @@
     margin-right: 10px;
     padding-left: 15px;
     border-left: 2px solid gray;
+  }
+
+  .DockIcon {
+
+    margin-right: 10px;
+  }
+
+  .SelectedApp {
+
+  }
+
+  .OpenApp {
+
   }
 }
