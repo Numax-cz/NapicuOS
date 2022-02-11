@@ -28,6 +28,7 @@ import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
+import {isDelegatedFactoryMetadata} from "@angular/compiler/src/render3/r3_factory";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -193,6 +194,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.get_system_process().filter((element: Process) => {
       return element.Window?.display == true;
     });
+  }
+
+  /**
+   * Returns displayed windows by process title
+   * @param processTitle Process title of the application window
+   */
+  public static get_system_displayed_window_apps_by_process_title(processTitle: string): Process[] {
+    return this.get_system_displayed_window_apps().filter((element: Process) => {
+      return element.processTitle === processTitle;
+    })
   }
 
   /**

@@ -41,9 +41,9 @@
 
                 <img [src]="i.file.iconPath"
                      (click)="dockRunner(i.file, i.running)"/>
-                <div *ngIf="i.running" class="fullLine">
+                <div [ngClass]="{'widthLine': i.selected, 'smallLine': i.running}" *ngIf="i.running ||
+                i.selected" class="line"></div>
 
-                </div>
               </div>
 
             </section>

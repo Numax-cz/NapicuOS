@@ -17,8 +17,6 @@ export function initAllStartUpApps(): void {
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
 
-  // let x = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), "Terminal")
-  // if (typeof x === "object") NapicuOS.add_file_to_dock(x);
 
 }
 
@@ -51,7 +49,8 @@ export function napicu_os_welcomeapp(): void {
     appComponent: WelcomeComponent,
     windowData: Window.centerPos(75, 75),
     resizeAllowed: false,
-    fileIconPath: '/assets/systems/NapicuOS/Logo.svg'
+    fileIconPath: '/assets/systems/NapicuOS/Logo.svg',
+
   });
 }
 

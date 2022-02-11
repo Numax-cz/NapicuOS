@@ -83,14 +83,24 @@
     border-left: 2px solid gray;
   }
 
-  .fullLine {
-    width: 70%;
+  .line {
     left: 50%;
     transform: translateX(-50%);
-    height: 5px;
-    border-radius: 14px;
     background-color: white;
     position: absolute;
+
+  }
+
+  .smallLine {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .widthLine {
+    width: 70%;
+    height: 6px;
+    border-radius: 14px;
   }
 
 

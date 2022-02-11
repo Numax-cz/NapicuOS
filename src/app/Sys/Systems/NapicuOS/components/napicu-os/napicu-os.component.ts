@@ -13,6 +13,9 @@ import {wallpaper} from '../../config/wallpaper';
 import {system_dock_animations} from '../../config/systemAnimations';
 import {NapicuOS} from '../../system.napicuos';
 import {SystemFile} from 'src/app/Sys/File';
+import {System} from "../../../../System";
+import {SystemDockDisplay} from "../../interface/System/dock";
+import {window_animations} from "../../config/windowAnimations";
 
 @Component({
   selector: 'app-napicu-os',
@@ -34,19 +37,7 @@ import {SystemFile} from 'src/app/Sys/File';
         ),
       ]),
     ]),
-    trigger('NapicuOSDockAnimation', [
-      transition(':enter', [
-        style({transform: 'translateY(100px)'}),
-        animate(system_dock_animations, style({transform: 'translateY(0)'})),
-      ]),
-      transition(':leave', [
-        style({transform: 'translateY(0)'}),
-        animate(
-          system_dock_animations,
-          style({transform: 'translateY(100px)'})
-        ),
-      ]),
-    ]),
+
   ],
 })
 export class NapicuOSComponent implements OnInit {
@@ -62,8 +53,10 @@ export class NapicuOSComponent implements OnInit {
     NapicuOSComponent.BottomDockDisplay = true;
   }
 
-  public dockRunner(file: SystemFile): void {
-    NapicuOS.open_app(file.fileName);
+  public dockRunner(file: SystemFile, running: boolean): void {
+    if (!running) {
+      NapicuOS.open_app(file.fileName);
+    }
   }
 
   get systemTime(): string {
@@ -82,9 +75,24 @@ export class NapicuOSComponent implements OnInit {
     return NapicuOS.get_system_process();
   }
 
-  get GetitemsInDock(): SystemFile[] {
-    let appsInDock: SystemFile[] = NapicuOS.get_apps_in_dock();
-    let activeApps: SystemFile[] = this.GetRunningAppsInDock;
+  get GetitemsInDock(): SystemDockDisplay[] {
+    let appsInDock: SystemDockDisplay[] = NapicuOS.get_apps_in_dock().map((value: SystemFile) => {
+      return {
+        file: value,
+        running: !!NapicuOS.get_system_displayed_window_apps_by_process_title(value.fileName).length,
+        selected: (NapicuOS.get_system_activated_window_app()?.processTitle === value.fileName)
+      };
+    });
+
+
+    let activeApps: SystemDockDisplay[] = this.GetRunningAppsInDock.map((value: SystemFile) => {
+      return {
+        file: value,
+        running: false,
+        selected: NapicuOS.get_system_activated_window_app().processTitle === value.fileName
+      }
+    });
+
     return [...new Set([...appsInDock, ...activeApps])];
   }
 

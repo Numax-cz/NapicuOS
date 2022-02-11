@@ -1,3 +1,3 @@
 import {SystemFile} from "../../../../File";
 
-export declare type SystemDockDisplay = { file: SystemFile, running: boolean };
+export declare type SystemDockDisplay = { file: SystemFile, running: boolean, selected: boolean };
