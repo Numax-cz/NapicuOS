@@ -92,7 +92,9 @@ export class Window {
     };
   }
 
+
   //* * * *  Getters * * *
+
   //? Getters State
   /**
    * Returns if the application window state is maximized
@@ -166,14 +168,7 @@ export class Window {
    * @returns {number} value in pixels
    */
   public getHeight(): number {
-    return percentageValue(this.windowData.width, window.innerHeight);
-  }
-
-  /**
-   * Return application window button settings
-   */
-  public getWindowButtons(): windowButtonsMetadata {
-    return this.windowButtons;
+    return percentageValue(this.windowData.height, window.innerHeight);
   }
 
   //* * * *  Setters * * *
