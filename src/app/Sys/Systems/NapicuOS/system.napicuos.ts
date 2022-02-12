@@ -301,6 +301,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns the application in the dock by filename
+   * @param fileName File name
+   */
+  public static get_apps_in_dock_by_file_name(fileName: string): SystemFile {
+    return this.get_apps_in_dock().filter((value: SystemFile) => {
+      return value.fileName === fileName
+    })[0];
+  }
+
+  /**
    * Returns process by process id
    * @param pid Process identifier
    */

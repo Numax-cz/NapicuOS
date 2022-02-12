@@ -47,11 +47,17 @@ export class NapicuOSComponent implements OnInit {
    */
   public static BottomDockDisplay: boolean = false;
 
+  public selectedAppContext: number | null = null;
+
   constructor() {
   }
 
   ngOnInit(): void {
     NapicuOSComponent.BottomDockDisplay = true;
+    window.addEventListener('mousedown', (e: MouseEvent) => {
+      this.selectedAppContext = null;
+      e.preventDefault();
+    });
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
@@ -61,8 +67,8 @@ export class NapicuOSComponent implements OnInit {
     alert('xd')
   }
 
-  public onRightClick(file: SystemFile, event: Event): void {
-
+  public onRightClick(index: number, event: Event): void {
+    this.selectedAppContext = index;
     event.preventDefault();
   }
 
@@ -86,6 +92,7 @@ export class NapicuOSComponent implements OnInit {
     let appsInDock: SystemDockDisplay[] = NapicuOS.get_apps_in_dock().map((value: SystemFile) => {
       return {
         file: value,
+        alreadyPinned: true,
         running: !!NapicuOS.get_system_displayed_window_apps_by_process_title(value.fileName).length,
         selected: (NapicuOS.get_system_activated_window_app()?.processTitle === value.fileName)
       };
@@ -94,7 +101,8 @@ export class NapicuOSComponent implements OnInit {
     let activeApps: SystemDockDisplay[] = this.GetRunningAppsInDock.map((value: SystemFile) => {
       return {
         file: value,
-        running: false,
+        alreadyPinned: false,
+        running: true,
         selected: NapicuOS.get_system_activated_window_app().processTitle === value.fileName
       }
     });

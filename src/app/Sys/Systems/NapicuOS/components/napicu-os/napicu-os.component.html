@@ -37,12 +37,13 @@
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section style="display: flex;">
               <!-- Applications -->
-              <div *ngFor="let i of GetitemsInDock" class="DockIcon">
-                <div class="ContextMenu">
-
+              <div *ngFor="let i of GetitemsInDock; let index = index" class="DockIcon">
+                <!-- Application context menu-->
+                <div *ngIf="index === selectedAppContext" class="ContextMenu">
+                  <div>{{i.alreadyPinned ? 'Unpin' : 'Pin'}}</div>
                 </div>
                 <img [src]="i.file.iconPath"
-                     (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(i.file, $event)"/>
+                     (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"/>
                 <div [ngClass]="{'widthLine': i.selected, 'smallLine':
                 i.running}"
                      *ngIf="i.running ||
