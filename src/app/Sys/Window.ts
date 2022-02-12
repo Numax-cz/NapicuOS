@@ -62,7 +62,6 @@ export class Window {
       maximize: true,
       close: true,
     };
-
     this.resizeAllowed = data.resizeAllowed || data.resizeAllowed === undefined;
   }
 
