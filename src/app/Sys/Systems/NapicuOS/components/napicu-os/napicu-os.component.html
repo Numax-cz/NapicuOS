@@ -38,7 +38,9 @@
             <section style="display: flex;">
               <!-- Applications -->
               <div *ngFor="let i of GetitemsInDock" class="DockIcon">
+                <div class="ContextMenu">
 
+                </div>
                 <img [src]="i.file.iconPath"
                      (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(i.file, $event)"/>
                 <div [ngClass]="{'widthLine': i.selected, 'smallLine':

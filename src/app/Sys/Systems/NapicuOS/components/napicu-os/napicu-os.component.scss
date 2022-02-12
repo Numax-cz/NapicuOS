@@ -116,4 +116,26 @@
   .OpenApp {
 
   }
+
+  .ContextMenu {
+    color: white;
+    position: absolute;
+    left: 0;
+    background-color: #1E2127;
+    width: 160px;
+    bottom: calc(100% + 20px);
+    padding: 10px 5px;
+    border-radius: 14px;
+
+
+    > div {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      padding: 7px 5px;
+      background-color: rebeccapurple;
+      border-radius: 8px;
+
+    }
+  }
 }
+

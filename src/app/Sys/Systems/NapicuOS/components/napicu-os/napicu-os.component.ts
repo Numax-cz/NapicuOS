@@ -91,7 +91,6 @@ export class NapicuOSComponent implements OnInit {
       };
     });
 
-
     let activeApps: SystemDockDisplay[] = this.GetRunningAppsInDock.map((value: SystemFile) => {
       return {
         file: value,
