@@ -344,7 +344,7 @@ export class WindowComponent implements OnInit {
     this.activeWindowState = !process.isStateNormal();
     this.move = true;
     this.selectedWindow = process;
-    event.stopPropagation();
+    //event.stopPropagation();
   }
 
   /**

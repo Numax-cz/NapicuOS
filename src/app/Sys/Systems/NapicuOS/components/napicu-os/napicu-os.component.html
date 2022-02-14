@@ -32,14 +32,15 @@
         </section>
 
         <!-- Bottom AppPanel -->
-        <section *ngIf="BottomDockDisplay" #BottomBar class="BottomPanel" style="z-index: 10000"
+        <section *ngIf="BottomDockDisplay" class="BottomPanel" style="z-index: 10000"
                  id="Dock">
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section style="display: flex;">
               <!-- Applications -->
-              <div *ngFor="let i of GetitemsInDock; let index = index" class="DockIcon">
+              <div *ngFor="let i of apps; let index = index" class="DockIcon">
                 <!-- Application context menu-->
                 <div *ngIf="index === selectedAppContext" class="ContextMenu">
+                  <div>Open</div>
                   <div>{{i.alreadyPinned ? 'Unpin' : 'Pin'}}</div>
                 </div>
                 <img [src]="i.file.iconPath"
