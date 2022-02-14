@@ -29,6 +29,7 @@ import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {isDelegatedFactoryMetadata} from "@angular/compiler/src/render3/r3_factory";
+import {SystemDockDisplay} from "./interface/System/dock";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
@@ -123,12 +124,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * A function that starts when you launch a new process
    */
   public static onRunNewProcess(): void {
+    this.update_dock_items();
   }
 
   /**
    * A function that starts when you launch a new application
    */
   public static onRunNewApp(): void {
+    this.update_dock_items();
 
   }
 
@@ -309,8 +312,45 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns apps in dock
    */
-  public static get_apps_in_dock(): SystemFile[] {
+  public static get_user_apps_in_dock(): SystemFile[] {
+    //TODO BottomDockProcess in NapicuOSComponent
     return this.get_active_user()?.userSetting.appsInDock || [];
+  }
+
+  public static get_system_apps_in_dock(): SystemDockDisplay[] {
+    return NapicuOSComponent.BottomDockProcess;
+  }
+
+  /**
+   * Updates the system dock
+   */
+  public static update_dock_items(): void {
+    let i: SystemFile[] = [];
+    NapicuOS.get_system_displayed_window_apps().forEach((App: Process) => {
+      let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), App.processTitle);
+      if (typeof file === "object" && NapicuOS.get_user_apps_in_dock().filter((file: SystemFile) => {
+        return file.fileName === App.processTitle;
+      }).length === 0) i.push(file);
+    })
+    let appsInDock: SystemDockDisplay[] = NapicuOS.get_user_apps_in_dock().map((value: SystemFile) => {
+      return {
+        file: value,
+        alreadyPinned: true,
+        running: !!NapicuOS.get_system_displayed_window_apps_by_process_title(value.fileName).length,
+        selected: (NapicuOS.get_system_activated_window_app()?.processTitle === value.fileName)
+      };
+    });
+
+    let activeApps: SystemDockDisplay[] = i.map((value: SystemFile) => {
+      return {
+        file: value,
+        alreadyPinned: false,
+        running: true,
+        selected: NapicuOS.get_system_activated_window_app().processTitle === value.fileName
+      }
+    });
+
+    NapicuOSComponent.BottomDockProcess = [...new Set([...appsInDock, ...activeApps])];
   }
 
   /**
@@ -318,7 +358,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param fileName File name
    */
   public static get_apps_in_dock_by_file_name(fileName: string): SystemFile {
-    return this.get_apps_in_dock().filter((value: SystemFile) => {
+    return this.get_user_apps_in_dock().filter((value: SystemFile) => {
       return value.fileName === fileName
     })[0];
   }
@@ -420,6 +460,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static add_file_to_dock(file: SystemFile): void {
     this.get_active_user()?.userSetting.appsInDock.push(file);
+    NapicuOS.update_dock_items();
   }
 
   /**

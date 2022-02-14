@@ -31,6 +31,8 @@ export class User {
 
   }
 
+  //* * * *  Functions * * *
+
   //* * * *  Getters * * *
   /**
    * Returns the user's name

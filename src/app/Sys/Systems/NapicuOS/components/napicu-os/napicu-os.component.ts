@@ -49,6 +49,7 @@ export class NapicuOSComponent implements OnInit {
 
   public selectedAppContext: number | null = null;
 
+  public static BottomDockProcess: SystemDockDisplay[] = [];
 
   constructor() {
   }
@@ -81,45 +82,16 @@ export class NapicuOSComponent implements OnInit {
     return wallpaper;
   }
 
+  get GetBottomDockProcess(): SystemDockDisplay[] {
+    return NapicuOSComponent.BottomDockProcess;
+  }
+
   get SystemBoot(): boolean {
     return NapicuOS.get_system_boot();
   }
 
   get Process(): Process[] {
     return NapicuOS.get_system_process();
-  }
-
-  get GetitemsInDock(): SystemDockDisplay[] {
-    let appsInDock: SystemDockDisplay[] = NapicuOS.get_apps_in_dock().map((value: SystemFile) => {
-      return {
-        file: value,
-        alreadyPinned: true,
-        running: !!NapicuOS.get_system_displayed_window_apps_by_process_title(value.fileName).length,
-        selected: (NapicuOS.get_system_activated_window_app()?.processTitle === value.fileName)
-      };
-    });
-
-    let activeApps: SystemDockDisplay[] = this.GetRunningAppsInDock.map((value: SystemFile) => {
-      return {
-        file: value,
-        alreadyPinned: false,
-        running: true,
-        selected: NapicuOS.get_system_activated_window_app().processTitle === value.fileName
-      }
-    });
-
-    return [...new Set([...appsInDock, ...activeApps])];
-  }
-
-  protected get GetRunningAppsInDock(): SystemFile[] {
-    let i: SystemFile[] = [];
-    NapicuOS.get_system_displayed_window_apps().forEach((App: Process) => {
-      let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), App.processTitle);
-      if (typeof file === "object" && NapicuOS.get_apps_in_dock().filter((file: SystemFile) => {
-        return file.fileName === App.processTitle;
-      }).length === 0) i.push(file);
-    })
-    return i;
   }
 
   get BottomDockDisplay(): boolean {
