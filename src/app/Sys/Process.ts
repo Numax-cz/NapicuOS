@@ -61,6 +61,7 @@ export class Process {
     }
     GrubComponent.ActiveSystem.SystemProcess.push(this);
     this._pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
+    NapicuOS.onRunNewProcess();
     return this;
   }
 

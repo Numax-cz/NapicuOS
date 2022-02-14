@@ -119,6 +119,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onLoad(): void {
   }
 
+  /**
+   * A function that starts when you launch a new process
+   */
+  public static onRunNewProcess(): void {
+  }
+
+  /**
+   * A function that starts when you launch a new application
+   */
+  public static onRunNewApp(): void {
+
+  }
+
   public static getTime(): string {
     let now = new Date();
     return formatDate(now, time_formate, 'en-US'); //TODO Settings
