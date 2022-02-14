@@ -49,7 +49,6 @@ export class NapicuOSComponent implements OnInit {
 
   public selectedAppContext: number | null = null;
 
-  public declare apps: SystemDockDisplay[];
 
   constructor() {
   }
@@ -60,7 +59,6 @@ export class NapicuOSComponent implements OnInit {
       this.selectedAppContext = null;
       e.preventDefault();
     });
-    this.apps = this.GetitemsInDock;
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {

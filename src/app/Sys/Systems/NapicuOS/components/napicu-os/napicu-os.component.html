@@ -32,12 +32,12 @@
         </section>
 
         <!-- Bottom AppPanel -->
-        <section *ngIf="BottomDockDisplay" class="BottomPanel" style="z-index: 10000"
+        <section *ngIf="BottomDockDisplay" #BottomBar class="BottomPanel" style="z-index: 10000"
                  id="Dock">
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section style="display: flex;">
               <!-- Applications -->
-              <div *ngFor="let i of apps; let index = index" class="DockIcon">
+              <div *ngFor="let i of GetitemsInDock; let index = index" class="DockIcon">
                 <!-- Application context menu-->
                 <div *ngIf="index === selectedAppContext" class="ContextMenu">
                   <div>Open</div>
@@ -49,14 +49,8 @@
                 i.running}"
                      *ngIf="i.running ||
                 i.selected" class="line"></div>
-
               </div>
-
             </section>
-            <!-- <section class="rightPanelMenu">
-
-              <img src="/assets/systems/NapicuOS/SystemIcons/XFD/menu.svg" />
-            </section> -->
           </div>
         </section>
       </section>
