@@ -14,3 +14,5 @@ export const F1 = 112;
 export const Home = 36;
 export const End = 35;
 export const Tab = 9;
+
+//TODO ENUM
