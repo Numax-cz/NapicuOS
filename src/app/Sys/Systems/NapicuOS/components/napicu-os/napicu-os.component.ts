@@ -6,6 +6,8 @@ import {wallpaper} from '../../config/wallpaper';
 import {NapicuOS} from '../../system.napicuos';
 import {SystemFile} from 'src/app/Sys/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
+import {WindowComponent} from "../../template/window/window.component";
+import {global} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-napicu-os',
@@ -44,19 +46,26 @@ export class NapicuOSComponent implements OnInit {
 
   ngOnInit(): void {
     NapicuOSComponent.BottomDockDisplay = true;
-    window.addEventListener('mousedown', (e: MouseEvent) => {
-      this.selectedAppContext = null;
-      e.preventDefault();
-    });
+    // window.addEventListener('mousedown', (e: MouseEvent) => {
+    //   this.selectedAppContext = null;
+    //   e.preventDefault();
+    // });
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
-    console.log('file');
     if (!running) {
       NapicuOS.open_app(file.fileName);
-      console.log('Run');
-    }
+    } else {
+      //TODO OPEN;
+      let x = WindowComponent.WindowHistory.indexOf(file.value());
+      console.log(file.value())
+      if (x) {
 
+      }
+      console.log(x)
+      NapicuOS.get_system_displayed_window_apps_by_process_title(file.fileName)[0].Window.activated = true;
+
+    }
   }
 
   public onRightClick(index: number, event: Event): void {

@@ -164,8 +164,8 @@ export class WindowComponent implements OnInit {
         this.selectedWindow?.activated
       ) {
         this.selectedWindow.activated = false;
+        NapicuOS.update_dock_items();
       }
-      NapicuOS.update_dock_items();
     });
   }
 
@@ -302,6 +302,7 @@ export class WindowComponent implements OnInit {
     });
     this.selectedWindow = process;
     process.activated = true;
+    NapicuOS.update_dock_items();
   }
 
   /**

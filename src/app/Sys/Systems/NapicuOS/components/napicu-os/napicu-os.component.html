@@ -44,8 +44,8 @@
                   <div>{{i.alreadyPinned ? 'Unpin' : 'Pin'}}</div>
                 </div>
                 <!-- Application icon-->
-                <img [src]="i.file.iconPath"
-                     (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"
+                <img [src]="i.file.iconPath" (click)="dockRunner(i.file, i.running)"
+                     (contextmenu)="onRightClick(index, $event)"
                      alt="Application icon"/>
                 <!-- Application line-->
                 <div [ngClass]="{'widthLine': i.selected, 'smallLine':
