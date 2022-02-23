@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BiosSettings } from '../../Array/ToolSettings';
-import { ToolSettings } from '../../interface/ToolSettings';
+import {Component, OnInit} from '@angular/core';
+import {BiosSettings} from '../../Array/ToolSettings';
+import {ToolSettings} from '../../interface/ToolSettings';
 
 @Component({
   selector: 'app-tools',
@@ -10,7 +10,9 @@ import { ToolSettings } from '../../interface/ToolSettings';
 export class ToolsComponent implements OnInit {
   public MainOption: ToolSettings = BiosSettings.Tools;
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

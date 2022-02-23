@@ -1,12 +1,12 @@
-import { BiosComponent } from 'src/app/Bios/bios/bios.component';
-import { FlashComponent } from 'src/app/Bios/flash/flash.component';
-import { OptionPanelComponent } from 'src/app/Bios/option-panel/option-panel.component';
-import * as key from 'src/app/Config/KeyMaps';
-import { GlobalEvents } from '../GlobalEvents';
-import { MoveWindowOptions } from '../MoveWindowOptions';
-import { CheckFile } from './CheckFile';
-import { FlashBiosExit } from './FlashBiosExit';
-import { FlashTab } from './FlashTab';
+import {BiosComponent} from 'src/app/Bios/bios/bios.component';
+import {FlashComponent} from 'src/app/Bios/flash/flash.component';
+import {OptionPanelComponent} from 'src/app/Bios/option-panel/option-panel.component';
+import {KeyMaps} from 'src/app/Config/KeyMaps';
+import {GlobalEvents} from '../GlobalEvents';
+import {MoveWindowOptions} from '../MoveWindowOptions';
+import {CheckFile} from './CheckFile';
+import {FlashBiosExit} from './FlashBiosExit';
+import {FlashTab} from './FlashTab';
 
 export const Move = (e: KeyboardEvent) => {
   if (FlashComponent.ezFlashWindow) {
@@ -16,7 +16,7 @@ export const Move = (e: KeyboardEvent) => {
       !BiosComponent.WindowFastOptionDisplay &&
       !FlashComponent.Flashing
     ) {
-      if (e.keyCode == key.ArrowDown || e.keyCode == key.End) {
+      if (e.keyCode == KeyMaps.ArrowDown || e.keyCode == KeyMaps.End) {
         if (
           FlashComponent.SelectedWindow == 0 &&
           FlashComponent.SelectedDir < FlashComponent.FlashDrive.length - 1
@@ -30,10 +30,10 @@ export const Move = (e: KeyboardEvent) => {
           FlashComponent.SelectedFile < FlashComponent.listDir.length - 1
         ) {
           FlashComponent.SelectedFile += 1;
-          var ScrollY = FlashComponent.Scroll.scrollTop;
+          let ScrollY = FlashComponent.Scroll.scrollTop;
           FlashComponent.Scroll.scrollTo(0, ScrollY + 26);
         }
-      } else if (e.keyCode == key.ArrowUp || e.keyCode == key.Home) {
+      } else if (e.keyCode == KeyMaps.ArrowUp || e.keyCode == KeyMaps.Home) {
         if (
           FlashComponent.SelectedWindow == 0 &&
           FlashComponent.SelectedDir !== 0
@@ -48,27 +48,27 @@ export const Move = (e: KeyboardEvent) => {
         ) {
           FlashComponent.SelectedFile -= 1;
 
-          var ScrollY = FlashComponent.Scroll.scrollTop;
+          let ScrollY = FlashComponent.Scroll.scrollTop;
           FlashComponent.Scroll.scrollTo(0, ScrollY - 26);
         }
-      } else if (e.keyCode == key.Tab) {
+      } else if (e.keyCode == KeyMaps.Tab) {
         FlashTab();
         e.preventDefault(); //TODO Move => End
-      } else if (e.keyCode == key.Escape) {
+      } else if (e.keyCode == KeyMaps.Escape) {
         FlashBiosExit();
-      } else if (e.keyCode == key.Enter) {
+      } else if (e.keyCode == KeyMaps.Enter) {
         //* Enter
         if (FlashComponent.SelectedWindow == 1) {
           CheckFile();
         }
       }
-    } else if (e.keyCode == key.Enter) {
+    } else if (e.keyCode == KeyMaps.Enter) {
       if (OptionPanelComponent.window) OptionPanelComponent.window.CloseSave();
     } else if (
-      e.keyCode == key.ArrowDown ||
-      e.keyCode == key.ArrowRight ||
-      e.keyCode == key.ArrowUp ||
-      e.keyCode == key.ArrowLeft
+      e.keyCode == KeyMaps.ArrowDown ||
+      e.keyCode == KeyMaps.ArrowRight ||
+      e.keyCode == KeyMaps.ArrowUp ||
+      e.keyCode == KeyMaps.ArrowLeft
     ) {
       MoveWindowOptions(e.keyCode);
     }

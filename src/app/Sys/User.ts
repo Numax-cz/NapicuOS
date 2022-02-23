@@ -1,7 +1,4 @@
 import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata,} from './Systems/NapicuOS/interface/User/user';
-import {SystemFile} from "./File";
-import {SystemFileTypeEnumMetadata} from "./Systems/NapicuOS/interface/FilesDirs/file";
-import {copy} from "../Scripts/DeepClone";
 
 export class User {
   private _username: string = 'user';

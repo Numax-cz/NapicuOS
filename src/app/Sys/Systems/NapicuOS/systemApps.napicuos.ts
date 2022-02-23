@@ -3,9 +3,6 @@ import {ConsoleComponent} from './Apps/console/console.component';
 import {WelcomeComponent} from './Apps/welcome/welcome.component';
 import {NapicuOS} from './system.napicuos';
 import {Window} from "../../Window";
-import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
-import {SystemAlert} from "../../Alert";
-import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -13,7 +10,7 @@ export function initAllSystemProcess(): void {
 
 export function initAllStartUpApps(): void {
 
-  
+
   NapicuOS.open_app("Terminal");
   //NapicuOS.open_app("Terminal");
 

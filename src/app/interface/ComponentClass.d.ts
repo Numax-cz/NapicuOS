@@ -1,4 +1,4 @@
-import { settings, ToolSettings } from './ToolSettings';
+import {settings, ToolSettings} from './ToolSettings';
 
 export interface ComponentClass {
   selected: number;

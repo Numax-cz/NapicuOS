@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PowerComponent } from './power.component';
+import {PowerComponent} from './power.component';
 
 describe('PowerComponent', () => {
   let component: PowerComponent;

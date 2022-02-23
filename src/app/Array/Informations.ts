@@ -1,5 +1,5 @@
-import { Informations } from '../interface/Informations';
-import { lang } from './BiosMenu';
+import {Informations} from '../interface/Informations';
+import {lang} from './BiosMenu';
 
 export function MainInfo(): Informations[] {
   return [

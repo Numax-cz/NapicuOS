@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import * as key from 'src/app/Config/KeyMaps';
-import { Boot } from 'src/app/Scripts/exit/Boot';
-import { System } from 'src/app/Sys/System';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {KeyMaps} from 'src/app/Config/KeyMaps';
+import {Boot} from 'src/app/Scripts/exit/Boot';
+import {System} from 'src/app/Sys/System';
 
 @Component({
   selector: 'app-grub',
@@ -9,7 +9,8 @@ import { System } from 'src/app/Sys/System';
   styleUrls: ['./grub.component.scss'],
 })
 export class GrubComponent implements OnInit, OnDestroy {
-  constructor() {}
+  constructor() {
+  }
 
   /**
    * Number indicates the selected options
@@ -38,15 +39,15 @@ export class GrubComponent implements OnInit, OnDestroy {
   }
 
   public Move = (e: KeyboardEvent): void => {
-    if (e.keyCode == key.ArrowUp) {
+    if (e.keyCode == KeyMaps.ArrowUp) {
       if (this.selected > 0) {
         this.selected -= 1;
       }
-    } else if (e.keyCode == key.ArrowDown) {
+    } else if (e.keyCode == KeyMaps.ArrowDown) {
       if (this.selected < GrubComponent.Systems.length - 1) {
         this.selected += 1;
       }
-    } else if (e.keyCode == key.Enter) {
+    } else if (e.keyCode == KeyMaps.Enter) {
       this.Enter();
     }
   };

@@ -1,18 +1,11 @@
-import {
-  animate,
-  query,
-  stagger,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { SystemComponent } from 'src/app/System/system/system.component';
-import { log_screen_animation_time } from '../../config/logscreen';
-import { wallpaper } from '../../config/wallpaper';
-import { SystemStateMetadata } from '../../interface/system';
-import { NapicuOS } from '../../system.napicuos';
-import { NapicuOSComponent } from '../napicu-os/napicu-os.component';
+import {animate, query, stagger, style, transition, trigger,} from '@angular/animations';
+import {Component, OnInit} from '@angular/core';
+import {SystemComponent} from 'src/app/System/system/system.component';
+import {log_screen_animation_time} from '../../config/logscreen';
+import {wallpaper} from '../../config/wallpaper';
+import {SystemStateMetadata} from '../../interface/system';
+import {NapicuOS} from '../../system.napicuos';
+import {NapicuOSComponent} from '../napicu-os/napicu-os.component';
 
 @Component({
   selector: 'app-loginscreen',
@@ -44,9 +37,11 @@ export class LoginscreenComponent implements OnInit {
   public declare password: string;
   public isErrorLogin: boolean = false;
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   get wallpaper(): string {
     return wallpaper;

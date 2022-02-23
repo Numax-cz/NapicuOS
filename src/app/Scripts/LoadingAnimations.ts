@@ -1,4 +1,4 @@
-import { Navigate } from './BiosRouter';
+import {Navigate} from './BiosRouter';
 
 /**
  * Loading animation (black screen)

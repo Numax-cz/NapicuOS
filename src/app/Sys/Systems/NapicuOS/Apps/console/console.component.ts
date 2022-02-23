@@ -1,13 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CommandFunMetadata } from 'src/app/Sys/command';
-import { system_computer_name } from '../../config/systemInfo';
-import { removeSpace } from '../../scripts/removeSpaceInString';
-import { NapicuOS } from '../../system.napicuos';
-import {
-  historyCommandsMetadata,
-  inputMetadata,
-  terminalColorsMetadata,
-} from './console';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {CommandFunMetadata} from 'src/app/Sys/command';
+import {system_computer_name} from '../../config/systemInfo';
+import {removeSpace} from '../../scripts/removeSpaceInString';
+import {NapicuOS} from '../../system.napicuos';
+import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from './console';
 
 export class Line {
   private declare line: string;
@@ -19,7 +15,7 @@ export class Line {
   }
 
   public Write(): historyCommandsMetadata {
-    return { value: this.line, color: this.color };
+    return {value: this.line, color: this.color};
   }
 
   public setColor(color: terminalColorsMetadata): void {
@@ -53,9 +49,11 @@ export class ConsoleComponent implements OnInit {
    */
   private lines: inputMetadata[] = [];
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   /**
    * Function that is triggered by pressing enter
@@ -164,7 +162,7 @@ export class ConsoleComponent implements OnInit {
    * @param enteredCommand - The command that appears as entered
    */
   private creatCommandLine(value: Line[], enteredCommand?: string): void {
-    this.lines.push({ lines: value, enteredCommand: enteredCommand });
+    this.lines.push({lines: value, enteredCommand: enteredCommand});
   }
 
   /**

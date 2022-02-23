@@ -1,8 +1,8 @@
-import { Type } from '@angular/core';
-import { AlertComponent } from './Systems/NapicuOS/Apps/alert/alert.component';
-import { systemAlertTypeEnumMetadata } from './Systems/NapicuOS/interface/Alert/alert';
-import { windowData } from './Systems/NapicuOS/interface/Window/windowData';
-import { Window } from './Window';
+import {Type} from '@angular/core';
+import {AlertComponent} from './Systems/NapicuOS/Apps/alert/alert.component';
+import {systemAlertTypeEnumMetadata} from './Systems/NapicuOS/interface/Alert/alert';
+import {windowData} from './Systems/NapicuOS/interface/Window/windowData';
+import {Window} from './Window';
 
 export class SystemAlert extends Window {
   public static defaultSize: windowData = {

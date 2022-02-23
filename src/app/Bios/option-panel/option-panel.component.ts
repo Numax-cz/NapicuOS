@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BiosComponent } from '../bios/bios.component';
-import { Window } from 'src/app/Scripts/Window';
+import {Component, OnInit} from '@angular/core';
+import {BiosComponent} from '../bios/bios.component';
+import {Window} from 'src/app/Scripts/Window';
 
 @Component({
   selector: 'app-option-panel',
@@ -8,9 +8,11 @@ import { Window } from 'src/app/Scripts/Window';
   styleUrls: ['./option-panel.component.scss'],
 })
 export class OptionPanelComponent implements OnInit {
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   /**
    * Specifies whether the popup - 1 window is open or closed (Option-Panel)

@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import * as key from 'src/app/Config/KeyMaps';
-import { animationCursor } from 'src/app/Scripts/bootloader/text';
-import { Reboot } from 'src/app/Scripts/exit/Reboot';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {KeyMaps} from 'src/app/Config/KeyMaps';
+import {animationCursor} from 'src/app/Scripts/bootloader/text';
+import {Reboot} from 'src/app/Scripts/exit/Reboot';
 
 @Component({
   selector: 'app-blackscreen',
@@ -15,7 +15,8 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
   public static text: string[];
   public static cursor: animationCursor | null;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.setEvents();
@@ -44,7 +45,7 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
   }
 
   public Move = (e: KeyboardEvent): void => {
-    if (e.keyCode == key.F1) {
+    if (e.keyCode == KeyMaps.F1) {
       Reboot();
       e.preventDefault();
     }

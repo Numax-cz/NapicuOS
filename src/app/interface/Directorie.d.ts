@@ -1,4 +1,4 @@
-import { FlashInformation } from './FlashInformation';
+import {FlashInformation} from './FlashInformation';
 
 export interface Drives {
   title: string;

@@ -1,13 +1,7 @@
-import { BiosOptionsST } from '../Array/ToolSettings';
-import { cookiesForBisoSettingsAr } from '../Config/Cookies';
-import {
-  Deutschland,
-  English,
-  Japanes,
-  LangMenu,
-  Slovenia,
-} from '../Config/Lang/Lang';
-import { getCookies } from './Cookies';
+import {BiosOptionsST} from '../Array/ToolSettings';
+import {cookiesForBisoSettingsAr} from '../Config/Cookies';
+import {Deutschland, English, Japanes, LangMenu, Slovenia,} from '../Config/Lang/Lang';
+import {getCookies} from './Cookies';
 
 export function getLanguage(): any {
   var pack;

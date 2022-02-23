@@ -1,12 +1,12 @@
-import { isDate, isOption, isOptionsFast, isTime } from './Type';
-import { settings, Time } from '../interface/ToolSettings';
-import { clearTimeInterval } from './TimeController';
-import { BiosComponent } from '../Bios/bios/bios.component';
-import { OptionPanelComponent } from '../Bios/option-panel/option-panel.component';
-import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
-import { Window } from './Window';
-import { copy } from './DeepClone';
-import { getSelectedItem } from './getSelectedItem';
+import {isDate, isOption, isOptionsFast, isTime} from './Type';
+import {settings, Time} from '../interface/ToolSettings';
+import {clearTimeInterval} from './TimeController';
+import {BiosComponent} from '../Bios/bios/bios.component';
+import {OptionPanelComponent} from '../Bios/option-panel/option-panel.component';
+import {SettingsTemplateComponent} from '../Bios/settings-template/settings-template.component';
+import {Window} from './Window';
+import {copy} from './DeepClone';
+import {getSelectedItem} from './getSelectedItem';
 
 export var ItemsDateInit: Time[];
 
@@ -39,7 +39,7 @@ export function SetWindowOption(): void {
       var fun = selected.optionsFast;
       if (!fun) return;
       OptionPanelComponent.window = new Window(
-        [{ title: 'Yes' }, { title: 'No' }],
+        [{title: 'Yes'}, {title: 'No'}],
         title,
         fun,
         false,

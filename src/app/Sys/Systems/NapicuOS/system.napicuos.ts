@@ -15,10 +15,7 @@ import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from '../../File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
-import {
-  system_boot_screen_logo,
-  system_boot_screen_title
-} from './config/systemInfo';
+import {system_boot_screen_logo, system_boot_screen_title} from './config/systemInfo';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from '../../User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
@@ -28,7 +25,6 @@ import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
-import {isDelegatedFactoryMetadata} from "@angular/compiler/src/render3/r3_factory";
 import {SystemDockDisplay} from "./interface/System/dock";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {

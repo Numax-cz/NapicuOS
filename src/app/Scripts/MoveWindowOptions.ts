@@ -1,5 +1,5 @@
-import { BiosComponent } from '../Bios/bios/bios.component';
-import { OptionPanelComponent } from '../Bios/option-panel/option-panel.component';
+import {BiosComponent} from '../Bios/bios/bios.component';
+import {OptionPanelComponent} from '../Bios/option-panel/option-panel.component';
 
 export function MoveWindowOptions(keyCode: number): void {
   if (!OptionPanelComponent.window) return;
@@ -20,7 +20,7 @@ export function MoveWindowOptions(keyCode: number): void {
   if (
     keyCode == KeyCodeArrow1 &&
     BiosComponent.WindowSelectedOption <
-      OptionPanelComponent.window.WindowItems.length - 1
+    OptionPanelComponent.window.WindowItems.length - 1
   ) {
     BiosComponent.WindowSelectedOption += 1;
   }

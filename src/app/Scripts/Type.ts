@@ -1,4 +1,4 @@
-import { Date, Options, settings, Time } from '../interface/ToolSettings';
+import {Date, Options, settings, Time} from '../interface/ToolSettings';
 
 export type WindowItems = Options[] | Time[] | Date[];
 

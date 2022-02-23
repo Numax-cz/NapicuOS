@@ -1,21 +1,11 @@
-import {
-  animate,
-  query,
-  stagger, state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import {animate, query, stagger, style, transition, trigger,} from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
 import {Process} from 'src/app/Sys/Process';
 import {boot_animation_time} from '../../config/boot';
 import {wallpaper} from '../../config/wallpaper';
-import {system_dock_animations} from '../../config/systemAnimations';
 import {NapicuOS} from '../../system.napicuos';
 import {SystemFile} from 'src/app/Sys/File';
-import {System} from "../../../../System";
 import {SystemDockDisplay} from "../../interface/System/dock";
-import {window_animations} from "../../config/windowAnimations";
 
 @Component({
   selector: 'app-napicu-os',

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TweakerComponent } from './tweaker.component';
+import {TweakerComponent} from './tweaker.component';
 
 describe('TweakerComponent', () => {
   let component: TweakerComponent;

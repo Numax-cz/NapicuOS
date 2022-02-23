@@ -1,13 +1,6 @@
 import {Type} from '@angular/core';
-import {
-  windowButtonsMetadata,
-  windowData,
-  windowState,
-} from './Systems/NapicuOS/interface/Window/windowData';
-import {
-  percentage,
-  percentageValue,
-} from './Systems/NapicuOS/scripts/getPercentage';
+import {windowButtonsMetadata, windowData, windowState,} from './Systems/NapicuOS/interface/Window/windowData';
+import {percentage, percentageValue,} from './Systems/NapicuOS/scripts/getPercentage';
 import {WindowComponent} from './Systems/NapicuOS/template/window/window.component';
 import {SystemWindowConstructorMetadata} from "./Systems/NapicuOS/interface/Window/window";
 import {NapicuOS} from "./Systems/NapicuOS/system.napicuos";

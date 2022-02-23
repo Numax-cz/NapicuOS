@@ -1,10 +1,4 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import {animate, state, style, transition, trigger,} from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
 import {SystemAlert} from 'src/app/Sys/Alert';
 import {Process, ProcessWindowValueMetadata} from 'src/app/Sys/Process';

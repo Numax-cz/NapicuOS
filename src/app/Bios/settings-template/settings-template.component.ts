@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BiosComponent } from '../bios/bios.component';
-import { Informations } from '../../interface/Informations';
-import { settings } from '../../interface/ToolSettings';
-import { isDate, isOption, isOptionsFast, isTime } from '../../Scripts/Type';
-import { objectKeys } from 'src/app/Scripts/objectKeys';
+import {Component, Input, OnInit} from '@angular/core';
+import {BiosComponent} from '../bios/bios.component';
+import {Informations} from '../../interface/Informations';
+import {settings} from '../../interface/ToolSettings';
+import {isDate, isOption, isOptionsFast, isTime} from '../../Scripts/Type';
+import {objectKeys} from 'src/app/Scripts/objectKeys';
 
 @Component({
   selector: 'app-settings-template',
@@ -20,7 +20,8 @@ export class SettingsTemplateComponent implements OnInit {
    */
   public static selected: number = 0;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     if (this.MainOption) {
@@ -53,8 +54,8 @@ export class SettingsTemplateComponent implements OnInit {
     return SettingsTemplateComponent.MainOption[
       objectKeys(SettingsTemplateComponent.MainOption)[
         SettingsTemplateComponent.selected
-      ]
-    ].description;
+        ]
+      ].description;
   }
 
   public isOption(component: settings): boolean {

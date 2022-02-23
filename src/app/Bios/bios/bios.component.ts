@@ -10,7 +10,7 @@ import {BiosInfo, BiosOptionsST} from '../../Array/ToolSettings';
 import {BootComponent} from '../boot/boot.component';
 import {FlashComponent} from '../flash/flash.component';
 import {GlobalEvents} from '../../Scripts/GlobalEvents';
-import * as key from 'src/app/Config/KeyMaps';
+import {KeyMaps} from 'src/app/Config/KeyMaps';
 import {OptionPanelComponent} from '../option-panel/option-panel.component';
 import {setCookiesBiosinf} from 'src/app/Array/FlashInformation';
 import {getMenu} from 'src/app/Array/BiosMenu';
@@ -81,14 +81,14 @@ export class BiosComponent implements OnInit, OnDestroy {
           !BiosComponent.WindowFastOptionDisplay
         ) {
           if (
-            e.keyCode == key.ArrowRight &&
+            e.keyCode == KeyMaps.ArrowRight &&
             BiosComponent.selected < this.BiosMenu.length - 1
           ) {
             BiosComponent.selected += 1;
             this.UpdateComponent();
           }
           //* ArrowLeft
-          if (e.keyCode == key.ArrowLeft && BiosComponent.selected !== 0) {
+          if (e.keyCode == KeyMaps.ArrowLeft && BiosComponent.selected !== 0) {
             BiosComponent.selected -= 1;
             this.UpdateComponent();
           }
@@ -98,36 +98,36 @@ export class BiosComponent implements OnInit, OnDestroy {
           ) {
           }
           //* ArrowDown & ArrowUp
-          if (e.keyCode == key.ArrowDown || e.keyCode == key.ArrowUp) {
+          if (e.keyCode == KeyMaps.ArrowDown || e.keyCode == KeyMaps.ArrowUp) {
             MoveOption(e.keyCode);
           }
           //* Enter
-          if (e.keyCode == key.Enter) {
+          if (e.keyCode == KeyMaps.Enter) {
             SetWindowOption();
           }
         } else {
           if (
-            e.keyCode == key.ArrowDown ||
-            e.keyCode == key.ArrowRight ||
-            e.keyCode == key.ArrowUp ||
-            e.keyCode == key.ArrowLeft
+            e.keyCode == KeyMaps.ArrowDown ||
+            e.keyCode == KeyMaps.ArrowRight ||
+            e.keyCode == KeyMaps.ArrowUp ||
+            e.keyCode == KeyMaps.ArrowLeft
           ) {
             MoveWindowOptions(e.keyCode);
           }
           //* Close --save
-          if (e.keyCode == key.Enter) {
+          if (e.keyCode == KeyMaps.Enter) {
             if (OptionPanelComponent.window)
               OptionPanelComponent.window.CloseSave();
           }
           //* Close --unsavey
-          if (e.keyCode == key.Escape) {
+          if (e.keyCode == KeyMaps.Escape) {
             if (OptionPanelComponent.window)
               OptionPanelComponent.window.CloseUnsave();
           }
           if (BiosComponent.WindowFastOptionDisplay) {
             if (
-              e.keyCode == key.ArrowDown ||
-              (key.ArrowUp && OptionPanelComponent.window)
+              e.keyCode == KeyMaps.ArrowDown ||
+              (KeyMaps.ArrowUp && OptionPanelComponent.window)
             ) {
               TimeDateSet(
                 e.keyCode,
@@ -144,19 +144,13 @@ export class BiosComponent implements OnInit, OnDestroy {
   public UpdateComponent(): void {
     this.router.navigate(
       [`bios/`, this.BiosMenu[BiosComponent.selected].router],
-      { skipLocationChange: true }
+      {skipLocationChange: true}
     );
     BiosComponent.BiosRouter = this.router;
   }
 
   get Display(): boolean {
-    return OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay
-      ? true
-      : false;
-  }
-
-  get Descriptions(): string {
-    return 'xd';
+    return !!(OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay);
   }
 
   get biosVersion(): string {

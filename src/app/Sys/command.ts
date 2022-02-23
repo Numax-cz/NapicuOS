@@ -1,5 +1,5 @@
-import { Process } from './Process';
-import { Line } from './Systems/NapicuOS/Apps/console/console.component';
+import {Process} from './Process';
+import {Line} from './Systems/NapicuOS/Apps/console/console.component';
 
 export declare type CommandFunMetadata = {
   linesForCMD: Line[];

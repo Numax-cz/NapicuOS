@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { GrubComponent } from 'src/app/System/grub/grub.component';
+import {Component, OnInit} from '@angular/core';
+import {GrubComponent} from 'src/app/System/grub/grub.component';
 
 @Component({
   selector: 'app-loads',
@@ -7,9 +7,11 @@ import { GrubComponent } from 'src/app/System/grub/grub.component';
   styleUrls: ['./loads.component.scss'],
 })
 export class LoadsComponent implements OnInit {
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   get Img(): string {
     var logo = GrubComponent.ActiveSystem.boot.logo;

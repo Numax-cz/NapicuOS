@@ -1,9 +1,5 @@
-import { BlackscreenComponent } from 'src/app/Bios/blackscreen/blackscreen.component';
-import {
-  CursorAnimationIN,
-  CursorAnimationTimeIn,
-  CursorMoveDown,
-} from 'src/app/Config/Animation/animationCursor';
+import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.component';
+import {CursorAnimationIN, CursorAnimationTimeIn, CursorMoveDown,} from 'src/app/Config/Animation/animationCursor';
 
 export function setDisplayText(text: string[], index?: number): void {
   if (index && BlackscreenComponent.text[index]) {
@@ -18,7 +14,8 @@ export function setDisplayText(text: string[], index?: number): void {
 //? In Function
 
 export class animationCursor {
-  constructor() {}
+  constructor() {
+  }
 
   /**
    * Interval for blinking cursor

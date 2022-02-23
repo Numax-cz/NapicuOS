@@ -1,12 +1,8 @@
 import {Command} from './command';
 import {Process} from './Process';
-import {
-  SystemFileConsMetadata,
-  SystemFileTypeEnumMetadata,
-} from './Systems/NapicuOS/interface/FilesDirs/file';
+import {SystemFileConsMetadata, SystemFileTypeEnumMetadata,} from './Systems/NapicuOS/interface/FilesDirs/file';
 import {SystemFilePermissionsMetadata} from './Systems/NapicuOS/interface/permissions';
 import {SystemUserPermissionsEnumMetadata} from './Systems/NapicuOS/interface/User/user';
-import {NapicuOS} from "./Systems/NapicuOS/system.napicuos";
 import {Window} from "./Window";
 import {copy} from "../Scripts/DeepClone";
 import {AppCreatMetadata} from "./Systems/NapicuOS/interface/system";

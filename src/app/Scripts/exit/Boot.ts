@@ -1,7 +1,7 @@
-import { BiosSettings } from 'src/app/Array/ToolSettings';
-import { BootComponent } from 'src/app/Bios/boot/boot.component';
-import { BootLoader } from '../bootloader/BootLoader';
-import { Loading } from '../LoadingAnimations';
+import {BiosSettings} from 'src/app/Array/ToolSettings';
+import {BootComponent} from 'src/app/Bios/boot/boot.component';
+import {BootLoader} from '../bootloader/BootLoader';
+import {Loading} from '../LoadingAnimations';
 
 export function Boot(): void {
   BootComponent.EnterBios = false;

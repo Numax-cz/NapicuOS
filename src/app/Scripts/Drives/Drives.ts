@@ -15,7 +15,7 @@ export function GetDrives(num?: boolean, systemName?: boolean): Options[] {
     if (systemName && element.data.system && element.data.system.length == 1) {
       text += `(${element.data.system[0].boot.title})`;
     }
-    D.push({ title: text });
+    D.push({title: text});
   });
   return D;
 }

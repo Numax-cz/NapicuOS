@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {systemAlertTypeEnumMetadata} from '../../interface/Alert/alert';
-import {Event} from "@angular/router";
-import {log_screen_animation_time} from '../../config/logscreen';
 import {ProcessWindowValueMetadata} from "../../../../Process";
 
 @Component({

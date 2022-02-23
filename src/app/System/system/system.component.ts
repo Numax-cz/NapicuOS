@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Type } from '@angular/core';
+import {Component, OnDestroy, OnInit, Type} from '@angular/core';
 
 @Component({
   selector: 'app-system',
@@ -8,9 +8,11 @@ import { Component, OnDestroy, OnInit, Type } from '@angular/core';
 export class SystemComponent implements OnInit, OnDestroy {
   public static SysComponent: Type<any>;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+  }
 
   get Component(): Type<any> {
     return SystemComponent.SysComponent;

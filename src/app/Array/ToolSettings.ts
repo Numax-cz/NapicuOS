@@ -1,14 +1,14 @@
-import { LangMenu } from '../Config/Lang/Lang';
-import { BiosIf } from '../interface/BiosInfo';
-import { ToolSettings } from '../interface/ToolSettings';
-import { GetDrives } from '../Scripts/Drives/Drives';
-import { DiscardChanges } from '../Scripts/exit/DiscardChanges';
-import { LoadDefaults } from '../Scripts/exit/LoadDefaults';
-import { SaveChanges } from '../Scripts/exit/SaveChanges';
-import { FlashBios } from '../Scripts/Flash/FlashBios';
-import { setDate, setTime } from '../Scripts/TimeDate';
-import { isDate, isOption, isTime } from '../Scripts/Type';
-import { lang } from './BiosMenu';
+import {LangMenu} from '../Config/Lang/Lang';
+import {BiosIf} from '../interface/BiosInfo';
+import {ToolSettings} from '../interface/ToolSettings';
+import {GetDrives} from '../Scripts/Drives/Drives';
+import {DiscardChanges} from '../Scripts/exit/DiscardChanges';
+import {LoadDefaults} from '../Scripts/exit/LoadDefaults';
+import {SaveChanges} from '../Scripts/exit/SaveChanges';
+import {FlashBios} from '../Scripts/Flash/FlashBios';
+import {setDate, setTime} from '../Scripts/TimeDate';
+import {isDate, isOption, isTime} from '../Scripts/Type';
+import {lang} from './BiosMenu';
 
 export interface BiosOptionsST {
   [index: string]: ToolSettings;

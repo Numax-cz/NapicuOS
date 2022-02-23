@@ -1,18 +1,14 @@
-export const ArrowLeft = 37;
-export const ArrowUp = 38;
-export const ArrowRight = 39;
-export const ArrowDown = 40;
-
-export const Escape = 27;
-export const Enter = 13;
-
-export const Delete = 46;
-
-export const F2 = 113;
-export const F1 = 112;
-
-export const Home = 36;
-export const End = 35;
-export const Tab = 9;
-
-//TODO ENUM
+export const enum KeyMaps {
+  ArrowLeft = 37,
+  ArrowUp = 38,
+  ArrowRight = 39,
+  ArrowDown = 40,
+  Escape = 27,
+  Enter = 13,
+  Delete = 46,
+  F2 = 113,
+  F1 = 112,
+  Home = 36,
+  End = 35,
+  Tab = 9,
+}

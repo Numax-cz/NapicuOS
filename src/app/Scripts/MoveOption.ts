@@ -1,5 +1,5 @@
-import { SettingsTemplateComponent } from '../Bios/settings-template/settings-template.component';
-import { objectKeys } from './objectKeys';
+import {SettingsTemplateComponent} from '../Bios/settings-template/settings-template.component';
+import {objectKeys} from './objectKeys';
 
 export function MoveOption(keyCode: number): void {
   // ArrowDown
@@ -7,7 +7,7 @@ export function MoveOption(keyCode: number): void {
   if (
     keyCode == 40 &&
     SettingsTemplateComponent.selected <
-      objectKeys(SettingsTemplateComponent.MainOption).length - 1
+    objectKeys(SettingsTemplateComponent.MainOption).length - 1
   ) {
     SettingsTemplateComponent.selected += 1;
   }

@@ -1,15 +1,15 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BiosInfo, setBiosSettings } from '../../Array/ToolSettings';
-import { BiosComponent } from '../bios/bios.component';
-import { exitTime, startTimeIn } from '../../Config/Animation/Boot';
-import { FlashComponent } from '../flash/flash.component';
-import * as key from 'src/app/Config/KeyMaps';
-import { Navigate } from 'src/app/Scripts/BiosRouter';
-import { Boot } from 'src/app/Scripts/exit/Boot';
-import { setBiosSettingsFromCookies } from 'src/app/Scripts/setBiosSettings';
-import { setLanguage } from 'src/app/Array/BiosMenu';
+import {DOCUMENT} from '@angular/common';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {BiosInfo, setBiosSettings} from '../../Array/ToolSettings';
+import {BiosComponent} from '../bios/bios.component';
+import {exitTime, startTimeIn} from '../../Config/Animation/Boot';
+import {FlashComponent} from '../flash/flash.component';
+import {KeyMaps} from 'src/app/Config/KeyMaps';
+import {Navigate} from 'src/app/Scripts/BiosRouter';
+import {Boot} from 'src/app/Scripts/exit/Boot';
+import {setBiosSettingsFromCookies} from 'src/app/Scripts/setBiosSettings';
+import {setLanguage} from 'src/app/Array/BiosMenu';
 
 @Component({
   selector: 'app-boot',
@@ -56,7 +56,7 @@ export class BootComponent implements OnInit, OnDestroy {
   }
 
   public RunBios = (e: KeyboardEvent): void => {
-    if (e.keyCode == key.Delete || e.keyCode == key.F2) {
+    if (e.keyCode == KeyMaps.Delete || e.keyCode == KeyMaps.F2) {
       BootComponent.EnterBios = true;
       setTimeout(() => {
         Navigate('/blackloading');

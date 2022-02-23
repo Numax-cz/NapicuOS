@@ -1,7 +1,7 @@
-import { BiosSettings } from 'src/app/Array/ToolSettings';
-import { settings, ToolSettings } from 'src/app/interface/ToolSettings';
-import { setDate, setTime } from '../TimeDate';
-import { isDate, isOption, isOptionsFast, isTime } from '../Type';
+import {BiosSettings} from 'src/app/Array/ToolSettings';
+import {settings, ToolSettings} from 'src/app/interface/ToolSettings';
+import {setDate, setTime} from '../TimeDate';
+import {isDate, isOption, isOptionsFast, isTime} from '../Type';
 
 export function LoadDefaults(): void {
   setDefaultOptions();

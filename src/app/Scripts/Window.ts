@@ -67,8 +67,8 @@ export class Window {
       SettingsTemplateComponent.MainOption[
         objectKeys(SettingsTemplateComponent.MainOption)[
           SettingsTemplateComponent.selected
-        ]
-      ];
+          ]
+        ];
     if (BiosComponent.WindowFastOptionDisplay) {
       if (isTime(selected)) {
         selected.time = ItemsDateInit;
@@ -84,8 +84,8 @@ export class Window {
       SettingsTemplateComponent.MainOption[
         objectKeys(SettingsTemplateComponent.MainOption)[
           SettingsTemplateComponent.selected
-        ]
-      ];
+          ]
+        ];
     if (isOption(selected)) {
       selected.selected = BiosComponent.WindowSelectedOption;
     } else if (isTime(selected)) {

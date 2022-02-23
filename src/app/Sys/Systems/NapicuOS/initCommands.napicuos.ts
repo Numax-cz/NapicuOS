@@ -10,7 +10,6 @@ import {setHelpCommand, setWindowTitleHelpCommand} from './config/commands/help/
 import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from '../../User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
-import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/file";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');

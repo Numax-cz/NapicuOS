@@ -1,19 +1,14 @@
-import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
-import { Observable } from 'rxjs';
-import { GrubComponent } from './System/grub/grub.component';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
+import {Observable} from 'rxjs';
+import {GrubComponent} from './System/grub/grub.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BootingGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   canActivate(
     route: ActivatedRouteSnapshot,

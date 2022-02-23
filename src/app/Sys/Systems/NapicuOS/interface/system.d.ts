@@ -1,6 +1,4 @@
 import {Type} from '@angular/core';
-import {ProcessWindowValueMetadata} from 'src/app/Sys/Process';
-import {systemAlertTypeEnumMetadata} from './Alert/alert';
 import {windowButtonsMetadata, windowData} from './Window/windowData';
 import {SystemWindowConstructorMetadata} from "./Window/window";
 
