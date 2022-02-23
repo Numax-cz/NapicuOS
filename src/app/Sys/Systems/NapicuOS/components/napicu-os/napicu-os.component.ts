@@ -27,8 +27,6 @@ import {SystemDockDisplay} from "../../interface/System/dock";
         ),
       ]),
     ]),
-
-
   ],
 })
 export class NapicuOSComponent implements OnInit {
@@ -56,7 +54,7 @@ export class NapicuOSComponent implements OnInit {
     if (!running) {
       NapicuOS.open_app(file.fileName);
     }
-    alert('xd')
+
   }
 
   public onRightClick(index: number, event: Event): void {

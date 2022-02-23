@@ -7,6 +7,7 @@ import {window_animations} from '../../config/windowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';
+import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 @Component({
   selector: 'app-window',
@@ -164,6 +165,7 @@ export class WindowComponent implements OnInit {
       ) {
         this.selectedWindow.activated = false;
       }
+      NapicuOS.update_dock_items();
     });
   }
 
@@ -383,7 +385,6 @@ export class WindowComponent implements OnInit {
    * Function for snapping the application window
    */
   protected snappingWindow(event: MouseEvent): void {
-
     const p = event.target as HTMLElement;
     if (p.classList.contains('left')) {
       this.selectedWindow.setStateLeft();
@@ -434,6 +435,4 @@ export class WindowComponent implements OnInit {
   get MinWindowWidth(): number {
     return WindowComponent.MinWindowWidth;
   }
-
-
 }

@@ -32,7 +32,7 @@
         </section>
 
         <!-- Bottom AppPanel -->
-        <section *ngIf="BottomDockDisplay" #BottomBar class="BottomPanel" style="z-index: 10000"
+        <section *ngIf="BottomDockDisplay" class="BottomPanel" style="z-index: 10000"
                  id="Dock">
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section style="display: flex;">
@@ -43,12 +43,13 @@
                   <div>Open</div>
                   <div>{{i.alreadyPinned ? 'Unpin' : 'Pin'}}</div>
                 </div>
+                <!-- Application icon-->
                 <img [src]="i.file.iconPath"
-                     (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"/>
+                     (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"
+                     alt="Application icon"/>
+                <!-- Application line-->
                 <div [ngClass]="{'widthLine': i.selected, 'smallLine':
-                i.running}"
-                     *ngIf="i.running ||
-                i.selected" class="line"></div>
+                i.running}" *ngIf="i.running || i.selected" class="line"></div>
               </div>
             </section>
           </div>
