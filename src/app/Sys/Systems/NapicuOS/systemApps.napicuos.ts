@@ -12,8 +12,10 @@ export function initAllSystemProcess(): void {
 export function initAllStartUpApps(): void {
 
 
+  // NapicuOS.open_app("InstallNapicuOS");
   NapicuOS.open_app("Terminal");
-  NapicuOS.open_app("InstallNapicuOS");
+  NapicuOS.open_app("Terminal");
+  NapicuOS.open_app("Terminal");
 
 
 }

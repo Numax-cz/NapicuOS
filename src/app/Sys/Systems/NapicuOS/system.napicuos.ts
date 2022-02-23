@@ -209,6 +209,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns the application process by application process name
+   */
+  public static get_apps_running_by_process_title(processTitle: string): Process[] {
+    return this.get_system_process().filter((element: Process) => {
+      return element.processTitle === processTitle && element.Window;
+    });
+  }
+
+  /**
    * Returns displayed windows by process title
    * @param processTitle Process title of the application window
    */

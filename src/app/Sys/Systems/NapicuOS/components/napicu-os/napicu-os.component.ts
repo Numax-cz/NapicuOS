@@ -8,6 +8,7 @@ import {SystemFile} from 'src/app/Sys/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
 import {global} from "@angular/compiler/src/util";
+import {Window} from "../../../../Window";
 
 @Component({
   selector: 'app-napicu-os',
@@ -53,18 +54,22 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
+
     if (!running) {
       NapicuOS.open_app(file.fileName);
     } else {
       //TODO OPEN;
-      let x = WindowComponent.WindowHistory.indexOf(file.value());
-      console.log(file.value())
-      if (x) {
 
-      }
-      console.log(x)
-      NapicuOS.get_system_displayed_window_apps_by_process_title(file.fileName)[0].Window.activated = true;
-
+      let p = NapicuOS.get_apps_running_by_process_title(file.fileName)[0];
+      let i = WindowComponent.WindowHistory.indexOf(p.Window);
+      WindowComponent.WindowHistory.splice(i, 1);
+      WindowComponent.WindowHistory.push(p.Window);
+      WindowComponent.WindowHistory[WindowComponent.WindowHistory.length - 1].activated = false;
+      console.log(WindowComponent.WindowHistory[WindowComponent.WindowHistory.length - 1])
+      WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
+        element.z_index = index;
+      });
+      p.Window.activated = true;
     }
   }
 
