@@ -51,8 +51,10 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
+    console.log('file');
     if (!running) {
       NapicuOS.open_app(file.fileName);
+      console.log('Run');
     }
 
   }

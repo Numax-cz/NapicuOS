@@ -24,7 +24,6 @@ export class Command {
   ) => Promise<CommandFunMetadata>;
 
   /**
-   *
    * @param {string} commandName Full command name
    * @param {string} command The expression after which the command function is executed
    * @param {Function} fun Command Function

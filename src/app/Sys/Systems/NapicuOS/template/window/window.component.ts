@@ -185,6 +185,7 @@ export class WindowComponent implements OnInit {
    */
   public close(window: ProcessWindowValueMetadata, event: MouseEvent): void {
     window.close();
+    NapicuOS.update_dock_items();
     event.stopPropagation();
   }
 

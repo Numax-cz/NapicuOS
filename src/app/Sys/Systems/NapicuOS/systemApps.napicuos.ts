@@ -3,6 +3,7 @@ import {ConsoleComponent} from './Apps/console/console.component';
 import {WelcomeComponent} from './Apps/welcome/welcome.component';
 import {NapicuOS} from './system.napicuos';
 import {Window} from "../../Window";
+import {NapicuOSComponent} from "./components/napicu-os/napicu-os.component";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -12,7 +13,7 @@ export function initAllStartUpApps(): void {
 
 
   NapicuOS.open_app("Terminal");
-  //NapicuOS.open_app("Terminal");
+  NapicuOS.open_app("InstallNapicuOS");
 
 
 }

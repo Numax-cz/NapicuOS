@@ -322,6 +322,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static update_dock_items(): void {
     let i: SystemFile[] = [];
+
     NapicuOS.get_system_displayed_window_apps().forEach((App: Process) => {
       let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), App.processTitle);
       if (typeof file === "object" && NapicuOS.get_user_apps_in_dock().filter((file: SystemFile) => {
@@ -342,7 +343,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         file: value,
         alreadyPinned: false,
         running: true,
-        selected: NapicuOS.get_system_activated_window_app().processTitle === value.fileName
+        selected: (NapicuOS.get_system_activated_window_app()?.processTitle === value.fileName)
       }
     });
 
