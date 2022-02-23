@@ -140,7 +140,7 @@ export class WindowComponent implements OnInit {
   /**
    * Specifies the selected application window
    */
-  protected declare selectedWindow: ProcessWindowValueMetadata;
+  static declare selectedWindow: ProcessWindowValueMetadata;
   /**
    * Indicates whether a mode other than normal mode was activated when you clicked on the application window.
    */
@@ -161,9 +161,9 @@ export class WindowComponent implements OnInit {
       let p = e.target as HTMLElement;
       if (
         p.offsetParent?.id !== 'napicuos-App-window' &&
-        this.selectedWindow?.activated
+        WindowComponent.selectedWindow?.activated && !p.offsetParent?.classList.contains("DockIcon")
       ) {
-        this.selectedWindow.activated = false;
+        WindowComponent.selectedWindow.activated = false;
         NapicuOS.update_dock_items();
       }
     });
@@ -175,7 +175,7 @@ export class WindowComponent implements OnInit {
    */
   public getInput(p: Process): InputsType {
     let x = p.Window as SystemAlert;
-    return {alertContent: x?.value || '', alertType: x?.type, windowValue: this.selectedWindow};
+    return {alertContent: x?.value || '', alertType: x?.type, windowValue: WindowComponent.selectedWindow};
   }
 
   /**
@@ -216,9 +216,9 @@ export class WindowComponent implements OnInit {
     const MouseValueX = event.pageX;
     const MouseValueY = event.pageY;
     const p = event.target as HTMLElement;
-    if (!this.move || this.resize || !this.selectedWindow) return;
+    if (!this.move || this.resize || !WindowComponent.selectedWindow) return;
 
-    if (this.selectedWindow.windowData.height && this.selectedWindow.windowData.width) {
+    if (WindowComponent.selectedWindow.windowData.height && WindowComponent.selectedWindow.windowData.width) {
       this.unSnappingWindow(event);
       this.snappingWindow(event);
     }
@@ -226,8 +226,8 @@ export class WindowComponent implements OnInit {
     let x = MouseValueX + this.originalX;
     let y = MouseValueY + this.originalY;
     if (MouseValueY > 0) {
-      this.selectedWindow.setTop(y);
-      this.selectedWindow.setLeft(x);
+      WindowComponent.selectedWindow.setTop(y);
+      WindowComponent.selectedWindow.setLeft(x);
     }
 
   }
@@ -237,7 +237,7 @@ export class WindowComponent implements OnInit {
    * @param event - The mouse event
    */
   protected resizeWindow(event: MouseEvent): void {
-    if (this.selectedWindow?.isStateMaximized()) return;
+    if (WindowComponent.selectedWindow?.isStateMaximized()) return;
     if (this.move || !this.resize) return;
     let MouseValueX: number = event.pageX;
     let MouseValueY: number = event.pageY;
@@ -277,12 +277,12 @@ export class WindowComponent implements OnInit {
     }
 
     if (x && x > WindowComponent.MinWindowWidth) {
-      this.selectedWindow.setWidth(x);
-      if (left) this.selectedWindow.setLeft(left);
+      WindowComponent.selectedWindow.setWidth(x);
+      if (left) WindowComponent.selectedWindow.setLeft(left);
     }
     if (y && y > WindowComponent.MinWindowHeight) {
-      this.selectedWindow.setHeight(y);
-      if (top) this.selectedWindow.setTop(top);
+      WindowComponent.selectedWindow.setHeight(y);
+      if (top) WindowComponent.selectedWindow.setTop(top);
     }
   }
 
@@ -294,13 +294,13 @@ export class WindowComponent implements OnInit {
     process: ProcessWindowValueMetadata,
     index: number
   ): void {
-    if (this.selectedWindow?.activated) this.selectedWindow.activated = false;
+    if (WindowComponent.selectedWindow?.activated) WindowComponent.selectedWindow.activated = false;
     WindowComponent.WindowHistory.splice(index, 1);
     WindowComponent.WindowHistory.push(process);
     WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
       element.z_index = index;
     });
-    this.selectedWindow = process;
+    WindowComponent.selectedWindow = process;
     process.activated = true;
     NapicuOS.update_dock_items();
   }
@@ -315,7 +315,7 @@ export class WindowComponent implements OnInit {
     event: MouseEvent
   ): void {
     this.resize = true;
-    this.selectedWindow = process;
+    WindowComponent.selectedWindow = process;
     this.originalMouseX = event.pageX;
     this.originalMouseY = event.pageY;
 
@@ -341,7 +341,7 @@ export class WindowComponent implements OnInit {
     this.originalY = process.getTop() - event.pageY;
     this.activeWindowState = !process.isStateNormal();
     this.move = true;
-    this.selectedWindow = process;
+    WindowComponent.selectedWindow = process;
     //event.stopPropagation();
   }
 
@@ -351,11 +351,11 @@ export class WindowComponent implements OnInit {
   protected unSnappingWindow(event: MouseEvent): void {
     if (
       this.activeWindowState &&
-      (this.selectedWindow.isStateMaximized() ||
-        this.selectedWindow.isStateLeft() ||
-        this.selectedWindow.isStateRight())
+      (WindowComponent.selectedWindow.isStateMaximized() ||
+        WindowComponent.selectedWindow.isStateLeft() ||
+        WindowComponent.selectedWindow.isStateRight())
     ) {
-      const v: Window = this.selectedWindow;
+      const v: Window = WindowComponent.selectedWindow;
       let w: number = window.innerWidth;
       let h: number = window.innerHeight;
       let x: number = event.pageX;
@@ -369,17 +369,17 @@ export class WindowComponent implements OnInit {
       }
       let perNowX = percentageValue(
         percentage(x - (v.isStateRight() ? window.innerWidth / 2 : 0), w),
-        this.selectedWindow.getWidth()
+        WindowComponent.selectedWindow.getWidth()
       );
       let perNowY = percentageValue(
         percentage(y + 50, h),
-        this.selectedWindow.getHeight()
+        WindowComponent.selectedWindow.getHeight()
       );
 
       this.originalX = -perNowX;
       this.originalY = -perNowY;
 
-      this.selectedWindow.state = 'normal';
+      WindowComponent.selectedWindow.state = 'normal';
     }
   }
 
@@ -389,21 +389,21 @@ export class WindowComponent implements OnInit {
   protected snappingWindow(event: MouseEvent): void {
     const p = event.target as HTMLElement;
     if (p.classList.contains('left')) {
-      this.selectedWindow.setStateLeft();
+      WindowComponent.selectedWindow.setStateLeft();
     } else if (p.classList.contains('right')) {
-      this.selectedWindow.setStateRight();
+      WindowComponent.selectedWindow.setStateRight();
       return;
     } else if (event.pageY <= 0 && !p.classList.contains('resizer')) {
-      this.selectedWindow.setStateMaximized();
+      WindowComponent.selectedWindow.setStateMaximized();
       return;
     } else if (p.classList.contains('top-left')) {
-      this.selectedWindow.setStateTopLeft();
+      WindowComponent.selectedWindow.setStateTopLeft();
       return;
     } else if (p.classList.contains('top-right')) {
-      this.selectedWindow.setStateTopRight();
+      WindowComponent.selectedWindow.setStateTopRight();
       return;
     } else {
-      this.selectedWindow.setStateNormal();
+      WindowComponent.selectedWindow.setStateNormal();
     }
   }
 
