@@ -39,9 +39,11 @@
               <!-- Applications -->
               <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon">
                 <!-- Application context menu-->
-                <div *ngIf="index === selectedAppContext" class="ContextMenu">
-                  <div>Open</div>
-                  <div>{{i.alreadyPinned ? 'Unpin' : 'Pin'}}</div>
+                <div id="ContextMenu" *ngIf="index === selectedAppContext" class="ContextMenu">
+                  <div (click)="openFileInContextMenu(i.file)">Open</div>
+                  <div
+                    (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
+                    'Unpin' : 'Pin'}}</div>
                 </div>
                 <!-- Application icon-->
                 <img [src]="i.file.iconPath" (click)="dockRunner(i.file, i.running)"

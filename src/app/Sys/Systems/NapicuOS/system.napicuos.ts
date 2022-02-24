@@ -337,7 +337,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       if (typeof file === "object" && NapicuOS.get_user_apps_in_dock().filter((file: SystemFile) => {
         return file.fileName === App.processTitle;
       }).length === 0) i.push(file);
-    })
+    });
     let appsInDock: SystemDockDisplay[] = NapicuOS.get_user_apps_in_dock().map((value: SystemFile) => {
       return {
         file: value,
@@ -466,7 +466,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static add_file_to_dock(file: SystemFile): void {
     this.get_active_user()?.userSetting.appsInDock.push(file);
-    NapicuOS.update_dock_items();
+    this.update_dock_items();
+  }
+
+  /**
+   * Deletes a file from the dock by index
+   * @param index File index in the dock
+   */
+  public static remove_file_from_dock_by_index(index: number): void {
+    const user = this.get_active_user();
+    if (user) {
+      user.userSetting.appsInDock.splice(index, 1);
+      this.update_dock_items();
+    }
   }
 
   /**

@@ -50,7 +50,7 @@ export function napicu_os_welcomeapp(): void {
     windowData: Window.centerPos(75, 75),
     resizeAllowed: false,
     fileIconPath: '/assets/systems/NapicuOS/Logo.svg',
-
+    addToDock: true
   });
 }
 

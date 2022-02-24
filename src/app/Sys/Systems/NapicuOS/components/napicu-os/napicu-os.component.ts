@@ -42,19 +42,25 @@ export class NapicuOSComponent implements OnInit {
 
   public static BottomDockProcess: SystemDockDisplay[] = [];
 
+
   constructor() {
   }
 
   ngOnInit(): void {
     NapicuOSComponent.BottomDockDisplay = true;
-    // window.addEventListener('mousedown', (e: MouseEvent) => {
-    //   this.selectedAppContext = null;
-    //   e.preventDefault();
-    // });
+    window.addEventListener('mousedown', (e: MouseEvent) => {
+      let p = e.target as HTMLElement;
+      if (
+        p.offsetParent?.id !== 'ContextMenu'
+      ) {
+        this.selectedAppContext = null;
+      }
+      e.preventDefault();
+    });
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
-
+    if (!WindowComponent.selectedWindow?.display) WindowComponent.selectedWindow.display = true;
     if (!running) {
       NapicuOS.open_app(file.fileName);
     } else {
@@ -62,6 +68,18 @@ export class NapicuOSComponent implements OnInit {
       let i = WindowComponent.WindowHistory.indexOf(p.Window);
       WindowComponent.selectedWindow.activated = false;
       WindowComponent.switchWindowIndex(p.Window, i);
+    }
+  }
+
+  public openFileInContextMenu(file: SystemFile): void {
+    NapicuOS.open_app(file.fileName);
+  }
+
+  public pinFunFileInContextMenu(file: SystemFile, index: number, pinned: boolean): void {
+    if (pinned) {
+      NapicuOS.remove_file_from_dock_by_index(index);
+    } else {
+      NapicuOS.add_file_to_dock(file);
     }
   }
 
@@ -93,4 +111,5 @@ export class NapicuOSComponent implements OnInit {
   get BottomDockDisplay(): boolean {
     return NapicuOS.get_system_bottom_dock_display();
   }
+
 }

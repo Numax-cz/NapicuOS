@@ -205,6 +205,7 @@ export class WindowComponent implements OnInit {
    * @param event - The mouse event
    */
   public minimized(event: MouseEvent): void {
+    WindowComponent.selectedWindow.display = false;
     event.stopPropagation();
   }
 
@@ -299,7 +300,7 @@ export class WindowComponent implements OnInit {
   }
 
   public static switchWindowIndex(window: ProcessWindowValueMetadata, index: number): void {
-    WindowComponent.WindowHistory.slice(index, 1);
+    WindowComponent.WindowHistory.splice(index, 1);
     WindowComponent.WindowHistory.push(window);
     WindowComponent.WindowHistory.forEach((element: Window, int: number) => {
       element.z_index = int;
