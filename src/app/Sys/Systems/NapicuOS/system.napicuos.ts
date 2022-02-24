@@ -332,18 +332,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_dock_items(): void {
     let i: SystemFile[] = [];
 
-    NapicuOS.get_system_displayed_window_apps().forEach((App: Process) => {
-      let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), App.processTitle);
-      if (typeof file === "object" && NapicuOS.get_user_apps_in_dock().filter((file: SystemFile) => {
+    this.get_system_displayed_window_apps().forEach((App: Process) => {
+      let file = this.get_file_by_file_title(this.get_apps_dir(), App.processTitle);
+      if (typeof file === "object" && this.get_user_apps_in_dock().filter((file: SystemFile) => {
         return file.fileName === App.processTitle;
       }).length === 0) i.push(file);
     });
-    let appsInDock: SystemDockDisplay[] = NapicuOS.get_user_apps_in_dock().map((value: SystemFile) => {
+
+    let appsInDock: SystemDockDisplay[] = this.get_user_apps_in_dock().map((value: SystemFile) => {
       return {
         file: value,
         alreadyPinned: true,
-        running: !!NapicuOS.get_system_displayed_window_apps_by_process_title(value.fileName).length,
-        selected: (NapicuOS.get_system_activated_window_app()?.processTitle === value.fileName)
+        running: !!this.get_system_displayed_window_apps_by_process_title(value.fileName).length,
+        selected: (this.get_system_activated_window_app()?.processTitle === value.fileName)
       };
     });
 
@@ -352,7 +353,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         file: value,
         alreadyPinned: false,
         running: true,
-        selected: (NapicuOS.get_system_activated_window_app()?.processTitle === value.fileName)
+        selected: (this.get_system_activated_window_app()?.processTitle === value.fileName)
       }
     });
 
