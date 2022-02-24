@@ -287,21 +287,25 @@ export class WindowComponent implements OnInit {
   }
 
   /**
-   * @param process Application window process
+   * @param window Application window process
    * @param index Process index
    */
   public activeWindow(
-    process: ProcessWindowValueMetadata,
+    window: ProcessWindowValueMetadata,
     index: number
   ): void {
     if (WindowComponent.selectedWindow?.activated) WindowComponent.selectedWindow.activated = false;
-    WindowComponent.WindowHistory.splice(index, 1);
-    WindowComponent.WindowHistory.push(process);
-    WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
-      element.z_index = index;
+    WindowComponent.switchWindowIndex(window, index);
+  }
+
+  public static switchWindowIndex(window: ProcessWindowValueMetadata, index: number): void {
+    WindowComponent.WindowHistory.slice(index, 1);
+    WindowComponent.WindowHistory.push(window);
+    WindowComponent.WindowHistory.forEach((element: Window, int: number) => {
+      element.z_index = int;
     });
-    WindowComponent.selectedWindow = process;
-    process.activated = true;
+    WindowComponent.selectedWindow = window;
+    window.activated = true;
     NapicuOS.update_dock_items();
   }
 

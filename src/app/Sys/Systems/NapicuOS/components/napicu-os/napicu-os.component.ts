@@ -58,22 +58,10 @@ export class NapicuOSComponent implements OnInit {
     if (!running) {
       NapicuOS.open_app(file.fileName);
     } else {
-      //TODO OPEN;
-
       let p = NapicuOS.get_apps_running_by_process_title(file.fileName)[0]; //TODO INDEX
       let i = WindowComponent.WindowHistory.indexOf(p.Window);
-      // WindowComponent.WindowHistory.splice(i, 1);
-      // WindowComponent.WindowHistory.push(p.Window);
-      // WindowComponent.selectedWindow = p.Window;
-      // console.log(WindowComponent.WindowHistory[WindowComponent.WindowHistory.length - 1])
-      // WindowComponent.WindowHistory.forEach((element: Window, index: number) => {
-      //   element.z_index = index;
-      // });
-      // p.Window.activated = true;
-
       WindowComponent.selectedWindow.activated = false;
-      WindowComponent.selectedWindow = p.Window;
-      p.Window.activated = true;
+      WindowComponent.switchWindowIndex(p.Window, i);
     }
   }
 
