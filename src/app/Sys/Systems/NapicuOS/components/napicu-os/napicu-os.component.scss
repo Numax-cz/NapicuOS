@@ -44,13 +44,13 @@
   font-size: var(--NapicuSystemFontSize);
   background-color: var(--NapicuTopMenuBackgroundColor);
 
-  > div {
+  > .top-panel-item {
     padding: 6px 10px;
     border-radius: 20px;
     cursor: pointer;
   }
 
-  > div:hover {
+  > .top-panel-item:hover {
     background-color: #333333;
   }
 }
@@ -100,7 +100,7 @@
     height: 6px;
     border-radius: 14px;
   }
-  
+
   .DockIcon {
     position: relative;
     margin-right: 10px;
@@ -115,15 +115,10 @@
   }
 
   .ContextMenu {
-    color: white;
-    position: absolute;
-    left: 0;
-    background-color: #1E2127;
+
     width: 160px;
     bottom: calc(100% + 20px);
-    padding: 10px 5px;
-    border-radius: 14px;
-
+    color: white;
 
     > div {
       font-size: 1.1rem;
@@ -139,3 +134,21 @@
   }
 }
 
+.ContextMenuBox {
+  border-radius: 14px;
+  left: 0;
+
+  padding: 10px 5px;
+  position: absolute;
+  background-color: #1E2127;
+}
+
+.DateContextMenu {
+  text-align: center;
+  color: white;
+  z-index: 10000;
+  width: 469px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% - 78px);
+}

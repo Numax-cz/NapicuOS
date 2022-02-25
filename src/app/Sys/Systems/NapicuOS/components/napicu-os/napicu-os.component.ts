@@ -38,6 +38,11 @@ export class NapicuOSComponent implements OnInit {
    */
   public static BottomDockDisplay: boolean = false;
 
+  /**
+   * Specifies whether to display the context menu with the date
+   */
+  public static DataDisplay: boolean = false;
+
   public selectedAppContext: number | null = null;
 
   public static BottomDockProcess: SystemDockDisplay[] = [];
@@ -60,7 +65,6 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
-    console.log(file.value());
     if (WindowComponent.selectedWindow && !WindowComponent.selectedWindow.display) WindowComponent.selectedWindow.display = true;
     if (!running) {
       NapicuOS.open_app(file.fileName);
@@ -84,6 +88,10 @@ export class NapicuOSComponent implements OnInit {
     }
   }
 
+  public clickDate(): void {
+    NapicuOSComponent.DataDisplay = !NapicuOSComponent.DataDisplay;
+  }
+
   public onRightClick(index: number, event: Event): void {
     this.selectedAppContext = index;
     event.preventDefault();
@@ -99,6 +107,10 @@ export class NapicuOSComponent implements OnInit {
 
   get GetBottomDockProcess(): SystemDockDisplay[] {
     return NapicuOSComponent.BottomDockProcess;
+  }
+
+  get GetDateDisplay(): boolean {
+    return NapicuOSComponent.DataDisplay;
   }
 
   get SystemBoot(): boolean {

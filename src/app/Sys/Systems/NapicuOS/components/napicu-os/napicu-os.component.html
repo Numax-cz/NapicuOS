@@ -13,10 +13,15 @@
       <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
         <!-- Top panel -->
         <section class="TopPanel">
-          <div>Activities</div>
-          <div>{{ systemTime }}</div>
-
-          <div id="TopPanelIcons">
+          <div class="top-panel-item">Activities</div>
+          <div class="top-panel-item" (click)="clickDate()">{{ systemTime }}</div>
+          <!-- Date panel-->
+          <div *ngIf="GetDateDisplay" class="DateContextMenu ContextMenuBox">
+            <div>
+              This is test
+            </div>
+          </div>
+          <div class="top-panel-item" id="TopPanelIcons">
             <img src="/assets/systems/NapicuOS/audio.svg"/>
             <img src="/assets/systems/NapicuOS/on-off.svg"/>
           </div>
@@ -39,7 +44,7 @@
               <!-- Applications -->
               <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon">
                 <!-- Application context menu-->
-                <div id="ContextMenu" *ngIf="index === selectedAppContext" class="ContextMenu">
+                <div id="ContextMenu" *ngIf="index === selectedAppContext" class="ContextMenu ContextMenuBox">
                   <div (click)="openFileInContextMenu(i.file)">Open</div>
                   <div
                     (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
