@@ -159,6 +159,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns if the system context date is displayed
+   */
+  public static get_system_top_date_display(): boolean {
+    return NapicuOSComponent.DataDisplay;
+  }
+
+  /**
    * Returns the system processes
    */
   public static get_system_process(): Process[] {
