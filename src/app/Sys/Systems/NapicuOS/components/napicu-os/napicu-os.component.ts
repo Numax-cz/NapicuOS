@@ -60,13 +60,14 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
-    if (!WindowComponent.selectedWindow?.display) WindowComponent.selectedWindow.display = true;
+    console.log(file.value());
+    if (WindowComponent.selectedWindow && !WindowComponent.selectedWindow.display) WindowComponent.selectedWindow.display = true;
     if (!running) {
       NapicuOS.open_app(file.fileName);
     } else {
       let p = NapicuOS.get_apps_running_by_process_title(file.fileName)[0]; //TODO INDEX
       let i = WindowComponent.WindowHistory.indexOf(p.Window);
-      WindowComponent.selectedWindow.activated = false;
+      if (WindowComponent.selectedWindow) WindowComponent.selectedWindow.activated = false;
       WindowComponent.switchWindowIndex(p.Window, i);
     }
   }
