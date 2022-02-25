@@ -16,7 +16,7 @@
           <div class="top-panel-item">Activities</div>
           <div class="top-panel-item" (click)="clickDate()">{{ systemTime }}</div>
           <!-- Date panel-->
-          <div *ngIf="GetDateDisplay" class="DateContextMenu ContextMenuBox">
+          <div *ngIf="GetDateDisplay" class="DateContextMenu ContextMenuBox napicu-os-clickable">
             <div>
               This is test
             </div>
@@ -44,7 +44,7 @@
               <!-- Applications -->
               <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon">
                 <!-- Application context menu-->
-                <div id="ContextMenu" *ngIf="index === selectedAppContext" class="ContextMenu ContextMenuBox">
+                <div *ngIf="index === selectedAppContext" class="ContextMenu ContextMenuBox napicu-os-clickable">
                   <div (click)="openFileInContextMenu(i.file)">Open</div>
                   <div
                     (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
