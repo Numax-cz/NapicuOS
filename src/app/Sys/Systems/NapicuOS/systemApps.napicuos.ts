@@ -61,6 +61,6 @@ export function napicu_os_terminal(): void {
     appComponent: ConsoleComponent,
     windowData: Window.centerPos(35, 35),
     fileIconPath: '/assets/systems/NapicuOS/SystemIcons/XFD/term.svg',
-    addToDock: true
+    addToDock: false
   });
 }

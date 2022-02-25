@@ -332,11 +332,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_dock_items(): void {
     let i: SystemFile[] = [];
 
+
     this.get_system_displayed_window_apps().forEach((App: Process) => {
       let file = this.get_file_by_file_title(this.get_apps_dir(), App.processTitle);
       if (typeof file === "object" && this.get_user_apps_in_dock().filter((file: SystemFile) => {
         return file.fileName === App.processTitle;
-      }).length === 0) i.push(file);
+      }).length === 0 && i.map(value => value.fileName).indexOf(App.processTitle) !== 0) i.push(file);
     });
 
     let appsInDock: SystemDockDisplay[] = this.get_user_apps_in_dock().map((value: SystemFile) => {
@@ -348,14 +349,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       };
     });
 
-    let activeApps: SystemDockDisplay[] = i.map((value: SystemFile) => {
+
+    let activeApps: SystemDockDisplay[] = i.map((file: SystemFile) => {
       return {
-        file: value,
+        file: file,
         alreadyPinned: false,
         running: true,
-        selected: (this.get_system_activated_window_app()?.processTitle === value.fileName)
+        selected: (this.get_system_activated_window_app()?.processTitle === file.fileName)
       }
     });
+
 
     NapicuOSComponent.BottomDockProcess = [...new Set([...appsInDock, ...activeApps])];
   }
@@ -364,10 +367,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the application in the dock by filename
    * @param fileName File name
    */
-  public static get_apps_in_dock_by_file_name(fileName: string): SystemFile {
+  public static get_apps_in_dock_by_file_name(fileName: string): SystemFile[] {
     return this.get_user_apps_in_dock().filter((value: SystemFile) => {
       return value.fileName === fileName
-    })[0];
+    });
   }
 
   /**
