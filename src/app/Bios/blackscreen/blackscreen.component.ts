@@ -18,6 +18,10 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
   constructor() {
   }
 
+  get text(): any {
+    return BlackscreenComponent.text;
+  }
+
   ngOnInit(): void {
     this.setEvents();
   }
@@ -27,6 +31,13 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
     this.clearCursor1();
     BlackscreenComponent.text = [];
   }
+
+  public Move = (e: KeyboardEvent): void => {
+    if (e.keyCode == KeyMaps.F1) {
+      Reboot();
+      e.preventDefault();
+    }
+  };
 
   /**
    * Clears the cursor
@@ -42,16 +53,5 @@ export class BlackscreenComponent implements OnInit, OnDestroy {
   protected setEvents(): void {
     window.removeEventListener('keydown', this.Move, true);
     window.addEventListener('keydown', this.Move, true);
-  }
-
-  public Move = (e: KeyboardEvent): void => {
-    if (e.keyCode == KeyMaps.F1) {
-      Reboot();
-      e.preventDefault();
-    }
-  };
-
-  get text(): any {
-    return BlackscreenComponent.text;
   }
 }

@@ -28,10 +28,6 @@ import {getMenu} from 'src/app/Array/BiosMenu';
 export class BiosComponent implements OnInit, OnDestroy {
   public static BiosRouter: Router;
   /**
-   * All items displayed in the top panel
-   */
-  public BiosMenu: BiosMenu[] = getMenu();
-  /**
    * Saves bios settings before changing
    */
   public static BiosMenuSavePoint: BiosOptionsST;
@@ -47,9 +43,29 @@ export class BiosComponent implements OnInit, OnDestroy {
    * Specifies which item is selected in the popup window (Option-Panel)
    */
   public static WindowSelectedOption: number = 0;
+  /**
+   * All items displayed in the top panel
+   */
+  public BiosMenu: BiosMenu[] = getMenu();
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     BiosComponent.BiosRouter = this.router;
+  }
+
+  get selected(): number {
+    return BiosComponent.selected;
+  }
+
+  get Display(): boolean {
+    return !!(OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay);
+  }
+
+  get biosVersion(): string {
+    return BiosInfo.version;
+  }
+
+  get biosDate(): string {
+    return BiosInfo.date;
   }
 
   ngOnInit(): void {
@@ -61,15 +77,6 @@ export class BiosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
     BiosComponent.selected = 0;
-  }
-
-  protected setEvents(): void {
-    window.removeEventListener('keydown', this.Move, true);
-    window.addEventListener('keydown', this.Move, true);
-  }
-
-  get selected(): number {
-    return BiosComponent.selected;
   }
 
   public Move = (e: KeyboardEvent): void => {
@@ -149,15 +156,8 @@ export class BiosComponent implements OnInit, OnDestroy {
     BiosComponent.BiosRouter = this.router;
   }
 
-  get Display(): boolean {
-    return !!(OptionPanelComponent.window && !BiosComponent.WindowFastOptionDisplay);
-  }
-
-  get biosVersion(): string {
-    return BiosInfo.version;
-  }
-
-  get biosDate(): string {
-    return BiosInfo.date;
+  protected setEvents(): void {
+    window.removeEventListener('keydown', this.Move, true);
+    window.addEventListener('keydown', this.Move, true);
   }
 }

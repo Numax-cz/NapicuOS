@@ -14,13 +14,13 @@ export function setDisplayText(text: string[], index?: number): void {
 //? In Function
 
 export class animationCursor {
-  constructor() {
-  }
-
   /**
    * Interval for blinking cursor
    */
   protected interval: any;
+
+  constructor() {
+  }
 
   /**
    * Starts a blinking cursor animation

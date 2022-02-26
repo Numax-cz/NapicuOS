@@ -29,17 +29,17 @@ export class Line {
   styleUrls: ['./console.component.scss'],
 })
 export class ConsoleComponent implements OnInit {
-  private selectedCommandHistory: number = 0;
-  @ViewChild('AppScreen') public declare appScreen: ElementRef;
-  @ViewChild('InputValue') public declare inputValue: ElementRef;
-  /**
-   * Determines if the specified command is currently running
-   */
-  private activeCommand: boolean = false;
   /**
    * Store the history of commands
    */
   private static historyCommands: string[] = [];
+  @ViewChild('AppScreen') public declare appScreen: ElementRef;
+  @ViewChild('InputValue') public declare inputValue: ElementRef;
+  private selectedCommandHistory: number = 0;
+  /**
+   * Determines if the specified command is currently running
+   */
+  private activeCommand: boolean = false;
   /**
    * The path the user is currently in
    */
@@ -50,6 +50,52 @@ export class ConsoleComponent implements OnInit {
   private lines: inputMetadata[] = [];
 
   constructor() {
+  }
+
+  /**
+   * Returns the username
+   */
+  get GetUserName(): string {
+    return NapicuOS.get_active_user()?.username || 'NULL';
+  }
+
+  /**
+   * Returns the computer's name
+   */
+  get GetcompName(): string {
+    return system_computer_name;
+  }
+
+  /**
+   * Returns the path the user is in
+   */
+  get Getpath(): string {
+    return this.path;
+  }
+
+  /**
+   * Returns array of all rows
+   */
+  get Getlines(): inputMetadata[] {
+    return this.lines;
+  }
+
+  /**
+   * History of commands used
+   */
+  get GethistoryCommands(): string[] {
+    return ConsoleComponent.historyCommands;
+  }
+
+  get GetactiveCommand(): boolean {
+    return this.activeCommand;
+  }
+
+  /**
+   * Function for getting the history commands
+   */
+  public static gethistoryCommands(): string[] {
+    return this.historyCommands;
   }
 
   ngOnInit(): void {
@@ -100,6 +146,48 @@ export class ConsoleComponent implements OnInit {
   }
 
   /**
+   * Function that is triggered by pressing arrow up
+   */
+  public onArrowUp(event: Event): void {
+    if (this.selectedCommandHistory > 0) {
+      this.selectedCommandHistory -= 1;
+    } else {
+      this.selectedCommandHistory = ConsoleComponent.historyCommands.length - 1;
+    }
+    this.setCommandFromCommandHistory();
+    event.preventDefault();
+  }
+
+  /**
+   * Function that is triggered by pressing arrow down
+   */
+  public onArrowDown(event: Event): void {
+    if (
+      this.selectedCommandHistory <
+      ConsoleComponent.historyCommands.length - 1
+    ) {
+      this.selectedCommandHistory += 1;
+      this.setCommandFromCommandHistory();
+    }
+    event.preventDefault();
+  }
+
+  /**
+   * Function for getting the command lines history
+   */
+  public getCommandLines(): inputMetadata[] {
+    return this.lines;
+  }
+
+  /**
+   * Funcion for deleting the history of console
+   */
+  public delete_all_history(): void {
+    this.lines = [];
+    ConsoleComponent.historyCommands = [];
+  }
+
+  /**
    * Sets the input value to the value according to the selected command from the histo
    */
   private setCommandFromCommandHistory(): void {
@@ -130,99 +218,11 @@ export class ConsoleComponent implements OnInit {
   }
 
   /**
-   * Function that is triggered by pressing arrow up
-   */
-  public onArrowUp(event: Event): void {
-    if (this.selectedCommandHistory > 0) {
-      this.selectedCommandHistory -= 1;
-    } else {
-      this.selectedCommandHistory = ConsoleComponent.historyCommands.length - 1;
-    }
-    this.setCommandFromCommandHistory();
-    event.preventDefault();
-  }
-
-  /**
-   * Function that is triggered by pressing arrow down
-   */
-  public onArrowDown(event: Event): void {
-    if (
-      this.selectedCommandHistory <
-      ConsoleComponent.historyCommands.length - 1
-    ) {
-      this.selectedCommandHistory += 1;
-      this.setCommandFromCommandHistory();
-    }
-    event.preventDefault();
-  }
-
-  /**
    * Creates a new line
    * @param value - Array of lines to be displayed
    * @param enteredCommand - The command that appears as entered
    */
   private creatCommandLine(value: Line[], enteredCommand?: string): void {
     this.lines.push({lines: value, enteredCommand: enteredCommand});
-  }
-
-  /**
-   * Returns the username
-   */
-  get GetUserName(): string {
-    return NapicuOS.get_active_user()?.username || 'NULL';
-  }
-
-  /**
-   * Returns the computer's name
-   */
-  get GetcompName(): string {
-    return system_computer_name;
-  }
-
-  /**
-   * Returns the path the user is in
-   */
-  get Getpath(): string {
-    return this.path;
-  }
-
-  /**
-   * Returns array of all rows
-   */
-  get Getlines(): inputMetadata[] {
-    return this.lines;
-  }
-
-  /**
-   * History of commands used
-   */
-  get GethistoryCommands(): string[] {
-    return ConsoleComponent.historyCommands;
-  }
-
-  get GetactiveCommand(): boolean {
-    return this.activeCommand;
-  }
-
-  /**
-   * Function for getting the command lines history
-   */
-  public getCommandLines(): inputMetadata[] {
-    return this.lines;
-  }
-
-  /**
-   * Function for getting the history commands
-   */
-  public static gethistoryCommands(): string[] {
-    return this.historyCommands;
-  }
-
-  /**
-   * Funcion for deleting the history of console
-   */
-  public delete_all_history(): void {
-    this.lines = [];
-    ConsoleComponent.historyCommands = [];
   }
 }

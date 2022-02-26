@@ -1,5 +1,6 @@
-<div *ngFor="let i of AppProcess; let index = index" (mousedown)="activeWindow(i.Window, index)">
+<div (mousedown)="activeWindow(i.Window, index)" *ngFor="let i of AppProcess; let index = index">
   <section
+    *ngIf="SystemBoot && i.Window?.windowData && i.Window.display"
     [@NapicuOSWindowAnimation]="{
       value: i.Window.state,
       params: {
@@ -10,8 +11,9 @@
         translate: !i.Window.windowData.height || !i.Window.windowData.width ? '50' : '0'
       }
     }"
-    *ngIf="SystemBoot && i.Window?.windowData && i.Window.display"
-    id="napicuos-App-window"
+    [ngClass]="[i.Window?.activated ? 'SelectedWindow' : 'UnSelectedWindow', !i.Window.windowData.height &&
+    !i.Window.windowData.width ? 'centerTransform' : '', !i.Window.windowData.height || !i.Window.windowData.width ?
+    'fitWindowContent' : '']"
     [ngStyle]="{
       'width.%': i.Window.windowData.width ,
       'height.%': i.Window.windowData.height,
@@ -21,14 +23,12 @@
       'transform': !i.Window.windowData.height || !i.Window.windowData.width ? 'translate(-50%, -50%)' : '',
       'min-width.px': MinWindowWidth
     }"
-    [ngClass]="[i.Window?.activated ? 'SelectedWindow' : 'UnSelectedWindow', !i.Window.windowData.height &&
-    !i.Window.windowData.width ? 'centerTransform' : '', !i.Window.windowData.height || !i.Window.windowData.width ?
-    'fitWindowContent' : '']">
-    <div *ngIf="!i.Window.isStateMaximized() && !move &&
+    id="napicuos-App-window">
+    <div (mousedown)="resizesIn(i.Window, $event)"
+         *ngIf="!i.Window.isStateMaximized() && !move &&
       i.Window.resizeAllowed && i.Window.windowData.height &&
     i.Window.windowData.width"
          class="resizers-window"
-         (mousedown)="resizesIn(i.Window, $event)"
     >
       <div class="resizer left"></div>
       <div class="resizer right"></div>
@@ -41,21 +41,21 @@
       <div class="resizer bottom-right"></div>
     </div>
 
-    <div id="TopWindowAppBar" (mousedown)="activeWindow(i.Window, index); moveWindowIn(i.Window, $event)">
+    <div (mousedown)="activeWindow(i.Window, index); moveWindowIn(i.Window, $event)" id="TopWindowAppBar">
       <div class="WindowAppTitle">{{ i.Window.windowTitle }}</div>
       <div class="napicuos-App-window-M">
-        <div *ngIf="i.Window.windowButtons.minimized" id="MinButton"
-             (click)="minimized($event)"></div>
-        <div *ngIf="i.Window.windowButtons.maximize" id="FullButton"
-             (click)="maximize(i.Window, $event)"></div>
-        <div *ngIf="i.Window.windowButtons.close" id="CloseButton"
-             (click)="close(i.Window, $event)"></div>
+        <div (click)="minimized($event)" *ngIf="i.Window.windowButtons.minimized"
+             id="MinButton"></div>
+        <div (click)="maximize(i.Window, $event)" *ngIf="i.Window.windowButtons.maximize"
+             id="FullButton"></div>
+        <div (click)="close(i.Window, $event)" *ngIf="i.Window.windowButtons.close"
+             id="CloseButton"></div>
       </div>
     </div>
 
     <div id="INAppWindow">
-      <ng-container [ngComponentOutlet]="i.Window.windowComponent"
-                    [ndcDynamicInputs]="getInput(i)"></ng-container>
+      <ng-container [ndcDynamicInputs]="getInput(i)"
+                    [ngComponentOutlet]="i.Window.windowComponent"></ng-container>
     </div>
   </section>
 </div>

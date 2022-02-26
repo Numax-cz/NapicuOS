@@ -8,13 +8,13 @@ import {Component, OnDestroy, OnInit, Type} from '@angular/core';
 export class SystemComponent implements OnInit, OnDestroy {
   public static SysComponent: Type<any>;
 
+  get Component(): Type<any> {
+    return SystemComponent.SysComponent;
+  }
+
   ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-  }
-
-  get Component(): Type<any> {
-    return SystemComponent.SysComponent;
   }
 }

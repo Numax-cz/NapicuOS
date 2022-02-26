@@ -40,11 +40,11 @@ export class LoginscreenComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
   get wallpaper(): string {
     return wallpaper;
+  }
+
+  ngOnInit(): void {
   }
 
   public login(): void {

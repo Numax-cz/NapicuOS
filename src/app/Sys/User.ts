@@ -1,15 +1,10 @@
 import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata,} from './Systems/NapicuOS/interface/User/user';
 
 export class User {
-  private _username: string = 'user';
-  private _running: boolean = false;
-  private declare _password: string;
-  private declare _permissions: SystemUserPermissionsEnumMetadata;
-  private declare _userSettings: SystemUserDataMetadata;
-
   public static readonly defaultUserSettings: SystemUserDataMetadata = {
     appsInDock: [],
   };
+  private declare _userSettings: SystemUserDataMetadata;
 
   constructor(
     username: string,
@@ -28,7 +23,7 @@ export class User {
 
   }
 
-  //* * * *  Functions * * *
+  private _username: string = 'user';
 
   //* * * *  Getters * * *
   /**
@@ -36,32 +31,6 @@ export class User {
    */
   get username(): string {
     return this._username;
-  }
-
-  //TODO DOC
-  get running(): boolean {
-    return this._running;
-  }
-
-  /**
-   * Returns the user's password
-   */
-  get password(): string {
-    return this._password;
-  }
-
-  /**
-   * Returns the user's permissions
-   */
-  get permissions(): SystemUserPermissionsEnumMetadata {
-    return this._permissions;
-  }
-
-  /**
-   * Returns the user's settings
-   */
-  get userSetting(): SystemUserDataMetadata {
-    return this._userSettings;
   }
 
   //* * * *  Setters * * *
@@ -72,9 +41,27 @@ export class User {
     this._username = value;
   }
 
+  private _running: boolean = false;
+
+  //* * * *  Functions * * *
+
+  //TODO DOC
+  get running(): boolean {
+    return this._running;
+  }
+
   //TODO DOC
   set running(value: boolean) {
     this._running = value;
+  }
+
+  private declare _password: string;
+
+  /**
+   * Returns the user's password
+   */
+  get password(): string {
+    return this._password;
   }
 
   /**
@@ -84,11 +71,27 @@ export class User {
     this._password = value;
   }
 
+  private declare _permissions: SystemUserPermissionsEnumMetadata;
+
+  /**
+   * Returns the user's permissions
+   */
+  get permissions(): SystemUserPermissionsEnumMetadata {
+    return this._permissions;
+  }
+
   /**
    * Sets the user's permissions
    */
   set permissions(value: SystemUserPermissionsEnumMetadata) {
     this._permissions = value;
+  }
+
+  /**
+   * Returns the user's settings
+   */
+  get userSetting(): SystemUserDataMetadata {
+    return this._userSettings;
   }
 
   /**

@@ -10,11 +10,6 @@ import {Window} from './Window';
 export declare type ProcessWindowValueMetadata = Window | SystemAlert;
 
 export class Process {
-  private _processTitle: string = 'NapicuAPP';
-  private declare _launchedBy: string;
-  private declare _pid: number;
-  private declare _Interval: any;
-  private declare _Window: ProcessWindowValueMetadata;
   private declare processInterval: { fun: () => void; time: number };
 
   constructor(data: processConstructor) {
@@ -24,21 +19,31 @@ export class Process {
     this._launchedBy = NapicuOS.get_active_user()?.username || 'System';
   }
 
+  private _processTitle: string = 'NapicuAPP';
+
   get processTitle(): string {
     return this._processTitle;
   }
+
+  private declare _launchedBy: string;
 
   get launchedBy(): string {
     return this._launchedBy;
   }
 
+  private declare _pid: number;
+
   get pid(): number {
     return this._pid;
   }
 
+  private declare _Interval: any;
+
   get Interval(): any {
     return this._Interval;
   }
+
+  private declare _Window: ProcessWindowValueMetadata;
 
   get Window(): ProcessWindowValueMetadata {
     return this._Window;

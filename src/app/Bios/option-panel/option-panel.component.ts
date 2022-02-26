@@ -8,12 +8,6 @@ import {Window} from 'src/app/Scripts/Window';
   styleUrls: ['./option-panel.component.scss'],
 })
 export class OptionPanelComponent implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
   /**
    * Specifies whether the popup - 1 window is open or closed (Option-Panel)
    */
@@ -23,6 +17,9 @@ export class OptionPanelComponent implements OnInit {
    */
   public static CallBack: Function | undefined;
   public static CallBackD: Function | undefined;
+
+  constructor() {
+  }
 
   get Items(): Array<any> {
     if (OptionPanelComponent.window)
@@ -49,5 +46,8 @@ export class OptionPanelComponent implements OnInit {
     if (OptionPanelComponent.window)
       return OptionPanelComponent.window.WindowError;
     return false;
+  }
+
+  ngOnInit(): void {
   }
 }

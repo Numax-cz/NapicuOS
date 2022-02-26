@@ -24,6 +24,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   }
 
+  get GetBarOptions(): barMetadata[] {
+    return this.barOptions
+  }
+
+  get GetSelectedBarOption(): number {
+    return this.selectedBarOption
+  }
+
   ngOnInit(): void {
   }
 
@@ -32,14 +40,6 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       value: "Users",
       template: this.Users
     }, {value: "Install", template: this.Install}]
-  }
-
-  get GetBarOptions(): barMetadata[] {
-    return this.barOptions
-  }
-
-  get GetSelectedBarOption(): number {
-    return this.selectedBarOption
   }
 
 

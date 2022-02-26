@@ -7,7 +7,7 @@
     </p>
     <div class="WelcomeMainContent">
       <div class="WelcomeSystemLogo">
-        <img src="/assets/systems/NapicuOS/Logo.svg" alt="NapicuOSLogo">
+        <img alt="NapicuOSLogo" src="/assets/systems/NapicuOS/Logo.svg">
         <div class="title">NapicuOS</div>
       </div>
       <div class="titleDesc">Built on Angular</div>
@@ -29,7 +29,7 @@
     <!--    Bar-->
     <div id="LeftBox">
       <div style="padding-bottom: 8px;">
-        <img src="/assets/systems/NapicuOS/Logo.svg" alt="NapicuOSLogo" width="64px" height="64px">
+        <img alt="NapicuOSLogo" height="64px" src="/assets/systems/NapicuOS/Logo.svg" width="64px">
       </div>
       <div *ngFor="let i of GetBarOptions; let index = index" [ngClass]="{selected: index === GetSelectedBarOption}">
         <p>{{i.value}}</p>

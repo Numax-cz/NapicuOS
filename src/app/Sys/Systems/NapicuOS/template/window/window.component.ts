@@ -7,7 +7,6 @@ import {window_animations} from '../../config/windowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';
-import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 @Component({
   selector: 'app-window',
@@ -102,6 +101,10 @@ export class WindowComponent implements OnInit {
    */
   static readonly MinWindowHeight: number = 150;
   /**
+   * Specifies the selected application window
+   */
+  static declare selectedWindow: ProcessWindowValueMetadata;
+  /**
    * Specifies whether the window can be moved
    */
   public move: boolean = false;
@@ -109,6 +112,10 @@ export class WindowComponent implements OnInit {
    * Specifies whether the window can be resized
    */
   public resize: boolean = false;
+  /**
+   * Specifies the selected window border when resizing
+   */
+  public declare selectedDiv: HTMLElement;
   /**
    * Original window X location
    */
@@ -134,19 +141,45 @@ export class WindowComponent implements OnInit {
    */
   protected declare originalHeight: number;
   /**
-   * Specifies the selected window border when resizing
-   */
-  public declare selectedDiv: HTMLElement;
-  /**
-   * Specifies the selected application window
-   */
-  static declare selectedWindow: ProcessWindowValueMetadata;
-  /**
    * Indicates whether a mode other than normal mode was activated when you clicked on the application window.
    */
   protected declare activeWindowState: boolean;
 
   constructor() {
+  }
+
+  /**
+   * Application process rollback function
+   */
+  get AppProcess(): Process[] {
+    return (
+      NapicuOS.get_user_process(NapicuOS.get_active_user()?.username) || []
+    );
+  }
+
+  /**
+   * Returns whether the system has been started
+   */
+  get SystemBoot(): boolean {
+    return NapicuOS.get_system_boot();
+  }
+
+  /**
+   * Returns minimum window width in pixels
+   */
+  get MinWindowWidth(): number {
+    return WindowComponent.MinWindowWidth;
+  }
+
+  public static switchWindowIndex(window: ProcessWindowValueMetadata, index: number): void {
+    WindowComponent.WindowHistory.splice(index, 1);
+    WindowComponent.WindowHistory.push(window);
+    WindowComponent.WindowHistory.forEach((element: Window, int: number) => {
+      element.z_index = int;
+    });
+    WindowComponent.selectedWindow = window;
+    window.activated = true;
+    NapicuOS.update_dock_items();
   }
 
   ngOnInit(): void {
@@ -207,6 +240,66 @@ export class WindowComponent implements OnInit {
   public minimized(event: MouseEvent): void {
     WindowComponent.selectedWindow.display = false;
     event.stopPropagation();
+  }
+
+  /**
+   * @param window Application window process
+   * @param index Process index
+   */
+  public activeWindow(
+    window: ProcessWindowValueMetadata,
+    index: number
+  ): void {
+    if (WindowComponent.selectedWindow?.activated) WindowComponent.selectedWindow.activated = false;
+    WindowComponent.switchWindowIndex(window, index);
+  }
+
+  /**
+   * Functions for saving parameters
+   * @param process Application window process
+   * @param event The mouse event
+   */
+  public resizesIn(
+    process: ProcessWindowValueMetadata,
+    event: MouseEvent
+  ): void {
+    this.resize = true;
+    WindowComponent.selectedWindow = process;
+    this.originalMouseX = event.pageX;
+    this.originalMouseY = event.pageY;
+
+    this.originalWidth = process.getWidth();
+    this.originalHeight = process.getHeight();
+
+    this.originalX = process.getLeft();
+    this.originalY = process.getTop();
+
+    this.selectedDiv = event.target as HTMLElement;
+  }
+
+  /**
+   * Functions for saving parameters
+   * @param process Application window process
+   * @param event The mouse event
+   */
+  public moveWindowIn(
+    process: ProcessWindowValueMetadata,
+    event: MouseEvent
+  ): void {
+    this.originalX = process.getLeft() - event.pageX;
+    this.originalY = process.getTop() - event.pageY;
+    this.activeWindowState = !process.isStateNormal();
+    this.move = true;
+    WindowComponent.selectedWindow = process;
+    //event.stopPropagation();
+  }
+
+  /**
+   * Function to cancel active events when
+   */
+  public WindowOut(): void {
+    this.move = false;
+    this.resize = false;
   }
 
   /**
@@ -288,69 +381,6 @@ export class WindowComponent implements OnInit {
   }
 
   /**
-   * @param window Application window process
-   * @param index Process index
-   */
-  public activeWindow(
-    window: ProcessWindowValueMetadata,
-    index: number
-  ): void {
-    if (WindowComponent.selectedWindow?.activated) WindowComponent.selectedWindow.activated = false;
-    WindowComponent.switchWindowIndex(window, index);
-  }
-
-  public static switchWindowIndex(window: ProcessWindowValueMetadata, index: number): void {
-    WindowComponent.WindowHistory.splice(index, 1);
-    WindowComponent.WindowHistory.push(window);
-    WindowComponent.WindowHistory.forEach((element: Window, int: number) => {
-      element.z_index = int;
-    });
-    WindowComponent.selectedWindow = window;
-    window.activated = true;
-    NapicuOS.update_dock_items();
-  }
-
-  /**
-   * Functions for saving parameters
-   * @param process Application window process
-   * @param event The mouse event
-   */
-  public resizesIn(
-    process: ProcessWindowValueMetadata,
-    event: MouseEvent
-  ): void {
-    this.resize = true;
-    WindowComponent.selectedWindow = process;
-    this.originalMouseX = event.pageX;
-    this.originalMouseY = event.pageY;
-
-    this.originalWidth = process.getWidth();
-    this.originalHeight = process.getHeight();
-
-    this.originalX = process.getLeft();
-    this.originalY = process.getTop();
-
-    this.selectedDiv = event.target as HTMLElement;
-  }
-
-  /**
-   * Functions for saving parameters
-   * @param process Application window process
-   * @param event The mouse event
-   */
-  public moveWindowIn(
-    process: ProcessWindowValueMetadata,
-    event: MouseEvent
-  ): void {
-    this.originalX = process.getLeft() - event.pageX;
-    this.originalY = process.getTop() - event.pageY;
-    this.activeWindowState = !process.isStateNormal();
-    this.move = true;
-    WindowComponent.selectedWindow = process;
-    //event.stopPropagation();
-  }
-
-  /**
    * Function for unsnapping the application window
    */
   protected unSnappingWindow(event: MouseEvent): void {
@@ -410,36 +440,5 @@ export class WindowComponent implements OnInit {
     } else {
       WindowComponent.selectedWindow.setStateNormal();
     }
-  }
-
-  /**
-   * Function to cancel active events when
-   */
-  public WindowOut(): void {
-    this.move = false;
-    this.resize = false;
-  }
-
-  /**
-   * Application process rollback function
-   */
-  get AppProcess(): Process[] {
-    return (
-      NapicuOS.get_user_process(NapicuOS.get_active_user()?.username) || []
-    );
-  }
-
-  /**
-   * Returns whether the system has been started
-   */
-  get SystemBoot(): boolean {
-    return NapicuOS.get_system_boot();
-  }
-
-  /**
-   * Returns minimum window width in pixels
-   */
-  get MinWindowWidth(): number {
-    return WindowComponent.MinWindowWidth;
   }
 }

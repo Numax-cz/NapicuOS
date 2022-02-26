@@ -10,8 +10,8 @@
           </div>
           <ng-container *ngIf="MainOption">
             <div *ngFor="let i of objectKeys(MainOption.settings); let index = index"
-                 id="Grid-BiosItems" class="Option"
-                 [ngClass]="{ BIOSSelectedOption: index == localSelected }">
+                 [ngClass]="{ BIOSSelectedOption: index == localSelected }" class="Option"
+                 id="Grid-BiosItems">
               <div>{{ MainOption.settings[i].title }}<span
                 *ngIf="!isOptionFast(MainOption.settings[i])"
                 class="colon">:</span></div>
@@ -42,7 +42,7 @@
             </div>
           </ng-container>
           <ng-container *ngIf="MainOptionInfo">
-            <div id="Grid-BiosItems" *ngFor="let i of MainOptionInfo">
+            <div *ngFor="let i of MainOptionInfo" id="Grid-BiosItems">
               <div>{{ i.title }}<span class="colon">:</span></div>
               <div>{{ i.value }}</div>
             </div>

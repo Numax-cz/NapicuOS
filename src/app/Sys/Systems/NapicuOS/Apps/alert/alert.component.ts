@@ -24,16 +24,6 @@ export class AlertComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
-  /**
-   * The function that is called after clicking the button
-   */
-  public onButtonClick(): void {
-    this.windowValue.close();
-  }
-
   /**
    * Returns the alert value
    */
@@ -46,5 +36,15 @@ export class AlertComponent implements OnInit {
    */
   get GetAlertType(): systemAlertTypeEnumMetadata {
     return this.alertType;
+  }
+
+  ngOnInit(): void {
+  }
+
+  /**
+   * The function that is called after clicking the button
+   */
+  public onButtonClick(): void {
+    this.windowValue.close();
   }
 }

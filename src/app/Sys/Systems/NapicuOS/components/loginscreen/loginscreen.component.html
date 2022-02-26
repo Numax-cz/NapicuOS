@@ -1,7 +1,7 @@
 <!-- MainSystem -->
 <div id="SystemFont">
   <div id="SystemBackground">
-    <section id="System" @NapicuOSfeoreLoginScreen>
+    <section @NapicuOSfeoreLoginScreen id="System">
       <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
         <!-- Main Panel -->
         <section style="display: contents; background-color: white">
@@ -14,15 +14,15 @@
           <section class="Box">
             <div class="InputElements">
               <div>
-                <input [(ngModel)]="username" type="text" name="username"
-                       placeholder="Username"/>
+                <input [(ngModel)]="username" name="username" placeholder="Username"
+                       type="text"/>
               </div>
               <div>
-                <input [(ngModel)]="password" type="password" name="password"
-                       placeholder="Password"/>
+                <input [(ngModel)]="password" name="password" placeholder="Password"
+                       type="password"/>
               </div>
               <div class="LoginButton">
-                <button type="button" (click)="login()">Login</button>
+                <button (click)="login()" type="button">Login</button>
               </div>
             </div>
             <div [style.display]="!isErrorLogin ? 'none' : ''" class="ErrorMsg">

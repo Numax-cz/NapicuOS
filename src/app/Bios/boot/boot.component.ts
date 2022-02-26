@@ -27,6 +27,10 @@ export class BootComponent implements OnInit, OnDestroy {
     BootComponent.NavigateRouter = this.router;
   }
 
+  get biosTitle(): string {
+    return BiosInfo.title;
+  }
+
   ngOnInit(): void {
     setLanguage();
     setBiosSettings();
@@ -44,15 +48,6 @@ export class BootComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.RunBios, true);
-  }
-
-  protected setEvents(): void {
-    window.removeEventListener('keydown', this.RunBios, true);
-    window.addEventListener('keydown', this.RunBios, true);
-  }
-
-  protected PlayBootSound(): void {
-    this.BiosBootAudio.play();
   }
 
   public RunBios = (e: KeyboardEvent): void => {
@@ -78,7 +73,12 @@ export class BootComponent implements OnInit, OnDestroy {
     BootComponent.EnterBios = false;
   }
 
-  get biosTitle(): string {
-    return BiosInfo.title;
+  protected setEvents(): void {
+    window.removeEventListener('keydown', this.RunBios, true);
+    window.addEventListener('keydown', this.RunBios, true);
+  }
+
+  protected PlayBootSound(): void {
+    this.BiosBootAudio.play();
   }
 }

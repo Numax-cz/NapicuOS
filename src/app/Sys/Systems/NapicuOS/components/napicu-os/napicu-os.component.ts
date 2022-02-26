@@ -7,8 +7,6 @@ import {NapicuOS} from '../../system.napicuos';
 import {SystemFile} from 'src/app/Sys/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
-import {global} from "@angular/compiler/src/util";
-import {Window} from "../../../../Window";
 
 @Component({
   selector: 'app-napicu-os',
@@ -42,13 +40,38 @@ export class NapicuOSComponent implements OnInit {
    * Specifies whether to display the context menu with the date
    */
   public static DataDisplay: boolean = false;
-
+  public static BottomDockProcess: SystemDockDisplay[] = [];
   public selectedAppContext: number | null = null;
 
-  public static BottomDockProcess: SystemDockDisplay[] = [];
-
-
   constructor() {
+  }
+
+  get systemTime(): string {
+    return NapicuOS.get_system_time();
+  }
+
+  get wallpaper(): string {
+    return wallpaper;
+  }
+
+  get GetBottomDockProcess(): SystemDockDisplay[] {
+    return NapicuOSComponent.BottomDockProcess;
+  }
+
+  get GetDateDisplay(): boolean {
+    return NapicuOSComponent.DataDisplay;
+  }
+
+  get SystemBoot(): boolean {
+    return NapicuOS.get_system_boot();
+  }
+
+  get Process(): Process[] {
+    return NapicuOS.get_system_process();
+  }
+
+  get BottomDockDisplay(): boolean {
+    return NapicuOS.get_system_bottom_dock_display();
   }
 
   ngOnInit(): void {
@@ -97,33 +120,4 @@ export class NapicuOSComponent implements OnInit {
     this.selectedAppContext = index;
     event.preventDefault();
   }
-
-  get systemTime(): string {
-    return NapicuOS.get_system_time();
-  }
-
-  get wallpaper(): string {
-    return wallpaper;
-  }
-
-  get GetBottomDockProcess(): SystemDockDisplay[] {
-    return NapicuOSComponent.BottomDockProcess;
-  }
-
-  get GetDateDisplay(): boolean {
-    return NapicuOSComponent.DataDisplay;
-  }
-
-  get SystemBoot(): boolean {
-    return NapicuOS.get_system_boot();
-  }
-
-  get Process(): Process[] {
-    return NapicuOS.get_system_process();
-  }
-
-  get BottomDockDisplay(): boolean {
-    return NapicuOS.get_system_bottom_dock_display();
-  }
-
 }

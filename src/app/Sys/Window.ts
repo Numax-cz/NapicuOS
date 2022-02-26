@@ -59,20 +59,6 @@ export class Window {
     this.resizeAllowed = data.resizeAllowed || data.resizeAllowed === undefined;
   }
 
-  public readonly open = (): void => {
-    this.display = true;
-    WindowComponent.WindowHistory.push(this);
-    NapicuOS.onRunNewApp();
-  };
-
-  public readonly close = (): void => {
-    this.display = false;
-    WindowComponent.WindowHistory.slice(
-      WindowComponent.WindowHistory.indexOf(this, 0),
-      1
-    );
-  };
-
   /**
    * Returns centered application window settings
    * @param width Window width
@@ -86,6 +72,20 @@ export class Window {
       posY: 50 - Math.round(height / 2),
     };
   }
+
+  public readonly open = (): void => {
+    this.display = true;
+    WindowComponent.WindowHistory.push(this);
+    NapicuOS.onRunNewApp();
+  };
+
+  public readonly close = (): void => {
+    this.display = false;
+    WindowComponent.WindowHistory.slice(
+      WindowComponent.WindowHistory.indexOf(this, 0),
+      1
+    );
+  };
 
 
   //* * * *  Getters * * *

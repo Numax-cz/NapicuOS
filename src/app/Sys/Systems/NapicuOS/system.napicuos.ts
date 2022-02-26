@@ -28,13 +28,13 @@ import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
-  private static drives: systemDrivesMetadata = NapicuOSSystemDir;
-  private static users: User[] = [];
-  private static activeUser: User | null;
   public static systemTime: string;
   public static systemData = {
     instaled: true,
   };
+  private static drives: systemDrivesMetadata = NapicuOSSystemDir;
+  private static users: User[] = [];
+  private static activeUser: User | null;
   public override boot = {
     title: system_boot_screen_title,
     logo: system_boot_screen_logo,
@@ -636,7 +636,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application);
   }
-
 
   /**
    * Creates and opens a new system alert

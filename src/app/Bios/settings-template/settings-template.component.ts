@@ -11,27 +11,15 @@ import {objectKeys} from 'src/app/Scripts/objectKeys';
   styleUrls: ['./settings-template.component.scss'],
 })
 export class SettingsTemplateComponent implements OnInit {
-  @Input() MainOption: any;
-  @Input() MainOptionInfo: Informations[] = [];
-
   public static MainOption: settings[] = [];
   /**
    * Number that indicates which item from MainOption is selected
    */
   public static selected: number = 0;
+  @Input() MainOption: any;
+  @Input() MainOptionInfo: Informations[] = [];
 
   constructor() {
-  }
-
-  ngOnInit(): void {
-    if (this.MainOption) {
-      SettingsTemplateComponent.MainOption = this.MainOption.settings;
-    }
-    SettingsTemplateComponent.selected = 0;
-  }
-
-  ngOnDestroy(): void {
-    SettingsTemplateComponent.MainOption = [];
   }
 
   get Selected(): number {
@@ -58,6 +46,22 @@ export class SettingsTemplateComponent implements OnInit {
       ].description;
   }
 
+  static errorType(): string {
+    console.error('Array Error');
+    return '{[Bios_Main]TYPE ERROR}';
+  }
+
+  ngOnInit(): void {
+    if (this.MainOption) {
+      SettingsTemplateComponent.MainOption = this.MainOption.settings;
+    }
+    SettingsTemplateComponent.selected = 0;
+  }
+
+  ngOnDestroy(): void {
+    SettingsTemplateComponent.MainOption = [];
+  }
+
   public isOption(component: settings): boolean {
     return isOption(component);
   }
@@ -72,11 +76,6 @@ export class SettingsTemplateComponent implements OnInit {
 
   public isOptionFast(component: settings): boolean {
     return isOptionsFast(component);
-  }
-
-  static errorType(): string {
-    console.error('Array Error');
-    return '{[Bios_Main]TYPE ERROR}';
   }
 
   objectKeys(obj: any): any {

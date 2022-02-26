@@ -10,14 +10,14 @@ export class LoadsComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
   get Img(): string {
     var logo = GrubComponent.ActiveSystem.boot.logo;
     if (logo) {
       return logo;
     }
     return '';
+  }
+
+  ngOnInit(): void {
   }
 }

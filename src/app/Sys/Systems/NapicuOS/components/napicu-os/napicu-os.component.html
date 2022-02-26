@@ -2,11 +2,11 @@
 <div id="SystemFont">
   <!-- Resizers -->
   <div class="snappingEdge">
-    <div style="cursor: unset" class="resizer snapping left"></div>
-    <div style="cursor: unset" class="resizer snapping right"></div>
+    <div class="resizer snapping left" style="cursor: unset"></div>
+    <div class="resizer snapping right" style="cursor: unset"></div>
 
-    <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-left"></div>
-    <div style="cursor: unset; width: 20px; height: 20px" class="resizer snapping top-right"></div>
+    <div class="resizer snapping top-left" style="cursor: unset; width: 20px; height: 20px"></div>
+    <div class="resizer snapping top-right" style="cursor: unset; width: 20px; height: 20px"></div>
   </div>
   <div id="SystemBackground">
     <section @NapicuOSfeoreStartUp id="System">
@@ -14,7 +14,7 @@
         <!-- Top panel -->
         <section class="TopPanel">
           <div class="top-panel-item">Activities</div>
-          <div class="top-panel-item" (click)="clickDate()">{{ systemTime }}</div>
+          <div (click)="clickDate()" class="top-panel-item">{{ systemTime }}</div>
           <!-- Date panel-->
           <div *ngIf="GetDateDisplay" class="DateContextMenu ContextMenuBox napicu-os-clickable">
             <div>
@@ -37,8 +37,8 @@
         </section>
 
         <!-- Bottom AppPanel -->
-        <section *ngIf="BottomDockDisplay" class="BottomPanel" style="z-index: 10000"
-                 id="Dock">
+        <section *ngIf="BottomDockDisplay" class="BottomPanel" id="Dock"
+                 style="z-index: 10000">
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section style="display: flex;">
               <!-- Applications -->
@@ -51,12 +51,12 @@
                     'Unpin' : 'Pin'}}</div>
                 </div>
                 <!-- Application icon-->
-                <img [src]="i.file.iconPath" (click)="dockRunner(i.file, i.running)"
-                     (contextmenu)="onRightClick(index, $event)"
+                <img (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"
+                     [src]="i.file.iconPath"
                      alt="Application icon"/>
                 <!-- Application line-->
-                <div [ngClass]="{'widthLine': i.selected, 'smallLine':
-                i.running}" *ngIf="i.running || i.selected" class="line"></div>
+                <div *ngIf="i.running || i.selected" [ngClass]="{'widthLine': i.selected, 'smallLine':
+                i.running}" class="line"></div>
               </div>
             </section>
           </div>

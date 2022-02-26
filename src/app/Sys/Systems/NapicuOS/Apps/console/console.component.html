@@ -1,10 +1,10 @@
 <section
   #AppScreen
+  (click)="inputFocus()"
+  (keydown.arrowdown)="onArrowDown($event)"
+  (keydown.arrowup)="onArrowUp($event)"
   class="WindowContent BackgroundColor ConsoleThemeFeraDark MainBoxPadding-15"
   id="WindowScrollBar"
-  (keydown.arrowup)="onArrowUp($event)"
-  (keydown.arrowdown)="onArrowDown($event)"
-  (click)="inputFocus()"
 >
   <section id="CommandShellInput">
     <div *ngFor="let i of Getlines; let index = index">
@@ -27,15 +27,15 @@
       </div>
       <div
         #InputValue
-        contenteditable="true"
+        (keydown.enter)="onEnter($event)"
+        accept="txt"
+        autocapitalize="off"
         autocomplete="off"
         autocorrect="off"
-        autocapitalize="off"
-        accept="txt"
-        spellcheck="false"
-        id="inputLineID"
         class="inputLine inputMargin single-line"
-        (keydown.enter)="onEnter($event)"
+        contenteditable="true"
+        id="inputLineID"
+        spellcheck="false"
       ></div>
     </div>
   </section>

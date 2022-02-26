@@ -12,11 +12,11 @@ import {isTime} from '../../Scripts/Type';
   styleUrls: ['./bios-main.component.scss'],
 })
 export class BiosMainComponent implements OnInit {
-  constructor() {
-  }
-
   public MainOption: ToolSettings = BiosSettings.Main;
   public MainOptionInfo: Informations[] = MainInfo();
+
+  constructor() {
+  }
 
   ngOnInit(): void {
     Object.values(this.MainOption.settings).forEach(

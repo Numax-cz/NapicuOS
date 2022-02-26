@@ -9,20 +9,25 @@ import {System} from 'src/app/Sys/System';
   styleUrls: ['./grub.component.scss'],
 })
 export class GrubComponent implements OnInit, OnDestroy {
-  constructor() {
-  }
-
+  /**
+   * Loaded all systems from the drive
+   */
+  public static Systems: System[];
+  public static ActiveSystem: System;
   /**
    * Number indicates the selected options
    */
   public selected: number = 0;
 
-  /**
-   * Loaded all systems from the drive
-   */
-  public static Systems: System[];
+  constructor() {
+  }
 
-  public static ActiveSystem: System;
+  /**
+   * Returns all systems from the unit
+   */
+  get Systems(): System[] {
+    return GrubComponent.Systems;
+  }
 
   ngOnInit(): void {
     this.setEvents();
@@ -31,11 +36,6 @@ export class GrubComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     window.removeEventListener('keydown', this.Move, true);
     this.selected = 0;
-  }
-
-  protected setEvents(): void {
-    window.removeEventListener('keydown', this.Move, true);
-    window.addEventListener('keydown', this.Move, true);
   }
 
   public Move = (e: KeyboardEvent): void => {
@@ -69,10 +69,8 @@ export class GrubComponent implements OnInit, OnDestroy {
     return system.constructor.name;
   }
 
-  /**
-   * Returns all systems from the unit
-   */
-  get Systems(): System[] {
-    return GrubComponent.Systems;
+  protected setEvents(): void {
+    window.removeEventListener('keydown', this.Move, true);
+    window.addEventListener('keydown', this.Move, true);
   }
 }
