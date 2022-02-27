@@ -8,10 +8,10 @@
  */
 
 const fs = require('fs');
-const { exec } = require('child_process');
+const {exec} = require('child_process');
 
-var AppTitle;
-var SystemTitle;
+let AppTitle;
+let SystemTitle;
 process.argv.forEach(function (val, index) {
   switch (index) {
     case 2:
@@ -40,7 +40,7 @@ export class ${AppTitle} extends Process {
 function Run() {
   if (SystemTitle && AppTitle) {
     if (fs.existsSync(`${defaultDir}/${SystemTitle}`)) {
-      var pathNewApp = `${defaultDir}/${SystemTitle}/${appName}/${AppTitle}`;
+      let pathNewApp = `${defaultDir}/${SystemTitle}/${appName}/${AppTitle}`;
       if (!fs.existsSync(pathNewApp)) {
         fs.mkdirSync(pathNewApp, {
           recursive: true,
@@ -68,7 +68,7 @@ function Run() {
 }
 
 function creatFile(path, file, text) {
-  var fileName = `${path}/${file}`;
+  let fileName = `${path}/${file}`;
   fs.writeFile(fileName, text, function (err) {
     if (!err) return;
     console.log(err);
@@ -76,7 +76,7 @@ function creatFile(path, file, text) {
 }
 
 function creatAngularComponent() {
-  var path = `${appDir}/${SystemTitle}/${appName}/${AppTitle.toLowerCase()}`;
+  let path = `${appDir}/${SystemTitle}/${appName}/${AppTitle.toLowerCase()}`;
   console.log(path);
   exec(`ng g c ${path}`, (error, stdout, stderr) => {
     console.log(stdout);
@@ -91,7 +91,7 @@ function creatAngularComponent() {
 
 function EndMessage() {
   const text = `
-      * * * A new app has been created! * * * 
+      * * * A new app has been created! * * *
   `;
   console.error(text);
 }
