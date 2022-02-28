@@ -51,6 +51,7 @@ export declare interface AppCreatMetadata {
 
   addToDock?: boolean;
 
+  multiRun?: boolean;
 }
 
 export declare interface AppCreatFileMetadata {

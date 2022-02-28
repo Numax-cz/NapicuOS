@@ -49,7 +49,8 @@ export function napicu_os_welcomeapp(): void {
     windowData: Window.centerPos(75, 75),
     resizeAllowed: false,
     fileIconPath: '/assets/systems/NapicuOS/Logo.svg',
-    addToDock: true
+    addToDock: true,
+    multiRun: false
   });
 }
 
@@ -60,6 +61,6 @@ export function napicu_os_terminal(): void {
     appComponent: ConsoleComponent,
     windowData: Window.centerPos(35, 35),
     fileIconPath: '/assets/systems/NapicuOS/SystemIcons/XFD/term.svg',
-    addToDock: false
+    addToDock: false,
   });
 }
