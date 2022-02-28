@@ -13,7 +13,7 @@ export class Process {
   private declare _launchedBy: string;
   private declare _Interval: any;
   private declare _pid: number;
-  private readonly _processTitle: string = 'NapicuAPP';
+  private declare readonly _processTitle: string;
   private declare readonly _Window: ProcessWindowValueMetadata;
   private declare readonly processInterval: { fun: () => void; time: number };
 
@@ -21,6 +21,7 @@ export class Process {
     if (data?.Window) this._Window = data.Window;
     if (data?.processTitle) this._processTitle = data.processTitle;
     if (data?.processInterval) this.processInterval = data.processInterval;
+    this._processTitle = data.processTitle || "NapicuAPP";
 
     this._launchedBy = NapicuOS.get_active_user()?.username || 'System';
   }
