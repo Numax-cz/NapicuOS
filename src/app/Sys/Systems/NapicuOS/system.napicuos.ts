@@ -117,18 +117,24 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * A function that starts when you launch a new process
+   * A function that runs when a new process is started.
    */
   public static onRunNewProcess(): void {
     this.update_dock_items();
   }
 
   /**
-   * A function that starts when you launch a new application
+   * A function that starts when a new application is launched.
    */
   public static onRunNewApp(): void {
     this.update_dock_items();
+  }
 
+  /**
+   * Function that starts after kill the process
+   */
+  public static onKillProcess(): void {
+    this.update_dock_items();
   }
 
   public static getTime(): string {
