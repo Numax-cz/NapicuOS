@@ -88,6 +88,7 @@ export class Process {
     }
     setTimeout(() => {
       GrubComponent.ActiveSystem.SystemProcess.splice(this._pid, 1);
+      NapicuOS.onKillProcess();
     }, x);
   }
 
