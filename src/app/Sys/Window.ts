@@ -73,13 +73,13 @@ export class Window {
     };
   }
 
-  public readonly open = (): void => {
+  public open(): void {
     this.display = true;
     WindowComponent.WindowHistory.push(this);
     NapicuOS.onRunNewApp();
   };
 
-  public readonly close = (): void => {
+  public close(): void {
     this.display = false;
     WindowComponent.WindowHistory.slice(
       WindowComponent.WindowHistory.indexOf(this, 0),
