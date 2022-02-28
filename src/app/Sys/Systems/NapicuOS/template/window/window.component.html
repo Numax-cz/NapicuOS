@@ -46,9 +46,9 @@
       <div class="napicuos-App-window-M">
         <div (click)="minimized($event)" *ngIf="i.Window.windowButtons.minimized"
              id="MinButton"></div>
-        <div (click)="maximize(i.Window, $event)" *ngIf="i.Window.windowButtons.maximize"
+        <div (click)="maximize(i, $event)" *ngIf="i.Window.windowButtons.maximize"
              id="FullButton"></div>
-        <div (click)="close(i.Window, $event)" *ngIf="i.Window.windowButtons.close"
+        <div (click)="close(i, $event)" *ngIf="i.Window.windowButtons.close"
              id="CloseButton"></div>
       </div>
     </div>
