@@ -213,23 +213,23 @@ export class WindowComponent implements OnInit {
 
   /**
    * Function that closes the application window
-   * @param window Application window
+   * @param process Application process
    * @param event The mouse event
    */
-  public close(window: ProcessWindowValueMetadata, event: MouseEvent): void {
-    window.close();
+  public close(process: Process, event: MouseEvent): void {
+    process.kill();
     NapicuOS.update_dock_items();
     event.stopPropagation();
   }
 
   /**
    * Function that maximizes or minimizes the window
-   * @param window Application window
+   * @param process Application process
    * @param event The mouse event
    */
-  public maximize(window: ProcessWindowValueMetadata, event: MouseEvent): void {
+  public maximize(process: Process, event: MouseEvent): void {
     //window.appData.maximized = window.appData.maximized ? false : true;
-    window.state = window.isStateMaximized() ? 'normal' : 'maximized';
+    process.Window.state = process.Window.isStateMaximized() ? 'normal' : 'maximized';
     event.stopPropagation();
   }
 
