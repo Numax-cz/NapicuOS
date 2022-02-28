@@ -13,16 +13,18 @@ export class Process {
   private declare _launchedBy: string;
   private declare _Interval: any;
   private declare _pid: number;
+  private declare _multiRun: boolean;
   private declare readonly _processTitle: string;
   private declare readonly _Window: ProcessWindowValueMetadata;
   private declare readonly processInterval: { fun: () => void; time: number };
+
 
   constructor(data: processConstructor) {
     if (data?.Window) this._Window = data.Window;
     if (data?.processTitle) this._processTitle = data.processTitle;
     if (data?.processInterval) this.processInterval = data.processInterval;
     this._processTitle = data.processTitle || "NapicuAPP";
-
+    this._multiRun = data.multiRun || true;
     this._launchedBy = NapicuOS.get_active_user()?.username || 'System';
   }
 
@@ -60,14 +62,16 @@ export class Process {
   }
 
   public run(): this {
-    if (this.processInterval) {
-      this._Interval = setInterval(() => {
-        this.processInterval?.fun();
-      }, this.processInterval.time);
+    if (this._multiRun && !NapicuOS.get_system_process_by_title(this._processTitle)) {
+      if (this.processInterval) {
+        this._Interval = setInterval(() => {
+          this.processInterval?.fun();
+        }, this.processInterval.time);
+      }
+      GrubComponent.ActiveSystem.SystemProcess.push(this);
+      this._pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
+      NapicuOS.onRunNewProcess();
     }
-    GrubComponent.ActiveSystem.SystemProcess.push(this);
-    this._pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
-    NapicuOS.onRunNewProcess();
     return this;
   }
 
