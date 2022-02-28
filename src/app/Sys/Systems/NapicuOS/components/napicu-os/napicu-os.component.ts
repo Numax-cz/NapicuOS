@@ -111,6 +111,7 @@ export class NapicuOSComponent implements OnInit {
     } else {
       NapicuOS.add_file_to_dock(file);
     }
+    NapicuOS.update_dock_items();
     this.closeAppContextMenu();
   }
 
