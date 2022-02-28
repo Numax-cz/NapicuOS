@@ -81,7 +81,7 @@ export class NapicuOSComponent implements OnInit {
       if (
         !p.offsetParent?.classList.contains("napicu-os-clickable")
       ) {
-        this.selectedAppContext = null;
+        this.closeAppContextMenu();
         NapicuOSComponent.DataDisplay = false;
       }
       e.preventDefault();
@@ -102,6 +102,7 @@ export class NapicuOSComponent implements OnInit {
 
   public openFileInContextMenu(file: SystemFile): void {
     NapicuOS.open_app(file.fileName);
+    this.closeAppContextMenu();
   }
 
   public pinFunFileInContextMenu(file: SystemFile, index: number, pinned: boolean): void {
@@ -110,6 +111,7 @@ export class NapicuOSComponent implements OnInit {
     } else {
       NapicuOS.add_file_to_dock(file);
     }
+    this.closeAppContextMenu();
   }
 
   public clickDate(): void {
@@ -119,5 +121,9 @@ export class NapicuOSComponent implements OnInit {
   public onRightClick(index: number, event: Event): void {
     this.selectedAppContext = index;
     event.preventDefault();
+  }
+
+  protected closeAppContextMenu(): void {
+    this.selectedAppContext = null;
   }
 }
