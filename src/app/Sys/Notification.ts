@@ -22,6 +22,10 @@ export class SystemNotification {
     this._icon = data.icon;
   }
 
+  public push(): void {
+    
+  }
+
 
   public get title(): string {
     return this._title;
