@@ -134,10 +134,10 @@
   }
 }
 
+//TODO CONFIG - Main box
 .ContextMenuBox {
   border-radius: 14px;
   left: 0;
-
   padding: 10px 5px;
   position: absolute;
   background-color: #1E2127;
@@ -149,6 +149,15 @@
   z-index: 10000;
   width: 469px;
   left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% - 78px);
+}
+
+.NotificationContextMenu {
+  left: 50%;
+  color: white;
+  z-index: 10000;
+  min-width: 350px;
   transform: translateX(-50%);
   bottom: calc(100% - 78px);
 }
