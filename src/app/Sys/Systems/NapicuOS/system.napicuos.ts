@@ -329,7 +329,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Returns apps in dock
+   * Returns files in the active user's dock
    */
   public static get_user_apps_in_dock(): SystemFile[] {
     //TODO BottomDockProcess in NapicuOSComponent
@@ -343,6 +343,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.get_active_user()?.userSetting.notifications || [];
   }
 
+  /**
+   * Returns files in the dock
+   */
   public static get_system_apps_in_dock(): SystemDockDisplay[] {
     return NapicuOSComponent.BottomDockProcess;
   }
