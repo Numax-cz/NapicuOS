@@ -26,6 +26,7 @@ import {SystemAlert} from '../../Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
+import {SystemNotification} from "../../Notification";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -333,6 +334,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_user_apps_in_dock(): SystemFile[] {
     //TODO BottomDockProcess in NapicuOSComponent
     return this.get_active_user()?.userSetting.appsInDock || [];
+  }
+
+  /**
+   * Returns user notifications
+   */
+  public static get_user_notifications(): SystemNotification[] {
+    return this.get_active_user()?.userSetting.notifications || [];
   }
 
   public static get_system_apps_in_dock(): SystemDockDisplay[] {

@@ -3,6 +3,7 @@ import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata,} from './Syst
 export class User {
   public static readonly defaultUserSettings: SystemUserDataMetadata = {
     appsInDock: [],
+    notifications: []
   };
   private declare _userSettings: SystemUserDataMetadata;
 
@@ -18,9 +19,6 @@ export class User {
       : SystemUserPermissionsEnumMetadata.User;
 
     this._userSettings = User.defaultUserSettings;
-    // this._userSetting = User.defaultUserSettings;
-
-
   }
 
   private _username: string = 'user';
