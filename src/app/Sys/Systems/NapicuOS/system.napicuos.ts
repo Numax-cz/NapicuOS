@@ -181,11 +181,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   /**
    * Returns the user processes
-   * @param username User's name
    */
-  public static get_user_process(username: string | undefined): Process[] {
+  public static get_user_process(): Process[] {
     return this.get_system_process().filter((value: Process) => {
-      return value.launchedBy === username;
+      return value.launchedBy === (this.get_active_user()?.username || "");
     });
   }
 
@@ -344,6 +343,26 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns the displayed user windows
+   */
+  public static get_user_system_displayed_window_apps(): Process[] {
+    return this.get_user_process().filter((element: Process) => {
+      return element.Window?.display == true;
+    });
+  }
+
+  /**
+   * Returns the user's displayed windows by process name
+   * @param processTitle Process title of the application window
+   */
+  public static get_user_system_displayed_window_apps_by_process_title(processTitle: string): Process[] {
+    return this.get_user_system_displayed_window_apps().filter((element: Process) => {
+      return element.processTitle === processTitle;
+    })
+  }
+
+
+  /**
    * Returns files in the dock
    */
   public static get_system_apps_in_dock(): SystemDockDisplay[] {
@@ -367,7 +386,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return {
         file: value,
         alreadyPinned: true,
-        running: !!this.get_system_displayed_window_apps_by_process_title(value.fileName).length,
+        running: !!this.get_user_system_displayed_window_apps_by_process_title(value.fileName).length,
         selected: (this.get_system_activated_window_app()?.processTitle === value.fileName)
       };
     });
@@ -623,6 +642,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     GrubComponent.ActiveSystem.onLogin();
     if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
+    this.update_dock_items();
     return SystemStateMetadata.UserLoginSuccess;
   }
 
@@ -676,7 +696,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static logout_user_and_kill_user_process(): void {
     const acUser = this.activeUser;
     if (acUser) {
-      this.get_user_process(acUser.username).forEach((value: Process) => {
+      this.get_user_process().forEach((value: Process) => {
         value.kill();
       });
       acUser.running = false;

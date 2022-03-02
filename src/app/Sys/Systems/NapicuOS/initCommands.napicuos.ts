@@ -37,7 +37,6 @@ export function initAllCommands(): void {
   initKillProcess();
   initCreateUser();
   initLogout();
-  initLogout();
   initOpenApp();
 }
 
