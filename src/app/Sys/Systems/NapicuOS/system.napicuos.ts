@@ -199,7 +199,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Return applications
+   * Returns applications
    */
   public static get_system_window_apps(): Process[] {
     let process = this.get_system_process();
