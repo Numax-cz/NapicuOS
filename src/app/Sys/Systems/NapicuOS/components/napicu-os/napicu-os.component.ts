@@ -7,6 +7,7 @@ import {NapicuOS} from '../../system.napicuos';
 import {SystemFile} from 'src/app/Sys/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
+import {SystemNotification} from "../../../../Notification";
 
 @Component({
   selector: 'app-napicu-os',
@@ -41,6 +42,7 @@ export class NapicuOSComponent implements OnInit {
    */
   public static DataDisplay: boolean = false;
   public static BottomDockProcess: SystemDockDisplay[] = [];
+  public static NotificationsMenuItems: SystemNotification[] = [];
   public selectedAppContext: number | null = null;
 
   constructor() {
@@ -84,7 +86,7 @@ export class NapicuOSComponent implements OnInit {
         this.closeAppContextMenu();
         NapicuOSComponent.DataDisplay = false;
       }
-      e.preventDefault();
+      //e.preventDefault();
     });
   }
 
