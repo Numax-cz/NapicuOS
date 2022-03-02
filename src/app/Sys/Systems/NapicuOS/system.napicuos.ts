@@ -27,6 +27,7 @@ import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "../../Notification";
+import {Window} from "../../Window";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -202,14 +203,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns applications
    */
   public static get_system_window_apps(): Process[] {
-    let process = this.get_system_process();
-    let array: Process[] = [];
-    process.forEach((value: Process) => {
-      if (value?.Window) {
-        array.push(value);
-      }
-    });
-    return array;
+    return this.get_windowProcess_by_processes(this.get_system_process());
   }
 
   /**
@@ -361,6 +355,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     })
   }
 
+  /**
+   * Returns the user's application windows
+   */
+  public static get_user_system_window_apps(): Process[] {
+    return this.get_windowProcess_by_processes(this.get_user_process());
+  }
 
   /**
    * Returns files in the dock
@@ -702,5 +702,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       acUser.running = false;
       this.logout_user();
     }
+  }
+
+  /**
+   * @param processes Processes for filtration
+   */
+  private static get_windowProcess_by_processes(processes: Process[]): Process[] {
+    let array: Process[] = [];
+    processes.forEach((value: Process) => {
+      if (value?.Window) {
+        array.push(value);
+      }
+    });
+    return array;
   }
 }
