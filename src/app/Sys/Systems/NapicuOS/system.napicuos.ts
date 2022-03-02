@@ -204,11 +204,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_system_window_apps(): Process[] {
     let process = this.get_system_process();
     let array: Process[] = [];
-    for (let i = 0; i < process.length; i++) {
-      if (process[i]?.Window) {
-        array.push(process[i]);
+    process.forEach((value: Process) => {
+      if (value?.Window) {
+        array.push(value);
       }
-    }
+    });
     return array;
   }
 
@@ -375,7 +375,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_dock_items(): void {
     let i: SystemFile[] = [];
 
-    this.get_system_window_apps().forEach((App: Process) => {
+    this.get_system_window_apps().forEach((App: Process) => { //TODO Použít aplikační okna uživatele
       let file = this.get_file_by_file_title(this.get_apps_dir(), App.processTitle);
       if (typeof file === "object" && this.get_user_apps_in_dock().filter((file: SystemFile) => {
         return file.fileName === App.processTitle;
