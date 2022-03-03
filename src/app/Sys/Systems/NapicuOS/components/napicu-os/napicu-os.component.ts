@@ -43,6 +43,7 @@ export class NapicuOSComponent implements OnInit {
   public static DataDisplay: boolean = false;
   public static BottomDockProcess: SystemDockDisplay[] = [];
   public static NotificationsMenuItems: SystemNotification[] = [];
+  public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
 
   constructor() {

@@ -1,1 +1,2 @@
-export const time_formate = 'd MMM, h:mm a';
+export const time_format = 'd MMM, h:mm a';
+export const time_format_MH = 'h:mm';

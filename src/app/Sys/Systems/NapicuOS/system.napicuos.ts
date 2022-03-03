@@ -8,7 +8,7 @@ import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
 import {boot_time, soft_boot_time} from './config/boot';
 import {formatDate} from '@angular/common';
-import {time_formate} from './config/time';
+import {time_format} from './config/time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from '../../command';
 import {initAllCommands} from './initCommands.napicuos';
@@ -140,7 +140,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public static getTime(): string {
     let now = new Date();
-    return formatDate(now, time_formate, 'en-US'); //TODO Settings
+    return formatDate(now, time_format, 'en-US'); //TODO Settings
+  }
+
+  public static getTimeByFormat(format: string): string {
+    let now = new Date();
+    return formatDate(now, format, 'en-US'); //TODO Settings
   }
 
   // * * * Getters * * *
