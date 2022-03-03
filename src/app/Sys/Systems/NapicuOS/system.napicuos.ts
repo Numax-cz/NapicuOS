@@ -27,12 +27,11 @@ import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "../../Notification";
-import {Window} from "../../Window";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
   public static systemData = {
-    instaled: true,
+    installed: true,
   };
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
   private static users: User[] = [];
