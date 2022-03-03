@@ -27,6 +27,7 @@ import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "../../Notification";
+import {notification_active_time} from './config/notification';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -716,6 +717,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       this.logout_user();
     }
   }
+
+  /**
+   * Sends a notification
+   * @param notification
+   */
+  public static notification_push(notification: SystemNotification): void {
+    //TODO PUSH NOTIFICATION
+    //! CMD || Process
+    NapicuOSComponent.NotificationActive = notification;
+    setTimeout(() => {
+      NapicuOSComponent.NotificationsMenuItems.push(notification); //TODO IF
+      NapicuOSComponent.NotificationActive = null;
+    }, notification_active_time);
+  }
+
 
   /**
    * @param processes Processes for filtration

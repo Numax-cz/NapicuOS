@@ -10,6 +10,7 @@ import {setHelpCommand, setWindowTitleHelpCommand} from './config/commands/help/
 import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from '../../User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
+import {SystemNotification} from "../../Notification";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -25,7 +26,12 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          User.defaultUserSettings.appsInDock = [];
+          let i = new SystemNotification({
+            title: "This is test",
+            msg: "this is test xd",
+            icon: "/assets/icons/NapicuBios-384x384.png"
+          });
+          NapicuOS.notification_push(i);
           resolve();
         }, 200);
       });

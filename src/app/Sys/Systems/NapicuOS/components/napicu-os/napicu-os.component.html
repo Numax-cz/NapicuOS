@@ -28,10 +28,10 @@
         </section>
         <!--Notification panel-->
         <ng-container *ngIf="GetNotification">
-          <section class="NotificationContextMenu ContextMenuBox">
+          <section @NapicuOSfeoreNotification class="NotificationContextMenu ContextMenuBox">
             <div class="ntf-con">
               <div>
-                <img class="ntf-icon" src="/assets/icons/NapicuBios-384x384.png" alt="NotificationIcon">
+                <img class="ntf-icon" [src]="GetNotification.icon" alt="NotificationIcon">
               </div>
               <div class="ntf-mainDes">
                 <div class="ntf-title">
