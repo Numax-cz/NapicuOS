@@ -160,4 +160,26 @@
   min-width: 350px;
   transform: translateX(-50%);
   bottom: calc(100% - 78px);
+
+  .ntf-title {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .ntf-mainDes {
+    padding: 0 10px;
+  }
+
+  .ntf-con {
+    display: flex;
+  }
+
+  .ntf-icon {
+    width: 56px;
+  }
+
+  .ntf-des {
+    font-size: .9rem;
+    padding: 5px 8px;
+  }
 }
