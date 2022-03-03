@@ -8,19 +8,19 @@ export class SystemNotification {
   /**
    * Notification name
    */
-  public declare readonly _title: string;
+  protected declare readonly _title: string;
   /**
    * Notification description
    */
-  public declare readonly _msg: string;
+  protected declare readonly _msg: string;
   /**
    * Notification icon
    */
-  public declare readonly _icon: string;
+  protected declare readonly _icon: string;
   /**
    * Notification time
    */
-  public declare readonly _time: string;
+  protected declare readonly _time: string;
 
 
   constructor(data: SystemNotificationConstructorMetadata) {

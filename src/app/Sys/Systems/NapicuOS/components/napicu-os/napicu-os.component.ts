@@ -130,4 +130,8 @@ export class NapicuOSComponent implements OnInit {
   protected closeAppContextMenu(): void {
     this.selectedAppContext = null;
   }
+
+  get GetNotification(): SystemNotification | null {
+    return NapicuOSComponent.NotificationActive;
+  }
 }

@@ -26,21 +26,24 @@
             <img src="/assets/systems/NapicuOS/on-off.svg"/>
           </div>
         </section>
-        <section class="NotificationContextMenu ContextMenuBox">
-          <div class="ntf-con">
-            <div>
-              <img class="ntf-icon" src="/assets/icons/NapicuBios-384x384.png" alt="NotificationIcon">
-            </div>
-            <div class="ntf-mainDes">
-              <div class="ntf-title">
-                This is Title
+        <!--Notification panel-->
+        <ng-container *ngIf="GetNotification">
+          <section class="NotificationContextMenu ContextMenuBox">
+            <div class="ntf-con">
+              <div>
+                <img class="ntf-icon" src="/assets/icons/NapicuBios-384x384.png" alt="NotificationIcon">
               </div>
-              <div class="ntf-des">
-                This is test
+              <div class="ntf-mainDes">
+                <div class="ntf-title">
+                  {{GetNotification.title}}
+                </div>
+                <div class="ntf-des">
+                  {{GetNotification.msg}}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ng-container>
         <!-- Main Panel -->
         <section style="display: contents; background-color: white">
           <div [style.background-image]="'url(' + wallpaper + ')'" id="wallpaper">
