@@ -62,16 +62,15 @@ export class Process {
   }
 
   public run(): this {
-    if (this._multiRun && !NapicuOS.get_system_process_by_title(this._processTitle)) {
-      if (this.processInterval) {
-        this._Interval = setInterval(() => {
-          this.processInterval?.fun();
-        }, this.processInterval.time);
-      }
-      GrubComponent.ActiveSystem.SystemProcess.push(this);
-      this._pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
-      NapicuOS.onRunNewProcess();
+    if (!this._multiRun && !NapicuOS.get_user_process_by_title(this._processTitle)) return this;
+    if (this.processInterval) {
+      this._Interval = setInterval(() => {
+        this.processInterval?.fun();
+      }, this.processInterval.time);
     }
+    GrubComponent.ActiveSystem.SystemProcess.push(this);
+    this._pid = GrubComponent.ActiveSystem.SystemProcess.length - 1;
+    NapicuOS.onRunNewProcess();
     return this;
   }
 

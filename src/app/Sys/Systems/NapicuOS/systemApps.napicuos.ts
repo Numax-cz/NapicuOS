@@ -15,7 +15,7 @@ export function initAllStartUpApps(): void {
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
-
+  
 
 }
 
