@@ -189,8 +189,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Returns the command by name
-   * @param processTitle The name of the command you want to search for
+   * Returns process by process title
+   * @param processTitle Name of the process you want to search for
    */
   public static get_system_process_by_title(processTitle: string): Process {
     return this.get_system_process().filter((element: Process) => {
@@ -359,6 +359,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_user_system_window_apps(): Process[] {
     return this.get_windowProcess_by_processes(this.get_user_process());
+  }
+
+  /**
+   * Returns user process by process title
+   * @param processTitle Name of the process you want to search for
+   */
+  public static get_user_process_by_title(processTitle: string): Process {
+    return this.get_user_process().filter((element: Process) => {
+      return element.processTitle === processTitle;
+    })[0];
   }
 
   /**
