@@ -157,9 +157,9 @@
   left: 50%;
   color: white;
   z-index: 10000;
-  min-width: 350px;
+  min-width: 300px;
   transform: translateX(-50%);
-  bottom: calc(100% - 78px);
+  bottom: calc(100% - 135px);
 
   .ntf-title {
     font-size: 1rem;
@@ -172,10 +172,11 @@
 
   .ntf-con {
     display: flex;
+    padding: 4px;
   }
 
   .ntf-icon {
-    width: 56px;
+    width: 64px;
   }
 
   .ntf-des {
