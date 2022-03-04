@@ -8,6 +8,7 @@ import {SystemFile} from 'src/app/Sys/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../../../Notification";
+import {notification_animations} from "../../config/notificationAnimations";
 
 @Component({
   selector: 'app-napicu-os',
@@ -31,12 +32,12 @@ import {SystemNotification} from "../../../../Notification";
     ]),
     trigger('NapicuOSfeoreNotification', [
       transition(':enter', [
-        style({transform: 'translate(-50%, -125%)'}),
-        animate(100, style({transform: 'translate(-50%, 0)'})),
+        style({transform: 'translate(-50%, -125%)', opacity: 0}),
+        animate(notification_animations, style({transform: 'translate(-50%, 0)', opacity: 1})),
       ]),
       transition(':leave', [
-        style({transform: 'translate(-50%, 0)'}),
-        animate(100, style({transform: 'translate(-50%, -125%)'})),
+        style({transform: 'translate(-50%, 0)', opacity: 1}),
+        animate(notification_animations, style({transform: 'translate(-50%, -125%)', opacity: 0})),
       ]),
     ]),
   ],
