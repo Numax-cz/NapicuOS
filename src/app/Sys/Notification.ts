@@ -1,7 +1,7 @@
 import {SystemNotificationConstructorMetadata} from "./Systems/NapicuOS/interface/notification";
 import {NapicuOSComponent} from "./Systems/NapicuOS/components/napicu-os/napicu-os.component";
 import {NapicuOS} from "./Systems/NapicuOS/system.napicuos";
-import {time_format_MH} from "./Systems/NapicuOS/config/time";
+import {time_format_MHA} from "./Systems/NapicuOS/config/time";
 
 export class SystemNotification {
 
@@ -27,7 +27,7 @@ export class SystemNotification {
     this._title = data.title;
     this._msg = data.msg;
     this._icon = data.icon;
-    this._time = NapicuOS.getTimeByFormat(time_format_MH);
+    this._time = NapicuOS.getTimeByFormat(time_format_MHA);
   }
 
   public push(): void {
