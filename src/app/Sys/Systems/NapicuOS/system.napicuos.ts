@@ -27,7 +27,7 @@ import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "../../Notification";
-import {notification_active_time} from './config/notification';
+import {notification_active_time} from './config/notificationAnimations';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;

@@ -29,8 +29,6 @@ import {SystemNotification} from "../../../../Notification";
         ),
       ]),
     ]),
-
-
     trigger('NapicuOSfeoreNotification', [
       transition(':enter', [
         style({transform: 'translate(-50%, -125%)'}),
@@ -40,12 +38,7 @@ import {SystemNotification} from "../../../../Notification";
         style({transform: 'translate(-50%, 0)'}),
         animate(100, style({transform: 'translate(-50%, -125%)'})),
       ]),
-      // transition(':leave', [
-      //   style({transform: 'scale(1) translateX(-{{translate}}%) translateY(-{{translate}}%)'}),
-      //   animate(1000, style({transform: 'scale(0) translateX(-{{translate}}%) translateY(-{{translate}}%)'})),
-      // ], {params: {translate: 0}}),
     ]),
-
   ],
 })
 export class NapicuOSComponent implements OnInit {
