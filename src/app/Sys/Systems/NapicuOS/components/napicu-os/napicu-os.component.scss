@@ -147,10 +147,47 @@
   text-align: center;
   color: white;
   z-index: 10000;
-  width: 469px;
+  width: 800px;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(100% - 78px);
+  top: 48px; //TODO CONFIG 1
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.DateContextMenu-box {
+  padding: 10px;
+}
+
+.DateContextMenu-MainContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+  justify-items: start
+
+}
+
+#NotificationContextMenu-DateBox {
+  background-color: #313135; //TODO config
+  margin: 10px 0;
+
+  .ntf-icon {
+    width: 44px;
+  }
+
+  .ntf-title {
+    font-size: .9rem;
+    font-weight: 400;
+  }
+
+  .ntf-des {
+    font-size: .8rem;
+  }
+
+  .ntf-title-time {
+    font-size: .9rem;
+  }
+
 }
 
 .NotificationContextMenu {
@@ -159,12 +196,13 @@
   z-index: 10000;
   min-width: 300px;
   transform: translateX(-50%);
-  bottom: calc(100% - 135px);
+  top: 48px; //TODO CONFIG 1
 
   .ntf-title-box {
     display: flex;
     justify-content: space-between;
   }
+
 
   .ntf-title {
     font-size: 1rem;
@@ -172,6 +210,7 @@
   }
 
   .ntf-title-time {
+    font-size: 1rem;
     color: #7e8181;
   }
 

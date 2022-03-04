@@ -145,4 +145,8 @@ export class NapicuOSComponent implements OnInit {
   get GetNotification(): SystemNotification | null {
     return NapicuOSComponent.NotificationActive;
   }
+
+  get GetNotificationsMenu(): SystemNotification[] {
+    return NapicuOSComponent.NotificationsMenuItems;
+  }
 }
