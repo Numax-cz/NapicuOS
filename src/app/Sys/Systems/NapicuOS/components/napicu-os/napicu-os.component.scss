@@ -161,13 +161,23 @@
   transform: translateX(-50%);
   bottom: calc(100% - 135px);
 
+  .ntf-title-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .ntf-title {
     font-size: 1rem;
     font-weight: 700;
   }
 
+  .ntf-title-time {
+    color: #7e8181;
+  }
+
   .ntf-mainDes {
     padding: 0 10px;
+    width: 100%;
   }
 
   .ntf-con {

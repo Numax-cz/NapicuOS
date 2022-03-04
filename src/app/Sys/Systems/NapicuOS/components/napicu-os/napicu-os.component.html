@@ -34,8 +34,9 @@
                 <img class="ntf-icon" [src]="GetNotification.icon" alt="NotificationIcon">
               </div>
               <div class="ntf-mainDes">
-                <div class="ntf-title">
-                  {{GetNotification.title}}
+                <div class="ntf-title-box">
+                  <div class="ntf-title">{{GetNotification.title}}</div>
+                  <div class="ntf-title-time">{{GetNotification.time}}</div>
                 </div>
                 <div class="ntf-des">
                   {{GetNotification.msg}}
