@@ -41,6 +41,7 @@ import {notification_animations} from "../../config/notificationAnimations";
       ]),
     ]),
   ],
+
 })
 export class NapicuOSComponent implements OnInit {
   /**
