@@ -20,27 +20,29 @@
                class="DateContextMenu ContextMenuBox napicu-os-clickable">
             <section class="DateContextMenu-MainContainer">
               <!--Notifications-->
-              <div class="DateContextMenu-box">
+              <div class="DateContextMenu-box" style="overflow: hidden">
                 <div style="text-align: left">Notifications</div>
-                <section *ngFor="let i of GetNotificationsMenu"
-                         class="NotificationContextMenu ContextMenuBox napicu-os-clickable"
-                         id="NotificationContextMenu-DateBox"
-                         style="position: relative; top: 0">
-                  <div class="ntf-con">
-                    <div>
-                      <img class="ntf-icon" [src]="i.icon" alt="NotificationIcon">
-                    </div>
-                    <div class="ntf-mainDes">
-                      <div class="ntf-title-box">
-                        <div class="ntf-title">{{i.title}}</div>
-                        <div class="ntf-title-time">{{i.time}}</div>
+                <div style="overflow-y: auto;height: 100%;">
+                  <section *ngFor="let i of GetNotificationsMenu"
+                           class="NotificationContextMenu ContextMenuBox napicu-os-clickable"
+                           id="NotificationContextMenu-DateBox"
+                           style="position: relative; top: 0">
+                    <div class="ntf-con">
+                      <div>
+                        <img class="ntf-icon" [src]="i.icon" alt="NotificationIcon">
                       </div>
-                      <div class="ntf-des">
-                        {{i.msg}}
+                      <div class="ntf-mainDes">
+                        <div class="ntf-title-box">
+                          <div class="ntf-title">{{i.title}}</div>
+                          <div class="ntf-title-time">{{i.time}}</div>
+                        </div>
+                        <div class="ntf-des">
+                          {{i.msg}}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </section>
+                  </section>
+                </div>
               </div>
               <!--Date-->
               <div class="DateContextMenu-box">
