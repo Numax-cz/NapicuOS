@@ -190,6 +190,33 @@
 
 }
 
+.Notification {
+  cursor: pointer;
+
+  .ntf-exit {
+    background-color: #626262;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -4px;
+    text-align: center;
+    top: -4px;
+    display: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  :hover {
+    .ntf-exit {
+      display: flex;
+    }
+  }
+}
+
 .NotificationContextMenu {
   left: 50%;
   color: white;

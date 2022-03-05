@@ -30,9 +30,6 @@ export class SystemNotification {
     this._time = NapicuOS.getTimeByFormat(time_format_MHA);
   }
 
-  public push(): void {
-
-  }
 
   public get title(): string {
     return this._title;

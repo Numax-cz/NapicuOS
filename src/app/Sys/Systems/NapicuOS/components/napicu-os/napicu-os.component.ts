@@ -130,12 +130,19 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public clickDate(): void {
+    if (!NapicuOSComponent.DataDisplay) {
+      NapicuOSComponent.NotificationActive = null
+    }
     NapicuOSComponent.DataDisplay = !NapicuOSComponent.DataDisplay;
   }
 
   public onRightClick(index: number, event: Event): void {
     this.selectedAppContext = index;
     event.preventDefault();
+  }
+
+  public onCloseNotification(): void {
+    NapicuOSComponent.NotificationActive = null;
   }
 
   protected closeAppContextMenu(): void {

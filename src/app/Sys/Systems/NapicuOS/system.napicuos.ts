@@ -726,8 +726,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //TODO PUSH NOTIFICATION
     //! CMD || Process
     NapicuOSComponent.NotificationActive = notification;
+    NapicuOSComponent.NotificationsMenuItems.push(notification);
     setTimeout(() => {
-      NapicuOSComponent.NotificationsMenuItems.push(notification); //TODO IF
       NapicuOSComponent.NotificationActive = null;
     }, notification_active_time);
   }

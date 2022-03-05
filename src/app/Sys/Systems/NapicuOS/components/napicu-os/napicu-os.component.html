@@ -53,24 +53,27 @@
           </div>
         </section>
         <!--Notification panel-->
-        <ng-container *ngIf="GetNotification">
-          <section @NapicuOSfeoreNotification class="NotificationContextMenu ContextMenuBox">
+        <ng-container *ngIf="GetNotification && !GetDateDisplay">
+          <div class="Notification">
 
-            <div class="ntf-con">
-              <div>
-                <img class="ntf-icon" [src]="GetNotification.icon" alt="NotificationIcon">
-              </div>
-              <div class="ntf-mainDes">
-                <div class="ntf-title-box">
-                  <div class="ntf-title">{{GetNotification.title}}</div>
-                  <div class="ntf-title-time">{{GetNotification.time}}</div>
+            <section @NapicuOSfeoreNotification class="NotificationContextMenu ContextMenuBox">
+              <div class="ntf-con">
+                <div>
+                  <img class="ntf-icon" [src]="GetNotification.icon" alt="NotificationIcon">
                 </div>
-                <div class="ntf-des">
-                  {{GetNotification.msg}}
+                <div class="ntf-mainDes">
+                  <div class="ntf-exit" (click)="onCloseNotification()">X</div>
+                  <div class="ntf-title-box">
+                    <div class="ntf-title">{{GetNotification.title}}</div>
+                    <div class="ntf-title-time">{{GetNotification.time}}</div>
+                  </div>
+                  <div class="ntf-des">
+                    {{GetNotification.msg}}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </ng-container>
         <!-- Main Panel -->
         <section style="display: contents; background-color: white">
