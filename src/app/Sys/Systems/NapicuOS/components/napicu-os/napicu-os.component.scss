@@ -134,11 +134,12 @@
   }
 }
 
+$ContextMenuBox-Padding: 10px 5px;
 //TODO CONFIG - Main box
 .ContextMenuBox {
   border-radius: 14px;
   left: 0;
-  padding: 10px 5px;
+  padding: $ContextMenuBox-Padding;
   position: absolute;
   background-color: #1E2127;
 }
@@ -230,6 +231,9 @@
     justify-content: space-between;
   }
 
+  .ntf-main {
+    padding: $ContextMenuBox-Padding;
+  }
 
   .ntf-title {
     font-size: 1rem;

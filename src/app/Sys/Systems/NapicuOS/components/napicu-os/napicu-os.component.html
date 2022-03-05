@@ -54,9 +54,9 @@
         </section>
         <!--Notification panel-->
         <ng-container *ngIf="GetNotification && !GetDateDisplay">
-          <div class="Notification">
-
-            <section @NapicuOSfeoreNotification class="NotificationContextMenu ContextMenuBox">
+          <section @NapicuOSfeoreNotification class="Notification NotificationContextMenu ContextMenuBox"
+                   style="padding: 0">
+            <div class="ntf-main">
               <div class="ntf-con">
                 <div>
                   <img class="ntf-icon" [src]="GetNotification.icon" alt="NotificationIcon">
@@ -72,8 +72,9 @@
                   </div>
                 </div>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
+
         </ng-container>
         <!-- Main Panel -->
         <section style="display: contents; background-color: white">
