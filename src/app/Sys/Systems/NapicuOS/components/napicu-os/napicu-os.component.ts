@@ -142,6 +142,8 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public onCloseNotification(): void {
+    let x = NapicuOSComponent.NotificationsMenuItems;
+    NapicuOSComponent.NotificationsMenuItems = x.slice(x.length, 1);
     NapicuOSComponent.NotificationActive = null;
   }
 
