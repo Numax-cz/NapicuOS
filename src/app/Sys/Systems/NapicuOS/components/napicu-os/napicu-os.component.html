@@ -16,7 +16,8 @@
           <div class="top-panel-item">Activities</div>
           <div (click)="clickDate()" class="top-panel-item">{{ systemTime }}</div>
           <!-- Date panel-->
-          <div *ngIf="GetDateDisplay" class="DateContextMenu ContextMenuBox napicu-os-clickable">
+          <div @NapicuOSfeoreNotification *ngIf="GetDateDisplay"
+               class="DateContextMenu ContextMenuBox napicu-os-clickable">
             <section class="DateContextMenu-MainContainer">
               <!--Notifications-->
               <div class="DateContextMenu-box">
