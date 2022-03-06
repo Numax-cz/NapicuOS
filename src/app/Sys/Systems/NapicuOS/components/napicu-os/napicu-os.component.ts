@@ -41,7 +41,6 @@ import {notification_animations} from "../../config/notificationAnimations";
       ]),
     ]),
   ],
-
 })
 export class NapicuOSComponent implements OnInit {
   /**
@@ -54,7 +53,6 @@ export class NapicuOSComponent implements OnInit {
    */
   public static DataDisplay: boolean = false;
   public static BottomDockProcess: SystemDockDisplay[] = [];
-  public static NotificationsMenuItems: SystemNotification[] = [];
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
 
@@ -143,8 +141,11 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public onCloseNotification(): void {
-    let x = NapicuOSComponent.NotificationsMenuItems;
-    NapicuOSComponent.NotificationsMenuItems = x.slice(x.length, 1);
+    const user = NapicuOS.get_active_user();
+    if (user) {
+      let x = user.userSetting.notifications || [];
+      user.userSetting.notifications = x.slice(x.length, 1);
+    }
     NapicuOSComponent.NotificationActive = null;
   }
 
@@ -157,6 +158,6 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetNotificationsMenu(): SystemNotification[] {
-    return NapicuOSComponent.NotificationsMenuItems;
+    return NapicuOS.get_active_user()?.userSetting.notifications || [];
   }
 }

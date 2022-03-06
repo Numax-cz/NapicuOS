@@ -1,6 +1,11 @@
 import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata,} from './Systems/NapicuOS/interface/User/user';
+import {SystemNotification} from "./Notification";
 
 export class User {
+  private _username: string = 'user';
+  private _running: boolean = false;
+  private declare _password: string;
+  private declare _permissions: SystemUserPermissionsEnumMetadata;
   public static readonly defaultUserSettings: SystemUserDataMetadata = {
     appsInDock: [],
     notifications: []
@@ -21,7 +26,6 @@ export class User {
     this._userSettings = User.defaultUserSettings;
   }
 
-  private _username: string = 'user';
 
   //* * * *  Getters * * *
   /**
@@ -39,8 +43,6 @@ export class User {
     this._username = value;
   }
 
-  private _running: boolean = false;
-
   //* * * *  Functions * * *
 
   //TODO DOC
@@ -52,8 +54,6 @@ export class User {
   set running(value: boolean) {
     this._running = value;
   }
-
-  private declare _password: string;
 
   /**
    * Returns the user's password
@@ -68,9 +68,7 @@ export class User {
   set password(value: string) {
     this._password = value;
   }
-
-  private declare _permissions: SystemUserPermissionsEnumMetadata;
-
+  
   /**
    * Returns the user's permissions
    */
@@ -97,5 +95,12 @@ export class User {
    */
   set userSetting(value: SystemUserDataMetadata) {
     this._userSettings = value;
+  }
+
+  /**
+   * Removes all notifications to the user
+   */
+  public clear_notification(): void {
+    this._userSettings.notifications = [];
   }
 }
