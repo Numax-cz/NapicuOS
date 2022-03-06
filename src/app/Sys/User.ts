@@ -8,7 +8,8 @@ export class User {
   private declare _permissions: SystemUserPermissionsEnumMetadata;
   public static readonly defaultUserSettings: SystemUserDataMetadata = {
     appsInDock: [],
-    notifications: []
+    notifications: [],
+    allowNotifications: true,
   };
   private declare _userSettings: SystemUserDataMetadata;
 
@@ -68,7 +69,7 @@ export class User {
   set password(value: string) {
     this._password = value;
   }
-  
+
   /**
    * Returns the user's permissions
    */
