@@ -143,8 +143,8 @@ export class NapicuOSComponent implements OnInit {
   public onCloseNotification(): void {
     const user = NapicuOS.get_active_user();
     if (user) {
-      let x = user.userSetting.notifications || [];
-      user.userSetting.notifications = x.slice(x.length, 1);
+      let x = user.userSetting.notifications.notificationsList || [];
+      user.userSetting.notifications.notificationsList = x.slice(x.length, 1);
     }
     NapicuOSComponent.NotificationActive = null;
   }
@@ -158,6 +158,6 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetNotificationsMenu(): SystemNotification[] {
-    return NapicuOS.get_active_user()?.userSetting.notifications || [];
+    return NapicuOS.get_active_user()?.userSetting.notifications.notificationsList || [];
   }
 }

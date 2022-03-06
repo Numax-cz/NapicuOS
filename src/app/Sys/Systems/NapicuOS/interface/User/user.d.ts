@@ -5,8 +5,11 @@ export declare type SystemUserPermissionsMetadata = 'superUser' | 'user';
 
 export declare interface SystemUserDataMetadata {
   appsInDock: SystemFile[];
-  notifications: SystemNotification[],
-  allowNotifications: boolean
+  notifications: {
+    allow: boolean,
+    receive: boolean,
+    notificationsList: SystemNotification[],
+  }
 }
 
 export const enum SystemUserPermissionsEnumMetadata {

@@ -8,8 +8,11 @@ export class User {
   private declare _permissions: SystemUserPermissionsEnumMetadata;
   public static readonly defaultUserSettings: SystemUserDataMetadata = {
     appsInDock: [],
-    notifications: [],
-    allowNotifications: true,
+    notifications: {
+      notificationsList: [],
+      allow: true,
+      receive: true
+    },
   };
   private declare _userSettings: SystemUserDataMetadata;
 
@@ -26,7 +29,6 @@ export class User {
 
     this._userSettings = User.defaultUserSettings;
   }
-
 
   //* * * *  Getters * * *
   /**
@@ -102,6 +104,6 @@ export class User {
    * Removes all notifications to the user
    */
   public clear_notification(): void {
-    this._userSettings.notifications = [];
+    this._userSettings.notifications.notificationsList = [];
   }
 }

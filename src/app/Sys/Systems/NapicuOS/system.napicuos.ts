@@ -338,7 +338,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns user notifications
    */
   public static get_user_notifications(): SystemNotification[] {
-    return this.get_active_user()?.userSetting.notifications || [];
+    return this.get_active_user()?.userSetting.notifications.notificationsList || [];
   }
 
   /**
@@ -726,7 +726,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //TODO PUSH NOTIFICATION
     //! CMD || Process
     NapicuOSComponent.NotificationActive = notification;
-    NapicuOS.get_active_user()?.userSetting.notifications.push(notification);
+    NapicuOS.get_active_user()?.userSetting.notifications.notificationsList.push(notification);
     setTimeout(() => {
       NapicuOSComponent.NotificationActive = null;
     }, notification_active_time);
