@@ -736,7 +736,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
-
   /**
    * @param processes Processes for filtration
    */

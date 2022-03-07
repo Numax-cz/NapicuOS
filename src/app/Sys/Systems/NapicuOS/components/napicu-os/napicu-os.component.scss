@@ -134,6 +134,25 @@
   }
 }
 
+.NotCloseButtonScheme { //Main notification button schema
+  background-color: #626262; //TODO CONFIG
+  width: 20px;
+  height: 20px;
+  display: flex;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.NotCloseButtonScheme:hover {
+  background-color: #545454; //TODO CONFIG
+
+}
+
 $ContextMenuBox-Padding: 10px 5px;
 //TODO CONFIG - Main box
 .ContextMenuBox {
@@ -156,10 +175,20 @@ $ContextMenuBox-Padding: 10px 5px;
   top: 48px; //TODO CONFIG 1
   font-size: 1rem;
   font-weight: normal;
+
+  .MenuNotificationText {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .MenuDateText {
+
+  }
 }
 
 .DateContextMenu-box {
   padding: 10px;
+  width: 100%;
 }
 
 .DateContextMenu-MainContainer {
@@ -190,27 +219,16 @@ $ContextMenuBox-Padding: 10px 5px;
   .ntf-title-time {
     font-size: .9rem;
   }
-
 }
 
 .Notification {
   cursor: pointer;
 
   .ntf-exit {
-    background-color: #626262;
-    width: 20px;
-    height: 20px;
     position: absolute;
     right: -4px;
-    text-align: center;
     top: -4px;
     display: none;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-
   }
 
   :hover {
@@ -218,6 +236,15 @@ $ContextMenuBox-Padding: 10px 5px;
       display: flex;
     }
   }
+}
+
+.NoNotification {
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #676769;
+  font-weight: 500;
 }
 
 .NotificationContextMenu {
@@ -232,6 +259,7 @@ $ContextMenuBox-Padding: 10px 5px;
     display: flex;
     justify-content: space-between;
   }
+
 
   .ntf-main {
     padding: $ContextMenuBox-Padding;
