@@ -140,6 +140,10 @@ export class NapicuOSComponent implements OnInit {
     event.preventDefault();
   }
 
+  public clearNotifications(): void {
+    NapicuOS.get_active_user()?.clear_notification();
+  }
+
   public onCloseNotification(): void {
     const user = NapicuOS.get_active_user();
     if (user) {
