@@ -27,7 +27,7 @@
                        (click)="clearNotifications()">X
                   </div>
                 </div>
-                <div style="overflow-y: auto;height: 100%;">
+                <div style="overflow-y: auto;height: 87%;">
                   <section *ngFor="let i of GetNotificationsMenu"
                            @NapicuOSfeoreNotification
                            class="NotificationContextMenu ContextMenuBox napicu-os-clickable"
@@ -50,6 +50,16 @@
                   </section>
                   <section *ngIf="!GetNotificationsMenu.length" class="NoNotification">
                     No notifications
+                  </section>
+
+                </div>
+                <div class="ntfdnD">
+                  <div class="ntfdnDT">Do not disturb</div>
+                  <section class="SwitchNot">
+                    <label class="switch napicu-os-clickable">
+                      <input type="checkbox">
+                      <span class="slider"></span>
+                    </label>
                   </section>
                 </div>
               </div>
