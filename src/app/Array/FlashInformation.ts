@@ -39,7 +39,7 @@ export function WriteInformationsDefault(): void {
 }
 
 export function setCookiesBiosinf(): void {
-  let cookies = JSON.parse(getCookies(cookiesForBiosVersion));
+  let cookies = JSON.parse(getCookies<any>(cookiesForBiosVersion));
   if (cookies) Current = cookies;
 }
 

@@ -17,11 +17,13 @@ export function setCookies(name: string, value: string): void {
  * @param  {String} name Name of cookies
  * @returns {any} value of cookies
  */
-export function getCookies(name: string): any {
+export function getCookies<T>(name: string): T | null {
   const value = '; ' + document.cookie;
   const parts = value.split('; ' + name + '=');
   if (parts.length == 2) {
-    return parts.pop()?.split(';').shift();
+    let i = parts.pop()?.split(';').shift();
+    if (i) return JSON.parse(i);
+    return null;
   } else {
     return null;
   }

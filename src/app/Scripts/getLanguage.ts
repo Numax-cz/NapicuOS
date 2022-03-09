@@ -7,7 +7,7 @@ export function getLanguage(): any {
   var pack;
   //! Fix
   var cookiesArray: BiosOptionsST = JSON.parse(
-    getCookies(cookiesForBisoSettingsAr)
+    getCookies<any>(cookiesForBisoSettingsAr)
   );
   var selected =
     (cookiesArray && cookiesArray.Main.settings.lang.selected) || 0;
