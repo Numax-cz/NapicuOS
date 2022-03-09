@@ -28,6 +28,9 @@ import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "../../Notification";
 import {notification_active_time} from "./config/notificationAnimations";
+import {getCookies} from "../../../Scripts/Cookies";
+import {NapicuOSCookiesName} from "./config/cookies";
+import {NapicuOsCookiesTemplate} from "./interface/cookies";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -87,6 +90,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public initUsers(): void {
+    let i: NapicuOsCookiesTemplate | null = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName);
     //Init Root user
     const system_root_user = new User(
       'root',
@@ -110,9 +114,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       system_default_user.username,
       system_default_user.password
     );
-  }
 
-  public override onKeyPress(ev: KeyboardEvent) {
+
   }
 
   public override onLoad(): void {
