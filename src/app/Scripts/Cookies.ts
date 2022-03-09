@@ -5,11 +5,11 @@ import {cookiesTime} from '../Config/Cookies';
  * @param {String} name Name of cookies
  * @param {string} value Value of cookies
  */
-export function setCookies(name: string, value: string): void {
+export function setCookies<T>(name: string, value: T): void {
   const date = new Date();
   date.setTime(date.getTime() + cookiesTime);
   document.cookie =
-    name + '=' + value + '; expires=' + date.toUTCString() + '; path=/';
+    name + '=' + JSON.stringify(value) + '; expires=' + date.toUTCString() + '; path=/';
 }
 
 /**

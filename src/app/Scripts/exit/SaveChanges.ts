@@ -1,4 +1,4 @@
-import {BiosSettings} from 'src/app/Array/ToolSettings';
+import {BiosOptionsST, BiosSettings} from 'src/app/Array/ToolSettings';
 import {BiosComponent} from 'src/app/Bios/bios/bios.component';
 import {cookiesForBisoSettingsAr} from 'src/app/Config/Cookies';
 import {setCookies} from '../Cookies';
@@ -11,5 +11,5 @@ export function SaveChanges(): void {
 
 function Save(): void {
   BiosComponent.BiosMenuSavePoint = BiosSettings;
-  setCookies(cookiesForBisoSettingsAr, JSON.stringify(BiosSettings));
+  setCookies<BiosOptionsST>(cookiesForBisoSettingsAr, BiosSettings);
 }

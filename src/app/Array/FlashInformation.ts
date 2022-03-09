@@ -45,7 +45,7 @@ export function setCookiesBiosinf(): void {
 
 export function setNewBiosinf(): void {
   Current = newBios;
-  setCookies(cookiesForBiosVersion, JSON.stringify(newBios));
+  setCookies<FlashInformation>(cookiesForBiosVersion, newBios);
 }
 
 export var FlashingText: FlashingTxt = {
