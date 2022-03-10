@@ -26,12 +26,7 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          let i = new SystemNotification({
-            title: "This is test",
-            msg: "this is test xd",
-            icon: "/assets/icons/NapicuBios-384x384.png"
-          });
-          NapicuOS.notification_push(i);
+          console.log(NapicuOS.get_usrs_dir());
           resolve();
         }, 200);
       });
@@ -58,7 +53,7 @@ function initCreateUser(): void {
           });
           if (!x.length) {
             NapicuOS.add_user(new User(username, password));
-            
+
             resolve();
           }
           //TODO ERROR ELSE

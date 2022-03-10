@@ -362,7 +362,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     SystemStateMetadata.DirExist |
     SystemStateMetadata.DirNotExist {
     const i: systemDirAFileMetadata | undefined = dir.dir?.[dirname];
-    if (i) {
+    if (!i) {
       dir.dir ? dir.dir[dirname] = {
         dir: {}, files: []
       } : undefined;
@@ -688,7 +688,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Add user
    */
   public static add_user(user: User): void {
-    const i: systemDirAFileMetadata | undefined = this.get_usrs_dir();
+    const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
     this.users.push(user);
     if (i) {
       this.creat_dir(i, user.username);
