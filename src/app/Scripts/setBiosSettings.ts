@@ -11,11 +11,9 @@ export function setBiosSettingsFromCookies(): void {
   /**
    * Default Bios settings
    */
-  var SaveBiosArray: BiosOptionsST = copy(BiosSettings);
-  if (JSON.parse(getCookies<any>(cookiesForBisoSettingsAr))) {
-    BiosComponent.BiosMenuSavePoint = JSON.parse(
-      getCookies<any>(cookiesForBisoSettingsAr)
-    );
+  let SaveBiosArray: BiosOptionsST = copy(BiosSettings);
+  if (getCookies<any>(cookiesForBisoSettingsAr)) {
+    BiosComponent.BiosMenuSavePoint = getCookies<any>(cookiesForBisoSettingsAr)
     setSettingsValue(BiosComponent.BiosMenuSavePoint);
   } else {
     BiosComponent.BiosMenuSavePoint = SaveBiosArray;

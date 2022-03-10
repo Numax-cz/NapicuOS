@@ -5,12 +5,10 @@ import {getCookies} from './Cookies';
 
 export function getLanguage(): any {
   var pack;
-  //! Fix
-  var cookiesArray: BiosOptionsST = JSON.parse(
-    getCookies<any>(cookiesForBisoSettingsAr)
-  );
-  var selected =
-    (cookiesArray && cookiesArray.Main.settings.lang.selected) || 0;
+
+  var cookiesArray: BiosOptionsST | null = getCookies<BiosOptionsST>(cookiesForBisoSettingsAr)
+
+  var selected = (cookiesArray && cookiesArray.Main.settings.lang.selected) || 0;
 
   switch (LangMenu[selected].title) {
     case 'Japanes':
