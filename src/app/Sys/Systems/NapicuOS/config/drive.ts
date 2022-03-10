@@ -12,6 +12,9 @@ export const NapicuOSSystemDir: systemDrivesMetadata = {
       bin: {
         files: [],
       },
+      usr: {
+        files: []
+      }
     },
   },
 };
