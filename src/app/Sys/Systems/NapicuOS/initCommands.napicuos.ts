@@ -57,7 +57,9 @@ function initCreateUser(): void {
             return value.username === username;
           });
           if (!x.length) {
-            resolve(NapicuOS.add_user(new User(username, password)));
+            NapicuOS.add_user(new User(username, password));
+            
+            resolve();
           }
           //TODO ERROR ELSE
         } else {

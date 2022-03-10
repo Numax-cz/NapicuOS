@@ -40,6 +40,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
   private static users: User[] = [];
   private static activeUser: User | null;
+  private static SystemCookiesConfig: NapicuOsCookiesTemplate | null = null;
   public override boot = {
     title: system_boot_screen_title,
     logo: system_boot_screen_logo,
@@ -56,6 +57,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public SystemBoot(): void {
     //? This is the main place to load all necessary processes
 
+    NapicuOS.initSystemConfigCookies();
     //Initialization of all system processes
     initAllSystemProcess();
     //Initialize all system commands
@@ -89,8 +91,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
   }
 
+  protected static initSystemConfigCookies(): void {
+    this.SystemCookiesConfig = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName);
+  }
+
   public initUsers(): void {
-    let i: NapicuOsCookiesTemplate | null = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName);
+    let i: NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies();
+
     //Init Root user
     const system_root_user = new User(
       'root',
@@ -114,8 +121,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       system_default_user.username,
       system_default_user.password
     );
-
-
   }
 
   public override onLoad(): void {
@@ -330,6 +335,43 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns main users directory
+   */
+  public static get_usrs_dir(): systemDirAFileMetadata | undefined {
+    return this.get_root_dir().dir?.["home"];
+  }
+
+  /**
+   * Returns the user's folder by username
+   * @param username User name
+   */
+  public static get_user_dir(username: string): systemDirAFileMetadata | undefined {
+    const dir = this.get_usrs_dir()?.dir;
+    if (dir) {
+      return dir[username];
+    }
+    return undefined;
+  }
+
+  /**
+   * Creates a new directory in the directory
+   * @param dir The name of the directory in which you want to create the directory
+   * @param dirname Name of the new directory
+   */
+  public static creat_dir(dir: systemDirAFileMetadata, dirname: string):
+    SystemStateMetadata.DirExist |
+    SystemStateMetadata.DirNotExist {
+    const i: systemDirAFileMetadata | undefined = dir.dir?.[dirname];
+    if (i) {
+      dir.dir ? dir.dir[dirname] = {
+        dir: {}, files: []
+      } : undefined;
+      return SystemStateMetadata.DirNotExist;
+    }
+    return SystemStateMetadata.DirExist;
+  }
+
+  /**
    * Returns files in the active user's dock
    */
   public static get_user_apps_in_dock(): SystemFile[] {
@@ -462,6 +504,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_active_user(): User | null {
     return this.activeUser;
+  }
+
+  /**
+   * Returns system settings from cookies
+   */
+  public static get_system_config_from_cookies(): NapicuOsCookiesTemplate | null {
+    return this.SystemCookiesConfig;
   }
 
   /**
@@ -639,7 +688,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Add user
    */
   public static add_user(user: User): void {
+    const i: systemDirAFileMetadata | undefined = this.get_usrs_dir();
     this.users.push(user);
+    if (i) {
+      this.creat_dir(i, user.username);
+      const userDir = this.get_user_dir(user.username);
+      if (userDir) {
+        userDir.dir = {
+          Desktop: {},
+          Documents: {},
+          Downloads: {},
+          Music: {},
+          Pictures: {},
+          Videos: {},
+        }
+      }
+    }
   }
 
   /**
