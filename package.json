@@ -5,7 +5,7 @@
   "scripts": {
     "start": "ng serve",
     "newapp": "node ./scripts/newapp.js",
-    "build": "ng build --prod=true",
+    "build": "ng build --prod --build-optimizer --extract-licenses --output-hashing none",
     "buildDev": "ng build --prod=false"
   },
   "private": true,
