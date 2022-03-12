@@ -26,7 +26,7 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          console.log(NapicuOS.get_usrs_dir());
+          NapicuOS.notification_push(new SystemNotification({title: "Notification", msg: "Notification"}))
           resolve();
         }, 200);
       });
