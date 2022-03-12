@@ -123,17 +123,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
     initUser = i?.user.activeUser || system_default_user;
-
-
-    console.log(initUser)
     //Initialization of all users
-    // users.forEach((user: User) => {
-    //   NapicuOS.add_user(user);
-    // });
+    users.forEach((user: User) => {
+      NapicuOS.add_user(user);
+    });
 
 
-    NapicuOS.add_user(system_default_user);
-    NapicuOS.add_user(system_root_user);
+    // NapicuOS.add_user(system_default_user);
+    // NapicuOS.add_user(system_root_user);
 
     //Automatic login of the default user
     NapicuOS.log_user(
@@ -763,12 +760,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return SystemStateMetadata.UserFailLogin;
     }
     GrubComponent.ActiveSystem.onLogin();
-    if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
     if (this.SystemCookiesConfig) {
       this.SystemCookiesConfig.user.activeUser = u;
+      this.update_config_to_cookies();
     }
+    if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
     this.update_dock_items();
-    this.update_config_to_cookies();
     return SystemStateMetadata.UserLoginSuccess;
   }
 
