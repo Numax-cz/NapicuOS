@@ -102,7 +102,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public initUsers(): void {
     let i: NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies();
-    let users: User[] = [];
+    let users: User[];
     let initUser: User;
 
 
@@ -120,16 +120,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       SystemUserPermissionsEnumMetadata.User
     );
 
-    users = (i?.user.users && i?.user.users.length > 0) ? i.user.users : [system_default_user, system_root_user];
+
+    users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
     initUser = i?.user.activeUser || system_default_user;
 
-    //Initialization of all users
-    users.forEach((user: User) => {
-      NapicuOS.add_user(user);
-    });
 
-    // NapicuOS.add_user(system_default_user);
-    // NapicuOS.add_user(system_root_user);
+    console.log(initUser)
+    //Initialization of all users
+    // users.forEach((user: User) => {
+    //   NapicuOS.add_user(user);
+    // });
+
+
+    NapicuOS.add_user(system_default_user);
+    NapicuOS.add_user(system_root_user);
 
     //Automatic login of the default user
     NapicuOS.log_user(
@@ -391,7 +395,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_user_apps_in_dock(): SystemFile[] {
     //TODO BottomDockProcess in NapicuOSComponent
-    return this.get_active_user()?.userSetting.appsInDock || [];
+    const userAppsInDock = this.get_active_user()?.userSetting.appsInDock || []
+    if (userAppsInDock.length) {
+      const i: SystemFile[] = [];
+      userAppsInDock.forEach((appName: string) => {
+        i.push(<SystemFile>this.get_app_file_by_file_name(appName));
+      });
+      return i;
+    }
+    return [];
   }
 
   /**
@@ -601,7 +613,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param file File to be added to the dock
    */
   public static add_file_to_dock(file: SystemFile): void {
-    this.get_active_user()?.userSetting.appsInDock.push(file);
+    this.get_active_user()?.userSetting.appsInDock.push(file.fileName);
     this.update_dock_items();
   }
 
@@ -761,6 +773,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Clears user notifications
+   * @param user User
+   */
+  public static clear_user_notification(user: User): void {
+    user.userSetting.notifications.notificationsList = [];
+  }
+
+  /**
    * Creates and installs the application
    * @return {SystemFile} Application file
    */
@@ -786,7 +806,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       console.error("CreatAppFile Error - File already exists");
     }
-    if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application);
+    if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application.fileName);
   }
 
   /**
@@ -834,6 +854,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         }, notification_active_time);
       }
     }
+  }
+
+  /**
+   * Returns the system application by filename
+   * @param filename File name
+   */
+  public static get_app_file_by_file_name(filename: string): SystemFile | null {
+    const file = this.get_file_by_file_title(this.get_apps_dir(), filename);
+    if (typeof file === "object") {
+      return file;
+    }
+    return null;
   }
 
   /**

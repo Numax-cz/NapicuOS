@@ -141,7 +141,8 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public clearNotifications(): void {
-    NapicuOS.get_active_user()?.clear_notification();
+    const user = NapicuOS.get_active_user();
+    if (user) NapicuOS.clear_user_notification(user);
   }
 
   public onCloseNotification(): void {
