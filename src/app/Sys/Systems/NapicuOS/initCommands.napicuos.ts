@@ -148,7 +148,21 @@ function initGetSystemInformation(): void {
                 linesForCMD: exportLines,
                 stateCode: CommandStateCodeMetadata.success,
               });
-
+            case 'users':
+              let users = NapicuOS.get_users();
+              users.forEach((user: User, index: number) => {
+                exportLines.push(
+                  new Line(
+                    `${index} | ${user.username} :
+                running: ${user.running}
+                permissions: ${user.permissions}`,
+                    'white')
+                );
+              });
+              return resolve({
+                linesForCMD: exportLines,
+                stateCode: CommandStateCodeMetadata.success,
+              });
             case 'commands':
               let commands = NapicuOS.get_available_commands();
               commands.forEach((value: SystemFile, index: number) => {
