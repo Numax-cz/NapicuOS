@@ -28,7 +28,7 @@ import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "../../Notification";
 import {notification_active_time} from "./config/notificationAnimations";
-import {getCookies} from "../../../Scripts/Cookies";
+import {getCookies, setCookies} from "../../../Scripts/Cookies";
 import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 
@@ -92,11 +92,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   protected static initSystemConfigCookies(): void {
-    this.SystemCookiesConfig = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName);
+    this.SystemCookiesConfig = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName) || {
+      user: {
+        activeUser: null,
+        users: []
+      }
+    };
   }
 
   public initUsers(): void {
     let i: NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies();
+    let users: User[] = [];
+    let initUser: User;
+
 
     //Init Root user
     const system_root_user = new User(
@@ -112,14 +120,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       SystemUserPermissionsEnumMetadata.User
     );
 
+    users = (i?.user.users && i?.user.users.length > 0) ? i.user.users : [system_default_user, system_root_user];
+    initUser = i?.user.activeUser || system_default_user;
+
     //Initialization of all users
-    NapicuOS.add_user(system_default_user);
-    NapicuOS.add_user(system_root_user);
+    users.forEach((user: User) => {
+      NapicuOS.add_user(user);
+    });
+
+    // NapicuOS.add_user(system_default_user);
+    // NapicuOS.add_user(system_root_user);
 
     //Automatic login of the default user
     NapicuOS.log_user(
-      system_default_user.username,
-      system_default_user.password
+      initUser.username,
+      initUser.password
     );
   }
 
@@ -514,6 +529,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Updates the system configuration in cookies
+   */
+  public static update_config_to_cookies(): void {
+    if (this.SystemCookiesConfig) {
+      setCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName, this.SystemCookiesConfig);
+    }
+  }
+
+  /**
    * Register the command
    */
   public static register_command(
@@ -704,6 +728,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         }
       }
     }
+
+    if (this.SystemCookiesConfig) {
+      this.SystemCookiesConfig.user.users = this.users;
+    }
+    this.update_config_to_cookies();
   }
 
   /**
@@ -723,7 +752,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     GrubComponent.ActiveSystem.onLogin();
     if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
+    if (this.SystemCookiesConfig) {
+      this.SystemCookiesConfig.user.activeUser = u;
+    }
     this.update_dock_items();
+    this.update_config_to_cookies();
     return SystemStateMetadata.UserLoginSuccess;
   }
 
