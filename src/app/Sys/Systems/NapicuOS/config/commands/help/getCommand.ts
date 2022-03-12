@@ -10,5 +10,5 @@ export const getHelpCommand: Line = new Line(
     systemprocess - Returns system processes running in the background
     commands - Returns available commands
     apps - Returns running GUI applications
-    ${getHelpCommandAPPS.Write().value}`
-);
+    ${getHelpCommandAPPS.Write().value}
+    users - Returns registered users`);
