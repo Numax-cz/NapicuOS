@@ -1,1 +1,1 @@
-export const NapicuOSCookiesName: string = "NapicuOSConfigCookiesName";
+export const NapicuOSCookiesName: string = "NapicuOSConfig";
