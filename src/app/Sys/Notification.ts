@@ -26,7 +26,7 @@ export class SystemNotification {
   constructor(data: SystemNotificationConstructorMetadata) {
     this._title = data.title;
     this._msg = data.msg;
-    this._icon = data.icon;
+    this._icon = data.icon || "/assets/systems/NapicuOS/SystemIcons/XFD/notification.webp";
     this._time = NapicuOS.getTimeByFormat(time_format_MHA);
   }
 
