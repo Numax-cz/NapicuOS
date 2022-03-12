@@ -17,8 +17,6 @@ export function initAllStartUpApps(): void {
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
-
-
 }
 
 //Before the user is logged in
@@ -63,6 +61,6 @@ export function napicu_os_terminal(): void {
     appComponent: ConsoleComponent,
     windowData: Window.centerPos(35, 35),
     fileIconPath: '/assets/systems/NapicuOS/SystemIcons/XFD/term.svg',
-    addToDock: false,
+    addToDock: true,
   });
 }
