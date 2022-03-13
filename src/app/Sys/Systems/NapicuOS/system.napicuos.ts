@@ -32,6 +32,28 @@ import {getCookies, setCookies} from "../../../Scripts/Cookies";
 import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 
+function NapicuCookies() {
+  return function (target: any, key: string | symbol) {
+    let p = target[key];
+    const getter = () => {
+      return p;
+    };
+    const setter = (next: any) => {
+      console.log("Updating...")
+      NapicuOS.update_config_to_cookies();
+      p = next;
+      return p;
+    };
+
+    Object.defineProperty(target, key, {
+      get: getter,
+      set: setter,
+      enumerable: true,
+      configurable: true,
+    });
+  };
+}
+
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
   public static systemData = {
@@ -40,7 +62,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
   private static users: User[] = [];
   private static activeUser: User | null;
-  private static SystemCookiesConfig: NapicuOsCookiesTemplate | null = null;
+  @NapicuCookies()
+  public static SystemCookiesConfig: NapicuOsCookiesTemplate | null = null;
   public override boot = {
     title: system_boot_screen_title,
     logo: system_boot_screen_logo,
@@ -762,7 +785,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     GrubComponent.ActiveSystem.onLogin();
     if (this.SystemCookiesConfig) {
       this.SystemCookiesConfig.user.activeUser = u;
-      this.update_config_to_cookies();
     }
     if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
     this.update_dock_items();
