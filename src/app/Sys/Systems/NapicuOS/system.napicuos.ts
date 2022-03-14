@@ -31,28 +31,8 @@ import {notification_active_time} from "./config/notificationAnimations";
 import {getCookies, setCookies} from "../../../Scripts/Cookies";
 import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
+import {NapicuCookies} from "./scripts/decorators";
 
-function NapicuCookies() {
-  return function (target: any, key: string | symbol) {
-    let p = target[key];
-    const getter = () => {
-      return p;
-    };
-    const setter = (next: any) => {
-      console.log("Updating...")
-      NapicuOS.update_config_to_cookies();
-      p = next;
-      return p;
-    };
-
-    Object.defineProperty(target, key, {
-      get: getter,
-      set: setter,
-      enumerable: true,
-      configurable: true,
-    });
-  };
-}
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -564,6 +544,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Updates the system configuration in cookies
    */
   public static update_config_to_cookies(): void {
+    console.log(this.SystemCookiesConfig)
     if (this.SystemCookiesConfig) {
       setCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName, this.SystemCookiesConfig);
     }
