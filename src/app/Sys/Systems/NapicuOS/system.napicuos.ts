@@ -40,10 +40,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     installed: true,
   };
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
-  private static users: User[] = [];
-  private static activeUser: User | null;
   @NapicuCookies()
-  public static SystemCookiesConfig: NapicuOsCookiesTemplate | null = null;
+  public static SystemCookiesConfig: NapicuOsCookiesTemplate = {
+    user: {
+      activeUser: null,
+      users: []
+    },
+  };
   public override boot = {
     title: system_boot_screen_title,
     logo: system_boot_screen_logo,
@@ -75,7 +78,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
       this.load();
-      if (NapicuOS.activeUser) {
+      if (NapicuOS.get_active_user()) {
         setTimeout(() => {
           SystemComponent.SysComponent = NapicuOSComponent;
           // setTimeout(() => {
@@ -89,18 +92,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onLogin(): void {
-    if (!NapicuOS.activeUser?.running) {
+    if (!NapicuOS.get_active_user()?.running) {
       initAllStartUpApps();
     }
   }
 
   protected static initSystemConfigCookies(): void {
-    this.SystemCookiesConfig = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName) || {
-      user: {
-        activeUser: null,
-        users: []
-      }
-    };
+    const i = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName);
+    if (i) this.SystemCookiesConfig = i;
   }
 
   public initUsers(): void {
@@ -513,7 +512,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns all system users
    */
   public static get_users(): User[] {
-    return this.users;
+    return this.SystemCookiesConfig.user.users;
   }
 
   /**
@@ -521,7 +520,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username Username of searched user
    */
   public static get_user(username: string): User | undefined {
-    return this.users.filter((value: User) => {
+    return this.get_users().filter((value: User) => {
       return value.username === username;
     })[0];
   }
@@ -530,7 +529,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the logged-in user.
    */
   public static get_active_user(): User | null {
-    return this.activeUser;
+    return this.SystemCookiesConfig.user.activeUser;
   }
 
   /**
@@ -592,7 +591,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       if (
         i.permissions.read ===
         SystemUserPermissionsEnumMetadata.SuperUser &&
-        this.activeUser?.permissions !==
+        this.get_active_user()?.permissions !==
         SystemUserPermissionsEnumMetadata.SuperUser
       ) {
         return {
@@ -726,7 +725,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static add_user(user: User): void {
     const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
-    this.users.push(user);
+    this.get_users().push(user);
     if (i) {
       this.creat_dir(i, user.username);
       const userDir = this.get_user_dir(user.username);
@@ -743,7 +742,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
 
     if (this.SystemCookiesConfig) {
-      this.SystemCookiesConfig.user.users = this.users;
+      this.SystemCookiesConfig.user.users = this.get_users();
     }
     this.update_config_to_cookies();
   }
@@ -758,8 +757,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     password: string
   ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSuccess {
     let u = this.get_user(username);
+    let activeUser = this.get_active_user();
     if (u && u.password === password) {
-      this.activeUser = u;
+      activeUser = u;
     } else {
       return SystemStateMetadata.UserFailLogin;
     }
@@ -767,7 +767,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (this.SystemCookiesConfig) {
       this.SystemCookiesConfig.user.activeUser = u;
     }
-    if (NapicuOS.activeUser) NapicuOS.activeUser.running = true;
+    if (activeUser) activeUser.running = true;
     this.update_dock_items();
     return SystemStateMetadata.UserLoginSuccess;
   }
@@ -820,7 +820,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Logs the user out
    */
   public static logout_user(): void {
-    this.activeUser = null;
+    this.SystemCookiesConfig.user.activeUser = null;
     SystemComponent.SysComponent = LoginscreenComponent;
   }
 
@@ -828,7 +828,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Log out the user and terminate their running processes
    */
   public static logout_user_and_kill_user_process(): void {
-    const acUser = this.activeUser;
+    const acUser = this.get_active_user();
     if (acUser) {
       this.get_user_process().forEach((value: Process) => {
         value.kill();
