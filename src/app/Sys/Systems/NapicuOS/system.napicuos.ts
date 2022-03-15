@@ -543,7 +543,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Updates the system configuration in cookies
    */
   public static update_config_to_cookies(): void {
-    console.log(this.SystemCookiesConfig)
     if (this.SystemCookiesConfig) {
       setCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName, this.SystemCookiesConfig);
     }
@@ -763,10 +762,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     } else {
       return SystemStateMetadata.UserFailLogin;
     }
-    GrubComponent.ActiveSystem.onLogin();
     if (this.SystemCookiesConfig) {
       this.SystemCookiesConfig.user.activeUser = u;
     }
+    GrubComponent.ActiveSystem.onLogin();
     if (activeUser) activeUser.running = true;
     this.update_dock_items();
     return SystemStateMetadata.UserLoginSuccess;
