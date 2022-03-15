@@ -298,7 +298,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @returns Array of commands
    */
   public static get_command_by_command_name(commandName: string): SystemFile[] {
-    let i: SystemFile[] = [];
+    let i: SystemFile[];
     i = this.get_available_commands().filter((element: SystemFile) => {
       let p = element.value as Command;
       return p.commandName === commandName;
@@ -312,7 +312,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @returns Command class
    */
   public static get_command_by_commandStr(command: string): SystemFile {
-    let i: SystemFile[] = [];
+    let i: SystemFile[];
     i = this.get_available_commands().filter((element: SystemFile) => {
       let p = element.value as Command;
       return p.command === command;
@@ -585,7 +585,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     params?: string[]
   ): Promise<CommandFunMetadata> {
     let i: SystemFile = NapicuOS.get_command_by_commandStr(cmd);
-    let x: Process = NapicuOS.get_system_activated_window_app();
     if (i) {
       if (
         i.permissions.read ===
