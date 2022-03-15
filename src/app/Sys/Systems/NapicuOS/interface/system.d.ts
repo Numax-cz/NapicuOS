@@ -77,13 +77,17 @@ export declare interface AppCreatFileMetadata {
 export declare const enum SystemStateMetadata {
   UserFailLogin = 3033,
   UserLoginSuccess = 3000,
+  UserExists = 3030,
+  UserNotExists = 3050,
+
 
   FileAlreadyExists = 1059,
   FileAddedSuccess = 1060,
-  DirNotExist = 1059,
-  DirExist = 1060,
+  DirNotExist = 1058,
+  DirExist = 1057,
   FileNotExist = 1051,
   FileOpenSuccess = 1050,
+
 
   RegisterCommandAlreadyExists = 9059,
   RegisterCommandSuccess = 9060,

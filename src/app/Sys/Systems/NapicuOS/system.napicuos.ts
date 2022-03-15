@@ -122,7 +122,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       SystemUserPermissionsEnumMetadata.User
     );
 
-
+    console.log(i);
     users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
     initUser = i?.user.activeUser || system_default_user;
     //Initialization of all users
@@ -721,28 +721,34 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Add user
    */
-  public static add_user(user: User): void {
-    const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
-    this.get_users().push(user);
-    if (i) {
-      this.creat_dir(i, user.username);
-      const userDir = this.get_user_dir(user.username);
-      if (userDir) {
-        userDir.dir = {
-          Desktop: {},
-          Documents: {},
-          Downloads: {},
-          Music: {},
-          Pictures: {},
-          Videos: {},
+  public static add_user(user: User): SystemStateMetadata.UserExists | SystemStateMetadata.UserNotExists {
+    if (this.get_users().filter((systemUsers: User) => {
+      return systemUsers.username === user.username
+    }).length) {
+      return SystemStateMetadata.UserExists;
+    } else {
+      const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
+      this.get_users().push(user);
+      if (i) {
+        this.creat_dir(i, user.username);
+        const userDir = this.get_user_dir(user.username);
+        if (userDir) {
+          userDir.dir = {
+            Desktop: {},
+            Documents: {},
+            Downloads: {},
+            Music: {},
+            Pictures: {},
+            Videos: {},
+          }
         }
       }
+      if (this.SystemCookiesConfig) {
+        this.SystemCookiesConfig.user.users = this.get_users();
+      }
+      this.update_config_to_cookies();
+      return SystemStateMetadata.UserNotExists;
     }
-
-    if (this.SystemCookiesConfig) {
-      this.SystemCookiesConfig.user.users = this.get_users();
-    }
-    this.update_config_to_cookies();
   }
 
   /**
