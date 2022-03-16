@@ -122,7 +122,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       SystemUserPermissionsEnumMetadata.User
     );
 
-    console.log(i);
     users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
     initUser = i?.user.activeUser || system_default_user;
     //Initialization of all users
