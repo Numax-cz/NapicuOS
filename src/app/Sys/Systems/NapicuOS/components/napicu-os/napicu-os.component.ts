@@ -103,10 +103,8 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {
-
     if (WindowComponent.selectedWindow && !WindowComponent.selectedWindow.display) {
-      WindowComponent.selectedWindow.display = true
-      return; //TODO IDK
+      WindowComponent.selectedWindow.display = true;
     }
     if (!running) {
       NapicuOS.open_app(file.fileName);
