@@ -112,7 +112,7 @@ export class NapicuOSComponent implements OnInit {
       let x = NapicuOS.get_apps_running_by_process_title(file.fileName)
       let p = x.sort((a: Process, b: Process) => {
         return a.Window.z_index - b.Window.z_index
-      })[x.length - 1]//TODO INDEX
+      })[x.length - 1];
       let i = WindowComponent.WindowHistory.indexOf(p.Window);
       if (WindowComponent.selectedWindow) WindowComponent.selectedWindow.activated = false;
       WindowComponent.switchWindowIndex(p.Window, i);
