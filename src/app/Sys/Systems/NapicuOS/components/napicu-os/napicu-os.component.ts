@@ -109,10 +109,25 @@ export class NapicuOSComponent implements OnInit {
     if (!running) {
       NapicuOS.open_app(file.fileName);
     } else {
-      let x = NapicuOS.get_apps_running_by_process_title(file.fileName)
-      let p = x.sort((a: Process, b: Process) => {
-        return a.Window.z_index - b.Window.z_index
-      })[x.length - 1];
+      const windows = NapicuOS.get_apps_running_by_process_title(file.fileName)
+      let x = NapicuOS.get_apps_running_by_process_title(file.fileName);
+      let p: Process;
+
+
+      let windowsMin = windows.filter((i: Process) => {
+        return !i.Window.display;
+      });
+      if (windowsMin.length) {
+        p = windowsMin.sort((a: Process, b: Process) => {
+          return a.Window.z_index - b.Window.z_index
+        })[windowsMin.length - 1];
+      } else {
+        p = x.sort((a: Process, b: Process) => {
+          return a.Window.z_index - b.Window.z_index
+        })[x.length - 1]; //TODO INDEX ON MINIM
+      }
+
+
       let i = WindowComponent.WindowHistory.indexOf(p.Window);
       if (WindowComponent.selectedWindow) WindowComponent.selectedWindow.activated = false;
       WindowComponent.switchWindowIndex(p.Window, i);
