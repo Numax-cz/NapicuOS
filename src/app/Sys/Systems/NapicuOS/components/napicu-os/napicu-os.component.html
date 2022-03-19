@@ -57,7 +57,8 @@
                   <div class="ntfdnDT">Do not disturb</div>
                   <section class="SwitchNot">
                     <label class="switch napicu-os-clickable">
-                      <input type="checkbox">
+                      <input type="checkbox" [checked]="!GetUserNotificationA"
+                             (change)="changeUserNotificationReceive()">
                       <span class="slider"></span>
                     </label>
                   </section>

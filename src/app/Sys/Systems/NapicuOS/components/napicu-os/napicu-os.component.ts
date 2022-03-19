@@ -175,12 +175,23 @@ export class NapicuOSComponent implements OnInit {
     NapicuOSComponent.NotificationActive = null;
   }
 
+  public changeUserNotificationReceive(): void {
+    const userConfig = NapicuOS.get_active_user()?.userSetting.notifications;
+    if (userConfig) {
+      userConfig.receive = !userConfig.receive;
+    }
+  }
+
   protected closeAppContextMenu(): void {
     this.selectedAppContext = null;
   }
 
   get GetNotification(): SystemNotification | null {
     return NapicuOSComponent.NotificationActive;
+  }
+
+  get GetUserNotificationA(): boolean {
+    return NapicuOS.get_active_user()?.userSetting.notifications.receive || true;
   }
 
   get GetNotificationsMenu(): SystemNotification[] {
