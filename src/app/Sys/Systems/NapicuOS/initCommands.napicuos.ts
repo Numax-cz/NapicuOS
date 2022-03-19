@@ -11,6 +11,7 @@ import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from '../../User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemNotification} from "../../Notification";
+import {NapicuCookies} from "./scripts/decorators";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -26,7 +27,8 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          NapicuOS.notification_push(new SystemNotification({title: "Notification", msg: "Notification"}))
+          const user = NapicuOS.get_active_user();
+          if (user) user.username = "UserTest";
           resolve();
         }, 200);
       });
