@@ -1,9 +1,10 @@
 import {User} from "../../../User";
 import {systemDrivesMetadata} from "./FilesDirs/systemDir";
+import {UserConstructorMetadata} from "./user";
 
 export declare interface NapicuOsCookiesTemplate {
   user: {
-    users: User[]
-    activeUser: User | null
+    users: UserConstructorMetadata[]
+    activeUser: UserConstructorMetadata | null
   }
 }

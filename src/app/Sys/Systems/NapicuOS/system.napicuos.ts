@@ -32,6 +32,8 @@ import {getCookies, setCookies} from "../../../Scripts/Cookies";
 import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
+import {UserConstructorMetadata} from "./interface/user";
+import {loadUser} from "./scripts/loadUser";
 
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
@@ -104,29 +106,29 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public initUsers(): void {
     let i: NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies();
-    let users: User[];
-    let initUser: User;
+    let users: UserConstructorMetadata[];
+    let initUser: UserConstructorMetadata;
 
 
     //Init Root user
-    const system_root_user = new User(
-      'root',
-      'root',
-      SystemUserPermissionsEnumMetadata.SuperUser
-    );
+    const system_root_user = new User({
+      username: 'root',
+      password: 'root',
+      userPermissions: SystemUserPermissionsEnumMetadata.SuperUser
+    });
 
     //Init default basic user
-    const system_default_user = new User(
-      'user',
-      'napicuos',
-      SystemUserPermissionsEnumMetadata.User
-    );
+    const system_default_user = new User({
+      username: 'user',
+      password: 'napicuos',
+      userPermissions: SystemUserPermissionsEnumMetadata.User
+    });
 
     users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
     initUser = i?.user.activeUser || system_default_user;
     //Initialization of all users
-    users.forEach((user: User) => {
-      NapicuOS.add_user(user);
+    users.forEach((user: UserConstructorMetadata) => {
+      NapicuOS.add_user(new User(user));
     });
 
 
@@ -511,7 +513,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns all system users
    */
   public static get_users(): User[] {
-    return this.SystemCookiesConfig.user.users;
+    return this.SystemCookiesConfig.user.users.map((user: UserConstructorMetadata) => {
+      return new User(user);
+    });
   }
 
   /**
@@ -528,7 +532,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the logged-in user.
    */
   public static get_active_user(): User | null {
-    return this.SystemCookiesConfig.user.activeUser;
+    let i = this.SystemCookiesConfig.user.activeUser;
+    if (i) return new User(i);
+    return null;
   }
 
   /**
@@ -727,7 +733,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return SystemStateMetadata.UserExists;
     } else {
       const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
-      this.get_users().push(user);
+      const config = this.get_system_config_from_cookies();
+      if (config) config.user.users.push(loadUser(user));
+
       if (i) {
         this.creat_dir(i, user.username);
         const userDir = this.get_user_dir(user.username);
@@ -743,7 +751,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         }
       }
       if (this.SystemCookiesConfig) {
-        this.SystemCookiesConfig.user.users = this.get_users();
+        this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
+          return loadUser(i)
+        });
       }
       this.update_config_to_cookies();
       return SystemStateMetadata.UserNotExists;
@@ -768,6 +778,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     if (this.SystemCookiesConfig) {
       this.SystemCookiesConfig.user.activeUser = u;
+      //TODO BETTER UPDATE
+      this.update_config_to_cookies();
     }
     GrubComponent.ActiveSystem.onLogin();
     if (activeUser) activeUser.running = true;

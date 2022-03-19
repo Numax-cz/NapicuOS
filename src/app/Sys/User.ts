@@ -1,5 +1,6 @@
 import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata,} from './Systems/NapicuOS/interface/User/user';
 import {SystemNotification} from "./Notification";
+import {UserConstructorMetadata} from "./Systems/NapicuOS/interface/user";
 
 export class User {
   public username: string = 'user';
@@ -17,16 +18,11 @@ export class User {
   public declare userSetting: SystemUserDataMetadata;
 
   constructor(
-    username: string,
-    password: string,
-    userPermissions?: SystemUserPermissionsEnumMetadata,
+    data: UserConstructorMetadata
   ) {
-    this.username = username;
-    this.password = password;
-    this.permissions = userPermissions
-      ? userPermissions
-      : SystemUserPermissionsEnumMetadata.User;
-
-    this.userSetting = User.defaultUserSettings;
+    this.username = data.username;
+    this.password = data.password;
+    this.permissions = data.userPermissions || SystemUserPermissionsEnumMetadata.User;
+    this.userSetting = data.userSettings || User.defaultUserSettings;
   }
 }
