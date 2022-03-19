@@ -180,6 +180,7 @@ export class NapicuOSComponent implements OnInit {
     if (userConfig) {
       userConfig.receive = !userConfig.receive;
     }
+    console.log(NapicuOS.get_active_user())
   }
 
   protected closeAppContextMenu(): void {
@@ -191,7 +192,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetUserNotificationA(): boolean {
-    return NapicuOS.get_active_user()?.userSetting.notifications.receive || true;
+    return NapicuOS.get_active_user()?.userSetting.notifications.receive || false;
   }
 
   get GetNotificationsMenu(): SystemNotification[] {
