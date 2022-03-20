@@ -538,6 +538,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Sets the active user
+   * @param user The user you want to put as active
+   */
+  public static set_active_user(user: User): void {
+    this.SystemCookiesConfig.user.activeUser = user;
+    this.update_config_to_cookies();
+  }
+
+  /**
    * Returns system settings from cookies
    */
   public static get_system_config_from_cookies(): NapicuOsCookiesTemplate | null {
@@ -776,11 +785,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     } else {
       return SystemStateMetadata.UserFailLogin;
     }
-    if (this.SystemCookiesConfig) {
-      this.SystemCookiesConfig.user.activeUser = u;
-      //TODO BETTER UPDATE
-      this.update_config_to_cookies();
-    }
+    if (this.SystemCookiesConfig) this.set_active_user(u);
     GrubComponent.ActiveSystem.onLogin();
     if (activeUser) activeUser.running = true;
     this.update_dock_items();
@@ -793,6 +798,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static clear_user_notification(user: User): void {
     user.userSetting.notifications.notificationsList = [];
+    this.update_config_to_cookies();
   }
 
   /**
@@ -895,4 +901,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     return array;
   }
+
 }
+
