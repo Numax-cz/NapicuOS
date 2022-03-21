@@ -27,8 +27,7 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          const user = NapicuOS.get_active_user();
-          if (user) user.username = "UserTest";
+          NapicuOS.notification_push(new SystemNotification({msg: "xd", title: "xd"}));
           resolve();
         }, 200);
       });
