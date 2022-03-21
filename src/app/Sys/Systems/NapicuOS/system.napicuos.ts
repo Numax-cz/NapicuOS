@@ -868,6 +868,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     const user = this.get_active_user();
     if (user?.userSetting.notifications.allow) {
       user?.userSetting.notifications.notificationsList.push(notification);
+      this.update_config_to_cookies();
       if (user.userSetting.notifications.receive) {
         NapicuOSComponent.NotificationActive = notification;
         setTimeout(() => {
