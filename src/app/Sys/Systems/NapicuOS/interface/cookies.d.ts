@@ -5,6 +5,6 @@ import {UserConstructorMetadata} from "./user";
 export declare interface NapicuOsCookiesTemplate {
   user: {
     users: UserConstructorMetadata[]
-    activeUser: UserConstructorMetadata | null
+    activeUser: string | null
   }
 }

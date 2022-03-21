@@ -180,7 +180,6 @@ export class NapicuOSComponent implements OnInit {
     if (userConfig) {
       userConfig.receive = !userConfig.receive;
     }
-    console.log(NapicuOS.get_active_user())
   }
 
   protected closeAppContextMenu(): void {

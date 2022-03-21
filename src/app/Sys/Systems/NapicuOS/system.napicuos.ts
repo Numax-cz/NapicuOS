@@ -125,7 +125,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
 
     users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
-    initUser = i?.user.activeUser || system_default_user;
+    initUser = NapicuOS.get_user_by_username(i?.user.activeUser) || system_default_user;
     //Initialization of all users
     users.forEach((user: UserConstructorMetadata) => {
       NapicuOS.add_user(new User(user));
@@ -140,6 +140,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       initUser.username,
       initUser.password
     );
+    console.log(NapicuOS.get_active_user());
   }
 
   public override onLoad(): void {
@@ -522,7 +523,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the user by username if the user exists
    * @param username Username of searched user
    */
-  public static get_user(username: string): User | undefined {
+  public static get_user_by_username(username: string | null | undefined): User | undefined {
     return this.get_users().filter((value: User) => {
       return value.username === username;
     })[0];
@@ -532,7 +533,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the logged-in user.
    */
   public static get_active_user(): User | null {
-    let i = this.SystemCookiesConfig.user.activeUser;
+    let i = this.get_user_by_username(this.SystemCookiesConfig.user.activeUser)
     if (i) return new User(i);
     return null;
   }
@@ -542,7 +543,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param user The user you want to put as active
    */
   public static set_active_user(user: User): void {
-    this.SystemCookiesConfig.user.activeUser = user;
+    this.SystemCookiesConfig.user.activeUser = user.username;
     this.update_config_to_cookies();
   }
 
@@ -778,7 +779,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     username: string,
     password: string
   ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSuccess {
-    let u = this.get_user(username);
+    let u = this.get_user_by_username(username);
     let activeUser = this.get_active_user();
     if (u && u.password === password) {
       activeUser = u;
