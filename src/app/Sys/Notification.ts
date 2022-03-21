@@ -1,49 +1,29 @@
 import {SystemNotificationConstructorMetadata} from "./Systems/NapicuOS/interface/notification";
-import {NapicuOSComponent} from "./Systems/NapicuOS/components/napicu-os/napicu-os.component";
 import {NapicuOS} from "./Systems/NapicuOS/system.napicuos";
 import {time_format_MHA} from "./Systems/NapicuOS/config/time";
 
 export class SystemNotification {
-
   /**
    * Notification name
    */
-  protected declare readonly _title: string;
+  public declare readonly title: string;
   /**
    * Notification description
    */
-  protected declare readonly _msg: string;
+  public declare readonly msg: string;
   /**
    * Notification icon
    */
-  protected declare readonly _icon: string;
+  public declare readonly icon: string;
   /**
    * Notification time
    */
-  protected declare readonly _time: string;
-
+  public declare readonly time: string;
 
   constructor(data: SystemNotificationConstructorMetadata) {
-    this._title = data.title;
-    this._msg = data.msg;
-    this._icon = data.icon || "/assets/systems/NapicuOS/SystemIcons/XFD/notification.webp";
-    this._time = NapicuOS.getTimeByFormat(time_format_MHA);
-  }
-
-
-  public get title(): string {
-    return this._title;
-  }
-
-  public get msg(): string {
-    return this._msg;
-  }
-
-  public get icon(): string {
-    return this._icon;
-  }
-
-  public get time(): string {
-    return this._time;
+    this.title = data.title;
+    this.msg = data.msg;
+    this.icon = data.icon || "/assets/systems/NapicuOS/SystemIcons/XFD/notification.webp";
+    this.time = NapicuOS.getTimeByFormat(time_format_MHA);
   }
 }
