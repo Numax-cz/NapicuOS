@@ -124,6 +124,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       userPermissions: SystemUserPermissionsEnumMetadata.User
     });
 
+    //TODO zbytečný při načítání cookis => if 
     users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
     initUser = NapicuOS.get_user_by_username(i?.user.activeUser) || system_default_user;
     //Initialization of all users
@@ -131,7 +132,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       NapicuOS.add_user(new User(user));
     });
 
-
+    
     // NapicuOS.add_user(system_default_user);
     // NapicuOS.add_user(system_root_user);
 
@@ -140,7 +141,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       initUser.username,
       initUser.password
     );
-    console.log(NapicuOS.get_active_user());
   }
 
   public override onLoad(): void {
@@ -396,7 +396,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_user_apps_in_dock(): SystemFile[] {
     //TODO BottomDockProcess in NapicuOSComponent
-    const userAppsInDock = this.get_active_user()?.userSetting.appsInDock || []
+    const userAppsInDock = this.get_active_user()?.userSetting.appsInDock || [];
     if (userAppsInDock.length) {
       const i: SystemFile[] = [];
       userAppsInDock.forEach((appName: string) => {
@@ -468,7 +468,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         return file.fileName === App.processTitle;
       }).length === 0 && i.map(value => value.fileName).indexOf(App.processTitle) !== 0) i.push(file);
     });
-
+    
     let appsInDock: SystemDockDisplay[] = this.get_user_apps_in_dock().map((value: SystemFile) => {
       return {
         file: value,
@@ -477,7 +477,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         selected: (this.get_system_activated_window_app()?.processTitle === value.fileName)
       };
     });
-
 
     let activeApps: SystemDockDisplay[] = i.map((file: SystemFile) => {
       return {
@@ -532,10 +531,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns the logged-in user.
    */
-  public static get_active_user(): User | null {
-    let i = this.get_user_by_username(this.SystemCookiesConfig.user.activeUser)
-    if (i) return new User(i);
-    return null;
+  public static get_active_user(): User | undefined {
+    let i: User | undefined = this.get_user_by_username(this.SystemCookiesConfig.user.activeUser);
+    return i;;
   }
 
   /**
@@ -870,6 +868,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (user?.userSetting.notifications.allow) {
       user?.userSetting.notifications.notificationsList.push(notification);
       this.update_config_to_cookies();
+    
       if (user.userSetting.notifications.receive) {
         NapicuOSComponent.NotificationActive = notification;
         setTimeout(() => {
