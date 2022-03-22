@@ -32,9 +32,7 @@ import {getCookies, setCookies} from "../../../Scripts/Cookies";
 import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
-import {UserConstructorMetadata} from "./interface/user";
-import {loadUser} from "./scripts/loadUser";
-
+import {UserConstructorMetadata} from "./interface/user"; 
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -95,7 +93,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onLogin(): void {
-    console.log(NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username))
     if (NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
       initAllStartUpApps();
 
@@ -744,7 +741,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     } else {
       const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
       const config = this.get_system_config_from_cookies();
-      if (config) config.user.users.push(loadUser(user));
+      if (config) config.user.users.push(user);
 
       if (i) {
         this.creat_dir(i, user.username);
@@ -762,7 +759,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }
       if (this.SystemCookiesConfig) {
         this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
-          return loadUser(i)
+          return i;
         });
       }
       this.update_config_to_cookies();
