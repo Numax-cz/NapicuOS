@@ -123,7 +123,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       userPermissions: SystemUserPermissionsEnumMetadata.User
     });
 
-    if (!i?.user.users) {
+    if (!i?.user.users.length) {
       //Initialization of all users
       [system_default_user, system_root_user].forEach((user: UserConstructorMetadata) => {
         NapicuOS.add_user(new User(user));
