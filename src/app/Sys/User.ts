@@ -4,7 +4,6 @@ import {UserConstructorMetadata} from "./Systems/NapicuOS/interface/user";
 
 export class User {
   public username: string = 'user';
-  public running: boolean = false;
   public declare password: string;
   public declare permissions: SystemUserPermissionsEnumMetadata;
   public static readonly defaultUserSettings: SystemUserDataMetadata = {
@@ -22,7 +21,7 @@ export class User {
   ) {
     this.username = data.username;
     this.password = data.password;
-    this.permissions = data.userPermissions || SystemUserPermissionsEnumMetadata.User;
-    this.userSetting = data.userSettings || User.defaultUserSettings;
+    this.permissions = data.permissions || SystemUserPermissionsEnumMetadata.User;
+    this.userSetting = data.userSetting || User.defaultUserSettings;
   }
 }
