@@ -32,7 +32,7 @@ import {getCookies, setCookies} from "../../../Scripts/Cookies";
 import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
-import {UserConstructorMetadata} from "./interface/user"; 
+import {UserConstructorMetadata} from "./interface/user";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -126,8 +126,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
     if (!i?.user.users.length) {
       //Initialization of all users
-      [system_default_user, system_root_user].forEach((user: UserConstructorMetadata) => {
-        NapicuOS.add_user(new User(user));
+      [system_default_user, system_root_user].forEach((user: User) => {
+        NapicuOS.add_user(user);
       });
     }
     initUser = NapicuOS.get_user_by_username(i?.user.activeUser) || system_default_user;
