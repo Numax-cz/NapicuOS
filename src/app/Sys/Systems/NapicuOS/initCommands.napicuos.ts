@@ -155,7 +155,7 @@ function initGetSystemInformation(): void {
                 exportLines.push(
                   new Line(
                     `${index} | ${user.username} :
-                running: ME ON MY
+                running: ${NapicuOS.get_if_user_active(user.username)}
                 permissions: ${user.permissions}`,
                     'white')
                 );
