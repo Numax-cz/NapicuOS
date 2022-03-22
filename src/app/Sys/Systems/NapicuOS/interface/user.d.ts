@@ -3,6 +3,6 @@ import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata} from "./User/
 export declare interface UserConstructorMetadata {
   username: string,
   password: string,
-  userPermissions?: SystemUserPermissionsEnumMetadata,
-  userSettings?: SystemUserDataMetadata
+  permissions?: SystemUserPermissionsEnumMetadata,
+  userSetting?: SystemUserDataMetadata
 }
