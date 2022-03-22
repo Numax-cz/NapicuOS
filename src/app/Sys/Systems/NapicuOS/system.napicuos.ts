@@ -42,6 +42,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     installed: true,
   };
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
+  public static activeUsers: string[] = [];
   @NapicuCookies()
   public static SystemCookiesConfig: NapicuOsCookiesTemplate = {
     user: {
@@ -94,9 +95,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onLogin(): void {
-    if (!NapicuOS.get_active_user()?.running) {
+    console.log(NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username))
+    if (NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
       initAllStartUpApps();
+
     }
+
   }
 
   protected static initSystemConfigCookies(): void {
@@ -113,14 +117,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     const system_root_user = new User({
       username: 'root',
       password: 'root',
-      userPermissions: SystemUserPermissionsEnumMetadata.SuperUser
+      permissions: SystemUserPermissionsEnumMetadata.SuperUser
     });
 
     //Init default basic user
     const system_default_user = new User({
       username: 'user',
       password: 'napicuos',
-      userPermissions: SystemUserPermissionsEnumMetadata.User
+      permissions: SystemUserPermissionsEnumMetadata.User
     });
 
     if (!i?.user.users.length) {
@@ -775,8 +779,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     username: string,
     password: string
   ): SystemStateMetadata.UserFailLogin | SystemStateMetadata.UserLoginSuccess {
-    let u = this.get_user_by_username(username);
-    let activeUser = this.get_active_user();
+    let u: User | undefined = this.get_user_by_username(username);
+    let activeUser: User | undefined = this.get_active_user();
     if (u && u.password === password) {
       activeUser = u;
     } else {
@@ -784,7 +788,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     if (this.SystemCookiesConfig) this.set_active_user(u);
     GrubComponent.ActiveSystem.onLogin();
-    if (activeUser) activeUser.running = true;
+    if (activeUser) this.activeUsers.push(u.username);
     this.update_dock_items();
     return SystemStateMetadata.UserLoginSuccess;
   }
@@ -843,15 +847,30 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns active users in the system
+   */
+  public static get_active_users(): string[] {
+    return this.activeUsers;
+  }
+
+  /**
+   * Returns if the user is active
+   */
+  public static get_if_user_active(username: string | undefined): boolean {
+    if (!username) return false;
+    return !!this.activeUsers.indexOf(username);
+  }
+
+  /**
    * Log out the user and terminate their running processes
    */
   public static logout_user_and_kill_user_process(): void {
-    const acUser = this.get_active_user();
-    if (acUser) {
+    let user: User | undefined = this.get_active_user();
+    if (user) {
       this.get_user_process().forEach((value: Process) => {
         value.kill();
       });
-      acUser.running = false;
+      this.activeUsers.splice(this.activeUsers.indexOf(user.username), 1);
       this.logout_user();
     }
   }

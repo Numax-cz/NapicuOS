@@ -155,7 +155,7 @@ function initGetSystemInformation(): void {
                 exportLines.push(
                   new Line(
                     `${index} | ${user.username} :
-                running: ${user.running}
+                running: ME ON MY
                 permissions: ${user.permissions}`,
                     'white')
                 );
