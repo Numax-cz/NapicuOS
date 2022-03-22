@@ -140,7 +140,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       initUser.username,
       initUser.password
     );
-    console.log(NapicuOS.get_active_user());
   }
 
   public override onLoad(): void {
