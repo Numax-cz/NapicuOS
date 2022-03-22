@@ -5,7 +5,7 @@ export function loadUser(user: User): UserConstructorMetadata {
   return {
     username: user.username,
     password: user.password,
-    userSettings: user.userSetting,
-    userPermissions: user.permissions
+    userSetting: user.userSetting,
+    permissions: user.permissions
   }
 }
