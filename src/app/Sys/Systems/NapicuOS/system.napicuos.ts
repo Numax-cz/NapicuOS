@@ -62,15 +62,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public SystemBoot(): void {
-    //? This is the main place to load all necessary processes
+    //? This is  the main place to load all necessary processes
 
-    NapicuOS.initSystemConfigCookies();
+    //Init System Dependencies
     //Initialization of all system processes
     initAllSystemProcess();
     //Initialize all system commands
     initAllCommands();
     //Initialize all system applications
     installAllApps();
+
+    //Init System Config & Users
+    NapicuOS.initSystemConfigCookies();
     //Initialization of all users
     this.initUsers();
 
@@ -79,6 +82,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
       this.load();
+        
       if (NapicuOS.get_active_user()) {
         setTimeout(() => {
           SystemComponent.SysComponent = NapicuOSComponent;
