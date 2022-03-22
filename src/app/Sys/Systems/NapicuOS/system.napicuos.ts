@@ -106,7 +106,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public initUsers(): void {
     let i: NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies();
-    let users: UserConstructorMetadata[];
     let initUser: UserConstructorMetadata;
 
 
@@ -124,15 +123,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       userPermissions: SystemUserPermissionsEnumMetadata.User
     });
 
-    //TODO zbytečný při načítání cookis => if 
-    users = (i?.user.users && i.user.users.length) ? i.user.users : [system_default_user, system_root_user];
+    if (!i?.user.users) {
+      //Initialization of all users
+      [system_default_user, system_root_user].forEach((user: UserConstructorMetadata) => {
+        NapicuOS.add_user(new User(user));
+      });
+    }
     initUser = NapicuOS.get_user_by_username(i?.user.activeUser) || system_default_user;
-    //Initialization of all users
-    users.forEach((user: UserConstructorMetadata) => {
-      NapicuOS.add_user(new User(user));
-    });
 
-    
+
     // NapicuOS.add_user(system_default_user);
     // NapicuOS.add_user(system_root_user);
 
@@ -468,7 +467,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         return file.fileName === App.processTitle;
       }).length === 0 && i.map(value => value.fileName).indexOf(App.processTitle) !== 0) i.push(file);
     });
-    
+
     let appsInDock: SystemDockDisplay[] = this.get_user_apps_in_dock().map((value: SystemFile) => {
       return {
         file: value,
@@ -532,8 +531,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the logged-in user.
    */
   public static get_active_user(): User | undefined {
-    let i: User | undefined = this.get_user_by_username(this.SystemCookiesConfig.user.activeUser);
-    return i;;
+    return this.get_user_by_username(this.SystemCookiesConfig.user.activeUser);
   }
 
   /**
@@ -868,7 +866,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (user?.userSetting.notifications.allow) {
       user?.userSetting.notifications.notificationsList.push(notification);
       this.update_config_to_cookies();
-    
+
       if (user.userSetting.notifications.receive) {
         NapicuOSComponent.NotificationActive = notification;
         setTimeout(() => {
