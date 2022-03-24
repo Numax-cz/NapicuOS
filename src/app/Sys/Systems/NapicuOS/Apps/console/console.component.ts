@@ -80,23 +80,11 @@ export class ConsoleComponent implements OnInit {
     return this.lines;
   }
 
-  /**
-   * History of commands used
-   */
-  get GethistoryCommands(): string[] {
-    return ConsoleComponent.historyCommands;
-  }
 
   get GetactiveCommand(): boolean {
     return this.activeCommand;
   }
 
-  /**
-   * Function for getting the history commands
-   */
-  public static gethistoryCommands(): string[] {
-    return this.historyCommands;
-  }
 
   ngOnInit(): void {
   }
@@ -105,10 +93,10 @@ export class ConsoleComponent implements OnInit {
    * Function that is triggered by pressing enter
    */
   public async onEnter(event: Event): Promise<void> {
-    var i: HTMLElement = event.target as HTMLElement;
+    let i: HTMLElement = event.target as HTMLElement;
     const input = i.innerText;
-    var inputSplit = input.split(' ');
-    var inputCmd = removeSpace(inputSplit[0].toLocaleLowerCase());
+    let inputSplit = input.split(' ');
+    let inputCmd = removeSpace(inputSplit[0].toLocaleLowerCase());
     inputSplit.splice(0, 1);
     i.innerText = '';
     this.activeCommand = true;
@@ -180,7 +168,7 @@ export class ConsoleComponent implements OnInit {
   }
 
   /**
-   * Funcion for deleting the history of console
+   * Function for deleting the history of console
    */
   public delete_all_history(): void {
     this.lines = [];
@@ -188,7 +176,7 @@ export class ConsoleComponent implements OnInit {
   }
 
   /**
-   * Sets the input value to the value according to the selected command from the histo
+   * Sets the input value to the value according to the selected command from the history
    */
   private setCommandFromCommandHistory(): void {
     this.inputValue.nativeElement.innerText =
@@ -206,7 +194,7 @@ export class ConsoleComponent implements OnInit {
 
   /**
    * Sets and filters commands
-   * @param input - Command entered
+   * @param input Command entered
    */
   private setHistoryCommand(input: string): void {
     ConsoleComponent.historyCommands = ConsoleComponent.historyCommands.filter(
@@ -219,8 +207,8 @@ export class ConsoleComponent implements OnInit {
 
   /**
    * Creates a new line
-   * @param value - Array of lines to be displayed
-   * @param enteredCommand - The command that appears as entered
+   * @param value Array of lines to be displayed
+   * @param enteredCommand The command that appears as entered
    */
   private creatCommandLine(value: Line[], enteredCommand?: string): void {
     this.lines.push({lines: value, enteredCommand: enteredCommand});
