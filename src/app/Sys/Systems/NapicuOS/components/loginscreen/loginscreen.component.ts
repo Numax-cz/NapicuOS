@@ -33,7 +33,7 @@ import {KeyMaps} from "../../../../../Config/KeyMaps";
     ]),
   ],
 })
-export class LoginscreenComponent implements OnInit {
+export class LoginscreenComponent implements OnInit, OnDestroy {
   public declare username: string;
   public declare password: string;
   public isErrorLogin: boolean = false;
@@ -48,7 +48,17 @@ export class LoginscreenComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setEvents();
+  }
 
+  ngOnDestroy() {
+    window.removeEventListener("keydown", this.onEnter, true);
+  }
+
+  protected onEnter = (e: KeyboardEvent) => {
+    if (e.keyCode === KeyMaps.Enter) {
+      this.login();
+    }
   }
 
   public login(): void {
@@ -64,5 +74,8 @@ export class LoginscreenComponent implements OnInit {
     }
   }
 
-  
+
+  private setEvents() {
+    window.addEventListener('keydown', this.onEnter, true);
+  }
 }
