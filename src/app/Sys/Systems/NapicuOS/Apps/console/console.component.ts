@@ -139,10 +139,12 @@ export class ConsoleComponent implements OnInit {
   public onArrowUp(event: Event): void {
     if (this.selectedCommandHistory > 0) {
       this.selectedCommandHistory -= 1;
-    } else {
+      this.setCommandFromCommandHistory();
+
+    } else if (ConsoleComponent.historyCommands.length) {
       this.selectedCommandHistory = ConsoleComponent.historyCommands.length - 1;
+      this.setCommandFromCommandHistory();
     }
-    this.setCommandFromCommandHistory();
     event.preventDefault();
   }
 
