@@ -39,9 +39,7 @@ export class LoginscreenComponent implements OnInit, OnDestroy {
   public isErrorLogin: boolean = false;
 
   constructor() {
-
   }
-
 
   get wallpaper(): string {
     return wallpaper;
@@ -73,7 +71,6 @@ export class LoginscreenComponent implements OnInit, OnDestroy {
       //TODO
     }
   }
-
 
   private setEvents() {
     window.addEventListener('keydown', this.onEnter, true);

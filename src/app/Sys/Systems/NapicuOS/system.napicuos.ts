@@ -82,7 +82,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     setTimeout(() => {
       SystemComponent.SysComponent = BlackscreenComponent;
       this.load();
-        
+
       if (NapicuOS.get_active_user()) {
         setTimeout(() => {
           SystemComponent.SysComponent = NapicuOSComponent;
@@ -97,7 +97,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onLogin(): void {
-    if (NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
+    if (!NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
       initAllStartUpApps();
 
     }
@@ -859,7 +859,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_if_user_active(username: string | undefined): boolean {
     if (!username) return false;
-    return !!this.activeUsers.indexOf(username);
+    return !this.activeUsers.indexOf(username);
   }
 
   /**
