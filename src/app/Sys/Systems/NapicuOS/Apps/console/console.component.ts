@@ -172,8 +172,7 @@ export class ConsoleComponent implements OnInit {
   /**
    * Function for deleting the history of console
    */
-  public delete_all_history(): void {
-    this.lines = [];
+  public static delete_all_history(): void {
     ConsoleComponent.historyCommands = [];
   }
 
