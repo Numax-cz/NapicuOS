@@ -101,7 +101,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       initAllStartUpApps();
 
     }
-
   }
 
   protected static initSystemConfigCookies(): void {
