@@ -90,7 +90,7 @@ function initGetSystemInformation(): void {
               process.forEach((value: Process, index: number) => {
                 exportLines.push(
                   new Line(
-                    `${index} | ${value.processTitle} : ${value.launchedBy}`,
+                    `${value.pid} | ${value.processTitle} : ${value.launchedBy}`,
                     'white'
                   )
                 );
@@ -139,10 +139,9 @@ function initGetSystemInformation(): void {
                   )
                 );
               }
-
               apps.forEach((value: Process, index: number) => {
                 exportLines.push(
-                  new Line(`${index} | ${value.processTitle}`, 'white')
+                  new Line(`${value.pid} | ${value.processTitle}`, 'white')
                 );
               });
               return resolve({
