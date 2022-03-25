@@ -24,6 +24,10 @@ export class AlertComponent implements OnInit {
   constructor() {
   }
 
+  ngOnInit() {
+    
+  }
+
   /**
    * Returns the alert value
    */
@@ -38,8 +42,6 @@ export class AlertComponent implements OnInit {
     return this.alertType;
   }
 
-  ngOnInit(): void {
-  }
 
   /**
    * The function that is called after clicking the button
