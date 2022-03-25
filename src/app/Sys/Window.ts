@@ -82,6 +82,7 @@ export class Window {
       WindowComponent.WindowHistory[WindowComponent.WindowHistory.length - 1].activated = false;
     }
     WindowComponent.WindowHistory.push(this);
+    this.z_index = WindowComponent.WindowHistory.length - 1;
     this.activated = true;
     NapicuOS.onRunNewApp();
   };
