@@ -6,6 +6,7 @@ import {SystemUserPermissionsEnumMetadata} from './Systems/NapicuOS/interface/Us
 import {Window} from "./Window";
 import {copy} from "../Scripts/DeepClone";
 import {AppCreatMetadata} from "./Systems/NapicuOS/interface/system";
+import {WindowComponent} from "./Systems/NapicuOS/template/window/window.component";
 
 export class SystemFile {
   //TODO DOC

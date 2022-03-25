@@ -73,12 +73,22 @@ export class Window {
     };
   }
 
+  /**
+   * Opens the application window
+   */
   public open(): void {
     this.display = true;
+    if (WindowComponent.WindowHistory.length) {
+      WindowComponent.WindowHistory[WindowComponent.WindowHistory.length - 1].activated = false;
+    }
     WindowComponent.WindowHistory.push(this);
+    this.activated = true;
     NapicuOS.onRunNewApp();
   };
 
+  /**
+   * Closes the application window
+   */
   public close(): void {
     this.display = false;
     WindowComponent.WindowHistory.slice(

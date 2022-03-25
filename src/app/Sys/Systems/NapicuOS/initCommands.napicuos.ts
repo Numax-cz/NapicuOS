@@ -12,6 +12,7 @@ import {User} from '../../User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemNotification} from "../../Notification";
 import {NapicuCookies} from "./scripts/decorators";
+import {WindowComponent} from "./template/window/window.component";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
