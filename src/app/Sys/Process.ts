@@ -51,7 +51,7 @@ export class Process {
 
 
   /**
-   * Retruns the process name
+   * Returns the process name
    */
   get processTitle(): string {
     return this._processTitle;
