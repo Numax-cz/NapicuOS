@@ -85,6 +85,7 @@ export class Process {
       this._Window.close();
       x = window_animations * 2;
     }
+    if (this._Interval) clearInterval(this._Interval);
     setTimeout(() => {
       GrubComponent.ActiveSystem.SystemProcess.splice(this._pid, 1);
       NapicuOS.onKillProcess();
