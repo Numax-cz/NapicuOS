@@ -170,7 +170,7 @@ export class NapicuOSComponent implements OnInit {
     const user = NapicuOS.get_active_user();
     if (user) {
       let x = user.userSetting.notifications.notificationsList || [];
-      user.userSetting.notifications.notificationsList = x.slice(x.length, 1);
+      user.userSetting.notifications.notificationsList.splice(x.length - 1, 1);
     }
     NapicuOSComponent.NotificationActive = null;
   }
