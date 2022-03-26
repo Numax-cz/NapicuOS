@@ -240,6 +240,7 @@ export class WindowComponent implements OnInit {
    */
   public minimized(event: MouseEvent): void {
     WindowComponent.selectedWindow.display = false;
+    WindowComponent.selectedWindow.activated = false;
     event.stopPropagation();
   }
 
