@@ -10,12 +10,33 @@ import {Window} from './Window';
 export declare type ProcessWindowValueMetadata = Window | SystemAlert;
 
 export class Process {
+  /**
+   * Determines who started the process
+   */
   private declare _launchedBy: string;
+  /**
+   * Process interval
+   */
   private declare _Interval: any;
+  /**
+   * Process identification
+   */
   private declare _pid: number;
+  /**
+   * Specifies whether the process can be run multiple times
+   */
   private declare _multiRun: boolean;
+  /**
+   * Process name
+   */
   private declare readonly _processTitle: string;
+  /**
+   * Specifies the GUI of the process
+   */
   private declare readonly _Window: ProcessWindowValueMetadata;
+  /**
+   * Process interval - Function
+   */
   private declare readonly processInterval: { fun: () => void; time: number };
 
 
@@ -29,30 +50,47 @@ export class Process {
   }
 
 
+  /**
+   * Retruns the process name
+   */
   get processTitle(): string {
     return this._processTitle;
   }
 
-
+  /**
+   * Returns the name of the user who run the process
+   */
   get launchedBy(): string {
     return this._launchedBy;
   }
 
 
+  /**
+   * Returns the process identification
+   */
   get pid(): number {
     return this._pid;
   }
 
 
+  /**
+   * Returns the process interval
+   */
   get Interval(): any {
     return this._Interval;
   }
 
 
+  /**
+   * Returns the process application window
+   */
   get Window(): ProcessWindowValueMetadata {
     return this._Window;
   }
 
+  /**
+   * Installs the application
+   */
   get installer_file(): SystemFile | null {
     let file = NapicuOS.get_file_by_file_title(NapicuOS.get_apps_dir(), this.processTitle)
     if (typeof file === 'object') {
@@ -61,6 +99,9 @@ export class Process {
     return null;
   }
 
+  /**
+   * Run the process
+   */
   public run(): this {
     if (!this._multiRun && !NapicuOS.get_user_process_by_title(this._processTitle)) return this;
     if (this.processInterval) {
@@ -74,11 +115,17 @@ export class Process {
     return this;
   }
 
+  /**
+   * Run the process as root
+   */
   public runAsSystem(): this {
     this._launchedBy = 'System';
     return this.run();
   }
 
+  /**
+   * Terminates the process
+   */
   public kill(): void {
     let x = 0;
     if (this._Window) {
@@ -91,8 +138,4 @@ export class Process {
       NapicuOS.onKillProcess();
     }, x);
   }
-
-  // public onRun(): void {}
-
-  // public onClose(): void {}
 }
