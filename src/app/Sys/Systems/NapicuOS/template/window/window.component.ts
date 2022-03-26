@@ -194,7 +194,8 @@ export class WindowComponent implements OnInit {
       let p = e.target as HTMLElement;
       if (
         p.offsetParent?.id !== 'napicuos-App-window' &&
-        WindowComponent.selectedWindow?.activated && !p.offsetParent?.classList.contains("DockIcon")
+        WindowComponent.selectedWindow?.activated
+        // && !p.offsetParent?.classList.contains("DockIcon")
       ) {
         WindowComponent.selectedWindow.activated = false;
         NapicuOS.update_dock_items();
