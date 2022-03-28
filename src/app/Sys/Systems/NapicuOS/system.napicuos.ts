@@ -655,7 +655,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   ):
     | SystemStateMetadata.FileAlreadyExists
     | SystemStateMetadata.FileAddedSuccess
-    | SystemStateMetadata.DirNotExist {
+    | SystemStateMetadata.DirNotExist
+    | SystemStateMetadata.FileHasBadName {
     if (dir?.files) {
       if (
         dir.files.filter((value: SystemFile) => {
@@ -663,8 +664,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         })?.length
       ) {
         return SystemStateMetadata.FileAlreadyExists;
+      } else if (/\s/.test(file.fileName)) {
+        return SystemStateMetadata.FileHasBadName;
       }
       dir.files.push(file);
+
     } else {
       return SystemStateMetadata.DirNotExist;
     }

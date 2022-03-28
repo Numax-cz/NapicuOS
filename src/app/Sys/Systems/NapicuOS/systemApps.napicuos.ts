@@ -3,8 +3,8 @@ import {ConsoleComponent} from './Apps/console/console.component';
 import {WelcomeComponent} from './Apps/welcome/welcome.component';
 import {NapicuOS} from './system.napicuos';
 import {Window} from "../../Window";
-import {SystemNotification} from "../../Notification";
-import {NapicuOSComponent} from "./components/napicu-os/napicu-os.component";
+import {SystemFile} from "../../File";
+import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/file";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
