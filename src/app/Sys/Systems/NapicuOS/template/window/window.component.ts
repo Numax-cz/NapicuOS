@@ -85,7 +85,6 @@ import {InputsType} from 'ng-dynamic-component';
     ]),
 
   ],
-
 })
 export class WindowComponent implements OnInit {
   /**
@@ -171,6 +170,11 @@ export class WindowComponent implements OnInit {
     return WindowComponent.MinWindowWidth;
   }
 
+  /**
+   *  Switch window index
+   * @param window Application window
+   * @param index Window index
+   */
   public static switchWindowIndex(window: ProcessWindowValueMetadata, index: number): void {
     WindowComponent.WindowHistory.splice(index, 1);
     WindowComponent.WindowHistory.push(window);
