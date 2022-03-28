@@ -10,6 +10,7 @@ import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../../../Notification";
 import {notification_animations} from "../../config/notificationAnimations";
 import {global} from "@angular/compiler/src/util";
+import {Calendar} from "./Calendar";
 
 @Component({
   selector: 'app-napicu-os',
@@ -89,6 +90,10 @@ export class NapicuOSComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let i = new Calendar();
+    i.update();
+    console.log(i.data);
+
     NapicuOSComponent.BottomDockDisplay = true;
     window.addEventListener('mousedown', (e: MouseEvent) => {
       let p = e.target as HTMLElement;
@@ -185,7 +190,7 @@ export class NapicuOSComponent implements OnInit {
   protected closeAppContextMenu(): void {
     this.selectedAppContext = null;
   }
-
+  
   get GetNotification(): SystemNotification | null {
     return NapicuOSComponent.NotificationActive;
   }

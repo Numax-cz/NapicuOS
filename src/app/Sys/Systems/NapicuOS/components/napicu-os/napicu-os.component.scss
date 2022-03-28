@@ -297,6 +297,65 @@ $ContextMenuBox-Padding: 10px 5px;
   }
 }
 
+
+.NapicuCalendar {
+  background-color: #3c3c3c;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .header {
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+  }
+
+
+  .daysInWeek {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .rows-7 {
+    display: flex;
+  }
+
+  .days {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .days > div[row], .calendar div[days-in-week] {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .days div[day], .calendar div[days-in-week] span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 9999rem;
+    color: #fff;
+  }
+
+  .calendar div[days-in-week] span {
+    font-weight: bold;
+  }
+
+  .days div[day][month] {
+    color: gray !important;
+  }
+
+  .days div[day][active] {
+    background-color: #1b6acb;
+  }
+
+}
+
+
 .ntfdnD {
   display: flex;
   align-items: center;
