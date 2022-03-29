@@ -1,4 +1,4 @@
-export class Calendar {
+export class NapicuCalendar {
   protected readonly months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   protected readonly days: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
@@ -33,13 +33,20 @@ export class Calendar {
   /**
    * Data to be displayed in the calendar
    */
-  public data: number[][] = [[]]
+  public data: number[][] = [[]];
 
 
-  /**
-   * Update the calendar
-   */
-  public update(): void {
+  constructor() {
+    if (this.firstDayOfMonth.getDay() !== 1) {
+      let beforeMonthDays: number = new Date(this.selectedMonth.getFullYear(), this.monthNumber, 0).getDate();
+      for (let i = 6; i >= 0; i--) {
+        let bDay = new Date(this.selectedMonth.getFullYear(), this.monthNumber - 1, beforeMonthDays - i).getDay();
+        if (bDay !== 0 && bDay < (this.firstDayOfMonth.getDay() ? this.firstDayOfMonth.getDay() : 7)) {
+          this.data[0].unshift(beforeMonthDays - i);
+        }
+      }
+    }
+
     for (let i = 1; i <= this.numberDaysOfMonth; i++) {
       let iDay = new Date(this.selectedMonth.getFullYear(), this.monthNumber, i);
       if (this.days[iDay.getDay() ? iDay.getDay() - 1 : 6] == this.days[0]) {
@@ -57,7 +64,6 @@ export class Calendar {
         }
       }
     }
-
   }
-  
+
 }
