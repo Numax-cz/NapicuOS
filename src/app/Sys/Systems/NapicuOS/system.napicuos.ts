@@ -33,6 +33,7 @@ import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
 import {UserConstructorMetadata} from "./interface/user";
+import {NapicuCalendar} from "./scripts/Calendar";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -619,6 +620,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         stateCode: CommandStateCodeMetadata.CommandNotFound,
       };
     }
+  }
+
+  /**
+   * Function to update the system calendar
+   */
+  public static update_calendar(): void {
+    NapicuOSComponent.calendar = new NapicuCalendar().data;
+  }
+
+  /**
+   * Function to update the system time
+   */
+  public static update_time(): void {
+    this.systemTime = this.getTime();
   }
 
   /**
