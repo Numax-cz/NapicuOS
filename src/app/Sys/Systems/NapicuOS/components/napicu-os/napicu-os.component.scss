@@ -299,7 +299,7 @@ $ContextMenuBox-Padding: 10px 5px;
 
 
 .NapicuCalendar {
-  background-color: #3c3c3c;
+
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -325,12 +325,12 @@ $ContextMenuBox-Padding: 10px 5px;
     flex-direction: column;
   }
 
-  .days > div[row], .calendar div[days-in-week] {
+  .week, .calendar, .daysInWeek {
     display: flex;
     flex-direction: row;
   }
 
-  .days div[day], .calendar div[days-in-week] span {
+  .days .day, .calendar, .daysInWeek {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -340,20 +340,15 @@ $ContextMenuBox-Padding: 10px 5px;
     color: #fff;
   }
 
-  .calendar div[days-in-week] span {
-    font-weight: bold;
-  }
-
-  .days div[day][month] {
-    color: gray !important;
-  }
-
-  .days div[day][active] {
-    background-color: #1b6acb;
-  }
-
 }
 
+.selectedMonth {
+  background-color: #2196F3;
+}
+
+.outDate {
+  background-color: #2196F3;
+}
 
 .ntfdnD {
   display: flex;

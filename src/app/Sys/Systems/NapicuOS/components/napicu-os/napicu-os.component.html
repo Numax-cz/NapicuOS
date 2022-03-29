@@ -70,12 +70,18 @@
 
                 <div class="NapicuCalendar">
                   <div class="header">
-                    <div calendar-event="previousMonth">Předchozí</div>
+                    <div>Předchozí</div>
                     <div class="title"><span calendar-value="month"></span></div>
-                    <div calendar-event="nextMonth">Další</div>
+                    <div>Další</div>
                   </div>
                   <div class="daysInWeek" days-in-week></div>
                   <div class="days" calendar-days>
+                    <div *ngFor="let i of GetNotificationCalendar" class="week">
+                      <div *ngFor="let d of i; let index = index" class="day"
+                           [ngClass]="{selectedMonth: d == GetDate}">
+                        {{d}}
+                      </div>
+                    </div>
 
                   </div>
                 </div>
