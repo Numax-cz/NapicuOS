@@ -5,6 +5,7 @@ import {NapicuOS} from './system.napicuos';
 import {Window} from "../../Window";
 import {SystemFile} from "../../File";
 import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/file";
+import {NapicuCalendar} from "./scripts/Calendar";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -34,7 +35,8 @@ export function napicu_os_time(): Process {
     processTitle: 'SystemTime',
     processInterval: {
       fun: () => {
-        NapicuOS.systemTime = NapicuOS.getTime();
+        NapicuOS.update_time();
+        NapicuOS.update_calendar();
       },
       time: 1000,
     },
