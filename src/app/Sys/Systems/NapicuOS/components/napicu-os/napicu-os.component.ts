@@ -10,6 +10,7 @@ import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../../../Notification";
 import {notification_animations} from "../../config/notificationAnimations";
 import {global} from "@angular/compiler/src/util";
+import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 
 @Component({
   selector: 'app-napicu-os',
@@ -56,7 +57,7 @@ export class NapicuOSComponent implements OnInit {
   public static BottomDockProcess: SystemDockDisplay[] = [];
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
-  public static calendar: number[][] = []
+  public static calendar: NapicuCalendarDateMetadata[][] = []
 
   constructor() {
   }
@@ -199,7 +200,7 @@ export class NapicuOSComponent implements OnInit {
     return NapicuOS.get_active_user()?.userSetting.notifications.notificationsList || [];
   }
 
-  get GetNotificationCalendar(): number[][] {
+  get GetNotificationCalendar(): NapicuCalendarDateMetadata[][] {
     return NapicuOSComponent.calendar;
   }
 
