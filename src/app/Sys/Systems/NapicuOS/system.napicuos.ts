@@ -34,6 +34,7 @@ import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
 import {UserConstructorMetadata} from "./interface/user";
 import {NapicuCalendar} from "./scripts/Calendar";
+import {NapicuOS_available_language} from "./Language/langs";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -53,6 +54,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     title: system_boot_screen_title,
     logo: system_boot_screen_logo,
   };
+  public static language: NapicuOS_available_language = 'en';
 
   public override onStart(): void {
     //TODO Login & root creat
@@ -732,6 +734,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return SystemStateMetadata.FileNotExist;
     }
     return SystemStateMetadata.DirNotExist
+  }
+
+  /**
+   * Returns the system language
+   */
+  public static get_language(): string {
+    return this.language;
+  }
+
+  /**
+   * Sets the system language
+   */
+  public static set_language(language: NapicuOS_available_language): void {
+    this.language = language;
   }
 
   /**
