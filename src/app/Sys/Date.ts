@@ -1,0 +1,129 @@
+export class NapicuDate {
+  protected _date: Date;
+  protected _formats: { [key: string]: any };
+
+  constructor() {
+    this._date = new Date();
+    this._formats = {
+      'yyyy': this.getYear,
+      'MM': this.getMonth,
+      'dd': this.getDay,
+      'HH': this.getHours24,
+      'hh': this.getHours12,
+      'mm': this.getMinutes,
+      'ss': this.getSeconds,
+      'a': this.getMeridian,
+      'Z': this.getTimezone
+    };
+  }
+
+  /**
+   * Format the date
+   * yyyy - Year
+   * * MM - Month
+   * * dd - Day
+   * * HH - 24 Hour
+   * * hh - 12 Hour
+   * * mm - Minutes
+   * * ss - Seconds
+   * * a - AM/PM
+   * * Z - Timezone
+   * @param format
+   */
+  public format(format: string): string {
+    let date = this._date;
+    let output = "";
+    let formatArray = format.split(":");
+
+    for (let i = 0; i < formatArray.length; i++) {
+      let formatItem = formatArray[i];
+      let formatItemArray = formatItem.split(" ");
+      for (let j = 0; j < formatItemArray.length; j++) {
+        let formatItemItem = formatItemArray[j];
+        output += this._formats[formatItemItem](date);
+        if (j < formatItemItem.length - 1) {
+          output += " ";
+        }
+      }
+      if (i < formatArray.length - 1) {
+        output += ":";
+      }
+    }
+    return output;
+  }
+
+
+  /**
+   * Get the day
+   * @param date
+   */
+  protected getDay(date: Date): string {
+    return date.getDate().toString().padStart(2, '0');
+  }
+
+  /**
+   * Get the month
+   * @param date
+   */
+  protected getMonth(date: Date): string {
+    return (date.getMonth() + 1).toString().padStart(2, '0');
+  }
+
+  /**
+   * Get the year
+   * @param date
+   */
+  protected getYear(date: Date): string {
+    return (date.getFullYear()).toString()
+  }
+
+  /**
+   * Get the hours in 24-hour format
+   * @param date
+   */
+  protected getHours24(date: Date): string {
+    return date.getHours().toString().padStart(2, '0');
+  }
+
+  /**
+   * Get the hours in 12-hour format
+   * @param date
+   */
+  protected getHours12(date: Date): string {
+    let hours = date.getHours();
+    return (hours > 12) ? (hours - 12).toString().padStart(2, '0') : hours.toString().padStart(2, '0');
+  }
+
+  /**
+   * Get the minutes
+   * @param date
+   */
+  protected getMinutes(date: Date): string {
+    return date.getMinutes().toString().padStart(2, '0');
+  }
+
+  /**
+   * Get the seconds
+   * @param date
+   */
+  protected getSeconds(date: Date): string {
+    return date.getSeconds().toString().padStart(2, '0');
+  }
+
+  /**
+   * Get the meridian
+   * @param date
+   */
+  protected getMeridian(date: Date): string {
+    return (date.getHours() >= 12) ? 'PM' : 'AM';
+  }
+
+  /**
+   * Get the timezone
+   * @param date
+   */
+  protected getTimezone(date: Date): string {
+    return date.getTimezoneOffset().toString().padStart(2, '0');
+  }
+}
+

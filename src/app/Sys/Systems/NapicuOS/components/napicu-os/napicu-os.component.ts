@@ -1,5 +1,5 @@
 import {animate, query, stagger, style, transition, trigger,} from '@angular/animations';
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {Process} from 'src/app/Sys/Process';
 import {boot_animation_time} from '../../config/boot';
 import {wallpaper} from '../../config/wallpaper';
@@ -11,6 +11,7 @@ import {SystemNotification} from "../../../../Notification";
 import {notification_animations} from "../../config/notificationAnimations";
 import {global} from "@angular/compiler/src/util";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
+import {getLocaleId} from "@angular/common";
 
 @Component({
   selector: 'app-napicu-os',
