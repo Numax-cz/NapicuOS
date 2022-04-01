@@ -3,7 +3,7 @@ import {ConsoleComponent} from './Apps/console/console.component';
 import {WelcomeComponent} from './Apps/welcome/welcome.component';
 import {NapicuOS} from './system.napicuos';
 import {Window} from "../../Window";
-import {NapicuDate} from "../../Date";
+import {NapicuDate} from "./scripts/date";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
