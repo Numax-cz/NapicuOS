@@ -34,7 +34,7 @@ import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
 import {UserConstructorMetadata} from "./interface/user";
 import {NapicuCalendar} from "./scripts/Calendar";
-import {NapicuOS_available_language} from "./Language/langs";
+import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -741,6 +741,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_language(): string {
     return this.language;
+  }
+
+  /**
+   * Returns the system language variables
+   */
+  public static get_language_words(): typeof NapicuOSLanguages[keyof typeof NapicuOSLanguages] {
+    return NapicuOSLanguages[this.language];
   }
 
   /**
