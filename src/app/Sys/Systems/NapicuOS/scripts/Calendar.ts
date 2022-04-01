@@ -1,6 +1,7 @@
 import {NapicuCalendarDateMetadata} from "../interface/Calendar/calendar";
 
 export class NapicuCalendar {
+  //TODO
   protected readonly months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   protected readonly days: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 

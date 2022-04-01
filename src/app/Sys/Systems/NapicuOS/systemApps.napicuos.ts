@@ -26,7 +26,7 @@ export function installAllApps(): void {
 
 
   let i = new NapicuDate();
-  console.log(i.format("yyyy HH:mm"));
+  console.log(i.format("MN"));
 }
 
 

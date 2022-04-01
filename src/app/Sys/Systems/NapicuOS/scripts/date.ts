@@ -1,3 +1,5 @@
+import {NapicuOS} from "../system.napicuos";
+
 export class NapicuDate {
   protected _date: Date;
   protected _formats: { [key: string]: any };
@@ -11,6 +13,8 @@ export class NapicuDate {
       'HH': this.getHours24,
       'hh': this.getHours12,
       'mm': this.getMinutes,
+      'MMN': this.getMonthName,
+      'MN': this.getShortMonthName,
       'ss': this.getSeconds,
       'a': this.getMeridian,
       'Z': this.getTimezone
@@ -21,6 +25,8 @@ export class NapicuDate {
    * Format the date
    * yyyy - Year
    * * MM - Month
+   * * MMN - Month name
+   * * MN - Month name short
    * * dd - Day
    * * HH - 24 Hour
    * * hh - 12 Hour
@@ -67,6 +73,19 @@ export class NapicuDate {
    */
   protected getMonth(date: Date): string {
     return (date.getMonth() + 1).toString().padStart(2, '0');
+  }
+
+  /**
+   * Get the month name
+   * @param date
+   */
+  protected getMonthName(date: Date): string {
+
+    return NapicuOS.get_language_words().Months[date.getMonth()];
+  }
+
+  protected getShortMonthName(date: Date): string {
+    return NapicuOS.get_language_words().Months[date.getMonth()].slice(3);
   }
 
   /**
