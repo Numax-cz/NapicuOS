@@ -85,7 +85,7 @@ export class NapicuDate {
   }
 
   protected getShortMonthName(date: Date): string {
-    return NapicuOS.get_language_words().Months[date.getMonth()].slice(3);
+    return NapicuOS.get_language_words().Months[date.getMonth()].slice(0, 3);
   }
 
   /**
