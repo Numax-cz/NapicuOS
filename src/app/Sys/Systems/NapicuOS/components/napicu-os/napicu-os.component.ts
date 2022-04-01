@@ -12,6 +12,7 @@ import {notification_animations} from "../../config/notificationAnimations";
 import {global} from "@angular/compiler/src/util";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {getLocaleId} from "@angular/common";
+import {NapicuDate} from "../../scripts/date";
 
 @Component({
   selector: 'app-napicu-os',
@@ -64,7 +65,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get systemTime(): string {
-    return NapicuOS.get_system_time();
+    return new NapicuDate().format("dd MN,hh:mm a")
   }
 
   get wallpaper(): string {

@@ -39,25 +39,30 @@ export class NapicuDate {
   public format(format: string): string {
     let date = this._date;
     let output = "";
-    let formatArray = format.split(":");
 
-    for (let i = 0; i < formatArray.length; i++) {
-      let formatItemSpaces = formatArray[i].split(" ");
-      for (let j = 0; j < formatItemSpaces.length; j++) {
-        let formatItemSpacesItems = formatItemSpaces[j];
-        output += this._formats[formatItemSpacesItems](date);
-        if (j < formatItemSpacesItems.length - 1) {
-          output += " ";
+    let formatItemC = format.split(":");
+    for (let i = 0; i < formatItemC.length; i++) {
+      let formatItemS = formatItemC[i].split(",");
+      for (let a = 0; a < formatItemS.length; a++) {
+        let formatItemSpaces = formatItemS[a].split(" ");
+        for (let j = 0; j < formatItemSpaces.length; j++) {
+          let formatItemSpacesItems = formatItemSpaces[j];
+          output += this._formats[formatItemSpacesItems](date);
+          if (j < formatItemSpacesItems.length - 1) {
+            output += " ";
+          }
+        }
+        if (a < formatItemS.length - 1) {
+          output += ",";
         }
       }
-      if (i < formatArray.length - 1) {
+      if (i < formatItemC.length - 1) {
         output += ":";
       }
     }
     return output;
   }
-
-
+  
   /**
    * Get the day
    * @param date
