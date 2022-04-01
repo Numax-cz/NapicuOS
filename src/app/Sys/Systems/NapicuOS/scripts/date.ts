@@ -42,12 +42,11 @@ export class NapicuDate {
     let formatArray = format.split(":");
 
     for (let i = 0; i < formatArray.length; i++) {
-      let formatItem = formatArray[i];
-      let formatItemArray = formatItem.split(" ");
-      for (let j = 0; j < formatItemArray.length; j++) {
-        let formatItemItem = formatItemArray[j];
-        output += this._formats[formatItemItem](date);
-        if (j < formatItemItem.length - 1) {
+      let formatItemSpaces = formatArray[i].split(" ");
+      for (let j = 0; j < formatItemSpaces.length; j++) {
+        let formatItemSpacesItems = formatItemSpaces[j];
+        output += this._formats[formatItemSpacesItems](date);
+        if (j < formatItemSpacesItems.length - 1) {
           output += " ";
         }
       }
@@ -64,7 +63,7 @@ export class NapicuDate {
    * @param date
    */
   protected getDay(date: Date): string {
-    return date.getDate().toString().padStart(2, '0');
+    return date.getDate().toString()
   }
 
   /**
@@ -72,7 +71,7 @@ export class NapicuDate {
    * @param date
    */
   protected getMonth(date: Date): string {
-    return (date.getMonth() + 1).toString().padStart(2, '0');
+    return (date.getMonth() + 1).toString()
   }
 
   /**
