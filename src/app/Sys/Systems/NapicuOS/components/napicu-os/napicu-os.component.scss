@@ -308,7 +308,12 @@ $ContextMenuBox-Padding: 10px 5px;
   .header {
     color: #fff;
     display: flex;
+    width: 65%;
     justify-content: space-around;
+  }
+
+  .Arrow {
+    cursor: pointer;
   }
 
   .daysInWeek {
