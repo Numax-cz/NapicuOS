@@ -4,12 +4,15 @@ export class NapicuDate {
   protected _date: Date;
   protected _formats: { [key: string]: any };
 
+
   constructor() {
     this._date = new Date();
     this._formats = {
       'yyyy': this.getYear,
       'MM': this.getMonth,
       'dd': this.getDay,
+      'ddn': this.getDayName,
+      "dn": this.getShortDayName,
       'HH': this.getHours24,
       'hh': this.getHours12,
       'mm': this.getMinutes,
@@ -28,6 +31,8 @@ export class NapicuDate {
    * * MMN - Month name
    * * MN - Month name short
    * * dd - Day
+   * * ddn - Day name
+   * * dn - Day name short
    * * HH - 24 Hour
    * * hh - 12 Hour
    * * mm - Minutes
@@ -97,6 +102,22 @@ export class NapicuDate {
    */
   protected getShortMonthName(date: Date): string {
     return NapicuOS.get_language_words().Months[date.getMonth()].slice(0, 3);
+  }
+
+  /**
+   * Get the day name
+   * @param date
+   */
+  protected getDayName(date: Date): string {
+    return NapicuOS.get_language_words().Days[date.getDay()];
+  }
+
+  /**
+   * Get the day name short
+   * @param date
+   */
+  protected getShortDayName(date: Date): string {
+    return NapicuOS.get_language_words().Days[date.getDay()].slice(0, 3);
   }
 
   /**
