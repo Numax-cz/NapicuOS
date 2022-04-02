@@ -65,7 +65,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get systemTime(): string {
-    return new NapicuDate().format("dd MN,hh:mm a")
+    return new NapicuDate().format("dd MN, hh:mm a")
   }
 
   get wallpaper(): string {

@@ -47,7 +47,11 @@ export class NapicuDate {
         let formatItemSpaces = formatItemS[a].split(" ");
         for (let j = 0; j < formatItemSpaces.length; j++) {
           let formatItemSpacesItems = formatItemSpaces[j];
-          output += this._formats[formatItemSpacesItems](date);
+          if (formatItemSpacesItems) output += this._formats[formatItemSpacesItems](date);
+          //TODO BETTER IF => problem with spaces
+          else {
+            output += " ";
+          }
           if (j < formatItemSpacesItems.length - 1) {
             output += " ";
           }
@@ -62,7 +66,7 @@ export class NapicuDate {
     }
     return output;
   }
-  
+
   /**
    * Get the day
    * @param date
