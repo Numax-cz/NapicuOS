@@ -1,5 +1,5 @@
 import {animate, query, stagger, style, transition, trigger,} from '@angular/animations';
-import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Process} from 'src/app/Sys/Process';
 import {boot_animation_time} from '../../config/boot';
 import {wallpaper} from '../../config/wallpaper';
@@ -9,9 +9,7 @@ import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../../../Notification";
 import {notification_animations} from "../../config/notificationAnimations";
-import {global} from "@angular/compiler/src/util";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
-import {getLocaleId} from "@angular/common";
 import {NapicuDate} from "../../scripts/date";
 
 @Component({
@@ -59,9 +57,11 @@ export class NapicuOSComponent implements OnInit {
   public static BottomDockProcess: SystemDockDisplay[] = [];
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
+
   public static calendar: NapicuCalendarDateMetadata[][] = []
 
   constructor() {
+
   }
 
   get systemTime(): string {
