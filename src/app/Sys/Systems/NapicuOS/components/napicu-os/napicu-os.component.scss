@@ -330,7 +330,7 @@ $ContextMenuBox-Padding: 10px 5px;
     flex-direction: row;
   }
 
-  .days .day, .calendar, .daysInWeek {
+  .days .day, .calendar, .daysInWeek span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -339,7 +339,6 @@ $ContextMenuBox-Padding: 10px 5px;
     border-radius: 9999rem;
     color: #fff;
   }
-
 }
 
 .selectedMonth {

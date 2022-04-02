@@ -35,6 +35,7 @@ import {NapicuCookies} from "./scripts/decorators";
 import {UserConstructorMetadata} from "./interface/user";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
+import {NapicuDate} from "./scripts/date";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -629,6 +630,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static update_calendar(): void {
     NapicuOSComponent.calendar = new NapicuCalendar().data;
+    NapicuOSComponent.calendarDays = NapicuDate.get_language_shorts_days();
   }
 
   /**

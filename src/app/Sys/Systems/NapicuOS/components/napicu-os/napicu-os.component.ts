@@ -58,7 +58,8 @@ export class NapicuOSComponent implements OnInit {
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
 
-  public static calendar: NapicuCalendarDateMetadata[][] = []
+  public static calendar: NapicuCalendarDateMetadata[][] = [];
+  public static calendarDays: string[] = [];
 
   constructor() {
 
@@ -117,7 +118,6 @@ export class NapicuOSComponent implements OnInit {
       let x = NapicuOS.get_apps_running_by_process_title(file.fileName);
       let p: Process;
 
-
       let windowsMin = windows.filter((i: Process) => {
         return !i.Window.display;
       });
@@ -130,8 +130,6 @@ export class NapicuOSComponent implements OnInit {
           return a.Window.z_index - b.Window.z_index
         })[x.length - 1]; //TODO INDEX ON MINIM
       }
-
-
       let i = WindowComponent.WindowHistory.indexOf(p.Window);
       if (WindowComponent.selectedWindow) WindowComponent.selectedWindow.activated = false;
       WindowComponent.switchWindowIndex(p.Window, i);
@@ -153,7 +151,11 @@ export class NapicuOSComponent implements OnInit {
     this.closeAppContextMenu();
   }
 
+  /**
+   * Open the context calendar menu
+   */
   public clickDate(): void {
+    NapicuOS.update_calendar();
     if (!NapicuOSComponent.DataDisplay) {
       NapicuOSComponent.NotificationActive = null
     }
@@ -208,5 +210,13 @@ export class NapicuOSComponent implements OnInit {
 
   get GetDate(): number {
     return new Date().getDate();
+  }
+
+  get GetShortDays(): string[] {
+    return NapicuOSComponent.calendarDays;
+  }
+
+  get GetYear(): string {
+    return new NapicuDate().format("yyyy")
   }
 }

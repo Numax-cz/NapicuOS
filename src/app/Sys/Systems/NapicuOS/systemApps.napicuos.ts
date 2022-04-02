@@ -36,7 +36,6 @@ export function napicu_os_time(): Process {
     processInterval: {
       fun: () => {
         NapicuOS.update_time();
-        NapicuOS.update_calendar();
       },
       time: 1000,
     },

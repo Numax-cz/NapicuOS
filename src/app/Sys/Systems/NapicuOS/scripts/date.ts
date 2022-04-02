@@ -3,7 +3,7 @@ import {NapicuOS} from "../system.napicuos";
 export class NapicuDate {
   protected _date: Date;
   protected _formats: { [key: string]: any };
-
+  protected static _shortName: number = 3;
 
   constructor() {
     this._date = new Date();
@@ -26,7 +26,7 @@ export class NapicuDate {
 
   /**
    * Format the date
-   * yyyy - Year
+   * * yyyy - Year
    * * MM - Month
    * * MMN - Month name
    * * MN - Month name short
@@ -101,7 +101,7 @@ export class NapicuDate {
    * Get the month name short
    */
   protected getShortMonthName(date: Date): string {
-    return NapicuOS.get_language_words().Months[date.getMonth()].slice(0, 3);
+    return NapicuOS.get_language_words().Months[date.getMonth()].slice(0, NapicuDate._shortName);
   }
 
   /**
@@ -117,7 +117,7 @@ export class NapicuDate {
    * @param date
    */
   protected getShortDayName(date: Date): string {
-    return NapicuOS.get_language_words().Days[date.getDay()].slice(0, 3);
+    return NapicuOS.get_language_words().Days[date.getDay()].slice(0, NapicuDate._shortName);
   }
 
   /**
@@ -176,5 +176,32 @@ export class NapicuDate {
   protected getTimezone(date: Date): string {
     return date.getTimezoneOffset().toString().padStart(2, '0');
   }
-}
 
+  /**
+   * Get the days
+   */
+  public static get_language_days(): any {
+    return NapicuOS.get_language_words().Days;
+  }
+
+  /**
+   * Get the months
+   */
+  public static get_language_months(): any {
+    return NapicuOS.get_language_words().Months;
+  }
+
+  /**
+   * Get the short days
+   */
+  public static get_language_shorts_days(): any {
+    return NapicuOS.get_language_words().Days.map((day: string) => day.slice(0, NapicuDate._shortName));
+  }
+
+  /**
+   * Get the short months
+   */
+  public static get_language_shorts_months(): any {
+    return NapicuOS.get_language_words().Months.map((month: string) => month.slice(0, NapicuDate._shortName));
+  }
+}
