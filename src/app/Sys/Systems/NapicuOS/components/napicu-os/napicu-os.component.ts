@@ -11,6 +11,7 @@ import {SystemNotification} from "../../../../Notification";
 import {notification_animations} from "../../config/notificationAnimations";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "../../scripts/date";
+import {SystemCalendarMetadata} from "../../interface/System/calendar";
 
 @Component({
   selector: 'app-napicu-os',
@@ -58,8 +59,11 @@ export class NapicuOSComponent implements OnInit {
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
 
-  public static calendar: NapicuCalendarDateMetadata[][] = [];
-  public static calendarDays: string[] = [];
+  public static CalendarMenu: SystemCalendarMetadata = {
+    calendar: [],
+    calendarDays: [],
+    selectedMonth: 0
+  }
 
   constructor() {
 
@@ -205,7 +209,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetNotificationCalendar(): NapicuCalendarDateMetadata[][] {
-    return NapicuOSComponent.calendar;
+    return NapicuOSComponent.CalendarMenu.calendar;
   }
 
   get GetDate(): number {
@@ -213,7 +217,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetShortDays(): string[] {
-    return NapicuOSComponent.calendarDays;
+    return NapicuOSComponent.CalendarMenu.calendarDays;
   }
 
   get GetYear(): string {
