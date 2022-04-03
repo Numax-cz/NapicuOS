@@ -204,4 +204,47 @@ export class NapicuDate {
   public static get_language_shorts_months(): any {
     return NapicuOS.get_language_words().Months.map((month: string) => month.slice(0, NapicuDate._shortName));
   }
+
+
+  /**
+   * Get the current day
+   */
+  public get_current_day(): number {
+    return this._date.getDay();
+  }
+
+  /**
+   * Get the current month
+   */
+  public get_current_month(): number {
+    return this._date.getMonth();
+  }
+
+  /**
+   * Get the current year
+   */
+  public get_current_year(): number {
+    return this._date.getFullYear();
+  }
+
+  /**
+   * Get the current seconds
+   */
+  public get_current_seconds(): number {
+    return this._date.getSeconds();
+  }
+
+  /**
+   * Get the current minutes
+   */
+  public get_current_minutes(): number {
+    return this._date.getMinutes();
+  }
+
+  /**
+   * Get the current minutes
+   */
+  public get_current_hours(): number {
+    return this._date.getHours();
+  }
 }
