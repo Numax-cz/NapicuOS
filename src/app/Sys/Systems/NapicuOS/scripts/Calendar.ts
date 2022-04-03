@@ -1,10 +1,16 @@
 import {NapicuCalendarDateMetadata} from "../interface/Calendar/calendar";
+import {NapicuOS} from "../system.napicuos";
 
 export class NapicuCalendar {
-  //TODO
-  protected readonly months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  protected readonly days: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-
+  //TODO Doc
+  /**
+   * The list of months
+   */
+  protected readonly months: string[];
+  /**
+   * The list of days
+   */
+  protected readonly days: string[];
   /**
    * The current date
    */
@@ -24,7 +30,7 @@ export class NapicuCalendar {
   /**
    * The selected month in string
    */
-  protected monthOfToday: string = this.months[this.monthNumber];
+  protected monthOfToday: string;
 
 
   protected firstDayOfMonth = new Date(this.selectedMonth.getFullYear(), this.monthNumber, 1);
@@ -40,6 +46,9 @@ export class NapicuCalendar {
 
 
   constructor() {
+    this.months = NapicuOS.get_language_words().Months;
+    this.days = NapicuOS.get_language_words().Days;
+    this.monthOfToday = this.months[this.monthNumber];
     //Days of the previous month
     if (this.firstDayOfMonth.getDay() !== 1) {
       let beforeMonthDays: number = new Date(this.selectedMonth.getFullYear(), this.monthNumber, 0).getDate();
@@ -70,5 +79,4 @@ export class NapicuCalendar {
       }
     }
   }
-
 }
