@@ -2,15 +2,6 @@ import {NapicuCalendarDateMetadata} from "../interface/Calendar/calendar";
 import {NapicuOS} from "../system.napicuos";
 
 export class NapicuCalendar {
-  //TODO Doc
-  /**
-   * The list of months
-   */
-  protected readonly months: string[];
-  /**
-   * The list of days
-   */
-  protected readonly days: string[];
   /**
    * The current date
    */
@@ -18,37 +9,44 @@ export class NapicuCalendar {
   /**
    * The selected date
    */
-  protected selectedMonth: Date = new Date();
+  protected declare selectedMonth: Date;
   /**
    * The selected day number
    */
-  protected todayNumber: number = this.selectedMonth.getDay();
+  protected declare todayNumber: number;
   /**
    * The selected month number
    */
-  protected monthNumber: number = this.selectedMonth.getMonth();
+  protected declare monthNumber: number;
   /**
-   * The selected month in string
+   * The first day of the month
    */
-  protected monthOfToday: string;
-
-
-  protected firstDayOfMonth = new Date(this.selectedMonth.getFullYear(), this.monthNumber, 1);
-  protected lastDayOfMonth = new Date(this.selectedMonth.getFullYear(), this.monthNumber + 1, 0);
-
-  protected numberDaysOfMonth = this.lastDayOfMonth.getDate();
-
-
+  protected declare firstDayOfMonth: Date;
+  /**
+   * The last day of the month
+   */
+  protected declare lastDayOfMonth: Date;
+  /**
+   * The number of days in the month
+   */
+  protected declare numberDaysOfMonth: number;
   /**
    * Data to be displayed in the calendar
    */
   public data: NapicuCalendarDateMetadata[][] = [[]];
 
 
-  constructor() {
-    this.months = NapicuOS.get_language_words().Months;
-    this.days = NapicuOS.get_language_words().Days;
-    this.monthOfToday = this.months[this.monthNumber];
+  constructor(year?: number, month?: number) {
+    this.selectedMonth = (year && month) ? new Date(year, month, 1) : new Date();
+
+    this.todayNumber = this.selectedMonth.getDay();
+    this.monthNumber = this.selectedMonth.getMonth();
+
+    this.firstDayOfMonth = new Date(this.selectedMonth.getFullYear(), this.monthNumber, 1);
+    this.lastDayOfMonth = new Date(this.selectedMonth.getFullYear(), this.monthNumber + 1, 0);
+
+    this.numberDaysOfMonth = this.lastDayOfMonth.getDate();
+
     //Days of the previous month
     if (this.firstDayOfMonth.getDay() !== 1) {
       let beforeMonthDays: number = new Date(this.selectedMonth.getFullYear(), this.monthNumber, 0).getDate();
@@ -63,7 +61,7 @@ export class NapicuCalendar {
     //Days of the current month
     for (let i = 1; i <= this.numberDaysOfMonth; i++) {
       let iDay = new Date(this.selectedMonth.getFullYear(), this.monthNumber, i);
-      if (this.days[iDay.getDay() ? iDay.getDay() - 1 : 6] == this.days[0]) {
+      if (iDay.getDay() == 1) {
         this.data.push([]);
       }
       this.data[this.data.length - 1].push({day: iDay.getDate(), outOfMonth: false});
