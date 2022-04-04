@@ -4,4 +4,5 @@ export declare interface SystemCalendarMetadata {
   calendar: NapicuCalendarDateMetadata[][];
   calendarDays: string[];
   selectedMonth: number;
+  fullDate: string | null
 }
