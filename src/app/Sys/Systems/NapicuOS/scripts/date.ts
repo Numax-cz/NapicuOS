@@ -50,11 +50,11 @@ export class NapicuDate {
       let formatItemS = formatItemC[i].split(",");
       for (let a = 0; a < formatItemS.length; a++) {
         let formatItemSpaces = formatItemS[a].split(" ");
+        console.log(formatItemSpaces)
         for (let j = 0; j < formatItemSpaces.length; j++) {
           let formatItemSpacesItems = formatItemSpaces[j];
           if (formatItemSpacesItems) output += this._formats[formatItemSpacesItems](date);
-          //TODO BETTER IF => problem with spaces
-          else {
+          if (j < formatItemSpaces.length - 1) {
             output += " ";
           }
           if (j < formatItemSpacesItems.length - 1) {
