@@ -629,9 +629,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Function to update the system calendar
    */
   public static update_calendar(): void {
-    NapicuOSComponent.CalendarMenu.calendar = new NapicuCalendar().data;
+    NapicuOSComponent.CalendarMenu.calendar = new NapicuCalendar(new NapicuDate().get_current_year(), NapicuOSComponent.CalendarMenu.selectedMonth).data;
     NapicuOSComponent.CalendarMenu.calendarDays = NapicuDate.get_language_shorts_days();
-    NapicuOSComponent.CalendarMenu.selectedMonth = new NapicuDate().get_current_month();
+    NapicuOSComponent.CalendarMenu.fullDate = new NapicuDate().format("MMN dd yyyy");
   }
 
   /**
