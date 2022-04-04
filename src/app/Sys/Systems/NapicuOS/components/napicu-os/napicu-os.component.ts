@@ -62,7 +62,8 @@ export class NapicuOSComponent implements OnInit {
   public static CalendarMenu: SystemCalendarMetadata = {
     calendar: [],
     calendarDays: [],
-    selectedMonth: 0
+    selectedMonth: new NapicuDate().get_current_month(),
+    fullDate: null,
   }
 
   constructor() {
@@ -196,6 +197,19 @@ export class NapicuOSComponent implements OnInit {
     this.selectedAppContext = null;
   }
 
+  public arrowLeft(): void {
+    NapicuOSComponent.CalendarMenu.selectedMonth--;
+    if (NapicuOSComponent.CalendarMenu.selectedMonth < 0) NapicuOSComponent.CalendarMenu.selectedMonth = 11;
+    NapicuOS.update_calendar();
+  }
+
+  public arrowRight(): void {
+    NapicuOSComponent.CalendarMenu.selectedMonth++;
+    if (NapicuOSComponent.CalendarMenu.selectedMonth > 11) NapicuOSComponent.CalendarMenu.selectedMonth = 0;
+    NapicuOS.update_calendar();
+  }
+
+
   get GetNotification(): SystemNotification | null {
     return NapicuOSComponent.NotificationActive;
   }
@@ -222,5 +236,17 @@ export class NapicuOSComponent implements OnInit {
 
   get GetYear(): string {
     return new NapicuDate().format("yyyy")
+  }
+
+  get GetSelectedMonthName(): string {
+    return NapicuOS.get_language_words().Months[NapicuOSComponent.CalendarMenu.selectedMonth];
+  }
+
+  get GetOutOfMonth(): boolean {
+    return NapicuOSComponent.CalendarMenu.selectedMonth != new NapicuDate().get_current_month();
+  }
+
+  get GetFullDate(): string {
+    return NapicuOSComponent.CalendarMenu.fullDate || "NULL";
   }
 }
