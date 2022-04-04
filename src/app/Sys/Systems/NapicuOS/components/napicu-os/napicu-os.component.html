@@ -68,10 +68,11 @@
               <!--Calendar-->
               <div class="DateContextMenu-box">
                 <div class="NapicuCalendar">
+                  <div>{{GetFullDate}}</div>
                   <div class="header">
-                    <div class="Arrow"><</div>
-                    <div class="title"><span>2021</span></div>
-                    <div class="Arrow">></div>
+                    <div class="Arrow" (click)="arrowLeft()"><</div>
+                    <div class="title"><span>{{GetSelectedMonthName}}</span></div>
+                    <div class="Arrow" (click)="arrowRight()">></div>
                   </div>
                   <div class="daysInWeek">
                     <span *ngFor="let i of GetShortDays">{{i}}</span>
@@ -79,7 +80,7 @@
                   <div class="days">
                     <div *ngFor="let i of GetNotificationCalendar" class="week">
                       <div *ngFor="let d of i; let index = index" class="day"
-                           [ngClass]="{selectedMonth: d.day == GetDate && !d.outOfMonth, outDate: d.outOfMonth }">
+                           [ngClass]="{selectedMonth: d.day == GetDate && !d.outOfMonth && !GetOutOfMonth, outDate: d.outOfMonth }">
                         {{d.day}}
                       </div>
                     </div>
