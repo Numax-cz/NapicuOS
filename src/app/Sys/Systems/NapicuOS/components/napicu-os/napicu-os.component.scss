@@ -165,9 +165,10 @@ $ContextMenuBox-Padding: 10px 5px;
   background-color: #1E2127;
 }
 
+//Calendar
 .DateContextMenu {
   text-align: center;
-  color: white;
+  color: var(--NapicuCalendarTextColor);
   z-index: 10000;
   width: 850px;
   height: 500px;
@@ -245,7 +246,7 @@ $ContextMenuBox-Padding: 10px 5px;
   left: 25%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #676769;
+  color: var(--NapicuCalendarTextColorGray);
   font-weight: 500;
 }
 
@@ -261,7 +262,6 @@ $ContextMenuBox-Padding: 10px 5px;
     display: flex;
     justify-content: space-between;
   }
-
 
   .ntf-main {
     padding: $ContextMenuBox-Padding;
@@ -308,7 +308,6 @@ $ContextMenuBox-Padding: 10px 5px;
   margin: auto;
 
   .header {
-    color: #fff; //Todo config
     display: flex;
     width: 90%;
     justify-content: space-between;
@@ -322,7 +321,7 @@ $ContextMenuBox-Padding: 10px 5px;
     .dayName {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #979797; //todo config
+      color: var(--NapicuCalendarTextDayNameColor);
     }
 
     .fullDate {
@@ -334,7 +333,7 @@ $ContextMenuBox-Padding: 10px 5px;
 
   .Arrow {
     cursor: pointer;
-    color: #5C6370; //TODO config with outofdate color text
+    color: var(--NapicuCalendarTextColorGray);
   }
 
   .daysInWeek {
@@ -344,7 +343,7 @@ $ContextMenuBox-Padding: 10px 5px;
     margin-bottom: 2px;
 
     span {
-      color: #5C6370 !important;
+      color: var(--NapicuCalendarTextColorGray) !important;
     }
   }
 
@@ -369,7 +368,6 @@ $ContextMenuBox-Padding: 10px 5px;
     width: 35px;
     height: 35px;
     border-radius: 9999rem;
-    color: #fff;
   }
 }
 
@@ -378,7 +376,7 @@ $ContextMenuBox-Padding: 10px 5px;
 }
 
 .outDate {
-  color: #5C6370 !important;
+  color: var(--NapicuCalendarTextColorGray) !important;
 }
 
 .ntfdnD {
@@ -389,7 +387,6 @@ $ContextMenuBox-Padding: 10px 5px;
     font-size: 1rem;
     padding: 10px;
     font-weight: 400;
-
   }
 }
 
