@@ -169,8 +169,8 @@ $ContextMenuBox-Padding: 10px 5px;
   text-align: center;
   color: white;
   z-index: 10000;
-  width: 800px;
-  height: 400px;
+  width: 850px;
+  height: 500px;
 
   left: 50%;
   transform: translateX(-50%);
@@ -314,29 +314,38 @@ $ContextMenuBox-Padding: 10px 5px;
     justify-content: space-between;
   }
 
-  .TopCPanel{
+  .TopCPanel {
     text-align: left;
     width: 100%;
     margin-bottom: 16px;
+
     .dayName {
       font-size: 1.1rem;
       font-weight: 600;
       color: #979797; //todo config
     }
-    .fullDate{
+
+    .fullDate {
       font-size: 1.8rem;
       font-weight: 400;
     }
 
   }
-  
+
   .Arrow {
     cursor: pointer;
+    color: #5C6370; //TODO config with outofdate color text
   }
 
   .daysInWeek {
     display: inline-block;
     vertical-align: middle;
+    margin-top: 13px;
+    margin-bottom: 2px;
+
+    span {
+      color: #5C6370 !important;
+    }
   }
 
   .rows-7 {

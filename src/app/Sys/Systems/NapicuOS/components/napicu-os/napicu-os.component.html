@@ -73,9 +73,9 @@
                     <div class="fullDate">{{GetFullDate}}</div>
                   </div>
                   <div class="header">
-                    <div class="Arrow" (click)="arrowLeft()"><</div>
+                    <div class="Arrow" (click)="arrowLeft()">◄</div>
                     <div class="title"><span>{{GetSelectedMonthName}}</span></div>
-                    <div class="Arrow" (click)="arrowRight()">></div>
+                    <div class="Arrow" (click)="arrowRight()">►</div>
                   </div>
                   <div class="daysInWeek">
                     <span *ngFor="let i of GetShortDays">{{i}}</span>

@@ -964,6 +964,4 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
     return array;
   }
-
 }
-
