@@ -249,4 +249,8 @@ export class NapicuOSComponent implements OnInit {
   get GetFullDate(): string {
     return NapicuOSComponent.CalendarMenu.fullDate || "NULL";
   }
+
+  get GetDayName(): string{
+    return new NapicuDate().get_current_day_name();
+  }
 }
