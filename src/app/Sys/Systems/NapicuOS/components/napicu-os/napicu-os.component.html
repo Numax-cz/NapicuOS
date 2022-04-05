@@ -68,7 +68,10 @@
               <!--Calendar-->
               <div class="DateContextMenu-box">
                 <div class="NapicuCalendar">
-                  <div>{{GetFullDate}}</div>
+                  <div class="TopCPanel">
+                    <div class="dayName">{{GetDayName}}</div>
+                    <div class="fullDate">{{GetFullDate}}</div>
+                  </div>
                   <div class="header">
                     <div class="Arrow" (click)="arrowLeft()"><</div>
                     <div class="title"><span>{{GetSelectedMonthName}}</span></div>
