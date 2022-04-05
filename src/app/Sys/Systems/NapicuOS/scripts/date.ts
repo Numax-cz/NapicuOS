@@ -1,9 +1,9 @@
 import {NapicuOS} from "../system.napicuos";
 
 export class NapicuDate {
-  protected _date: Date;
-  protected _formats: { [key: string]: any };
-  protected static _shortName: number = 3;
+  protected declare _date: Date;
+  protected declare _formats: { [key: string]: any };
+  protected static readonly _shortName: number = 2;
 
   constructor() {
     this._date = new Date();
@@ -245,5 +245,19 @@ export class NapicuDate {
    */
   public get_current_hours(): number {
     return this._date.getHours();
+  }
+
+  /**
+ * Get the current day name
+ */
+    public get_current_day_name(): string {
+    return NapicuOS.get_language_words().Days[this._date.getDay()];
+  }
+
+  /**
+   * Get the current month name
+   */
+  public get_current_month_name(): string {
+    return NapicuOS.get_language_words().Months[this._date.getMonth()];
   }
 }
