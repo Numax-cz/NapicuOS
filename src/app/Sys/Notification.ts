@@ -19,11 +19,16 @@ export class SystemNotification {
    * Notification time
    */
   public declare readonly time: string;
+  /**
+   * Notification on click function
+   */
+  public declare readonly onClickFunction?: () => void;
 
   constructor(data: SystemNotificationConstructorMetadata) {
     this.title = data.title;
     this.msg = data.msg;
     this.icon = data.icon || "/assets/systems/NapicuOS/SystemIcons/XFD/notification.webp";
     this.time = NapicuOS.getTimeByFormat(time_format_MHA);
+    this.onClickFunction = data.onClickFunction;
   }
 }
