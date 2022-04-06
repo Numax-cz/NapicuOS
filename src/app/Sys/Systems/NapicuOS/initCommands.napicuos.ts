@@ -28,7 +28,11 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          NapicuOS.notification_push(new SystemNotification({msg: "xd", title: "xd"}));
+          NapicuOS.notification_push(new SystemNotification({
+            msg: "xd", title: "xd", onClickFunction: () => {
+              console.log("Ahoj");
+            }
+          }));
           resolve();
         }, 200);
       });
