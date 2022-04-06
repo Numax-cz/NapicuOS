@@ -10,8 +10,6 @@ export function initAllSystemProcess(): void {
 }
 
 export function initAllStartUpApps(): void {
-
-
   // NapicuOS.open_app("InstallNapicuOS");
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
@@ -20,13 +18,8 @@ export function initAllStartUpApps(): void {
 
 //Before the user is logged in
 export function installAllApps(): void {
-
   napicu_os_terminal();
   napicu_os_welcomeapp();
-
-
-  let i = new NapicuDate();
-  console.log(i.format("MN"));
 }
 
 
