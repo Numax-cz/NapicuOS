@@ -209,6 +209,16 @@ export class NapicuOSComponent implements OnInit {
     NapicuOS.update_calendar();
   }
 
+  /**
+   * This function is called when the user clicks on the notification
+   */
+  public onNotificationClick(): void {
+    const i = this.GetNotification;
+    if (i) {
+      i?.onClickFunction?.();
+    }
+    this.onCloseNotification()
+  }
 
   get GetNotification(): SystemNotification | null {
     return NapicuOSComponent.NotificationActive;
@@ -250,7 +260,7 @@ export class NapicuOSComponent implements OnInit {
     return NapicuOSComponent.CalendarMenu.fullDate || "NULL";
   }
 
-  get GetDayName(): string{
+  get GetDayName(): string {
     return new NapicuDate().get_current_day_name();
   }
 }

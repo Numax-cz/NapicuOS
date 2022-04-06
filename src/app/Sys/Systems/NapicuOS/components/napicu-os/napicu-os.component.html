@@ -103,7 +103,8 @@
         </section>
         <!--Notification panel-->
         <ng-container *ngIf="GetNotification && !GetDateDisplay">
-          <section @NapicuOSfeoreNotification class="Notification NotificationContextMenu ContextMenuBox"
+          <section @NapicuOSfeoreNotification (click)="onNotificationClick()"
+                   class="Notification NotificationContextMenu ContextMenuBox"
                    style="padding: 0">
             <div class="ntf-main">
               <div class="ntf-con">
