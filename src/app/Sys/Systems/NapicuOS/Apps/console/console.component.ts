@@ -3,7 +3,7 @@ import {CommandFunMetadata} from 'src/app/Sys/command';
 import {system_computer_name} from '../../config/systemInfo';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
-import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from './console';
+import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from '../../interface/Apps/console';
 
 export class Line {
   private declare line: string;

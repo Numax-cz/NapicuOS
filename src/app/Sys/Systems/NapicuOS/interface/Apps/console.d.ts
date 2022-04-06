@@ -1,4 +1,4 @@
-import {Line} from './console.component';
+import {Line} from '../../Apps/console/console.component';
 
 export declare interface commandLineStMetadata {
   user: string;
