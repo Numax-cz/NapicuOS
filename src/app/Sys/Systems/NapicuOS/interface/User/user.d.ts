@@ -8,8 +8,9 @@ export declare interface SystemUserDataMetadata {
   notifications: {
     allow: boolean,
     receive: boolean,
-    notificationsList: SystemNotification[],
-  }
+    notificationsList: { title: string, msg: string, icon: string, time: string }[],
+  };
+  audioVolume: number
 }
 
 export const enum SystemUserPermissionsEnumMetadata {
