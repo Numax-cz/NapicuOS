@@ -36,6 +36,7 @@ import {UserConstructorMetadata} from "./interface/user";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuDate} from "./scripts/date";
+import {NapicuAudio} from "../../Audio";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -378,6 +379,28 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return dir[username];
     }
     return undefined;
+  }
+
+  /**
+   * Returns the user's audio volume
+   */
+  public static get_user_settings_audio_volume(): number {
+    return this.get_active_user()?.userSetting.audioVolume || 1;
+  }
+
+  /**
+   * Plays the audio file
+   * @param src Audio file
+   */
+  public static play_audio(src: string) {
+    new NapicuAudio(src, this.get_user_settings_audio_volume()).play();
+  }
+
+  /**
+   * Plays the notification sound
+   */
+  public static audio_play_notification(): void {
+    this.play_audio("LongPop.mp3");
   }
 
   /**
@@ -933,6 +956,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
       if (user.userSetting.notifications.receive) {
         NapicuOSComponent.NotificationActive = notification;
+        this.audio_play_notification();
         setTimeout(() => {
           NapicuOSComponent.NotificationActive = null;
         }, notification_active_time);
