@@ -3,7 +3,7 @@ export class NapicuAudio {
   /**
    * The dir where the audio files are stored
    */
-  protected readonly defaultSoundFolder: string = 'assets/sound/';
+  protected readonly _defaultSoundFolder: string = 'assets/sound/';
   /**
    * Variable of the audio context
    */
@@ -14,7 +14,7 @@ export class NapicuAudio {
    * @param gain The gain of the audio
    */
   constructor(src: string, gain?: number) {
-    this._audio = new Audio(this.defaultSoundFolder + src);
+    this._audio = new Audio(this._defaultSoundFolder + src);
     this._audio.volume = gain || 1;
   }
 
