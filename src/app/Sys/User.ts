@@ -1,5 +1,4 @@
 import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata,} from './Systems/NapicuOS/interface/User/user';
-import {SystemNotification} from "./Notification";
 import {UserConstructorMetadata} from "./Systems/NapicuOS/interface/user";
 
 export class User {

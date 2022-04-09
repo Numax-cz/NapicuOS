@@ -1,4 +1,4 @@
-import {lang_Calendar_en, lang_Calendar_cs, lang_Notification_en, lang_Notification_cs} from "./CalendarMenu";
+import {lang_Calendar_cs, lang_Calendar_en, lang_Notification_cs, lang_Notification_en} from "./CalendarMenu";
 import {lang_Month_cs, lang_Month_en} from "./Months";
 import {lang_Days_cs, lang_Days_en} from "./Days";
 

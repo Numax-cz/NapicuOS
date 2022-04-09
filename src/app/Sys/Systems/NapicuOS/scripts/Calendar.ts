@@ -1,5 +1,4 @@
 import {NapicuCalendarDateMetadata} from "../interface/Calendar/calendar";
-import {NapicuOS} from "../system.napicuos";
 
 export class NapicuCalendar {
   /**

@@ -1,6 +1,3 @@
-import {SystemFile} from 'src/app/Sys/File';
-import {SystemNotification} from "../../../../Notification";
-
 export declare type SystemUserPermissionsMetadata = 'superUser' | 'user';
 
 export declare interface SystemUserDataMetadata {

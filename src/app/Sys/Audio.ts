@@ -1,5 +1,4 @@
 export class NapicuAudio {
-
   /**
    * The dir where the audio files are stored
    */
