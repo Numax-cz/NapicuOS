@@ -244,7 +244,6 @@ export class NapicuOSComponent implements OnInit {
     return NapicuOSComponent.CalendarMenu.calendarDays;
   }
 
-
   get GetSelectedMonthName(): string {
     return NapicuOS.get_language_words().Months[NapicuOSComponent.CalendarMenu.selectedMonth];
   }
