@@ -47,6 +47,8 @@ export class Window {
    */
   public declare windowButtons: windowButtonsMetadata;
 
+  public static windowOperation: boolean;
+
   constructor(data: SystemWindowConstructorMetadata) {
     this.windowComponent = data.component;
     if (data.windowTitle) this.windowTitle = data.windowTitle;

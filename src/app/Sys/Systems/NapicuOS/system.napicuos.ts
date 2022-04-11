@@ -37,6 +37,7 @@ import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuDate} from "./scripts/date";
 import {NapicuAudio} from "../../Audio";
+import {Window} from "../../Window";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -212,6 +213,34 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_system_top_date_display(): boolean {
     return NapicuOSComponent.DataDisplay;
+  }
+
+  /**
+   * Returns if the system activities menu is displayed
+   */
+  public static get_system_activities_display(): boolean {
+    return NapicuOSComponent.ActivityDisplay;
+  }
+
+  /**
+   * Function for disable application window management
+   */
+  public static disable_window_manager(): void {
+    Window.windowOperation = false;
+  }
+
+  /**
+   * Function for enable application window management
+   */
+  public static enable_window_manager(): void {
+    Window.windowOperation = true;
+  }
+
+  /**
+   * Function for return if the window manager is enabled or disabled
+   */
+  public static get_window_manager_status(): boolean {
+    return Window.windowOperation;
   }
 
   /**
