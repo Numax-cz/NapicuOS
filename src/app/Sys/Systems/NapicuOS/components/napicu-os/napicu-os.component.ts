@@ -118,6 +118,7 @@ export class NapicuOSComponent implements OnInit {
 
   ngOnInit(): void {
     NapicuOSComponent.BottomDockDisplay = true;
+    NapicuOSComponent.ActivityDisplay = false;
     window.addEventListener('mousedown', (e: MouseEvent) => {
       let p = e.target as HTMLElement;
       if (
