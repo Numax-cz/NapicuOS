@@ -1,4 +1,4 @@
-import {animate, query, stagger, style, transition, trigger,} from '@angular/animations';
+import {animate, query, stagger, state, style, transition, trigger,} from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
 import {Process} from 'src/app/Sys/Process';
 import {boot_animation_time} from '../../config/boot';
@@ -12,6 +12,7 @@ import {notification_animations} from "../../config/notificationAnimations";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "../../scripts/date";
 import {SystemCalendarMetadata} from "../../interface/System/calendar";
+import {window_animations} from "../../config/windowAnimations";
 
 @Component({
   selector: 'app-napicu-os',
@@ -43,22 +44,39 @@ import {SystemCalendarMetadata} from "../../interface/System/calendar";
         animate(notification_animations, style({transform: 'translate(-50%, -125%)', opacity: 0})),
       ]),
     ]),
+
+    trigger('NapicuOSfeoreActivityMenu', [
+
+      state(
+        'true',
+        style({
+          transform: 'scale(0.4) ',
+          opacity: 1,
+          transformOrigin: 'top',
+        }),
+      ),
+
+
+      transition(`* => *`, animate(window_animations)),
+    ]),
   ],
 })
 export class NapicuOSComponent implements OnInit {
   /**
-   * Determines if the bottom dock is displayed
+   * Specifies whether to display the dock
    */
   public static BottomDockDisplay: boolean = false;
-
   /**
    * Specifies whether to display the context menu with the date
    */
   public static DataDisplay: boolean = false;
+  /**
+   * Specifies whether to display the activity menu
+   */
+  public static ActivityDisplay: boolean = false;
   public static BottomDockProcess: SystemDockDisplay[] = [];
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
-
   public static CalendarMenu: SystemCalendarMetadata = {
     calendar: [],
     calendarDays: [],
@@ -221,6 +239,13 @@ export class NapicuOSComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is called when the user clicks on the activities button
+   */
+  public onClickActivities(): void {
+    NapicuOSComponent.ActivityDisplay = !NapicuOSComponent.ActivityDisplay;
+  }
+
   get GetNotification(): SystemNotification | null {
     return NapicuOSComponent.NotificationActive;
   }
@@ -259,5 +284,9 @@ export class NapicuOSComponent implements OnInit {
 
   get GetDayName(): string {
     return new NapicuDate().get_current_day_name();
+  }
+
+  get GetActivityDisplay(): boolean {
+    return NapicuOSComponent.ActivityDisplay;
   }
 }
