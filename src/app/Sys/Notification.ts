@@ -1,4 +1,7 @@
-import {SystemNotificationConstructorMetadata} from "./Systems/NapicuOS/interface/notification";
+import {
+  SystemNotificationCommandMetadata,
+  SystemNotificationConstructorMetadata
+} from "./Systems/NapicuOS/interface/notification";
 import {NapicuOS} from "./Systems/NapicuOS/system.napicuos";
 import {time_format_MHA} from "./Systems/NapicuOS/config/time";
 
@@ -20,15 +23,15 @@ export class SystemNotification {
    */
   public declare readonly time: string;
   /**
-   * Notification on click function
+   * Notification on click callback command
    */
-  public declare readonly onClickFunction?: () => void;
+  public declare readonly command?: SystemNotificationCommandMetadata
 
   constructor(data: SystemNotificationConstructorMetadata) {
     this.title = data.title;
     this.msg = data.msg;
     this.icon = data.icon || "/assets/systems/NapicuOS/SystemIcons/XFD/notification.webp";
     this.time = NapicuOS.getTimeByFormat(time_format_MHA);
-    this.onClickFunction = data.onClickFunction;
+    this.command = data.command;
   }
 }

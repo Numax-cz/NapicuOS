@@ -27,15 +27,25 @@ export function initAllCommands(): void {
       return new Promise((resolve) => {
         setTimeout(() => {
           NapicuOS.notification_push(new SystemNotification({
-            msg: "xd", title: "xd", onClickFunction: () => {
-              console.log("Ahoj");
-            }
+            msg: "xd", title: "xd", command: {commandName: "systest", args: []}
           }));
           resolve();
         }, 200);
       });
     })
   );
+
+  NapicuOS.register_command(
+    new Command('TestCommand2', "systest", (params, activatedWindow) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log("This is test command 2");
+          resolve();
+        }, 200);
+      });
+    })
+  );
+
   initGetSystemInformation();
   initExitFromConsole();
   initSetSystemInformation();

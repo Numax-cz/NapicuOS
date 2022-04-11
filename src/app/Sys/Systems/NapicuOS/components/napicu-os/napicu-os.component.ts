@@ -214,10 +214,11 @@ export class NapicuOSComponent implements OnInit {
    */
   public onNotificationClick(): void {
     const i = this.GetNotification;
-    if (i) {
-      i?.onClickFunction?.();
+    const command = i?.command;
+    if (command) {
+      NapicuOS.run_command(command.commandName, command.args || []);
+      this.onCloseNotification()
     }
-    this.onCloseNotification()
   }
 
   get GetNotification(): SystemNotification | null {
