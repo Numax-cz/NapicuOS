@@ -7,6 +7,7 @@ import {window_animations} from '../../config/windowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';
+import {Event} from "@angular/router";
 
 @Component({
   selector: 'app-window',
@@ -222,6 +223,7 @@ export class WindowComponent implements OnInit {
    * @param event The mouse event
    */
   public close(process: Process, event: MouseEvent): void {
+    if (!NapicuOS.get_window_manager_status()) return;
     process.kill();
     NapicuOS.update_dock_items();
     event.stopPropagation();
@@ -234,6 +236,7 @@ export class WindowComponent implements OnInit {
    */
   public maximize(process: Process, event: MouseEvent): void {
     //window.appData.maximized = window.appData.maximized ? false : true;
+    if (!NapicuOS.get_window_manager_status()) return;
     process.Window.state = process.Window.isStateMaximized() ? 'normal' : 'maximized';
     event.stopPropagation();
   }
@@ -243,6 +246,7 @@ export class WindowComponent implements OnInit {
    * @param event - The mouse event
    */
   public minimized(event: MouseEvent): void {
+    if (!NapicuOS.get_window_manager_status()) return;
     WindowComponent.selectedWindow.display = false;
     WindowComponent.selectedWindow.activated = false;
     event.stopPropagation();
@@ -254,8 +258,9 @@ export class WindowComponent implements OnInit {
    */
   public activeWindow(
     window: ProcessWindowValueMetadata,
-    index: number
+    index: number,
   ): void {
+    if (!NapicuOS.get_window_manager_status()) return;
     if (WindowComponent.selectedWindow?.activated) WindowComponent.selectedWindow.activated = false;
     WindowComponent.switchWindowIndex(window, index);
   }
@@ -292,6 +297,7 @@ export class WindowComponent implements OnInit {
     process: ProcessWindowValueMetadata,
     event: MouseEvent
   ): void {
+    if (!NapicuOS.get_window_manager_status()) return;
     this.originalX = process.getLeft() - event.pageX;
     this.originalY = process.getTop() - event.pageY;
     this.activeWindowState = !process.isStateNormal();
@@ -446,5 +452,9 @@ export class WindowComponent implements OnInit {
     } else {
       WindowComponent.selectedWindow.setStateNormal();
     }
+  }
+
+  get GetWindowManagerStatus(): boolean {
+    return NapicuOS.get_window_manager_status();
   }
 }
