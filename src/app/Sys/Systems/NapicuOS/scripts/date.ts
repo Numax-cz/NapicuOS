@@ -42,32 +42,14 @@ export class NapicuDate {
    * @param format
    */
   public format(format: string): string {
-    let date = this._date;
-    let output = "";
+    let date: Date = this._date;
+    let output: string = format;
 
-    let formatItemC = format.split(":");
-    for (let i = 0; i < formatItemC.length; i++) {
-      let formatItemS = formatItemC[i].split(",");
-      for (let a = 0; a < formatItemS.length; a++) {
-        let formatItemSpaces = formatItemS[a].split(" ");
-        for (let j = 0; j < formatItemSpaces.length; j++) {
-          let formatItemSpacesItems = formatItemSpaces[j];
-          if (formatItemSpacesItems) output += this._formats[formatItemSpacesItems](date);
-          if (j < formatItemSpaces.length - 1) {
-            output += " ";
-          }
-          if (j < formatItemSpacesItems.length - 1) {
-            output += " ";
-          }
-        }
-        if (a < formatItemS.length - 1) {
-          output += ",";
-        }
-      }
-      if (i < formatItemC.length - 1) {
-        output += ":";
-      }
+    for (const key of Object.keys(this._formats)) {
+      let regex: RegExp = new RegExp(key, "g");
+      output = output.replace(regex, this._formats[key](date))
     }
+
     return output;
   }
 
@@ -248,9 +230,9 @@ export class NapicuDate {
   }
 
   /**
- * Get the current day name
- */
-    public get_current_day_name(): string {
+   * Get the current day name
+   */
+  public get_current_day_name(): string {
     return NapicuOS.get_language_words().Days[this._date.getDay()];
   }
 

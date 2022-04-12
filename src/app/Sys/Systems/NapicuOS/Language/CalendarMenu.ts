@@ -13,6 +13,7 @@ export const lang_Calendar_en = {
 }
 
 export const lang_Calendar_cs = {
+  //TODO FULL
   days: [
     'Po',
     'Út',
