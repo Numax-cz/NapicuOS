@@ -80,7 +80,7 @@ export class NapicuOSComponent implements OnInit {
   public static CalendarMenu: SystemCalendarMetadata = {
     calendar: [],
     calendarDays: [],
-    selectedMonth: new NapicuDate().get_current_month(),
+    selectedMonth: new NapicuDate().getCurrentMonth(),
     fullDate: null,
   }
 
@@ -276,7 +276,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetOutOfMonth(): boolean {
-    return NapicuOSComponent.CalendarMenu.selectedMonth != new NapicuDate().get_current_month();
+    return NapicuOSComponent.CalendarMenu.selectedMonth != new NapicuDate().getCurrentMonth();
   }
 
   get GetFullDate(): string {
@@ -284,7 +284,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetDayName(): string {
-    return new NapicuDate().get_current_day_name();
+    return new NapicuDate().getCurrentDayName();
   }
 
   get GetActivityDisplay(): boolean {
