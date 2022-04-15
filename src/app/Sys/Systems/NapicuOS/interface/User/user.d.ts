@@ -1,3 +1,5 @@
+import {SystemRemindNotificationConstructorMetadata} from "../remidNotification";
+
 export declare type SystemUserPermissionsMetadata = 'superUser' | 'user';
 
 export declare interface SystemUserDataMetadata {
@@ -6,6 +8,7 @@ export declare interface SystemUserDataMetadata {
     allow: boolean,
     receive: boolean,
     notificationsList: { title: string, msg: string, icon: string, time: string }[],
+    remindNotificationList: SystemRemindNotificationConstructorMetadata[]
   };
   audioVolume: number
 }

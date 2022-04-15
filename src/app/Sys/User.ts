@@ -9,6 +9,7 @@ export class User {
     appsInDock: [],
     notifications: {
       notificationsList: [],
+      remindNotificationList: [],
       allow: true,
       receive: true
     },

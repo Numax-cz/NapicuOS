@@ -38,6 +38,9 @@ import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuDate} from "./scripts/date";
 import {NapicuAudio} from "../../Audio";
 import {Window} from "../../Window";
+import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNotification";
+import {SystemRemindNotification} from "../../RemindNotification";
+import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -57,6 +60,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     title: system_boot_screen_title,
     logo: system_boot_screen_logo,
   };
+  //Default system language
+  //TODO: Config language
   public static language: NapicuOS_available_language = 'en';
 
   public override onStart(): void {
@@ -474,6 +479,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Return user remind notifications
+   */
+  public static get_user_remind_notifications(): SystemRemindNotification[] {
+    return this.get_active_user()?.userSetting.notifications.remindNotificationList || [];
+  }
+
+  /**
    * Returns the displayed user windows
    */
   public static get_user_system_displayed_window_apps(): Process[] {
@@ -691,6 +703,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static update_time(): void {
     this.systemTime = this.getTime();
+  }
+
+  /*
+   * Function to check users' reminder notifications
+   */
+  public static check_user_remind_notifications(): void { //TODO
+    this.get_user_remind_notifications().forEach((i: SystemRemindNotification) => {
+      if (checkIsRemindNotificationExpired(i)) {
+        this.remind_notification_push(i)
+      }
+    });
   }
 
   /**
@@ -991,6 +1014,26 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         }, notification_active_time);
       }
     }
+  }
+
+
+  /**
+   * Adds a reminder notification to the user
+   * @param remindNotificationData
+   */
+  public static add_remind_notification(remindNotificationData: SystemRemindNotificationConstructorMetadata) {
+    this.get_active_user()?.userSetting.notifications.remindNotificationList.push(remindNotificationData);
+  }
+
+  /**
+   * Sends a reminder notification
+   * @param remindNotification
+   */
+  public static remind_notification_push(remindNotification: SystemRemindNotificationConstructorMetadata) {
+    this.notification_push(new SystemNotification({
+      title: remindNotification.title,
+      msg: remindNotification.value,
+    }));
   }
 
   /**
