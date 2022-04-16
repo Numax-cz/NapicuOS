@@ -308,9 +308,9 @@ $ContextMenuBox-Padding: 10px 5px;
   margin: auto;
 
   .NapicuCalendarMainBox {
-    background-color: #3c3c3c;
+    background-color: #3c3c3c; //CONFIG
     padding: 16px;
-    border: 1px solid #000000c9;
+    border: 1px solid #000000c9; //Config
     border-radius: 17px;
   }
 
@@ -369,18 +369,29 @@ $ContextMenuBox-Padding: 10px 5px;
     flex-direction: row;
   }
 
+
   .days .day, .calendar, .daysInWeek span {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 35px;
     height: 35px;
+    margin: 3px;
+    font-weight: 300;
     border-radius: 9999rem;
+  }
+
+  .day:hover {
+    background-color: var(--NapicuCalendarHoverDayColor);
   }
 }
 
 .selectedMonth {
   background-color: var(--NapicuCalendarSelectedMonthColor);
+}
+
+.selectedDay {
+  background-color: var(--NapicuCalendarSelectedDayColor);
 }
 
 .outDate {

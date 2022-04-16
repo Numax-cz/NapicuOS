@@ -254,6 +254,7 @@ export class NapicuOSComponent implements OnInit {
   public onClickDayInCalendar(selectedDay: NapicuCalendarDateMetadata): void {
     const selectedYear: number = NapicuOSComponent.CalendarMenu.selectedMonth;
 
+
   }
 
   get GetNotification(): SystemNotification | null {

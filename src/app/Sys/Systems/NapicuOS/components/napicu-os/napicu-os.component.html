@@ -89,10 +89,20 @@
                     <div class="days">
                       <div *ngFor="let i of GetNotificationCalendar" class="week">
                         <!--Calendar days-->
+
+
                         <div *ngFor="let d of i; let index = index" class="day" (click)="onClickDayInCalendar(d)"
-                             [ngClass]="{selectedMonth: d.day == GetDate && !d.outOfMonth && !GetOutOfMonth, outDate: d.outOfMonth }">
+                             [ngClass]="{selectedMonth: d.day == GetDate && !d.outOfMonth && !GetOutOfMonth, outDate:
+                              d.outOfMonth }">
+                          <!--                          <div *ngIf="d.day === selectedDayContext && !d.outOfMonth"-->
+                          <!--                               class="ContextMenu ContextMenuBox napicu-os-clickable" style="right: auto; left: auto;-->
+                          <!--                                padding: 10px">-->
+                          <!--                            <div>Přidat upomínku</div>-->
+                          <!--                          </div>-->
                           {{d.day}}
                         </div>
+
+
                       </div>
                     </div>
                   </section>

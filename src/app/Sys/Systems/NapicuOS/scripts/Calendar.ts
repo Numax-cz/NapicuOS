@@ -52,7 +52,7 @@ export class NapicuCalendar {
       for (let i = 6; i >= 0; i--) {
         let bDay = new Date(this.selectedMonth.getFullYear(), this.monthNumber - 1, beforeMonthDays - i).getDay();
         if (bDay !== 0 && bDay < (this.firstDayOfMonth.getDay() ? this.firstDayOfMonth.getDay() : 7)) {
-          this.data[0].unshift({day: beforeMonthDays - i, outOfMonth: true});
+          this.data[0].push({day: beforeMonthDays - i, outOfMonth: true});
         }
       }
     }
