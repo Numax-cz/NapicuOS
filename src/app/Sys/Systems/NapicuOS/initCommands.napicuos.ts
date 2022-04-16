@@ -26,7 +26,7 @@ export function initAllCommands(): void {
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          NapicuOS.notification_push(new SystemNotification({
+          NapicuOS.add_notification_to_queue_and_push(new SystemNotification({
             msg: "xd", title: "xd", command: {commandName: "systest", args: []}
           }));
           resolve();

@@ -75,6 +75,7 @@ export class NapicuOSComponent implements OnInit {
    */
   public static ActivityDisplay: boolean = false;
   public static BottomDockProcess: SystemDockDisplay[] = [];
+  public static NotificationsFront: SystemNotification[] = [];
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
   public static CalendarMenu: SystemCalendarMetadata = {
@@ -89,7 +90,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get systemTime(): string {
-    return new NapicuDate().format("dd MN, hh:mm a")
+    return new NapicuDate().format("%dd %MN, %hh:%mm %a")
   }
 
   get wallpaper(): string {

@@ -4,7 +4,7 @@ import {NapicuOS} from "../system.napicuos";
 export class NapicuDate {
   protected declare _date: Date;
   protected declare _formats: { [key: string]: any };
-  protected static readonly _shortName: number = 2;
+  protected static readonly _shortName: number = 3;
 
   constructor() {
     this._date = new Date();

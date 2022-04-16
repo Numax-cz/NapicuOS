@@ -8,7 +8,7 @@ import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
 import {boot_time, soft_boot_time} from './config/boot';
 import {formatDate} from '@angular/common';
-import {time_format} from './config/time';
+import {time_format, time_format_calendar} from './config/time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from '../../command';
 import {initAllCommands} from './initCommands.napicuos';
@@ -182,13 +182,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static getTime(): string {
-    let now = new Date();
-    return formatDate(now, time_format, 'en-US'); //TODO Settings
+    return new NapicuDate().format(time_format); //TODO Settings
   }
 
   public static getTimeByFormat(format: string): string {
-    let now = new Date();
-    return formatDate(now, format, 'en-US'); //TODO Settings
+    return new NapicuDate().format(format); //TODO Settings
   }
 
   // * * * Getters * * *
@@ -695,7 +693,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_calendar(): void {
     NapicuOSComponent.CalendarMenu.calendar = new NapicuCalendar(new NapicuDate().getCurrentYear(), NapicuOSComponent.CalendarMenu.selectedMonth).data;
     NapicuOSComponent.CalendarMenu.calendarDays = NapicuDate.getLanguageShortsDays();
-    NapicuOSComponent.CalendarMenu.fullDate = new NapicuDate().format("MMN dd yyyy");
+    NapicuOSComponent.CalendarMenu.fullDate = new NapicuDate().format(time_format_calendar);
   }
 
   /**
@@ -999,7 +997,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Sends a notification
    * @param notification
    */
-  public static notification_push(notification: SystemNotification): void {
+  protected static notification_push(notification: SystemNotification): void {
     //TODO TEST
     const user = this.get_active_user();
     if (user?.userSetting.notifications.allow) {
@@ -1011,11 +1009,33 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         this.audio_play_notification();
         setTimeout(() => {
           NapicuOSComponent.NotificationActive = null;
+          setTimeout(() => {
+            this.check_notification_queue()
+
+          }, 2000);
         }, notification_active_time);
       }
     }
   }
 
+  /**
+   * Add notification to the queue
+   * @param notification
+   */
+  public static add_notification_to_queue_and_push(notification: SystemNotification): void {
+    NapicuOSComponent.NotificationsFront.push(notification);
+    this.check_notification_queue();
+  }
+
+  /**
+   * Check & push a notification from the queue
+   */
+  protected static check_notification_queue(): void {
+    if (NapicuOSComponent.NotificationsFront.length && !NapicuOSComponent.NotificationActive) {
+      this.notification_push(NapicuOSComponent.NotificationsFront[0]);
+      NapicuOSComponent.NotificationsFront.shift();
+    }
+  }
 
   /**
    * Adds a reminder notification to the user
