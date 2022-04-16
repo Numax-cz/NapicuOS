@@ -179,12 +179,17 @@ export class NapicuOSComponent implements OnInit {
   /**
    * Open the context calendar menu
    */
-  public clickDate(): void {
+  public onClickDate(): void {
     NapicuOS.update_calendar();
+    this.openNotificationMenu();
+  }
+
+  public openNotificationMenu(): void {
     if (!NapicuOSComponent.DataDisplay) {
       NapicuOSComponent.NotificationActive = null
     }
     NapicuOSComponent.DataDisplay = !NapicuOSComponent.DataDisplay;
+    NapicuOSComponent.CalendarMenu.selectedMonth = new NapicuDate().getCurrentMonth();
   }
 
   public onRightClick(index: number, event: Event): void {
@@ -203,6 +208,7 @@ export class NapicuOSComponent implements OnInit {
       let x = user.userSetting.notifications.notificationsList || [];
       user.userSetting.notifications.notificationsList.splice(x.length - 1, 1);
     }
+
     NapicuOSComponent.NotificationActive = null;
   }
 
@@ -251,7 +257,7 @@ export class NapicuOSComponent implements OnInit {
   /**
    * This function is called when the user clicks on day in calendar
    */
-  public onClickDayInCalendar(selectedDay: NapicuCalendarDateMetadata): void {
+  public onClickDayInCalendar(selectedDay: NapicuCalendarDateMetadata): void { //TODO
     const selectedYear: number = NapicuOSComponent.CalendarMenu.selectedMonth;
 
 

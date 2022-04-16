@@ -15,7 +15,7 @@
         <!-- Top panel -->
         <section class="TopPanel">
           <div class="top-panel-item" (click)="onClickActivities()">Activities</div>
-          <div (click)="clickDate()" class="top-panel-item">{{ systemTime }}</div>
+          <div (click)="onClickDate()" class="top-panel-item">{{ systemTime }}</div>
           <!-- Date panel-->
           <div @NapicuOSfeoreNotification *ngIf="GetDateDisplay"
                class="DateContextMenu ContextMenuBox napicu-os-clickable">
@@ -91,7 +91,7 @@
                         <!--Calendar days-->
 
 
-                        <div *ngFor="let d of i; let index = index" class="day" (click)="onClickDayInCalendar(d)"
+                        <div *ngFor="let d of i; let index = index" class="day"
                              [ngClass]="{selectedMonth: d.day == GetDate && !d.outOfMonth && !GetOutOfMonth, outDate:
                               d.outOfMonth }">
                           <!--                          <div *ngIf="d.day === selectedDayContext && !d.outOfMonth"-->
