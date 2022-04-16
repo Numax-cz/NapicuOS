@@ -248,6 +248,14 @@ export class NapicuOSComponent implements OnInit {
     NapicuOSComponent.ActivityDisplay = !NapicuOSComponent.ActivityDisplay;
   }
 
+  /**
+   * This function is called when the user clicks on day in calendar
+   */
+  public onClickDayInCalendar(selectedDay: NapicuCalendarDateMetadata): void {
+    const selectedYear: number = NapicuOSComponent.CalendarMenu.selectedMonth;
+
+  }
+
   get GetNotification(): SystemNotification | null {
     return NapicuOSComponent.NotificationActive;
   }

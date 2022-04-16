@@ -70,23 +70,26 @@
               <div class="DateContextMenu-box">
                 <div class="NapicuCalendar">
                   <div class="TopCPanel">
+                    <!--Calendar Day name & full date-->
                     <div class="dayName">{{GetDayName}}</div>
                     <div class="fullDate">{{GetFullDate}}</div>
                   </div>
                   <section class="NapicuCalendarMainBox">
-
-
+                    <!--Calendar Header-->
                     <div class="header">
                       <div class="Arrow" (click)="arrowLeft()">◄</div>
                       <div class="title"><span>{{GetSelectedMonthName}}</span></div>
                       <div class="Arrow" (click)="arrowRight()">►</div>
                     </div>
+                    <!--Calendar short days name-->
                     <div class="daysInWeek">
                       <span *ngFor="let i of GetShortDays">{{i}}</span>
                     </div>
+                    <!--Calendar Days & weeks-->
                     <div class="days">
                       <div *ngFor="let i of GetNotificationCalendar" class="week">
-                        <div *ngFor="let d of i; let index = index" class="day"
+                        <!--Calendar days-->
+                        <div *ngFor="let d of i; let index = index" class="day" (click)="onClickDayInCalendar(d)"
                              [ngClass]="{selectedMonth: d.day == GetDate && !d.outOfMonth && !GetOutOfMonth, outDate: d.outOfMonth }">
                           {{d.day}}
                         </div>
@@ -97,6 +100,7 @@
               </div>
             </section>
           </div>
+          <!--Top menu icons-->
           <div class="top-panel-item" id="TopPanelIcons">
             <img src="/assets/systems/NapicuOS/audio.svg"/>
             <img src="/assets/systems/NapicuOS/on-off.svg"/>
