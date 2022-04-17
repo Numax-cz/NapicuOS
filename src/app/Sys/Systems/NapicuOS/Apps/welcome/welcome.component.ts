@@ -42,5 +42,13 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     }, {value: "Install", template: this.Install}]
   }
 
+  public next(): void {
+    this.selectedBarOption += 1;
+  }
+
+  public back(): void {
+    this.selectedBarOption -= 1;
+  }
+
 
 }

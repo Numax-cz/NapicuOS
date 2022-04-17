@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {systemAlertTypeEnumMetadata} from '../../interface/Alert/alert';
-import {ProcessWindowValueMetadata} from "../../../../Process";
+import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 
 @Component({
   selector: 'app-alert',
@@ -25,7 +25,7 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   /**

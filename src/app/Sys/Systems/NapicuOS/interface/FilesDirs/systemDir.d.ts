@@ -1,4 +1,4 @@
-import {SystemFile} from 'src/app/Sys/File';
+import {SystemFile} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/File';
 
 export declare interface systemDrivesMetadata {
   [index: string]: systemDirAFileMetadata;

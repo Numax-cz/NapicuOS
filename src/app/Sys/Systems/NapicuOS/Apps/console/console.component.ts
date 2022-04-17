@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {CommandFunMetadata} from 'src/app/Sys/command';
+import {CommandFunMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Command';
 import {system_computer_name} from '../../config/systemInfo';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';

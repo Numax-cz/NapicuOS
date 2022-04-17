@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
 import {Observable} from 'rxjs';
-import {GrubComponent} from './System/grub/grub.component';
+import {GrubComponent} from './Grub/grub/grub.component';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +18,8 @@ export class BootingGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (GrubComponent.ActiveSystem) {
-      if (!GrubComponent.ActiveSystem.boot.logo) {
+    if (GrubComponent.GrubActiveSystem) {
+      if (!GrubComponent.GrubActiveSystem.boot.logo) {
         console.error('The system logo is not set');
         return false;
       }

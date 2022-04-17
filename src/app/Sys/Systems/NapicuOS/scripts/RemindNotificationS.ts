@@ -1,4 +1,4 @@
-import {SystemRemindNotification} from "../../../RemindNotification";
+import {SystemRemindNotification} from "../SystemComponents/RemindNotification";
 
 /**
  * Script to check if a reminder notification has expired

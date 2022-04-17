@@ -1,34 +1,34 @@
-import {BlackscreenComponent} from 'src/app/Bios/blackscreen/blackscreen.component';
-import {GrubComponent} from 'src/app/System/grub/grub.component';
-import {SystemComponent} from 'src/app/System/system/system.component';
+import {BlackscreenComponent} from 'src/app/Bios/components/blackscreen/blackscreen.component';
+import {GrubComponent} from 'src/app/Grub/grub/grub.component';
+import {SystemComponent} from 'src/app/Grub/system/system.component';
 import {AppCreatMetadata, onShutDown, onStartUp, Os, SystemStateMetadata,} from './interface/system';
-import {Process} from '../../Process';
-import {System} from '../../System';
+import {Process} from './SystemComponents/Process';
+import {System} from './SystemComponents/System';
 import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
 import {boot_time, soft_boot_time} from './config/boot';
 import {formatDate} from '@angular/common';
 import {time_format, time_format_calendar} from './config/time';
 import {Line} from './Apps/console/console.component';
-import {Command, CommandFunMetadata} from '../../command';
+import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
-import {SystemFile} from '../../File';
+import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
 import {system_boot_screen_logo, system_boot_screen_title} from './config/systemInfo';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
-import {User} from '../../User';
+import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
 import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
-import {SystemAlert} from '../../Alert';
+import {SystemAlert} from './SystemComponents/Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
-import {SystemNotification} from "../../Notification";
+import {SystemNotification} from "./SystemComponents/Notification";
 import {notification_active_time} from "./config/notificationAnimations";
-import {getCookies, setCookies} from "../../../Scripts/Cookies";
+import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
 import {NapicuOSCookiesName} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
@@ -36,10 +36,10 @@ import {UserConstructorMetadata} from "./interface/user";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuDate} from "./scripts/date";
-import {NapicuAudio} from "../../Audio";
-import {Window} from "../../Window";
+import {NapicuAudio} from "./SystemComponents/Audio";
+import {Window} from "./SystemComponents/Window";
 import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNotification";
-import {SystemRemindNotification} from "../../RemindNotification";
+import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
@@ -89,20 +89,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.initUsers();
 
 
-    SystemComponent.SysComponent = LoadsComponent;
+    SystemComponent.SystemComponent = LoadsComponent;
     setTimeout(() => {
-      SystemComponent.SysComponent = BlackscreenComponent;
+      SystemComponent.SystemComponent = BlackscreenComponent;
       this.load();
 
       if (NapicuOS.get_active_user()) {
         setTimeout(() => {
-          SystemComponent.SysComponent = NapicuOSComponent;
+          SystemComponent.SystemComponent = NapicuOSComponent;
           // setTimeout(() => {
 
           // }, boot_animation_time + 100);
         }, soft_boot_time);
       } else {
-        SystemComponent.SysComponent = LoginscreenComponent;
+        SystemComponent.SystemComponent = LoginscreenComponent;
       }
     }, boot_time);
   }
@@ -201,7 +201,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns whether the system has been started
    */
   public static get_system_boot(): boolean {
-    return GrubComponent.ActiveSystem.SystemBooted;
+    return GrubComponent.GrubActiveSystem.SystemBooted;
   }
 
   /**
@@ -250,7 +250,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the system processes
    */
   public static get_system_process(): Process[] {
-    return GrubComponent.ActiveSystem.SystemProcess;
+    return GrubComponent.GrubActiveSystem.SystemProcess;
   }
 
   /**
@@ -905,7 +905,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return SystemStateMetadata.UserFailLogin;
     }
     if (this.SystemCookiesConfig) this.set_active_user(u);
-    GrubComponent.ActiveSystem.onLogin();
+    GrubComponent.GrubActiveSystem.onLogin();
     if (activeUser) this.activeUsers.push(u.username);
     this.update_dock_items();
     return SystemStateMetadata.UserLoginSuccess;
@@ -961,7 +961,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static logout_user(): void {
     this.SystemCookiesConfig.user.activeUser = null;
-    SystemComponent.SysComponent = LoginscreenComponent;
+    SystemComponent.SystemComponent = LoginscreenComponent;
   }
 
   /**

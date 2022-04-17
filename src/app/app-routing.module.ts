@@ -1,24 +1,24 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AdvancedComponent} from './Bios/advanced/advanced.component';
-import {BiosMainComponent} from './Bios/bios-main/bios-main.component';
+import {AdvancedComponent} from './Bios/components/advanced/advanced.component';
+import {BiosMainComponent} from './Bios/components/bios-main/bios-main.component';
 import {BiosGuard} from './bios.guard';
 
-import {BiosComponent} from './Bios/bios/bios.component';
-import {BootComponent} from './Bios/boot/boot.component';
-import {BootbComponent} from './Bios/bootb/bootb.component';
-import {ExitComponent} from './Bios/exit/exit.component';
-import {FlashComponent} from './Bios/flash/flash.component';
-import {PowerComponent} from './Bios/power/power.component';
-import {ToolsComponent} from './Bios/tools/tools.component';
-import {TweakerComponent} from './Bios/tweaker/tweaker.component';
-import {BlackloadingComponent} from './Bios/blackloading/blackloading.component';
-import {BlackscreenComponent} from './Bios/blackscreen/blackscreen.component';
+import {BiosComponent} from './Bios/components/bios/bios.component';
+import {BootComponent} from './Bios/components/boot/boot.component';
+import {BootbComponent} from './Bios/components/bootb/bootb.component';
+import {ExitComponent} from './Bios/components/exit/exit.component';
+import {FlashComponent} from './Bios/components/flash/flash.component';
+import {PowerComponent} from './Bios/components/power/power.component';
+import {ToolsComponent} from './Bios/components/tools/tools.component';
+import {TweakerComponent} from './Bios/components/tweaker/tweaker.component';
+import {BlackloadingComponent} from './Bios/components/blackloading/blackloading.component';
+import {BlackscreenComponent} from './Bios/components/blackscreen/blackscreen.component';
 import {BlackscreenGuard} from './blackscreen.guard';
 
-import {GrubComponent} from './System/grub/grub.component';
+import {GrubComponent} from './Grub/grub/grub.component';
 
-import {SystemComponent} from './System/system/system.component';
+import {SystemComponent} from './Grub/system/system.component';
 import {SystemGuard} from './system.guard';
 import {GrubGuard} from './grub.guard';
 import {MobileGuard} from './mobile.guard';

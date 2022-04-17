@@ -1,13 +1,13 @@
 import {animate, query, stagger, state, style, transition, trigger,} from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
-import {Process} from 'src/app/Sys/Process';
+import {Process} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Process';
 import {boot_animation_time} from '../../config/boot';
 import {wallpaper} from '../../config/wallpaper';
 import {NapicuOS} from '../../system.napicuos';
-import {SystemFile} from 'src/app/Sys/File';
+import {SystemFile} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
-import {SystemNotification} from "../../../../Notification";
+import {SystemNotification} from "../../SystemComponents/Notification";
 import {notification_animations} from "../../config/notificationAnimations";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "../../scripts/date";

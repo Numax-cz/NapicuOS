@@ -1,16 +1,16 @@
-import {Command} from '../../command';
+import {Command} from './SystemComponents/Command';
 import {Line} from './Apps/console/console.component';
 import {NapicuOS} from './system.napicuos';
-import {Process} from '../../Process';
+import {Process} from './SystemComponents/Process';
 import {removeSpace} from './scripts/removeSpaceInString';
 import {getHelpCommand, getHelpCommandAPPS,} from './config/commands/help/getCommand';
-import {SystemFile} from '../../File';
+import {SystemFile} from './SystemComponents/File';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {setHelpCommand, setWindowTitleHelpCommand} from './config/commands/help/setCommand';
 import {addUserUsage} from './config/commands/help/addUserCommand';
-import {User} from '../../User';
+import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
-import {SystemNotification} from "../../Notification";
+import {SystemNotification} from "./SystemComponents/Notification";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
