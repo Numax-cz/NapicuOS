@@ -1,0 +1,28 @@
+.WelcomeAppContent {
+  color: white;
+  margin-left: 3%;
+}
+
+.WelcomeTitle {
+  font-size: 2.5rem;
+  margin-right: 17px;
+}
+
+.AppMainContent {
+  input {
+    font-size: 1rem;
+    padding: 5px 7px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 6px;
+  }
+
+  //Segments
+  section {
+    margin-bottom: 10px;
+  }
+
+  .AppInputSegment {
+    margin-bottom: 7px;
+  }
+}

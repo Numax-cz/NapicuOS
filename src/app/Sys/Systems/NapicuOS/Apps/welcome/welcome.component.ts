@@ -1,22 +1,26 @@
-import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, TemplateRef, Type, ViewChild} from '@angular/core';
+import {MainComponent} from "./main/main.component";
+import {UserComponent} from "./user/user.component";
+import {SystemInstallationOptionsMetadata} from "../../interface/Apps/welcome";
 
-
-interface barMetadata {
-  value: string,
-  template: TemplateRef<any>
-}
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
 })
-export class WelcomeComponent implements OnInit, AfterViewInit {
-  @ViewChild('Welcome') public declare Welcome: TemplateRef<any>;
-  @ViewChild('Users') public declare Users: TemplateRef<any>;
-  @ViewChild('Install') public declare Install: TemplateRef<any>;
+export class WelcomeComponent implements OnInit {
 
-  protected barOptions: barMetadata[] = [];
+  public static systemInstallationOptions: SystemInstallationOptionsMetadata = {
+    Welcome: {
+      component: MainComponent,
+      success: false
+    },
+    User: {
+      component: UserComponent,
+      success: false
+    }
+  };
   protected selectedBarOption: number = 0;
 
 
@@ -24,31 +28,28 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   }
 
-  get GetBarOptions(): barMetadata[] {
-    return this.barOptions
+  ngOnInit(): void {
+
+
+  }
+
+  get GetKeysSystemInstallationOptions(): string[] {
+    return Object.keys(WelcomeComponent.systemInstallationOptions);
+  }
+
+  get GetSystemInstallationOptions(): SystemInstallationOptionsMetadata {
+    return WelcomeComponent.systemInstallationOptions;
   }
 
   get GetSelectedBarOption(): number {
     return this.selectedBarOption
   }
 
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-    this.barOptions = [{value: "Welcome", template: this.Welcome}, {
-      value: "Users",
-      template: this.Users
-    }, {value: "Install", template: this.Install}]
-  }
-
   public next(): void {
-    this.selectedBarOption += 1;
+    if (this.selectedBarOption < this.GetKeysSystemInstallationOptions.length - 1) this.selectedBarOption += 1;
   }
 
   public back(): void {
-    this.selectedBarOption -= 1;
+    if (this.selectedBarOption > 0) this.selectedBarOption -= 1;
   }
-
-
 }

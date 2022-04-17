@@ -1,0 +1,47 @@
+.WelcomeTitle {
+  color: white; //TODO COnfig
+  font-size: 2.8rem;
+  text-align: center;
+  padding: 20px;
+}
+
+.WelcomeDescription {
+  padding: 10px;
+
+  p {
+    font-size: 1rem;
+    color: white; //TODO COnfig
+    text-align: center;
+  }
+}
+
+.WelcomeMainContent {
+  margin-top: 100px
+}
+
+.WelcomeSystemLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    font-size: 5.25rem;
+    font-weight: bold;
+    color: white; //TODO COnfig
+  }
+
+  img {
+    margin-right: 45px;
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.titleDesc {
+  padding: 14px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: white; //TODO COnfig
+}
+

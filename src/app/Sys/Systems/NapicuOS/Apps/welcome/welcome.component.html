@@ -1,30 +1,3 @@
-<ng-template #Welcome>
-  <div class="WelcomeTitle" style="font-weight: 600;">Welcome to the NapicuOS installer</div>
-  <div class="WelcomeDescription" id="SystemFont"> <!-- TODO id="SystemFont"-->
-    <p>
-      NapicuOS is an open source web-based system.
-      Please report any bugs through the application, or email example@example.com
-    </p>
-    <div class="WelcomeMainContent">
-      <div class="WelcomeSystemLogo">
-        <img alt="NapicuOSLogo" src="/assets/systems/NapicuOS/Logo.svg">
-        <div class="title">NapicuOS</div>
-      </div>
-      <div class="titleDesc">Built on Angular</div>
-    </div>
-  </div>
-</ng-template>
-
-
-<ng-template #Users>
-  Users
-</ng-template>
-
-<ng-template #Install>
-  Install
-</ng-template>
-
-
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
   <section style="display:flex; height: auto;min-height: 100%;">
     <!--    Bar-->
@@ -32,21 +5,23 @@
       <div style="padding-bottom: 8px;">
         <img alt="NapicuOSLogo" height="64px" src="/assets/systems/NapicuOS/Logo.svg" width="64px">
       </div>
-      <div *ngFor="let i of GetBarOptions; let index = index" [ngClass]="{selected: index === GetSelectedBarOption}">
-        <p>{{i.value}}</p>
+
+
+      <div *ngFor="let i of GetKeysSystemInstallationOptions; let index = index" [ngClass]="{selected: index
+      === GetSelectedBarOption}">
+        <p>{{i}}</p>
       </div>
     </div>
     <!--    Mainbox-->
     <div id="MainBox">
       <section class="MainContent">
-        <ng-container *ngIf="GetBarOptions[GetSelectedBarOption]?.template"
-                      [ngTemplateOutlet]="GetBarOptions[GetSelectedBarOption].template"></ng-container>
+        <ng-component
+          *ngComponentOutlet="GetSystemInstallationOptions[GetKeysSystemInstallationOptions[GetSelectedBarOption]].component"></ng-component>
       </section>
       <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
-        <button>Back</button>
-        <button>Next</button>
+        <button (click)="back()">Back</button>
+        <button (click)="next()">Next</button>
       </section>
-
     </div>
   </section>
 </section>
