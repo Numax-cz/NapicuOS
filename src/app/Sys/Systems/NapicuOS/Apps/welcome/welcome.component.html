@@ -14,14 +14,8 @@
     </div>
     <!--    Mainbox-->
     <div id="MainBox">
-      <section class="MainContent">
-        <ng-component
-          *ngComponentOutlet="GetSystemInstallationOptions[GetKeysSystemInstallationOptions[GetSelectedBarOption]].component"></ng-component>
-      </section>
-      <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
-        <button (click)="back()">Back</button>
-        <button (click)="next()">Next</button>
-      </section>
+      <ng-component
+        *ngComponentOutlet="GetSystemInstallationOptions[GetKeysSystemInstallationOptions[GetSelectedBarOption]].component"></ng-component>
     </div>
   </section>
 </section>

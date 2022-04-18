@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WelcomeComponent} from "../welcome.component";
+import {WelcomeComponentClass} from "../welcomeComponentClass";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent extends WelcomeComponentClass<null> implements OnInit {
+  public data: null = null;
 
-  constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

@@ -18,10 +18,13 @@ export class WelcomeComponent implements OnInit {
     },
     User: {
       component: UserComponent,
-      success: false
+      success: false,
+      data: {
+        username: null
+      }
     }
   };
-  protected selectedBarOption: number = 0;
+  protected static selectedBarOption: number = 0;
 
 
   constructor() {
@@ -33,23 +36,38 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-  get GetKeysSystemInstallationOptions(): string[] {
+
+  public static get GetKeysSystemInstallationOptions(): string[] {
     return Object.keys(WelcomeComponent.systemInstallationOptions);
   }
 
-  get GetSystemInstallationOptions(): SystemInstallationOptionsMetadata {
+  public static get GetSelectedBarOption(): number {
+    return WelcomeComponent.selectedBarOption;
+  }
+
+  public static get GetSystemInstallationOptions(): SystemInstallationOptionsMetadata {
     return WelcomeComponent.systemInstallationOptions;
   }
 
+
+  get GetKeysSystemInstallationOptions(): string[] {
+    return WelcomeComponent.GetKeysSystemInstallationOptions;
+  }
+
+  get GetSystemInstallationOptions(): SystemInstallationOptionsMetadata {
+    return WelcomeComponent.GetSystemInstallationOptions
+  }
+
   get GetSelectedBarOption(): number {
-    return this.selectedBarOption
+    return WelcomeComponent.GetSelectedBarOption;
   }
 
-  public next(): void {
-    if (this.selectedBarOption < this.GetKeysSystemInstallationOptions.length - 1) this.selectedBarOption += 1;
+  public static next(): void {
+    console.log(WelcomeComponent.systemInstallationOptions[this.GetKeysSystemInstallationOptions[this.selectedBarOption]].data);
+    if (WelcomeComponent.selectedBarOption < this.GetKeysSystemInstallationOptions.length - 1) this.selectedBarOption += 1;
   }
 
-  public back(): void {
-    if (this.selectedBarOption > 0) this.selectedBarOption -= 1;
+  public static back(): void {
+    if (WelcomeComponent.selectedBarOption > 0) this.selectedBarOption -= 1;
   }
 }
