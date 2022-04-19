@@ -1,18 +1,18 @@
 import {animate, query, stagger, state, style, transition, trigger,} from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
 import {Process} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Process';
-import {boot_animation_time} from '../../config/boot';
-import {wallpaper} from '../../config/wallpaper';
+import {BOOT_ANIMATION_TIME} from '../../config/boot';
 import {NapicuOS} from '../../system.napicuos';
 import {SystemFile} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../SystemComponents/Notification";
-import {notification_animations} from "../../config/notificationAnimations";
+import {NOTIFICATION_ANIMATION_TIME} from "../../config/notificationAnimations";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "../../scripts/date";
 import {SystemCalendarMetadata} from "../../interface/System/calendar";
-import {window_animations} from "../../config/windowAnimations";
+import {WINDOW_ANIMATION_TIME} from "../../config/windowAnimations";
+import {SYSTEM_WALLPAPER} from "../../config/systemInfo";
 
 @Component({
   selector: 'app-napicu-os',
@@ -29,7 +29,7 @@ import {window_animations} from "../../config/windowAnimations";
               opacity: 0,
               transformOrigin: 'bottom',
             }),
-            animate(`${boot_animation_time}ms ease-in-out`),
+            animate(`${BOOT_ANIMATION_TIME}ms ease-in-out`),
           ])
         ),
       ]),
@@ -37,11 +37,11 @@ import {window_animations} from "../../config/windowAnimations";
     trigger('NapicuOSfeoreNotification', [
       transition(':enter', [
         style({transform: 'translate(-50%, -125%)', opacity: 0}),
-        animate(notification_animations, style({transform: 'translate(-50%, 0)', opacity: 1})),
+        animate(NOTIFICATION_ANIMATION_TIME, style({transform: 'translate(-50%, 0)', opacity: 1})),
       ]),
       transition(':leave', [
         style({transform: 'translate(-50%, 0)', opacity: 1}),
-        animate(notification_animations, style({transform: 'translate(-50%, -125%)', opacity: 0})),
+        animate(NOTIFICATION_ANIMATION_TIME, style({transform: 'translate(-50%, -125%)', opacity: 0})),
       ]),
     ]),
 
@@ -57,7 +57,7 @@ import {window_animations} from "../../config/windowAnimations";
       ),
 
 
-      transition(`* => *`, animate(window_animations)),
+      transition(`* => *`, animate(WINDOW_ANIMATION_TIME)),
     ]),
   ],
 })
@@ -94,7 +94,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get wallpaper(): string {
-    return wallpaper;
+    return SYSTEM_WALLPAPER;
   }
 
   get GetBottomDockProcess(): SystemDockDisplay[] {

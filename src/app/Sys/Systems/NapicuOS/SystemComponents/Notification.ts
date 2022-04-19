@@ -3,7 +3,7 @@ import {
   SystemNotificationConstructorMetadata
 } from "../interface/notification";
 import {NapicuOS} from "../system.napicuos";
-import {time_format_MHA} from "../config/time";
+import {TIME_FORMAT_MHA} from "../config/time";
 
 export class SystemNotification {
   /**
@@ -31,7 +31,7 @@ export class SystemNotification {
     this.title = data.title;
     this.msg = data.msg;
     this.icon = data.icon || "/assets/systems/NapicuOS/SystemIcons/XFD/notification.webp";
-    this.time = NapicuOS.getTimeByFormat(time_format_MHA);
+    this.time = NapicuOS.getTimeByFormat(TIME_FORMAT_MHA);
     this.command = data.command;
   }
 }

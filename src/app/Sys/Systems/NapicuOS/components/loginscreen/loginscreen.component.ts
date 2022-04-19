@@ -1,12 +1,12 @@
 import {animate, query, stagger, style, transition, trigger,} from '@angular/animations';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SystemComponent} from 'src/app/Grub/system/system.component';
-import {log_screen_animation_time} from '../../config/logscreen';
-import {wallpaper} from '../../config/wallpaper';
+import {LOG_SCREEN_ANIMATION_TIME} from '../../config/logscreen';
 import {SystemStateMetadata} from '../../interface/system';
 import {NapicuOS} from '../../system.napicuos';
 import {NapicuOSComponent} from '../napicu-os/napicu-os.component';
 import {KeyMaps} from "../../../../../Bios/Config/KeyMaps";
+import {SYSTEM_WALLPAPER} from "../../config/systemInfo";
 
 @Component({
   selector: 'app-loginscreen',
@@ -26,7 +26,7 @@ import {KeyMaps} from "../../../../../Bios/Config/KeyMaps";
               opacity: 0,
               transformOrigin: 'bottom',
             }),
-            animate(`${log_screen_animation_time}ms ease-in-out`),
+            animate(`${LOG_SCREEN_ANIMATION_TIME}ms ease-in-out`),
           ])
         ),
       ]),
@@ -42,7 +42,7 @@ export class LoginscreenComponent implements OnInit, OnDestroy {
   }
 
   get wallpaper(): string {
-    return wallpaper;
+    return SYSTEM_WALLPAPER;
   }
 
   ngOnInit(): void {

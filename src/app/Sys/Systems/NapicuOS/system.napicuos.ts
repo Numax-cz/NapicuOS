@@ -6,16 +6,16 @@ import {Process} from './SystemComponents/Process';
 import {System} from './SystemComponents/System';
 import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
-import {boot_time, soft_boot_time} from './config/boot';
+import {BOOT_TIME, SOFT_BOOT_TIME} from './config/boot';
 import {formatDate} from '@angular/common';
-import {time_format, time_format_calendar} from './config/time';
+import {TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
-import {system_boot_screen_logo, system_boot_screen_title} from './config/systemInfo';
+import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE} from './config/systemInfo';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
@@ -27,9 +27,9 @@ import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "./SystemComponents/Notification";
-import {notification_active_time} from "./config/notificationAnimations";
+import {NOTIFICATION_ACTIVE_TIME} from "./config/notificationAnimations";
 import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
-import {NapicuOSCookiesName} from "./config/cookies";
+import {NAPICUOS_COOKIES_NAME} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
 import {UserConstructorMetadata} from "./interface/user";
@@ -57,8 +57,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     },
   };
   public override boot = {
-    title: system_boot_screen_title,
-    logo: system_boot_screen_logo,
+    title: SYSTEM_BOOT_SCREEN_TITLE,
+    logo: SYSTEM_BOOT_SCREEN_LOGO,
   };
   //Default system language
   //TODO: Config language
@@ -100,11 +100,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
           // setTimeout(() => {
 
           // }, boot_animation_time + 100);
-        }, soft_boot_time);
+        }, SOFT_BOOT_TIME);
       } else {
         SystemComponent.SystemComponent = LoginscreenComponent;
       }
-    }, boot_time);
+    }, BOOT_TIME);
   }
 
   public override onLogin(): void {
@@ -115,7 +115,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   protected static initSystemConfigCookies(): void {
-    const i = getCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName);
+    const i = getCookies<NapicuOsCookiesTemplate>(NAPICUOS_COOKIES_NAME);
     if (i) this.SystemCookiesConfig = i;
   }
 
@@ -182,7 +182,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static getTime(): string {
-    return new NapicuDate().format(time_format); //TODO Settings
+    return new NapicuDate().format(TIME_FORMAT); //TODO Settings
   }
 
   public static getTimeByFormat(format: string): string {
@@ -625,7 +625,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static update_config_to_cookies(): void {
     if (this.SystemCookiesConfig) {
-      setCookies<NapicuOsCookiesTemplate>(NapicuOSCookiesName, this.SystemCookiesConfig);
+      setCookies<NapicuOsCookiesTemplate>(NAPICUOS_COOKIES_NAME, this.SystemCookiesConfig);
     }
   }
 
@@ -693,7 +693,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_calendar(): void {
     NapicuOSComponent.CalendarMenu.calendar = new NapicuCalendar(new NapicuDate().getCurrentYear(), NapicuOSComponent.CalendarMenu.selectedMonth).data;
     NapicuOSComponent.CalendarMenu.calendarDays = NapicuDate.getLanguageShortsDays();
-    NapicuOSComponent.CalendarMenu.fullDate = new NapicuDate().format(time_format_calendar);
+    NapicuOSComponent.CalendarMenu.fullDate = new NapicuDate().format(TIME_FORMAT_CALENDAR);
   }
 
   /**
@@ -1013,7 +1013,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
             this.check_notification_queue()
 
           }, 2000);
-        }, notification_active_time);
+        }, NOTIFICATION_ACTIVE_TIME);
       }
     }
   }

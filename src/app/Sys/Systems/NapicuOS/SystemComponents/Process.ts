@@ -2,7 +2,7 @@ import {GrubComponent} from '../../../../Grub/grub/grub.component';
 import {SystemAlert} from './Alert';
 import {SystemFile} from './File';
 import {System} from './System';
-import {window_animations} from '../config/windowAnimations';
+import {WINDOW_ANIMATION_TIME} from '../config/windowAnimations';
 import {processConstructor} from '../interface/process';
 import {NapicuOS} from '../system.napicuos';
 import {Window} from './Window';
@@ -130,7 +130,7 @@ export class Process {
     let x = 0;
     if (this._Window) {
       this._Window.close();
-      x = window_animations * 2;
+      x = WINDOW_ANIMATION_TIME * 2;
     }
     if (this._Interval) clearInterval(this._Interval);
     setTimeout(() => {

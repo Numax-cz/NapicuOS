@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {SystemAlert} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Alert';
 import {Process, ProcessWindowValueMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Process';
 import {Window} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Window';
-import {window_animations} from '../../config/windowAnimations';
+import {WINDOW_ANIMATION_TIME} from '../../config/windowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';
@@ -21,11 +21,11 @@ import {Event} from "@angular/router";
       // to the default position where the animation started.
       transition(':enter', [
         style({transform: 'scale(0)'}),
-        animate(window_animations, style({transform: 'scale(1)'})),
+        animate(WINDOW_ANIMATION_TIME, style({transform: 'scale(1)'})),
       ]),
       transition(':leave', [
         style({transform: 'scale(1) translateX(-{{translate}}%) translateY(-{{translate}}%)'}),
-        animate(window_animations, style({transform: 'scale(0) translateX(-{{translate}}%) translateY(-{{translate}}%)'})),
+        animate(WINDOW_ANIMATION_TIME, style({transform: 'scale(0) translateX(-{{translate}}%) translateY(-{{translate}}%)'})),
       ], {params: {translate: 0}}),
       state(
         'maximized',
@@ -82,7 +82,7 @@ import {Event} from "@angular/router";
           left: '50%',
         })
       ),
-      transition(`*=>*`, animate(window_animations)),
+      transition(`*=>*`, animate(WINDOW_ANIMATION_TIME)),
     ]),
 
   ],

@@ -1,4 +1,3 @@
-export const time_format = '%dd %MMM, %h:%mm %a';
-export const time_format_MHA = '%hh:%mm %a';
-export const time_format_calendar = '%MMN %dd %yyyy';
-export const time_format_notification = "";
+export const TIME_FORMAT = '%dd %MMM, %h:%mm %a';
+export const TIME_FORMAT_MHA = '%hh:%mm %a';
+export const TIME_FORMAT_CALENDAR = '%MMN %dd %yyyy';

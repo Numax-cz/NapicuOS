@@ -5,7 +5,7 @@ import {
   welcomeUserInstallationDataMetadata
 } from "../../../interface/Apps/welcome";
 import {WelcomeComponent} from "../welcome.component";
-import {WelcomeComponentClass} from "../welcomeComponentClass";
+import {WelcomeComponentClass} from "../WelcomeComponentClass";
 
 @Component({
   selector: 'app-user',

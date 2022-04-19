@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CommandFunMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Command';
-import {system_computer_name} from '../../config/systemInfo';
+import {SYSTEM_DEFAULT_COMPUTER_NAME} from '../../config/systemInfo';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
 import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from '../../interface/Apps/console';
@@ -63,7 +63,7 @@ export class ConsoleComponent implements OnInit {
    * Returns the computer's name
    */
   get GetcompName(): string {
-    return system_computer_name;
+    return SYSTEM_DEFAULT_COMPUTER_NAME;
   }
 
   /**
