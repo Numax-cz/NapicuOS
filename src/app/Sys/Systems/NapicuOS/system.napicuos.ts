@@ -15,7 +15,7 @@ import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
-import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE} from './config/system';
+import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE, SYSTEM_DEFAULT_COMPUTER_NAME} from './config/system';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
@@ -55,6 +55,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       activeUser: null,
       users: []
     },
+    computerName: SYSTEM_DEFAULT_COMPUTER_NAME
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
@@ -627,6 +628,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (this.SystemCookiesConfig) {
       setCookies<NapicuOsCookiesTemplate>(NAPICUOS_COOKIES_NAME, this.SystemCookiesConfig);
     }
+  }
+
+  /**
+   * Returns the computer's name
+   */
+  public static get_computer_name(): string {
+    return this.SystemCookiesConfig.computerName;
+  }
+
+  /**
+   * Sets a new computer name
+   * @param computerName New computer name
+   */
+  public static set_computer_name(computerName: string): void {
+    this.SystemCookiesConfig.computerName = computerName;
+    this.update_config_to_cookies();
   }
 
   /**
