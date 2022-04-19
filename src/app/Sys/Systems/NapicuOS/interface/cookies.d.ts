@@ -5,5 +5,5 @@ export declare interface NapicuOsCookiesTemplate {
     users: UserConstructorMetadata[]
     activeUser: string | null
   }
-  computerName: string
+  hostname: string
 }

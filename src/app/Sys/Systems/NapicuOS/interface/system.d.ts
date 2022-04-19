@@ -10,6 +10,8 @@ export declare interface onShutDown {
   onShutDown(): void;
 }
 
+export declare type SystemStringStateCorrection = SystemStateMetadata.StringCorrect | SystemStateMetadata.StringTooLong | SystemStateMetadata.StringTooShort;
+
 export declare interface Os {
   component: Type<any>;
   boot: {
@@ -92,4 +94,11 @@ export declare const enum SystemStateMetadata {
 
   RegisterCommandAlreadyExists = 9059,
   RegisterCommandSuccess = 9060,
+
+
+  StringCorrect = 6900,
+  StringTooShort = 6901,
+  StringTooLong = 6902,
 }
+
+
