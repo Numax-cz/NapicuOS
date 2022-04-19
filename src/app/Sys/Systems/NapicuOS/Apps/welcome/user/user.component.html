@@ -1,34 +1,34 @@
-<section class="MainContent">
-  <section class="WelcomeAppContent">
+<section class="WelcomeMainComponentContent">
+  <section class="WelcomeAppComponentContent UserAppContent">
     <div class="WelcomeTitle" style="font-weight: 600;">Creat a new user</div>
     <div class="WelcomeDescription" id="SystemFont"> <!-- TODO id="SystemFont"-->
-      <div class="AppMainContent">
+      <div class="AppMainContent" [formGroup]="welcomeAppUserForm">
         <section>
           <div class="AppInputSegment">
             <div>Your name</div>
-            <input type="text" [(ngModel)]="data.userName"/>
+            <input type="text" formControlName="userName"/>
           </div>
           <div class="AppInputSegment">
             <div>Your computer’s name</div>
-            <input type="text"/>
+            <input type="text" formControlName="computerName"/>
           </div>
         </section>
 
-        <section>
+        <section formGroupName="passwords">
           <div class="AppInputSegment">
             <div>Chose a password</div>
-            <input type="text"/>
+            <input type="password" formControlName="pass1"/>
           </div>
           <div class="AppInputSegment">
             <div>Confirm your password</div>
-            <input type="text"/>
+            <input type="password" formControlName="pass2"/>
           </div>
         </section>
       </div>
     </div>
   </section>
-</section>
-<section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
-  <button (click)="back()">Back</button>
-  <button (click)="next()">Next</button>
+  <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
+    <button (click)="back()">Back</button>
+    <button (click)="next()">Next</button>
+  </section>
 </section>

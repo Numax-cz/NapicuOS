@@ -12,7 +12,7 @@ import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "../../scripts/date";
 import {SystemCalendarMetadata} from "../../interface/System/calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/windowAnimations";
-import {SYSTEM_WALLPAPER} from "../../config/systemInfo";
+import {SYSTEM_WALLPAPER} from "../../config/system";
 
 @Component({
   selector: 'app-napicu-os',

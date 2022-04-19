@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CommandFunMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Command';
-import {SYSTEM_DEFAULT_COMPUTER_NAME} from '../../config/systemInfo';
+import {SYSTEM_DEFAULT_COMPUTER_NAME} from '../../config/system';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
 import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from '../../interface/Apps/console';

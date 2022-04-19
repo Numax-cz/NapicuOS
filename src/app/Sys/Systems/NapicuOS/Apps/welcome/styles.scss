@@ -1,0 +1,80 @@
+@import './variables';
+
+
+.Title {
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.75rem;
+}
+
+.BackgroundColor {
+  background-color: var(--NapicuAPPSWelcomeBackgroundColor);
+}
+
+.MainBox {
+  padding: 10px;
+}
+
+.NapicuInputSelect-Welcome {
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.LangMenu {
+  display: flex;
+  padding: 10px 5px;
+}
+
+#LeftBox {
+  background-color: #454948;
+  padding: 20px 0;
+
+  > div {
+    text-align: center;
+
+    p {
+      color: white;
+      font-weight: 400;
+      font-size: 1.4rem;
+      padding: 10px 20px;
+    }
+
+  }
+}
+
+#MainBox {
+  padding: 10px 10px 0 10px;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+}
+
+
+.WelcomeMainComponentContent {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.WelcomeAppComponentContent {
+  height: 100%;
+}
+
+.BottomContent {
+  padding: 20px;
+  text-align: right;
+
+  button {
+    width: 90px;
+    margin: 0 10px;
+  }
+
+}
+
+.selected {
+  background-color: #1c1c1c;
+}
+

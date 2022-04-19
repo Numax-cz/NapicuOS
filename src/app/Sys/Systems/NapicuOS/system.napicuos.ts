@@ -15,7 +15,7 @@ import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
-import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE} from './config/systemInfo';
+import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE} from './config/system';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';

@@ -6,7 +6,7 @@ import {SystemStateMetadata} from '../../interface/system';
 import {NapicuOS} from '../../system.napicuos';
 import {NapicuOSComponent} from '../napicu-os/napicu-os.component';
 import {KeyMaps} from "../../../../../Bios/Config/KeyMaps";
-import {SYSTEM_WALLPAPER} from "../../config/systemInfo";
+import {SYSTEM_WALLPAPER} from "../../config/system";
 
 @Component({
   selector: 'app-loginscreen',

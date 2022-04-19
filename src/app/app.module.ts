@@ -25,12 +25,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {WindowComponent} from './Sys/Systems/NapicuOS/template/window/window.component';
 import {WelcomeComponent} from './Sys/Systems/NapicuOS/Apps/welcome/welcome.component';
 import {ConsoleComponent} from './Sys/Systems/NapicuOS/Apps/console/console.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginscreenComponent} from './Sys/Systems/NapicuOS/components/loginscreen/loginscreen.component';
 import {AlertComponent} from './Sys/Systems/NapicuOS/Apps/alert/alert.component';
 import {DynamicModule} from 'ng-dynamic-component';
-import { MainComponent } from './Sys/Systems/NapicuOS/Apps/welcome/main/main.component';
-import { UserComponent } from './Sys/Systems/NapicuOS/Apps/welcome/user/user.component';
+import {MainComponent} from './Sys/Systems/NapicuOS/Apps/welcome/main/main.component';
+import {UserComponent} from './Sys/Systems/NapicuOS/Apps/welcome/user/user.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +72,7 @@ import { UserComponent } from './Sys/Systems/NapicuOS/Apps/welcome/user/user.com
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
