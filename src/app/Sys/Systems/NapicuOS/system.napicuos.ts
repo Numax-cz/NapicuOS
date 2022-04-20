@@ -1,13 +1,20 @@
 import {BlackscreenComponent} from 'src/app/Bios/components/blackscreen/blackscreen.component';
 import {GrubComponent} from 'src/app/Grub/grub/grub.component';
 import {SystemComponent} from 'src/app/Grub/system/system.component';
-import {AppCreatMetadata, onShutDown, onStartUp, Os, SystemStateMetadata, SystemStringStateCorrection,} from './interface/system';
+import {
+  AppCreatMetadata,
+  onShutDown,
+  onStartUp,
+  Os,
+  SystemStateMetadata,
+  SystemStringStateCorrection,
+  SystemUserStateData,
+} from './interface/system';
 import {Process} from './SystemComponents/Process';
 import {System} from './SystemComponents/System';
 import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
 import {BOOT_TIME, SOFT_BOOT_TIME} from './config/boot';
-import {formatDate} from '@angular/common';
 import {TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from './SystemComponents/Command';
@@ -15,7 +22,15 @@ import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
-import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE, SYSTEM_DEFAULT_COMPUTER_NAME, SYSTEM_HOSTNAME_MAX_LENGTH, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH} from './config/system';
+import {
+  SYSTEM_BOOT_SCREEN_LOGO,
+  SYSTEM_BOOT_SCREEN_TITLE,
+  SYSTEM_DEFAULT_COMPUTER_NAME,
+  SYSTEM_HOSTNAME_MAX_LENGTH,
+  SYSTEM_HOSTNAME_MIN_LENGTH,
+  SYSTEM_USERS_MAX_LENGTH,
+  SYSTEM_USERS_MIN_LENGTH
+} from './config/system';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
@@ -41,7 +56,7 @@ import {Window} from "./SystemComponents/Window";
 import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNotification";
 import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
-import { checkSystemStringLength } from './scripts/ChckStringCorrection';
+import {checkSystemStringLength} from './scripts/ChckStringCorrection';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -643,8 +658,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param hostname New computer name
    */
   public static set_hostname(hostname: string): SystemStringStateCorrection {
-    var lng: SystemStringStateCorrection = checkSystemStringLength(hostname, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_HOSTNAME_MAX_LENGTH);
-    if(lng === SystemStateMetadata.StringCorrect){
+    let lng: SystemStringStateCorrection = checkSystemStringLength(hostname, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_HOSTNAME_MAX_LENGTH);
+    if (lng === SystemStateMetadata.StringCorrect) {
       this.SystemCookiesConfig.hostname = hostname;
       this.update_config_to_cookies();
     }
@@ -876,38 +891,41 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Add user
    */
-  public static add_user(user: User): SystemStateMetadata.UserExists | SystemStateMetadata.UserNotExists {
-    if (this.get_users().filter((systemUsers: User) => {
-      return systemUsers.username === user.username
-    }).length) {
-      return SystemStateMetadata.UserExists;
-    } else {
-      const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
-      const config = this.get_system_config_from_cookies();
-      if (config) config.user.users.push(user);
-
-      if (i) {
-        this.creat_dir(i, user.username);
-        const userDir = this.get_user_dir(user.username);
-        if (userDir) {
-          userDir.dir = {
-            Desktop: {},
-            Documents: {},
-            Downloads: {},
-            Music: {},
-            Pictures: {},
-            Videos: {},
+  public static add_user(user: User): SystemUserStateData {
+    let lng = checkSystemStringLength(user.username, SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH);
+    if (lng === SystemStateMetadata.StringCorrect) {
+      if (this.get_users().filter((systemUsers: User) => {
+        return systemUsers.username === user.username
+      }).length) {
+        return SystemStateMetadata.UserExists;
+      } else {
+        const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
+        const config = this.get_system_config_from_cookies();
+        if (config) config.user.users.push(user);
+        if (i) {
+          this.creat_dir(i, user.username);
+          const userDir = this.get_user_dir(user.username);
+          if (userDir) {
+            userDir.dir = {
+              Desktop: {},
+              Documents: {},
+              Downloads: {},
+              Music: {},
+              Pictures: {},
+              Videos: {},
+            }
           }
         }
+        if (this.SystemCookiesConfig) {
+          this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
+            return i;
+          });
+        }
+        this.update_config_to_cookies();
+        return SystemStateMetadata.UserNotExists;
       }
-      if (this.SystemCookiesConfig) {
-        this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
-          return i;
-        });
-      }
-      this.update_config_to_cookies();
-      return SystemStateMetadata.UserNotExists;
     }
+    return lng;
   }
 
   /**

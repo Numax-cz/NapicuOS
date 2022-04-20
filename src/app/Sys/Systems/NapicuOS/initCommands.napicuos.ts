@@ -6,12 +6,25 @@ import {removeSpace} from './scripts/removeSpaceInString';
 import {getHelpCommand, getHelpCommandAPPS,} from './config/commands/help/getCommand';
 import {SystemFile} from './SystemComponents/File';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
-import {setHelpCommand, setHostnameHelpCommand, setHostnameLongError, setHostnameSet, setHostnameShortError, setWindowTitleHelpCommand} from './config/commands/help/setCommand';
-import {addUserUsage} from './config/commands/help/addUserCommand';
+import {
+  setHelpCommand,
+  setHostnameHelpCommand,
+  setHostnameLongError,
+  setHostnameSet,
+  setHostnameShortError,
+  setWindowTitleHelpCommand
+} from './config/commands/help/setCommand';
+import {
+  addUserAdded,
+  addUserExists,
+  addUserLongError,
+  addUserShortError,
+  addUserUsage
+} from './config/commands/help/addUserCommand';
 import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemNotification} from "./SystemComponents/Notification";
-import { SystemStateMetadata, SystemStringStateCorrection } from './interface/system';
+import {SystemStateMetadata, SystemUserStateData} from './interface/system';
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -24,7 +37,7 @@ function usageCommand(cmd: string): Line {
 export function initAllCommands(): void {
   //? This is test for debugging
   NapicuOS.register_command(
-    new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params, activatedWindow) => {
+    new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         setTimeout(() => {
           NapicuOS.add_notification_to_queue_and_push(new SystemNotification({
@@ -37,7 +50,7 @@ export function initAllCommands(): void {
   );
 
   NapicuOS.register_command(
-    new Command('TestCommand2', "systest", (params, activatedWindow) => {
+    new Command('TestCommand2', "systest", (params: string[] | undefined) => {
       return new Promise((resolve) => {
         setTimeout(() => {
           console.log("This is test command 2");
@@ -58,19 +71,34 @@ export function initAllCommands(): void {
 
 function initCreateUser(): void {
   NapicuOS.register_command(
-    new Command('CreateUser', SystemCommandsPrefixEnum.addUserCommand, (params) => {
+    new Command('CreateUser', SystemCommandsPrefixEnum.addUserCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         if (params?.length == 2) {
           let username = params[0];
           let password = params[1];
-          let x = NapicuOS.get_users().filter((value) => {
-            return value.username === username;
-          });
-          if (!x.length) {
-            NapicuOS.add_user(new User({username: username, password: password}));
 
-            resolve();
+          let usr: SystemUserStateData = NapicuOS.add_user(new User({username: username, password: password}));
+          if (usr === SystemStateMetadata.StringTooShort) {
+            resolve({
+              linesForCMD: [addUserShortError],
+              stateCode: usr,
+            });
+          } else if (usr === SystemStateMetadata.StringTooLong) {
+            resolve({
+              linesForCMD: [addUserLongError],
+              stateCode: usr,
+            });
+          } else if (usr === SystemStateMetadata.UserExists) {
+            resolve({
+              linesForCMD: [addUserExists(username)],
+              stateCode: usr,
+            });
           }
+          resolve({
+            linesForCMD: [addUserAdded(username)],
+            stateCode: usr,
+          });
+
           //TODO ERROR ELSE
         } else {
           resolve({
@@ -85,7 +113,7 @@ function initCreateUser(): void {
 
 function initGetSystemInformation(): void {
   NapicuOS.register_command(
-    new Command('SystemGetter', SystemCommandsPrefixEnum.getCommand, (params) => {
+    new Command('SystemGetter', SystemCommandsPrefixEnum.getCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         let exportLines: Line[] = [];
         if (params?.length) {
@@ -216,7 +244,7 @@ function initGetSystemInformation(): void {
 
 function initSetSystemInformation(): void {
   NapicuOS.register_command(
-    new Command('SystemSetter', SystemCommandsPrefixEnum.setCommand, (params, activatedWindow) => {
+    new Command('SystemSetter', SystemCommandsPrefixEnum.setCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         if (params?.length) {
           switch (params[0]) {
@@ -253,29 +281,29 @@ function initSetSystemInformation(): void {
               }
               break;
             case "hostname":
-                if (params[1]){
-                  var rtn = NapicuOS.set_hostname(params[1]);
-                  if(rtn === SystemStateMetadata.StringTooShort){
-                    resolve({
-                      linesForCMD: [setHostnameShortError],
-                      stateCode: rtn,
-                    });
-                  }else if (rtn === SystemStateMetadata.StringTooLong){
-                    resolve({
-                      linesForCMD: [setHostnameLongError],
-                      stateCode: rtn
-                    });
-                  }
+              if (params[1]) {
+                var rtn = NapicuOS.set_hostname(params[1]);
+                if (rtn === SystemStateMetadata.StringTooShort) {
                   resolve({
-                    linesForCMD: [setHostnameSet(params[1])],
+                    linesForCMD: [setHostnameShortError],
+                    stateCode: rtn,
+                  });
+                } else if (rtn === SystemStateMetadata.StringTooLong) {
+                  resolve({
+                    linesForCMD: [setHostnameLongError],
                     stateCode: rtn
                   });
-                }else {
-                  resolve({
-                    linesForCMD: [setHostnameHelpCommand],
-                    stateCode: CommandStateCodeMetadata.HelpCommand,
-                  });
                 }
+                resolve({
+                  linesForCMD: [setHostnameSet(params[1])],
+                  stateCode: rtn
+                });
+              } else {
+                resolve({
+                  linesForCMD: [setHostnameHelpCommand],
+                  stateCode: CommandStateCodeMetadata.HelpCommand,
+                });
+              }
               break;
             default:
               resolve({
@@ -324,7 +352,8 @@ function initLogout(): void {
   NapicuOS.register_command(
     new Command('UserLogout', SystemCommandsPrefixEnum.logoutCommand, (params) => {
       return new Promise((resolve) => {
-        resolve(NapicuOS.logout_user());
+        NapicuOS.logout_user();
+        resolve();
       });
     })
   );
@@ -332,9 +361,9 @@ function initLogout(): void {
 
 function initExitFromConsole(): void {
   NapicuOS.register_command(
-    new Command('Exit', SystemCommandsPrefixEnum.exitCommand, (params, activatedWindow) => {
+    new Command('Exit', SystemCommandsPrefixEnum.exitCommand, (params) => {
       return new Promise((resolve) => {
-        resolve(activatedWindow?.kill());
+        resolve(NapicuOS.get_system_activated_window_app()?.kill());
       });
     })
   );
@@ -342,7 +371,7 @@ function initExitFromConsole(): void {
 
 function initOpenApp(): void {
   NapicuOS.register_command(
-    new Command('OpenApp', SystemCommandsPrefixEnum.openAppCommand, (params, activatedWindow) => {
+    new Command('OpenApp', SystemCommandsPrefixEnum.openAppCommand, (params) => {
       return new Promise((resolve) => {
         if (params?.length) {
           let x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);

@@ -27,7 +27,7 @@
     <div (mousedown)="resizesIn(i.Window, $event)"
          *ngIf="!i.Window.isStateMaximized() && !move &&
       i.Window.resizeAllowed && i.Window.windowData.height &&
-    i.Window.windowData.width && GetWindowManagerStatus"
+    i.Window.windowData.width && !GetWindowManagerStatus"
          class="resizers-window"
     >
       <div class="resizer left"></div>

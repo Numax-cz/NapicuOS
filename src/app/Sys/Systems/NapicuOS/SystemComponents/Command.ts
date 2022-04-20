@@ -20,7 +20,6 @@ export class Command {
    */
   private declare readonly fun: (
     params?: string[],
-    activatedWindow?: Process
   ) => Promise<CommandFunMetadata>;
 
   /**
@@ -32,8 +31,7 @@ export class Command {
     commandName: string,
     command: string,
     fun: (
-      params: string[] | undefined,
-      activatedWindow?: Process
+      params: string[] | undefined
     ) => Promise<CommandFunMetadata>
   ) {
     this._commandName = commandName;
@@ -60,8 +58,7 @@ export class Command {
    */
   public run = async (
     params?: string[],
-    activatedWindow?: Process
   ): Promise<CommandFunMetadata> => {
-    return await this.fun(params, activatedWindow);
+    return await this.fun(params);
   };
 }

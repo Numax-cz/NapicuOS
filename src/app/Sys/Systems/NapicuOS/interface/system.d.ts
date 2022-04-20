@@ -1,6 +1,7 @@
 import {Type} from '@angular/core';
 import {windowButtonsMetadata, windowData} from './Window/windowData';
 import {SystemWindowConstructorMetadata} from "./Window/window";
+import {System} from "../SystemComponents/System";
 
 export declare interface onStartUp {
   onStart(): void;
@@ -10,7 +11,16 @@ export declare interface onShutDown {
   onShutDown(): void;
 }
 
-export declare type SystemStringStateCorrection = SystemStateMetadata.StringCorrect | SystemStateMetadata.StringTooLong | SystemStateMetadata.StringTooShort;
+export declare type SystemStringStateCorrection =
+  SystemStateMetadata.StringCorrect
+  | SystemStateMetadata.StringTooLong
+  | SystemStateMetadata.StringTooShort;
+
+export declare type SystemUserStateData =
+  SystemStateMetadata.UserExists
+  | SystemStateMetadata.UserNotExists
+  | SystemStateMetadata.StringTooLong
+  | SystemStateMetadata.StringTooShort;
 
 export declare interface Os {
   component: Type<any>;
