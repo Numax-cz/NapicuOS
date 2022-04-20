@@ -1,3 +1,5 @@
+import { NapicuOS } from "../system.napicuos";
+
 /**
  * Time indicating the duration of the login window display
  */

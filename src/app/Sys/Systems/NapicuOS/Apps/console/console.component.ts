@@ -63,7 +63,7 @@ export class ConsoleComponent implements OnInit {
    * Returns the computer's name
    */
   get GetcompName(): string {
-    return SYSTEM_DEFAULT_COMPUTER_NAME;
+    return NapicuOS.get_hostname();
   }
 
   /**

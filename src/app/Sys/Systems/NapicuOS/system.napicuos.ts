@@ -1,7 +1,7 @@
 import {BlackscreenComponent} from 'src/app/Bios/components/blackscreen/blackscreen.component';
 import {GrubComponent} from 'src/app/Grub/grub/grub.component';
 import {SystemComponent} from 'src/app/Grub/system/system.component';
-import {AppCreatMetadata, onShutDown, onStartUp, Os, SystemStateMetadata,} from './interface/system';
+import {AppCreatMetadata, onShutDown, onStartUp, Os, SystemStateMetadata, SystemStringStateCorrection,} from './interface/system';
 import {Process} from './SystemComponents/Process';
 import {System} from './SystemComponents/System';
 import {LoadsComponent} from './components/loads/loads.component';
@@ -15,7 +15,7 @@ import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
-import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE} from './config/system';
+import {SYSTEM_BOOT_SCREEN_LOGO, SYSTEM_BOOT_SCREEN_TITLE, SYSTEM_DEFAULT_COMPUTER_NAME, SYSTEM_HOSTNAME_MAX_LENGTH, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH} from './config/system';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
@@ -41,6 +41,7 @@ import {Window} from "./SystemComponents/Window";
 import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNotification";
 import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
+import { checkSystemStringLength } from './scripts/ChckStringCorrection';
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -55,6 +56,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       activeUser: null,
       users: []
     },
+    hostname: SYSTEM_DEFAULT_COMPUTER_NAME
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
@@ -627,6 +629,26 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (this.SystemCookiesConfig) {
       setCookies<NapicuOsCookiesTemplate>(NAPICUOS_COOKIES_NAME, this.SystemCookiesConfig);
     }
+  }
+
+  /**
+   * Returns the computer's name
+   */
+  public static get_hostname(): string {
+    return this.SystemCookiesConfig.hostname;
+  }
+
+  /**
+   * Sets a new computer name
+   * @param hostname New computer name
+   */
+  public static set_hostname(hostname: string): SystemStringStateCorrection {
+    var lng: SystemStringStateCorrection = checkSystemStringLength(hostname, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_HOSTNAME_MAX_LENGTH);
+    if(lng === SystemStateMetadata.StringCorrect){
+      this.SystemCookiesConfig.hostname = hostname;
+      this.update_config_to_cookies();
+    }
+    return lng;
   }
 
   /**

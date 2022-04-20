@@ -6,11 +6,12 @@ import {removeSpace} from './scripts/removeSpaceInString';
 import {getHelpCommand, getHelpCommandAPPS,} from './config/commands/help/getCommand';
 import {SystemFile} from './SystemComponents/File';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
-import {setHelpCommand, setWindowTitleHelpCommand} from './config/commands/help/setCommand';
+import {setHelpCommand, setHostnameHelpCommand, setHostnameLongError, setHostnameSet, setHostnameShortError, setWindowTitleHelpCommand} from './config/commands/help/setCommand';
 import {addUserUsage} from './config/commands/help/addUserCommand';
 import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemNotification} from "./SystemComponents/Notification";
+import { SystemStateMetadata, SystemStringStateCorrection } from './interface/system';
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -250,6 +251,31 @@ function initSetSystemInformation(): void {
                   stateCode: CommandStateCodeMetadata.HelpCommand,
                 });
               }
+              break;
+            case "hostname":
+                if (params[1]){
+                  var rtn = NapicuOS.set_hostname(params[1]);
+                  if(rtn === SystemStateMetadata.StringTooShort){
+                    resolve({
+                      linesForCMD: [setHostnameShortError],
+                      stateCode: rtn,
+                    });
+                  }else if (rtn === SystemStateMetadata.StringTooLong){
+                    resolve({
+                      linesForCMD: [setHostnameLongError],
+                      stateCode: rtn
+                    });
+                  }
+                  resolve({
+                    linesForCMD: [setHostnameSet(params[1])],
+                    stateCode: rtn
+                  });
+                }else {
+                  resolve({
+                    linesForCMD: [setHostnameHelpCommand],
+                    stateCode: CommandStateCodeMetadata.HelpCommand,
+                  });
+                }
               break;
             default:
               resolve({
