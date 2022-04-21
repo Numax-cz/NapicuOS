@@ -16,5 +16,9 @@
     background-color: var(--NapicuSimpleButtonHoverColor);
     border-bottom-color: var(--NapicuSimpleButtonBottomHoverColor)
   }
-}
 
+  button:disabled {
+    filter: contrast(0.8) brightness(0.7);
+    cursor: default;
+  }
+}

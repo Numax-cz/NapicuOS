@@ -14,5 +14,9 @@ export class MainComponent extends WelcomeComponentClass<null> implements OnInit
   ngOnInit(): void {
   }
 
+  checkSubmit(): boolean {
+    return true;
+  }
+
 
 }

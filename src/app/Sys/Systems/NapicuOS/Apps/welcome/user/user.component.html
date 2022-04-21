@@ -1,34 +1,35 @@
-<section class="WelcomeMainComponentContent">
+<section class="WelcomeMainComponentContent" id="SystemFont">
   <section class="WelcomeAppComponentContent UserAppContent">
     <div class="WelcomeTitle" style="font-weight: 600;">Creat a new user</div>
-    <div class="WelcomeDescription" id="SystemFont"> <!-- TODO id="SystemFont"-->
-      <div class="AppMainContent" [formGroup]="welcomeAppUserForm">
-        <section>
-          <div class="AppInputSegment">
-            <div>Your name</div>
-            <input type="text" formControlName="userName"/>
-          </div>
-          <div class="AppInputSegment">
-            <div>Your computer’s name</div>
-            <input type="text" formControlName="computerName"/>
-          </div>
-        </section>
 
-        <section formGroupName="passwords">
-          <div class="AppInputSegment">
-            <div>Chose a password</div>
-            <input type="password" formControlName="pass1"/>
-          </div>
-          <div class="AppInputSegment">
-            <div>Confirm your password</div>
-            <input type="password" formControlName="pass2"/>
-          </div>
-        </section>
-      </div>
-    </div>
+    <form class="AppMainContent" [formGroup]="data">
+      <section>
+        <div class="AppInputSegment">
+          <div>Your name</div>
+          <input spellcheck="false" (ngModelChange)="checkData()" type="text" name="username" formControlName="userName"
+                 autocomplete="off"/>
+        </div>
+        <div class="AppInputSegment">
+          <div>Your computer’s name</div>
+          <input spellcheck="false" type="text" name="hostname" formControlName="computerName" autocomplete="off"/>
+        </div>
+      </section>
+
+      <section formGroupName="passwords">
+        <div class="AppInputSegment">
+          <div>Chose a password</div>
+          <input spellcheck="false" type="password" name="password" formControlName="pass1" autocomplete="off"/>
+        </div>
+        <div class="AppInputSegment">
+          <div>Confirm your password</div>
+          <input spellcheck="false" type="password" name="password2" formControlName="pass2" autocomplete="off"/>
+        </div>
+      </section>
+    </form>
+
   </section>
   <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
     <button (click)="back()">Back</button>
-    <button (click)="next()">Next</button>
+    <button (click)="next()" [disabled]="!checkSubmit()">Next</button>
   </section>
 </section>

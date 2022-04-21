@@ -11,12 +11,16 @@
 }
 
 .AppMainContent {
+  padding: 10px 0;
+
   input {
-    font-size: 1rem;
+    font-size: 1.055rem;
+    font-weight: 500;
     padding: 5px 7px;
     outline: none;
     border: 1px solid black;
     border-radius: 6px;
+    margin-top: 5px;
   }
 
   //Segments
@@ -25,6 +29,6 @@
   }
 
   .AppInputSegment {
-    margin-bottom: 7px;
+    margin-bottom: 16px;
   }
 }

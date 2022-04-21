@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 
 /**
  * @author RemyaJ
@@ -8,13 +8,13 @@ import { FormGroup } from "@angular/forms";
  * @returns {ValidationErrors} ValidationErrors
  */
 export function NgFormCheckIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string): any {
-    return (group: FormGroup) => {
-        let passwordInput = group.controls[passwordKey],
-        passwordConfirmationInput = group.controls[passwordConfirmationKey];
-        if (passwordInput.value !== passwordConfirmationInput.value) {
-        return passwordConfirmationInput.setErrors({ notEquivalent: true });
-        } else {
-        return passwordConfirmationInput.setErrors(null);
-        }
+  return (group: FormGroup) => {
+    let passwordInput = group.controls[passwordKey],
+      passwordConfirmationInput = group.controls[passwordConfirmationKey];
+    if (passwordInput.value !== passwordConfirmationInput.value) {
+      return passwordConfirmationInput.setErrors({notEquivalent: true});
+    } else {
+      return passwordConfirmationInput.setErrors(null);
     }
+  }
 }

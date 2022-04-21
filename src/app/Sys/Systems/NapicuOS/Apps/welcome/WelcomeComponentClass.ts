@@ -4,11 +4,13 @@ export abstract class WelcomeComponentClass<T> {
   public abstract data: T;
   public successData: boolean = false;
 
+  public abstract checkSubmit(): boolean;
+
   public next(): void {
-    WelcomeComponent.next(); //TODO IF successData
+    if (this.checkSubmit()) WelcomeComponent.next(); //TODO IF successData
   }
 
   public back(): void {
-    WelcomeComponent.back();
+    WelcomeComponent.back(); //TODO reset data?
   }
 }
