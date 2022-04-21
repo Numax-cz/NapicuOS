@@ -7,11 +7,12 @@ import {WelcomeComponent} from "../welcome.component";
 import {WelcomeComponentClass} from "../WelcomeComponentClass";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
+  SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_USERS_MAX_LENGTH, SYSTEM_USERS_MAX_PASSWORD_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
   SYSTEM_USERS_MIN_PASSWORD_LENGTH
 } from "../../../config/system";
-import { NgFormCheckIfMatchingPasswords } from '../../../scripts/NgFormMatchingPasswords';
+import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
 
 @Component({
   selector: 'app-user',
@@ -51,12 +52,16 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
   }
 
   public GetComputerName(): void {
-    
+
   }
 
 
   public GetConfig(): SystemInstallationOptionsMetadata {
     return WelcomeComponent.systemInstallationOptions;
+  }
+
+  public GetDefaultHostName(): string {
+    return SYSTEM_DEFAULT_HOSTNAME
   }
 
 

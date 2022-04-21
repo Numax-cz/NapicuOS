@@ -25,7 +25,7 @@ import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDi
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
-  SYSTEM_DEFAULT_COMPUTER_NAME,
+  SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
   SYSTEM_USERS_MAX_LENGTH,
@@ -71,7 +71,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       activeUser: null,
       users: []
     },
-    hostname: SYSTEM_DEFAULT_COMPUTER_NAME
+    hostname: SYSTEM_DEFAULT_HOSTNAME
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
