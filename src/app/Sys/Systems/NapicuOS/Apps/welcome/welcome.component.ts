@@ -39,17 +39,12 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-
   public static get GetKeysSystemInstallationOptions(): string[] {
     return Object.keys(WelcomeComponent.systemInstallationOptions);
   }
 
   public static get GetSelectedBarOption(): number {
     return WelcomeComponent.selectedBarOption;
-  }
-
-  public static get GetSystemInstallationOptions(): SystemInstallationOptionsArrayMetadata {
-    return WelcomeComponent.systemInstallationOptions;
   }
 
   get GetDisplayedComponent(): Type<any> {
@@ -59,7 +54,6 @@ export class WelcomeComponent implements OnInit {
   get GetKeysSystemInstallationOptionsKeys(): Array<SystemInstallationOptionsArrayBinds> {
     return WelcomeComponent.GetKeysSystemInstallationOptions as Array<SystemInstallationOptionsArrayBinds>;
   }
-
 
   get GetSelectedBarOption(): number {
     return WelcomeComponent.GetSelectedBarOption;
