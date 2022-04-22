@@ -128,7 +128,7 @@ export class NapicuOSComponent implements OnInit {
         this.closeAppContextMenu();
         NapicuOSComponent.DataDisplay = false;
       }
-      // e.preventDefault();
+      //e.preventDefault();
     });
   }
 

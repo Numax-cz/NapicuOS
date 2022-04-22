@@ -60,13 +60,7 @@ export class UserComponent extends WelcomeComponentClass<FormGroup> implements O
     return this.data.valid;
   }
 
-  public GetConfig(): SystemInstallationOptionsMetadata {
-    return WelcomeComponent.systemInstallationOptions;
-  }
-
   public GetDefaultHostName(): string {
     return SYSTEM_DEFAULT_HOSTNAME;
   }
-
-
 }
