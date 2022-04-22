@@ -2,16 +2,16 @@
   <section class="WelcomeAppComponentContent UserAppContent">
     <div class="WelcomeTitle" style="font-weight: 600;">Creat a new user</div>
 
-    <form class="AppMainContent" [formGroup]="data">
+    <form class="AppMainContent" [formGroup]="formData">
       <section>
         <div class="AppInputSegment">
           <div>Your name</div>
-          <input spellcheck="false" (ngModelChange)="checkData()" type="text" name="username" formControlName="userName"
+          <input spellcheck="false" type="text" name="username" formControlName="username"
                  autocomplete="off"/>
         </div>
         <div class="AppInputSegment">
           <div>Your computer’s name</div>
-          <input spellcheck="false" type="text" name="hostname" formControlName="computerName" autocomplete="off"/>
+          <input spellcheck="false" type="text" name="hostname" formControlName="hostname" autocomplete="off"/>
         </div>
       </section>
 

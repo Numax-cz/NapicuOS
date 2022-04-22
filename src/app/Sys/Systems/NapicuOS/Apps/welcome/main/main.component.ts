@@ -8,15 +8,14 @@ import {WelcomeComponentClass} from "../WelcomeComponentClass";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent extends WelcomeComponentClass<null> implements OnInit {
-  public data: null = null;
-
 
   ngOnInit(): void {
   }
 
-  checkSubmit(): boolean {
+  override checkSubmit(): boolean {
     return true;
   }
 
-
+  override submit(): void | null {
+  }
 }

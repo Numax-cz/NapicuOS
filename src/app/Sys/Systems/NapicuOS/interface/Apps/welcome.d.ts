@@ -2,19 +2,25 @@ import {Type} from "@angular/core";
 
 
 export declare interface welcomeUserInstallationDataMetadata {
-  userName: string | null,
-  password1: string | null,
-  password2: string | null,
-  computerName: string | null,
+  username: string,
+  password: string,
+  hostname: string
 }
 
 export declare interface SystemInstallationOptionsMetadata {
-  [index: string]: {
-    component: Type<any>,
-    data?: any,
-    success: boolean,
-  }
+
+  component: Type<any>,
+  data: any,
+
 }
+
+export declare type SystemInstallationOptionsArrayBinds = keyof SystemInstallationOptionsArrayMetadata;
+
+export declare interface SystemInstallationOptionsArrayMetadata {
+  Welcome: SystemInstallationOptionsMetadata,
+  User: SystemInstallationOptionsMetadata
+}
+
 
 export declare interface WelcomeComponentMetadata<T> {
   welcomeComponentData: T | null,

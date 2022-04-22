@@ -1,7 +1,12 @@
 import {AfterViewInit, Component, OnInit, TemplateRef, Type, ViewChild} from '@angular/core';
 import {MainComponent} from "./main/main.component";
 import {UserComponent} from "./user/user.component";
-import {SystemInstallationOptionsMetadata} from "../../interface/Apps/welcome";
+import {
+  SystemInstallationOptionsArrayBinds,
+  SystemInstallationOptionsArrayMetadata,
+  SystemInstallationOptionsMetadata
+} from "../../interface/Apps/welcome";
+import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 
 @Component({
@@ -11,17 +16,15 @@ import {SystemInstallationOptionsMetadata} from "../../interface/Apps/welcome";
 })
 export class WelcomeComponent implements OnInit {
 
-  public static systemInstallationOptions: SystemInstallationOptionsMetadata = {
+  public static systemInstallationOptions: SystemInstallationOptionsArrayMetadata = {
     Welcome: {
       component: MainComponent,
-      success: false
+      data: null
     },
+
     User: {
       component: UserComponent,
-      success: false,
-      data: {
-        username: null
-      }
+      data: null
     }
   };
   protected static selectedBarOption: number = 0;
@@ -45,26 +48,26 @@ export class WelcomeComponent implements OnInit {
     return WelcomeComponent.selectedBarOption;
   }
 
-  public static get GetSystemInstallationOptions(): SystemInstallationOptionsMetadata {
+  public static get GetSystemInstallationOptions(): SystemInstallationOptionsArrayMetadata {
     return WelcomeComponent.systemInstallationOptions;
   }
 
-
-  get GetKeysSystemInstallationOptions(): string[] {
-    return WelcomeComponent.GetKeysSystemInstallationOptions;
+  get GetDisplayedComponent(): Type<any> {
+    return WelcomeComponent.systemInstallationOptions[this.GetKeysSystemInstallationOptionsKeys[this.GetSelectedBarOption]].component;
   }
 
-  get GetSystemInstallationOptions(): SystemInstallationOptionsMetadata {
-    return WelcomeComponent.GetSystemInstallationOptions
+  get GetKeysSystemInstallationOptionsKeys(): Array<SystemInstallationOptionsArrayBinds> {
+    return WelcomeComponent.GetKeysSystemInstallationOptions as Array<SystemInstallationOptionsArrayBinds>;
   }
+
 
   get GetSelectedBarOption(): number {
     return WelcomeComponent.GetSelectedBarOption;
   }
 
   public static next(): void {
-    console.log(WelcomeComponent.systemInstallationOptions[this.GetKeysSystemInstallationOptions[this.selectedBarOption]].data);
     if (WelcomeComponent.selectedBarOption < this.GetKeysSystemInstallationOptions.length - 1) this.selectedBarOption += 1;
+    console.log(WelcomeComponent.systemInstallationOptions);
   }
 
   public static back(): void {

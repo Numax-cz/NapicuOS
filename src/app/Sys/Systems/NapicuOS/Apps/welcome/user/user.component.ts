@@ -1,9 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  SystemInstallationOptionsMetadata,
-  welcomeUserInstallationDataMetadata
-} from "../../../interface/Apps/welcome";
-import {WelcomeComponent} from "../welcome.component";
 import {WelcomeComponentClass} from "../WelcomeComponentClass";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
@@ -13,24 +8,30 @@ import {
   SYSTEM_USERS_MIN_PASSWORD_LENGTH
 } from "../../../config/system";
 import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
-import {LOG_SCREEN_ANIMATION_TIME} from "../../../config/logscreen";
+
+import {
+  SystemInstallationOptionsArrayBinds,
+  welcomeUserInstallationDataMetadata
+} from "../../../interface/Apps/welcome";
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent extends WelcomeComponentClass<FormGroup> implements OnInit {
+export class UserComponent extends WelcomeComponentClass<welcomeUserInstallationDataMetadata> implements OnInit {
 
 
-  public data = new FormGroup({
-    userName: new FormControl('', [
+  public override bindArrayName: SystemInstallationOptionsArrayBinds = "User";
+
+  public formData = new FormGroup({
+    username: new FormControl('', [
       Validators.required,
       Validators.minLength(SYSTEM_USERS_MIN_LENGTH),
       Validators.maxLength(SYSTEM_USERS_MAX_LENGTH),
     ]),
 
-    computerName: new FormControl(this.GetDefaultHostName(), [
+    hostname: new FormControl(this.GetDefaultHostName(), [
       Validators.required,
       Validators.minLength(SYSTEM_HOSTNAME_MIN_LENGTH),
       Validators.maxLength(SYSTEM_HOSTNAME_MAX_LENGTH),
@@ -49,18 +50,24 @@ export class UserComponent extends WelcomeComponentClass<FormGroup> implements O
     ),
   });
 
+
   ngOnInit(): void {
   }
 
-  checkData(): void {
-
+  override checkSubmit(): boolean {
+    return this.formData.valid;
   }
 
-  checkSubmit(): boolean {
-    return this.data.valid;
+  public submit(): void | welcomeUserInstallationDataMetadata {
+    return {
+      username: this.formData.value.userName,
+      password: this.formData.value.passwords.pass1,
+      hostname: this.formData.value.hostname,
+    }
   }
 
   public GetDefaultHostName(): string {
     return SYSTEM_DEFAULT_HOSTNAME;
   }
 }
+

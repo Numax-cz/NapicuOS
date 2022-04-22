@@ -7,7 +7,7 @@
       </div>
 
 
-      <div *ngFor="let i of GetKeysSystemInstallationOptions; let index = index" [ngClass]="{selected: index
+      <div *ngFor="let i of GetKeysSystemInstallationOptionsKeys; let index = index" [ngClass]="{selected: index
       === GetSelectedBarOption}">
         <p>{{i}}</p>
       </div>
@@ -15,7 +15,7 @@
     <!--    Mainbox-->
     <div id="MainBox">
       <ng-component
-        *ngComponentOutlet="GetSystemInstallationOptions[GetKeysSystemInstallationOptions[GetSelectedBarOption]].component"></ng-component>
+        *ngComponentOutlet="GetDisplayedComponent"></ng-component>
     </div>
   </section>
 </section>
