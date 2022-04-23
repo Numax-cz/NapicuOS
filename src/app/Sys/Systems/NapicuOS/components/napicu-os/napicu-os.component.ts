@@ -9,7 +9,7 @@ import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../SystemComponents/Notification";
 import {NOTIFICATION_ANIMATION_TIME} from "../../config/notificationAnimations";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
-import {NapicuDate} from "../../scripts/date";
+import {NapicuDate} from "napicuformatter";
 import {SystemCalendarMetadata} from "../../interface/System/calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/windowAnimations";
 import {SYSTEM_WALLPAPER} from "../../config/system";

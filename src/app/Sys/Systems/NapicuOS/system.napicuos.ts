@@ -50,7 +50,7 @@ import {NapicuCookies} from "./scripts/decorators";
 import {UserConstructorMetadata} from "./interface/user";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
-import {NapicuDate} from "./scripts/date";
+import {NapicuDate} from "napicuformatter";
 import {NapicuAudio} from "./SystemComponents/Audio";
 import {Window} from "./SystemComponents/Window";
 import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNotification";
