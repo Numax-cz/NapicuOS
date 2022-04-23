@@ -62,26 +62,26 @@ export class ConsoleComponent implements OnInit {
   /**
    * Returns the computer's name
    */
-  get GetcompName(): string {
+  get GetHostname(): string {
     return NapicuOS.get_hostname();
   }
 
   /**
    * Returns the path the user is in
    */
-  get Getpath(): string {
+  get GetPath(): string {
     return this.path;
   }
 
   /**
    * Returns array of all rows
    */
-  get Getlines(): inputMetadata[] {
+  get GetLines(): inputMetadata[] {
     return this.lines;
   }
 
 
-  get GetactiveCommand(): boolean {
+  get GetActiveCommand(): boolean {
     return this.activeCommand;
   }
 

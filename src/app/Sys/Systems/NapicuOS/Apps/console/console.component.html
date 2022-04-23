@@ -7,22 +7,22 @@
   id="WindowScrollBar"
 >
   <section id="CommandShellInput">
-    <div *ngFor="let i of Getlines; let index = index">
+    <div *ngFor="let i of GetLines; let index = index">
       <div>
-        <span class="TerminalNames"> {{ GetUserName }}@{{ GetcompName }} </span>:<span
+        <span class="TerminalNames"> {{ GetUserName }}@{{ GetHostname }} </span>:<span
         class="TerminalPath"
-      >{{ Getpath }}</span
+      >{{ GetPath }}</span
       >$<span class="inputMargin">{{ i.enteredCommand }}</span>
       </div>
       <div *ngFor="let x of i.lines" class="line">
         <pre>{{ x.Write().value }}</pre>
       </div>
     </div>
-    <div [style.display]="GetactiveCommand ? 'none' : ''" class="line">
+    <div [style.display]="GetActiveCommand ? 'none' : ''" class="line">
       <div>
-        <span class="TerminalNames"> {{ GetUserName }}@{{ GetcompName }} </span>:<span
+        <span class="TerminalNames"> {{ GetUserName }}@{{ GetHostname }} </span>:<span
         class="TerminalPath"
-      >{{ Getpath }}</span
+      >{{ GetPath }}</span
       >$
       </div>
       <div
