@@ -69,6 +69,22 @@ export function initAllCommands(): void {
   initOpenApp();
 }
 
+
+// function initAddFile(): void {
+//   NapicuOS.register_command(new Command('CreatFile', SystemCommandsPrefixEnum.creatFile, (params: string[] | undefined) => {
+//     return new Promise((resolve) => {
+//       if (params?.length) {
+//
+//         let fileName: string = params[0]; //TODO Check file name
+//
+//
+//       } else {
+//         //TODO PARAMS is undefined
+//       }
+//     });
+//   }));
+// }
+
 function initCreateUser(): void {
   NapicuOS.register_command(
     new Command('CreateUser', SystemCommandsPrefixEnum.addUserCommand, (params: string[] | undefined) => {

@@ -22,6 +22,13 @@ export declare type SystemUserStateData =
   | SystemStateMetadata.StringTooLong
   | SystemStateMetadata.StringTooShort;
 
+export declare type SystemFileStateData =
+  | SystemStateMetadata.FileAlreadyExists
+  | SystemStateMetadata.FileAddedSuccess
+  | SystemStateMetadata.DirNotExist
+  | SystemStateMetadata.FileHasBadName;
+
+
 export declare interface Os {
   component: Type<any>;
   boot: {

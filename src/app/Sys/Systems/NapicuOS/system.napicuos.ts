@@ -5,7 +5,7 @@ import {
   AppCreatMetadata,
   onShutDown,
   onStartUp,
-  Os,
+  Os, SystemFileStateData,
   SystemStateMetadata,
   SystemStringStateCorrection,
   SystemUserStateData,
@@ -782,11 +782,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static add_file_to_dir(
     dir: systemDirAFileMetadata | undefined,
     file: SystemFile
-  ):
-    | SystemStateMetadata.FileAlreadyExists
-    | SystemStateMetadata.FileAddedSuccess
-    | SystemStateMetadata.DirNotExist
-    | SystemStateMetadata.FileHasBadName {
+  ): SystemFileStateData {
     if (dir?.files) {
       if (
         dir.files.filter((value: SystemFile) => {
