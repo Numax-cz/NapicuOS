@@ -1,3 +1,4 @@
+import { systemDirAFileMetadata, systemDirMetadata } from "../FilesDirs/systemDir";
 import {SystemRemindNotificationConstructorMetadata} from "../remidNotification";
 
 export declare type SystemUserPermissionsMetadata = 'superUser' | 'user';
@@ -10,7 +11,7 @@ export declare interface SystemUserDataMetadata {
     notificationsList: { title: string, msg: string, icon: string, time: string }[],
     remindNotificationList: SystemRemindNotificationConstructorMetadata[]
   };
-  audioVolume: number
+  audioVolume: number,
 }
 
 export const enum SystemUserPermissionsEnumMetadata {

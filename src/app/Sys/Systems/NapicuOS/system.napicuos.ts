@@ -928,22 +928,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         if (i) {
           this.creat_dir(i, user.username);
           const userDir = this.get_user_dir(user.username);
-          if (userDir) {
-            userDir.dir = {
-              Desktop: {},
-              Documents: {},
-              Downloads: {},
-              Music: {},
-              Pictures: {},
-              Videos: {},
-            }
-          }
+          
+          //TODO init user files and dirs
         }
         if (this.SystemCookiesConfig) {
           this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
             return i;
           });
         }
+        
+        
         this.update_config_to_cookies();
         return SystemStateMetadata.UserNotExists;
       }

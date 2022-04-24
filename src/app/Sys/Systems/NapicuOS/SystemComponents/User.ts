@@ -13,7 +13,7 @@ export class User {
       allow: true,
       receive: true
     },
-    audioVolume: 1
+    audioVolume: 1,
   };
   public declare userSetting: SystemUserDataMetadata;
 
