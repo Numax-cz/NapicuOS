@@ -48,16 +48,15 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
    * Determines if the specified command is currently running
    */
   private activeCommand: boolean = false;
-  /**
-   * The path the user is currently in
-   */
-  public pathString: string = '~';
+
+
+  public displayedPath: string = '~';
   /**
    * Command line lines
    */
   public lines: inputMetadata[] = [];
 
-  public activePath: systemDirAFileMetadata | undefined = NapicuOS.get_home_dir();
+  public activePath: string = "home";
 
   constructor() {
   }
@@ -80,7 +79,7 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
    * Returns the path the user is in
    */
   get GetPath(): string {
-    return this.pathString;
+    return this.displayedPath;
   }
 
   /**
@@ -110,14 +109,6 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
     inputSplit.splice(0, 1);
     i.innerText = '';
     this.activeCommand = true;
-
-
-    if (inputCmd === SystemCommandsPrefixEnum.cdCommand) { //TODO DO
-      let dir = inputSplit[0].split("/");
-      //this.newLine(input);
-
-      return;
-    }
     //else if (inputCmd === SystemCommandsPrefixEnum.echoCommand) {
     //   this.newLine();
     // }
@@ -128,7 +119,7 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
       this.setHistoryCommand(input);
       await NapicuOS.run_command(inputCmd, inputSplit, this).then(
         (value: CommandFunMetadata) => {
-          if (value) {
+          if (value) { //TODO
             this.lines[this.lines.length - 1].lines = value.linesForCMD;
           }
         }

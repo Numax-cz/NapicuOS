@@ -28,7 +28,7 @@ export declare interface inputMetadata {
 }
 
 export declare interface ConsoleClassMetadata {
-  pathString: string;
+  displayedPath: string;
   lines: inputMetadata[];
-  activePath: systemDirAFileMetadata | undefined
+  activePath: string
 }

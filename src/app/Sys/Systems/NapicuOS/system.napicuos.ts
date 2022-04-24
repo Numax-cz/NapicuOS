@@ -21,7 +21,7 @@ import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
-import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
+import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
@@ -384,6 +384,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.drives;
   }
 
+  public static get_dir_by_path(dir: string): systemDirAFileMetadata | any {
+    let dirs = dir.split("/");
+    //console.log(dirs);
+
+    let currentDir = dirs[0];
+
+    for (let i = 0; i < dirs.length; i++) {
+      let directory;
+      //
+      // let nextDir =
+      // console.log(d);
+      dirs.splice(i, 1);
+
+
+    }
+
+
+  }
+
   /**
    * Returns root directory
    */
@@ -417,6 +436,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_usrs_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.["home"];
+  }
+
+
+  //TODO DOC
+  public static get_mounted_drive(mountedDriveName: string): systemDirAFileMetadata | undefined {
+    return this.get_dir()[mountedDriveName];
   }
 
   /**

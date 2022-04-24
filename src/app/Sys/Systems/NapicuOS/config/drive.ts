@@ -8,7 +8,18 @@ export const NapicuOSSystemDir: systemDrivesMetadata = {
     dir: {
       //RootDir
       home: {
-        dir: {},
+        dir: {
+          Desktop: {
+            dir: {
+              test: {}
+            }
+          },
+          Documents: {},
+          Downloads: {},
+          Music: {},
+          Pictures: {},
+          Videos: {},
+        },
       },
       bin: {
         files: [],

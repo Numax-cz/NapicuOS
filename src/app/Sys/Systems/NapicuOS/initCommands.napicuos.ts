@@ -27,6 +27,7 @@ import {SystemNotification} from "./SystemComponents/Notification";
 import {SystemStateMetadata, SystemUserStateData} from './interface/system';
 import {ConsoleClassMetadata} from "./interface/Apps/console";
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
+import {changeDirectoryHelpCommand} from "./config/commands/help/changeDirectoryCommand";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -54,7 +55,7 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('TestCommand2', "systest", (params?: string[], terminal?: ConsoleClassMetadata) => {
       return new Promise((resolve) => {
-        if (terminal) terminal.pathString = "XDXDXDD";
+        if (terminal) terminal.displayedPath = "XDXDXDD";
       });
     })
   );
@@ -63,6 +64,7 @@ export function initAllCommands(): void {
   initExitFromConsole();
   initClearTerminal();
   initEcho();
+  initChangeDirectory();
   initSetSystemInformation();
   initKillProcess();
   initCreateUser();
@@ -119,6 +121,31 @@ function initEcho(): void {
           }
         }
         resolve();
+      });
+    })
+  )
+}
+
+function initChangeDirectory(): void {
+  NapicuOS.register_command(
+    new Command("ChangeDirectory", SystemCommandsPrefixEnum.cdCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+      return new Promise((resolve) => {
+        if (params?.length) {
+          let path: string = params[0];
+          if (path.startsWith('/')) {
+            path = path.substring(1);
+          } else {
+            path = `${terminal?.activePath}/${path}`;
+          }
+
+          NapicuOS.get_dir_by_path(path);
+          resolve();
+        } else {
+          resolve({
+            linesForCMD: [changeDirectoryHelpCommand],
+            stateCode: CommandStateCodeMetadata.HelpCommand,
+          });
+        }
       });
     })
   )
