@@ -11,7 +11,9 @@ export const NapicuOSSystemDir: systemDrivesMetadata = {
         dir: {
           Desktop: {
             dir: {
-              test: {}
+              test: {
+                dir: {}
+              }
             }
           },
           Documents: {},

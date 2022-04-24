@@ -28,6 +28,9 @@ export declare type SystemFileStateData =
   | SystemStateMetadata.DirNotExist
   | SystemStateMetadata.FileHasBadName;
 
+export declare type SystemPathStateData =
+  SystemStateMetadata.PathNotExist
+  | SystemStateMetadata.PathExist;
 
 export declare interface Os {
   component: Type<any>;
@@ -107,6 +110,9 @@ export declare const enum SystemStateMetadata {
   DirExist = 1057,
   FileNotExist = 1051,
   FileOpenSuccess = 1050,
+
+  PathNotExist = 1052,
+  PathExist = 1053,
 
 
   RegisterCommandAlreadyExists = 9059,

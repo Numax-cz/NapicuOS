@@ -27,7 +27,7 @@ import {SystemNotification} from "./SystemComponents/Notification";
 import {SystemStateMetadata, SystemUserStateData} from './interface/system';
 import {ConsoleClassMetadata} from "./interface/Apps/console";
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
-import {changeDirectoryHelpCommand} from "./config/commands/help/changeDirectoryCommand";
+import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -138,7 +138,13 @@ function initChangeDirectory(): void {
             path = `${terminal?.activePath}/${path}`;
           }
 
-          NapicuOS.get_dir_by_path(path);
+          let dtChange = NapicuOS.get_dir_by_path(path);
+          if (dtChange === SystemStateMetadata.PathNotExist) {
+            resolve({
+              linesForCMD: [directoryNotFoundError(path)],
+              stateCode: SystemStateMetadata.PathNotExist,
+            });
+          }
           resolve();
         } else {
           resolve({

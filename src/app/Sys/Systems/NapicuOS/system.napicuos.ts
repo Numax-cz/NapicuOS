@@ -384,23 +384,23 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.drives;
   }
 
-  public static get_dir_by_path(dir: string): systemDirAFileMetadata | any {
+  public static get_dir_by_path(dir: string): systemDirAFileMetadata | SystemStateMetadata { //TODO return SystemPathStateData
     let dirs = dir.split("/");
-    //console.log(dirs);
+    
+    let currentDir: systemDirAFileMetadata = this.get_root_dir()?.dir?.[dirs[0]] || {};
 
-    let currentDir = dirs[0];
-
-    for (let i = 0; i < dirs.length; i++) {
-      let directory;
-      //
-      // let nextDir =
-      // console.log(d);
-      dirs.splice(i, 1);
-
-
+    if (currentDir) {
+      for (let i = 1; i < dirs.length; i++) {
+        let nextPath = currentDir.dir?.[dirs[i]]?.dir
+        if (!nextPath) {
+          return SystemStateMetadata.PathNotExist
+        }
+        currentDir = nextPath;
+      }
+      return currentDir;
+    } else {
+      return SystemStateMetadata.PathNotExist
     }
-
-
   }
 
   /**
