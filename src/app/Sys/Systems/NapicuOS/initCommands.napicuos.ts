@@ -28,6 +28,7 @@ import {SystemStateMetadata, SystemUserStateData} from './interface/system';
 import {ConsoleClassMetadata} from "./interface/Apps/console";
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
+import { systemDirAFileMetadata, systemDirMetadata } from './interface/FilesDirs/systemDir';
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -64,6 +65,8 @@ export function initAllCommands(): void {
   initExitFromConsole();
   initClearTerminal();
   initEcho();
+  initLs();
+  initPwd();
   initChangeDirectory();
   initSetSystemInformation();
   initKillProcess();
@@ -101,6 +104,56 @@ function initClearTerminal(): void {
   )
 }
 
+function initLs(): void {
+  NapicuOS.register_command(
+    new Command("ListCommand", SystemCommandsPrefixEnum.listCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+      return new Promise((resolve) => {
+        var listPath = terminal?.activePath;
+        if (listPath) { 
+          let terminalPathData: systemDirAFileMetadata | null = NapicuOS.get_dir_by_path(listPath).data;
+          if(terminalPathData){
+            let exportLinest: Line[] = [];
+
+            let dirsName: systemDirAFileMetadata = terminalPathData;
+            
+            if(dirsName.dir && dirsName.files) {
+              //Dirs
+              Object.keys(dirsName.dir).forEach((keys: string) => {
+                let line: Line = new Line(`${keys}`, 'white');
+                exportLinest.push(line);
+              })
+              //Files
+              Object.keys(dirsName.files).forEach((keys: string) => {
+                let line: Line = new Line(`${keys}`, 'white');
+                exportLinest.push(line);
+              });
+            }
+
+            resolve({
+              linesForCMD: exportLinest,
+              stateCode: CommandStateCodeMetadata.success,
+            });
+          }
+        }
+      });
+    })
+  )
+}
+
+function initPwd(): void {
+  NapicuOS.register_command(
+    new Command('Pwd', SystemCommandsPrefixEnum.pwdCommand, (params?: string[],terminal?: ConsoleClassMetadata ) => {
+      return new Promise((resolve) => {
+        resolve({
+          linesForCMD: [new Line(`${terminal?.activePath}`, 'white')],
+          stateCode: CommandStateCodeMetadata.success,
+        });
+      });
+    })
+  );
+}
+
+
 function initEcho(): void {
   NapicuOS.register_command(
     new Command("Echo", SystemCommandsPrefixEnum.echoCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
@@ -131,21 +184,27 @@ function initChangeDirectory(): void {
     new Command("ChangeDirectory", SystemCommandsPrefixEnum.cdCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
       return new Promise((resolve) => {
         if (params?.length) {
+          //TODO if terminal 1#
           let path: string = params[0];
           if (path.startsWith('/')) {
             path = path.substring(1);
           } else {
             path = `${terminal?.activePath}/${path}`;
           }
-
           let dtChange = NapicuOS.get_dir_by_path(path);
-          if (dtChange === SystemStateMetadata.PathNotExist) {
+          if (dtChange.state === SystemStateMetadata.PathNotExist) {
             resolve({
               linesForCMD: [directoryNotFoundError(path)],
               stateCode: SystemStateMetadata.PathNotExist,
             });
+          }else {
+            if(terminal) terminal.activePath = path; //TODO if terminal 2#
+            resolve({
+              linesForCMD: [],
+              stateCode: CommandStateCodeMetadata.success,
+            });
           }
-          resolve();
+          
         } else {
           resolve({
             linesForCMD: [changeDirectoryHelpCommand],

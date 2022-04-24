@@ -13,5 +13,7 @@ export const enum SystemCommandsPrefixEnum {
   clearCommand = "clear",
   cdCommand = "cd",
   echoCommand = "echo",
+  listCommand = "ls",
+  pwdCommand = "pwd",
 }
 

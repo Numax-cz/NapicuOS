@@ -384,7 +384,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.drives;
   }
 
-  public static get_dir_by_path(dir: string): systemDirAFileMetadata | SystemStateMetadata { //TODO return SystemPathStateData
+  public static get_dir_by_path(dir: string): {data: systemDirAFileMetadata | null, state: SystemStateMetadata} { //TODO return SystemPathStateData
     let dirs = dir.split("/");
     
     let currentDir: systemDirAFileMetadata = this.get_root_dir()?.dir?.[dirs[0]] || {};
@@ -393,13 +393,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       for (let i = 1; i < dirs.length; i++) {
         let nextPath = currentDir.dir?.[dirs[i]]?.dir
         if (!nextPath) {
-          return SystemStateMetadata.PathNotExist
+          return {data: null, state: SystemStateMetadata.PathNotExist}
         }
         currentDir = nextPath;
       }
-      return currentDir;
+      return {data: currentDir, state: SystemStateMetadata.PathExist};
     } else {
-      return SystemStateMetadata.PathNotExist
+      return {data: null, state: SystemStateMetadata.PathNotExist}
     }
   }
 
