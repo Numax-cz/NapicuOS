@@ -14,3 +14,4 @@ export const enum SystemCommandsPrefixEnum {
   cdCommand = "cd",
   echoCommand = "echo",
 }
+

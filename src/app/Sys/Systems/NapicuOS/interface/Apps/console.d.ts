@@ -1,4 +1,5 @@
 import {Line} from '../../Apps/console/console.component';
+import {systemDirAFileMetadata} from "../FilesDirs/systemDir";
 
 export declare interface commandLineStMetadata {
   user: string;
@@ -24,4 +25,10 @@ export declare interface historyCommandsMetadata {
 export declare interface inputMetadata {
   lines: Line[];
   enteredCommand: string | undefined;
+}
+
+export declare interface ConsoleClassMetadata {
+  pathString: string;
+  lines: inputMetadata[];
+  activePath: systemDirAFileMetadata | undefined
 }

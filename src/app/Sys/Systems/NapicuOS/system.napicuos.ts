@@ -57,6 +57,7 @@ import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNoti
 import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 import {checkSystemStringLength} from './scripts/ChckStringCorrection';
+import {ConsoleClassMetadata} from "./interface/Apps/console";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -700,7 +701,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static async run_command(
     cmd: string,
-    params?: string[]
+    params?: string[],
+    terminal?: ConsoleClassMetadata
   ): Promise<CommandFunMetadata> {
     let i: SystemFile = NapicuOS.get_command_by_commandStr(cmd);
     if (i) {
@@ -715,7 +717,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
           stateCode: CommandStateCodeMetadata.PermissionsError,
         };
       }
-      return await i.open({params: params});
+      return await i.open({params: params, terminal: terminal});
     } else {
       return {
         linesForCMD: [new Line(`${cmd}: command not found`, 'red')],

@@ -6,6 +6,7 @@ import {SystemUserPermissionsEnumMetadata} from '../interface/User/user';
 import {Window} from "./Window";
 import {copy} from "../../../../Bios/Scripts/DeepClone";
 import {AppCreatMetadata} from "../interface/system";
+import {ConsoleClassMetadata} from "../interface/Apps/console";
 
 export class SystemFile {
   //TODO DOC
@@ -80,7 +81,7 @@ export class SystemFile {
     this._permissions = value;
   }
 
-  public open(data?: { params?: string[] }): Promise<any> {
+  public open(data?: { params?: string[], terminal?: ConsoleClassMetadata }): Promise<any> {
     return new Promise(async (resolve) => {
       switch (this._fileType) {
         case SystemFileTypeEnumMetadata.apps:
@@ -98,7 +99,7 @@ export class SystemFile {
           break;
         case SystemFileTypeEnumMetadata.executable:
           let command = this._value as Command;
-          resolve(await command.run(data?.params));
+          resolve(await command.run(data?.params, data?.terminal));
           break;
         default:
           break;

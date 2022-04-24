@@ -3,7 +3,12 @@ import {CommandFunMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/
 import {SYSTEM_DEFAULT_HOSTNAME} from '../../config/system';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
-import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from '../../interface/Apps/console';
+import {
+  ConsoleClassMetadata,
+  historyCommandsMetadata,
+  inputMetadata,
+  terminalColorsMetadata,
+} from '../../interface/Apps/console';
 import {NapicuOSSystemDir} from "../../config/drive";
 import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/systemDir";
 import {SystemCommandsPrefixEnum} from "../../interface/Commands/commands";
@@ -31,7 +36,7 @@ export class Line {
   templateUrl: './console.component.html',
   styleUrls: ['./console.component.scss'],
 })
-export class ConsoleComponent implements OnInit {
+export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
   /**
    * Store the history of commands
    */
@@ -46,13 +51,13 @@ export class ConsoleComponent implements OnInit {
   /**
    * The path the user is currently in
    */
-  private pathString: string = '~';
+  public pathString: string = '~';
   /**
    * Command line lines
    */
-  private lines: inputMetadata[] = [];
+  public lines: inputMetadata[] = [];
 
-  private activePath: systemDirAFileMetadata | undefined = NapicuOS.get_home_dir();
+  public activePath: systemDirAFileMetadata | undefined = NapicuOS.get_home_dir();
 
   constructor() {
   }
@@ -107,29 +112,21 @@ export class ConsoleComponent implements OnInit {
     this.activeCommand = true;
 
 
-    //TODO Swtich
-    //TODO all move to initCommands.napicuos.ts and in runcommand new param => for console
-    if (inputCmd === SystemCommandsPrefixEnum.clearCommand) {
-      ConsoleComponent.historyCommands = [];
-      this.lines = [];
-      this.activeCommand = false;
-      return;
-    }
-
     if (inputCmd === SystemCommandsPrefixEnum.cdCommand) { //TODO DO
       let dir = inputSplit[0].split("/");
       //this.newLine(input);
 
       return;
-    } else if (inputCmd === SystemCommandsPrefixEnum.echoCommand) {
-      this.newLine();
     }
+    //else if (inputCmd === SystemCommandsPrefixEnum.echoCommand) {
+    //   this.newLine();
+    // }
 
 
     if (inputCmd) {
       this.creatCommandLine([], input);
       this.setHistoryCommand(input);
-      await NapicuOS.run_command(inputCmd, inputSplit).then(
+      await NapicuOS.run_command(inputCmd, inputSplit, this).then(
         (value: CommandFunMetadata) => {
           if (value) {
             this.lines[this.lines.length - 1].lines = value.linesForCMD;

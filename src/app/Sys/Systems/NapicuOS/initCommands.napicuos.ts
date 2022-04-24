@@ -25,6 +25,8 @@ import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemNotification} from "./SystemComponents/Notification";
 import {SystemStateMetadata, SystemUserStateData} from './interface/system';
+import {ConsoleClassMetadata} from "./interface/Apps/console";
+import {echoHelpCommand} from "./config/commands/help/echoCommand";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -50,18 +52,17 @@ export function initAllCommands(): void {
   );
 
   NapicuOS.register_command(
-    new Command('TestCommand2', "systest", (params: string[] | undefined) => {
+    new Command('TestCommand2', "systest", (params?: string[], terminal?: ConsoleClassMetadata) => {
       return new Promise((resolve) => {
-        setTimeout(() => {
-          console.log("This is test command 2");
-          resolve();
-        }, 200);
+        if (terminal) terminal.pathString = "XDXDXDD";
       });
     })
   );
 
   initGetSystemInformation();
   initExitFromConsole();
+  initClearTerminal();
+  initEcho();
   initSetSystemInformation();
   initKillProcess();
   initCreateUser();
@@ -84,6 +85,45 @@ export function initAllCommands(): void {
 //     });
 //   }));
 // }
+
+function initClearTerminal(): void {
+  NapicuOS.register_command(
+    new Command("ClearTerminal", SystemCommandsPrefixEnum.clearCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+      return new Promise((resolve) => {
+        if (terminal) {
+          terminal.lines = [];
+        }
+        resolve();
+      });
+    })
+  )
+}
+
+function initEcho(): void {
+  NapicuOS.register_command(
+    new Command("Echo", SystemCommandsPrefixEnum.echoCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+      return new Promise((resolve) => {
+        if (terminal) {
+          if (params?.length) {
+            let s = params.toString()
+            let line: Line = new Line(s, 'white');
+            resolve({
+              linesForCMD: [line],
+              stateCode: CommandStateCodeMetadata.success,
+            });
+          } else {
+            resolve({
+              linesForCMD: [echoHelpCommand],
+              stateCode: CommandStateCodeMetadata.HelpCommand,
+            });
+          }
+        }
+        resolve();
+      });
+    })
+  )
+}
+
 
 function initCreateUser(): void {
   NapicuOS.register_command(
