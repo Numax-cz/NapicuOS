@@ -4,6 +4,9 @@ import {SYSTEM_DEFAULT_HOSTNAME} from '../../config/system';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
 import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from '../../interface/Apps/console';
+import {NapicuOSSystemDir} from "../../config/drive";
+import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/systemDir";
+import {SystemCommandsPrefixEnum} from "../../interface/Commands/commands";
 
 export class Line {
   private declare line: string;
@@ -43,11 +46,13 @@ export class ConsoleComponent implements OnInit {
   /**
    * The path the user is currently in
    */
-  private path: string = '~';
+  private pathString: string = '~';
   /**
    * Command line lines
    */
   private lines: inputMetadata[] = [];
+
+  private activePath: systemDirAFileMetadata | undefined = NapicuOS.get_home_dir();
 
   constructor() {
   }
@@ -70,7 +75,7 @@ export class ConsoleComponent implements OnInit {
    * Returns the path the user is in
    */
   get GetPath(): string {
-    return this.path;
+    return this.pathString;
   }
 
   /**
@@ -101,12 +106,26 @@ export class ConsoleComponent implements OnInit {
     i.innerText = '';
     this.activeCommand = true;
 
-    if (inputCmd === 'clear') {
+
+    //TODO Swtich
+    //TODO all move to initCommands.napicuos.ts and in runcommand new param => for console
+    if (inputCmd === SystemCommandsPrefixEnum.clearCommand) {
       ConsoleComponent.historyCommands = [];
       this.lines = [];
       this.activeCommand = false;
       return;
     }
+
+    if (inputCmd === SystemCommandsPrefixEnum.cdCommand) { //TODO DO
+      let dir = inputSplit[0].split("/");
+      //this.newLine(input);
+
+      return;
+    } else if (inputCmd === SystemCommandsPrefixEnum.echoCommand) {
+      this.newLine();
+    }
+
+
     if (inputCmd) {
       this.creatCommandLine([], input);
       this.setHistoryCommand(input);
@@ -131,6 +150,17 @@ export class ConsoleComponent implements OnInit {
    */
   public inputFocus(): void {
     this.inputValue.nativeElement.focus();
+  }
+
+  protected newLine(input?: string): void {
+    this.creatCommandLine([], input || "");
+    if (input) this.setHistoryCommand(input);
+    this.activeCommand = false;
+    this.inputValue.nativeElement.focus();
+  }
+
+  protected writeLine(value: string): void {
+    this.lines[this.lines.length - 1].lines = [new Line(value)];
   }
 
   /**
