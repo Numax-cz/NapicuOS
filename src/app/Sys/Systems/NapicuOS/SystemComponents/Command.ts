@@ -1,6 +1,6 @@
 import {Process} from './Process';
 import {Line} from '../Apps/console/console.component';
-import {ConsoleClassMetadata} from "../interface/Apps/console";
+import {TerminalClass} from "./Terminal";
 
 export declare type CommandFunMetadata = {
   linesForCMD: Line[];
@@ -21,7 +21,7 @@ export class Command {
    */
   private declare readonly fun: (
     params?: string[],
-    terminal?: ConsoleClassMetadata
+    terminal?: TerminalClass
   ) => Promise<CommandFunMetadata>;
 
   /**
@@ -33,7 +33,7 @@ export class Command {
     commandName: string,
     command: string,
     fun: (
-      params?: string[], terminal?: ConsoleClassMetadata
+      params?: string[], terminal?: TerminalClass
     ) => Promise<CommandFunMetadata>
   ) {
     this._commandName = commandName;
@@ -60,7 +60,7 @@ export class Command {
    */
   public run = async (
     params?: string[],
-    terminal?: ConsoleClassMetadata
+    terminal?: TerminalClass
   ): Promise<CommandFunMetadata> => {
     return await this.fun(params, terminal);
   };

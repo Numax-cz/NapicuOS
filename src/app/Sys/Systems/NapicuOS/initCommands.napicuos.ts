@@ -25,10 +25,10 @@ import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
 import {SystemNotification} from "./SystemComponents/Notification";
 import {SystemStateMetadata, SystemUserStateData} from './interface/system';
-import {ConsoleClassMetadata} from "./interface/Apps/console";
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
-import { systemDirAFileMetadata, systemDirMetadata } from './interface/FilesDirs/systemDir';
+import {systemDirAFileMetadata, systemDirMetadata} from './interface/FilesDirs/systemDir';
+import {TerminalClass} from "./SystemComponents/Terminal";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -54,7 +54,7 @@ export function initAllCommands(): void {
   );
 
   NapicuOS.register_command(
-    new Command('TestCommand2', "systest", (params?: string[], terminal?: ConsoleClassMetadata) => {
+    new Command('TestCommand2', "systest", (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         if (terminal) terminal.displayedPath = "XDXDXDD";
       });
@@ -93,7 +93,7 @@ export function initAllCommands(): void {
 
 function initClearTerminal(): void {
   NapicuOS.register_command(
-    new Command("ClearTerminal", SystemCommandsPrefixEnum.clearCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+    new Command("ClearTerminal", SystemCommandsPrefixEnum.clearCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         if (terminal) {
           terminal.lines = [];
@@ -106,17 +106,17 @@ function initClearTerminal(): void {
 
 function initLs(): void {
   NapicuOS.register_command(
-    new Command("ListCommand", SystemCommandsPrefixEnum.listCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+    new Command("ListCommand", SystemCommandsPrefixEnum.listCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
-        var listPath = terminal?.activePath;
-        if (listPath) { 
+        let listPath = terminal?.activePath;
+        if (listPath) {
           let terminalPathData: systemDirAFileMetadata | null = NapicuOS.get_dir_by_path(listPath).data;
-          if(terminalPathData){
+          if (terminalPathData) {
             let exportLinest: Line[] = [];
 
             let dirsName: systemDirAFileMetadata = terminalPathData;
-            
-            if(dirsName.dir && dirsName.files) {
+
+            if (dirsName.dir && dirsName.files) {
               //Dirs
               Object.keys(dirsName.dir).forEach((keys: string) => {
                 let line: Line = new Line(`${keys}`, 'white');
@@ -142,7 +142,7 @@ function initLs(): void {
 
 function initPwd(): void {
   NapicuOS.register_command(
-    new Command('Pwd', SystemCommandsPrefixEnum.pwdCommand, (params?: string[],terminal?: ConsoleClassMetadata ) => {
+    new Command('Pwd', SystemCommandsPrefixEnum.pwdCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         resolve({
           linesForCMD: [new Line(`${terminal?.activePath}`, 'white')],
@@ -156,7 +156,7 @@ function initPwd(): void {
 
 function initEcho(): void {
   NapicuOS.register_command(
-    new Command("Echo", SystemCommandsPrefixEnum.echoCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+    new Command("Echo", SystemCommandsPrefixEnum.echoCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         if (terminal) {
           if (params?.length) {
@@ -181,7 +181,7 @@ function initEcho(): void {
 
 function initChangeDirectory(): void {
   NapicuOS.register_command(
-    new Command("ChangeDirectory", SystemCommandsPrefixEnum.cdCommand, (params?: string[], terminal?: ConsoleClassMetadata) => {
+    new Command("ChangeDirectory", SystemCommandsPrefixEnum.cdCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         if (params?.length) {
           //TODO if terminal 1#
@@ -197,14 +197,14 @@ function initChangeDirectory(): void {
               linesForCMD: [directoryNotFoundError(path)],
               stateCode: SystemStateMetadata.PathNotExist,
             });
-          }else {
-            if(terminal) terminal.activePath = path; //TODO if terminal 2#
+          } else {
+            if (terminal) terminal.activePath = path; //TODO if terminal 2#
             resolve({
               linesForCMD: [],
               stateCode: CommandStateCodeMetadata.success,
             });
           }
-          
+
         } else {
           resolve({
             linesForCMD: [changeDirectoryHelpCommand],

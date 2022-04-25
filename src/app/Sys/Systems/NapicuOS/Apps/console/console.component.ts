@@ -4,7 +4,6 @@ import {SYSTEM_DEFAULT_HOSTNAME} from '../../config/system';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
 import {
-  ConsoleClassMetadata,
   historyCommandsMetadata,
   inputMetadata,
   terminalColorsMetadata,
@@ -12,6 +11,7 @@ import {
 import {NapicuOSSystemDir} from "../../config/drive";
 import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/systemDir";
 import {SystemCommandsPrefixEnum} from "../../interface/Commands/commands";
+import {TerminalClass} from "../../SystemComponents/Terminal";
 
 export class Line {
   private declare line: string;
@@ -36,30 +36,10 @@ export class Line {
   templateUrl: './console.component.html',
   styleUrls: ['./console.component.scss'],
 })
-export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
-  /**
-   * Store the history of commands
-   */
-  private static historyCommands: string[] = [];
+export class ConsoleComponent extends TerminalClass implements OnInit {
   @ViewChild('AppScreen') public declare appScreen: ElementRef;
   @ViewChild('InputValue') public declare inputValue: ElementRef;
-  private selectedCommandHistory: number = 0;
-  /**
-   * Determines if the specified command is currently running
-   */
-  private activeCommand: boolean = false;
 
-
-  public displayedPath: string = '~';
-  /**
-   * Command line lines
-   */
-  public lines: inputMetadata[] = [];
-
-  public activePath: string = "home";
-
-  constructor() {
-  }
 
   /**
    * Returns the username
@@ -109,9 +89,6 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
     inputSplit.splice(0, 1);
     i.innerText = '';
     this.activeCommand = true;
-    //else if (inputCmd === SystemCommandsPrefixEnum.echoCommand) {
-    //   this.newLine();
-    // }
 
 
     if (inputCmd) {
@@ -140,16 +117,6 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
     this.inputValue.nativeElement.focus();
   }
 
-  protected newLine(input?: string): void {
-    this.creatCommandLine([], input || "");
-    if (input) this.setHistoryCommand(input);
-    this.activeCommand = false;
-    this.inputValue.nativeElement.focus();
-  }
-
-  protected writeLine(value: string): void {
-    this.lines[this.lines.length - 1].lines = [new Line(value)];
-  }
 
   /**
    * Function that is triggered by pressing arrow up
@@ -180,19 +147,6 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
     event.preventDefault();
   }
 
-  /**
-   * Function for getting the command lines history
-   */
-  public getCommandLines(): inputMetadata[] {
-    return this.lines;
-  }
-
-  /**
-   * Function for deleting the history of console
-   */
-  public static delete_all_history(): void {
-    ConsoleComponent.historyCommands = [];
-  }
 
   /**
    * Sets the input value to the value according to the selected command from the history
@@ -210,26 +164,5 @@ export class ConsoleComponent implements OnInit, ConsoleClassMetadata {
       top: this.appScreen.nativeElement.scrollHeight,
     });
   }
-
-  /**
-   * Sets and filters commands
-   * @param input Command entered
-   */
-  private setHistoryCommand(input: string): void {
-    ConsoleComponent.historyCommands = ConsoleComponent.historyCommands.filter(
-      (value: string) => {
-        return value !== input;
-      }
-    );
-    ConsoleComponent.historyCommands.push(input);
-  }
-
-  /**
-   * Creates a new line
-   * @param value Array of lines to be displayed
-   * @param enteredCommand The command that appears as entered
-   */
-  private creatCommandLine(value: Line[], enteredCommand?: string): void {
-    this.lines.push({lines: value, enteredCommand: enteredCommand});
-  }
 }
+

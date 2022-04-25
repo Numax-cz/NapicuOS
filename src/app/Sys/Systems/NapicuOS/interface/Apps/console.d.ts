@@ -27,8 +27,3 @@ export declare interface inputMetadata {
   enteredCommand: string | undefined;
 }
 
-export declare interface ConsoleClassMetadata {
-  displayedPath: string;
-  lines: inputMetadata[];
-  activePath: string
-}

@@ -57,7 +57,7 @@ import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNoti
 import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 import {checkSystemStringLength} from './scripts/ChckStringCorrection';
-import {ConsoleClassMetadata} from "./interface/Apps/console";
+import {TerminalClass} from "./SystemComponents/Terminal";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -384,9 +384,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.drives;
   }
 
-  public static get_dir_by_path(dir: string): {data: systemDirAFileMetadata | null, state: SystemStateMetadata} { //TODO return SystemPathStateData
+  public static get_dir_by_path(dir: string): { data: systemDirAFileMetadata | null, state: SystemStateMetadata } { //TODO return SystemPathStateData
     let dirs = dir.split("/");
-    
+
     let currentDir: systemDirAFileMetadata = this.get_root_dir()?.dir?.[dirs[0]] || {};
 
     if (currentDir) {
@@ -727,7 +727,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static async run_command(
     cmd: string,
     params?: string[],
-    terminal?: ConsoleClassMetadata
+    terminal?: TerminalClass
   ): Promise<CommandFunMetadata> {
     let i: SystemFile = NapicuOS.get_command_by_commandStr(cmd);
     if (i) {
@@ -928,7 +928,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         if (i) {
           this.creat_dir(i, user.username);
           const userDir = this.get_user_dir(user.username);
-          
+
           //TODO init user files and dirs
         }
         if (this.SystemCookiesConfig) {
@@ -936,8 +936,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
             return i;
           });
         }
-        
-        
+
+
         this.update_config_to_cookies();
         return SystemStateMetadata.UserNotExists;
       }

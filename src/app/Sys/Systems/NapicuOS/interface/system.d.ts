@@ -124,4 +124,6 @@ export declare const enum SystemStateMetadata {
   StringTooLong = 6902,
 }
 
-
+export declare const enum SystemVariable {
+  Username = "$USER"
+}
