@@ -108,7 +108,7 @@ function initLs(): void {
   NapicuOS.register_command(
     new Command("ListCommand", SystemCommandsPrefixEnum.listCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
-        let listPath = terminal?.activePath;
+        let listPath = terminal?.getPath();
         if (listPath) {
           let terminalPathData: systemDirAFileMetadata | null = NapicuOS.get_dir_by_path(listPath).data;
           
@@ -149,7 +149,7 @@ function initPwd(): void {
     new Command('Pwd', SystemCommandsPrefixEnum.pwdCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         resolve({
-          linesForCMD: [new Line(`${terminal?.activePath}`, 'white')],
+          linesForCMD: [new Line(`${terminal?.getPath()}`, 'white')],
           stateCode: CommandStateCodeMetadata.success,
         });
       });
@@ -190,9 +190,17 @@ function initChangeDirectory(): void {
         if (params?.length) {
           //TODO if terminal 1#
           let path: string = params[0];
-          if (!path.startsWith('/')) {
-            path = `${terminal?.activePath}/${path}`;
+          
+          if(path.startsWith("..")){
+            let prth: string[] | undefined = terminal?.getPath().split("/");
+            prth?.pop();
+            if(!prth) return;
+            let prthStr = prth.toString();
+            path = (!prthStr.length) ? "/" : prthStr;
+          } else if  (!path.startsWith('/')) {
+            path = `${terminal?.getPath()}/${path}`;
           }
+
           let dtChange = NapicuOS.get_dir_by_path(path);
           if (dtChange.state === SystemStateMetadata.PathNotExist) {
             resolve({
@@ -200,7 +208,7 @@ function initChangeDirectory(): void {
               stateCode: SystemStateMetadata.PathNotExist,
             });
           } else {
-            if (terminal) terminal.activePath = path; //TODO if terminal 2#
+            if (terminal) terminal.setPath(path); //TODO if terminal 2#
             resolve({
               linesForCMD: [],
               stateCode: CommandStateCodeMetadata.success,

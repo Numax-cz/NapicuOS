@@ -15,7 +15,7 @@ export abstract class TerminalClass {
   /**
    * Current path
    */
-  public activePath: string = SYSTEM_DEFAULT_TERMINAL_PATH;
+  protected activePath: string = SYSTEM_DEFAULT_TERMINAL_PATH;
   /**
    * Determines if the specified command is currently running
    */
@@ -69,7 +69,7 @@ export abstract class TerminalClass {
    *  Sets the terminal path
    * @param path
    */
-  public changePath(path: string): void {
+  public setPath(path: string): void {
     this.activePath = path;
   }
 
@@ -78,6 +78,11 @@ export abstract class TerminalClass {
    */
   public getCommandLines(): inputMetadata[] {
     return this.lines;
+  }
+
+  //TODO DOC
+  public getPath(): string{
+    return this.activePath;
   }
 
   /**
