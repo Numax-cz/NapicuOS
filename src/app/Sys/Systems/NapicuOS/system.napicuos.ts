@@ -386,18 +386,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public static get_dir_by_path(dir: string): { data: systemDirAFileMetadata | null, state: SystemStateMetadata } { //TODO return SystemPathStateData
     let dirs = dir.split("/");
+    dirs.shift();
 
-    let currentDir: systemDirAFileMetadata = this.get_root_dir()?.dir?.[dirs[0]] || {};
+    let currentDir: systemDirAFileMetadata | undefined = (!dirs[0].length) ? this.get_root_dir()?.dir : this.get_root_dir()?.dir?.[dirs[0]];
 
     if (currentDir) {
       for (let i = 1; i < dirs.length; i++) {
-        let nextPath = currentDir.dir?.[dirs[i]]?.dir
+        let nextPath: any = currentDir?.dir?.[dirs[i]]?.dir
         if (!nextPath) {
           return {data: null, state: SystemStateMetadata.PathNotExist}
         }
         currentDir = nextPath;
       }
-      return {data: currentDir, state: SystemStateMetadata.PathExist};
+      return {data: currentDir || null, state: SystemStateMetadata.PathExist};
     } else {
       return {data: null, state: SystemStateMetadata.PathNotExist}
     }

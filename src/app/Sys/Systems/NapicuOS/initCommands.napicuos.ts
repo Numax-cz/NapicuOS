@@ -186,9 +186,7 @@ function initChangeDirectory(): void {
         if (params?.length) {
           //TODO if terminal 1#
           let path: string = params[0];
-          if (path.startsWith('/')) {
-            path = path.substring(1);
-          } else {
+          if (!path.startsWith('/')) {
             path = `${terminal?.activePath}/${path}`;
           }
           let dtChange = NapicuOS.get_dir_by_path(path);
