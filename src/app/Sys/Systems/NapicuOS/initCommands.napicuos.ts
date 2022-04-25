@@ -111,24 +111,28 @@ function initLs(): void {
         let listPath = terminal?.activePath;
         if (listPath) {
           let terminalPathData: systemDirAFileMetadata | null = NapicuOS.get_dir_by_path(listPath).data;
+          
           if (terminalPathData) {
             let exportLinest: Line[] = [];
 
             let dirsName: systemDirAFileMetadata = terminalPathData;
-
-            if (dirsName.dir && dirsName.files) {
-              //Dirs
+ 
+            //Dirs
+            if(dirsName.dir){
               Object.keys(dirsName.dir).forEach((keys: string) => {
-                let line: Line = new Line(`${keys}`, 'white');
-                exportLinest.push(line);
-              })
-              //Files
-              Object.keys(dirsName.files).forEach((keys: string) => {
                 let line: Line = new Line(`${keys}`, 'white');
                 exportLinest.push(line);
               });
             }
-
+            
+            //Files
+            if(dirsName.files){
+              dirsName.files.forEach((file: SystemFile) => {
+                let line: Line = new Line(`${file.fileName}`, 'white');
+                exportLinest.push(line);
+              });
+            }
+            
             resolve({
               linesForCMD: exportLinest,
               stateCode: CommandStateCodeMetadata.success,
