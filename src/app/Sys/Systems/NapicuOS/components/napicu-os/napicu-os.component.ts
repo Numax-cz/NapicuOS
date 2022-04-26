@@ -46,19 +46,19 @@ import {SYSTEM_WALLPAPER} from "../../config/system";
     ]),
 
     trigger('NapicuOSfeoreActivityMenu', [
-
       state(
         'true',
         style({
           transform: 'scale(0.4) ',
           opacity: 1,
           transformOrigin: 'top',
+          borderRadius: '40px',
         }),
       ),
-
-
       transition(`* => *`, animate(WINDOW_ANIMATION_TIME)),
     ]),
+
+
   ],
 })
 export class NapicuOSComponent implements OnInit {
