@@ -422,7 +422,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_apps_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['usr'];
   }
-
+  
   /**
    * Returns main bin directory
    */

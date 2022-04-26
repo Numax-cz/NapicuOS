@@ -16,9 +16,17 @@
   --NapicuSimpleButtonSize: 1rem;
 }
 
+.NapicuThemeFeraDarkBackgroundDarker {
+  --NapicuTopMenuBackgroundColor: #252525;
+}
+
+.NapicuThemeFeraDarkBackgroundDak {
+  --NapicuTopMenuBackgroundColor: #000000;
+}
+
 .NapicuThemeFeraDark {
   //TopPanel
-  --NapicuTopMenuBackgroundColor: #000000;
+
   --NapicuTopMenuTextColor: #d5d5d5;
   --NapicuTopMenuIconFilter: none;
   //BottomPanel
