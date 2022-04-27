@@ -181,6 +181,7 @@ export class NapicuOSComponent implements OnInit {
    */
   public onClickDate(): void {
     NapicuOS.update_calendar();
+    NapicuOSComponent.closeActivityMenu();
     this.openNotificationMenu();
   }
 
@@ -251,7 +252,11 @@ export class NapicuOSComponent implements OnInit {
    * This function is called when the user clicks on the activities button
    */
   public onClickActivities(): void {
-    NapicuOSComponent.ActivityDisplay = !NapicuOSComponent.ActivityDisplay;
+    if (NapicuOSComponent.ActivityDisplay) {
+      NapicuOSComponent.closeActivityMenu();
+    } else {
+      NapicuOSComponent.openActivityMenu();
+    }
   }
 
   /**
@@ -259,8 +264,20 @@ export class NapicuOSComponent implements OnInit {
    */
   public onClickDayInCalendar(selectedDay: NapicuCalendarDateMetadata): void { //TODO
     const selectedYear: number = NapicuOSComponent.CalendarMenu.selectedMonth;
+  }
 
+  public static closeActivityMenu(): void {
+    NapicuOS.disable_window_manager();
+    NapicuOSComponent.ActivityDisplay = false;
+  }
 
+  public static openActivityMenu(): void {
+    NapicuOS.enable_window_manager();
+    NapicuOSComponent.ActivityDisplay = true;
+  }
+
+  public onClickDesktop(): void {
+    NapicuOSComponent.closeActivityMenu();
   }
 
   get GetNotification(): SystemNotification | null {

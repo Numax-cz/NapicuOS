@@ -144,7 +144,8 @@
         </ng-container>
         <!-- Main Panel -->
         <section style="display: contents; background-color: white">
-          <div [@NapicuOSfeoreActivityMenu]="GetActivityDisplay" [style.background-image]="'url(' + wallpaper + ')'"
+          <div [@NapicuOSfeoreActivityMenu]="GetActivityDisplay" (click)="onClickDesktop()"
+               [style.background-image]="'url(' + wallpaper + ')'"
                id="wallpaper">
             <!-- Apps -->
             <section>
