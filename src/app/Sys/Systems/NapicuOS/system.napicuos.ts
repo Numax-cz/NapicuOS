@@ -1013,7 +1013,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       console.error("CreatAppFile Error - File already exists");
     }
     if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application.fileName);
-    this.add_app_to_activity_menu(Application)
+    this.add_app_to_activity_menu(Application);
   }
 
   /**

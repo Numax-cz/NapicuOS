@@ -497,10 +497,17 @@ $ContextMenuBox-Padding: 10px 5px;
   }
 
   .app {
+    width: 10%;
+    padding: 25px;
+    border-radius: 13px;
     display: flex;
-    margin: 14px 0;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 12%;
+    cursor: pointer;
+  }
+
+  .app:hover {
+    background-color: var(--NapicuCalendarHoverDayColor);
   }
 }
