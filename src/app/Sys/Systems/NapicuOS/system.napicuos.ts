@@ -989,7 +989,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Creates and installs the application
    * @return {SystemFile} Application file
    */
-  static install_app(data: AppCreatMetadata): void {
+  public static install_app(data: AppCreatMetadata): void {
     let Application = new SystemFile({
       fileName: data.processTitle,
       fileType: SystemFileTypeEnumMetadata.apps,
@@ -1008,10 +1008,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       iconPath: data.fileIconPath,
     });
 
+
     if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       console.error("CreatAppFile Error - File already exists");
     }
     if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application.fileName);
+    this.add_app_to_activity_menu(Application)
   }
 
   /**

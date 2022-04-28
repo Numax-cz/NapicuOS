@@ -483,4 +483,24 @@ $ContextMenuBox-Padding: 10px 5px;
   z-index: 0;
   bottom: 10%;
   transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+
+  img {
+    width: 65px;
+  }
+
+  .appName {
+    color: white;
+    font-size: 1rem;
+  }
+
+  .app {
+    display: flex;
+    margin: 14px 0;
+    flex-direction: column;
+    align-items: center;
+    width: 12%;
+  }
 }
