@@ -422,7 +422,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_apps_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['usr'];
   }
-  
+
   /**
    * Returns main bin directory
    */
@@ -437,10 +437,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.get_root_dir().dir?.["home"];
   }
 
+  /**
+   * Returns apps in activity system menu
+   */
+  public static get_activity_apps_menu(): SystemFile[] {
+    return NapicuOSComponent.ActivityMenuApps;
+  }
 
-  //TODO DOC
-  public static get_mounted_drive(mountedDriveName: string): systemDirAFileMetadata | undefined {
-    return this.get_dir()[mountedDriveName];
+  /**
+   * Adds app to activity system menu
+   * @param app
+   */
+  public static add_app_to_activity_menu(app: SystemFile) {
+    NapicuOSComponent.ActivityMenuApps.push(app);
   }
 
   /**

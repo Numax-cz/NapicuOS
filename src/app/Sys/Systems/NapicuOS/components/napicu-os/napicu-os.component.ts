@@ -75,6 +75,10 @@ export class NapicuOSComponent implements OnInit {
    */
   public static ActivityDisplay: boolean = false;
   public static BottomDockProcess: SystemDockDisplay[] = [];
+  /**
+   * Files to be displayed in activity apps menu
+   */
+  public static ActivityMenuApps: SystemFile[] = [];
   public static NotificationsFront: SystemNotification[] = [];
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
@@ -322,5 +326,9 @@ export class NapicuOSComponent implements OnInit {
 
   get GetActivityDisplay(): boolean {
     return NapicuOSComponent.ActivityDisplay;
+  }
+
+  get GetActivityMenuApps(): SystemFile[] {
+    return NapicuOSComponent.ActivityMenuApps;
   }
 }

@@ -22,6 +22,7 @@
   background-repeat: repeat;
   background-size: cover;
   padding: 10px;
+  z-index: 1;
   border-top-left-radius: 10px 10px;
   border-top-right-radius: 10px 10px;
 }
@@ -471,4 +472,15 @@ $ContextMenuBox-Padding: 10px 5px;
   .slider.round:before {
     border-radius: 50%;
   }
+}
+
+.NapicuAppsMenu {
+  width: 80%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  height: 46%;
+  z-index: 0;
+  bottom: 10%;
+  transform: translateX(-50%);
 }

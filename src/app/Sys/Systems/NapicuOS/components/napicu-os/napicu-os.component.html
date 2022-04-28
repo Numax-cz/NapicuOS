@@ -154,6 +154,7 @@
           </div>
         </section>
 
+
         <!-- Bottom AppPanel -->
         <section *ngIf="BottomDockDisplay" class="BottomPanel" id="Dock"
                  style="z-index: 10000">
@@ -180,6 +181,14 @@
           </div>
         </section>
       </section>
+
+      <!-- Apps menu list -->
+      <section *ngIf="GetActivityDisplay" class="NapicuAppsMenu">
+        <div *ngFor="let i of GetActivityMenuApps">
+          {{i.fileName}}
+        </div>
+      </section>
+
     </section>
 
 
