@@ -485,6 +485,8 @@ $ContextMenuBox-Padding: 10px 5px;
   transform: translateX(-50%);
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
+
   overflow-x: auto;
 
   img {
