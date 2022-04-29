@@ -184,10 +184,14 @@
 
       <!-- Apps menu list -->
       <section *ngIf="GetActivityDisplay" class="NapicuAppsMenu">
-        <div *ngFor="let i of GetActivityMenuApps" class="app">
+        <div *ngFor="let i of GetActivityMenuApps; let index = index" class="app">
+          <!-- Application properties menu-->
+          <div *ngIf="index === selectedAppProperties" class="ContextMenu ContextMenuBox napicu-os-clickable">
+            <div (click)="openFileInContextMenu(i)">Open</div>
+          </div>
           <!-- App icon -->
           <div>
-            <img [src]="i.iconPath" alt="App icon"/>
+            <img (contextmenu)="openAppProperties(index, $event)" [src]="i.iconPath" alt="App icon"/>
           </div>
           <!-- App name -->
           <div class="appName">{{i.fileName}}</div>

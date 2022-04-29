@@ -82,6 +82,7 @@ export class NapicuOSComponent implements OnInit {
   public static NotificationsFront: SystemNotification[] = [];
   public static NotificationActive: SystemNotification | null = null;
   public selectedAppContext: number | null = null;
+  public selectedAppProperties: number | null = null;
   public static CalendarMenu: SystemCalendarMetadata = {
     calendar: [],
     calendarDays: [],
@@ -130,6 +131,7 @@ export class NapicuOSComponent implements OnInit {
         !p.offsetParent?.classList.contains("napicu-os-clickable")
       ) {
         this.closeAppContextMenu();
+        this.closeAppPropertiesMenu();
         NapicuOSComponent.DataDisplay = false;
       }
       //e.preventDefault();
@@ -228,6 +230,10 @@ export class NapicuOSComponent implements OnInit {
     this.selectedAppContext = null;
   }
 
+  protected closeAppPropertiesMenu(): void {
+    this.selectedAppProperties = null;
+  }
+
   public arrowLeft(): void {
     NapicuOSComponent.CalendarMenu.selectedMonth--;
     if (NapicuOSComponent.CalendarMenu.selectedMonth < 0) NapicuOSComponent.CalendarMenu.selectedMonth = 11;
@@ -261,6 +267,14 @@ export class NapicuOSComponent implements OnInit {
     } else {
       NapicuOSComponent.openActivityMenu();
     }
+  }
+
+  /**
+   * This function is called when the user clicks on app in activities menu
+   */
+  public openAppProperties(index: number, event: Event): void {
+    this.selectedAppProperties = index;
+    event.preventDefault();
   }
 
   /**
