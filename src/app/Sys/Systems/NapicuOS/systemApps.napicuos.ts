@@ -12,7 +12,7 @@ export function initAllStartUpApps(): void {
   // NapicuOS.open_app("InstallNapicuOS");
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
-  NapicuOS.open_app("Terminal");
+  NapicuOS.open_app("InstallNapicuOS");
 }
 
 //Before the user is logged in

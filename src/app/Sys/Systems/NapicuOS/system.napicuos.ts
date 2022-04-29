@@ -1002,7 +1002,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
           resizeAllowed: data.resizeAllowed,
           fileIconPath: data.fileIconPath,
           windowButtons: data.windowButtons,
-          multiRun: data.multiRun
+          multiRun: data.multiRun,
         }
       },
       iconPath: data.fileIconPath,

@@ -45,7 +45,7 @@ export class Process {
     if (data?.processTitle) this._processTitle = data.processTitle;
     if (data?.processInterval) this.processInterval = data.processInterval;
     this._processTitle = data.processTitle || "NapicuAPP";
-    this._multiRun = data.multiRun || true;
+    this._multiRun = (data.multiRun === undefined) ? true : data.multiRun;
     this._launchedBy = NapicuOS.get_active_user()?.username || 'System';
   }
 
@@ -102,8 +102,8 @@ export class Process {
   /**
    * Run the process
    */
-  public run(): this {
-    if (!this._multiRun && !NapicuOS.get_user_process_by_title(this._processTitle)) return this;
+  public run(): this | null {
+    if (!this._multiRun && NapicuOS.get_user_process_by_title(this._processTitle)) return null;
     if (this.processInterval) {
       this._Interval = setInterval(() => {
         this.processInterval?.fun();
@@ -120,7 +120,7 @@ export class Process {
    */
   public runAsSystem(): this {
     this._launchedBy = 'System';
-    return this.run();
+    return this.run() || this;
   }
 
   /**

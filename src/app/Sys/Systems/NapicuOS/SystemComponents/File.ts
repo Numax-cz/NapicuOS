@@ -87,15 +87,17 @@ export class SystemFile {
         case SystemFileTypeEnumMetadata.apps:
           let i = this.value() as AppCreatMetadata;
           let p = new Process({
-            processTitle: i.processTitle, Window: new Window(copy({
+            processTitle: i.processTitle,
+            Window: new Window(copy({
               windowTitle: i.appTitle,
               component: i.appComponent,
               windowData: i.windowData,
               resizeAllowed: i.resizeAllowed,
-              windowButtons: i.windowButtons
-            }))
+              windowButtons: i.windowButtons,
+            })),
+            multiRun: i.multiRun
           })
-          resolve(p.run().Window.open());
+          resolve(p.run()?.Window.open());
           break;
         case SystemFileTypeEnumMetadata.executable:
           let command = this._value as Command;

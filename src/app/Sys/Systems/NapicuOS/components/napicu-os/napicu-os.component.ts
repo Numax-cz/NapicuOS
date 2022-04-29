@@ -167,9 +167,11 @@ export class NapicuOSComponent implements OnInit {
     }
   }
 
-  public openFileInContextMenu(file: SystemFile): void {
+  public openFile(file: SystemFile): void {
     NapicuOS.open_app(file.fileName);
     this.closeAppContextMenu();
+    this.closeAppPropertiesMenu();
+    NapicuOSComponent.closeActivityMenu();
   }
 
   public pinFunFileInContextMenu(file: SystemFile, index: number, pinned: boolean): void {

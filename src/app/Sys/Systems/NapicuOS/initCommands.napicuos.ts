@@ -111,28 +111,28 @@ function initLs(): void {
         let listPath = terminal?.getPath();
         if (listPath) {
           let terminalPathData: systemDirAFileMetadata | null = NapicuOS.get_dir_by_path(listPath).data;
-          
+
           if (terminalPathData) {
             let exportLinest: Line[] = [];
 
             let dirsName: systemDirAFileMetadata = terminalPathData;
- 
+
             //Dirs
-            if(dirsName.dir){
+            if (dirsName.dir) {
               Object.keys(dirsName.dir).forEach((keys: string) => {
                 let line: Line = new Line(`${keys}`, 'white');
                 exportLinest.push(line);
               });
             }
-            
+
             //Files
-            if(dirsName.files){
+            if (dirsName.files) {
               dirsName.files.forEach((file: SystemFile) => {
                 let line: Line = new Line(`${file.fileName}`, 'white');
                 exportLinest.push(line);
               });
             }
-            
+
             resolve({
               linesForCMD: exportLinest,
               stateCode: CommandStateCodeMetadata.success,
@@ -190,14 +190,14 @@ function initChangeDirectory(): void {
         if (params?.length) {
           //TODO if terminal 1#
           let path: string = params[0];
-          
-          if(path.startsWith("..")){
+
+          if (path.startsWith("..")) {
             let prth: string[] | undefined = terminal?.getPath().split("/");
             prth?.pop();
-            if(!prth) return;
+            if (!prth) return;
             let prthStr = prth.toString();
             path = (!prthStr.length) ? "/" : prthStr;
-          } else if  (!path.startsWith('/')) {
+          } else if (!path.startsWith('/')) {
             path = `${terminal?.getPath()}/${path}`;
           }
 

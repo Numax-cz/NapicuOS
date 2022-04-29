@@ -166,7 +166,7 @@
                 <!-- Application context menu-->
                 <div *ngIf="index === selectedAppContext"
                      class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight napicu-os-clickable">
-                  <div (click)="openFileInContextMenu(i.file)">Open</div>
+                  <div (click)="openFile(i.file)">Open</div>
                   <div
                     (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
                     'Unpin' : 'Pin'}}</div>
@@ -190,7 +190,7 @@
           <!-- Application properties menu-->
           <div *ngIf="index === selectedAppProperties"
                class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionRight napicu-os-clickable">
-            <div (click)="openFileInContextMenu(i)">New window</div>
+            <div (click)="openFile(i)">New window</div>
             <div>Show details</div>
           </div>
 
