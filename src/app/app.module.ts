@@ -31,6 +31,7 @@ import {AlertComponent} from './Sys/Systems/NapicuOS/Apps/alert/alert.component'
 import {DynamicModule} from 'ng-dynamic-component';
 import {MainComponent} from './Sys/Systems/NapicuOS/Apps/welcome/main/main.component';
 import {UserComponent} from './Sys/Systems/NapicuOS/Apps/welcome/user/user.component';
+import { UsermanagerComponent } from './Sys/Systems/NapicuOS/Apps/usermanager/usermanager.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import {UserComponent} from './Sys/Systems/NapicuOS/Apps/welcome/user/user.compo
     AlertComponent,
     MainComponent,
     UserComponent,
+    UsermanagerComponent,
   ],
   imports: [
     BrowserModule,
