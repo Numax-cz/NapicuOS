@@ -165,7 +165,9 @@
               <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon">
                 <!-- Application context menu-->
                 <div *ngIf="index === selectedAppContext"
-                     class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight napicu-os-clickable">
+                     class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder
+                     NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight
+                     napicu-os-clickable napicu-os-ignore-window-ac">
                   <div (click)="openFile(i.file)">Open</div>
                   <div
                     (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?

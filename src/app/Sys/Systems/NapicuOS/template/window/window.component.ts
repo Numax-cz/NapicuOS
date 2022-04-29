@@ -200,7 +200,7 @@ export class WindowComponent implements OnInit {
       if (
         p.offsetParent?.id !== 'napicuos-App-window' &&
         WindowComponent.selectedWindow?.activated
-        && !p.offsetParent?.classList.contains("DockIcon")
+        && !p.offsetParent?.classList.contains("DockIcon") && !p.offsetParent?.classList.contains("napicu-os-ignore-window-ac")
       ) {
         WindowComponent.selectedWindow.activated = false;
         NapicuOS.update_dock_items();
