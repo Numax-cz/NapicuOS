@@ -128,7 +128,7 @@ export class NapicuOSComponent implements OnInit {
     window.addEventListener('mousedown', (e: MouseEvent) => {
       let p = e.target as HTMLElement;
       if (
-        !p.offsetParent?.classList.contains("napicu-os-clickable")
+        !p.offsetParent?.getAttribute('clickable')
       ) {
         this.closeAppContextMenu();
         this.closeAppPropertiesMenu();
