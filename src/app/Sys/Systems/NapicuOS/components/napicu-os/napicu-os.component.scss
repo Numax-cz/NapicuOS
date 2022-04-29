@@ -117,24 +117,7 @@
 
   }
 
-  .ContextMenu {
 
-    width: 160px;
-    bottom: calc(100% + 20px);
-    color: white;
-
-    > div {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      padding: 7px 5px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    > div:hover {
-      background-color: #393a3d;
-    }
-  }
 }
 
 .NotCloseButtonScheme { //Main notification button schema
@@ -158,13 +141,7 @@
 
 $ContextMenuBox-Padding: 10px 5px;
 //TODO CONFIG - Main box
-.ContextMenuBox {
-  border-radius: 14px;
-  left: 0;
-  padding: $ContextMenuBox-Padding;
-  position: absolute;
-  background-color: #1E2127;
-}
+
 
 //Calendar
 .DateContextMenu {
@@ -307,13 +284,6 @@ $ContextMenuBox-Padding: 10px 5px;
   align-items: center;
   flex-direction: column;
   margin: auto;
-
-  .NapicuCalendarMainBox {
-    background-color: #3c3c3c; //CONFIG
-    padding: 16px;
-    border: 1px solid #000000c9; //Config
-    border-radius: 17px;
-  }
 
   .header {
     display: flex;
@@ -501,6 +471,10 @@ $ContextMenuBox-Padding: 10px 5px;
   .app {
     position: relative;
     width: 10%;
+
+  }
+
+  .MainContent {
     padding: 25px;
     border-radius: 13px;
     display: flex;
@@ -510,7 +484,7 @@ $ContextMenuBox-Padding: 10px 5px;
     cursor: pointer;
   }
 
-  .app:hover {
+  .MainContent:hover {
     background-color: var(--NapicuCalendarHoverDayColor);
   }
 }

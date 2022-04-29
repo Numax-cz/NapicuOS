@@ -19,7 +19,8 @@
           <div (click)="onClickDate()" class="top-panel-item">{{ systemTime }}</div>
           <!-- Date panel-->
           <div @NapicuOSfeoreNotification *ngIf="GetDateDisplay"
-               class="DateContextMenu ContextMenuBox napicu-os-clickable">
+               class="DateContextMenu NapicuOSSimpleBoxNoNBorder NapicuOSSimpleBoxDarkerColor napicu-os-clickable"
+               style="position: absolute">
             <section class="DateContextMenu-MainContainer">
               <!--Notifications-->
               <div class="DateContextMenu-box" style="overflow: hidden">
@@ -33,7 +34,7 @@
                 <div style="overflow-y: auto; height: 81%; padding: 0 10px; margin: 10px 0;" id="WindowScrollBar">
                   <section *ngFor="let i of GetNotificationsMenu"
                            @NapicuOSfeoreNotification
-                           class="NotificationContextMenu ContextMenuBox napicu-os-clickable"
+                           class="NotificationContextMenu NapicuOSSimpleBoxBorder napicu-os-clickable"
                            id="NotificationContextMenu-DateBox"
                            style="position: relative; top: 0">
                     <div class="ntf-con">
@@ -75,7 +76,7 @@
                     <div class="dayName">{{GetDayName}}</div>
                     <div class="fullDate">{{GetFullDate}}</div>
                   </div>
-                  <section class="NapicuCalendarMainBox">
+                  <section class="NapicuOSSimpleBoxBorder">
                     <!--Calendar Header-->
                     <div class="header">
                       <div class="Arrow" (click)="arrowLeft()">◄</div>
@@ -120,8 +121,8 @@
         <!--Notification panel-->
         <ng-container *ngIf="GetNotification && !GetDateDisplay">
           <section @NapicuOSfeoreNotification (click)="onNotificationClick()"
-                   class="Notification NotificationContextMenu ContextMenuBox"
-                   style="padding: 0">
+                   class="Notification NotificationContextMenu NapicuOSSimpleBoxNoNBorder NapicuOSSimpleBoxDarkerColor"
+                   style="padding: 0; position: absolute">
             <div class="ntf-main">
               <div class="ntf-con">
                 <div>
@@ -163,7 +164,8 @@
               <!-- Applications -->
               <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon">
                 <!-- Application context menu-->
-                <div *ngIf="index === selectedAppContext" class="ContextMenu ContextMenuBox napicu-os-clickable">
+                <div *ngIf="index === selectedAppContext"
+                     class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight napicu-os-clickable">
                   <div (click)="openFileInContextMenu(i.file)">Open</div>
                   <div
                     (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
@@ -186,15 +188,20 @@
       <section *ngIf="GetActivityDisplay" class="NapicuAppsMenu">
         <div *ngFor="let i of GetActivityMenuApps; let index = index" class="app">
           <!-- Application properties menu-->
-          <div *ngIf="index === selectedAppProperties" class="ContextMenu ContextMenuBox napicu-os-clickable">
-            <div (click)="openFileInContextMenu(i)">Open</div>
+          <div *ngIf="index === selectedAppProperties"
+               class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionRight napicu-os-clickable">
+            <div (click)="openFileInContextMenu(i)">New window</div>
+            <div>Show details</div>
           </div>
-          <!-- App icon -->
-          <div>
-            <img (contextmenu)="openAppProperties(index, $event)" [src]="i.iconPath" alt="App icon"/>
+
+          <div class="MainContent" (contextmenu)="openAppProperties(index, $event)">
+            <!-- App icon -->
+            <div>
+              <img [src]="i.iconPath" alt="App icon"/>
+            </div>
+            <!-- App name -->
+            <div class="appName">{{i.fileName}}</div>
           </div>
-          <!-- App name -->
-          <div class="appName">{{i.fileName}}</div>
         </div>
 
       </section>
