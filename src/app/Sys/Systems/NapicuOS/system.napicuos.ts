@@ -45,7 +45,7 @@ import {NOTIFICATION_ACTIVE_TIME} from "./config/NotificationAnimations";
 import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
 import {NAPICUOS_COOKIES_NAME} from "./config/Cookies";
 import {NapicuOsCookiesTemplate} from "./interface/Cookies";
-import {NapicuCookies} from "./scripts/decorators";
+import {NapicuCookies} from "./scripts/Decorators";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuDate} from "napicuformatter";

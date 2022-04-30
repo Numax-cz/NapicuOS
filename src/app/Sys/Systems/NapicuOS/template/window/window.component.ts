@@ -7,7 +7,6 @@ import {WINDOW_ANIMATION_TIME} from '../../config/WindowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';
-import {Event} from "@angular/router";
 
 @Component({
   selector: 'app-window',
@@ -249,6 +248,7 @@ export class WindowComponent implements OnInit {
     if (NapicuOS.get_window_manager_status()) return;
     WindowComponent.selectedWindow.display = false;
     WindowComponent.selectedWindow.activated = false;
+    NapicuOS.update_dock_items();
     event.stopPropagation();
   }
 
