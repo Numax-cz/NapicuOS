@@ -3,20 +3,19 @@
     <div>
 
       <div>Username</div>
-      <input spellcheck="false" type="text" name="username"
+      <input class="formInput" spellcheck="false" type="text" name="username"
              autocomplete="off"/>
     </div>
     <div>
 
       <div>Password</div>
-      <input spellcheck="false" type="password" name="password"
+      <input class="formInput" spellcheck="false" type="password" name="password"
              autocomplete="off"/>
     </div>
 
     <div>
-      <div>Permissions</div>
-      <select>
-        <option [ngValue]="null" disabled>Select Country</option>
+      <div>Permission</div>
+      <select class="formInput">
         <option *ngFor="let i of GetUsersPermission" [ngValue]="i">{{i}}</option>
       </select>
     </div>

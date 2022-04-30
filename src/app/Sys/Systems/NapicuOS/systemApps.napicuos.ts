@@ -55,9 +55,9 @@ export function napicu_os_user_manager(): void {
     appTitle: 'User Manager',
     processTitle: 'UserManager',
     appComponent: UsermanagerComponent,
-    windowData: Window.centerPos(20, 25),
+    windowData: Window.centerPos(25, 32),
     resizeAllowed: false,
-    fileIconPath: '/assets/systems/NapicuOS/user.png', //TODO
+    fileIconPath: '/assets/systems/NapicuOS/user.png',
     addToDock: false,
     multiRun: true
   });
