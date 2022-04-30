@@ -434,6 +434,7 @@ export class WindowComponent implements OnInit {
    * Function for snapping the application window
    */
   protected snappingWindow(event: MouseEvent): void {
+    if (!WindowComponent.selectedWindow.resizeAllowed) return;
     const p = event.target as HTMLElement;
     if (p.classList.contains('left')) {
       WindowComponent.selectedWindow.setStateLeft();
