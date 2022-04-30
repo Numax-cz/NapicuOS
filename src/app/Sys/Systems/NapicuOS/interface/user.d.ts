@@ -1,4 +1,5 @@
-import {SystemUserDataMetadata, SystemUserPermissionsEnumMetadata} from "./User/user";
+import {SystemUserDataMetadata} from "./User/user";
+import {SystemUserPermissionsEnumMetadata} from "./User/UserPerms";
 
 export declare interface UserConstructorMetadata {
   username: string,

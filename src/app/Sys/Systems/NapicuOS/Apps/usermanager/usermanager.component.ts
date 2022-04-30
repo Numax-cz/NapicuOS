@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SystemUserPermissionsEnumMetadata} from "../../interface/User/UserPerms";
 
 @Component({
   selector: 'app-usermanager',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsermanagerComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+
+  get GetUsersPermission() {
+    return Object.keys(SystemUserPermissionsEnumMetadata);
+  }
 }

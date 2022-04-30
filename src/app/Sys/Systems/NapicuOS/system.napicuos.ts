@@ -35,7 +35,6 @@ import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
-import {SystemUserPermissionsEnumMetadata} from './interface/User/user';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from './SystemComponents/Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
@@ -58,6 +57,7 @@ import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 import {checkSystemStringLength} from './scripts/ChckStringCorrection';
 import {TerminalClass} from "./SystemComponents/Terminal";
+import {SystemUserPermissionsEnumMetadata} from "./interface/User/UserPerms";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;

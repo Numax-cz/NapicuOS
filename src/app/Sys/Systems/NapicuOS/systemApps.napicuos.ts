@@ -3,6 +3,7 @@ import {ConsoleComponent} from './Apps/console/console.component';
 import {WelcomeComponent} from './Apps/welcome/welcome.component';
 import {NapicuOS} from './system.napicuos';
 import {Window} from "./SystemComponents/Window";
+import {UsermanagerComponent} from "./Apps/usermanager/usermanager.component";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -12,13 +13,15 @@ export function initAllStartUpApps(): void {
   // NapicuOS.open_app("InstallNapicuOS");
   NapicuOS.open_app("Terminal");
   NapicuOS.open_app("Terminal");
-  NapicuOS.open_app("InstallNapicuOS");
+
+  NapicuOS.open_app("UserManager");
 }
 
 //Before the user is logged in
 export function installAllApps(): void {
   napicu_os_terminal();
   napicu_os_welcomeapp();
+  napicu_os_user_manager();
 }
 
 
@@ -44,6 +47,19 @@ export function napicu_os_welcomeapp(): void {
     fileIconPath: '/assets/systems/NapicuOS/Logo.svg',
     addToDock: true,
     multiRun: false
+  });
+}
+
+export function napicu_os_user_manager(): void {
+  return NapicuOS.install_app({
+    appTitle: 'User Manager',
+    processTitle: 'UserManager',
+    appComponent: UsermanagerComponent,
+    windowData: Window.centerPos(20, 25),
+    resizeAllowed: false,
+    fileIconPath: '/assets/systems/NapicuOS/user.png', //TODO
+    addToDock: false,
+    multiRun: true
   });
 }
 

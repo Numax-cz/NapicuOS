@@ -1,7 +1,6 @@
-import { systemDirAFileMetadata, systemDirMetadata } from "../FilesDirs/systemDir";
+import {systemDirAFileMetadata, systemDirMetadata} from "../FilesDirs/systemDir";
 import {SystemRemindNotificationConstructorMetadata} from "../remidNotification";
 
-export declare type SystemUserPermissionsMetadata = 'superUser' | 'user';
 
 export declare interface SystemUserDataMetadata {
   appsInDock: string[];
@@ -14,7 +13,4 @@ export declare interface SystemUserDataMetadata {
   audioVolume: number,
 }
 
-export const enum SystemUserPermissionsEnumMetadata {
-  SuperUser = 'SuperUser',
-  User = 'User',
-}
+

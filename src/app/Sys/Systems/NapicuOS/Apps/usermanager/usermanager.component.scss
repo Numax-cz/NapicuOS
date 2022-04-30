@@ -1,0 +1,19 @@
+.BackgroundColor {
+  background-color: #f5f5f5;
+}
+
+input {
+  font-size: 1.055rem;
+  font-weight: 500;
+  padding: 5px 7px;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

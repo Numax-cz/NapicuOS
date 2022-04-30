@@ -1,1 +1,29 @@
-<p>usermanager works!</p>
+<section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
+  <form class="form">
+    <div>
+
+      <div>Username</div>
+      <input spellcheck="false" type="text" name="username"
+             autocomplete="off"/>
+    </div>
+    <div>
+
+      <div>Password</div>
+      <input spellcheck="false" type="password" name="password"
+             autocomplete="off"/>
+    </div>
+
+    <div>
+      <div>Permissions</div>
+      <select>
+        <option [ngValue]="null" disabled>Select Country</option>
+        <option *ngFor="let i of GetUsersPermission" [ngValue]="i">{{i}}</option>
+      </select>
+    </div>
+
+    <button>Add new user</button>
+  </form>
+</section>
+
+
+
