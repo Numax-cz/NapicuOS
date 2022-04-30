@@ -5,7 +5,7 @@ import {
   SystemInstallationOptionsArrayBinds,
   SystemInstallationOptionsArrayMetadata,
   SystemInstallationOptionsMetadata
-} from "../../interface/Apps/welcome";
+} from "../../interface/Apps/Welcome";
 import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 

@@ -7,10 +7,10 @@ import {
   historyCommandsMetadata,
   inputMetadata,
   terminalColorsMetadata,
-} from '../../interface/Apps/console';
+} from '../../interface/Apps/Consoled.';
 import {NapicuOSSystemDir} from "../../config/drive";
 import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/systemDir";
-import {SystemCommandsPrefixEnum} from "../../interface/Commands/commands";
+import {SystemCommandsPrefixEnum} from "../../config/commands/Commands";
 import {TerminalClass} from "../../SystemComponents/Terminal";
 
 export class Line {

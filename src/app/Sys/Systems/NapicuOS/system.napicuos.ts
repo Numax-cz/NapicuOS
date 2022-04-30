@@ -37,8 +37,8 @@ import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
 import {SystemAlert} from './SystemComponents/Alert';
-import {systemAlertTypeEnumMetadata} from "./interface/Alert/alert";
-import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
+import {systemAlertTypeEnumMetadata} from "./interface/Alert";
+import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "./SystemComponents/Notification";
 import {NOTIFICATION_ACTIVE_TIME} from "./config/notificationAnimations";
@@ -46,7 +46,6 @@ import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
 import {NAPICUOS_COOKIES_NAME} from "./config/cookies";
 import {NapicuOsCookiesTemplate} from "./interface/cookies";
 import {NapicuCookies} from "./scripts/decorators";
-import {UserConstructorMetadata} from "./interface/user";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuDate} from "napicuformatter";
@@ -58,6 +57,7 @@ import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 import {checkSystemStringLength} from './scripts/ChckStringCorrection';
 import {TerminalClass} from "./SystemComponents/Terminal";
 import {SystemUserPermissionsEnumMetadata} from "./interface/User/UserPerms";
+import {UserConstructorMetadata} from "./interface/User/user";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;

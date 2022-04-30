@@ -3,7 +3,7 @@ import {
   SystemInstallationOptionsArrayBinds,
   SystemInstallationOptionsArrayMetadata,
   welcomeUserInstallationDataMetadata
-} from "../../interface/Apps/welcome";
+} from "../../interface/Apps/Welcome";
 
 export abstract class WelcomeComponentClass<T> {
 

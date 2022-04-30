@@ -22,7 +22,7 @@ import {
   addUserUsage
 } from './config/commands/help/addUserCommand';
 import {User} from './SystemComponents/User';
-import {SystemCommandsPrefixEnum} from "./interface/Commands/commands";
+import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemNotification} from "./SystemComponents/Notification";
 import {SystemStateMetadata, SystemUserStateData} from './interface/system';
 import {echoHelpCommand} from "./config/commands/help/echoCommand";

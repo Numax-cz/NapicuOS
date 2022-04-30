@@ -1,6 +1,6 @@
 import {Type} from '@angular/core';
 import {AlertComponent} from '../Apps/alert/alert.component';
-import {systemAlertTypeEnumMetadata} from '../interface/Alert/alert';
+import {systemAlertTypeEnumMetadata} from '../interface/Alert';
 import {windowData} from '../interface/Window/windowData';
 import {Window} from './Window';
 

@@ -1,5 +1,6 @@
 import {systemDirAFileMetadata, systemDirMetadata} from "../FilesDirs/systemDir";
 import {SystemRemindNotificationConstructorMetadata} from "../remidNotification";
+import {SystemUserPermissionsEnumMetadata} from "./UserPerms";
 
 
 export declare interface SystemUserDataMetadata {
@@ -14,3 +15,9 @@ export declare interface SystemUserDataMetadata {
 }
 
 
+export declare interface UserConstructorMetadata {
+  username: string,
+  password: string,
+  permissions?: SystemUserPermissionsEnumMetadata,
+  userSetting?: SystemUserDataMetadata
+}

@@ -12,7 +12,7 @@ import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPas
 import {
   SystemInstallationOptionsArrayBinds,
   welcomeUserInstallationDataMetadata
-} from "../../../interface/Apps/welcome";
+} from "../../../interface/Apps/Welcome";
 
 @Component({
   selector: 'app-user',

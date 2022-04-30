@@ -1,4 +1,4 @@
-import {inputMetadata} from "../interface/Apps/console";
+import {inputMetadata} from "../interface/Apps/Consoled.";
 import {ConsoleComponent, Line} from "../Apps/console/console.component";
 import {ElementRef, ViewChild} from "@angular/core";
 import {SYSTEM_DEFAULT_TERMINAL_PATH} from "../config/system";
@@ -81,7 +81,7 @@ export abstract class TerminalClass {
   }
 
   //TODO DOC
-  public getPath(): string{
+  public getPath(): string {
     return this.activePath;
   }
 
