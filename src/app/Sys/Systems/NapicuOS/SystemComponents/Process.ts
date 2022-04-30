@@ -3,7 +3,7 @@ import {SystemAlert} from './Alert';
 import {SystemFile} from './File';
 import {System} from './System';
 import {WINDOW_ANIMATION_TIME} from '../config/windowAnimations';
-import {processConstructor} from '../interface/process';
+import {processConstructor} from '../interface/Process';
 import {NapicuOS} from '../system.napicuos';
 import {Window} from './Window';
 

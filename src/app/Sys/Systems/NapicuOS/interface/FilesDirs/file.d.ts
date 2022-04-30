@@ -1,4 +1,4 @@
-import {SystemFilePermissionsMetadata} from '../permissions';
+import {SystemFilePermissionsMetadata} from '../Permissions';
 
 declare const enum SystemFileTypeEnumMetadata {
   executable = 'Executable',

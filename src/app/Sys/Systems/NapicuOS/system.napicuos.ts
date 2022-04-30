@@ -9,7 +9,7 @@ import {
   SystemStateMetadata,
   SystemStringStateCorrection,
   SystemUserStateData,
-} from './interface/system';
+} from './interface/System';
 import {Process} from './SystemComponents/Process';
 import {System} from './SystemComponents/System';
 import {LoadsComponent} from './components/loads/loads.component';
@@ -44,14 +44,14 @@ import {SystemNotification} from "./SystemComponents/Notification";
 import {NOTIFICATION_ACTIVE_TIME} from "./config/notificationAnimations";
 import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
 import {NAPICUOS_COOKIES_NAME} from "./config/cookies";
-import {NapicuOsCookiesTemplate} from "./interface/cookies";
+import {NapicuOsCookiesTemplate} from "./interface/Cookies";
 import {NapicuCookies} from "./scripts/decorators";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuDate} from "napicuformatter";
 import {NapicuAudio} from "./SystemComponents/Audio";
 import {Window} from "./SystemComponents/Window";
-import {SystemRemindNotificationConstructorMetadata} from "./interface/remidNotification";
+import {SystemRemindNotificationConstructorMetadata} from "./interface/RemidNotification";
 import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 import {checkSystemStringLength} from './scripts/ChckStringCorrection';

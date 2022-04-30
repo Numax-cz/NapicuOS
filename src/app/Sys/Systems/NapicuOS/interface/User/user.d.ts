@@ -1,5 +1,5 @@
 import {systemDirAFileMetadata, systemDirMetadata} from "../FilesDirs/systemDir";
-import {SystemRemindNotificationConstructorMetadata} from "../remidNotification";
+import {SystemRemindNotificationConstructorMetadata} from "../RemidNotification";
 import {SystemUserPermissionsEnumMetadata} from "./UserPerms";
 
 

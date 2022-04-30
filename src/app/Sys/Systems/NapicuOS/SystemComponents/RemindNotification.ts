@@ -1,4 +1,4 @@
-import {SystemRemindNotificationConstructorMetadata} from "../interface/remidNotification";
+import {SystemRemindNotificationConstructorMetadata} from "../interface/RemidNotification";
 
 export class SystemRemindNotification {
 

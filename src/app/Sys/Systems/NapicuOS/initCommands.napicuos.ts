@@ -24,7 +24,7 @@ import {
 import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemNotification} from "./SystemComponents/Notification";
-import {SystemStateMetadata, SystemUserStateData} from './interface/system';
+import {SystemStateMetadata, SystemUserStateData} from './interface/System';
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
 import {systemDirAFileMetadata, systemDirMetadata} from './interface/FilesDirs/systemDir';
