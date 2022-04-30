@@ -32,6 +32,8 @@ import {DynamicModule} from 'ng-dynamic-component';
 import {MainComponent} from './Sys/Systems/NapicuOS/Apps/welcome/main/main.component';
 import {UserComponent} from './Sys/Systems/NapicuOS/Apps/welcome/user/user.component';
 import { UsermanagerComponent } from './Sys/Systems/NapicuOS/Apps/usermanager/usermanager.component';
+import { DropDownMenuComponent } from './Sys/Systems/NapicuOS/template/drop-down-menu/drop-down-menu.component';
+import { ClickDirective } from './Sys/Systems/NapicuOS/template/drop-down-menu/click.directive';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { UsermanagerComponent } from './Sys/Systems/NapicuOS/Apps/usermanager/us
     MainComponent,
     UserComponent,
     UsermanagerComponent,
+    DropDownMenuComponent,
+    ClickDirective,
   ],
   imports: [
     BrowserModule,

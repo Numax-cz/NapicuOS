@@ -1,0 +1,34 @@
+@mixin angle-down-solid {
+  content: "X";
+  position: absolute;
+  top: 3.5%;
+  left: 22.3%;
+  color: black;
+
+  height: 13px;
+  width: 14px;
+}
+
+.drop-down-menu {
+  margin-top: 15px;
+  width: 100%;
+
+
+  &.close::after {
+    @include angle-down-solid;
+  }
+
+  &.open::after {
+    @include angle-down-solid;
+    transform: rotate(180deg);
+  }
+
+
+}
+
+.optins {
+  bottom: -23%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74%;
+}

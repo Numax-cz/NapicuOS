@@ -3,21 +3,21 @@
     <div>
 
       <div>Username</div>
-      <input class="formInput" spellcheck="false" type="text" name="username"
+      <input class="NapicuOSSimpleInput" spellcheck="false" type="text" name="username"
              autocomplete="off"/>
     </div>
     <div>
 
       <div>Password</div>
-      <input class="formInput" spellcheck="false" type="password" name="password"
+      <input class="NapicuOSSimpleInput" spellcheck="false" type="password" name="password"
              autocomplete="off"/>
     </div>
 
+
     <div>
       <div>Permission</div>
-      <select class="formInput">
-        <option *ngFor="let i of GetUsersPermission" [ngValue]="i">{{i}}</option>
-      </select>
+      <napicu-drop-down-menu [selectedOption]="0"
+                             [options]="GetUsersPermission"></napicu-drop-down-menu>
     </div>
 
     <button>Add new user</button>
