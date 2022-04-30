@@ -1,12 +1,12 @@
 import {Command} from './Command';
 import {Process} from './Process';
-import {SystemFileConsMetadata, SystemFileTypeEnumMetadata,} from '../interface/FilesDirs/file';
+import {SystemFileConsMetadata, SystemFileTypeEnumMetadata,} from '../interface/FilesDirs/File';
 import {SystemFilePermissionsMetadata} from '../interface/Permissions';
 import {Window} from "./Window";
 import {copy} from "../../../../Bios/Scripts/DeepClone";
 import {AppCreatMetadata} from "../interface/System";
 import {TerminalClass} from "./Terminal";
-import {SystemUserPermissionsEnumMetadata} from "../interface/User/UserPerms";
+import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
 
 
 export class SystemFile {

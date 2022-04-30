@@ -3,7 +3,7 @@ import {
   SystemNotificationConstructorMetadata
 } from "../interface/Notification";
 import {NapicuOS} from "../system.napicuos";
-import {TIME_FORMAT_MHA} from "../config/time";
+import {TIME_FORMAT_MHA} from "../config/Time";
 
 export class SystemNotification {
   /**

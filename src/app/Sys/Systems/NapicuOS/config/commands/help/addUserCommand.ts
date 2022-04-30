@@ -4,7 +4,7 @@ import {
   SYSTEM_HOSTNAME_MIN_LENGTH,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH
-} from "../../system";
+} from "../../System";
 
 export const addUserUsage: Line = new Line(
   `Usage: adduser <user_name> <user_password>`

@@ -1,7 +1,7 @@
 import {Type} from '@angular/core';
 import {AlertComponent} from '../Apps/alert/alert.component';
 import {systemAlertTypeEnumMetadata} from '../interface/Alert';
-import {windowData} from '../interface/Window/windowData';
+import {windowData} from '../interface/Window/WindowData';
 import {Window} from './Window';
 
 export class SystemAlert extends Window {

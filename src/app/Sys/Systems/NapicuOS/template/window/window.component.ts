@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {SystemAlert} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Alert';
 import {Process, ProcessWindowValueMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Process';
 import {Window} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Window';
-import {WINDOW_ANIMATION_TIME} from '../../config/windowAnimations';
+import {WINDOW_ANIMATION_TIME} from '../../config/WindowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';

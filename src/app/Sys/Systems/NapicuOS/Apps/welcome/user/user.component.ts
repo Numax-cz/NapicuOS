@@ -6,7 +6,7 @@ import {
   SYSTEM_USERS_MAX_LENGTH, SYSTEM_USERS_MAX_PASSWORD_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
   SYSTEM_USERS_MIN_PASSWORD_LENGTH
-} from "../../../config/system";
+} from "../../../config/System";
 import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
 
 import {

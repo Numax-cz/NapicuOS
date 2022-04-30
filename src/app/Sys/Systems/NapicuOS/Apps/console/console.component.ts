@@ -1,15 +1,15 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CommandFunMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Command';
-import {SYSTEM_DEFAULT_HOSTNAME} from '../../config/system';
+import {SYSTEM_DEFAULT_HOSTNAME} from '../../config/System';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
 import {
   historyCommandsMetadata,
   inputMetadata,
   terminalColorsMetadata,
-} from '../../interface/Apps/Consoled.';
-import {NapicuOSSystemDir} from "../../config/drive";
-import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/systemDir";
+} from '../../interface/Apps/Console';
+import {NapicuOSSystemDir} from "../../config/Drive";
+import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/SystemDir";
 import {SystemCommandsPrefixEnum} from "../../config/commands/Commands";
 import {TerminalClass} from "../../SystemComponents/Terminal";
 

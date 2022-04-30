@@ -1,12 +1,12 @@
 import {animate, query, stagger, style, transition, trigger,} from '@angular/animations';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SystemComponent} from 'src/app/Grub/system/system.component';
-import {LOG_SCREEN_ANIMATION_TIME} from '../../config/logscreen';
+import {LOG_SCREEN_ANIMATION_TIME} from '../../config/LogScreen';
 import {SystemStateMetadata} from '../../interface/System';
 import {NapicuOS} from '../../system.napicuos';
 import {NapicuOSComponent} from '../napicu-os/napicu-os.component';
 import {KeyMaps} from "../../../../../Bios/Config/KeyMaps";
-import {SYSTEM_WALLPAPER} from "../../config/system";
+import {SYSTEM_WALLPAPER} from "../../config/System";
 
 @Component({
   selector: 'app-loginscreen',

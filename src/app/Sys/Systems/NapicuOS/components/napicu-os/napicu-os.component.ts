@@ -1,18 +1,18 @@
 import {animate, query, stagger, state, style, transition, trigger,} from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
 import {Process} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Process';
-import {BOOT_ANIMATION_TIME} from '../../config/boot';
+import {BOOT_ANIMATION_TIME} from '../../config/Boot';
 import {NapicuOS} from '../../system.napicuos';
 import {SystemFile} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/File';
 import {SystemDockDisplay} from "../../interface/System/dock";
 import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../SystemComponents/Notification";
-import {NOTIFICATION_ANIMATION_TIME} from "../../config/notificationAnimations";
+import {NOTIFICATION_ANIMATION_TIME} from "../../config/NotificationAnimations";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "napicuformatter";
-import {SystemCalendarMetadata} from "../../interface/System/calendar";
-import {WINDOW_ANIMATION_TIME} from "../../config/windowAnimations";
-import {SYSTEM_WALLPAPER} from "../../config/system";
+import {SystemCalendarMetadata} from "../../interface/System/Calendar";
+import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
+import {SYSTEM_WALLPAPER} from "../../config/System";
 
 @Component({
   selector: 'app-napicu-os',

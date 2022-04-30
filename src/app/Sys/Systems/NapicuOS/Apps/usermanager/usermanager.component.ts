@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SystemUserPermissionsEnumMetadata} from "../../interface/User/UserPerms";
+import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
 
 @Component({
   selector: 'app-usermanager',

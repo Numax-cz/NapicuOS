@@ -5,7 +5,7 @@ import {Process} from './SystemComponents/Process';
 import {removeSpace} from './scripts/removeSpaceInString';
 import {getHelpCommand, getHelpCommandAPPS,} from './config/commands/help/getCommand';
 import {SystemFile} from './SystemComponents/File';
-import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
+import {CommandStateCodeMetadata} from './interface/Commands/CommandsCodes';
 import {
   setHelpCommand,
   setHostnameHelpCommand,
@@ -27,7 +27,7 @@ import {SystemNotification} from "./SystemComponents/Notification";
 import {SystemStateMetadata, SystemUserStateData} from './interface/System';
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
-import {systemDirAFileMetadata, systemDirMetadata} from './interface/FilesDirs/systemDir';
+import {systemDirAFileMetadata, systemDirMetadata} from './interface/FilesDirs/SystemDir';
 import {TerminalClass} from "./SystemComponents/Terminal";
 
 function unknownOption(param: string): Line {

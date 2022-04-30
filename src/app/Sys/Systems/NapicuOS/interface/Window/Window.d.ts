@@ -1,5 +1,5 @@
 import {Type} from "@angular/core";
-import {windowButtonsMetadata, windowData} from "./windowData";
+import {windowButtonsMetadata, windowData} from "./WindowData";
 
 export declare interface SystemWindowConstructorMetadata {
   component: Type<any>;

@@ -1,7 +1,7 @@
-import {inputMetadata} from "../interface/Apps/Consoled.";
+import {inputMetadata} from "../interface/Apps/Console";
 import {ConsoleComponent, Line} from "../Apps/console/console.component";
 import {ElementRef, ViewChild} from "@angular/core";
-import {SYSTEM_DEFAULT_TERMINAL_PATH} from "../config/system";
+import {SYSTEM_DEFAULT_TERMINAL_PATH} from "../config/System";
 
 export abstract class TerminalClass {
   /**

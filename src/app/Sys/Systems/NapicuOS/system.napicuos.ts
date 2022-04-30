@@ -14,14 +14,14 @@ import {Process} from './SystemComponents/Process';
 import {System} from './SystemComponents/System';
 import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
-import {BOOT_TIME, SOFT_BOOT_TIME} from './config/boot';
-import {TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/time';
+import {BOOT_TIME, SOFT_BOOT_TIME} from './config/Boot';
+import {TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/Time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
-import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/systemDir';
+import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
@@ -30,20 +30,20 @@ import {
   SYSTEM_HOSTNAME_MIN_LENGTH,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH
-} from './config/system';
-import {napicu_os_root_part, NapicuOSSystemDir} from './config/drive';
+} from './config/System';
+import {napicu_os_root_part, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
-import {CommandStateCodeMetadata} from './interface/Commands/commandsCodes';
+import {CommandStateCodeMetadata} from './interface/Commands/CommandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
-import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/file';
+import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/File';
 import {SystemAlert} from './SystemComponents/Alert';
 import {systemAlertTypeEnumMetadata} from "./interface/Alert";
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "./SystemComponents/Notification";
-import {NOTIFICATION_ACTIVE_TIME} from "./config/notificationAnimations";
+import {NOTIFICATION_ACTIVE_TIME} from "./config/NotificationAnimations";
 import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
-import {NAPICUOS_COOKIES_NAME} from "./config/cookies";
+import {NAPICUOS_COOKIES_NAME} from "./config/Cookies";
 import {NapicuOsCookiesTemplate} from "./interface/Cookies";
 import {NapicuCookies} from "./scripts/decorators";
 import {NapicuCalendar} from "./scripts/Calendar";
@@ -56,8 +56,8 @@ import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 import {checkSystemStringLength} from './scripts/ChckStringCorrection';
 import {TerminalClass} from "./SystemComponents/Terminal";
-import {SystemUserPermissionsEnumMetadata} from "./interface/User/UserPerms";
-import {UserConstructorMetadata} from "./interface/User/user";
+import {SystemUserPermissionsEnumMetadata} from "./config/UserPerms";
+import {UserConstructorMetadata} from "./interface/User/User";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;

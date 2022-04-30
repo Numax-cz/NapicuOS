@@ -1,5 +1,5 @@
 import {Line} from '../../../Apps/console/console.component';
-import { SYSTEM_HOSTNAME_MAX_LENGTH, SYSTEM_HOSTNAME_MIN_LENGTH } from '../../system';
+import {SYSTEM_HOSTNAME_MAX_LENGTH, SYSTEM_HOSTNAME_MIN_LENGTH} from '../../System';
 
 export const setHelpCommand: Line = new Line(
   `Options:
@@ -23,7 +23,8 @@ export const setHostnameLongError: Line = new Line(
   `Hostname is too long. Max is ${SYSTEM_HOSTNAME_MAX_LENGTH} allowed`
 )
 
-export const setHostnameSet = (hostname: string): Line =>{ 
+export const setHostnameSet = (hostname: string): Line => {
   return new Line(
-  `Hostname has been successfully set to ${hostname}`
-)}
+    `Hostname has been successfully set to ${hostname}`
+  )
+}

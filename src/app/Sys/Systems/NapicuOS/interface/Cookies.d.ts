@@ -1,4 +1,4 @@
-import {UserConstructorMetadata} from "./User/user";
+import {UserConstructorMetadata} from "./User/User";
 
 export declare interface NapicuOsCookiesTemplate {
   user: {

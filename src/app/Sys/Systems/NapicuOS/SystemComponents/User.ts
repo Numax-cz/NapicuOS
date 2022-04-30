@@ -1,5 +1,5 @@
-import {SystemUserDataMetadata, UserConstructorMetadata} from '../interface/User/user';
-import {SystemUserPermissionsEnumMetadata} from "../interface/User/UserPerms";
+import {SystemUserDataMetadata, UserConstructorMetadata} from '../interface/User/User';
+import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
 
 export class User {
   public username: string = 'user';
