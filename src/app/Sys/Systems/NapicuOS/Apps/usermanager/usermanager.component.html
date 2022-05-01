@@ -1,5 +1,5 @@
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
-  <form class="form" [formGroup]="formData">
+  <div class="form" [formGroup]="formData">
     <div>
 
       <div>Username</div>
@@ -16,13 +16,13 @@
 
     <div>
       <div>Permission</div>
-      <napicu-drop-down-menu [selectedOption]="0"
+      <napicu-drop-down-menu [selectedOption]="0" formControlName="permission"
                              [options]="GetUsersPermission"></napicu-drop-down-menu>
     </div>
     <div class="NapicuOSSimpleButton" style="margin-top: 15px;">
-      <button>Add new user</button>
+      <button (click)="onButtonClick()">Add new user</button>
     </div>
-  </form>
+  </div>
 </section>
 
 
