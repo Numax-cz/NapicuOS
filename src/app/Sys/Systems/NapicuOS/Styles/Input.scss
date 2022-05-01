@@ -4,7 +4,9 @@
   padding: 5px 7px;
   outline: none;
   border: 1px solid black;
-  color: black;
+  background-color: var(--NapicuInputGlobalGrayColor);
+  color: var(--NapicuTitleTextColor);
+
   border-radius: 6px;
   margin: 8px 0;
   width: 100%;

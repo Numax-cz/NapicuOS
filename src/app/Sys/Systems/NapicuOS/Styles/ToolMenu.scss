@@ -3,8 +3,8 @@
   padding: 15px 10px !important;
   position: absolute;
   transform: translateX(50%);
-  background-color: #353535; //CONFIG
-  color: white; //CONFIG
+  background-color: var(--NapicuInputGlobalGrayColor);
+  color: var(--NapicuTitleTextColor);
   border: 1px solid black;
   z-index: 1;
   min-width: 175px;

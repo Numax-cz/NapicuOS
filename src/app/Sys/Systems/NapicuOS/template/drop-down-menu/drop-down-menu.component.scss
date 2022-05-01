@@ -1,12 +1,9 @@
-@mixin angle-down-solid {
-  content: "X";
+@mixin inputIndicator {
+  content: "▼";
+  font-size: 1.1rem;
   position: absolute;
-  top: 3.5%;
-  left: 22.3%;
-  color: black;
-
-  height: 13px;
-  width: 14px;
+  right: 0;
+  color: #dbdbdb4d;
 }
 
 .drop-down-menu {
@@ -14,19 +11,21 @@
   width: 100%;
 
 
-  &.close::after {
-    @include angle-down-solid;
-  }
+}
 
-  &.open::after {
-    @include angle-down-solid;
-    transform: rotate(180deg);
-  }
+.close::after {
+  @include inputIndicator;
+  transition: .7s;
+}
 
+.open::after {
+  @include inputIndicator;
+  transform: rotate(180deg);
+  transition: .7s;
 
 }
 
-.optins {
+.options {
   bottom: -23%;
   left: 50%;
   transform: translateX(-50%);

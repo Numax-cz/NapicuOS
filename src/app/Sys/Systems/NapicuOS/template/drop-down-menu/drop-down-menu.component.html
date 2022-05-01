@@ -1,22 +1,22 @@
 <div
   class="NapicuOSSimpleInput drop-down-menu"
-  style="background: white"
   napicuDropDownMenuClick
   (napicuMenuClick)="isDropDownOpen = false"
-  [ngClass]="{'open': isDropDownOpen, 'close': !isDropDownOpen}"
   clickable="false"
 >
-  <div class="select-items" style="display: flex" (click)="isDropDownOpen = !isDropDownOpen" clickable="false">
+  <div style="position: relative" [ngClass]="{'open': isDropDownOpen, 'close': !isDropDownOpen}"
+       (click)="isDropDownOpen = !isDropDownOpen"
+       clickable="false">
     <span class="option-name">{{options[selectedOption]}}</span>
   </div>
 
-  <ul class=" NapicuOSSimpleContextMenu optins" *ngIf="isDropDownOpen" clickable="false">
+  <ul class="NapicuOSSimpleContextMenu options" style="border-radius: inherit;" *ngIf="isDropDownOpen"
+      clickable="false">
     <div
-      class="drop-down-menu__item"
-      *ngFor="let el of options; let index = index"
+      *ngFor="let i of options; let index = index"
       (click)="selectItem(index)"
     >
-      {{options[index]}}
+      {{i}}
     </div>
   </ul>
 </div>

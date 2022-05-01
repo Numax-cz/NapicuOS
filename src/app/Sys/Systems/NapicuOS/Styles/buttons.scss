@@ -1,11 +1,12 @@
-
+$boxSize: 4px;
+$boxSizeActive: 3px;
 .NapicuOSSimpleButton {
   button {
     outline: none;
     border: none;
     border-radius: 7px;
     background: var(--NapicuSimpleButtonColor);
-    border-bottom: 4px solid var(--NapicuSimpleButtonBottomColor);
+    box-shadow: 0 $boxSize var(--NapicuSimpleButtonBottomColor);
     color: white;
     font-size: var(--NapicuSimpleButtonSize);
     padding: 5px;
@@ -14,11 +15,17 @@
 
   button:hover {
     background-color: var(--NapicuSimpleButtonHoverColor);
-    border-bottom-color: var(--NapicuSimpleButtonBottomHoverColor)
+    box-shadow: 0 $boxSize var(--NapicuSimpleButtonBottomHoverColor)
   }
 
   button:disabled {
     filter: contrast(0.8) brightness(0.7);
     cursor: default;
+  }
+
+  button:active {
+    filter: contrast(0.95) brightness(0.8);
+    box-shadow: 0 $boxSizeActive var(--NapicuSimpleButtonBottomHoverColor);
+    transform: translateY(4px)
   }
 }

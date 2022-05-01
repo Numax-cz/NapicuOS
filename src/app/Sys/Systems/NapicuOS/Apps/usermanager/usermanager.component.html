@@ -1,15 +1,15 @@
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
-  <form class="form">
+  <form class="form" [formGroup]="formData">
     <div>
 
       <div>Username</div>
-      <input class="NapicuOSSimpleInput" spellcheck="false" type="text" name="username"
+      <input class="NapicuOSSimpleInput" spellcheck="false" formControlName="username" type="text" name="username"
              autocomplete="off"/>
     </div>
     <div>
 
       <div>Password</div>
-      <input class="NapicuOSSimpleInput" spellcheck="false" type="password" name="password"
+      <input class="NapicuOSSimpleInput" spellcheck="false" formControlName="password" type="password" name="password"
              autocomplete="off"/>
     </div>
 
@@ -19,8 +19,9 @@
       <napicu-drop-down-menu [selectedOption]="0"
                              [options]="GetUsersPermission"></napicu-drop-down-menu>
     </div>
-
-    <button>Add new user</button>
+    <div class="NapicuOSSimpleButton" style="margin-top: 15px;">
+      <button>Add new user</button>
+    </div>
   </form>
 </section>
 
