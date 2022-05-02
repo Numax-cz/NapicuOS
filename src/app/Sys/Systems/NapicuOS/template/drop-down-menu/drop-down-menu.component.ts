@@ -28,7 +28,6 @@ export class DropDownMenuComponent implements ControlValueAccessor, OnInit {
               private controlContainer: ControlContainer) {
   }
 
-
   public selectItem(index: number): void {
     this.selectedOption = index;
     this.isDropDownOpen = false;
@@ -57,5 +56,4 @@ export class DropDownMenuComponent implements ControlValueAccessor, OnInit {
 
   writeValue(obj: any): void {
   }
-
 }
