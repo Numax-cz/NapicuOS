@@ -58,6 +58,7 @@ import {checkSystemStringLength} from './scripts/ChckStringCorrection';
 import {TerminalClass} from "./SystemComponents/Terminal";
 import {SystemUserPermissionsEnumMetadata} from "./config/UserPerms";
 import {UserConstructorMetadata} from "./interface/User/User";
+import {imagePreloader} from "./scripts/ImagePreloader";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -65,6 +66,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     installed: true,
   };
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
+  protected static imgSrcCache: string[] = [];
   public static activeUsers: string[] = [];
   @NapicuCookies()
   public static SystemCookiesConfig: NapicuOsCookiesTemplate = {
@@ -90,24 +92,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onShutDown(): void {
   }
 
-  public SystemBoot(): void {
+  public async SystemBoot(): Promise<void> {
     //? This is  the main place to load all necessary processes
-
-    //Init System Dependencies
-    //Initialization of all system processes
-    initAllSystemProcess();
-    //Initialize all system commands
-    initAllCommands();
-    //Initialize all system applications
-    installAllApps();
-
-    //Init System Config & Users
-    NapicuOS.initSystemConfigCookies();
-    //Initialization of all users
-    this.initUsers();
-
+    SystemComponent.SystemComponent = BlackscreenComponent;
+    await imagePreloader(this.boot.logo);
+    //TODO wallpaper
 
     SystemComponent.SystemComponent = LoadsComponent;
+    //Init System components
+    await this.loadSystemComponents();
     setTimeout(() => {
       SystemComponent.SystemComponent = BlackscreenComponent;
       this.load();
@@ -123,6 +116,41 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         SystemComponent.SystemComponent = LoginscreenComponent;
       }
     }, BOOT_TIME);
+  }
+
+  /**
+   * Loads all system components
+   */
+  public loadSystemComponents(): Promise<void> {
+    return new Promise<void>(async resolve => {
+      //Initialization of all system processes
+      initAllSystemProcess();
+      //Initialize all system commands
+      initAllCommands();
+      //Initialize all system applications
+      installAllApps();
+      //Init System Config & Users
+      NapicuOS.initSystemConfigCookies();
+      //Initialization of all users
+      this.initUsers();
+      //Preload all images
+      await this.preloadImages();
+
+      resolve();
+    });
+  }
+
+  /**
+   * Preload all images
+   */
+  public async preloadImages(): Promise<void> {
+    return new Promise<void>(async resolve => {
+      for (const src of NapicuOS.imgSrcCache) {
+        await imagePreloader(src);
+      }
+      NapicuOS.imgSrcCache = [];
+      resolve();
+    });
   }
 
   public override onLogin(): void {
@@ -731,6 +759,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Executes the command
    * @param cmd Command prefix
    * @param params Input parameters
+   * @param terminal Active terminal
    */
   public static async run_command(
     cmd: string,
@@ -805,6 +834,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       user.userSetting.appsInDock.splice(index, 1);
       this.update_dock_items();
     }
+  }
+
+  /**
+   * Add an image to cache for the system
+   * @param src
+   */
+  public static cache_image(src: string): void {
+    this.imgSrcCache.push(src);
   }
 
   /**

@@ -31,9 +31,10 @@ import {AlertComponent} from './Sys/Systems/NapicuOS/Apps/alert/alert.component'
 import {DynamicModule} from 'ng-dynamic-component';
 import {MainComponent} from './Sys/Systems/NapicuOS/Apps/welcome/main/main.component';
 import {UserComponent} from './Sys/Systems/NapicuOS/Apps/welcome/user/user.component';
-import { UsermanagerComponent } from './Sys/Systems/NapicuOS/Apps/usermanager/usermanager.component';
-import { DropDownMenuComponent } from './Sys/Systems/NapicuOS/template/drop-down-menu/drop-down-menu.component';
-import { ClickDirective } from './Sys/Systems/NapicuOS/template/drop-down-menu/click.directive';
+import {UsermanagerComponent} from './Sys/Systems/NapicuOS/Apps/usermanager/usermanager.component';
+import {DropDownMenuComponent} from './Sys/Systems/NapicuOS/template/drop-down-menu/drop-down-menu.component';
+import {ClickDirective} from './Sys/Systems/NapicuOS/template/drop-down-menu/click.directive';
+import {LoadsComponent} from "./Sys/Systems/NapicuOS/components/loads/loads.component";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ClickDirective } from './Sys/Systems/NapicuOS/template/drop-down-menu/c
     UsermanagerComponent,
     DropDownMenuComponent,
     ClickDirective,
+    LoadsComponent
   ],
   imports: [
     BrowserModule,

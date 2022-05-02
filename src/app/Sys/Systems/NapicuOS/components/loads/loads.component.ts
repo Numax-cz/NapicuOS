@@ -7,17 +7,20 @@ import {GrubComponent} from 'src/app/Grub/grub/grub.component';
   styleUrls: ['./loads.component.scss'],
 })
 export class LoadsComponent implements OnInit {
+  
+
   constructor() {
   }
 
+
+  ngOnInit(): void {
+  }
+
   get Img(): string {
-    var logo = GrubComponent.GrubActiveSystem.boot.logo;
+    let logo = GrubComponent.GrubActiveSystem.boot.logo;
     if (logo) {
       return logo;
     }
     return '';
-  }
-
-  ngOnInit(): void {
   }
 }
