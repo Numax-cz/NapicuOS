@@ -15,3 +15,11 @@ export const SYSTEM_HOSTNAME_MAX_LENGTH = 10;
 
 
 export const SYSTEM_DEFAULT_TERMINAL_PATH = `/home`; //TODO user
+
+
+export const SYSTEM_SOUNDS = {
+  LONG_POP: 'assets/sound/InterfaceSelect.mp3',
+  SHORT_POP: 'assets/sound/InterfaceStart.mp3',
+  INTERFACE_SELECT: 'assets/sound/LongPop.mp3',
+  INTERFACE_START: 'assets/sound/ShortPop.mp3',
+};

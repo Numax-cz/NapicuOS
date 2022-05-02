@@ -27,7 +27,7 @@ import {
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_HOSTNAME_MAX_LENGTH,
-  SYSTEM_HOSTNAME_MIN_LENGTH,
+  SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH, SYSTEM_WALLPAPER
 } from './config/System';
@@ -59,6 +59,7 @@ import {TerminalClass} from "./SystemComponents/Terminal";
 import {SystemUserPermissionsEnumMetadata} from "./config/UserPerms";
 import {UserConstructorMetadata} from "./interface/User/User";
 import {imagePreloader} from "./scripts/ImagePreloader";
+import {audioPreloader} from "./scripts/AudioPreloader";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -139,6 +140,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       this.initUsers();
       //Preload all images
       await this.preloadImages();
+      //Preload system sounds
+      await this.preloadSounds();
 
       resolve();
     });
@@ -147,7 +150,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Preload all images
    */
-  public async preloadImages(): Promise<void> {
+  protected async preloadImages(): Promise<void> {
     return new Promise<void>(async resolve => {
       //Preload from cache
       for (const src of NapicuOS.imgSrcCache) {
@@ -158,11 +161,24 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         await imagePreloader(img);
       }
 
-
       NapicuOS.imgSrcCache = [];
       resolve();
     });
   }
+
+  /**
+   * Preload system sounds
+   */
+  protected async preloadSounds(): Promise<void> {
+    return new Promise<void>(async resolve => {
+      //Preload system sounds
+      for (const snd of Object.values(SYSTEM_SOUNDS)) {
+        await audioPreloader(snd);
+      }
+      resolve();
+    });
+  }
+
 
   public override onLogin(): void {
     if (!NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
