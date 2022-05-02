@@ -49,14 +49,6 @@ export function initAllCommands(): void {
     })
   );
 
-  NapicuOS.register_command(
-    new Command('TestCommand2', "systest", (params?: string[], terminal?: TerminalClass) => {
-      return new Promise((resolve) => {
-        if (terminal) terminal.displayedPath = "XDXDXDD";
-      });
-    })
-  );
-
   initGetSystemInformation();
   initExitFromConsole();
   initClearTerminal();
