@@ -7,6 +7,7 @@ import {copy} from "../../../../Bios/Scripts/DeepClone";
 import {AppCreatMetadata} from "../interface/System";
 import {TerminalClass} from "./Terminal";
 import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
+import {imagePreloader} from "../scripts/ImagePreloader";
 
 
 export class SystemFile {
@@ -28,6 +29,7 @@ export class SystemFile {
     this._fileType = data.fileType;
     this._permissions = data.permissions || {read: SystemUserPermissionsEnumMetadata.User};
     this._iconPath = data.iconPath || `${SystemFile.defaultIconsPath}/XFD/download.svg`
+    imagePreloader(this._iconPath);
   }
 
   /**
