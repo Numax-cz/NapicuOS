@@ -43,7 +43,7 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
-        NapicuOS.alert(`TEST`, "TEST", systemAlertTypeEnumMetadata.Info);
+        NapicuOS.alert(`TEST`, "TEST", systemAlertTypeEnumMetadata.Success);
         resolve();
       });
     })

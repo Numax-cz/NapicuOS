@@ -7,7 +7,7 @@
           <img
             [src]="'/assets/systems/NapicuOS/SystemIcons/apps/Alert/' +
                   ( GetAlertType === 0 ? 'close.png'  :  GetAlertType === 1 ?
-                   'warning.png' :  GetAlertType === 2 ? 'info.png' : '')"
+                   'warning.png' :  GetAlertType === 2 ? 'info.png' : GetAlertType === 3 ? 'success.png' : '' )"
             alt="Alert img"
             class="alertImgSize">
         </div>
