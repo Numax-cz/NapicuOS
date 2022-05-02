@@ -157,7 +157,6 @@
           </div>
         </section>
 
-
         <!-- Bottom AppPanel -->
         <section *ngIf="BottomDockDisplay" class="BottomPanel" id="Dock"
                  style="z-index: 10000">
@@ -198,7 +197,7 @@
             <div>Show details</div>
           </div>
 
-          <div class="MainContent" (contextmenu)="openAppProperties(index, $event)">
+          <div class="MainContent" (click)="openFile(i)" (contextmenu)="openAppProperties(index, $event)">
             <!-- App icon -->
             <div>
               <img [src]="i.iconPath" alt="App icon"/>
@@ -207,11 +206,8 @@
             <div class="appName">{{i.fileName}}</div>
           </div>
         </div>
-
       </section>
     </section>
-
-
   </div>
 </div>
 
