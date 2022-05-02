@@ -1020,7 +1020,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Creates and opens a new system alert
    */
   public static alert(title: string, value: string, type: systemAlertTypeEnumMetadata): void {
-    new Process({processTitle: 'SystemAlert', Window: new SystemAlert(title, value, type)}).runAsSystem().Window.open();
+    new Process({processTitle: 'SystemAlert', Window: new SystemAlert(title, value, type)}).run()?.Window.open();
   }
 
   /**
