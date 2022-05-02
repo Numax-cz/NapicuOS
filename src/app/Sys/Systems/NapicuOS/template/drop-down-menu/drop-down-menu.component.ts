@@ -47,7 +47,6 @@ export class DropDownMenuComponent implements ControlValueAccessor, OnInit {
     } else {
       console.warn('Can\'t find parent FormGroup directive');
     }
-
   }
 
   registerOnChange(fn: any): void {
