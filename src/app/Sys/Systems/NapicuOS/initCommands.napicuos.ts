@@ -23,12 +23,12 @@ import {
 } from './config/commands/help/addUserCommand';
 import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
-import {SystemNotification} from "./SystemComponents/Notification";
 import {SystemStateMetadata, SystemUserStateData} from './interface/System';
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
-import {systemDirAFileMetadata, systemDirMetadata} from './interface/FilesDirs/SystemDir';
+import {systemDirAFileMetadata} from './interface/FilesDirs/SystemDir';
 import {TerminalClass} from "./SystemComponents/Terminal";
+import {systemAlertTypeEnumMetadata} from "./interface/Alert";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -43,12 +43,8 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
-        setTimeout(() => {
-          NapicuOS.add_notification_to_queue_and_push(new SystemNotification({
-            msg: "xd", title: "xd", command: {commandName: "systest", args: []}
-          }));
-          resolve();
-        }, 200);
+        NapicuOS.alert(`TEST`, "TEST", systemAlertTypeEnumMetadata.Info);
+        resolve();
       });
     })
   );

@@ -19,9 +19,9 @@ import {InputsType} from 'ng-dynamic-component';
       //Remember: Animation normal will return the application window
       // to the default position where the animation started.
       transition(':enter', [
-        style({transform: 'scale(0)'}),
-        animate(WINDOW_ANIMATION_TIME, style({transform: 'scale(1)'})),
-      ]),
+        style({transform: 'scale(0) translateX(-{{translate}}%) translateY(-{{translate}}%'}),
+        animate(WINDOW_ANIMATION_TIME, style({transform: 'scale(1) translateX(-{{translate}}%) translateY(-{{translate}}%'})),
+      ], {params: {translate: 0}}),
       transition(':leave', [
         style({transform: 'scale(1) translateX(-{{translate}}%) translateY(-{{translate}}%)'}),
         animate(WINDOW_ANIMATION_TIME, style({transform: 'scale(0) translateX(-{{translate}}%) translateY(-{{translate}}%)'})),

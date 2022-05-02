@@ -3,6 +3,7 @@ import {AlertComponent} from '../Apps/alert/alert.component';
 import {systemAlertTypeEnumMetadata} from '../interface/Alert';
 import {windowData} from '../interface/Window/WindowData';
 import {Window} from './Window';
+import {copy} from "../../../../Bios/Scripts/DeepClone";
 
 export class SystemAlert extends Window {
   public static defaultSize: windowData = {
@@ -21,7 +22,7 @@ export class SystemAlert extends Window {
     super({
       component: SystemAlert.defaultComponent,
       windowTitle: title,
-      windowData: SystemAlert.defaultSize,
+      windowData: copy(SystemAlert.defaultSize),
       resizeAllowed: false,
       windowButtons: {
         close: true,

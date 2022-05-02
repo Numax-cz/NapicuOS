@@ -1,10 +1,16 @@
-import {Component, forwardRef, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
-import {ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SystemStateMetadata} from "../../interface/System";
 import {
-  SYSTEM_USERS_MAX_LENGTH, SYSTEM_USERS_MAX_PASSWORD_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MIN_PASSWORD_LENGTH
+  SYSTEM_USERS_MAX_LENGTH,
+  SYSTEM_USERS_MAX_PASSWORD_LENGTH,
+  SYSTEM_USERS_MIN_LENGTH,
+  SYSTEM_USERS_MIN_PASSWORD_LENGTH
 } from "../../config/System";
+import {NapicuOS} from "../../system.napicuos";
+import {User} from "../../SystemComponents/User";
+import {systemAlertTypeEnumMetadata} from "../../interface/Alert";
 
 
 @Component({
@@ -37,12 +43,19 @@ export class UsermanagerComponent {
   });
 
   public onButtonClick() {
-    // if(this.formData.valid){
-    //   let i = NapicuOS.add_user(new User({
-    //     username: this
-    //   }));
-    // }
-    console.log(this.formData.get("permission"))
+    if (this.formData.valid) {
+      let i = NapicuOS.add_user(new User({
+        username: this.formData.get("username")?.value,
+        password: this.formData.get("password")?.value,
+        permissions: this.formData.get("permission")?.value,
+      }));
+
+      if (i === SystemStateMetadata.UserExists) {
+        NapicuOS.alert("User Manager", "User already exists", systemAlertTypeEnumMetadata.Error);
+      } else if (i === SystemStateMetadata.UserNotExists) {
+        NapicuOS.alert("User Manager", "User added", systemAlertTypeEnumMetadata.Info);
+      }
+    }
   }
 
   get GetUsersPermission() {
