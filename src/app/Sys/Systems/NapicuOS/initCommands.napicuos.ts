@@ -28,7 +28,7 @@ import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
 import {systemDirAFileMetadata} from './interface/FilesDirs/SystemDir';
 import {TerminalClass} from "./SystemComponents/Terminal";
-import {systemAlertTypeEnumMetadata} from "./interface/Alert";
+import {systemAlertImagesEnumMetadata} from "./config/Alert";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -43,7 +43,7 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
-        NapicuOS.alert(`TEST`, "TEST", systemAlertTypeEnumMetadata.Success);
+        NapicuOS.alert(`TEST`, "TEST", systemAlertImagesEnumMetadata.Success);
         resolve();
       });
     })

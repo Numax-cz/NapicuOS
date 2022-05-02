@@ -10,7 +10,7 @@ import {
 } from "../../config/System";
 import {NapicuOS} from "../../system.napicuos";
 import {User} from "../../SystemComponents/User";
-import {systemAlertTypeEnumMetadata} from "../../interface/Alert";
+import {systemAlertImagesEnumMetadata} from "../../config/Alert";
 
 
 @Component({
@@ -51,9 +51,9 @@ export class UsermanagerComponent {
       }));
 
       if (i === SystemStateMetadata.UserExists) {
-        NapicuOS.alert("User Manager", "User already exists", systemAlertTypeEnumMetadata.Error);
+        NapicuOS.alert("User Manager", "User already exists", systemAlertImagesEnumMetadata.Error);
       } else if (i === SystemStateMetadata.UserNotExists) {
-        NapicuOS.alert("User Manager", "User added", systemAlertTypeEnumMetadata.Info);
+        NapicuOS.alert("User Manager", "User added", systemAlertImagesEnumMetadata.Info);
       }
     }
   }

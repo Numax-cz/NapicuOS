@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {systemAlertTypeEnumMetadata} from '../../interface/Alert';
+import {systemAlertImagesEnumMetadata} from '../../config/Alert';
 import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 
 @Component({
@@ -19,7 +19,7 @@ export class AlertComponent implements OnInit {
   /**
    * Type of the alert
    */
-  @Input() public declare alertType: systemAlertTypeEnumMetadata;
+  @Input() public declare alertType: systemAlertImagesEnumMetadata;
 
   constructor() {
   }
@@ -36,9 +36,9 @@ export class AlertComponent implements OnInit {
   }
 
   /**
-   * Returns the alert type
+   * Returns the alert image
    */
-  get GetAlertType(): systemAlertTypeEnumMetadata {
+  get GetImage(): systemAlertImagesEnumMetadata {
     return this.alertType;
   }
 

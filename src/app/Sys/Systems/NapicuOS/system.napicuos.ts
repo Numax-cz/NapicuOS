@@ -37,7 +37,7 @@ import {CommandStateCodeMetadata} from './interface/Commands/CommandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
 import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/File';
 import {SystemAlert} from './SystemComponents/Alert';
-import {systemAlertTypeEnumMetadata} from "./interface/Alert";
+import {systemAlertImagesEnumMetadata} from "./config/Alert";
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "./SystemComponents/Notification";
@@ -149,9 +149,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public async preloadImages(): Promise<void> {
     return new Promise<void>(async resolve => {
+      //Preload from cache
       for (const src of NapicuOS.imgSrcCache) {
         await imagePreloader(src);
       }
+      //Preload alert assets
+      for (const img of Object.values(systemAlertImagesEnumMetadata)) {
+        await imagePreloader(img);
+      }
+
+
       NapicuOS.imgSrcCache = [];
       resolve();
     });
@@ -1060,7 +1067,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Creates and opens a new system alert
    */
-  public static alert(title: string, value: string, type: systemAlertTypeEnumMetadata): void {
+  public static alert(title: string, value: string, type: systemAlertImagesEnumMetadata): void {
     new Process({processTitle: 'SystemAlert', Window: new SystemAlert(title, value, type)}).run()?.Window.open();
   }
 

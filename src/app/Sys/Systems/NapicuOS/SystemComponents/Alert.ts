@@ -1,6 +1,6 @@
 import {Type} from '@angular/core';
 import {AlertComponent} from '../Apps/alert/alert.component';
-import {systemAlertTypeEnumMetadata} from '../interface/Alert';
+import {systemAlertImagesEnumMetadata} from '../config/Alert';
 import {windowData} from '../interface/Window/WindowData';
 import {Window} from './Window';
 import {copy} from "../../../../Bios/Scripts/DeepClone";
@@ -17,7 +17,7 @@ export class SystemAlert extends Window {
   constructor(
     public title: string,
     public value: string,
-    public type: systemAlertTypeEnumMetadata
+    public type: systemAlertImagesEnumMetadata
   ) {
     super({
       component: SystemAlert.defaultComponent,
