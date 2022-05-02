@@ -29,7 +29,7 @@ import {
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
   SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH
+  SYSTEM_USERS_MIN_LENGTH, SYSTEM_WALLPAPER
 } from './config/System';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
@@ -94,10 +94,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public async SystemBoot(): Promise<void> {
     //? This is  the main place to load all necessary processes
-    SystemComponent.SystemComponent = BlackscreenComponent;
-    await imagePreloader(this.boot.logo);
-    //TODO wallpaper
 
+    //Set black screen
+    SystemComponent.SystemComponent = BlackscreenComponent;
+    //Preload based images
+    await imagePreloader(SYSTEM_BOOT_SCREEN_LOGO);
+    await imagePreloader(SYSTEM_WALLPAPER);
+
+    //Set system loading screen
     SystemComponent.SystemComponent = LoadsComponent;
     //Init System components
     await this.loadSystemComponents();
