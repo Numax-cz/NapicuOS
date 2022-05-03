@@ -18,8 +18,8 @@ export const SYSTEM_DEFAULT_TERMINAL_PATH = `/home`; //TODO user
 
 
 export const SYSTEM_SOUNDS = {
-  LONG_POP: 'assets/sound/InterfaceSelect.mp3',
-  SHORT_POP: 'assets/sound/InterfaceStart.mp3',
-  INTERFACE_SELECT: 'assets/sound/LongPop.mp3',
-  INTERFACE_START: 'assets/sound/ShortPop.mp3',
+  InterfaceSelect: 'assets/sound/InterfaceSelect.mp3',
+  InterfaceStart: 'assets/sound/InterfaceStart.mp3',
+  LongPop: 'assets/sound/LongPop.mp3',
+  ShortPop: 'assets/sound/ShortPop.mp3',
 };

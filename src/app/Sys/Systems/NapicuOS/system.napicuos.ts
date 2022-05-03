@@ -5,7 +5,8 @@ import {
   AppCreatMetadata,
   onShutDown,
   onStartUp,
-  Os, SystemFileStateData,
+  Os,
+  SystemFileStateData,
   SystemStateMetadata,
   SystemStringStateCorrection,
   SystemUserStateData,
@@ -21,15 +22,17 @@ import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
-import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
+import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_HOSTNAME_MAX_LENGTH,
-  SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_SOUNDS,
+  SYSTEM_HOSTNAME_MIN_LENGTH,
+  SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH, SYSTEM_WALLPAPER
+  SYSTEM_USERS_MIN_LENGTH,
+  SYSTEM_WALLPAPER
 } from './config/System';
 import {napicu_os_root_part, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
@@ -141,7 +144,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload all images
       await this.preloadImages();
       //Preload system sounds
-      await this.preloadSounds();
+      await this.loadSystemSounds();
 
       resolve();
     });
@@ -169,11 +172,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Preload system sounds
    */
-  protected async preloadSounds(): Promise<void> {
+  protected async loadSystemSounds(): Promise<void> {
     return new Promise<void>(async resolve => {
       //Preload system sounds
-      for (const snd of Object.values(SYSTEM_SOUNDS)) {
-        await audioPreloader(snd);
+      for (const snd of Object.entries(SYSTEM_SOUNDS)) {
+        await NapicuOS.add_sound_to_system(snd[0], snd[1])
       }
       resolve();
     });
@@ -472,9 +475,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Returns main apps directory
+   * Returns system sounds directory
    */
-  public static get_apps_dir(): systemDirAFileMetadata | undefined {
+  public static get_sounds_dir(): systemDirAFileMetadata | undefined {
+    return this.get_usr_dir()?.dir?.['sounds'];
+  }
+
+  /**
+   * Returns main usr directory
+   */
+  public static get_usr_dir(): systemDirAFileMetadata | undefined {
     return this.get_root_dir().dir?.['usr'];
   }
 
@@ -638,7 +648,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_dock_items(): void {
     let i: SystemFile[] = [];
     this.get_user_system_window_apps().forEach((App: Process) => {
-      let file = this.get_file_by_file_title(this.get_apps_dir(), App.processTitle);
+      let file = this.get_file_by_file_title(this.get_usr_dir(), App.processTitle);
       if (typeof file === "object" && this.get_user_apps_in_dock().filter((file: SystemFile) => {
         return file.fileName === App.processTitle;
       }).length === 0 && i.map(value => value.fileName).indexOf(App.processTitle) !== 0) i.push(file);
@@ -1041,6 +1051,42 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Add and preload new sound
+   * @param soundName Sound's name
+   * @param src Sound's source
+   */
+  public static add_sound_to_system(soundName: string, src: string): Promise<SystemFileStateData | void> {
+    return new Promise<SystemFileStateData>(async (resolve, reject) => {
+
+      let file = new SystemFile({
+        fileName: soundName,
+        value: src,
+        fileType: SystemFileTypeEnumMetadata.sound
+      });
+      await audioPreloader(src).catch(() => {
+        console.error("SYSTEM: Error loading sound");
+        reject();
+      });
+
+      return resolve(this.add_file_to_dir(this.get_sounds_dir(), file));
+    });
+  }
+
+  /**
+   * Get the system's sound
+   * @param soundName
+   */
+  public static get_sound_system_src(soundName: string): SystemStateMetadata.DirNotExist | SystemStateMetadata.FileNotExist | string {
+    let gt_dir = this.get_file_by_file_title(this.get_sounds_dir(), soundName);
+    if (gt_dir instanceof SystemFile) {
+      return gt_dir.value;
+    } else {
+      return gt_dir;
+    }
+  }
+
+
+  /**
    * Clears user notifications
    * @param user User
    */
@@ -1073,7 +1119,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
 
 
-    if (this.add_file_to_dir(this.get_apps_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
+    if (this.add_file_to_dir(this.get_usr_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       console.error("CreatAppFile Error - File already exists");
     }
     if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application.fileName);
@@ -1192,7 +1238,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param filename File name
    */
   public static get_app_file_by_file_name(filename: string): SystemFile | null {
-    const file = this.get_file_by_file_title(this.get_apps_dir(), filename);
+    const file = this.get_file_by_file_title(this.get_usr_dir(), filename);
     if (typeof file === "object") {
       return file;
     }

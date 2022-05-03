@@ -520,7 +520,7 @@ function initOpenApp(): void {
     new Command('OpenApp', SystemCommandsPrefixEnum.openAppCommand, (params) => {
       return new Promise((resolve) => {
         if (params?.length) {
-          let x = NapicuOS.open_file_in_dir(NapicuOS.get_apps_dir(), params[0]);
+          let x = NapicuOS.open_file_in_dir(NapicuOS.get_usr_dir(), params[0]);
           resolve({linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x});
         }
       });
