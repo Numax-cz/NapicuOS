@@ -1,18 +1,19 @@
-.Center {
-  display: table;
-  z-index: 1;
-  height: 100vh;
-  min-height: 500px;
-  width: 100%;
+.MainContent {
+  > div {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
 }
 
 #SystemLogo {
-  display: table-cell;
-  vertical-align: middle;
-  padding-top: 245px;
-  width: 10.55%;
-  margin: auto;
-  padding-bottom: 100px;
+  width: 200px;
+}
+
+.SystemTitle {
+  text-align: center;
+  font-size: 4.7rem;
+  font-weight: bold;
 }
 
 .Loading {

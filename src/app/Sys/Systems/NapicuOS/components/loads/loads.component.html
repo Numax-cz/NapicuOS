@@ -1,7 +1,10 @@
 <section id="black">
-  <div class="Center">
-    <img [src]="Img" id="SystemLogo"/>
-    <div>
+  <div @NapicuOSfeoreLoading class="MainContent" id="SystemFont">
+
+    <div style="top: 10%">
+      <img [src]="GetImg" id="SystemLogo"/>
+    </div>
+    <div style="top: 58%">
       <div class="Loading">
         <div class="loader">
           <div class="dot"></div>
@@ -23,5 +26,6 @@
         </div>
       </div>
     </div>
+    <div style="bottom: 7%" class="SystemTitle">{{GetText}}</div>
   </div>
 </section>
