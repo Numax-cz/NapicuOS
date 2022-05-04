@@ -536,19 +536,31 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.get_active_user()?.userSetting.audioVolume || 1;
   }
 
+
   /**
    * Plays the audio file
    * @param src Audio file
    */
-  public static play_audio(src: string) {
+  public static play_audio(src: string): void {
     new NapicuAudio(src, this.get_user_settings_audio_volume()).play();
+  }
+
+  /**
+   * Plays system audio file
+   * @param systemAudio
+   */
+  public static play_system_audio(systemAudio: keyof typeof SYSTEM_SOUNDS): void {
+    let file = this.get_file_by_file_title(this.get_sounds_dir(), systemAudio);
+    if (file instanceof SystemFile) {
+      file.open();
+    }
   }
 
   /**
    * Plays the notification sound
    */
   public static audio_play_notification(): void {
-    this.play_audio("LongPop.mp3");
+    this.play_system_audio("LongPop");
   }
 
   /**
@@ -1061,7 +1073,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       let file = new SystemFile({
         fileName: soundName,
         value: src,
-        fileType: SystemFileTypeEnumMetadata.sound
+        fileType: SystemFileTypeEnumMetadata.audio
       });
       await audioPreloader(src).catch(() => {
         console.error("SYSTEM: Error loading sound");

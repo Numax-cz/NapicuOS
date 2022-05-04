@@ -25,7 +25,7 @@ export class SystemFile {
    */
   constructor(data: SystemFileConsMetadata) {
     this._value = data.value;
-    this._fileName = data.fileName;
+    this._fileName = `${data.fileName}`;
     this._fileType = data.fileType;
     this._permissions = data.permissions || {read: SystemUserPermissionsEnumMetadata.User};
     this._iconPath = data.iconPath || `${SystemFile.defaultIconsPath}/XFD/download.svg`
@@ -105,6 +105,10 @@ export class SystemFile {
         case SystemFileTypeEnumMetadata.executable:
           let command = this._value as Command;
           resolve(await command.run(data?.params, data?.terminal));
+          break;
+        case SystemFileTypeEnumMetadata.audio:
+          NapicuOS.play_audio(this._value);
+          resolve(null);
           break;
         default:
           break;

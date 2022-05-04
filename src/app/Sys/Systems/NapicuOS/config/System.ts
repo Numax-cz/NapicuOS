@@ -16,10 +16,9 @@ export const SYSTEM_HOSTNAME_MAX_LENGTH = 10;
 
 export const SYSTEM_DEFAULT_TERMINAL_PATH = `/home`; //TODO user
 
-
-export const SYSTEM_SOUNDS = {
-  InterfaceSelect: 'assets/sound/InterfaceSelect.mp3',
-  InterfaceStart: 'assets/sound/InterfaceStart.mp3',
-  LongPop: 'assets/sound/LongPop.mp3',
-  ShortPop: 'assets/sound/ShortPop.mp3',
-};
+export enum SYSTEM_SOUNDS {
+  InterfaceSelect = 'assets/sound/InterfaceSelect.mp3',
+  InterfaceStart = 'assets/sound/InterfaceStart.mp3',
+  LongPop = 'assets/sound/LongPop.mp3',
+  ShortPop = 'assets/sound/ShortPop.mp3',
+}
