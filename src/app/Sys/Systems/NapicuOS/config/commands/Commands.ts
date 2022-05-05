@@ -15,5 +15,6 @@ export const enum SystemCommandsPrefixEnum {
   echoCommand = "echo",
   listCommand = "ls",
   pwdCommand = "pwd",
+  touchCommand = "touch",
 }
 

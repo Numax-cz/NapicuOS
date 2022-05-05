@@ -28,8 +28,9 @@ import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
 import {systemDirAFileMetadata} from './interface/FilesDirs/SystemDir';
 import {TerminalClass} from "./SystemComponents/Terminal";
-import {systemAlertImagesEnumMetadata} from "./config/Alert";
 import {SystemNotification} from "./SystemComponents/Notification";
+import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
+import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/File";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -58,6 +59,7 @@ export function initAllCommands(): void {
   initClearTerminal();
   initEcho();
   initLs();
+  initTouch();
   initPwd();
   initChangeDirectory();
   initSetSystemInformation();
@@ -68,20 +70,30 @@ export function initAllCommands(): void {
 }
 
 
-// function initAddFile(): void {
-//   NapicuOS.register_command(new Command('CreatFile', SystemCommandsPrefixEnum.creatFile, (params: string[] | undefined) => {
-//     return new Promise((resolve) => {
-//       if (params?.length) {
-//
-//         let fileName: string = params[0]; //TODO Check file name
-//
-//
-//       } else {
-//         //TODO PARAMS is undefined
-//       }
-//     });
-//   }));
-// }
+function initTouch(): void {
+  NapicuOS.register_command(new Command('Touch', SystemCommandsPrefixEnum.touchCommand, (params?: string[], terminal?: TerminalClass) => {
+    return new Promise((resolve) => {
+      if (!terminal) return;
+      if (params?.length) {
+        let fileName: string = params[0]; //TODO Check file name
+        let dir: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(terminal.getPath());
+        if (dir.data) {
+          let i = NapicuOS.add_file_to_dir(dir.data, new SystemFile({
+            fileName: params[0],
+            fileType: SystemFileTypeEnumMetadata.text,
+            value: ""
+          }))
+
+          console.log(i)
+          resolve();
+        }
+
+      } else {
+        //TODO PARAMS is undefined & terminal
+      }
+    });
+  }));
+}
 
 function initClearTerminal(): void {
   NapicuOS.register_command(

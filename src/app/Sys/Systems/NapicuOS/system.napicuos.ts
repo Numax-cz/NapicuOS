@@ -63,6 +63,7 @@ import {SystemUserPermissionsEnumMetadata} from "./config/UserPerms";
 import {UserConstructorMetadata} from "./interface/User/User";
 import {imagePreloader} from "./scripts/ImagePreloader";
 import {audioPreloader} from "./scripts/AudioPreloader";
+import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -442,7 +443,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.drives;
   }
 
-  public static get_dir_by_path(dir: string): { data: systemDirAFileMetadata | null, state: SystemStateMetadata } { //TODO return SystemPathStateData
+  /**
+   * Returns the drive by specified drive letter
+   * @param dir
+   */
+  public static get_dir_by_path(dir: string): ReturnGetDirByPathMetadata {
     let dirs = dir.split("/");
     dirs.shift();
     let currentDir: systemDirAFileMetadata | undefined = (!dirs[0].length) ? this.get_root_dir() : this.get_root_dir()?.dir?.[dirs[0]];
@@ -904,7 +909,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     dir: systemDirAFileMetadata | undefined,
     file: SystemFile
   ): SystemFileStateData {
-    if (dir?.files) {
+    if (dir) {
+      if (!dir.files) dir.files = [];
       if (
         dir.files.filter((value: SystemFile) => {
           return value.fileName === file.fileName;
