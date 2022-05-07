@@ -201,11 +201,10 @@ function initPwd(): void {
           linesForCMD: [new Line(`${terminal?.getPath()}`, 'white')],
           stateCode: CommandStateCodeMetadata.success,
         });
-      });
+      }); 
     })
   );
 }
-
 
 function initEcho(): void {
   NapicuOS.register_command(

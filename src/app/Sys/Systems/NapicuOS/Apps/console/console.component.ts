@@ -12,6 +12,7 @@ import {NapicuOSSystemDir} from "../../config/Drive";
 import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/SystemDir";
 import {SystemCommandsPrefixEnum} from "../../config/commands/Commands";
 import {TerminalClass} from "../../SystemComponents/Terminal";
+import { ReplaceSystemVariables } from '../../scripts/ReplaceVariables';
 
 export class Line {
   private declare line: string;

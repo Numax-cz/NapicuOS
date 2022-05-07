@@ -736,6 +736,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.get_user_by_username(this.SystemCookiesConfig.user.activeUser);
   }
 
+    /**
+   * Returns the logged-in user username.
+   */
+     public static get_active_user_username(): string | undefined {
+      return this.get_active_user()?.username
+    }
+
   /**
    * Sets the active user
    * @param user The user you want to put as active

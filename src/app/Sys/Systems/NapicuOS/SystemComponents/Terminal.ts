@@ -2,6 +2,7 @@ import {inputMetadata} from "../interface/Apps/Console";
 import {ConsoleComponent, Line} from "../Apps/console/console.component";
 import {ElementRef, ViewChild} from "@angular/core";
 import {SYSTEM_DEFAULT_TERMINAL_PATH} from "../config/System";
+import { ReplaceSystemVariables } from "../scripts/ReplaceVariables";
 
 export abstract class TerminalClass {
   /**
@@ -82,7 +83,7 @@ export abstract class TerminalClass {
 
   //TODO DOC
   public getPath(): string {
-    return this.activePath;
+    return ReplaceSystemVariables(this.activePath);
   }
 
   /**
