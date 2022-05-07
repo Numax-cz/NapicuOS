@@ -23,7 +23,7 @@ import {
 } from './config/commands/help/addUserCommand';
 import {User} from './SystemComponents/User';
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
-import {SystemStateMetadata, SystemUserStateData} from './interface/System';
+import {SystemDirStateData, SystemStateMetadata, SystemUserStateData} from './interface/System';
 import {echoHelpCommand} from "./config/commands/help/echoCommand";
 import {changeDirectoryHelpCommand, directoryNotFoundError} from "./config/commands/help/changeDirectoryCommand";
 import {systemDirAFileMetadata} from './interface/FilesDirs/SystemDir';
@@ -31,6 +31,7 @@ import {TerminalClass} from "./SystemComponents/Terminal";
 import {SystemNotification} from "./SystemComponents/Notification";
 import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/File";
+import {mkdirExists, mkdirHelpCommand} from "./config/commands/help/mkdirCommand";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -58,6 +59,7 @@ export function initAllCommands(): void {
   initExitFromConsole();
   initClearTerminal();
   initEcho();
+  initMkdir();
   initLs();
   initTouch();
   initPwd();
@@ -95,6 +97,44 @@ function initTouch(): void {
   }));
 }
 
+function initMkdir(): void {
+  NapicuOS.register_command(new Command('Mkdir', SystemCommandsPrefixEnum.mkdirCommand, (params?: string[], terminal?: TerminalClass) => {
+    return new Promise((resolve) => {
+      if (params?.length) {
+        let pth_dir: string | undefined = terminal?.getPath();
+        if (!pth_dir) {
+          console.error("SYSTEM Terminal dir is undefined");
+          return;
+        }
+        let pth_gt_dir: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(pth_dir);
+        if (pth_gt_dir.state === SystemStateMetadata.PathExist && pth_gt_dir.data?.dir) {
+
+          let dir_crt_dir: SystemDirStateData = NapicuOS.creat_dir(pth_gt_dir.data, params[0]);
+
+          if (dir_crt_dir === SystemStateMetadata.DirNotExist) {
+            resolve({
+              linesForCMD: [],
+              stateCode: CommandStateCodeMetadata.success
+            })
+          } else {
+            resolve({
+              linesForCMD: [mkdirExists(params[0])],
+              stateCode: SystemStateMetadata.DirExist
+            })
+          }
+        } else {
+          console.error("SYSTEM Fatal error with dirs system");
+          return;
+        }
+      }
+      return resolve({
+        linesForCMD: [mkdirHelpCommand],
+        stateCode: CommandStateCodeMetadata.HelpCommand,
+      })
+    });
+  }));
+}
+
 function initClearTerminal(): void {
   NapicuOS.register_command(
     new Command("ClearTerminal", SystemCommandsPrefixEnum.clearCommand, (params?: string[], terminal?: TerminalClass) => {
@@ -102,7 +142,12 @@ function initClearTerminal(): void {
         if (terminal) {
           terminal.lines = [];
         }
-        resolve();
+        return resolve({
+          linesForCMD: [mkdirHelpCommand],
+          stateCode: CommandStateCodeMetadata.HelpCommand,
+        })
+
+
       });
     })
   )

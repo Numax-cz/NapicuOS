@@ -32,6 +32,10 @@ export declare type SystemPathStateData =
   SystemStateMetadata.PathNotExist
   | SystemStateMetadata.PathExist;
 
+export declare type SystemDirStateData =
+  SystemStateMetadata.DirNotExist
+  | SystemStateMetadata.DirExist
+
 export declare interface Os {
   component: Type<any>;
   boot: {

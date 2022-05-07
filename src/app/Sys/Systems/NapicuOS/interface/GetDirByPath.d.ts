@@ -1,7 +1,7 @@
 import {systemDirAFileMetadata} from "./FilesDirs/SystemDir";
-import {SystemStateMetadata} from "./System";
+import {SystemPathStateData, SystemStateMetadata} from "./System";
 
 export declare interface ReturnGetDirByPathMetadata {
   data: systemDirAFileMetadata | null,
-  state: SystemStateMetadata
+  state: SystemPathStateData
 }

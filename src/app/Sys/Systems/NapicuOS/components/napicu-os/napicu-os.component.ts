@@ -57,8 +57,6 @@ import {SYSTEM_WALLPAPER} from "../../config/System";
       ),
       transition(`* => *`, animate(WINDOW_ANIMATION_TIME)),
     ]),
-
-
   ],
 })
 export class NapicuOSComponent implements OnInit {

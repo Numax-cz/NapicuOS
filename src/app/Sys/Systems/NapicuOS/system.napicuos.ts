@@ -5,7 +5,7 @@ import {
   AppCreatMetadata,
   onShutDown,
   onStartUp,
-  Os,
+  Os, SystemDirStateData,
   SystemFileStateData,
   SystemStateMetadata,
   SystemStringStateCorrection,
@@ -574,8 +574,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param dirname Name of the new directory
    */
   public static creat_dir(dir: systemDirAFileMetadata, dirname: string):
-    SystemStateMetadata.DirExist |
-    SystemStateMetadata.DirNotExist {
+    SystemDirStateData {
     const i: systemDirAFileMetadata | undefined = dir.dir?.[dirname];
     if (!i) {
       dir.dir ? dir.dir[dirname] = {
