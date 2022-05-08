@@ -46,10 +46,7 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
-        NapicuOS.add_notification_to_queue_and_push(new SystemNotification({
-          msg: "xd",
-          title: "xd"
-        }))
+        console.log(NapicuOS.get_active_user()?.userSetting);
         resolve();
       });
     })
@@ -201,7 +198,7 @@ function initPwd(): void {
           linesForCMD: [new Line(`${terminal?.getPath()}`, 'white')],
           stateCode: CommandStateCodeMetadata.success,
         });
-      }); 
+      });
     })
   );
 }

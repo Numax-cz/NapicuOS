@@ -227,6 +227,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     // NapicuOS.add_user(system_default_user);
     // NapicuOS.add_user(system_root_user);
 
+
     //Automatic login of the default user
     NapicuOS.log_user(
       initUser.username,
@@ -575,6 +576,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static creat_dir(dir: systemDirAFileMetadata, dirname: string):
     SystemDirStateData {
+    if (!dir.dir) dir.dir = {}
     const i: systemDirAFileMetadata | undefined = dir.dir?.[dirname];
     if (!i) {
       dir.dir ? dir.dir[dirname] = {
@@ -583,6 +585,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return SystemStateMetadata.DirNotExist;
     }
     return SystemStateMetadata.DirExist;
+  }
+
+  /**
+   * Creates a new directories in the directory
+   * @param dir The name of the directory in which you want to create the directory
+   * @param dirsNames Name of the new directory
+   */
+  public static creat_dirs(dir: systemDirAFileMetadata, dirsNames: string[]):
+    SystemDirStateData {
+    if (!dir.dir) dir.dir = {}
+    let state: SystemDirStateData = SystemStateMetadata.DirNotExist;
+    for (const name of dirsNames) {
+      let i = this.creat_dir(dir, name);
+      if (i === SystemStateMetadata.DirExist) {
+        state = SystemStateMetadata.DirExist;
+        break;
+      }
+    }
+    return state;
   }
 
   /**
@@ -736,12 +757,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return this.get_user_by_username(this.SystemCookiesConfig.user.activeUser);
   }
 
-    /**
+  /**
    * Returns the logged-in user username.
    */
-     public static get_active_user_username(): string | undefined {
-      return this.get_active_user()?.username
-    }
+  public static get_active_user_username(): string | undefined {
+    return this.get_active_user()?.username
+  }
 
   /**
    * Sets the active user
@@ -1032,17 +1053,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         const config = this.get_system_config_from_cookies();
         if (config) config.user.users.push(user);
         if (i) {
-          this.creat_dir(i, user.username);
-          const userDir = this.get_user_dir(user.username);
 
-          //TODO init user files and dirs
+
+          this.creat_dirs(user.userSetting.drives, //TODO FIX in Multy Users
+            ["Desktop", "Documents", "Downloads", "Music", "Pictures", "Videos"]);
+
+
         }
         if (this.SystemCookiesConfig) {
           this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
             return i;
           });
         }
-
 
         this.update_config_to_cookies();
         return SystemStateMetadata.UserNotExists;
