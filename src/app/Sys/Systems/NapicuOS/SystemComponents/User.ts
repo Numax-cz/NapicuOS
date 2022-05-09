@@ -1,5 +1,6 @@
 import {SystemUserDataMetadata, UserConstructorMetadata} from '../interface/User/User';
 import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
+import {copy} from "../../../../Bios/Scripts/DeepClone";
 
 export class User {
   public username: string = 'user';
@@ -24,6 +25,6 @@ export class User {
     this.username = data.username;
     this.password = data.password;
     this.permissions = data.permissions || SystemUserPermissionsEnumMetadata.User;
-    this.userSetting = data.userSetting || User.defaultUserSettings;
+    this.userSetting = data.userSetting || copy(User.defaultUserSettings);
   }
 }

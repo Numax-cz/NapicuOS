@@ -25,7 +25,7 @@ import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
-  SYSTEM_BOOT_SCREEN_TITLE,
+  SYSTEM_BOOT_SCREEN_TITLE, SYSTEM_DEFAULT_HOME_FOLDERS,
   SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
@@ -1053,11 +1053,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         const config = this.get_system_config_from_cookies();
         if (config) config.user.users.push(user);
         if (i) {
-
-
-          this.creat_dirs(user.userSetting.drives, //TODO FIX in Multy Users
-            ["Desktop", "Documents", "Downloads", "Music", "Pictures", "Videos"]);
-
+          this.creat_dirs(user.userSetting.drives, SYSTEM_DEFAULT_HOME_FOLDERS);
 
         }
         if (this.SystemCookiesConfig) {
