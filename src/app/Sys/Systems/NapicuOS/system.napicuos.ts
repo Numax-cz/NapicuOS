@@ -5,7 +5,8 @@ import {
   AppCreatMetadata,
   onShutDown,
   onStartUp,
-  Os, SystemDirStateData,
+  Os,
+  SystemDirStateData,
   SystemFileStateData,
   SystemStateMetadata,
   SystemStringStateCorrection,
@@ -22,10 +23,11 @@ import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
 import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
-import {systemDirAFileMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
+import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
-  SYSTEM_BOOT_SCREEN_TITLE, SYSTEM_DEFAULT_HOME_FOLDERS,
+  SYSTEM_BOOT_SCREEN_TITLE,
+  SYSTEM_DEFAULT_HOME_FOLDERS,
   SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
@@ -574,8 +576,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param dir The name of the directory in which you want to create the directory
    * @param dirname Name of the new directory
    */
-  public static creat_dir(dir: systemDirAFileMetadata, dirname: string):
-    SystemDirStateData {
+  public static creat_dir(dir: systemDirAFileMetadata | undefined, dirname: string):
+    SystemDirStateData | SystemStateMetadata.PathNotExist {
+    if (!dir) return SystemStateMetadata.PathNotExist;
     if (!dir.dir) dir.dir = {}
     const i: systemDirAFileMetadata | undefined = dir.dir?.[dirname];
     if (!i) {
@@ -592,8 +595,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param dir The name of the directory in which you want to create the directory
    * @param dirsNames Name of the new directory
    */
-  public static creat_dirs(dir: systemDirAFileMetadata, dirsNames: string[]):
-    SystemDirStateData {
+  public static creat_dirs(dir: systemDirAFileMetadata | undefined, dirsNames: string[]):
+    SystemDirStateData | SystemStateMetadata.PathNotExist {
+    if (!dir) return SystemStateMetadata.PathNotExist;
     if (!dir.dir) dir.dir = {}
     let state: SystemDirStateData = SystemStateMetadata.DirNotExist;
     for (const name of dirsNames) {
@@ -1049,13 +1053,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }).length) {
         return SystemStateMetadata.UserExists;
       } else {
-        const i: systemDirAFileMetadata | undefined = this.get_root_dir().dir?.["home"];
+        const i: systemDirAFileMetadata | undefined = this.get_home_dir();
         const config = this.get_system_config_from_cookies();
         if (config) config.user.users.push(user);
         if (i) {
-          this.creat_dirs(user.userSetting.drives, SYSTEM_DEFAULT_HOME_FOLDERS);
-
+          this.creat_dirs(user.userSetting.drives.dir?.["home"], SYSTEM_DEFAULT_HOME_FOLDERS);
+          this.creat_dir(i, user.username);
+          let usr_folder: systemDirAFileMetadata | undefined = i.dir?.[user.username];
+          if (usr_folder) this.mount_folder(usr_folder, user.userSetting.drives.dir?.["home"].dir)
         }
+
         if (this.SystemCookiesConfig) {
           this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
             return i;
@@ -1125,6 +1132,34 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     } else {
       return gt_dir;
     }
+  }
+
+  /**
+   * Mount a folder to the system
+   * @param dir
+   * @param mountedDir
+   */
+  public static mount_folder(dir: systemDirAFileMetadata | undefined, mountedDir: systemDirMetadata | undefined): void {
+    if (!dir || !mountedDir) return
+    if (!dir.dir) dir.dir = {};
+    dir.dir = mountedDir;
+  }
+
+  /**
+   * Retruns the user's home directory
+   * @param username
+   */
+  public static get_user_home_dir(username: string): systemDirAFileMetadata | SystemStateMetadata.DirNotExist {
+    return NapicuOS.get_home_dir()?.dir?.[username] || SystemStateMetadata.DirNotExist;
+  }
+
+  /**
+   * Return the active user's home directory
+   */
+  public static get_active_user_home_dir(): systemDirAFileMetadata | SystemStateMetadata.DirNotExist {
+    let active_user = this.get_active_user();
+    if (active_user) return this.get_user_home_dir(active_user.username);
+    return SystemStateMetadata.DirNotExist;
   }
 
 
