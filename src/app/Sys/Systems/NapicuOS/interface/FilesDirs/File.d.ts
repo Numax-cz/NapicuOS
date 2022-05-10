@@ -28,4 +28,8 @@ export declare interface SystemFileConsMetadata {
    * File icon
    */
   iconPath?: string
+  /**
+   * File author
+   */
+  createdBy?: string
 }

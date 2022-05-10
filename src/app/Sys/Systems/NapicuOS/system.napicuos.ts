@@ -834,6 +834,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
           value: cmd,
           fileName: cmd.commandName,
           fileType: SystemFileTypeEnumMetadata.executable,
+          createdBy: "root"
         })
       );
       return SystemStateMetadata.RegisterCommandSuccess;
@@ -1119,7 +1120,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       let file = new SystemFile({
         fileName: soundName,
         value: src,
-        fileType: SystemFileTypeEnumMetadata.audio
+        fileType: SystemFileTypeEnumMetadata.audio,
+        createdBy: "root"
       });
       await audioPreloader(src).catch(() => {
         console.error("SYSTEM: Error loading sound");
@@ -1202,6 +1204,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         }
       },
       iconPath: data.fileIconPath,
+      createdBy: "root"
     });
 
 
