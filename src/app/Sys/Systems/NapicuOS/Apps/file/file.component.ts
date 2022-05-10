@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SYSTEM_DEFAULT_HOME_FOLDERS} from "../../config/System";
 
 @Component({
   selector: 'app-file',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileComponent implements OnInit {
 
-  constructor() { }
+  private foldersView: string[] = SYSTEM_DEFAULT_HOME_FOLDERS; //TODO ICON AND NAME
+
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  get GetHomeFolders(): string[] {
+    return SYSTEM_DEFAULT_HOME_FOLDERS
   }
 
 }
