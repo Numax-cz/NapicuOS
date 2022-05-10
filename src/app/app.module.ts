@@ -35,6 +35,7 @@ import {UsermanagerComponent} from './Sys/Systems/NapicuOS/Apps/usermanager/user
 import {DropDownMenuComponent} from './Sys/Systems/NapicuOS/template/drop-down-menu/drop-down-menu.component';
 import {ClickDirective} from './Sys/Systems/NapicuOS/template/drop-down-menu/click.directive';
 import {LoadsComponent} from "./Sys/Systems/NapicuOS/components/loads/loads.component";
+import { FileComponent } from './Sys/Systems/NapicuOS/Apps/file/file.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {LoadsComponent} from "./Sys/Systems/NapicuOS/components/loads/loads.comp
     UsermanagerComponent,
     DropDownMenuComponent,
     ClickDirective,
-    LoadsComponent
+    LoadsComponent,
+    FileComponent
   ],
   imports: [
     BrowserModule,

@@ -84,7 +84,6 @@ function initTouch(): void {
             createdBy: NapicuOS.get_active_user()?.username || "UNKNOWN"
           }))
 
-          console.log(i)
           resolve();
         }
 
