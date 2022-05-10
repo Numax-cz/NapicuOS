@@ -222,12 +222,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       [system_default_user, system_root_user].forEach((user: User) => {
         NapicuOS.add_user(user);
       });
+    } else {
+      //Init users home directory
+      i.user.users.forEach((user: UserConstructorMetadata) => {
+        NapicuOS.mount_user_home_directory(new User(user));
+      });
     }
+
     initUser = NapicuOS.get_user_by_username(i?.user.activeUser) || system_default_user;
-
-
-    // NapicuOS.add_user(system_default_user);
-    // NapicuOS.add_user(system_root_user);
 
 
     //Automatic login of the default user
@@ -1053,16 +1055,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }).length) {
         return SystemStateMetadata.UserExists;
       } else {
-        const i: systemDirAFileMetadata | undefined = this.get_home_dir();
         const config = this.get_system_config_from_cookies();
         if (config) config.user.users.push(user);
-        if (i) {
-          this.creat_dirs(user.userSetting.drives.dir?.["home"], SYSTEM_DEFAULT_HOME_FOLDERS);
-          this.creat_dir(i, user.username);
-          let usr_folder: systemDirAFileMetadata | undefined = i.dir?.[user.username];
-          if (usr_folder) this.mount_folder(usr_folder, user.userSetting.drives.dir?.["home"].dir)
-        }
-
+        this.creat_dirs(user.userSetting.drives.dir?.["home"], SYSTEM_DEFAULT_HOME_FOLDERS);
+        this.mount_user_home_directory(user);
         if (this.SystemCookiesConfig) {
           this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
             return i;
@@ -1074,6 +1070,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }
     }
     return lng;
+  }
+
+  /**
+   * Creat user's home directory
+   * @param user
+   */
+  public static mount_user_home_directory(user: User): void {
+    let i: systemDirAFileMetadata | undefined = this.get_home_dir();
+    if (i) {
+      this.creat_dir(i, user.username);
+      let usr_folder: systemDirAFileMetadata | undefined = i.dir?.[user.username];
+      if (usr_folder) this.mount_folder(usr_folder, user.userSetting.drives.dir?.["home"].dir)
+    }
   }
 
   /**

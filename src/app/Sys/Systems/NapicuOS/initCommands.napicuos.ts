@@ -46,7 +46,7 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
-        console.log(NapicuOS.get_active_user()?.userSetting);
+        console.log(NapicuOS.get_home_dir());
         resolve();
       });
     })
@@ -240,7 +240,7 @@ function initChangeDirectory(): void {
             let prth: string[] | undefined = terminal?.getPath().split("/");
             prth?.pop();
             if (!prth) return;
-            let prthStr = prth.toString();
+            let prthStr = prth.toString().split(",").join("/");
             path = (!prthStr.length) ? "/" : prthStr;
           } else if (!path.startsWith('/')) {
             path = `${terminal?.getPath()}/${path}`;

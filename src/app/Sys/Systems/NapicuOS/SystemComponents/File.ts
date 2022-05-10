@@ -11,6 +11,7 @@ import {NapicuOS} from "../system.napicuos";
 
 
 export class SystemFile {
+
   //TODO DOC
 
   /**
@@ -18,6 +19,10 @@ export class SystemFile {
    */
   public static readonly defaultIconsPath: string =
     '/assets/systems/NapicuOS/SystemIcons';
+
+  private declare _fileType: SystemFileTypeEnumMetadata;
+  private declare _permissions: SystemFilePermissionsMetadata;
+  private declare _createdBy: string;
 
   /**
    * The basic system file
@@ -56,8 +61,6 @@ export class SystemFile {
     this._value = value;
   }
 
-  private declare _fileType: SystemFileTypeEnumMetadata;
-
   set fileType(value: SystemFileTypeEnumMetadata) {
     this._fileType = value;
   }
@@ -68,13 +71,20 @@ export class SystemFile {
     return this._fileName;
   }
 
+  get createdBy(): string {
+    return this._createdBy;
+  }
+
+  set createdBy(value: string) {
+    this._createdBy = value;
+  }
+
 //Getters
 
   set fileName(value: string) {
     this._fileName = value;
   }
 
-  private declare _permissions: SystemFilePermissionsMetadata;
 
   get permissions(): SystemFilePermissionsMetadata {
     return this._permissions;
