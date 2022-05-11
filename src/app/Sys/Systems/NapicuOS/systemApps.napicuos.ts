@@ -5,6 +5,7 @@ import {NapicuOS} from './system.napicuos';
 import {Window} from "./SystemComponents/Window";
 import {UsermanagerComponent} from "./Apps/usermanager/usermanager.component";
 import {FileComponent} from "./Apps/file/file.component";
+import {SYSTEM_IMAGES} from "./config/System";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -59,7 +60,7 @@ export function napicu_os_user_manager(): void {
     appComponent: UsermanagerComponent,
     windowData: Window.centerPos(25, 32),
     resizeAllowed: false,
-    fileIconPath: '/assets/systems/NapicuOS/user.png',
+    fileIconPath: SYSTEM_IMAGES.User,
     addToDock: false,
     multiRun: true
   });
@@ -71,7 +72,7 @@ export function napicu_os_terminal(): void {
     processTitle: 'Terminal',
     appComponent: ConsoleComponent,
     windowData: Window.centerPos(35, 35),
-    fileIconPath: '/assets/systems/NapicuOS/SystemIcons/XFD/term.svg',
+    fileIconPath: SYSTEM_IMAGES.Term,
     addToDock: true,
   });
 }
@@ -83,7 +84,7 @@ export function napicu_os_file(): void {
     appComponent: FileComponent,
     windowData: Window.centerPos(75, 75),
     resizeAllowed: true,
-    fileIconPath: '/assets/systems/NapicuOS/user.png',
+    fileIconPath: SYSTEM_IMAGES.User,
     addToDock: true,
   });
 }

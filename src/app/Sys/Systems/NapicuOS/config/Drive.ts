@@ -15,11 +15,12 @@ export const NapicuOSSystemDir: systemDrivesMetadata = {
       },
       usr: {
         files: [],
-
         dir: {
           sounds: {
             files: [],
-          
+          },
+          images: {
+            files: []
           }
         }
       }

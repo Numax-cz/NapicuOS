@@ -35,7 +35,6 @@ export class SystemFile {
     this._permissions = data.permissions || {read: SystemUserPermissionsEnumMetadata.User};
     this._iconPath = data.iconPath || `${SystemFile.defaultIconsPath}/XFD/download.svg`,
       this._createdBy = data.createdBy || 'root';
-    NapicuOS.cache_image(this._iconPath);
   }
 
   /**

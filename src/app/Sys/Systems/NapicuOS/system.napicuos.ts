@@ -31,6 +31,7 @@ import {
   SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
+  SYSTEM_IMAGES,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
@@ -73,7 +74,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     installed: true,
   };
   private static drives: systemDrivesMetadata = NapicuOSSystemDir;
-  protected static imgSrcCache: string[] = [];
   public static activeUsers: string[] = [];
   @NapicuCookies()
   public static SystemCookiesConfig: NapicuOsCookiesTemplate = {
@@ -145,29 +145,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Initialization of all users
       this.initUsers();
       //Preload all images
-      await this.preloadImages();
+      await this.loadSystemImages();
       //Preload system sounds
       await this.loadSystemSounds();
 
-      resolve();
-    });
-  }
-
-  /**
-   * Preload all images
-   */
-  protected async preloadImages(): Promise<void> {
-    return new Promise<void>(async resolve => {
-      //Preload from cache
-      for (const src of NapicuOS.imgSrcCache) {
-        await imagePreloader(src);
-      }
-      //Preload alert assets
-      for (const img of Object.values(systemAlertImagesEnumMetadata)) {
-        await imagePreloader(img);
-      }
-
-      NapicuOS.imgSrcCache = [];
       resolve();
     });
   }
@@ -180,6 +161,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       for (const snd of Object.entries(SYSTEM_SOUNDS)) {
         await NapicuOS.add_sound_to_system(snd[0], snd[1])
+      }
+      resolve();
+    });
+  }
+
+  /**
+   * Preload system images
+   */
+  protected async loadSystemImages(): Promise<void> {
+    return new Promise<void>(async resolve => {
+      //Preload system images
+      for (const snd of Object.entries(SYSTEM_IMAGES)) {
+        await NapicuOS.add_image_to_system(snd[0], snd[1])
       }
       resolve();
     });
@@ -489,6 +483,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_sounds_dir(): systemDirAFileMetadata | undefined {
     return this.get_usr_dir()?.dir?.['sounds'];
+  }
+
+  /**
+   * Returns system images directory
+   */
+  public static get_images_dir(): systemDirAFileMetadata | undefined {
+    return this.get_usr_dir()?.dir?.['images'];
   }
 
   /**
@@ -925,14 +926,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Add an image to cache for the system
-   * @param src
-   */
-  public static cache_image(src: string): void {
-    this.imgSrcCache.push(src);
-  }
-
-  /**
    * Adds the file to the directory
    *
    * Checks if the same file name is in the directory
@@ -1124,11 +1117,34 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         createdBy: "root"
       });
       await audioPreloader(src).catch(() => {
-        console.error("SYSTEM: Error loading sound");
+        console.error("SYSTEM: Error loading sound: " + src);
         reject();
       });
 
       return resolve(this.add_file_to_dir(this.get_sounds_dir(), file));
+    });
+  }
+
+  /**
+   * Add and preload new sound
+   * @param imageName Image's name
+   * @param src Image's source
+   */
+  public static add_image_to_system(imageName: string, src: string): Promise<SystemFileStateData | void> {
+    return new Promise<SystemFileStateData>(async (resolve, reject) => {
+
+      let file = new SystemFile({
+        fileName: imageName,
+        value: src,
+        fileType: SystemFileTypeEnumMetadata.image,
+        createdBy: "root"
+      });
+      await imagePreloader(src).catch(() => {
+        console.error("SYSTEM: Error loading image: " + src);
+        reject();
+      });
+
+      return resolve(this.add_file_to_dir(this.get_images_dir(), file));
     });
   }
 

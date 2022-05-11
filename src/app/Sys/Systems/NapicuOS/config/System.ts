@@ -21,6 +21,25 @@ export enum SYSTEM_SOUNDS {
   ShortPop = 'assets/sound/ShortPop.mp3',
 }
 
+export enum SYSTEM_IMAGES {
+  //Apps - Alert icons
+  Close = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/close.png',
+  Info = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/info.png',
+  Success = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/success.png',
+  Warning = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/warning.png',
+  //XFD icons
+  FileCommander = 'assets/systems/NapicuOS/SystemIcons/XFD/commander.svg',
+  Download = 'assets/systems/NapicuOS/SystemIcons/XFD/download.svg',
+  Info2 = 'assets/systems/NapicuOS/SystemIcons/XFD/info.svg',
+  Internet = 'assets/systems/NapicuOS/SystemIcons/XFD/internet.svg',
+  Menu = 'assets/systems/NapicuOS/SystemIcons/XFD/menu.svg',
+  Monitor = 'assets/systems/NapicuOS/SystemIcons/XFD/monitor.svg',
+  Notification = 'assets/systems/NapicuOS/SystemIcons/XFD/notification.webp',
+  Term = 'assets/systems/NapicuOS/SystemIcons/XFD/term.svg',
+  User = "assets/systems/NapicuOS/SystemIcons/XFD/user.png"
+
+}
+
 export const SYSTEM_DEFAULT_HOME_FOLDERS: string[] = [
   "Desktop", "Documents", "Downloads", "Music", "Pictures", "Videos"
 ]
