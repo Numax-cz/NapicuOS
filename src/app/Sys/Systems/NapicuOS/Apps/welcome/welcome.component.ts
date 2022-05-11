@@ -1,12 +1,10 @@
-import {AfterViewInit, Component, OnInit, TemplateRef, Type, ViewChild} from '@angular/core';
+import {Component, OnInit, Type} from '@angular/core';
 import {MainComponent} from "./main/main.component";
 import {UserComponent} from "./user/user.component";
 import {
   SystemInstallationOptionsArrayBinds,
-  SystemInstallationOptionsArrayMetadata,
-  SystemInstallationOptionsMetadata
+  SystemInstallationOptionsArrayMetadata
 } from "../../interface/Apps/Welcome";
-import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 
 @Component({

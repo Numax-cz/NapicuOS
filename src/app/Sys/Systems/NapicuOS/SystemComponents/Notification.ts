@@ -1,7 +1,4 @@
-import {
-  SystemNotificationCommandMetadata,
-  SystemNotificationConstructorMetadata
-} from "../interface/Notification";
+import {SystemNotificationCommandMetadata, SystemNotificationConstructorMetadata} from "../interface/Notification";
 import {NapicuOS} from "../system.napicuos";
 import {TIME_FORMAT_MHA} from "../config/Time";
 

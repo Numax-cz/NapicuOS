@@ -1,7 +1,6 @@
 import {Type} from '@angular/core';
 import {windowButtonsMetadata, windowData} from './Window/WindowData';
 import {SystemWindowConstructorMetadata} from "./Window/Window";
-import {System} from "../SystemComponents/System";
 
 export declare interface onStartUp {
   onStart(): void;

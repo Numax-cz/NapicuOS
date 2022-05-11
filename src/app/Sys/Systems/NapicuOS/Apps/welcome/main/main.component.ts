@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {WelcomeComponent} from "../welcome.component";
 import {WelcomeComponentClass} from "../WelcomeComponentClass";
 
 @Component({

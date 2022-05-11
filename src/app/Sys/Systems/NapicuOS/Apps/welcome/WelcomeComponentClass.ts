@@ -1,9 +1,5 @@
 import {WelcomeComponent} from "./welcome.component";
-import {
-  SystemInstallationOptionsArrayBinds,
-  SystemInstallationOptionsArrayMetadata,
-  welcomeUserInstallationDataMetadata
-} from "../../interface/Apps/Welcome";
+import {SystemInstallationOptionsArrayBinds} from "../../interface/Apps/Welcome";
 
 export abstract class WelcomeComponentClass<T> {
 

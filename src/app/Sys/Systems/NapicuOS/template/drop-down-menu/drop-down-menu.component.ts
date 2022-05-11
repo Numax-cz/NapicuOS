@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, Host, Input, OnInit, Optional, Output, SkipSelf} from '@angular/core';
+import {Component, EventEmitter, Host, Input, OnInit, Optional, Output, SkipSelf} from '@angular/core';
 import {AbstractControl, ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 interface DropDownMenuData {

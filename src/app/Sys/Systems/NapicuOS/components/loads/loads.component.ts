@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {GrubComponent} from 'src/app/Grub/grub/grub.component';
 import {animate, style, transition, trigger} from "@angular/animations";
-import {NOTIFICATION_ANIMATION_TIME} from "../../config/NotificationAnimations";
 
 @Component({
   selector: 'app-loads',

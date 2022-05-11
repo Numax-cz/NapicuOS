@@ -2,8 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {WelcomeComponentClass} from "../WelcomeComponentClass";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
-  SYSTEM_DEFAULT_HOSTNAME, SYSTEM_HOSTNAME_MAX_LENGTH, SYSTEM_HOSTNAME_MIN_LENGTH,
-  SYSTEM_USERS_MAX_LENGTH, SYSTEM_USERS_MAX_PASSWORD_LENGTH,
+  SYSTEM_DEFAULT_HOSTNAME,
+  SYSTEM_HOSTNAME_MAX_LENGTH,
+  SYSTEM_HOSTNAME_MIN_LENGTH,
+  SYSTEM_USERS_MAX_LENGTH,
+  SYSTEM_USERS_MAX_PASSWORD_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
   SYSTEM_USERS_MIN_PASSWORD_LENGTH
 } from "../../../config/System";

@@ -1,5 +1,4 @@
 import {Line} from '../../Apps/console/console.component';
-import {systemDirAFileMetadata} from "../FilesDirs/SystemDir";
 
 export declare interface commandLineStMetadata {
   user: string;

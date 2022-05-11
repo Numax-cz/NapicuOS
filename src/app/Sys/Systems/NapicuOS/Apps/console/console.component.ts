@@ -1,18 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CommandFunMetadata} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Command';
-import {SYSTEM_DEFAULT_HOSTNAME} from '../../config/System';
 import {removeSpace} from '../../scripts/removeSpaceInString';
 import {NapicuOS} from '../../system.napicuos';
-import {
-  historyCommandsMetadata,
-  inputMetadata,
-  terminalColorsMetadata,
-} from '../../interface/Apps/Console';
-import {NapicuOSSystemDir} from "../../config/Drive";
-import {systemDirAFileMetadata, systemDrivesMetadata} from "../../interface/FilesDirs/SystemDir";
-import {SystemCommandsPrefixEnum} from "../../config/commands/Commands";
+import {historyCommandsMetadata, inputMetadata, terminalColorsMetadata,} from '../../interface/Apps/Console';
 import {TerminalClass} from "../../SystemComponents/Terminal";
-import { ReplaceSystemVariables } from '../../scripts/ReplaceVariables';
 
 export class Line {
   private declare line: string;

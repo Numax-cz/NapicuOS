@@ -1,10 +1,5 @@
 import {Line} from '../../../Apps/console/console.component';
-import {
-  SYSTEM_HOSTNAME_MAX_LENGTH,
-  SYSTEM_HOSTNAME_MIN_LENGTH,
-  SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH
-} from "../../System";
+import {SYSTEM_USERS_MAX_LENGTH, SYSTEM_USERS_MIN_LENGTH} from "../../System";
 
 export const addUserUsage: Line = new Line(
   `Usage: adduser <user_name> <user_password>`
