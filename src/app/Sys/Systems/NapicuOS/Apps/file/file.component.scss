@@ -6,5 +6,11 @@
 
 .BarOptions {
   display: grid;
-  grid-template-columns: 20% auto;
+  height: 100%;
+  grid-template-columns: 10% auto;
+}
+
+.LeftBox {
+  background: #343944;
+  border-right: 1px solid black;
 }

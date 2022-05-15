@@ -1,16 +1,16 @@
 .NapicuOSSimpleBoxBorder {
-  background-color: var(--NapicuSimpleBoxBackgroundColor); //CONFIG
+  background-color: var(--NapicuSimpleBoxBackgroundColor);
   padding: 16px;
-  border: 1px solid var(--NapicuSimpleBoxBorderColor); //Config
+  border: 1px solid var(--NapicuSimpleBoxBorderColor);
   border-radius: 11px;
 }
 
 .NapicuOSSimpleBoxNoNBorder {
-  background-color: var(--NapicuSimpleBoxBackgroundColor); //CONFIG
+  background-color: var(--NapicuSimpleBoxBackgroundColor);
   padding: 16px;
   border-radius: 11px;
 }
 
 .NapicuOSSimpleBoxDarkerColor {
-  background-color: var(--NapicuSimpleBoxDarkerBackgroundColor) !important; //CONFIG
+  background-color: var(--NapicuSimpleBoxDarkerBackgroundColor) !important;
 }

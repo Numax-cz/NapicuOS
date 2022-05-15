@@ -105,8 +105,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //Set black screen
     SystemComponent.SystemComponent = BlackscreenComponent;
     //Preload based images
-    await imagePreloader(SYSTEM_BOOT_SCREEN_LOGO);
-    await imagePreloader(SYSTEM_WALLPAPER);
+    //await imagePreloader(SYSTEM_BOOT_SCREEN_LOGO); //TODO
+    //await imagePreloader(SYSTEM_WALLPAPER); //TODO
 
     //Set system loading screen
     SystemComponent.SystemComponent = LoadsComponent;
@@ -145,9 +145,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Initialization of all users
       this.initUsers();
       //Preload all images
-      await this.loadSystemImages();
+      //await this.loadSystemImages(); //TODO
       //Preload system sounds
-      await this.loadSystemSounds();
+      //await this.loadSystemSounds(); //TODO
 
       resolve();
     });
