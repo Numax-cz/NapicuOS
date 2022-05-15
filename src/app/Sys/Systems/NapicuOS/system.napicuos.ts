@@ -758,6 +758,23 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns the user home folder by username
+   */
+  public static get_user_home_path(username: string | undefined): string | null {
+    let user_pth: string = `/home/${username}`;
+    let i = this.get_dir_by_path(user_pth);
+    if (!i.data) return null;
+    return user_pth;
+  }
+
+  /**
+   * Returns the user home folder of the active user
+   */
+  public static get_active_user_home_path(): string | null {
+    return this.get_user_home_path(this.get_active_user()?.username);
+  }
+
+  /**
    * Returns the logged-in user.
    */
   public static get_active_user(): User | undefined {
