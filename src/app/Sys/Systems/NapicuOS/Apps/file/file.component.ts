@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SYSTEM_DEFAULT_HOME_FOLDERS} from "../../config/System";
+import {fileConfigDisplayedMetadata, fileConfigMetadata} from "../../interface/Apps/FileManager";
+import {GET_SYSTEM_APPS_FILE_MANAGER_DISPLAYED_FILES} from "../../config/Apps/fileManager";
 
 @Component({
   selector: 'app-file',
@@ -8,7 +10,9 @@ import {SYSTEM_DEFAULT_HOME_FOLDERS} from "../../config/System";
 })
 export class FileComponent implements OnInit {
 
-  private foldersView: string[] = SYSTEM_DEFAULT_HOME_FOLDERS; //TODO ICON AND NAME
+  private foldersView: fileConfigDisplayedMetadata[] = GET_SYSTEM_APPS_FILE_MANAGER_DISPLAYED_FILES()
+
+  // ICON AND NAME
 
 
   constructor() {
@@ -17,8 +21,8 @@ export class FileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get GetHomeFolders(): string[] {
-    return SYSTEM_DEFAULT_HOME_FOLDERS
+  get GetHomeFolders(): fileConfigDisplayedMetadata[] {
+    return this.foldersView
   }
 
 }
