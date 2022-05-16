@@ -1,9 +1,17 @@
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
-  <section>
+  <section class="TopTools">
 
     <!--Top panel-->
     <div>
-      tvoje mama
+      <!--Top tools options-->
+      <div class="ToolOptions">
+        <div (click)="clickFile()">{{topTxtView.file}}</div>
+        <div (click)="clickEdit()">{{topTxtView.edit}}</div>
+        <div (click)="clickView()">{{topTxtView.view}}</div>
+        <div (click)="clickGo()">{{topTxtView.go}}</div>
+      </div>
+      <!--Bottom tools options-->
+      <div></div>
     </div>
     <section class="BarOptions">
       <!--Left bar-->

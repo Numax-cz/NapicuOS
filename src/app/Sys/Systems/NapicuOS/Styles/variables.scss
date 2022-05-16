@@ -25,8 +25,11 @@
 }
 
 .NapicuThemeFeraDark {
-  //TopPanel
+  //Main
+  --NapicuTextColor: #ffffff;
+  --NapicuTextGray: rgb(204 203 203 / 88%);;
 
+  //TopPanel
   --NapicuTopMenuTextColor: #d5d5d5;
   --NapicuTopMenuIconFilter: none;
   //BottomPanel

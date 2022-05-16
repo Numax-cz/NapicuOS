@@ -14,3 +14,20 @@
   background: #343944;
   border-right: 1px solid black;
 }
+
+.TopTools {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ToolOptions {
+  display: flex;
+  padding: 3px 0;
+  color: var(--NapicuTextGray); //TODO
+  > div {
+    padding: 0 7px;
+    cursor: pointer;
+  }
+
+}
