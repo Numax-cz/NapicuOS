@@ -7,12 +7,47 @@
 .BarOptions {
   display: grid;
   height: 100%;
-  grid-template-columns: 10% auto;
+  grid-template-columns: 180px auto;
 }
 
 .LeftBox {
   background: #343944;
   border-right: 1px solid black;
+  color: var(--NapicuTextColor);
+  font-size: 1rem;
+  padding: 0.5rem;
+
+
+  ul {
+
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    padding-left: 5%;
+  }
+
+  li {
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    font-size: 1.1rem;
+    padding-left: 15%;
+    align-items: center;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  li:hover {
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+  }
+
 }
 
 .TopTools {
@@ -21,7 +56,9 @@
   flex-direction: column;
 }
 
-.ToolOptions {
+
+//TOP Tool BOX
+.ToolOptions { //TODO component template
   display: flex;
   padding: 3px 0;
   color: var(--NapicuTextGray); //TODO

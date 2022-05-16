@@ -5,6 +5,7 @@
     <div>
       <!--Top tools options-->
       <div class="ToolOptions">
+
         <div (click)="clickFile()">{{topTxtView.file}}</div>
         <div (click)="clickEdit()">{{topTxtView.edit}}</div>
         <div (click)="clickView()">{{topTxtView.view}}</div>
@@ -17,9 +18,20 @@
       <!--Left bar-->
       <div class="LeftBox" style="background: #343944">
         <!--Home folders-->
-        <div *ngFor="let i of GetHomeFolders">
-          {{i.name}}
-        </div>
+        <h1>Places</h1>
+        <ul>
+          <li *ngFor="let i of GetHomeFolders">
+
+            <img [src]="i.icon" alt="Directory icon">
+            {{i.name}}
+          </li>
+        </ul>
+        <!--Devices folders-->
+        <h1>Devices</h1>
+        <ul>
+          <li>Device1</li>
+          <li>Device1</li>
+        </ul>
 
       </div>
       <!--Right bar-->

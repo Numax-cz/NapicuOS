@@ -84,7 +84,7 @@ export function napicu_os_file(): void {
     appComponent: FileComponent,
     windowData: Window.centerPos(75, 75),
     resizeAllowed: true,
-    fileIconPath: SYSTEM_IMAGES.User,
+    fileIconPath: SYSTEM_IMAGES.BlueFolder,
     addToDock: true,
   });
 }
