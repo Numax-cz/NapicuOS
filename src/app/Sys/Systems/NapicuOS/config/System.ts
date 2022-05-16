@@ -36,7 +36,17 @@ export enum SYSTEM_IMAGES {
   Monitor = 'assets/systems/NapicuOS/SystemIcons/XFD/monitor.svg',
   Notification = 'assets/systems/NapicuOS/SystemIcons/XFD/notification.webp',
   Term = 'assets/systems/NapicuOS/SystemIcons/XFD/term.svg',
-  User = "assets/systems/NapicuOS/SystemIcons/XFD/user.png"
+  User = "assets/systems/NapicuOS/SystemIcons/XFD/user.png",
+  AppAudio = "assets/systems/NapicuOS/SystemIcons/XFD/application-audio.svg",
+  AppDocBlank = "assets/systems/NapicuOS/SystemIcons/XFD/application-blank.svg",
+  AppDocText = "assets/systems/NapicuOS/SystemIcons/XFD/application-document-blank.svg",
+  AudioVolumeHigh = "assets/systems/NapicuOS/SystemIcons/XFD/audio-volume-high-panel.svg",
+  AudioVolumeLow = "assets/systems/NapicuOS/SystemIcons/XFD/audio-volume-low.svg",
+  AvatarDefault = "assets/systems/NapicuOS/SystemIcons/XFD/avatar-default.svg",
+  BlueFolder = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue.svg",
+  BlueFolderImg = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-img.svg",
+  BlueFolderHome = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-home.svg",
+  Trash = "assets/systems/NapicuOS/SystemIcons/XFD/trash.svg",
 
 }
 
