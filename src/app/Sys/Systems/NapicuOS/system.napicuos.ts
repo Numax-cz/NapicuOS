@@ -37,7 +37,7 @@ import {
   SYSTEM_USERS_MIN_LENGTH,
   SYSTEM_WALLPAPER
 } from './config/System';
-import {napicu_os_root_part, NapicuOSSystemDir} from './config/Drive';
+import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/CommandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
@@ -438,9 +438,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return i[0];
   }
 
-  public static get_dir(): systemDrivesMetadata {
+  /**
+   * Returns directory
+   */
+  public static get_drives(): systemDrivesMetadata {
     return this.drives;
   }
+
+  /**
+   * Returns drives names
+   */
+  public static get_drives_name(): string[] {
+    return Object.keys(this.drives);
+  }
+
 
   /**
    * Returns the drive by specified drive letter
@@ -468,7 +479,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns root directory
    */
   public static get_root_dir(): systemDirAFileMetadata {
-    return this.get_dir()[napicu_os_root_part];
+    return this.get_drives()[NAPICU_OS_ROOT_PART];
   }
 
   /**

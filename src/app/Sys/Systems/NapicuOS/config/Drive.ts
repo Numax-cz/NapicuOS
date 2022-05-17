@@ -1,10 +1,9 @@
 import {systemDrivesMetadata} from '../interface/FilesDirs/SystemDir';
 
-export const napicu_os_root_part = 'Computer';
-
+export const NAPICU_OS_ROOT_PART = 'System';
 
 export const NapicuOSSystemDir: systemDrivesMetadata = {
-  Computer: {
+  System: {
     dir: {
       //RootDir
       home: {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SYSTEM_DEFAULT_HOME_FOLDERS} from "../../config/System";
+import {SYSTEM_DEFAULT_HOME_FOLDERS, SYSTEM_IMAGES} from "../../config/System";
 import {fileConfigDisplayedMetadata, fileConfigMetadata} from "../../interface/Apps/FileManager";
-import {GET_SYSTEM_APPS_FILE_MANAGER_DISPLAYED_FILES} from "../../config/Apps/fileManager";
+import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/fileManager";
 import {NapicuOS} from "../../system.napicuos";
 
 @Component({
@@ -10,7 +10,8 @@ import {NapicuOS} from "../../system.napicuos";
   styleUrls: ['./file.component.scss']
 })
 export class FileComponent implements OnInit {
-  private foldersView: fileConfigDisplayedMetadata[] = GET_SYSTEM_APPS_FILE_MANAGER_DISPLAYED_FILES()
+  private declare foldersView: fileConfigDisplayedMetadata[];
+  private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
 
   constructor() {
@@ -23,10 +24,15 @@ export class FileComponent implements OnInit {
       view: NapicuOS.get_language_words().Apps.FileManager.view,
       go: NapicuOS.get_language_words().Apps.FileManager.go
     }
-  }
+    this.foldersView = GET_SYSTEM_FOLDERS_FILE();
 
-  get GetHomeFolders(): fileConfigDisplayedMetadata[] {
-    return this.foldersView
+    this.drivesView = NapicuOS.get_drives_name().map((driveName: string) => {
+      return {
+        name: driveName,
+        directory: "/", //TODO MOUNT TO DRIVE
+        icon: SYSTEM_IMAGES.Drive
+      }
+    });
   }
 
   public clickFile(): void {
@@ -44,4 +50,38 @@ export class FileComponent implements OnInit {
   public clickGo(): void {
 
   }
+
+  public clickNext(): void {
+
+  }
+
+  public clickBack(): void {
+
+  }
+
+  public clickHome(): void {
+
+  }
+
+
+  get GetFoldersView(): fileConfigDisplayedMetadata[] {
+    return this.foldersView;
+  }
+
+  get GetDrivesView(): fileConfigDisplayedMetadata[] {
+    return this.drivesView;
+  }
+
+  get GetBackImage(): string {
+    return SYSTEM_IMAGES.ArrowLeft;
+  }
+
+  get GetNextImage(): string {
+    return SYSTEM_IMAGES.ArrowRight;
+  }
+
+  get GetHomeImage(): string {
+    return SYSTEM_IMAGES.Home;
+  }
+
 }
