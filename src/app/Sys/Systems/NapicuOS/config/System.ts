@@ -29,7 +29,6 @@ export enum SYSTEM_IMAGES {
   Warning = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/warning.png',
   //XFD icons
   FileCommander = 'assets/systems/NapicuOS/SystemIcons/XFD/commander.svg',
-  Download = 'assets/systems/NapicuOS/SystemIcons/XFD/download.svg',
   Info2 = 'assets/systems/NapicuOS/SystemIcons/XFD/info.svg',
   Internet = 'assets/systems/NapicuOS/SystemIcons/XFD/internet.svg',
   Menu = 'assets/systems/NapicuOS/SystemIcons/XFD/menu.svg',
@@ -48,9 +47,21 @@ export enum SYSTEM_IMAGES {
   BlueFolderHome = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-home.svg",
   Trash = "assets/systems/NapicuOS/SystemIcons/XFD/trash.svg",
   Computer = "assets/systems/NapicuOS/SystemIcons/XFD/computer.svg",
-
+  Settings = "assets/systems/NapicuOS/SystemIcons/XFD/settings-blue.svg",
+  Drive = "assets/systems/NapicuOS/SystemIcons/XFD/drive.svg",
+  BlueFolderDocuments = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-doc.svg",
+  BlueFolderDownloads = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-downloads.svg",
+  BlueFolderMusic = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-music.svg",
+  BlueFolderPictures = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-pictures.svg",
+  BlueFolderVideos = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-video.svg",
+  BlueUser = "assets/systems/NapicuOS/SystemIcons/XFD/blue-user.svg",
+  ArrowUp = "assets/systems/NapicuOS/SystemIcons/XFD/arrow-up.svg",
+  ArrowRight = "assets/systems/NapicuOS/SystemIcons/XFD/arrow-right.svg",
+  ArrowLeft = "assets/systems/NapicuOS/SystemIcons/XFD/arrow-left.svg",
+  ArrowDown = "assets/systems/NapicuOS/SystemIcons/XFD/arrow-down.svg",
+  Home = "assets/systems/NapicuOS/SystemIcons/XFD/home.svg",
 }
 
 export const SYSTEM_DEFAULT_HOME_FOLDERS: string[] = [
-  "Desktop", "Documents", "Downloads", "Music", "Pictures", "Videos"
+  "Desktop", "Documents", "Downloads", "Music", "Pictures", "Videos", "Downloads"
 ]
