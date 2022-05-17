@@ -2,7 +2,7 @@
   <section class="TopTools">
 
     <!--Top panel-->
-    <div>
+    <div class="TopMenu">
       <!--Top tools options-->
       <div class="ToolOptions">
 
@@ -30,14 +30,27 @@
           </div>
         </div>
         <!--Path line-->
-        <div>
-          /home
+        <div class="pathSearchBar">
+          <img class="iconFolder" [src]="GetFileIcon" alt="Path icon">
+          <div
+            (keydown.enter)="onEnter($event)"
+            accept="txt"
+            autocapitalize="off"
+            autocomplete="off"
+            autocorrect="off"
+            contenteditable="true"
+            id="inputLineID"
+            spellcheck="false"
+            class="input"
+          >
+            /home/user/Desktop/
+          </div>
         </div>
       </section>
     </div>
     <section class="BarOptions">
       <!--Left bar-->
-      <div class="LeftBox" style="background: #343944">
+      <div class="LeftBox">
         <!--Home folders-->
         <h1>Places</h1>
         <ul>

@@ -63,6 +63,11 @@ export class FileComponent implements OnInit {
 
   }
 
+  public onEnter(event: Event): void {
+
+
+    event.preventDefault();
+  }
 
   get GetFoldersView(): fileConfigDisplayedMetadata[] {
     return this.foldersView;
@@ -82,6 +87,10 @@ export class FileComponent implements OnInit {
 
   get GetHomeImage(): string {
     return SYSTEM_IMAGES.Home;
+  }
+
+  get GetFileIcon(): string {
+    return SYSTEM_IMAGES.BlueFolder;
   }
 
 }

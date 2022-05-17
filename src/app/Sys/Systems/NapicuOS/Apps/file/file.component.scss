@@ -1,5 +1,5 @@
 .BackgroundColor {
-  background-color: var(--NapicuSimpleBoxBackgroundColor);
+  background-color: var(--NapicuClassicDark2);
   width: 100%;
   height: 100%;
 }
@@ -11,7 +11,6 @@
 }
 
 .LeftBox {
-  background: #343944;
   border-right: 1px solid black;
   color: var(--NapicuTextColor);
   font-size: 1rem;
@@ -68,10 +67,43 @@
   }
 }
 
-.FileManagerOptions {
-  display: flex;
+.TopMenu {
+  background-color: var(--NapicuClassicDark);
 }
 
+.FileManagerOptions {
+  display: flex;
+  padding: 5px 0;
+  border-top: 2px solid #0000004f;
+  border-bottom: 2px solid black;
+}
+
+.pathSearchBar {
+  width: 90%;
+  background-color: #1b1d24;
+  border-radius: 5px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: var(--NapicuTextColor);
+  font-size: 14px;
+  //box-shadow: 0 1px 5px #000000;
+
+  .iconFolder {
+    width: 22px;
+    height: 100%;
+    margin: 0 6px;
+  }
+
+  .input {
+    outline: none;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+}
 
 //TOP Tool BOX
 .ToolOptions { //TODO component template
@@ -84,3 +116,4 @@
   }
 
 }
+
