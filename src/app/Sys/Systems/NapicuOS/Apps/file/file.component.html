@@ -43,7 +43,7 @@
             spellcheck="false"
             class="input"
           >
-            /home/user/Desktop/
+            {{GetDirectoryPath}}
           </div>
         </div>
       </section>
@@ -70,9 +70,19 @@
 
       </div>
       <!--Right bar-->
-      <div>
-        fdfdfd
-      </div>
+      <section class="RightBox">
+
+        <div class="RightObjectView">
+          <div *ngFor="let i of GetFilesInDirectory" class="Object">
+            <div class="ObjectContent">
+
+              <img [src]="i.icon" alt="icon">
+              <p>{{i.name}}</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
     </section>
   </section>
 </section>

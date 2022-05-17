@@ -3,6 +3,8 @@ import {SYSTEM_DEFAULT_HOME_FOLDERS, SYSTEM_IMAGES} from "../../config/System";
 import {fileConfigDisplayedMetadata, fileConfigMetadata} from "../../interface/Apps/FileManager";
 import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/fileManager";
 import {NapicuOS} from "../../system.napicuos";
+import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
+import {SystemFile} from "../../SystemComponents/File";
 
 @Component({
   selector: 'app-file',
@@ -13,6 +15,7 @@ export class FileComponent implements OnInit {
   private declare foldersView: fileConfigDisplayedMetadata[];
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
+  private startDirectory: string = "/home/%USER"
 
   constructor() {
   }
@@ -33,6 +36,11 @@ export class FileComponent implements OnInit {
         icon: SYSTEM_IMAGES.Drive
       }
     });
+  }
+
+  public checkPathCorrection(path: string): boolean {
+
+    return true;
   }
 
   public clickFile(): void {
@@ -69,6 +77,29 @@ export class FileComponent implements OnInit {
     event.preventDefault();
   }
 
+
+  get GetFilesInDirectory(): { name: string, icon: string }[] { //TODO
+    let i = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
+    let out: { name: string, icon: string }[] = [];
+
+    if (i.data?.dir) Object.keys(i.data.dir).map((dirName: string) => {
+      out.push({
+        name: dirName,
+        icon: SYSTEM_IMAGES.BlueFolder
+      })
+    });
+    if (i.data?.files) i.data.files.map((fileName: SystemFile) => {
+      out.push({
+        name: fileName.fileName,
+        icon: fileName.iconPath
+      })
+    });
+
+
+    return out;
+
+  }
+
   get GetFoldersView(): fileConfigDisplayedMetadata[] {
     return this.foldersView;
   }
@@ -91,6 +122,10 @@ export class FileComponent implements OnInit {
 
   get GetFileIcon(): string {
     return SYSTEM_IMAGES.BlueFolder;
+  }
+
+  get GetDirectoryPath(): string {
+    return ReplaceSystemVariables(this.startDirectory);
   }
 
 }

@@ -35,6 +35,7 @@
     font-size: 1.1rem;
     padding-left: 15%;
     align-items: center;
+    cursor: pointer;
 
     img {
       width: 30px;
@@ -44,9 +45,12 @@
 
   li:hover {
     background: rgba(0, 0, 0, 0.45);
-    cursor: pointer;
   }
 
+}
+
+.RightBox {
+  padding: 7px;
 }
 
 .TopTools {
@@ -117,3 +121,35 @@
 
 }
 
+.RightObjectView {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow-x: auto;
+  color: var(--NapicuTextColor);
+
+  .Object {
+    width: 100px;
+    cursor: pointer;
+  }
+
+  .ObjectContent:hover {
+    background-color: red;
+    background: rgba(0, 0, 0, 0.45)
+  }
+
+  .ObjectContent {
+    padding: 25px;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
