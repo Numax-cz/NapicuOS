@@ -32,14 +32,16 @@
     display: flex;
     width: 100%;
     flex-direction: row;
+    margin: 6px 0;
     font-size: 1.1rem;
-    padding-left: 15%;
+    padding-left: 14%;
     align-items: center;
     cursor: pointer;
 
     img {
       width: 30px;
       height: 30px;
+      margin-right: 6px;
     }
   }
 
@@ -68,6 +70,13 @@
     width: 30px;
     height: 30px;
     margin: 0 0.2rem;
+    transition: filter .2s;
+  }
+
+  .cantClick {
+    cursor: default;
+    filter: brightness(0.5);
+    transition: filter .2s;
   }
 }
 
@@ -129,17 +138,20 @@
   color: var(--NapicuTextColor);
 
   .Object {
-    width: 100px;
+    width: 120px;
+    word-break: break-all;
     cursor: pointer;
   }
 
   .ObjectContent:hover {
-    background-color: red;
-    background: rgba(0, 0, 0, 0.45)
+    //background: var(--NapicuCalendarHoverDayColor)
+    img {
+      filter: brightness(1.29);
+    }
   }
 
   .ObjectContent {
-    padding: 25px;
+    padding: 10px;
     border-radius: 13px;
     display: flex;
     justify-content: center;

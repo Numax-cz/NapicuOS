@@ -17,12 +17,14 @@
         <div class="ToolOptionsFiles">
           <!--Back button-->
           <div>
-            <img (click)="clickBack()" [src]="GetBackImage" alt="Back icon">
+            <img [ngClass]="{cantClick: !backHistoryPaths.length}" (click)="clickBack()" [src]="GetBackImage"
+                 alt="Back icon">
 
           </div>
           <!--Next button-->
           <div>
-            <img (click)="clickNext()" [src]="GetNextImage" alt="Next icon">
+            <img [ngClass]="{cantClick: !nextHistoryPaths.length}" (click)="clickNext()" [src]="GetNextImage"
+                 alt="Next icon">
           </div>
           <!--Home button-->
           <div>
@@ -54,7 +56,7 @@
         <!--Home folders-->
         <h1>Places</h1>
         <ul>
-          <li *ngFor="let i of GetFoldersView">
+          <li (click)="clickSideFile(i)" *ngFor="let i of GetFoldersView">
             <img [src]="i.icon" alt="Directory icon">
             {{i.name}}
           </li>
@@ -73,8 +75,8 @@
       <section class="RightBox">
 
         <div class="RightObjectView">
-          <div *ngFor="let i of GetFilesInDirectory" class="Object">
-            <div class="ObjectContent">
+          <div *ngFor="let i of displayedFiles" class="Object">
+            <div (click)="onClickDirAndFileView(i)" class="ObjectContent">
 
               <img [src]="i.icon" alt="icon">
               <p>{{i.name}}</p>

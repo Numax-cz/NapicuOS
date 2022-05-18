@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {SYSTEM_DEFAULT_HOME_FOLDERS, SYSTEM_IMAGES} from "../../config/System";
-import {fileConfigDisplayedMetadata, fileConfigMetadata} from "../../interface/Apps/FileManager";
+import {
+  fileConfigDisplayedMetadata,
+  fileConfigMetadata,
+  filesAndDirsViewMetadata
+} from "../../interface/Apps/FileManager";
 import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/fileManager";
 import {NapicuOS} from "../../system.napicuos";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
@@ -16,6 +20,13 @@ export class FileComponent implements OnInit {
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
   private startDirectory: string = "/home/%USER"
+  public displayedFiles: filesAndDirsViewMetadata[] = [];
+
+  public backHistoryPaths: string[] = [];
+  public nextHistoryPaths: string[] = [];
+
+  public canClickNext: boolean = false;
+  public canClickBack: boolean = false;
 
   constructor() {
   }
@@ -36,11 +47,55 @@ export class FileComponent implements OnInit {
         icon: SYSTEM_IMAGES.Drive
       }
     });
+    this.updateViewFilesAndDirs();
   }
 
   public checkPathCorrection(path: string): boolean {
 
     return true;
+  }
+
+
+  get GetFilesInDirectory(): filesAndDirsViewMetadata[] { //TODO
+    let i = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
+    let out: filesAndDirsViewMetadata[] = [];
+
+    if (i.data?.dir) Object.keys(i.data.dir).map((dirName: string) => {
+      out.push({
+        name: dirName,
+        icon: SYSTEM_IMAGES.BlueFolder,
+        isDir: true,
+      })
+    });
+    if (i.data?.files) i.data.files.map((fileName: SystemFile) => {
+      out.push({
+        name: fileName.fileName,
+        icon: fileName.iconPath,
+        isDir: false
+      })
+    });
+    return out;
+  }
+
+  public onClickDirAndFileView(i: filesAndDirsViewMetadata): void {
+    if (i.isDir) {
+      this.enterDir(i.name);
+    }
+  }
+
+  public enterDir(dirName: string): void {
+    this.backHistoryPaths.push(this.startDirectory);
+    this.startDirectory = ReplaceSystemVariables(this.startDirectory + "/" + dirName);
+    this.updateViewFilesAndDirs();
+  }
+
+  public setDir(dirName: string): void {
+    this.startDirectory = ReplaceSystemVariables(dirName);
+    this.updateViewFilesAndDirs();
+  }
+
+  public enterFile(fileName: string): void {
+    //TODO
   }
 
   public clickFile(): void {
@@ -59,45 +114,46 @@ export class FileComponent implements OnInit {
 
   }
 
-  public clickNext(): void {
-
+  public clickSideFile(file: fileConfigDisplayedMetadata): void {
+    this.setDir(file.directory);
   }
 
   public clickBack(): void {
+    this.nextHistoryPaths.push(this.startDirectory);
+    this.startDirectory = this.backHistoryPaths[this.backHistoryPaths.length - 1];
+    this.backHistoryPaths.shift();
+    this.updateViewFilesAndDirs();
+  }
 
+  public clickNext(): void {
+    this.backHistoryPaths.push(this.startDirectory);
+    this.startDirectory = this.nextHistoryPaths[this.nextHistoryPaths.length - 1];
+    this.nextHistoryPaths.shift();
+    this.updateViewFilesAndDirs();
   }
 
   public clickHome(): void {
-
+    this.setDir("/home/%USER");
+    this.clearNextHistoryPaths();
   }
 
-  public onEnter(event: Event): void {
 
+  public onEnter(event: Event): void {
+    //TODO IF path is incorrect => nothing
 
     event.preventDefault();
   }
 
+  public clearBackHistoryPaths(): void {
+    this.backHistoryPaths = [];
+  }
 
-  get GetFilesInDirectory(): { name: string, icon: string }[] { //TODO
-    let i = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
-    let out: { name: string, icon: string }[] = [];
+  public clearNextHistoryPaths(): void {
+    this.nextHistoryPaths = [];
+  }
 
-    if (i.data?.dir) Object.keys(i.data.dir).map((dirName: string) => {
-      out.push({
-        name: dirName,
-        icon: SYSTEM_IMAGES.BlueFolder
-      })
-    });
-    if (i.data?.files) i.data.files.map((fileName: SystemFile) => {
-      out.push({
-        name: fileName.fileName,
-        icon: fileName.iconPath
-      })
-    });
-
-
-    return out;
-
+  public updateViewFilesAndDirs(): void {
+    this.displayedFiles = this.GetFilesInDirectory;
   }
 
   get GetFoldersView(): fileConfigDisplayedMetadata[] {

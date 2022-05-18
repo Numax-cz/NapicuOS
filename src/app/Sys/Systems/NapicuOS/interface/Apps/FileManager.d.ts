@@ -7,3 +7,10 @@ export declare interface fileConfigDisplayedMetadata {
   directory: string,
   icon: string,
 }
+
+
+export declare interface filesAndDirsViewMetadata {
+  name: string,
+  icon: string,
+  isDir: boolean
+}

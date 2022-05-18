@@ -8,6 +8,7 @@ import {AppCreatMetadata} from "../interface/System";
 import {TerminalClass} from "./Terminal";
 import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
 import {NapicuOS} from "../system.napicuos";
+import {SYSTEM_IMAGES} from "../config/System";
 
 
 export class SystemFile {
@@ -33,7 +34,7 @@ export class SystemFile {
     this._fileName = `${data.fileName}`;
     this._fileType = data.fileType;
     this._permissions = data.permissions || {read: SystemUserPermissionsEnumMetadata.User};
-    this._iconPath = data.iconPath || `${SystemFile.defaultIconsPath}/XFD/download.svg`,
+    this._iconPath = data.iconPath || SYSTEM_IMAGES.AppDocText,
       this._createdBy = data.createdBy || 'root';
   }
 

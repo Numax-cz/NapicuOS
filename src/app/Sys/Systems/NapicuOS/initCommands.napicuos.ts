@@ -133,7 +133,7 @@ function initMkdir(): void {
 
 function initClearTerminal(): void {
   NapicuOS.register_command(
-    new Command("ClearTerminal", SystemCommandsPrefixEnum.clearCommand, (params?: string[], terminal?: TerminalClass) => {
+    new Command("Cl", SystemCommandsPrefixEnum.clearCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         if (terminal) {
           terminal.lines = [];
@@ -151,7 +151,7 @@ function initClearTerminal(): void {
 
 function initLs(): void {
   NapicuOS.register_command(
-    new Command("ListCommand", SystemCommandsPrefixEnum.listCommand, (params?: string[], terminal?: TerminalClass) => {
+    new Command("Ls", SystemCommandsPrefixEnum.listCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         let listPath = terminal?.getPath();
         if (listPath) {
@@ -229,7 +229,7 @@ function initEcho(): void {
 
 function initChangeDirectory(): void {
   NapicuOS.register_command(
-    new Command("ChangeDirectory", SystemCommandsPrefixEnum.cdCommand, (params?: string[], terminal?: TerminalClass) => {
+    new Command("ChngDir", SystemCommandsPrefixEnum.cdCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         if (params?.length) {
           //TODO if terminal 1#
@@ -315,7 +315,7 @@ function initCreateUser(): void {
 
 function initGetSystemInformation(): void {
   NapicuOS.register_command(
-    new Command('SystemGetter', SystemCommandsPrefixEnum.getCommand, (params: string[] | undefined) => {
+    new Command('SysGet', SystemCommandsPrefixEnum.getCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         let exportLines: Line[] = [];
         if (params?.length) {
@@ -446,7 +446,7 @@ function initGetSystemInformation(): void {
 
 function initSetSystemInformation(): void {
   NapicuOS.register_command(
-    new Command('SystemSetter', SystemCommandsPrefixEnum.setCommand, (params: string[] | undefined) => {
+    new Command('SysSet', SystemCommandsPrefixEnum.setCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         if (params?.length) {
           switch (params[0]) {
@@ -527,7 +527,7 @@ function initSetSystemInformation(): void {
 
 function initKillProcess(): void {
   NapicuOS.register_command(
-    new Command('SystemProcessKiller', SystemCommandsPrefixEnum.killCommand, (params) => {
+    new Command('TskKill', SystemCommandsPrefixEnum.killCommand, (params) => {
       return new Promise((resolve) => {
         if (params?.length) {
           let pid = params[0]
