@@ -13,37 +13,37 @@ const SYSTEM_APPS_FILE_MANAGER_CONFIG: fileConfigMetadata = {
     },
     {
       name: "%USER",
-      directory: "%USERDIR/",
+      directory: "%USERDIR",
       icon: SYSTEM_IMAGES.BlueUser,
     },
     {
       name: "Documents",
-      directory: "%USERDIR/Documents/",
+      directory: "%USERDIRDocuments/",
       icon: SYSTEM_IMAGES.BlueFolderDocuments,
     },
     {
       name: "Music",
-      directory: "%USERDIR/Documents/",
+      directory: "%USERDIRDocuments/",
       icon: SYSTEM_IMAGES.BlueFolderMusic,
     },
     {
       name: "Pictures",
-      directory: "%USERDIR/Pictures/",
+      directory: "%USERDIRPictures/",
       icon: SYSTEM_IMAGES.BlueFolderPictures,
     },
     {
       name: "Videos",
-      directory: "%USERDIR/Videos/",
+      directory: "%USERDIRVideos/",
       icon: SYSTEM_IMAGES.BlueFolderVideos,
     },
     {
       name: "Pictures",
-      directory: "%USERDIR/Pictures/",
+      directory: "%USERDIRPictures/",
       icon: SYSTEM_IMAGES.BlueFolderPictures,
     },
     {
       name: "Downloads",
-      directory: "%USERDIR/Downloads/",
+      directory: "%USERDIRDownloads/",
       icon: SYSTEM_IMAGES.BlueFolderDownloads,
     }
   ]
