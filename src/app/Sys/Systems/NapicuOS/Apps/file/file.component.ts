@@ -19,7 +19,7 @@ export class FileComponent implements OnInit {
   private declare foldersView: fileConfigDisplayedMetadata[];
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
-  private startDirectory: string = "/home/%USER"
+  private startDirectory: string = "/home/%USER/"
   public displayedFiles: filesAndDirsViewMetadata[] = [];
 
   public backHistoryPaths: string[] = [];
@@ -57,6 +57,7 @@ export class FileComponent implements OnInit {
 
 
   get GetFilesInDirectory(): filesAndDirsViewMetadata[] { //TODO
+
     let i = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
     let out: filesAndDirsViewMetadata[] = [];
 
@@ -85,7 +86,7 @@ export class FileComponent implements OnInit {
 
   public enterDir(dirName: string): void {
     this.backHistoryPaths.push(this.startDirectory);
-    this.startDirectory = ReplaceSystemVariables(this.startDirectory + "/" + dirName);
+    this.startDirectory = ReplaceSystemVariables(this.startDirectory + dirName + "/");
     this.updateViewFilesAndDirs();
   }
 
@@ -133,7 +134,7 @@ export class FileComponent implements OnInit {
   }
 
   public clickHome(): void {
-    this.setDir("/home/%USER");
+    this.setDir("%USERDIR");
     this.clearNextHistoryPaths();
   }
 

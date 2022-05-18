@@ -460,7 +460,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_dir_by_path(dir: string): ReturnGetDirByPathMetadata {
     let dirs = dir.split("/");
     dirs.shift();
-    let currentDir: systemDirAFileMetadata | undefined = (!dirs[0].length) ? this.get_root_dir() : this.get_root_dir()?.dir?.[dirs[0]];
+    dirs.pop();
+    let currentDir: systemDirAFileMetadata | undefined = (!dirs[0]?.length) ? this.get_root_dir() : this.get_root_dir()?.dir?.[dirs[0]];
     if (currentDir) {
       for (let i = 1; i < dirs.length; i++) {
         let nextPath: systemDirAFileMetadata | undefined = currentDir?.dir?.[dirs[i]]
@@ -782,7 +783,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the user home folder of the active user
    */
   public static get_active_user_home_path(): string | null {
-    return this.get_user_home_path(this.get_active_user()?.username);
+    return this.get_user_home_path(this.get_active_user()?.username + "/");
   }
 
   /**
