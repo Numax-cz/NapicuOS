@@ -11,6 +11,7 @@
 ![NapicuBiosMainScreen](/src/assets/preview/MainBiosScreen.webp)
 ![NapicuBiosSettingsScreen](/src/assets/preview/MainBios.webp)
 ![NapicuBiosFlashScreen](/src/assets/preview/BiosUpdate.webp)
+![NapicuOSAppFileManagerScreen](/src/assets/preview/fileManager.png)
 ![NapicuOSAppWindowScreen](/src/assets/preview/systemAppsScreen.webp)
 
 ## Instalace
