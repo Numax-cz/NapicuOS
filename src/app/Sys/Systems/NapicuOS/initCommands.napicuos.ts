@@ -105,7 +105,7 @@ function initMkdir(): void {
         let pth_gt_dir: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(pth_dir);
         if (pth_gt_dir.state === SystemStateMetadata.PathExist && pth_gt_dir.data?.dir) {
 
-          let dir_crt_dir: SystemStateMetadata.PathNotExist | SystemDirStateData = NapicuOS.creat_dir(pth_gt_dir.data, params[0]);
+          let dir_crt_dir: SystemDirStateData = NapicuOS.creat_dir(pth_gt_dir.data, params[0]);
 
           if (dir_crt_dir === SystemStateMetadata.DirNotExist) {
             resolve({

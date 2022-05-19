@@ -29,6 +29,7 @@ import {
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOME_FOLDERS,
   SYSTEM_DEFAULT_HOSTNAME,
+  SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
   SYSTEM_IMAGES,
@@ -148,8 +149,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
-
-
       resolve();
     });
   }
@@ -593,7 +592,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param dirname Name of the new directory
    */
   public static creat_dir(dir: systemDirAFileMetadata | undefined, dirname: string):
-    SystemDirStateData | SystemStateMetadata.PathNotExist {
+    SystemDirStateData {
+    if (!this.check_file_name(dirname)) return SystemStateMetadata.InvalidFileDirName;
     if (!dir) return SystemStateMetadata.PathNotExist;
     if (!dir.dir) dir.dir = {}
     const i: systemDirAFileMetadata | undefined = dir.dir?.[dirname];
@@ -612,12 +612,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param dirsNames Name of the new directory
    */
   public static creat_dirs(dir: systemDirAFileMetadata | undefined, dirsNames: string[]):
-    SystemDirStateData | SystemStateMetadata.PathNotExist {
+    SystemDirStateData {
     if (!dir) return SystemStateMetadata.PathNotExist;
     if (!dir.dir) dir.dir = {}
     let state: SystemDirStateData = SystemStateMetadata.DirNotExist;
-    for (const name of dirsNames) {
-      let i = this.creat_dir(dir, name);
+    for (const dir_name of dirsNames) {
+      if (!this.check_file_name(dir_name)) return SystemStateMetadata.InvalidFileDirName;
+      let i = this.creat_dir(dir, dir_name);
       if (i === SystemStateMetadata.DirExist) {
         state = SystemStateMetadata.DirExist;
         break;
@@ -966,6 +967,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     dir: systemDirAFileMetadata | undefined,
     file: SystemFile
   ): SystemFileStateData {
+    if (!this.check_file_name(file.fileName)) return SystemStateMetadata.InvalidFileDirName;
     if (dir) {
       if (!dir.files) dir.files = [];
       if (
@@ -1253,7 +1255,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       createdBy: "root"
     });
 
-
     if (this.add_file_to_dir(this.get_usr_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
       console.error("CreatAppFile Error - File already exists");
     }
@@ -1404,5 +1405,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }
     });
     return array;
+  }
+
+  /**
+   * Checks the filename
+   * @param value
+   */
+  public static check_file_name(value: string): boolean {
+    return SYSTEM_FILE_NAME_REGEX.test(value);
   }
 }

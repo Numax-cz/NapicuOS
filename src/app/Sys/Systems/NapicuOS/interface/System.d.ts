@@ -25,7 +25,8 @@ export declare type SystemFileStateData =
   | SystemStateMetadata.FileAlreadyExists
   | SystemStateMetadata.FileAddedSuccess
   | SystemStateMetadata.DirNotExist
-  | SystemStateMetadata.FileHasBadName;
+  | SystemStateMetadata.FileHasBadName
+  | SystemStateMetadata.InvalidFileDirName
 
 export declare type SystemPathStateData =
   SystemStateMetadata.PathNotExist
@@ -34,6 +35,8 @@ export declare type SystemPathStateData =
 export declare type SystemDirStateData =
   SystemStateMetadata.DirNotExist
   | SystemStateMetadata.DirExist
+  | SystemStateMetadata.PathNotExist
+  | SystemStateMetadata.InvalidFileDirName
 
 export declare interface Os {
   component: Type<any>;
@@ -121,6 +124,7 @@ export declare const enum SystemStateMetadata {
   RegisterCommandAlreadyExists = 9059,
   RegisterCommandSuccess = 9060,
 
+  InvalidFileDirName = 1054,
 
   StringCorrect = 6900,
   StringTooShort = 6901,
