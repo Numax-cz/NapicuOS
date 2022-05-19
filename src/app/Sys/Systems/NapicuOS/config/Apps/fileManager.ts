@@ -2,7 +2,6 @@ import {fileConfigDisplayedMetadata, fileConfigMetadata} from "../../interface/A
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 import {copy} from "../../../../../Bios/Scripts/DeepClone";
 import {SYSTEM_IMAGES} from "../System";
-import {NapicuOS} from "../../system.napicuos";
 
 const SYSTEM_APPS_FILE_MANAGER_CONFIG: fileConfigMetadata = {
   displayedDirectorys: [

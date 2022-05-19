@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {SYSTEM_DEFAULT_HOME_FOLDERS, SYSTEM_IMAGES} from "../../config/System";
-import {
-  fileConfigDisplayedMetadata,
-  fileConfigMetadata,
-  filesAndDirsViewMetadata
-} from "../../interface/Apps/FileManager";
+import {SYSTEM_IMAGES} from "../../config/System";
+import {fileConfigDisplayedMetadata, filesAndDirsViewMetadata} from "../../interface/Apps/FileManager";
 import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/fileManager";
 import {NapicuOS} from "../../system.napicuos";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 import {SystemFile} from "../../SystemComponents/File";
+import {ReturnGetDirByPathMetadata} from "../../interface/GetDirByPath";
+import {SystemStateMetadata} from "../../interface/System";
 
 @Component({
   selector: 'app-file',
@@ -91,6 +89,7 @@ export class FileComponent implements OnInit {
   }
 
   public setDir(dirName: string): void {
+    this.backHistoryPaths.push(this.startDirectory);
     this.startDirectory = ReplaceSystemVariables(dirName);
     this.updateViewFilesAndDirs();
   }
@@ -140,8 +139,12 @@ export class FileComponent implements OnInit {
 
 
   public onEnter(event: Event): void {
-    //TODO IF path is incorrect => nothing
+    let i: HTMLElement = event.target as HTMLElement;
+    let input = i.innerText;
+    if (!input.endsWith("/")) input += "/";
 
+    let pathData: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(input);
+    if (pathData.state === SystemStateMetadata.PathExist) this.setDir(input);
     event.preventDefault();
   }
 
