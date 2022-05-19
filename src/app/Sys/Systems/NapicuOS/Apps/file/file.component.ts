@@ -163,6 +163,10 @@ export class FileComponent implements OnInit {
 
   }
 
+  public clickCreatFile(): void {
+
+  }
+
 
   public clickSideFile(file: fileConfigDisplayedMetadata): void {
     this.setDir(file.directory);
