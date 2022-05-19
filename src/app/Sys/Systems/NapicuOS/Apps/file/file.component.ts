@@ -120,8 +120,16 @@ export class FileComponent implements OnInit {
   public onClickDirAndFileView(i: filesAndDirsViewMetadata): void {
     if (i.isDir) {
       this.enterDir(i.name);
+    } else {
+      this.openFile(i.name);
     }
   }
+
+  public openFile(name: string): void {
+
+
+  }
+
 
   public enterDir(dirName: string): void {
     this.backHistoryPaths.push(this.startDirectory);
