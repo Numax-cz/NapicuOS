@@ -4,18 +4,20 @@ $boxSizeActive: 3px;
   button {
     outline: none;
     border: none;
-    border-radius: 7px;
+    border-radius: 5px;
     background: var(--NapicuSimpleButtonColor);
-    box-shadow: 0 $boxSize var(--NapicuSimpleButtonBottomColor);
+    /* box-shadow: 0 4px var(--NapicuSimpleButtonBottomColor); */
     color: white;
     font-size: var(--NapicuSimpleButtonSize);
     padding: 5px;
+    border: 1px solid black;
+    border-bottom: 2px solid black;
     cursor: pointer;
+    transition: background-color .2s;
   }
 
   button:hover {
     background-color: var(--NapicuSimpleButtonHoverColor);
-    box-shadow: 0 $boxSize var(--NapicuSimpleButtonBottomHoverColor)
   }
 
   button:disabled {

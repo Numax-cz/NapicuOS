@@ -160,8 +160,15 @@ export class FileComponent implements OnInit {
   }
 
   public clickCreatDirectory(): void {
-
+    this.creatDirectory();
   }
+
+  public creatDirectory = async (): Promise<void> => {
+    let i = await NapicuOS.input_alert("test", "test");
+
+    console.log(i);
+  }
+
 
   public clickCreatFile(): void {
 

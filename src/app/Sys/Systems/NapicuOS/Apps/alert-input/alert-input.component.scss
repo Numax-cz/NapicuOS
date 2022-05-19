@@ -17,6 +17,16 @@
   height: 57px;
 }
 
+.Buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin: 0px 2px;
+    min-width: 80px;
+  }
+}
+
 .alertButton {
   width: 100%;
   text-align: right;

@@ -2,7 +2,11 @@
   <section>
     <div>
       <div></div>
-      <input type="text" name="value">
+      <input [(ngModel)]="inputValue" class="NapicuOSSimpleInput" type="text" name="value">
+    </div>
+    <div class="NapicuOSSimpleButton Buttons">
+      <button (click)="reject()">Cancel</button>
+      <button (click)="submit()">Create</button>
     </div>
   </section>
 </section>

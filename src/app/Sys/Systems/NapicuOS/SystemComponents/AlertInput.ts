@@ -9,6 +9,7 @@ import {AlertData} from "../interface/Alert";
 import {WindowData} from "../interface/WindowData";
 import {InputAlertData} from "../interface/InputAlert";
 
+
 export class SystemInputAlert extends Window implements WindowData<InputAlertData> {
   public static defaultSize: windowData = {
     width: null,
@@ -23,6 +24,7 @@ export class SystemInputAlert extends Window implements WindowData<InputAlertDat
   constructor(
     title: string,
     value: string,
+    public resolve: (value: (PromiseLike<string | null> | string | null)) => void,
   ) {
     super({
       component: SystemInputAlert.defaultComponent,
@@ -38,6 +40,15 @@ export class SystemInputAlert extends Window implements WindowData<InputAlertDat
     this.data = {
       title: title,
       value: value,
+      inputData: null
     };
+  }
+
+  public submit(value: string): void {
+    this.resolve(value);
+  }
+
+  public reject(): void {
+    this.resolve(null);
   }
 }
