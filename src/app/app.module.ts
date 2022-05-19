@@ -36,6 +36,7 @@ import {DropDownMenuComponent} from './Sys/Systems/NapicuOS/template/drop-down-m
 import {ClickDirective} from './Sys/Systems/NapicuOS/template/drop-down-menu/click.directive';
 import {LoadsComponent} from "./Sys/Systems/NapicuOS/components/loads/loads.component";
 import {FileComponent} from './Sys/Systems/NapicuOS/Apps/file/file.component';
+import { AlertInputComponent } from './Sys/Systems/NapicuOS/Apps/alert-input/alert-input.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {FileComponent} from './Sys/Systems/NapicuOS/Apps/file/file.component';
     DropDownMenuComponent,
     ClickDirective,
     LoadsComponent,
-    FileComponent
+    FileComponent,
+    AlertInputComponent
   ],
   imports: [
     BrowserModule,

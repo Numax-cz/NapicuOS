@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {systemAlertImagesEnumMetadata} from '../../config/Alert';
 import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
+import {AlertData} from "../../interface/Alert";
 
 @Component({
   selector: 'app-alert',
@@ -12,14 +13,11 @@ export class AlertComponent implements OnInit {
    * Window of the alert
    */
   @Input() public declare windowValue: ProcessWindowValueMetadata;
+
   /**
-   * Value of the alert
+   * Alert data
    */
-  @Input() public declare alertContent: string;
-  /**
-   * Type of the alert
-   */
-  @Input() public declare alertType: systemAlertImagesEnumMetadata;
+  @Input() public declare data: AlertData;
 
   constructor() {
   }
@@ -32,14 +30,14 @@ export class AlertComponent implements OnInit {
    * Returns the alert value
    */
   get GetAlertValue(): string {
-    return this.alertContent || 'undefined alert value';
+    return this.data.value || 'undefined alert value';
   }
 
   /**
    * Returns the alert image
    */
   get GetImage(): systemAlertImagesEnumMetadata {
-    return this.alertType;
+    return this.data.type;
   }
 
 

@@ -34,8 +34,7 @@ import {
   SYSTEM_IMAGES,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH,
-  SYSTEM_WALLPAPER
+  SYSTEM_USERS_MIN_LENGTH
 } from './config/System';
 import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
@@ -67,6 +66,7 @@ import {UserConstructorMetadata} from "./interface/User/User";
 import {imagePreloader} from "./scripts/ImagePreloader";
 import {audioPreloader} from "./scripts/AudioPreloader";
 import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
+import {SystemInputAlert} from "./SystemComponents/AlertInput";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -149,6 +149,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
 
+      NapicuOS.alert("fd", "!fd", systemAlertImagesEnumMetadata.Error);
       resolve();
     });
   }
@@ -1265,6 +1266,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static alert(title: string, value: string, type: systemAlertImagesEnumMetadata): void {
     new Process({processTitle: 'SystemAlert', Window: new SystemAlert(title, value, type)}).run()?.Window.open();
+  }
+
+  //TODO DOC
+  /**
+   * Creates and opens a new system alert with input
+   */
+  public static input_alert(title: string, value: string): void {
+    new Process({processTitle: 'SystemAlert', Window: new SystemInputAlert(title, value)}).run()?.Window.open();
   }
 
   /**

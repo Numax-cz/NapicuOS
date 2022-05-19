@@ -6,8 +6,9 @@ import {WINDOW_ANIMATION_TIME} from '../config/WindowAnimations';
 import {processConstructor} from '../interface/Process';
 import {NapicuOS} from '../system.napicuos';
 import {Window} from './Window';
+import {SystemInputAlert} from "./AlertInput";
 
-export declare type ProcessWindowValueMetadata = Window | SystemAlert;
+export declare type ProcessWindowValueMetadata = Window | SystemAlert | SystemInputAlert;
 
 export class Process {
   /**

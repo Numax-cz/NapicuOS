@@ -4,3 +4,4 @@ export enum systemAlertImagesEnumMetadata {
   Info = "/assets/systems/NapicuOS/SystemIcons/apps/Alert/info.png",
   Success = "/assets/systems/NapicuOS/SystemIcons/apps/Alert/success.png",
 }
+
