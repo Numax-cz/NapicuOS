@@ -3,8 +3,9 @@
 
   background-color: #1f222a;
   color: white;
-  padding: 10px;
+  padding: 10px 0;
   z-index: 10000;
+  min-width: 90px;
 
   border-radius: 5px;
   border: 1px solid black;
@@ -14,7 +15,7 @@
     list-style: none;
     display: flex;
     align-items: center;
-    border-radius: 4px;
+    //border-radius: 4px;
     padding: 6px 8px;
     cursor: pointer;
     font-size: 16px;

@@ -1,26 +1,26 @@
-.NapicuOSSimpleContextMenu {
-  border-radius: 13px;
-  padding: 15px 10px !important;
-  position: absolute;
-  transform: translateX(50%);
-  background-color: var(--NapicuInputGlobalGrayColor);
-  color: var(--NapicuTitleTextColor);
-  border: 1px solid black;
-  z-index: 1;
-  min-width: 175px;
-
-  > div {
-    font-size: 1rem;
-    padding: 15px 10px;
-    font-weight: 400;
-    border-radius: 11px;
-    cursor: pointer;
-  }
-
-  > div:hover {
-    background-color: #4d4d4d; //CONFIG
-  }
-}
+//.NapicuOSSimpleContextMenu {
+//  border-radius: 13px;
+//  padding: 15px 10px !important;
+//  position: absolute;
+//  transform: translateX(50%);
+//  background-color: var(--NapicuInputGlobalGrayColor);
+//  color: var(--NapicuTitleTextColor);
+//  border: 1px solid black;
+//  z-index: 1;
+//  min-width: 175px;
+//
+//  > div {
+//    font-size: 1rem;
+//    padding: 15px 10px;
+//    font-weight: 400;
+//    border-radius: 11px;
+//    cursor: pointer;
+//  }
+//
+//  > div:hover {
+//    background-color: #4d4d4d; //CONFIG
+//  }
+//}
 
 .NapicuOSSimpleContextMenuPositionLeft {
   left: -50px !important;

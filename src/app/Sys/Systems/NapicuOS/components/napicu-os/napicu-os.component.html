@@ -164,15 +164,35 @@
             <section style="display: flex;">
               <!-- Applications -->
               <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon" clickable="false">
+                <!--                <div *ngIf="index === selectedAppContext"-->
+                <!--                     class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder-->
+                <!--                                     NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight"-->
+                <!--                     clickable="false">-->
+                <!--                  <div (click)="openFile(i.file)">Open</div>-->
+                <!--                  <div-->
+                <!--                    (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?-->
+                <!--                    'Unpin' : 'Pin'}}</div>-->
+                <!--                </div>-->
+
+
                 <!-- Application context menu-->
                 <div *ngIf="index === selectedAppContext"
-                     class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder
-                     NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight" clickable="false">
-                  <div (click)="openFile(i.file)">Open</div>
-                  <div
-                    (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
-                    'Unpin' : 'Pin'}}</div>
+                     class="NapicuSimpleBoxMenu NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight"
+                     clickable="false">
+                  <ul>
+
+                    <li (click)="openFile(i.file)">Open</li>
+
+                    <li
+                      (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
+                      'Unpin' : 'Pin'}}
+                    </li>
+
+                  </ul>
+
                 </div>
+
+
                 <!-- Application icon-->
                 <img (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"
                      [src]="i.file.iconPath"
@@ -191,10 +211,10 @@
         <div *ngFor="let i of GetActivityMenuApps; let index = index" class="app">
           <!-- Application properties menu-->
           <div *ngIf="index === selectedAppProperties"
-               class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionRight"
+               class="NapicuSimpleBoxMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionRight"
                clickable="false">
-            <div (click)="openFile(i)">New window</div>
-            <div>Show details</div>
+            <li (click)="openFile(i)">New window</li>
+            <li>Show details</li>
           </div>
 
           <div class="MainContent" (click)="openFile(i)" (contextmenu)="openAppProperties(index, $event)">
