@@ -1,12 +1,11 @@
 .NapicuSimpleBoxMenu {
   position: absolute;
-
-  background-color: #1f222a;
-  color: white;
+  background-color: var(--NapicuBoxMenuBackgroundColor);
+  color: var(--NapicuTextColor);
   padding: 10px 0;
   z-index: 10000;
+  width: fit-content;
   min-width: 90px;
-
   border-radius: 5px;
   border: 1px solid black;
   box-shadow: var(--NapicuWindowBoxShadow);

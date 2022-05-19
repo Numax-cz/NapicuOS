@@ -72,11 +72,12 @@
 
       </div>
       <!--Right bar-->
-      <section class="RightBox">
+      <section class="RightBox" (contextmenu)="clickShowFileManagerContextMenu($event)">
 
         <div class="RightObjectView">
           <div *ngFor="let i of displayedFiles" class="Object">
-            <div (click)="onClickDirAndFileView(i)" class="ObjectContent">
+            <div (click)="onClickDirAndFileView(i)" (contextmenu)="clickFileAndDirProperty($event, i)"
+                 class="ObjectContent">
 
               <img [src]="i.icon" alt="icon">
               <p>{{i.name}}</p>
@@ -89,24 +90,61 @@
   </section>
 </section>
 
-<section>
-  <div *ngIf="boxMenuPosition" class="NapicuSimpleBoxMenu" [ngStyle]="{'left.px': boxMenuPosition.x, 'top.px':
-  boxMenuPosition.y}">
-    <ul>
 
-      <li>
-        <img src="/assets/icons/NapicuBios-72x72.png">
+<!--FileManager properties context menu-->
+<section>
+  <div *ngIf="boxMenuPosition && showFileManagerContextMenu"
+       class="NapicuSimpleBoxMenu" [ngStyle]="{'left.px':
+  boxMenuPosition.x, 'top.px':
+  boxMenuPosition.y}" clickable="true">
+    <ul>
+      <li (click)="clickCreatDirectory()">
         Creat Folder...
       </li>
       <li>
-        <img src="/assets/icons/NapicuBios-72x72.png">
         Creat Document
       </li>
-      <li>
-        <img src="/assets/icons/NapicuBios-72x72.png">
-        Test
-      </li>
     </ul>
-
   </div>
 </section>
+
+<!--Directory properties context menu-->
+<section>
+  <div *ngIf="boxMenuPosition && showDirPropertyContextMenu"
+       class="NapicuSimpleBoxMenu" [ngStyle]="{'left.px':
+  boxMenuPosition.x, 'top.px':
+  boxMenuPosition.y}" clickable="true">
+    <ul>
+      <li>
+        Open
+      </li>
+      <li>
+        Delete
+      </li>
+      <li>
+        Rename
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!--File properties context menu-->
+<section>
+  <div *ngIf="boxMenuPosition && showFilePropertyContextMenu"
+       class="NapicuSimpleBoxMenu" [ngStyle]="{'left.px':
+  boxMenuPosition.x, 'top.px':
+  boxMenuPosition.y}" clickable="true">
+    <ul>
+      <li>
+        Open With "DocReader"
+      </li>
+      <li>
+        Delete
+      </li>
+      <li>
+        Rename
+      </li>
+    </ul>
+  </div>
+</section>
+

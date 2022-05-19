@@ -29,6 +29,10 @@ export class FileComponent implements OnInit {
 
   public boxMenuPosition: { x: number, y: number } | null = null;
 
+  public showFileManagerContextMenu: boolean = false;
+  public showFilePropertyContextMenu: boolean = false;
+  public showDirPropertyContextMenu: boolean = false;
+
   @Input() public declare windowValue: ProcessWindowValueMetadata;
 
   constructor() {
@@ -53,22 +57,41 @@ export class FileComponent implements OnInit {
     this.updateViewFilesAndDirs();
 
 
-    document.addEventListener('contextmenu', (event) => {
-      if (!this.boxMenuPosition) {
-        this.boxMenuPosition = {
-          x: (event.clientX - this.windowValue.getLeft()),
-          y: (event.clientY - this.windowValue.getTop())
-        }
-      } else {
-        this.boxMenuPosition = null;
+    document.addEventListener('mousedown', (event) => {
+      var p = event.target as HTMLElement;
+      if (!p.offsetParent?.getAttribute('clickable')) {
+
+        this.showDirPropertyContextMenu = false;
+        this.showFilePropertyContextMenu = false;
+        this.showFileManagerContextMenu = false;
       }
-      event.preventDefault();
+
     });
   }
 
-  public checkPathCorrection(path: string): boolean {
+  public updateMousePosition(event: MouseEvent) {
+    this.boxMenuPosition = {
+      x: (event.clientX - this.windowValue.getLeft()),
+      y: (event.clientY - this.windowValue.getTop())
+    }
+    event.preventDefault();
+  }
 
-    return true;
+  public clickShowFileManagerContextMenu(event: MouseEvent) {
+    this.showFileManagerContextMenu = !this.showFileManagerContextMenu;
+    this.showDirPropertyContextMenu = false;
+    this.showFilePropertyContextMenu = false;
+    this.updateMousePosition(event);
+  }
+
+  public clickFileAndDirProperty(event: MouseEvent, i: filesAndDirsViewMetadata): void {
+    if (i.isDir) {
+      this.showDirPropertyContextMenu = !this.showDirPropertyContextMenu;
+    } else this.showFilePropertyContextMenu = !this.showFilePropertyContextMenu;
+    this.showFileManagerContextMenu = false;
+
+    this.updateMousePosition(event);
+    event.stopPropagation();
   }
 
 
@@ -135,6 +158,11 @@ export class FileComponent implements OnInit {
   public clickRight(): void {
 
   }
+
+  public clickCreatDirectory(): void {
+
+  }
+
 
   public clickSideFile(file: fileConfigDisplayedMetadata): void {
     this.setDir(file.directory);
