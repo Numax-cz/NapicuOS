@@ -35,4 +35,15 @@ export class AlertInputComponent implements OnInit {
     }
     this.process.kill();
   }
+
+
+  get GetValue(): string {
+    return this.data.value;
+  }
+
+  get GetIcon(): string | undefined {
+    return this.data.icon;
+  }
+
+
 }

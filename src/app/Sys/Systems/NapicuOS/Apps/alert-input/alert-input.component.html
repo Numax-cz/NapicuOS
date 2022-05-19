@@ -1,8 +1,14 @@
 <section class="AlertThemeFeraDark WindowContent BackgroundColor MainBoxPadding-15" id="WindowScrollBar">
   <section>
-    <div>
-      <div></div>
-      <input [(ngModel)]="inputValue" class="NapicuOSSimpleInput" type="text" name="value">
+    <div class="Container">
+      <div>
+        <img *ngIf="GetIcon" [src]="GetIcon" alt="Icon">
+      </div>
+      <div style="margin-left: auto;width: 80%;">
+        <span class="ValueTXT">{{GetValue}}</span>
+
+        <input [(ngModel)]="inputValue" class="NapicuOSSimpleInput" type="text" name="value">
+      </div>
     </div>
     <div class="NapicuOSSimpleButton Buttons">
       <button (click)="reject()">Cancel</button>

@@ -17,6 +17,19 @@
   height: 57px;
 }
 
+.Container {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 50px;
+  }
+}
+
+.ValueTXT {
+  color: var(--NapicuTextColor);
+}
+
 .Buttons {
   display: flex;
   justify-content: flex-end;

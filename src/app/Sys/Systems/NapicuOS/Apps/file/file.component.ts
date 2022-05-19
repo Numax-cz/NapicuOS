@@ -160,11 +160,13 @@ export class FileComponent implements OnInit {
   }
 
   public clickCreatDirectory(): void {
+    this.closeAllContextMenu();
     this.creatDirectory();
   }
 
   public creatDirectory = async (): Promise<void> => {
-    let i = await NapicuOS.input_alert("test", "test");
+    //TODO LANG CONFIG
+    let i = await NapicuOS.input_alert("Creat New Folder", "Enter the name:", SYSTEM_IMAGES.BlueFolder);
 
     console.log(i);
   }
@@ -191,6 +193,12 @@ export class FileComponent implements OnInit {
     this.startDirectory = this.nextHistoryPaths[this.nextHistoryPaths.length - 1];
     this.nextHistoryPaths.shift();
     this.updateViewFilesAndDirs();
+  }
+
+  public closeAllContextMenu(): void {
+    this.showFileManagerContextMenu = false;
+    this.showDirPropertyContextMenu = false;
+    this.showFilePropertyContextMenu = false;
   }
 
   public clickHome(): void {

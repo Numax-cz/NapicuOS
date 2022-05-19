@@ -24,6 +24,7 @@ export class SystemInputAlert extends Window implements WindowData<InputAlertDat
   constructor(
     title: string,
     value: string,
+    icon: string | undefined,
     public resolve: (value: (PromiseLike<string | null> | string | null)) => void,
   ) {
     super({
@@ -40,6 +41,7 @@ export class SystemInputAlert extends Window implements WindowData<InputAlertDat
     this.data = {
       title: title,
       value: value,
+      icon: icon,
       inputData: null
     };
   }

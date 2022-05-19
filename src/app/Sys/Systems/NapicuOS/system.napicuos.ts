@@ -1272,11 +1272,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Creates and opens a new system alert with input
    */
-  public static input_alert(title: string, value: string): Promise<string | null> {
+  public static input_alert(title: string, value: string, icon?: string): Promise<string | null> {
     return new Promise((resolve) => {
       new Process({
         processTitle: 'SystemAlert',
-        Window: new SystemInputAlert(title, value, resolve)
+        Window: new SystemInputAlert(title, value, icon, resolve)
       }).run()?.Window.open();
     });
   }
