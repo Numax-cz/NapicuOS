@@ -37,6 +37,7 @@
     padding-left: 14%;
     align-items: center;
     cursor: pointer;
+    border-radius: 4px;
 
     img {
       width: 30px;
@@ -46,7 +47,7 @@
   }
 
   li:hover {
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.45); //same
   }
 
 }
@@ -71,12 +72,18 @@
     height: 30px;
     margin: 0 0.2rem;
     transition: filter .2s;
+    border-radius: 4px;
+  }
+
+  img:hover {
+    background: rgba(0, 0, 0, 0.45); //same
   }
 
   .cantClick {
     cursor: default;
     filter: brightness(0.5);
     transition: filter .2s;
+    background-color: transparent !important;
   }
 }
 
@@ -127,6 +134,7 @@
     padding: 0 7px;
     cursor: pointer;
   }
+
 
 }
 
