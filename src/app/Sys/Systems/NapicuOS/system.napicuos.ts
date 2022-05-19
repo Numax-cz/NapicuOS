@@ -149,7 +149,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
 
-      NapicuOS.alert("fd", "!fd", systemAlertImagesEnumMetadata.Error);
+
+      NapicuOS.input_alert("fd", "xd");
+
       resolve();
     });
   }

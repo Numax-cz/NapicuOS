@@ -39,6 +39,5 @@ export class SystemAlert extends Window implements WindowData<AlertData> {
       value: value,
       type: type,
     };
-
   }
 }
