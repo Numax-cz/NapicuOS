@@ -1,0 +1,32 @@
+.NapicuSimpleBoxMenu {
+  position: absolute;
+
+  background-color: #1f222a;
+  color: white;
+  padding: 10px;
+  z-index: 10000;
+
+  border-radius: 5px;
+  border: 1px solid black;
+  box-shadow: var(--NapicuWindowBoxShadow);
+
+  li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  li:hover {
+    background-color: var(--NapicuSelectColor);
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+}

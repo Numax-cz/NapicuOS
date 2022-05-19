@@ -89,3 +89,24 @@
   </section>
 </section>
 
+<section>
+  <div *ngIf="boxMenuPosition" class="NapicuSimpleBoxMenu" [ngStyle]="{'left.px': boxMenuPosition.x, 'top.px':
+  boxMenuPosition.y}">
+    <ul>
+
+      <li>
+        <img src="/assets/icons/NapicuBios-72x72.png">
+        Creat Folder...
+      </li>
+      <li>
+        <img src="/assets/icons/NapicuBios-72x72.png">
+        Creat Document
+      </li>
+      <li>
+        <img src="/assets/icons/NapicuBios-72x72.png">
+        Test
+      </li>
+    </ul>
+
+  </div>
+</section>

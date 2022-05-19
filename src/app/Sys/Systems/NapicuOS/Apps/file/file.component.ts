@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../config/System";
 import {fileConfigDisplayedMetadata, filesAndDirsViewMetadata} from "../../interface/Apps/FileManager";
 import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/fileManager";
@@ -7,6 +7,7 @@ import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 import {SystemFile} from "../../SystemComponents/File";
 import {ReturnGetDirByPathMetadata} from "../../interface/GetDirByPath";
 import {SystemStateMetadata} from "../../interface/System";
+import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 
 @Component({
   selector: 'app-file',
@@ -25,6 +26,10 @@ export class FileComponent implements OnInit {
 
   public canClickNext: boolean = false;
   public canClickBack: boolean = false;
+
+  public boxMenuPosition: { x: number, y: number } | null = null;
+
+  @Input() public declare windowValue: ProcessWindowValueMetadata;
 
   constructor() {
   }
@@ -46,6 +51,19 @@ export class FileComponent implements OnInit {
       }
     });
     this.updateViewFilesAndDirs();
+
+
+    document.addEventListener('contextmenu', (event) => {
+      if (!this.boxMenuPosition) {
+        this.boxMenuPosition = {
+          x: (event.clientX - this.windowValue.getLeft()),
+          y: (event.clientY - this.windowValue.getTop())
+        }
+      } else {
+        this.boxMenuPosition = null;
+      }
+      event.preventDefault();
+    });
   }
 
   public checkPathCorrection(path: string): boolean {
@@ -111,6 +129,10 @@ export class FileComponent implements OnInit {
   }
 
   public clickGo(): void {
+
+  }
+
+  public clickRight(): void {
 
   }
 

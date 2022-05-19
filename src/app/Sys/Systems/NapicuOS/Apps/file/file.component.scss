@@ -47,7 +47,7 @@
   }
 
   li:hover {
-    background: rgba(0, 0, 0, 0.45); //same
+    background: var(--NapicuSelectColor);
   }
 
 }
@@ -76,7 +76,7 @@
   }
 
   img:hover {
-    background: rgba(0, 0, 0, 0.45); //same
+    background: var(--NapicuSelectColor);
   }
 
   .cantClick {
