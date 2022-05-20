@@ -6,6 +6,7 @@ declare const enum SystemFileTypeEnumMetadata {
   apps = 'app',
   audio = "audio",
   image = "image",
+  document = "doc",
 }
 
 export declare interface SystemFileConsMetadata {

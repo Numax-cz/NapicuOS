@@ -1,3 +1,5 @@
+import {SystemFileTypeEnumMetadata} from "../FilesDirs/File";
+
 export declare interface fileConfigMetadata {
   displayedDirectorys: fileConfigDisplayedMetadata[]
 }
@@ -12,5 +14,5 @@ export declare interface fileConfigDisplayedMetadata {
 export declare interface filesAndDirsViewMetadata {
   name: string,
   icon: string,
-  isDir: boolean
+  fileType: SystemFileTypeEnumMetadata | null,
 }

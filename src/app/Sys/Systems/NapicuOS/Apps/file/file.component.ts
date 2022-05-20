@@ -8,6 +8,7 @@ import {SystemFile} from "../../SystemComponents/File";
 import {ReturnGetDirByPathMetadata} from "../../interface/GetDirByPath";
 import {SystemStateMetadata} from "../../interface/System";
 import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
+import {SystemFileTypeEnumMetadata} from "../../interface/FilesDirs/File";
 
 @Component({
   selector: 'app-file',
@@ -85,7 +86,7 @@ export class FileComponent implements OnInit {
   }
 
   public clickFileAndDirProperty(event: MouseEvent, i: filesAndDirsViewMetadata): void {
-    if (i.isDir) {
+    if (!i.fileType) {
       this.showDirPropertyContextMenu = !this.showDirPropertyContextMenu;
     } else this.showFilePropertyContextMenu = !this.showFilePropertyContextMenu;
     this.showFileManagerContextMenu = false;
@@ -104,28 +105,28 @@ export class FileComponent implements OnInit {
       out.push({
         name: dirName,
         icon: SYSTEM_IMAGES.BlueFolder,
-        isDir: true,
+        fileType: null,
       })
     });
-    if (i.data?.files) i.data.files.map((fileName: SystemFile) => {
+    if (i.data?.files) i.data.files.map((file: SystemFile) => {
       out.push({
-        name: fileName.fileName,
-        icon: fileName.iconPath,
-        isDir: false
+        name: file.fileName,
+        icon: file.iconPath,
+        fileType: file.fileType,
       })
     });
     return out;
   }
 
   public onClickDirAndFileView(i: filesAndDirsViewMetadata): void {
-    if (i.isDir) {
+    if (!i.fileType) {
       this.enterDir(i.name);
     } else {
-      this.openFile(i.name);
+      this.openFile(i.name, i.fileType);
     }
   }
 
-  public openFile(name: string): void {
+  public openFile(name: string, fileType: SystemFileTypeEnumMetadata): void {
 
 
   }
@@ -172,18 +173,30 @@ export class FileComponent implements OnInit {
     this.creatDirectory();
   }
 
-  public creatDirectory = async (): Promise<void> => {
-    //TODO LANG CONFIG
-    let i = await NapicuOS.input_alert("Creat New Folder", "Enter the name:", SYSTEM_IMAGES.BlueFolder);
-
-    console.log(i);
-  }
-
-
   public clickCreatFile(): void {
-
+    this.closeAllContextMenu();
+    this.creatDocument();
   }
 
+  public creatDirectory = async (): Promise<void> => {
+    let dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_dir, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.BlueFolder);
+    if (dir_name) {
+      let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
+      if (dir_pth.state === SystemStateMetadata.PathExist) {
+        NapicuOS.creat_dir(dir_pth.data || undefined, dir_name);
+        this.updateViewFilesAndDirs();
+      }
+    }
+  }
+
+  public creatDocument = async (): Promise<void> => {
+    let doc_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_doc, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.AppDocText);
+    if (doc_name) {
+      let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
+      NapicuOS.add_blank_document_to_dir(dir_pth.data || undefined, doc_name);
+      this.updateViewFilesAndDirs();
+    }
+  }
 
   public clickSideFile(file: fileConfigDisplayedMetadata): void {
     this.setDir(file.directory);

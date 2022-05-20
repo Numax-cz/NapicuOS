@@ -988,6 +988,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Function to creat document in directory
+   * @param dir Directory to which the document should be added
+   * @param fileName File name
+   */
+  public static add_blank_document_to_dir(dir: systemDirAFileMetadata | undefined, fileName: string): SystemFileStateData {
+    return this.add_file_to_dir(dir, new SystemFile({
+      fileName: fileName,
+      createdBy: this.get_active_user_username(),
+      value: '',
+      fileType: SystemFileTypeEnumMetadata.document,
+      iconPath: SYSTEM_IMAGES.AppDocText,
+    }))
+  }
+
+  /**
    * Opens a file in a specific directory
    * @param dir The directory in which you want to open the specific file
    * @param fileName The name of the file you want to open
