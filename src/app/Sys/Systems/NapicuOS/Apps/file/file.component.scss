@@ -166,6 +166,23 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+
+    p { //TODO IDK Zda nechat
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+  }
+
+
+  .selectedFileDir {
+    img {
+      filter: brightness(0.2) !important;
+    }
+
+    p {
+      background-color: var(--NapicuSelectColor);
+    }
   }
 
   img {

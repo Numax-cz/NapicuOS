@@ -34,6 +34,8 @@ export class FileComponent implements OnInit {
   public showFilePropertyContextMenu: boolean = false;
   public showDirPropertyContextMenu: boolean = false;
 
+  public selectedFileDir: string | null = null;
+
   @Input() public declare windowValue: ProcessWindowValueMetadata;
 
   constructor() {
@@ -58,16 +60,19 @@ export class FileComponent implements OnInit {
     this.updateViewFilesAndDirs();
 
 
-    document.addEventListener('mousedown', (event) => {
+    window.addEventListener('mousedown', (event) => {
       var p = event.target as HTMLElement;
-      if (!p.offsetParent?.getAttribute('clickable')) {
+      if (!p.getAttribute('clickable') &&
+        !p.offsetParent?.getAttribute('clickable')) {
 
         this.showDirPropertyContextMenu = false;
         this.showFilePropertyContextMenu = false;
         this.showFileManagerContextMenu = false;
+        this.selectedFileDir = null;
       }
 
     });
+
   }
 
   public updateMousePosition(event: MouseEvent) {
@@ -119,11 +124,18 @@ export class FileComponent implements OnInit {
   }
 
   public onClickDirAndFileView(i: filesAndDirsViewMetadata): void {
+    if (!this.selectedFileDir || this.selectedFileDir != i.name) {
+      this.selectedFileDir = i.name;
+      this.updateViewFilesAndDirs();
+      return;
+    }
     if (!i.fileType) {
       this.enterDir(i.name);
     } else {
       this.openFile(i.name, i.fileType);
     }
+
+    this.selectedFileDir = null;
   }
 
   public openFile(name: string, fileType: SystemFileTypeEnumMetadata): void {
@@ -181,11 +193,9 @@ export class FileComponent implements OnInit {
   public creatDirectory = async (): Promise<void> => {
     let dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_dir, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.BlueFolder);
     if (dir_name) {
-      let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
-      if (dir_pth.state === SystemStateMetadata.PathExist) {
-        NapicuOS.creat_dir(dir_pth.data || undefined, dir_name);
-        this.updateViewFilesAndDirs();
-      }
+      NapicuOS.creat_dynamic_path_config(this.startDirectory, dir_name);
+      this.updateViewFilesAndDirs();
+
     }
   }
 

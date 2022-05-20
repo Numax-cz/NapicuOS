@@ -68,6 +68,7 @@ import {imagePreloader} from "./scripts/ImagePreloader";
 import {audioPreloader} from "./scripts/AudioPreloader";
 import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 import {SystemInputAlert} from "./SystemComponents/AlertInput";
+import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -82,7 +83,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       activeUser: null,
       users: []
     },
-    hostname: SYSTEM_DEFAULT_HOSTNAME
+    hostname: SYSTEM_DEFAULT_HOSTNAME,
+    directorys: []
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
@@ -145,6 +147,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       NapicuOS.initSystemConfigCookies();
       //Initialization of all users
       this.initUsers();
+      //Initialization all dynamic directories
+      this.loadDirectoriesFromConfig();
       //Preload all images
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
@@ -177,6 +181,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }
       resolve();
     });
+  }
+
+  /**
+   * Initialize all directories from config
+   */
+  protected loadDirectoriesFromConfig(): void {
+    let pth = NapicuOS.get_system_config_from_cookies()?.directorys;
+    if (pth) {
+      pth.forEach((path: string) => {
+        NapicuOS.creat_path(path);
+        console.log(path)
+      });
+    }
   }
 
 
@@ -605,6 +622,53 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     return SystemStateMetadata.DirExist;
   }
+
+  /**
+   * Creates a new directory by path
+   * @param path
+   */
+  public static creat_path(path: string): void {
+    let i: string[] = ReplaceSystemVariables(path).split('/');
+    i.shift();
+    if (path.endsWith("/")) i.pop();
+    let pth: string = "";
+    for (const pathName of i) {
+      pth += `/${pathName}`;
+      let tr_p = this.get_dir_by_path(`${pth}/${pathName}`);
+      let ac_p = this.get_dir_by_path(`${pth}`);
+      if (tr_p.state === SystemStateMetadata.PathNotExist) {
+        let i = this.creat_dir(ac_p.data || undefined, pathName);
+      }
+    }
+  }
+
+  /**
+   * Creat a new directory in the directory by path
+   * @param path Path to the directory
+   * @param dirName Name of the new directory
+   */
+  public static creat_dynamic_path_config(path: string, dirName: string): void {
+    if (!this.check_file_name(dirName)) return;
+    this.creat_path(`${path}${dirName}`);
+    this.add_global_path_to_cookies(`${path}${dirName}`);
+    this.update_config_to_cookies();
+  }
+
+  /**
+   * Add path to global config
+   * @param path
+   */
+  protected static add_global_path_to_cookies(path: string): void {
+    const cfg = this.get_system_config_from_cookies();
+    if (!cfg?.directorys) return;
+    for (const i of cfg?.directorys) {
+      if (i === path) {
+        return;
+      }
+    }
+    cfg.directorys.push(path);
+  }
+
 
   /**
    * Creates a new directories in the directory

@@ -6,4 +6,5 @@ export declare interface NapicuOsCookiesTemplate {
     activeUser: string | null
   }
   hostname: string
+  directorys: string[]
 }

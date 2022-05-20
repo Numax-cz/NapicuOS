@@ -75,12 +75,13 @@
       <section class="RightBox" (contextmenu)="clickShowFileManagerContextMenu($event)">
 
         <div class="RightObjectView">
-          <div *ngFor="let i of displayedFiles" class="Object">
-            <div (click)="onClickDirAndFileView(i)" (contextmenu)="clickFileAndDirProperty($event, i)"
-                 class="ObjectContent">
+          <div clickable="true" *ngFor="let i of displayedFiles" class="Object">
+            <div clickable="true" (click)="onClickDirAndFileView(i)"
+                 (contextmenu)="clickFileAndDirProperty($event, i)"
+                 class="ObjectContent" [ngClass]="{selectedFileDir: this.selectedFileDir === i.name}">
 
-              <img [src]="i.icon" alt="icon">
-              <p>{{i.name}}</p>
+              <img clickable="true" [src]="i.icon" alt="icon">
+              <p clickable="true">{{i.name}}</p>
             </div>
 
           </div>
