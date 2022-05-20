@@ -54,7 +54,7 @@
       <!--Left bar-->
       <div class="LeftBox">
         <!--Home folders-->
-        <h1>Places</h1>
+        <h1>{{GetPlacesText}}</h1>
         <ul>
           <li (click)="clickSideFile(i)" *ngFor="let i of GetFoldersView">
             <img [src]="i.icon" alt="Directory icon">
@@ -62,7 +62,7 @@
           </li>
         </ul>
         <!--Devices folders-->
-        <h1>Devices</h1>
+        <h1>{{GetDevicesText}}</h1>
         <ul>
           <li *ngFor="let i of GetDrivesView">
             <img [src]="i.icon" alt="Directory icon">

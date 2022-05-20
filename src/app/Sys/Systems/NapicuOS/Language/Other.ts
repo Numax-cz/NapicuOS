@@ -7,3 +7,8 @@ export const lang_Creat_new_dir_cs = "Vytovřit nový adresář";
 export const lang_Enter_name_en = "Enter the name";
 export const lang_Enter_name_cs = "Zadejte název";
 
+export const lang_Places_en = "Places";
+export const lang_Places_cs = "Místa";
+
+export const lang_Devices_en = "Devices";
+export const lang_Devices_cs = "Zařízení";

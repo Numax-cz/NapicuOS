@@ -286,4 +286,11 @@ export class FileComponent implements OnInit {
     return SYSTEM_IMAGES.addFolder;
   }
 
+  get GetPlacesText(): string {
+    return NapicuOS.get_language_words().other.places;
+  }
+
+  get GetDevicesText(): string {
+    return NapicuOS.get_language_words().other.devices;
+  }
 }
