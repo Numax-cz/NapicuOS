@@ -98,10 +98,13 @@
   boxMenuPosition.x, 'top.px':
   boxMenuPosition.y}" clickable="true">
     <ul>
+
       <li (click)="clickCreatDirectory()">
+        <img [src]="GetAddFolderImage" alt="Add File icon">
         Creat Folder...
       </li>
       <li (click)="clickCreatFile()">
+        <img [src]="GetAddFileImage" alt="Add Document icon">
         Creat Document
       </li>
     </ul>

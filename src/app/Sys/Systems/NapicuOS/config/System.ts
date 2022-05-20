@@ -62,6 +62,8 @@ export enum SYSTEM_IMAGES {
   ArrowLeft = "assets/systems/NapicuOS/SystemIcons/XFD/arrow-left.svg",
   ArrowDown = "assets/systems/NapicuOS/SystemIcons/XFD/arrow-down.svg",
   Home = "assets/systems/NapicuOS/SystemIcons/XFD/home.svg",
+  addFile = "assets/systems/NapicuOS/SystemIcons/XFD/addFile.svg",
+  addFolder = "assets/systems/NapicuOS/SystemIcons/XFD/addFolder.svg",
 }
 
 export const SYSTEM_DEFAULT_HOME_FOLDERS: string[] = [

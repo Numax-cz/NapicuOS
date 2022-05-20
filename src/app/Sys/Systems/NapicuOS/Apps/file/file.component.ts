@@ -278,4 +278,12 @@ export class FileComponent implements OnInit {
     return ReplaceSystemVariables(this.startDirectory);
   }
 
+  get GetAddFileImage(): string {
+    return SYSTEM_IMAGES.addFile;
+  }
+
+  get GetAddFolderImage(): string {
+    return SYSTEM_IMAGES.addFolder;
+  }
+
 }
