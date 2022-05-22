@@ -1,11 +1,8 @@
 import {Type} from '@angular/core';
-import {AlertComponent} from '../Apps/alert/alert.component';
-import {systemAlertImagesEnumMetadata} from '../config/Alert';
 import {windowData} from '../interface/Window/WindowData';
 import {Window} from './Window';
 import {copy} from "../../../../Bios/Scripts/DeepClone";
 import {AlertInputComponent} from "../Apps/alert-input/alert-input.component";
-import {AlertData} from "../interface/Alert";
 import {WindowData} from "../interface/WindowData";
 import {InputAlertData} from "../interface/InputAlert";
 

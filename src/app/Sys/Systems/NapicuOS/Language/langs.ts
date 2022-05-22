@@ -6,8 +6,12 @@ import {
   lang_Creat_new_dir_cs,
   lang_Creat_new_dir_en,
   lang_Creat_new_doc_cs,
-  lang_Creat_new_doc_en, lang_Devices_cs, lang_Devices_en,
-  lang_Enter_name_cs, lang_Enter_name_en, lang_Places_cs, lang_Places_en
+  lang_Creat_new_doc_en,
+  lang_Devices_cs,
+  lang_Enter_name_cs,
+  lang_Enter_name_en,
+  lang_Places_cs,
+  lang_Places_en
 } from "./Other";
 
 export declare type NapicuOS_available_language = "en" | "cs";
