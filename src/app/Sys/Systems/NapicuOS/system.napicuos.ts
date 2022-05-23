@@ -84,7 +84,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       users: []
     },
     hostname: SYSTEM_DEFAULT_HOSTNAME,
-    directorys: []
+    directorys: [],
+    files: []
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
