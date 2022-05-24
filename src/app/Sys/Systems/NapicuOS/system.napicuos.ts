@@ -69,6 +69,7 @@ import {audioPreloader} from "./scripts/AudioPreloader";
 import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 import {SystemInputAlert} from "./SystemComponents/AlertInput";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
+import {NapicuOsCookiesFileMetadata} from "./interface/CookiesFiles";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -192,7 +193,24 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (pth) {
       pth.forEach((path: string) => {
         NapicuOS.creat_path(path);
-        console.log(path)
+      });
+    }
+  }
+
+  /**
+   * Initialize all files from config
+   */
+  protected loadFilesFromConfig(): void {
+    let pth = NapicuOS.get_system_config_from_cookies()?.files;
+    if (pth) {
+      pth.forEach((file: NapicuOsCookiesFileMetadata) => {
+        let i: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(file.path);
+        if(i.state === SystemStateMetadata.PathNotExist) {
+          console.error(`SYSTEM: Path ${file.path} not exist`);
+          return;
+        };
+        //TODO ADD FILE
+        //NapicuOS.add_file_to_dir(path);
       });
     }
   }
@@ -644,15 +662,33 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Creat a new directory in the directory by path
+   * Creat a new dynamic directory in the directory by path
    * @param path Path to the directory
    * @param dirName Name of the new directory
    */
-  public static creat_dynamic_path_config(path: string, dirName: string): void {
+  public static creat_dynamic_path_config(path: string, dirName: string): void { //TODO RETURN
     if (!this.check_file_name(dirName)) return;
     this.creat_path(`${path}${dirName}`);
     this.add_global_path_to_cookies(`${path}${dirName}`);
     this.update_config_to_cookies();
+  }
+
+  /**
+   * Creat a new dynamic document in the directory by path
+   * @param path Path to the directory
+   * @param file File
+   */
+  public static creat_dynamic_document(path: string, file: SystemFile): SystemStateMetadata {
+    if(!this.check_file_name(file.fileName)) return SystemStateMetadata.InvalidFileDirName;
+    let i = this.get_dir_by_path(path);
+    if(i.state === SystemStateMetadata.PathExist) {
+      this.add_global_file_to_cookies(path, file.value);
+      this.add_file_to_dir(i.data || undefined, file); //TODO IDK
+      this.update_config_to_cookies();
+      return SystemStateMetadata.FileAddedSuccess;
+    }else {
+      return SystemStateMetadata.PathNotExist;
+    }
   }
 
   /**
@@ -668,6 +704,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }
     }
     cfg.directorys.push(path);
+  }
+
+  /**
+   * Add file to global config
+   * @param path
+   * @param value
+   */
+  protected static add_global_file_to_cookies(path: string, value: string): void {
+    const cfg = this.get_system_config_from_cookies();
+    if (!cfg?.files) return;
+    for (const i of cfg?.files) {
+      if (i.path === path) {
+        return;
+      }
+    }
+    cfg.files.push({path: path, value: value});
   }
 
 
