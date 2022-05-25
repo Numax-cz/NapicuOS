@@ -119,6 +119,7 @@ export declare const enum SystemStateMetadata {
 
   PathNotExist = 1052,
   PathExist = 1053,
+  Success = 1, //TODO Remove Success
 
 
   RegisterCommandAlreadyExists = 9059,

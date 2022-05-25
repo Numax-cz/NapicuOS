@@ -70,6 +70,9 @@ import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 import {SystemInputAlert} from "./SystemComponents/AlertInput";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {NapicuOsCookiesFileMetadata} from "./interface/CookiesFiles";
+import {PathSpliceLastIndex} from "./scripts/PathSplice";
+import {PathSpliceMetadata} from "./interface/PathSplice";
+import {FileComponent} from "./Apps/file/file.component";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -642,6 +645,29 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return SystemStateMetadata.DirExist;
   }
 
+  public static rename_dir(path: string, name: string): SystemDirStateData | SystemStateMetadata.Success { //TODO return
+    if(this.check_file_name(name)){
+      const dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
+      if(!dir?.data?.dir) return SystemStateMetadata.PathNotExist;
+      this.creat_dir(dir.data, name);
+      let i = this.remove_path(`${path}`);
+      console.log(i)
+      let n_dir = this.get_dir_by_path(`${path}/${name}`).data;
+      if(n_dir?.dir) {
+        n_dir.dir = dir.data.dir;
+        return SystemStateMetadata.Success;
+      }
+      console.error(`SYSTEM: ${path}/${name} not exist`);
+      return SystemStateMetadata.PathNotExist;
+    }
+    return SystemStateMetadata.InvalidFileDirName;
+  }
+
+
+
+
+
+
   /**
    * Creates a new directory by path
    * @param path
@@ -659,6 +685,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         let i = this.creat_dir(ac_p.data || undefined, pathName);
       }
     }
+  }
+
+  /**
+   * Remove directory by path
+   * @param path
+   */
+  public static remove_path(path: string): SystemStateMetadata {
+    const pth: PathSpliceMetadata = PathSpliceLastIndex(path);
+    console.log(pth)
+    if(pth.removed){
+      let dir = this.get_dir_by_path(pth.path).data;
+      if(dir?.dir){
+         delete dir.dir[pth.removed];
+        return SystemStateMetadata.Success;
+      }
+      return SystemStateMetadata.PathNotExist
+    }
+    console.error(`SYSTEM: Remove path error ${pth.path} `);
+    return SystemStateMetadata.PathNotExist
   }
 
   /**
@@ -704,6 +749,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       }
     }
     cfg.directorys.push(path);
+  }
+
+  /**
+   * Remove path from global config
+   * @param path
+   * @protected
+   */
+  protected static remove_global_path_from_cookies(path: string): void {
+    const cfg = this.get_system_config_from_cookies();
+    if (!cfg?.directorys) return;
+    for (const i of cfg?.directorys) {
+      if (i === path) {
+        cfg.directorys.splice(cfg.directorys.indexOf(i), 1);
+      }
+    }
   }
 
   /**
