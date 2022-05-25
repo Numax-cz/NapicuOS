@@ -73,7 +73,6 @@ import {NapicuOsCookiesFileMetadata} from "./interface/CookiesFiles";
 import {PathSpliceLastIndex} from "./scripts/PathSplice";
 import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FileComponent} from "./Apps/file/file.component";
-import {FormatPathToObject} from "./scripts/FormatPath";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -498,7 +497,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path
    */
   public static get_dir_by_path(path: string): ReturnGetDirByPathMetadata {
-    let dirs = FormatPathToObject(path);
+    let dirs = path.split("/");
+    dirs.shift();
+    dirs.pop();
     let currentDir: systemDirAFileMetadata | undefined = (!dirs[0]?.length) ? this.get_root_dir() : this.get_root_dir()?.dir?.[dirs[0]];
     if (currentDir) {
       for (let i = 1; i < dirs.length; i++) {
