@@ -73,6 +73,7 @@ import {NapicuOsCookiesFileMetadata} from "./interface/CookiesFiles";
 import {PathSpliceLastIndex} from "./scripts/PathSplice";
 import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FileComponent} from "./Apps/file/file.component";
+import {FormatPathToObject} from "./scripts/FormatPath";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -494,12 +495,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   /**
    * Returns the drive by specified drive letter
-   * @param dir
+   * @param path
    */
-  public static get_dir_by_path(dir: string): ReturnGetDirByPathMetadata {
-    let dirs = dir.split("/");
-    dirs.shift();
-    dirs.pop();
+  public static get_dir_by_path(path: string): ReturnGetDirByPathMetadata {
+    let dirs = FormatPathToObject(path);
     let currentDir: systemDirAFileMetadata | undefined = (!dirs[0]?.length) ? this.get_root_dir() : this.get_root_dir()?.dir?.[dirs[0]];
     if (currentDir) {
       for (let i = 1; i < dirs.length; i++) {
@@ -646,13 +645,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static rename_dir(path: string, name: string): SystemDirStateData | SystemStateMetadata.Success { //TODO return
+    let root_path: string = PathSpliceLastIndex(path).path;
     if(this.check_file_name(name)){
       const dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
       if(!dir?.data?.dir) return SystemStateMetadata.PathNotExist;
-      this.creat_dir(dir.data, name);
-      let i = this.remove_path(`${path}`);
-      console.log(i)
-      let n_dir = this.get_dir_by_path(`${path}/${name}`).data;
+      this.creat_path(`${root_path}/${name}`);
+      this.remove_path(`${path}`);
+      let n_dir = this.get_dir_by_path(`${root_path}/${name}`).data;
       if(n_dir?.dir) {
         n_dir.dir = dir.data.dir;
         return SystemStateMetadata.Success;
@@ -662,11 +661,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     return SystemStateMetadata.InvalidFileDirName;
   }
-
-
-
-
-
 
   /**
    * Creates a new directory by path
@@ -693,9 +687,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static remove_path(path: string): SystemStateMetadata {
     const pth: PathSpliceMetadata = PathSpliceLastIndex(path);
-    console.log(pth)
     if(pth.removed){
-      let dir = this.get_dir_by_path(pth.path).data;
+      let dir = this.get_dir_by_path(`${pth.path}/`).data;
       if(dir?.dir){
          delete dir.dir[pth.removed];
         return SystemStateMetadata.Success;

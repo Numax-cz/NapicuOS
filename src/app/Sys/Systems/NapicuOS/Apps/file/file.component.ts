@@ -36,6 +36,8 @@ export class FileComponent implements OnInit {
 
   public selectedFileDir: string | null = null;
 
+  public freezeContent: boolean = false;
+
   @Input() public declare windowValue: ProcessWindowValueMetadata;
 
   constructor() {
@@ -64,11 +66,11 @@ export class FileComponent implements OnInit {
       var p = event.target as HTMLElement;
       if (!p.getAttribute('clickable') &&
         !p.offsetParent?.getAttribute('clickable')) {
-
         this.showDirPropertyContextMenu = false;
         this.showFilePropertyContextMenu = false;
         this.showFileManagerContextMenu = false;
-        this.selectedFileDir = null;
+
+        if(!this.freezeContent) this.selectedFileDir = null;
       }
 
     });
@@ -91,11 +93,14 @@ export class FileComponent implements OnInit {
   }
 
   public clickFileAndDirProperty(event: MouseEvent, i: filesAndDirsViewMetadata): void {
+    if(this.freezeContent) return;
     if (!i.fileType) {
       this.showDirPropertyContextMenu = !this.showDirPropertyContextMenu;
-    } else this.showFilePropertyContextMenu = !this.showFilePropertyContextMenu;
+    } else this.showFilePropertyContextMenu = !this.showFilePropertyContextMenu
+    if(this.showDirPropertyContextMenu ||this.showFilePropertyContextMenu) {
+      this.selectedFileDir = i.name
+    } else this.selectedFileDir = null;
     this.showFileManagerContextMenu = false;
-
     this.updateMousePosition(event);
     event.stopPropagation();
   }
@@ -124,6 +129,7 @@ export class FileComponent implements OnInit {
   }
 
   public onClickDirAndFileView(i: filesAndDirsViewMetadata): void {
+    if(this.freezeContent) return;
     if (!this.selectedFileDir || this.selectedFileDir != i.name) {
       this.selectedFileDir = i.name;
       this.updateViewFilesAndDirs();
@@ -190,13 +196,32 @@ export class FileComponent implements OnInit {
     this.creatDocument();
   }
 
+  public clickRenameFileOrDirectory(): void {
+    //TODO check file or dir
+    this.renameDirectory();
+  }
+
+  public renameDirectory = async (): Promise<void> => {
+    this.enableFreezeContent();
+    let new_dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.rename, NapicuOS.get_language_words().other.enter_new_name, SYSTEM_IMAGES.BlueFolder);
+    if(new_dir_name){
+      if(NapicuOS.check_file_name(new_dir_name)){
+         NapicuOS.rename_dir(ReplaceSystemVariables(`${this.startDirectory}${this.selectedFileDir}`), new_dir_name);
+        this.updateViewFilesAndDirs();
+      }
+      //TODO ERROR => bad name
+    }
+    this.disableFreezeContent();
+  }
+
   public creatDirectory = async (): Promise<void> => {
+    this.enableFreezeContent();
     let dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_dir, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.BlueFolder);
     if (dir_name) {
       NapicuOS.creat_dynamic_path_config(this.startDirectory, dir_name);
       this.updateViewFilesAndDirs();
-
     }
+    this.disableFreezeContent();
   }
 
   public creatDocument = async (): Promise<void> => {
@@ -213,6 +238,7 @@ export class FileComponent implements OnInit {
   }
 
   public clickBack(): void {
+    if(!this.backHistoryPaths.length || this.freezeContent) return;
     this.nextHistoryPaths.push(this.startDirectory);
     this.startDirectory = this.backHistoryPaths[this.backHistoryPaths.length - 1];
     this.backHistoryPaths.shift();
@@ -220,6 +246,7 @@ export class FileComponent implements OnInit {
   }
 
   public clickNext(): void {
+    if(!this.nextHistoryPaths.length || this.freezeContent) return;
     this.backHistoryPaths.push(this.startDirectory);
     this.startDirectory = this.nextHistoryPaths[this.nextHistoryPaths.length - 1];
     this.nextHistoryPaths.shift();
@@ -233,8 +260,17 @@ export class FileComponent implements OnInit {
   }
 
   public clickHome(): void {
+    if( this.freezeContent) return;
     this.setDir("%USERDIR");
     this.clearNextHistoryPaths();
+  }
+
+  protected enableFreezeContent(): void {
+    this.freezeContent = true;
+  }
+
+  protected disableFreezeContent(): void {
+    this.freezeContent = false;
   }
 
 

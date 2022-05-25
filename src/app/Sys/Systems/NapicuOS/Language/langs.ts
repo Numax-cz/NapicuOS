@@ -9,9 +9,9 @@ import {
   lang_Creat_new_doc_en,
   lang_Devices_cs,
   lang_Enter_name_cs,
-  lang_Enter_name_en,
+  lang_Enter_name_en, lang_enter_new_name_cs, lang_enter_new_name_en,
   lang_Places_cs,
-  lang_Places_en
+  lang_Places_en, lang_rename_cs, lang_rename_en
 } from "./Other";
 
 export declare type NapicuOS_available_language = "en" | "cs";
@@ -38,6 +38,8 @@ export const NapicuOSLanguages = {
       enter_name: lang_Enter_name_en,
       places: lang_Places_en,
       devices: lang_Devices_cs,
+      enter_new_name: lang_enter_new_name_en,
+      rename: lang_rename_en
     }
   },
 
@@ -62,6 +64,8 @@ export const NapicuOSLanguages = {
       enter_name: lang_Enter_name_cs,
       places: lang_Places_cs,
       devices: lang_Devices_cs,
+      enter_new_name: lang_enter_new_name_cs,
+      rename: lang_rename_cs
     }
   }
 }
