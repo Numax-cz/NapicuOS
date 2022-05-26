@@ -695,17 +695,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Return directory data by path
    * @param path
    */
-  public static is_file_or_dir_in_path(path: string): IfDirFileMetadata | SystemStateMetadata.PathNotExist {
+  public static is_file_or_dir_in_path(path: string): IfDirFileMetadata | null {
     let pth: PathSpliceMetadata = PathSpliceLastIndex(path);
     if(pth.removed){
       let i = this.get_dir_by_path(pth.path);
-      if(i.state === SystemStateMetadata.PathNotExist) return SystemStateMetadata.PathNotExist;
+      if(i.state === SystemStateMetadata.PathNotExist) return null;
       let dir = !!i.data?.dir?.[pth.removed];
       let file = !!i.data?.files?.filter(f => f.fileName === pth.removed)[0];
       return {dir: dir, file: file};
     }
     console.error("SYSTEM: Removed dir is undefined");
-    return SystemStateMetadata.PathNotExist;
+    return null;
   }
 
   /**
