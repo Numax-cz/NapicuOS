@@ -1,4 +1,4 @@
 export declare interface PathSpliceMetadata{
   path: string,
-  removed: string
+  removed: string | undefined
 }

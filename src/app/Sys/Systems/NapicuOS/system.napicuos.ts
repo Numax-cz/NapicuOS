@@ -8,6 +8,7 @@ import {
   Os,
   SystemDirStateData,
   SystemFileStateData,
+  SystemIsDirOrFileStateData,
   SystemStateMetadata,
   SystemStringStateCorrection,
   SystemUserStateData,
@@ -68,11 +69,11 @@ import {imagePreloader} from "./scripts/ImagePreloader";
 import {audioPreloader} from "./scripts/AudioPreloader";
 import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 import {SystemInputAlert} from "./SystemComponents/AlertInput";
-import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {NapicuOsCookiesFileMetadata} from "./interface/CookiesFiles";
 import {PathSpliceLastIndex} from "./scripts/PathSplice";
 import {PathSpliceMetadata} from "./interface/PathSplice";
-import {FileComponent} from "./Apps/file/file.component";
+import {FormatPathToObject} from "./scripts/FormatPath";
+import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -158,6 +159,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
+
+      let i = NapicuOS.get_file_or_dir_by_path("/home/user/adf");
+
+      console.log(i);
+
       resolve();
     });
   }
@@ -499,7 +505,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_dir_by_path(path: string): ReturnGetDirByPathMetadata {
     let dirs = path.split("/");
     dirs.shift();
-    dirs.pop();
+    if(path.endsWith("/")) dirs.pop();
     let currentDir: systemDirAFileMetadata | undefined = (!dirs[0]?.length) ? this.get_root_dir() : this.get_root_dir()?.dir?.[dirs[0]];
     if (currentDir) {
       for (let i = 1; i < dirs.length; i++) {
@@ -668,9 +674,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path
    */
   public static creat_path(path: string): void {
-    let i: string[] = ReplaceSystemVariables(path).split('/');
-    i.shift();
-    if (path.endsWith("/")) i.pop();
+    let i: string[] = FormatPathToObject(path);
     let pth: string = "";
     for (const pathName of i) {
       pth += `/${pathName}`;
@@ -680,6 +684,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         let i = this.creat_dir(ac_p.data || undefined, pathName);
       }
     }
+  }
+
+  /**
+   * Return directory data by path
+   * @param path
+   */
+  public static get_file_or_dir_by_path(path: string): any {
+    let pth: PathSpliceMetadata = PathSpliceLastIndex(path);
+    if(pth.removed){
+      let dt = this.get_dir_by_path(`${pth.path}/`);
+      let dirs_data = dt.data?.dir?.[pth.removed];
+      let files_data = dt.data?.dir?.[pth.removed];
+      return {files: files_data?.files, dir: dirs_data?.dir};
+    }
+    //TODO return path not exist
   }
 
   /**
