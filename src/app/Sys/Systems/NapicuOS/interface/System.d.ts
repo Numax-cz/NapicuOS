@@ -39,8 +39,7 @@ export declare type SystemDirStateData =
   | SystemStateMetadata.InvalidFileDirName
 
 export declare type SystemIsDirOrFileStateData =
-  SystemStateMetadata.isFile
-  | SystemStateMetadata.isDir
+
   | SystemStateMetadata.PathNotExist
 
 export declare interface Os {
@@ -126,8 +125,6 @@ export declare const enum SystemStateMetadata {
   PathExist = 1053,
   Success = 1, //TODO Remove Success
 
-  isDir = 7777,
-  isFile = 7780,
 
   RegisterCommandAlreadyExists = 9059,
   RegisterCommandSuccess = 9060,

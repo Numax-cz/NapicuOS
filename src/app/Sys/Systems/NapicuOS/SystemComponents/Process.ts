@@ -93,7 +93,7 @@ export class Process {
    * Installs the application
    */
   get installer_file(): SystemFile | null {
-    let file = NapicuOS.get_file_by_file_title(NapicuOS.get_usr_dir(), this.processTitle)
+    let file = NapicuOS.get_file_by_file_name(NapicuOS.get_usr_dir(), this.processTitle)
     if (typeof file === 'object') {
       return file
     }

@@ -74,6 +74,7 @@ import {PathSpliceLastIndex} from "./scripts/PathSplice";
 import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FormatPathToObject} from "./scripts/FormatPath";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
+import {IfDirFileMetadata} from "./interface/IfDirFile";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -160,7 +161,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
 
-      let i = NapicuOS.get_file_or_dir_by_path("/home/user/adf");
+      let i = NapicuOS.is_file_or_dir_in_path("/home/user/kokot");
 
       console.log(i);
 
@@ -616,7 +617,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param systemAudio
    */
   public static play_system_audio(systemAudio: keyof typeof SYSTEM_SOUNDS): void {
-    let file = this.get_file_by_file_title(this.get_sounds_dir(), systemAudio);
+    let file = this.get_file_by_file_name(this.get_sounds_dir(), systemAudio);
     if (file instanceof SystemFile) {
       file.open();
     }
@@ -688,15 +689,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Return directory data by path
    * @param path
    */
-  public static get_file_or_dir_by_path(path: string): any {
+  public static is_file_or_dir_in_path(path: string): IfDirFileMetadata | SystemStateMetadata.PathNotExist {
     let pth: PathSpliceMetadata = PathSpliceLastIndex(path);
     if(pth.removed){
-      let dt = this.get_dir_by_path(`${pth.path}/`);
-      let dirs_data = dt.data?.dir?.[pth.removed];
-      let files_data = dt.data?.dir?.[pth.removed];
-      return {files: files_data?.files, dir: dirs_data?.dir};
+      let i = this.get_dir_by_path(pth.path);
+      if(i.state === SystemStateMetadata.PathNotExist) return SystemStateMetadata.PathNotExist;
+      let dir = !!i.data?.dir?.[pth.removed];
+      let file = !!i.data?.files?.filter(f => f.fileName === pth.removed)[0];
+      return {dir: dir, file: file};
     }
-    //TODO return path not exist
+    console.error("SYSTEM: Removed dir is undefined");
+    return SystemStateMetadata.PathNotExist;
   }
 
   /**
@@ -894,7 +897,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_dock_items(): void {
     let i: SystemFile[] = [];
     this.get_user_system_window_apps().forEach((App: Process) => {
-      let file = this.get_file_by_file_title(this.get_usr_dir(), App.processTitle);
+      let file = this.get_file_by_file_name(this.get_usr_dir(), App.processTitle);
       if (typeof file === "object" && this.get_user_apps_in_dock().filter((file: SystemFile) => {
         return file.fileName === App.processTitle;
       }).length === 0 && i.map(value => value.fileName).indexOf(App.processTitle) !== 0) i.push(file);
@@ -1203,7 +1206,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     | SystemStateMetadata.FileNotExist
     | SystemStateMetadata.FileOpenSuccess {
 
-    let file = this.get_file_by_file_title(dir, fileName);
+    let file = this.get_file_by_file_name(dir, fileName);
     if (file !== SystemStateMetadata.DirNotExist) {
       if (file !== SystemStateMetadata.FileNotExist) {
         //TODO Return Promise
@@ -1220,7 +1223,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param dir The directory in which you want to search for a specific file
    * @param fileName File name
    */
-  public static get_file_by_file_title(dir: systemDirAFileMetadata | undefined, fileName: string):
+  public static get_file_by_file_name(dir: systemDirAFileMetadata | undefined, fileName: string):
     SystemFile
     | SystemStateMetadata.DirNotExist
     | SystemStateMetadata.FileNotExist {
@@ -1229,6 +1232,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         return value.fileName === fileName;
       })[0];
       if (file) return file;
+      return SystemStateMetadata.FileNotExist;
+    }
+    return SystemStateMetadata.DirNotExist
+  }
+
+  /**
+   * Returns the dir you are looking for
+   * @param dir The directory in which you want to search for a specific file
+   * @param dirName Directory name
+   */
+  public static get_dir_by_dir_name(dir: systemDirAFileMetadata | undefined, dirName: string):
+    systemDirAFileMetadata
+    | SystemStateMetadata.DirNotExist
+    | SystemStateMetadata.FileNotExist {
+    if (dir?.files) {
+      if (dir.dir?.[dirName]) return dir.dir?.[dirName];
       return SystemStateMetadata.FileNotExist;
     }
     return SystemStateMetadata.DirNotExist
@@ -1388,7 +1407,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param soundName
    */
   public static get_sound_system_src(soundName: string): SystemStateMetadata.DirNotExist | SystemStateMetadata.FileNotExist | string {
-    let gt_dir = this.get_file_by_file_title(this.get_sounds_dir(), soundName);
+    let gt_dir = this.get_file_by_file_name(this.get_sounds_dir(), soundName);
     if (gt_dir instanceof SystemFile) {
       return gt_dir.value;
     } else {
@@ -1590,7 +1609,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param filename File name
    */
   public static get_app_file_by_file_name(filename: string): SystemFile | null {
-    const file = this.get_file_by_file_title(this.get_usr_dir(), filename);
+    const file = this.get_file_by_file_name(this.get_usr_dir(), filename);
     if (typeof file === "object") {
       return file;
     }
