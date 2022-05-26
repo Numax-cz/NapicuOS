@@ -218,7 +218,7 @@ export class FileComponent implements OnInit {
     this.enableFreezeContent();
     let dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_dir, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.BlueFolder);
     if (dir_name) {
-      NapicuOS.creat_dynamic_path_config(this.startDirectory, dir_name);
+      NapicuOS.creat_dynamic_path_config(ReplaceSystemVariables(this.startDirectory), dir_name);
       this.updateViewFilesAndDirs();
     }
     this.disableFreezeContent();
@@ -227,7 +227,7 @@ export class FileComponent implements OnInit {
   public creatDocument = async (): Promise<void> => {
     let doc_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_doc, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.AppDocText);
     if (doc_name) {
-      let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(this.startDirectory);
+      let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
       NapicuOS.add_blank_document_to_dir(dir_pth.data || undefined, doc_name);
       this.updateViewFilesAndDirs();
     }

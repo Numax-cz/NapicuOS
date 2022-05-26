@@ -73,6 +73,7 @@ import {NapicuOsCookiesFileMetadata} from "./interface/CookiesFiles";
 import {PathSpliceLastIndex} from "./scripts/PathSplice";
 import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FormatPathToObject} from "./scripts/FormatPath";
+import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -159,9 +160,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
 
-      // let i = NapicuOS.get_file_or_dir_by_path("/home/user/adf");
-      //
-      // console.log(i);
+      let i = NapicuOS.get_file_or_dir_by_path("/home/user/adf");
+
+      console.log(i);
 
       resolve();
     });
@@ -675,8 +676,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     let pth: string = "";
     for (const pathName of i) {
       pth += `/${pathName}`;
-      let tr_p = this.get_dir_by_path(`${pth}/${pathName}`);
-      let ac_p = this.get_dir_by_path(`${pth}`);
+      let tr_p = this.get_dir_by_path(`${pth}`);
+      let ac_p = this.get_dir_by_path(`${PathSpliceLastIndex(pth).path}`);
       if (tr_p.state === SystemStateMetadata.PathNotExist) {
         let i = this.creat_dir(ac_p.data || undefined, pathName);
       }
