@@ -650,7 +650,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return SystemStateMetadata.DirExist;
   }
 
-  public static rename_dir(path: string, name: string): SystemDirStateData | SystemStateMetadata.Success { //TODO return
+  /**
+   * Rename the directory
+   * @param path
+   * @param name
+   */
+  public static rename_dir(path: string, name: string): SystemDirStateData | SystemStateMetadata.Success {
     let root_path: string = PathSpliceLastIndex(path).path;
     if(this.check_file_name(name)){
       const dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
@@ -660,6 +665,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       let n_dir = this.get_dir_by_path(`${root_path}/${name}`).data;
       if(n_dir?.dir) {
         n_dir.dir = dir.data.dir;
+        n_dir.files = dir.data.files;
         return SystemStateMetadata.Success;
       }
       console.error(`SYSTEM: ${path}/${name} not exist`);
@@ -712,6 +718,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       let dir = this.get_dir_by_path(`${pth.path}/`).data;
       if(dir?.dir){
          delete dir.dir[pth.removed];
+        this.remove_global_path_from_cookies(path);
         return SystemStateMetadata.Success;
       }
       return SystemStateMetadata.PathNotExist
@@ -776,6 +783,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     for (const i of cfg?.directorys) {
       if (i === path) {
         cfg.directorys.splice(cfg.directorys.indexOf(i), 1);
+        this.update_config_to_cookies();
       }
     }
   }
