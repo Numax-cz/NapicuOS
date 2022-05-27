@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {systemAlertImagesEnumMetadata} from '../../config/Alert';
-import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
+import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 import {AlertData} from "../../interface/Alert";
 
 @Component({
@@ -12,7 +12,7 @@ export class AlertComponent implements OnInit {
   /**
    * Window of the alert
    */
-  @Input() public declare windowValue: ProcessWindowValueMetadata;
+  @Input() public declare process: Process;
 
   /**
    * Alert data
@@ -45,6 +45,6 @@ export class AlertComponent implements OnInit {
    * The function that is called after clicking the button
    */
   public onButtonClick(): void {
-    this.windowValue.close();
+    this.process.kill();
   }
 }

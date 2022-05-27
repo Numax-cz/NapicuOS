@@ -101,6 +101,11 @@ export class Window {
     );
   };
 
+  /**
+   * Function that executes when the window process is killed
+   */
+  public onKillProcess(): void { }
+
 
   //* * * *  Getters * * *
 

@@ -50,4 +50,8 @@ export class SystemInputAlert extends Window implements WindowData<InputAlertDat
   public reject(): void {
     this.resolve(null);
   }
+
+  public override onKillProcess(): void {
+   this.resolve(null);
+  }
 }

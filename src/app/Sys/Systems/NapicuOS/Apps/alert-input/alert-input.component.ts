@@ -37,6 +37,8 @@ export class AlertInputComponent implements OnInit {
   }
 
 
+
+
   get GetValue(): string {
     return this.data.value;
   }

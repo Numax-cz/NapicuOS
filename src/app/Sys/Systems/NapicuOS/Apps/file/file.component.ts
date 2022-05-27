@@ -129,7 +129,6 @@ export class FileComponent implements OnInit {
         icon: file.iconPath,
         fileType: file.fileType,
       })
-      console.log(file)
     });
     return out;
   }
@@ -241,6 +240,7 @@ export class FileComponent implements OnInit {
   }
 
   public clickSideFile(file: fileConfigDisplayedMetadata): void {
+    if(this.freezeContent) return
     this.setDir(file.directory);
   }
 
