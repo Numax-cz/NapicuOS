@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../config/System";
-import {fileConfigDisplayedMetadata, filesAndDirsViewMetadata} from "../../interface/Apps/FileManager";
+import {
+  fileConfigDisplayedMetadata,
+  filesAndDirSelectMetadata,
+  filesAndDirsViewMetadata
+} from "../../interface/Apps/FileManager";
 import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/fileManager";
 import {NapicuOS} from "../../system.napicuos";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
@@ -9,6 +13,7 @@ import {ReturnGetDirByPathMetadata} from "../../interface/GetDirByPath";
 import {SystemStateMetadata} from "../../interface/System";
 import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 import {SystemFileTypeEnumMetadata} from "../../interface/FilesDirs/File";
+import { IfDirFileMetadata} from "../../interface/IfDirFile";
 
 @Component({
   selector: 'app-file',
@@ -34,7 +39,7 @@ export class FileComponent implements OnInit {
   public showFilePropertyContextMenu: boolean = false;
   public showDirPropertyContextMenu: boolean = false;
 
-  public selectedFileDir: string | null = null;
+  public selectedFileDir: filesAndDirSelectMetadata | null = null;
 
   public freezeContent: boolean = false;
 
@@ -98,7 +103,7 @@ export class FileComponent implements OnInit {
       this.showDirPropertyContextMenu = !this.showDirPropertyContextMenu;
     } else this.showFilePropertyContextMenu = !this.showFilePropertyContextMenu
     if(this.showDirPropertyContextMenu ||this.showFilePropertyContextMenu) {
-      this.selectedFileDir = i.name
+      this.selectedFileDir = {name: i.name, isDir: i.fileType == null};
     } else this.selectedFileDir = null;
     this.showFileManagerContextMenu = false;
     this.updateMousePosition(event);
@@ -124,14 +129,15 @@ export class FileComponent implements OnInit {
         icon: file.iconPath,
         fileType: file.fileType,
       })
+      console.log(file)
     });
     return out;
   }
 
   public onClickDirAndFileView(i: filesAndDirsViewMetadata): void {
     if(this.freezeContent) return;
-    if (!this.selectedFileDir || this.selectedFileDir != i.name) {
-      this.selectedFileDir = i.name;
+    if (!this.selectedFileDir || this.selectedFileDir.name != i.name) {
+      this.selectedFileDir = {name: i.name, isDir: i.fileType == null};
       this.updateViewFilesAndDirs();
       return;
     }
@@ -140,6 +146,7 @@ export class FileComponent implements OnInit {
     } else {
       this.openFile(i.name, i.fileType);
     }
+
 
     this.selectedFileDir = null;
   }
@@ -283,6 +290,8 @@ export class FileComponent implements OnInit {
     if (pathData.state === SystemStateMetadata.PathExist) this.setDir(input);
     event.preventDefault();
   }
+
+  //TODO kontrolovat jestli je to soubor / adresář
 
   public clearBackHistoryPaths(): void {
     this.backHistoryPaths = [];

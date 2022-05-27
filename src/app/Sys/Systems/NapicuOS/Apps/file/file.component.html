@@ -78,7 +78,7 @@
           <div clickable="true" *ngFor="let i of displayedFiles" class="Object">
             <div clickable="true" (click)="onClickDirAndFileView(i)"
                  (contextmenu)="clickFileAndDirProperty($event, i)"
-                 class="ObjectContent" [ngClass]="{selectedFileDir: this.selectedFileDir === i.name}">
+                 class="ObjectContent" [ngClass]="{selectedFileDir: this.selectedFileDir?.name === i.name && (this.selectedFileDir?.isDir == !(i.fileType))}">
 
               <img clickable="true" [src]="i.icon" alt="icon">
               <p clickable="true">{{i.name}}</p>
