@@ -6,9 +6,8 @@ import {
   onShutDown,
   onStartUp,
   Os,
-  SystemDirStateData,
+  SystemDirStateData, SystemDocumentData,
   SystemFileStateData,
-  SystemIsDirOrFileStateData,
   SystemStateMetadata,
   SystemStringStateCorrection,
   SystemUserStateData,
@@ -42,7 +41,7 @@ import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/CommandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
-import {SystemFileTypeEnumMetadata} from './interface/FilesDirs/File';
+import {SystemFileConsMetadata, SystemFileTypeEnumMetadata} from './interface/FilesDirs/File';
 import {SystemAlert} from './SystemComponents/Alert';
 import {systemAlertImagesEnumMetadata} from "./config/Alert";
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
@@ -73,7 +72,6 @@ import {NapicuOsCookiesFileMetadata} from "./interface/CookiesFiles";
 import {PathSpliceLastIndex} from "./scripts/PathSplice";
 import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FormatPathToObject} from "./scripts/FormatPath";
-import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {IfDirFileMetadata} from "./interface/IfDirFile";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
@@ -156,6 +154,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       this.initUsers();
       //Initialization all dynamic directories
       this.loadDirectoriesFromConfig();
+      //Initialization all dynamic files
+      this.loadFilesFromConfig();
       //Preload all images
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
@@ -211,20 +211,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Initialize all files from config
    */
   protected loadFilesFromConfig(): void {
-    let pth = NapicuOS.get_system_config_from_cookies()?.files;
+    let pth: NapicuOsCookiesFileMetadata[] | undefined = NapicuOS.get_system_config_from_cookies()?.files;
     if (pth) {
-      pth.forEach((file: NapicuOsCookiesFileMetadata) => {
-        let i: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(file.path);
-        if(i.state === SystemStateMetadata.PathNotExist) {
-          console.error(`SYSTEM: Path ${file.path} not exist`);
+      pth.forEach((fl: NapicuOsCookiesFileMetadata) => {
+        let i = NapicuOS.add_file_to_dir_by_path(fl.path, new SystemFile(fl.file));
+        if(i !== SystemStateMetadata.FileAddedSuccess) {
+          console.error(`SYSTEM: Path ${fl.path} not exist`);
+          console.error(i);
           return;
-        };
-        //TODO ADD FILE
-        //NapicuOS.add_file_to_dir(path);
+        }
       });
     }
   }
-
 
   public override onLogin(): void {
     if (!NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
@@ -311,8 +309,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return new NapicuDate().format(format); //TODO Settings
   }
 
-  // * * * Getters * * *
-  /**
+// * * * Getters * * *
+/**
    * Returns system time
    */
   public static get_system_time(): string {
@@ -322,7 +320,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns whether the system has been started
    */
-  public static get_system_boot(): boolean {
+public static get_system_boot(): boolean {
     return GrubComponent.GrubActiveSystem.SystemBooted;
   }
 
@@ -748,13 +746,21 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if(!this.check_file_name(file.fileName)) return SystemStateMetadata.InvalidFileDirName;
     let i = this.get_dir_by_path(path);
     if(i.state === SystemStateMetadata.PathExist) {
-      this.add_global_file_to_cookies(path, file.value);
-      this.add_file_to_dir(i.data || undefined, file); //TODO IDK
-      this.update_config_to_cookies();
-      return SystemStateMetadata.FileAddedSuccess;
+      let fl = this.add_file_to_dir(i.data || undefined, file); //TODO IDK
+      if(fl == SystemStateMetadata.FileAddedSuccess) {
+        this.add_global_file_to_cookies(path, file);
+        this.update_config_to_cookies();
+      }
+      return fl;
     }else {
       return SystemStateMetadata.PathNotExist;
     }
+  }
+
+  public static creat_dynamic_blank_document(path: string, fileName: string): SystemStateMetadata{
+    let i: SystemDocumentData = this.get_blank_document(fileName);
+    if(!(i instanceof SystemFile)) return i;
+    return this.creat_dynamic_document(path, i);
   }
 
   /**
@@ -791,17 +797,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Add file to global config
    * @param path
-   * @param value
+   * @param file
    */
-  protected static add_global_file_to_cookies(path: string, value: string): void {
-    const cfg = this.get_system_config_from_cookies();
-    if (!cfg?.files) return;
+  protected static add_global_file_to_cookies(path: string, file: SystemFileConsMetadata): void {
+    const cfg:  NapicuOsCookiesTemplate | null = this.get_system_config_from_cookies();
+    if (!cfg) return;
     for (const i of cfg?.files) {
       if (i.path === path) {
         return;
       }
     }
-    cfg.files.push({path: path, value: value});
+    cfg.files.push({path: path, file: file});
   }
 
 
@@ -1187,18 +1193,43 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Adds a directory to the directory
+   * @param path Path to the directory
+   * @param file File to be added
+   */
+  public static add_file_to_dir_by_path(path: string, file: SystemFile):  SystemFileStateData | ReturnGetDirByPathMetadata{
+    let dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
+    if (dir.data?.dir) {
+      return this.add_file_to_dir(dir.data, file);
+    }
+    return dir;
+  }
+
+  /**
    * Function to creat document in directory
-   * @param dir Directory to which the document should be added
+   * @param path Path to which the document should be added
    * @param fileName File name
    */
-  public static add_blank_document_to_dir(dir: systemDirAFileMetadata | undefined, fileName: string): SystemFileStateData {
-    return this.add_file_to_dir(dir, new SystemFile({
+  public static add_blank_document_to_dir(path: string, fileName: string): SystemFileStateData {
+    let i: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
+    let doc: SystemDocumentData = this.get_blank_document(fileName);
+    if(!(doc instanceof SystemFile)) return doc;
+    return this.add_file_to_dir(i.data || undefined, doc);
+  }
+
+  /**
+   * Return blank document
+   * @param fileName Document name
+   */
+  public static get_blank_document(fileName: string): SystemDocumentData{
+    if(!this.check_file_name(fileName)) return SystemStateMetadata.FileHasBadName;
+    return new SystemFile({
       fileName: fileName,
       createdBy: this.get_active_user_username(),
       value: '',
       fileType: SystemFileTypeEnumMetadata.document,
       iconPath: SYSTEM_IMAGES.AppDocText,
-    }))
+    })
   }
 
   /**

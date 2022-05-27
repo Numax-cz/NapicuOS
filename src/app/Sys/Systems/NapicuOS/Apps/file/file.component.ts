@@ -234,7 +234,7 @@ export class FileComponent implements OnInit {
     let doc_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_doc, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.AppDocText);
     if (doc_name) {
       let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
-      NapicuOS.add_blank_document_to_dir(dir_pth.data || undefined, doc_name);
+      NapicuOS.creat_dynamic_blank_document(ReplaceSystemVariables(this.startDirectory), doc_name);
       this.updateViewFilesAndDirs();
     }
   }

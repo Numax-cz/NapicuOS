@@ -1,6 +1,7 @@
 import {Type} from '@angular/core';
 import {windowButtonsMetadata, windowData} from './Window/WindowData';
 import {SystemWindowConstructorMetadata} from "./Window/Window";
+import {SystemFile} from "../SystemComponents/File";
 
 export declare interface onStartUp {
   onStart(): void;
@@ -27,6 +28,10 @@ export declare type SystemFileStateData =
   | SystemStateMetadata.DirNotExist
   | SystemStateMetadata.FileHasBadName
   | SystemStateMetadata.InvalidFileDirName
+
+export declare type SystemDocumentData =
+  SystemFile
+  | SystemStateMetadata.FileHasBadName
 
 export declare type SystemPathStateData =
   SystemStateMetadata.PathNotExist
