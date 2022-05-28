@@ -73,6 +73,7 @@ import {PathSpliceLastIndex} from "./scripts/PathSplice";
 import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FormatPathToObject} from "./scripts/FormatPath";
 import {IfDirFileMetadata} from "./interface/IfDirFile";
+import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -1235,21 +1236,22 @@ public static get_system_boot(): boolean {
   /**
    * Opens a file in a specific directory
    * @param dir The directory in which you want to open the specific file
-   * @param fileName The name of the file you want to open
+   * @param args Arguments
    */
   public static open_file_in_dir(
     dir: systemDirAFileMetadata | undefined,
-    fileName: string
+    args: string[]
   ):
     | SystemStateMetadata.DirNotExist
     | SystemStateMetadata.FileNotExist
     | SystemStateMetadata.FileOpenSuccess {
 
-    let file = this.get_file_by_file_name(dir, fileName);
+    let file = this.get_file_by_file_name(dir, args[0]);
     if (file !== SystemStateMetadata.DirNotExist) {
       if (file !== SystemStateMetadata.FileNotExist) {
         //TODO Return Promise
-        file.open();
+        args.shift()
+        file.open({params: args});
         return SystemStateMetadata.FileOpenSuccess;
       }
       return SystemStateMetadata.FileNotExist;
@@ -1274,6 +1276,18 @@ public static get_system_boot(): boolean {
       return SystemStateMetadata.FileNotExist;
     }
     return SystemStateMetadata.DirNotExist
+  }
+
+  /**
+   * Retrun the file you are looking for by path
+   * @param path
+   */
+  public static get_file_by_path(path: string): void {
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    let i = PathSpliceLastIndex(ReplaceSystemVariables(path));
   }
 
   /**
@@ -1326,9 +1340,12 @@ public static get_system_boot(): boolean {
   /**
    * Launches the installed application
    * @param ApplicationProcessTitle Filename of the installed application (ProcessTitle)
+   * @param params Parameters to be passed to the application
    */
-  public static open_app(ApplicationProcessTitle: string): void {
-    NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, [ApplicationProcessTitle]);
+  public static open_app(ApplicationProcessTitle: string, params?: string[]): void {
+    let i: string[] = params || [];
+    i.unshift(ApplicationProcessTitle);
+    NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, i);
   }
 
   /**

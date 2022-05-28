@@ -56,7 +56,7 @@ export class SystemFile {
             })),
             multiRun: i.multiRun
           })
-          resolve(p.run()?.Window.open());
+          resolve(p.run()?.Window.open(data?.params));
           break;
         case SystemFileTypeEnumMetadata.executable:
           let command = this.value as Command;

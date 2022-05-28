@@ -49,6 +49,8 @@ export class Window {
 
   public static windowOperation: boolean;
 
+  public declare executeArguments: string[];
+
   constructor(data: SystemWindowConstructorMetadata) {
     this.windowComponent = data.component;
     if (data.windowTitle) this.windowTitle = data.windowTitle;
@@ -78,7 +80,7 @@ export class Window {
   /**
    * Opens the application window
    */
-  public open(): void {
+  public open(args?: string[]): void {
     this.display = true;
     if (WindowComponent.WindowHistory.length) {
       WindowComponent.WindowHistory[WindowComponent.WindowHistory.length - 1].activated = false;
@@ -87,6 +89,7 @@ export class Window {
     this.z_index = WindowComponent.WindowHistory.length - 1;
     this.activated = true;
     WindowComponent.selectedWindow = this;
+    this.executeArguments = args || [];
     NapicuOS.onRunNewApp();
   };
 
@@ -100,6 +103,8 @@ export class Window {
       1
     );
   };
+
+
 
   /**
    * Function that executes when the window process is killed

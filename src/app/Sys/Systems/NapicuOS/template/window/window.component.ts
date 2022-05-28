@@ -215,7 +215,7 @@ export class WindowComponent implements OnInit {
    */
   public getInput(p: Process): SystemWindowAppInjectData {
     let x = p.Window as SystemAlert;
-    return {data: x.data, windowValue: WindowComponent.selectedWindow, process: p};
+    return {data: x.data, windowValue: WindowComponent.selectedWindow, process: p, args: WindowComponent.selectedWindow.executeArguments};
   }
 
   /**

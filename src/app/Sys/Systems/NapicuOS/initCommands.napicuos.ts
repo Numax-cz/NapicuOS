@@ -31,6 +31,8 @@ import {TerminalClass} from "./SystemComponents/Terminal";
 import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/File";
 import {mkdirExists, mkdirHelpCommand} from "./config/commands/help/mkdirCommand";
+import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
+import {notePadPathNotExists, notePadUsage} from "./config/commands/help/notePadCommand";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -207,7 +209,26 @@ function initWordPad(): void {
   NapicuOS.register_command(
     new Command('Notepad', SystemCommandsPrefixEnum.notePadCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
+        let pathFile: string | undefined = params?.[0];
+        if(pathFile){
+          let path: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(pathFile));
 
+          if(path.state === SystemStateMetadata.PathExist){
+            NapicuOS.open_app("Note", [pathFile]);
+
+          }else {
+            return resolve({
+              linesForCMD: [notePadPathNotExists(pathFile)],
+              stateCode: path.state,
+            });
+          }
+        }else NapicuOS.open_app("Note");
+
+        resolve({
+          linesForCMD: [],
+          stateCode: CommandStateCodeMetadata.success,
+        });
+        //TODO Return file not exist
       });
     })
   )
@@ -539,7 +560,7 @@ function initSetSystemInformation(): void {
 
 function initKillProcess(): void {
   NapicuOS.register_command(
-    new Command('TskKill', SystemCommandsPrefixEnum.killCommand, (params) => {
+    new Command('TskKill', SystemCommandsPrefixEnum.killCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         if (params?.length) {
           let pid = params[0]
@@ -564,7 +585,7 @@ function initKillProcess(): void {
 
 function initLogout(): void {
   NapicuOS.register_command(
-    new Command('UserLogout', SystemCommandsPrefixEnum.logoutCommand, (params) => {
+    new Command('UserLogout', SystemCommandsPrefixEnum.logoutCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         NapicuOS.logout_user();
         resolve();
@@ -575,7 +596,7 @@ function initLogout(): void {
 
 function initExitFromConsole(): void {
   NapicuOS.register_command(
-    new Command('Exit', SystemCommandsPrefixEnum.exitCommand, (params) => {
+    new Command('Exit', SystemCommandsPrefixEnum.exitCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         resolve(NapicuOS.get_system_activated_window_app()?.kill());
       });
@@ -585,10 +606,10 @@ function initExitFromConsole(): void {
 
 function initOpenApp(): void {
   NapicuOS.register_command(
-    new Command('OpenApp', SystemCommandsPrefixEnum.openAppCommand, (params) => {
+    new Command('OpenApp', SystemCommandsPrefixEnum.openAppCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
         if (params?.length) {
-          let x = NapicuOS.open_file_in_dir(NapicuOS.get_usr_dir(), params[0]);
+          let x = NapicuOS.open_file_in_dir(NapicuOS.get_usr_dir(), params);
           resolve({linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x});
         }
       });

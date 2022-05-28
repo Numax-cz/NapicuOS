@@ -14,4 +14,5 @@ export declare interface SystemWindowAppInjectData{
   data: any,
   windowValue:  ProcessWindowValueMetadata,
   process: Process,
+  args: string[]
 }

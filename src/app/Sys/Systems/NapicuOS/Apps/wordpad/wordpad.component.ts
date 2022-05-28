@@ -12,10 +12,12 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare data: InputAlertData;
   @Input() public declare windowValue: ProcessWindowValueMetadata;
   @Input() public declare process: Process;
-  @Input() public declare arguments: any;
+  @Input() public declare args: string[];
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.args);
   }
 
   public openFile(): void {
