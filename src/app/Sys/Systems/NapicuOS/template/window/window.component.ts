@@ -8,6 +8,7 @@ import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';
 import {SystemInputAlert} from "../../SystemComponents/AlertInput";
+import {SystemWindowAppInjectData} from "../../interface/Window/Window";
 
 @Component({
   selector: 'app-window',
@@ -212,7 +213,7 @@ export class WindowComponent implements OnInit {
    * Returns the value for the dynamic component
    * @param p Application window process
    */
-  public getInput(p: Process): InputsType {
+  public getInput(p: Process): SystemWindowAppInjectData {
     let x = p.Window as SystemAlert;
     return {data: x.data, windowValue: WindowComponent.selectedWindow, process: p};
   }

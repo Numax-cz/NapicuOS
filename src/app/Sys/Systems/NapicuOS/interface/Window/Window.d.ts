@@ -1,5 +1,6 @@
-import {Type} from "@angular/core";
+import {Input, Type} from "@angular/core";
 import {windowButtonsMetadata, windowData} from "./WindowData";
+import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 
 export declare interface SystemWindowConstructorMetadata {
   component: Type<any>;
@@ -7,4 +8,10 @@ export declare interface SystemWindowConstructorMetadata {
   windowData: windowData;
   windowButtons?: windowButtonsMetadata;
   resizeAllowed?: boolean;
+}
+
+export declare interface SystemWindowAppInjectData{
+  data: any,
+  windowValue:  ProcessWindowValueMetadata,
+  process: Process,
 }
