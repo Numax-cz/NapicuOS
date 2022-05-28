@@ -6,6 +6,7 @@ import {Window} from "./SystemComponents/Window";
 import {UsermanagerComponent} from "./Apps/usermanager/usermanager.component";
 import {FileComponent} from "./Apps/file/file.component";
 import {SYSTEM_IMAGES} from "./config/System";
+import {WordpadComponent} from "./Apps/wordpad/wordpad.component";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -13,7 +14,7 @@ export function initAllSystemProcess(): void {
 
 export function initAllStartUpApps(): void {
   // NapicuOS.open_app("InstallNapicuOS");
-  NapicuOS.open_app("FileManager");
+  NapicuOS.open_app("WordPad");
   //NapicuOS.open_app("Terminal");
 
   // NapicuOS.open_app("UserManager");
@@ -25,6 +26,7 @@ export function installAllApps(): void {
   napicu_os_welcomeapp();
   napicu_os_user_manager();
   napicu_os_file();
+  napicu_os_notepad();
 }
 
 
@@ -85,6 +87,18 @@ export function napicu_os_file(): void {
     windowData: Window.centerPos(75, 75),
     resizeAllowed: true,
     fileIconPath: SYSTEM_IMAGES.BlueFolder,
+    addToDock: true,
+  });
+}
+
+export function napicu_os_notepad(): void {
+  return NapicuOS.install_app({
+    appTitle: 'NotePad',
+    processTitle: 'Note',
+    appComponent: WordpadComponent,
+    windowData: Window.centerPos(75, 75),
+    resizeAllowed: true,
+    fileIconPath: SYSTEM_IMAGES.AppDocText,
     addToDock: true,
   });
 }

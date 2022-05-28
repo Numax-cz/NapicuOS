@@ -65,6 +65,7 @@ export function initAllCommands(): void {
   initCreateUser();
   initLogout();
   initOpenApp();
+  initWordPad();
 }
 
 
@@ -201,6 +202,17 @@ function initPwd(): void {
     })
   );
 }
+
+function initWordPad(): void {
+  NapicuOS.register_command(
+    new Command('Notepad', SystemCommandsPrefixEnum.notePadCommand, (params?: string[], terminal?: TerminalClass) => {
+      return new Promise((resolve) => {
+
+      });
+    })
+  )
+}
+
 
 function initEcho(): void {
   NapicuOS.register_command(
