@@ -1,7 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Host, HostBinding, HostDecorator, HostListener, Input, OnInit} from '@angular/core';
 import {SystemWindowAppInjectData} from "../../interface/Window/Window";
 import {InputAlertData} from "../../interface/InputAlert";
 import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
+import {SystemFile} from "../../SystemComponents/File";
+import {NapicuOS} from "../../system.napicuos";
+import {SystemStateMetadata} from "../../interface/System";
+import {fromEvent} from "rxjs";
 
 @Component({
   selector: 'app-wordpad',
@@ -14,10 +18,26 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare process: Process;
   @Input() public declare args: string[];
 
+  public declare file: SystemFile | null;
+
+  public contentView: string = "";
+
+  protected isCtrl: boolean = false;
+
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.args);
+    if(this.args.length){
+      let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
+      if(i instanceof SystemFile) this.file = i;
+      this.loadFile();
+    }
+    window.addEventListener("keydown", this.onKeyDown);
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener("keydown", this.onKeyDown);
   }
 
   public openFile(): void {
@@ -26,6 +46,21 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
 
   public saveFile(): void {
 
+  }
+
+  public onKeyDown(event: KeyboardEvent): void {
+    if(event.keyCode == 17) this.isCtrl=true;
+    if(event.keyCode == 83 && this.isCtrl == true) {
+
+      event.preventDefault();
+    }
+  }
+
+  public loadFile(): void {
+    if(this.file) {
+      this.contentView = this.file.value;
+      this.windowValue.windowTitle = this.file.fileName;
+    }
   }
 
 

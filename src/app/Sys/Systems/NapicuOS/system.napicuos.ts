@@ -6,7 +6,8 @@ import {
   onShutDown,
   onStartUp,
   Os,
-  SystemDirStateData, SystemDocumentData,
+  SystemDirStateData,
+  SystemDocumentData,
   SystemFileStateData,
   SystemStateMetadata,
   SystemStringStateCorrection,
@@ -1279,15 +1280,21 @@ public static get_system_boot(): boolean {
   }
 
   /**
-   * Retrun the file you are looking for by path
+   * Return the file you are looking for by path
    * @param path
    */
-  public static get_file_by_path(path: string): void {
-    //TODO
-    //TODO
-    //TODO
-    //TODO
-    let i = PathSpliceLastIndex(ReplaceSystemVariables(path));
+  public static get_file_by_path(path: string): SystemStateMetadata | SystemFile {
+    let i:  PathSpliceMetadata = PathSpliceLastIndex(ReplaceSystemVariables(path));
+    let fileName: string | undefined = i.removed;
+    let dir = this.get_dir_by_path(i.path);
+    if(fileName && dir.state === SystemStateMetadata.PathExist){
+      let file: SystemFile| undefined = dir.data?.files?.filter((value: SystemFile) => {
+        return value.fileName === fileName;
+      })[0];
+      if(!file) return SystemStateMetadata.FileNotExist;
+      return file;
+    }
+    return SystemStateMetadata.PathNotExist;
   }
 
   /**

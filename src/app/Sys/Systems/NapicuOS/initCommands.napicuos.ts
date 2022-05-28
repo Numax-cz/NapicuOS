@@ -33,6 +33,7 @@ import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/File";
 import {mkdirExists, mkdirHelpCommand} from "./config/commands/help/mkdirCommand";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {notePadPathNotExists, notePadUsage} from "./config/commands/help/notePadCommand";
+import {PathSpliceLastIndex} from "./scripts/PathSplice";
 
 function unknownOption(param: string): Line {
   return new Line(`Invalid option '${param}'`, 'white');
@@ -211,7 +212,7 @@ function initWordPad(): void {
       return new Promise((resolve) => {
         let pathFile: string | undefined = params?.[0];
         if(pathFile){
-          let path: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(pathFile));
+          let path: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(PathSpliceLastIndex(pathFile).path));
 
           if(path.state === SystemStateMetadata.PathExist){
             NapicuOS.open_app("Note", [pathFile]);
