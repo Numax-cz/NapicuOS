@@ -6,6 +6,7 @@ import {SystemFile} from "../../SystemComponents/File";
 import {NapicuOS} from "../../system.napicuos";
 import {SystemStateMetadata} from "../../interface/System";
 import {fromEvent} from "rxjs";
+import {setTimeInterval} from "../../../../../Bios/Scripts/TimeController";
 
 @Component({
   selector: 'app-wordpad',
@@ -25,7 +26,8 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   protected isCtrl: boolean = false;
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     if(this.args.length){
@@ -33,6 +35,9 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
       if(i instanceof SystemFile) this.file = i;
       this.loadFile();
     }
+  }
+
+  ngAfterViewInit(): void {
     window.addEventListener("keydown", this.onKeyDown);
   }
 
@@ -48,12 +53,14 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
 
   }
 
-  public onKeyDown(event: KeyboardEvent): void {
+  public onKeyDown = (event: KeyboardEvent): void =>  {
+    if(!this.windowValue.activated) return;
     if(event.keyCode == 17) this.isCtrl=true;
     if(event.keyCode == 83 && this.isCtrl == true) {
-
+      this.saveFile();
       event.preventDefault();
     }
+
   }
 
   public loadFile(): void {

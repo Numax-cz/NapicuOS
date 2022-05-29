@@ -163,10 +163,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
 
-      let i = NapicuOS.is_file_or_dir_in_path("/home/user/kokot");
-
-      console.log(i);
-
       resolve();
     });
   }

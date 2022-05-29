@@ -9,6 +9,7 @@ import {NapicuOS} from '../../system.napicuos';
 import {InputsType} from 'ng-dynamic-component';
 import {SystemInputAlert} from "../../SystemComponents/AlertInput";
 import {SystemWindowAppInjectData} from "../../interface/Window/Window";
+import {global} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-window',
