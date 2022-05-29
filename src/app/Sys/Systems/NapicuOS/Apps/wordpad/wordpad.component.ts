@@ -31,9 +31,15 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
 
   ngOnInit(): void {
     if(this.args.length){
-      let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
-      if(i instanceof SystemFile) this.file = i;
       this.loadFile();
+    }
+  }
+  public loadFile(): void {
+    let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
+    if(i instanceof SystemFile) this.file = i;
+    if(this.file) {
+      this.contentView = this.file.value;
+      this.windowValue.windowTitle = this.file.fileName;
     }
   }
 
@@ -63,12 +69,6 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
 
   }
 
-  public loadFile(): void {
-    if(this.file) {
-      this.contentView = this.file.value;
-      this.windowValue.windowTitle = this.file.fileName;
-    }
-  }
 
 
 
