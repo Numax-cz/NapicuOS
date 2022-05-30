@@ -1,4 +1,14 @@
-import {Component, Host, HostBinding, HostDecorator, HostListener, Input, OnInit} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Host,
+  HostBinding,
+  HostDecorator,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {SystemWindowAppInjectData} from "../../interface/Window/Window";
 import {InputAlertData} from "../../interface/InputAlert";
 import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
@@ -17,34 +27,32 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare data: InputAlertData;
   @Input() public declare windowValue: ProcessWindowValueMetadata;
   @Input() public declare process: Process;
+  @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
   @Input() public declare args: string[];
 
   public declare file: SystemFile | null;
-
-  public contentView: string = "";
-
-  protected isCtrl: boolean = false;
 
 
   constructor() {
   }
 
   ngOnInit(): void {
-    if(this.args.length){
-      this.loadFile();
-    }
   }
 
+
   public loadFile(): void {
-    let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
-    if(i instanceof SystemFile) this.file = i;
-    if(this.file) {
-      this.contentView = this.file.value;
-      this.windowValue.windowTitle = this.file.fileName; //TODO ERROR IN CONSOLE
+    let i: SystemFile | null = this.getFile();
+    if(i) {
+      this.file = i
+      this.setNotepadContent(this.file.value)
+      //this.windowValue.windowTitle = this.file.fileName; //TODO ERROR IN CONSOLE
     }
   }
 
   ngAfterViewInit(): void {
+    if(this.args.length){
+      this.loadFile();
+    }
     window.addEventListener("keydown", this.onKeyDown);
   }
 
@@ -57,22 +65,34 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public saveFile(): void {
-
+    let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
+    if(i instanceof SystemFile) {
+      i.value = this.getNotepadContent();
+    }
   }
 
   public onKeyDown = (event: KeyboardEvent): void =>  {
     if(!this.windowValue.activated) return;
-    // if(event.keyCode == 17) this.isCtrl=true;
-    // if(event.keyCode == 83 && this.isCtrl == true) {
-    //   this.saveFile();
-    //   event.preventDefault();
-    // }
-
+    if (event.keyCode == 83 && (event.ctrlKey || event.metaKey)){
+      this.saveFile();
+      event.preventDefault();
+    }
   }
 
+  protected getFile(): SystemFile | null{
+    let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
+    if(i instanceof SystemFile) return i;
+    return null;
+  }
 
+  public setNotepadContent(value: string): void {
+    this.inputValue.nativeElement.innerHTML = value;
+  }
 
-
-
-
+  public getNotepadContent(): string {
+    return this.inputValue.nativeElement.innerHTML;
+  }
 }
+
+
+

@@ -677,7 +677,12 @@ public static get_system_boot(): boolean {
    * @param name
    */
   public static rename_file(path: string, name: string): any{
-
+    let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
+    if(i instanceof SystemFile){
+      i.fileName = name;
+      return SystemStateMetadata.Success;
+    }
+    return i;
   }
 
   /**
