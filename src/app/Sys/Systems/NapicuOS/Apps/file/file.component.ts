@@ -151,10 +151,13 @@ export class FileComponent implements OnInit {
   }
 
   public openFile(name: string, fileType: SystemFileTypeEnumMetadata): void {
+    let i:  SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(`${this.startDirectory}${name}`);
+    if (i instanceof SystemFile) {
+        i.open({params: [`${this.startDirectory}${name}`]});
+    console.log(i);
 
-
+    }
   }
-
 
   public enterDir(dirName: string): void {
     this.backHistoryPaths.push(this.startDirectory);

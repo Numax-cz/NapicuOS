@@ -9,6 +9,7 @@ import {TerminalClass} from "./Terminal";
 import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
 import {NapicuOS} from "../system.napicuos";
 import {SYSTEM_IMAGES} from "../config/System";
+import {SystemCommandsPrefixEnum} from "../config/commands/Commands";
 
 
 export class SystemFile {
@@ -65,6 +66,9 @@ export class SystemFile {
         case SystemFileTypeEnumMetadata.audio:
           NapicuOS.play_audio(this.value);
           resolve(null);
+          break;
+        case SystemFileTypeEnumMetadata.document:
+          resolve(await NapicuOS.run_command(SystemCommandsPrefixEnum.notePadCommand, data?.params || undefined));
           break;
         default:
           break;

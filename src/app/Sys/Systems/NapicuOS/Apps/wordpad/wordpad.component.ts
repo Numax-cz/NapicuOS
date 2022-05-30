@@ -34,12 +34,13 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
       this.loadFile();
     }
   }
+
   public loadFile(): void {
     let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
     if(i instanceof SystemFile) this.file = i;
     if(this.file) {
       this.contentView = this.file.value;
-      this.windowValue.windowTitle = this.file.fileName;
+      this.windowValue.windowTitle = this.file.fileName; //TODO ERROR IN CONSOLE
     }
   }
 
@@ -61,11 +62,11 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
 
   public onKeyDown = (event: KeyboardEvent): void =>  {
     if(!this.windowValue.activated) return;
-    if(event.keyCode == 17) this.isCtrl=true;
-    if(event.keyCode == 83 && this.isCtrl == true) {
-      this.saveFile();
-      event.preventDefault();
-    }
+    // if(event.keyCode == 17) this.isCtrl=true;
+    // if(event.keyCode == 83 && this.isCtrl == true) {
+    //   this.saveFile();
+    //   event.preventDefault();
+    // }
 
   }
 

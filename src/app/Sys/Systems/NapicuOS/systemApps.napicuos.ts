@@ -96,7 +96,7 @@ export function napicu_os_notepad(): void {
     appTitle: 'NotePad',
     processTitle: 'Note',
     appComponent: WordpadComponent,
-    windowData: Window.centerPos(75, 75),
+    windowData: Window.centerPos(45, 45),
     resizeAllowed: true,
     fileIconPath: SYSTEM_IMAGES.AppDocText,
     addToDock: true,

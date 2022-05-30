@@ -2,7 +2,6 @@ import {SystemFilePermissionsMetadata} from '../Permissions';
 
 declare const enum SystemFileTypeEnumMetadata {
   executable = 'exc',
-  text = 'txt',
   apps = 'app',
   audio = "audio",
   image = "image",

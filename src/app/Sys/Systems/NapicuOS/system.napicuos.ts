@@ -163,6 +163,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
 
+
       resolve();
     });
   }
@@ -671,6 +672,30 @@ public static get_system_boot(): boolean {
   }
 
   /**
+   * Rename the file
+   * @param path
+   * @param name
+   */
+  public static rename_file(path: string, name: string): any{
+
+  }
+
+  /**
+   * Rewrite the file
+   * @param path Path to file
+   * @param value New value of file
+   */
+  public static rewrite_file(path: string, value: string): SystemStateMetadata{
+    let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
+    if(i instanceof SystemFile){
+      i.value = value;
+      return SystemStateMetadata.Success;
+    }
+    return i;
+  }
+
+
+  /**
    * Creates a new directory by path
    * @param path
    */
@@ -755,6 +780,20 @@ public static get_system_boot(): boolean {
     }
   }
 
+  /**
+   * Rewrite the file value
+   * @param path Path to the file
+   * @param value New value
+   */
+  public static rewrite_value_dynamic_document(path: string, value: string): any{
+    let i = this.rewrite_file(path, value);
+    if(i === SystemStateMetadata.Success) {
+      //TODO UPDATE COOKIES
+      //TODO CREAT MORE FUNCTIONS
+    }
+  }
+
+
   public static creat_dynamic_blank_document(path: string, fileName: string): SystemStateMetadata{
     let i: SystemDocumentData = this.get_blank_document(fileName);
     if(!(i instanceof SystemFile)) return i;
@@ -791,6 +830,8 @@ public static get_system_boot(): boolean {
       }
     }
   }
+
+
 
   /**
    * Add file to global config

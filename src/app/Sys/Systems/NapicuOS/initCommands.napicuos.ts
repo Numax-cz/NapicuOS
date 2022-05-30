@@ -82,7 +82,7 @@ function initTouch(): void {
         if (dir.data) {
           let i = NapicuOS.add_file_to_dir(dir.data, new SystemFile({
             fileName: params[0],
-            fileType: SystemFileTypeEnumMetadata.text,
+            fileType: SystemFileTypeEnumMetadata.document,
             value: "",
             createdBy: NapicuOS.get_active_user()?.username || "UNKNOWN"
           }))
