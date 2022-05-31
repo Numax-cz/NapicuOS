@@ -34,3 +34,6 @@ export declare interface SystemFileConsMetadata {
    */
   createdBy?: string
 }
+
+export declare type SystemUpdateFileConsMetadata  = { [K in keyof SystemFileConsMetadata]?: SystemFileConsMetadata[K] };
+

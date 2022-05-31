@@ -42,7 +42,11 @@ import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
 import {CommandStateCodeMetadata} from './interface/Commands/CommandsCodes';
 import {LoginscreenComponent} from './components/loginscreen/loginscreen.component';
-import {SystemFileConsMetadata, SystemFileTypeEnumMetadata} from './interface/FilesDirs/File';
+import {
+  SystemFileConsMetadata,
+  SystemFileTypeEnumMetadata,
+  SystemUpdateFileConsMetadata
+} from './interface/FilesDirs/File';
 import {SystemAlert} from './SystemComponents/Alert';
 import {systemAlertImagesEnumMetadata} from "./config/Alert";
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
@@ -75,6 +79,7 @@ import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FormatPathToObject} from "./scripts/FormatPath";
 import {IfDirFileMetadata} from "./interface/IfDirFile";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
+import {SystemFileMetadata} from "./interface/FilesDirs/SystemFile";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -690,11 +695,11 @@ public static get_system_boot(): boolean {
    * @param path Path to file
    * @param value New value of file
    */
-  public static rewrite_file(path: string, value: string): SystemStateMetadata{
+  public static rewrite_file(path: string, value: string): SystemFile | SystemStateMetadata{
     let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
     if(i instanceof SystemFile){
       i.value = value;
-      return SystemStateMetadata.Success;
+      return i;
     }
     return i;
   }
@@ -754,6 +759,20 @@ public static get_system_boot(): boolean {
   }
 
   /**
+   * Returns dynamic files from cookies
+   */
+  public static get_system_dynamic_files_cookies_config():  NapicuOsCookiesFileMetadata[] | null{
+    return NapicuOS.get_system_config_from_cookies()?.files || null;
+  }
+
+  /**
+   * Returns dynamic paths from cookies
+   */
+  public static get_system_dynamic_paths_cookies_config(): string[] | null{
+    return NapicuOS.get_system_config_from_cookies()?.directorys || null;
+  }
+
+  /**
    * Creat a new dynamic directory in the directory by path
    * @param path Path to the directory
    * @param dirName Name of the new directory
@@ -766,11 +785,11 @@ public static get_system_boot(): boolean {
   }
 
   /**
-   * Creat a new dynamic document in the directory by path
+   * Creat a new dynamic file in the directory by path
    * @param path Path to the directory
    * @param file File
    */
-  public static creat_dynamic_document(path: string, file: SystemFile): SystemStateMetadata {
+  public static creat_dynamic_file(path: string, file: SystemFile): SystemStateMetadata {
     if(!this.check_file_name(file.fileName)) return SystemStateMetadata.InvalidFileDirName;
     let i = this.get_dir_by_path(path);
     if(i.state === SystemStateMetadata.PathExist) {
@@ -790,19 +809,49 @@ public static get_system_boot(): boolean {
    * @param path Path to the file
    * @param value New value
    */
-  public static rewrite_value_dynamic_document(path: string, value: string): any{
-    let i = this.rewrite_file(path, value);
-    if(i === SystemStateMetadata.Success) {
-      //TODO UPDATE COOKIES
-      //TODO CREAT MORE FUNCTIONS
-    }
+  public static rewrite_dynamic_file(path: string, value: string): any{
+    let i: SystemStateMetadata | SystemFile = this.rewrite_file(path, value);
+    if(i instanceof SystemFile) this.update_dynamic_file(path, {value: value});
   }
 
+  /**
+   * Rename the file
+   * @param path Path to the file
+   * @param fileName New file name
+   */
+  public static rename_dynamic_file(path: string, fileName: string): any {
+    let i: SystemStateMetadata | SystemFile = this.rename_file(path, fileName);
+    if(i instanceof SystemFile) this.update_dynamic_file(path, {fileName: fileName});
+  }
+
+  /**
+   * Update the file from cookies
+   * @param path Path to the file
+   * @param fileData New file data
+   * @protected
+   */
+  protected static update_dynamic_file(path: string, fileData: SystemUpdateFileConsMetadata): void {
+    let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
+    if(i instanceof SystemFile){
+      let fl = this.get_global_file_from_cookies(PathSpliceLastIndex(path).path);
+      if(fl){
+        if(fileData.fileName) fl.fileName = fileData.fileName;
+        if(fileData.fileType) fl.fileType = fileData.fileType;
+        if(fileData.value) fl.value = fileData.value;
+        if(fileData.createdBy) fl.createdBy = fileData.createdBy;
+        if(fileData.permissions) fl.permissions = fileData.permissions;
+        if(fileData.iconPath) fl.iconPath = fileData.iconPath;
+        this.update_config_to_cookies();
+      }else {
+        console.error(`SYSTEM: Rewrite value error ${path} dynamic file not found`);
+      }
+    }
+  }
 
   public static creat_dynamic_blank_document(path: string, fileName: string): SystemStateMetadata{
     let i: SystemDocumentData = this.get_blank_document(fileName);
     if(!(i instanceof SystemFile)) return i;
-    return this.creat_dynamic_document(path, i);
+    return this.creat_dynamic_file(path, i);
   }
 
   /**
@@ -810,14 +859,14 @@ public static get_system_boot(): boolean {
    * @param path
    */
   protected static add_global_path_to_cookies(path: string): void {
-    const cfg = this.get_system_config_from_cookies();
-    if (!cfg?.directorys) return;
-    for (const i of cfg?.directorys) {
+    const conf_paths = this.get_system_dynamic_paths_cookies_config();
+    if (!conf_paths) return;
+    for (const i of conf_paths) {
       if (i === path) {
         return;
       }
     }
-    cfg.directorys.push(path);
+    conf_paths.push(path);
   }
 
   /**
@@ -826,17 +875,24 @@ public static get_system_boot(): boolean {
    * @protected
    */
   protected static remove_global_path_from_cookies(path: string): void {
-    const cfg = this.get_system_config_from_cookies();
-    if (!cfg?.directorys) return;
-    for (const i of cfg?.directorys) {
+    const conf_paths = this.get_system_dynamic_paths_cookies_config();
+    if (!conf_paths) return;
+    for (const i of conf_paths) {
       if (i === path) {
-        cfg.directorys.splice(cfg.directorys.indexOf(i), 1);
+        conf_paths.splice(conf_paths.indexOf(i), 1);
         this.update_config_to_cookies();
       }
     }
   }
 
+  /**
+   * Remove file from global config
+   * @param path Path
+   * @param fileName File name
+   */
+  protected static remove_global_file_from_cookies(path: string, fileName: string): void {
 
+  }
 
   /**
    * Add file to global config
@@ -854,6 +910,22 @@ public static get_system_boot(): boolean {
     cfg.files.push({path: path, file: file});
   }
 
+
+  /**
+   * Get file from global config by path
+   * @param path Path
+   */
+  protected static get_global_file_from_cookies(path: string): SystemFileConsMetadata | null {
+    if(!path.endsWith("/")) path += "/";
+    const cfg:  NapicuOsCookiesTemplate | null = this.get_system_config_from_cookies();
+    if (!cfg) return null;
+    for (const i of cfg?.files) {
+      if (i.path === path) {
+        return i.file;
+      }
+    }
+    return null;
+  }
 
   /**
    * Creates a new directories in the directory

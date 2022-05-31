@@ -17,6 +17,7 @@ import {NapicuOS} from "../../system.napicuos";
 import {SystemStateMetadata} from "../../interface/System";
 import {fromEvent} from "rxjs";
 import {setTimeInterval} from "../../../../../Bios/Scripts/TimeController";
+import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 
 @Component({
   selector: 'app-wordpad',
@@ -67,7 +68,7 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   public saveFile(): void {
     let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
     if(i instanceof SystemFile) {
-      i.value = this.getNotepadContent();
+      NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.args[0]), this.getNotepadContent());
     }
   }
 
