@@ -13,7 +13,6 @@ import {ReturnGetDirByPathMetadata} from "../../interface/GetDirByPath";
 import {SystemStateMetadata} from "../../interface/System";
 import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 import {SystemFileTypeEnumMetadata} from "../../interface/FilesDirs/File";
-import { IfDirFileMetadata} from "../../interface/IfDirFile";
 
 @Component({
   selector: 'app-file',

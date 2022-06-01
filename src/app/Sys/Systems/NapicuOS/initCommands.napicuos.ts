@@ -32,7 +32,7 @@ import {ReturnGetDirByPathMetadata} from "./interface/GetDirByPath";
 import {SystemFileTypeEnumMetadata} from "./interface/FilesDirs/File";
 import {mkdirExists, mkdirHelpCommand} from "./config/commands/help/mkdirCommand";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
-import {notePadPathNotExists, notePadUsage} from "./config/commands/help/notePadCommand";
+import {notePadPathNotExists} from "./config/commands/help/notePadCommand";
 import {PathSpliceLastIndex} from "./scripts/PathSplice";
 
 function unknownOption(param: string): Line {

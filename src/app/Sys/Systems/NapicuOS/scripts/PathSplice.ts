@@ -1,4 +1,3 @@
-import {ReplaceSystemVariables} from "./ReplaceVariables";
 import {PathSpliceMetadata} from "../interface/PathSplice";
 
 export function  PathSpliceLastIndex(path: string): PathSpliceMetadata{

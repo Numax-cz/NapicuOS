@@ -79,7 +79,7 @@ import {PathSpliceMetadata} from "./interface/PathSplice";
 import {FormatPathToObject} from "./scripts/FormatPath";
 import {IfDirFileMetadata} from "./interface/IfDirFile";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
-import {SystemFileMetadata} from "./interface/FilesDirs/SystemFile";
+import {IsPathMatch} from "./scripts/PathMatch";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -891,7 +891,14 @@ public static get_system_boot(): boolean {
    * @param fileName File name
    */
   protected static remove_global_file_from_cookies(path: string, fileName: string): void {
-
+    const conf_files = this.get_system_dynamic_files_cookies_config();
+    if (!conf_files) return;
+    for (const i of conf_files) {
+      if (i.file.fileName === fileName && IsPathMatch(i.path, path)) {
+        conf_files.splice(conf_files.indexOf(i), 1);
+        this.update_config_to_cookies();
+      }
+    }
   }
 
   /**

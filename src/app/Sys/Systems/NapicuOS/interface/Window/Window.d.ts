@@ -1,4 +1,4 @@
-import {Input, Type} from "@angular/core";
+import {Type} from "@angular/core";
 import {windowButtonsMetadata, windowData} from "./WindowData";
 import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 

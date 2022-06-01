@@ -1,22 +1,10 @@
-import {
-  Component,
-  ElementRef,
-  Host,
-  HostBinding,
-  HostDecorator,
-  HostListener,
-  Input,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {SystemWindowAppInjectData} from "../../interface/Window/Window";
 import {InputAlertData} from "../../interface/InputAlert";
 import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 import {SystemFile} from "../../SystemComponents/File";
 import {NapicuOS} from "../../system.napicuos";
 import {SystemStateMetadata} from "../../interface/System";
-import {fromEvent} from "rxjs";
-import {setTimeInterval} from "../../../../../Bios/Scripts/TimeController";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 
 @Component({

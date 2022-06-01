@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {systemAlertImagesEnumMetadata} from '../../config/Alert';
-import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
+import {Process} from "../../SystemComponents/Process";
 import {AlertData} from "../../interface/Alert";
 
 @Component({

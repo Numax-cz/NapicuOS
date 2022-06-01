@@ -6,10 +6,7 @@ import {Window} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Window';
 import {WINDOW_ANIMATION_TIME} from '../../config/WindowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
-import {InputsType} from 'ng-dynamic-component';
-import {SystemInputAlert} from "../../SystemComponents/AlertInput";
 import {SystemWindowAppInjectData} from "../../interface/Window/Window";
-import {global} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-window',

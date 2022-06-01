@@ -1,5 +1,3 @@
-import {ReplaceSystemVariables} from "./ReplaceVariables";
-
 export function FormatPathToObject(path: string): string[]{
   let pth = path.split('/');
   pth.shift();
