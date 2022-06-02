@@ -204,12 +204,18 @@ export class FileComponent implements OnInit {
     this.creatDocument();
   }
 
-  public clickRenameFileOrDirectory(): void {
+  public clickRenameItem(): void {
     //TODO check file or dir
-    this.renameDirectory();
+    this.renameDirectory(); //TODO RENAME Directory and File
   }
 
-  public renameDirectory = async (): Promise<void> => {
+  public clickDeleteItem(): void {
+    if(this.selectedFileDir?.isDir){
+      this.deleteDirectory()
+    } this.deleteFile();
+  }
+
+  protected renameDirectory = async (): Promise<void> => {
     this.enableFreezeContent();
     let new_dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.rename, NapicuOS.get_language_words().other.enter_new_name, SYSTEM_IMAGES.BlueFolder);
     if(new_dir_name){
@@ -221,6 +227,21 @@ export class FileComponent implements OnInit {
     }
     this.disableFreezeContent();
   }
+
+  protected deleteFile(): void {
+    let file_name: string | undefined = this.selectedFileDir?.name;
+    if(file_name){
+   
+    }
+  }
+
+
+  protected deleteDirectory(): void {
+    let dir_name: string | undefined = this.selectedFileDir?.name;
+    if(dir_name){
+    }
+  }
+
 
   public creatDirectory = async (): Promise<void> => {
     this.enableFreezeContent();
