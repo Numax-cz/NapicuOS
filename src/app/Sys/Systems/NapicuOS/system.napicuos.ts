@@ -80,6 +80,7 @@ import {FormatPathToObject} from "./scripts/FormatPath";
 import {IfDirFileMetadata} from "./interface/IfDirFile";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {IsPathMatch} from "./scripts/PathMatch";
+import {PathHasntLastSlash} from "./scripts/PathChecker";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -279,6 +280,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       initUser.username,
       initUser.password
     );
+
+    let d = PathHasntLastSlash("/home/kokot/");
+    console.log(d);
   }
 
   public override onLoad(): void {
@@ -688,6 +692,26 @@ public static get_system_boot(): boolean {
       return SystemStateMetadata.Success;
     }
     return i;
+  }
+
+  /**
+   * Removes the file from path
+   * @param path - Path to the file
+   */
+  public static remove_file(path: string): SystemStateMetadata | SystemFile {
+    let pth: PathSpliceMetadata = PathSpliceLastIndex(PathHasntLastSlash(path));
+    let directory: ReturnGetDirByPathMetadata = this.get_dir_by_path(pth.path);
+    if(!directory.data) return SystemStateMetadata.PathNotExist;
+    if(directory.data?.files?.length){
+      let fl_files = this.get_file_by_path(path);
+      if(fl_files instanceof SystemFile) {
+        let file_index = directory.data.files.indexOf(fl_files);
+        delete directory.data.files[file_index];
+        return SystemStateMetadata.Success;
+      }
+    }
+    return SystemStateMetadata.FileNotExist;
+
   }
 
   /**

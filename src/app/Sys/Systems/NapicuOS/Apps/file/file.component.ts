@@ -204,15 +204,19 @@ export class FileComponent implements OnInit {
     this.creatDocument();
   }
 
+
+
+
   public clickRenameItem(): void {
-    //TODO check file or dir
-    this.renameDirectory(); //TODO RENAME Directory and File
+    if (this.selectedFileDir?.isDir) {
+      this.renameDirectory();
+    } else this.renameFile();
   }
 
   public clickDeleteItem(): void {
     if(this.selectedFileDir?.isDir){
       this.deleteDirectory()
-    } this.deleteFile();
+    } else this.deleteFile();
   }
 
   protected renameDirectory = async (): Promise<void> => {
@@ -228,20 +232,27 @@ export class FileComponent implements OnInit {
     this.disableFreezeContent();
   }
 
-  protected deleteFile(): void {
-    let file_name: string | undefined = this.selectedFileDir?.name;
-    if(file_name){
-   
-    }
-  }
+  protected renameFile = async (): Promise<void> => {
 
+  }
 
   protected deleteDirectory(): void {
     let dir_name: string | undefined = this.selectedFileDir?.name;
     if(dir_name){
+      let i = NapicuOS.remove_path(ReplaceSystemVariables( `${this.startDirectory}${dir_name}`));
+      this.updateViewFilesAndDirs();
     }
+    this.closeAllContextMenu();
   }
 
+  protected deleteFile(): void {
+    let file_name: string | undefined = this.selectedFileDir?.name;
+    if(file_name){
+      let i = NapicuOS.remove_file(ReplaceSystemVariables( `${this.startDirectory}${file_name}`));
+      this.updateViewFilesAndDirs();
+    }
+    this.closeAllContextMenu();
+  }
 
   public creatDirectory = async (): Promise<void> => {
     this.enableFreezeContent();
