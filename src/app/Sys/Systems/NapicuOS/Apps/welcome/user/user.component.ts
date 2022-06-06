@@ -13,7 +13,7 @@ import {
 import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
 
 import {
-  SystemInstallationOptionsArrayBinds,
+  SystemInstallationOptionsArrayBinds, WelcomeUserForm,
   welcomeUserInstallationDataMetadata
 } from "../../../interface/Apps/Welcome";
 
@@ -27,31 +27,30 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
 
   public override bindArrayName: SystemInstallationOptionsArrayBinds = "User";
 
-  public formData = new FormGroup({
-    username: new FormControl('', [
+  public formData = new FormGroup<WelcomeUserForm>({
+    username: new FormControl<string> ("",{ validators: [
       Validators.required,
       Validators.minLength(SYSTEM_USERS_MIN_LENGTH),
       Validators.maxLength(SYSTEM_USERS_MAX_LENGTH),
-    ]),
+    ], nonNullable: true }),
 
-    hostname: new FormControl(this.GetDefaultHostName(), [
+    hostname: new FormControl<string>(this.GetDefaultHostName(), { validators: [
       Validators.required,
       Validators.minLength(SYSTEM_HOSTNAME_MIN_LENGTH),
       Validators.maxLength(SYSTEM_HOSTNAME_MAX_LENGTH),
-    ]),
+    ], nonNullable: true}),
 
-    passwords: new FormGroup(
-      {
-        pass1: new FormControl('', [
+    passwords: new FormGroup({
+        pass1: new FormControl('', { validators: [
           Validators.required,
           Validators.minLength(SYSTEM_USERS_MIN_PASSWORD_LENGTH),
           Validators.maxLength(SYSTEM_USERS_MAX_PASSWORD_LENGTH),
-        ]),
-        pass2: new FormControl('', []),
+        ], nonNullable: true}),
+        pass2: new FormControl('', {validators: [], nonNullable: true}),
       },
       {validators: NgFormCheckIfMatchingPasswords('pass1', 'pass2')}
-    ),
-  });
+    )
+  })
 
 
   ngOnInit(): void {
@@ -61,10 +60,10 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
     return this.formData.valid;
   }
 
-  public submit(): void | welcomeUserInstallationDataMetadata {
+  public submit(): welcomeUserInstallationDataMetadata {
     return {
-      username: this.formData.value.userName,
-      password: this.formData.value.passwords.pass1,
+      username: this.formData.value.username,
+      password: this.formData.value.passwords?.pass1,
       hostname: this.formData.value.hostname,
     }
   }

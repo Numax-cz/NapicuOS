@@ -1,10 +1,12 @@
 import {Type} from "@angular/core";
+import {FormControl, FormGroup} from "@angular/forms";
+import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
 
 
 export declare interface welcomeUserInstallationDataMetadata {
-  username: string,
-  password: string,
-  hostname: string
+  username: string | undefined,
+  password: string | undefined,
+  hostname: string | undefined
 }
 
 export declare interface SystemInstallationOptionsMetadata {
@@ -28,4 +30,13 @@ export declare interface WelcomeComponentMetadata<T> {
   next(): void,
 
   back(): void,
+}
+
+export declare interface WelcomeUserForm{
+  username: FormControl<string>;
+  hostname: FormControl<string>;
+  passwords: FormGroup<{
+    pass1: FormControl<string>;
+    pass2: FormControl<string>;
+  }>;
 }

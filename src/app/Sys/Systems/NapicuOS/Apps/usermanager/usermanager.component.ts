@@ -11,6 +11,7 @@ import {
 import {NapicuOS} from "../../system.napicuos";
 import {User} from "../../SystemComponents/User";
 import {systemAlertImagesEnumMetadata} from "../../config/Alert";
+import {UserManagerForm} from "../../interface/Apps/UsermanagerForm";
 
 
 @Component({
@@ -24,30 +25,30 @@ export class UsermanagerComponent {
   }
 
 
-  public formData = new FormGroup({
-    username: new FormControl('', [
+  public formData = new FormGroup<UserManagerForm>( {
+    username: new FormControl<string>("", { validators: [
       Validators.required,
       Validators.minLength(SYSTEM_USERS_MIN_LENGTH),
       Validators.maxLength(SYSTEM_USERS_MAX_LENGTH),
-    ]),
+    ], nonNullable: true }),
 
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(SYSTEM_USERS_MIN_PASSWORD_LENGTH),
-      Validators.maxLength(SYSTEM_USERS_MAX_PASSWORD_LENGTH),
-    ]),
+    password: new FormControl<string>("", { validators: [
+        Validators.required,
+        Validators.minLength(SYSTEM_USERS_MIN_PASSWORD_LENGTH),
+        Validators.maxLength(SYSTEM_USERS_MAX_PASSWORD_LENGTH),
+      ], nonNullable: true }),
 
-    permission: new FormControl('', [
+    permission: new FormControl<SystemUserPermissionsEnumMetadata>(SystemUserPermissionsEnumMetadata.User, { validators: [
       Validators.required,
-    ]),
+    ], nonNullable: true})
   });
 
   public onButtonClick() {
     if (this.formData.valid) {
       let i = NapicuOS.add_user(new User({
-        username: this.formData.get("username")?.value,
-        password: this.formData.get("password")?.value,
-        permissions: this.formData.get("permission")?.value,
+        username: this.formData.value.username || "NULL",
+        password: this.formData.value.password || "NULL",
+        permissions: this.formData.value.permission,
       }));
 
       if (i === SystemStateMetadata.UserExists) {
