@@ -150,8 +150,6 @@ export class FileComponent implements OnInit {
     let i:  SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(`${this.startDirectory}${name}`);
     if (i instanceof SystemFile) {
         i.open({params: [`${this.startDirectory}${name}`]});
-    console.log(i);
-
     }
   }
 
