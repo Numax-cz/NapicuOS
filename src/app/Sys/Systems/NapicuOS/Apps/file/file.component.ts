@@ -29,9 +29,6 @@ export class FileComponent implements OnInit {
   public backHistoryPaths: string[] = [];
   public nextHistoryPaths: string[] = [];
 
-  public canClickNext: boolean = false;
-  public canClickBack: boolean = false;
-
   public boxMenuPosition: { x: number, y: number } | null = null;
 
   public showFileManagerContextMenu: boolean = false;
@@ -142,14 +139,14 @@ export class FileComponent implements OnInit {
     if (!i.fileType) {
       this.enterDir(i.name);
     } else {
-      this.openFile(i.name, i.fileType);
+      this.openFile(i.name);
     }
 
 
     this.selectedFileDir = null;
   }
 
-  public openFile(name: string, fileType: SystemFileTypeEnumMetadata): void {
+  public openFile(name: string): void {
     let i:  SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(`${this.startDirectory}${name}`);
     if (i instanceof SystemFile) {
         i.open({params: [`${this.startDirectory}${name}`]});
