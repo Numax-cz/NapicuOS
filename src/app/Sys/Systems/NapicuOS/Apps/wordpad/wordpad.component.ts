@@ -16,8 +16,8 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare data: InputAlertData;
   @Input() public declare windowValue: ProcessWindowValueMetadata;
   @Input() public declare process: Process;
-  @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
   @Input() public declare args: string[];
+  @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
 
   public declare file: SystemFile | null;
 
@@ -54,9 +54,17 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public saveFile(): void {
-    let i: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
-    if(i instanceof SystemFile) {
-      NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.args[0]), this.getNotepadContent());
+    if(this.args[0]){
+      let file: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
+      if(file instanceof SystemFile) {
+        NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.args[0]), this.getNotepadContent());
+      }
+
+    }else {
+
+
+      NapicuOS.open_app("FileManager")
+
     }
   }
 
