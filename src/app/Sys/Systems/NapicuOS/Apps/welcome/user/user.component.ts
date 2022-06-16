@@ -52,7 +52,6 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
     )
   })
 
-
   ngOnInit(): void {
   }
 

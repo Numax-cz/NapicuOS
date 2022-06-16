@@ -5,21 +5,29 @@ import {
   filesAndDirSelectMetadata,
   filesAndDirsViewMetadata
 } from "../../interface/Apps/FileManager";
-import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/fileManager";
+import {GET_SYSTEM_FOLDERS_FILE} from "../../config/Apps/FileManager/fileManager";
 import {NapicuOS} from "../../system.napicuos";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 import {SystemFile} from "../../SystemComponents/File";
 import {ReturnGetDirByPathMetadata} from "../../interface/GetDirByPath";
 import {SystemStateMetadata} from "../../interface/System";
-import {ProcessWindowValueMetadata} from "../../SystemComponents/Process";
+import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
 import {SystemFileTypeEnumMetadata} from "../../interface/FilesDirs/File";
+import {SystemWindowAppInjectData, SystemWindowConstructorMetadata} from "../../interface/Window/Window";
+import {InputAlertData} from "../../interface/InputAlert";
+import {FindParam} from "../../scripts/FindParam";
+import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 
 @Component({
   selector: 'app-file',
   templateUrl: './file.component.html',
   styleUrls: ['./file.component.scss']
 })
-export class FileComponent implements OnInit {
+export class FileComponent implements OnInit, SystemWindowAppInjectData {
+  @Input() public declare data: InputAlertData;
+  @Input() public declare windowValue: ProcessWindowValueMetadata;
+  @Input() public declare process: Process;
+  @Input() public declare args: string[];
   private declare foldersView: fileConfigDisplayedMetadata[];
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
@@ -39,9 +47,11 @@ export class FileComponent implements OnInit {
 
   public freezeContent: boolean = false;
 
-  @Input() public declare windowValue: ProcessWindowValueMetadata;
+  public selectedMode: boolean = false;
+
 
   constructor() {
+    if(FindParam(this.args, SystemFileManagerParams.selectMode)) this.selectedMode = true;
   }
 
   ngOnInit(): void {
@@ -62,9 +72,8 @@ export class FileComponent implements OnInit {
     });
     this.updateViewFilesAndDirs();
 
-
     window.addEventListener('mousedown', (event) => {
-      var p = event.target as HTMLElement;
+      let p = event.target as HTMLElement;
       if (!p.getAttribute('clickable') &&
         !p.offsetParent?.getAttribute('clickable')) {
         this.showDirPropertyContextMenu = false;
@@ -73,9 +82,7 @@ export class FileComponent implements OnInit {
 
         if(!this.freezeContent) this.selectedFileDir = null;
       }
-
     });
-
   }
 
   public updateMousePosition(event: MouseEvent) {
@@ -377,4 +384,5 @@ export class FileComponent implements OnInit {
   get GetDevicesText(): string {
     return NapicuOS.get_language_words().other.devices;
   }
+
 }

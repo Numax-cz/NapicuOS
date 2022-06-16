@@ -280,9 +280,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       initUser.username,
       initUser.password
     );
-
-    let d = PathHasntLastSlash("/home/kokot/");
-    console.log(d);
   }
 
   public override onLoad(): void {

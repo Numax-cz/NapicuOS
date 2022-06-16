@@ -68,7 +68,9 @@ export function initAllCommands(): void {
   initCreateUser();
   initLogout();
   initOpenApp();
+  //APPS
   initWordPad();
+  initFileManager();
 }
 
 
@@ -93,6 +95,18 @@ function initTouch(): void {
       } else {
         //TODO PARAMS is undefined & terminal
       }
+    });
+  }));
+}
+
+function initFileManager(): void {
+  NapicuOS.register_command(new Command('FileManager', SystemCommandsPrefixEnum.fileManagerCommand, (params?: string[], terminal?: TerminalClass) => {
+    return new Promise((resolve) => {
+      NapicuOS.open_app("FileManager", params);
+      resolve({
+        linesForCMD: [],
+        stateCode: CommandStateCodeMetadata.success,
+      });
     });
   }));
 }

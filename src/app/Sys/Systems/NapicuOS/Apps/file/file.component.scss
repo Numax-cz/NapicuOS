@@ -3,6 +3,16 @@
   width: 100%;
   height: 100%;
 }
+.BottomBoxContainer{
+  background-color: var(--NapicuClassicDarkDarker);
+  button{
+    margin: 0 7px;
+  }
+}
+.BottomBoxButtonClass{
+  padding: 20px;
+  float: right;
+}
 
 .BarOptions {
   display: grid;
@@ -15,6 +25,7 @@
   color: var(--NapicuTextColor);
   font-size: 1rem;
   padding: 0.5rem;
+
 
 
   ul {
@@ -100,7 +111,7 @@
 
 .pathSearchBar {
   width: 90%;
-  background-color: #1b1d24;
+  background-color: var(--NapicuClassicDarkDarker);
   border-radius: 5px;
   border: 1px solid black;
   display: flex;
