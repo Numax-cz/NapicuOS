@@ -81,6 +81,7 @@ import {IfDirFileMetadata} from "./interface/IfDirFile";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {IsPathMatch} from "./scripts/PathMatch";
 import {PathHasntLastSlash} from "./scripts/PathChecker";
+import {CommandParams} from "./interface/Commands/CommandParams";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -1226,16 +1227,10 @@ public static get_system_boot(): boolean {
 
   /**
    * Executes the command
-   * @param cmd Command prefix
-   * @param params Input parameters
-   * @param terminal Active terminal
+   * @param data
    */
-  public static async run_command(
-    cmd: string,
-    params?: string[],
-    terminal?: TerminalClass
-  ): Promise<CommandFunMetadata> {
-    let i: SystemFile = NapicuOS.get_command_by_commandStr(cmd);
+  public static async run_command(data: CommandParams): Promise<CommandFunMetadata> {
+    let i: SystemFile = NapicuOS.get_command_by_commandStr(data.cmd);
     if (i) {
       if (
         i.permissions.read ===
@@ -1244,14 +1239,14 @@ public static get_system_boot(): boolean {
         SystemUserPermissionsEnumMetadata.SuperUser
       ) {
         return {
-          linesForCMD: [new Line(`${cmd}: Permission denied`, 'red')],
+          linesForCMD: [new Line(`${data.cmd}: Permission denied`, 'red')],
           stateCode: CommandStateCodeMetadata.PermissionsError,
         };
       }
-      return await i.open({params: params, terminal: terminal});
+      return await i.open({params: data.args, terminal: data.terminal});
     } else {
       return {
-        linesForCMD: [new Line(`${cmd}: command not found`, 'red')],
+        linesForCMD: [new Line(`${data.cmd}: command not found`, 'red')],
         stateCode: CommandStateCodeMetadata.CommandNotFound,
       };
     }
@@ -1483,7 +1478,7 @@ public static get_system_boot(): boolean {
    */
   public static create_user(username: string, password: string): void {
     //TODO return if the user exists
-    NapicuOS.run_command('adduser', [username, password]);
+    NapicuOS.run_command({cmd: SystemCommandsPrefixEnum.addUserCommand, args: [username, password]});
   }
 
   /**
@@ -1494,7 +1489,7 @@ public static get_system_boot(): boolean {
   public static open_app(ApplicationProcessTitle: string, params?: string[]): void {
     let i: string[] = params || [];
     i.unshift(ApplicationProcessTitle);
-    NapicuOS.run_command(SystemCommandsPrefixEnum.openAppCommand, i);
+    NapicuOS.run_command({cmd: SystemCommandsPrefixEnum.openAppCommand, args: i});
   }
 
   /**

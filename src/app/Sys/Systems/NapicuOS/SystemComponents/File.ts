@@ -67,7 +67,7 @@ export class SystemFile {
           NapicuOS.play_audio(this.value);
           break;
         case SystemFileTypeEnumMetadata.document:
-          await NapicuOS.run_command(SystemCommandsPrefixEnum.notePadCommand, data?.params || undefined)
+          await NapicuOS.run_command({cmd: SystemCommandsPrefixEnum.notePadCommand, args: data?.params || undefined})
           break;
         default:
           break;

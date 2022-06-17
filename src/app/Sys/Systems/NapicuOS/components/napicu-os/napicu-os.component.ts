@@ -254,7 +254,7 @@ export class NapicuOSComponent implements OnInit {
     const i = this.GetNotification;
     const command = i?.command;
     if (command) {
-      NapicuOS.run_command(command.commandName, command.args || []);
+      NapicuOS.run_command({cmd: command.commandName, args: command.args || []});
       this.onCloseNotification()
     }
   }
