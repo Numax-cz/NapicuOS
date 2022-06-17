@@ -42,7 +42,6 @@ export class SystemFile {
   }
 
   public async open(data?: { params?: string[], terminal?: TerminalClass }): Promise<any> {
-
       switch (this.fileType) {
         case SystemFileTypeEnumMetadata.apps:
           let i = this.value() as AppCreatMetadata;
@@ -62,7 +61,6 @@ export class SystemFile {
         case SystemFileTypeEnumMetadata.executable:
           let command = this.value as Command;
           return await command.run(data?.params, data?.terminal)
-
         case SystemFileTypeEnumMetadata.audio:
           NapicuOS.play_audio(this.value);
           break;
