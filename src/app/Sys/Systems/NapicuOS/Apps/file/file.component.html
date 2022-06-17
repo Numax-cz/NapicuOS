@@ -91,17 +91,14 @@
     <!--Bottom bar - select mode-->
     <ng-container>
       <section class="BottomBoxContainer">
-
           <div class="BottomBoxButtonClass NapicuOSSimpleButton NapicuSimpleButtonVariables">
-            <button>Cancel</button>
-            <button>Save</button>
+            <button (click)="exitProgram()">Cancel</button>
+            <button (click)="clickSave()">Save</button>
           </div>
-
       </section>
     </ng-container>
   </section>
 </section>
-
 
 <!--FileManager properties context menu-->
 <section>

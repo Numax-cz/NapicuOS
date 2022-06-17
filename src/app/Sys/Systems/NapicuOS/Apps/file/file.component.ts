@@ -196,6 +196,14 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   }
 
+  public clickSave(): void {
+
+  }
+
+  public exitProgram(): void {
+
+  }
+
   public clickCreatDirectory(): void {
     this.closeAllContextMenu();
     this.creatDirectory();
