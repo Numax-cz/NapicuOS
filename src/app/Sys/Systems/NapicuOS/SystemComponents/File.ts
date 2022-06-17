@@ -41,8 +41,8 @@ export class SystemFile {
       this.createdBy = data.createdBy || 'root';
   }
 
-  public open(data?: { params?: string[], terminal?: TerminalClass }): Promise<any> {
-    return new Promise(async (resolve) => {
+  public async open(data?: { params?: string[], terminal?: TerminalClass }): Promise<any> {
+
       switch (this.fileType) {
         case SystemFileTypeEnumMetadata.apps:
           let i = this.value() as AppCreatMetadata;
@@ -57,22 +57,20 @@ export class SystemFile {
             })),
             multiRun: i.multiRun
           })
-          resolve(p.run()?.Window.open(data?.params));
+          p.run()?.Window.open(data?.params)
           break;
         case SystemFileTypeEnumMetadata.executable:
           let command = this.value as Command;
-          resolve(await command.run(data?.params, data?.terminal));
-          break;
+          return await command.run(data?.params, data?.terminal)
+
         case SystemFileTypeEnumMetadata.audio:
           NapicuOS.play_audio(this.value);
-          resolve(null);
           break;
         case SystemFileTypeEnumMetadata.document:
-          resolve(await NapicuOS.run_command(SystemCommandsPrefixEnum.notePadCommand, data?.params || undefined));
+          await NapicuOS.run_command(SystemCommandsPrefixEnum.notePadCommand, data?.params || undefined)
           break;
         default:
           break;
       }
-    });
   }
 }
