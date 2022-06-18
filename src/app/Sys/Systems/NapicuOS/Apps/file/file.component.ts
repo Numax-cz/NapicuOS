@@ -52,6 +52,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   constructor() {
     if(FindParam(this.args, SystemFileManagerParams.selectMode)) this.selectedMode = true;
+
   }
 
   ngOnInit(): void {
@@ -197,7 +198,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public clickSave(): void {
-
+    this.process.resolve("PROMISE TEST");
   }
 
   public exitProgram(): void {

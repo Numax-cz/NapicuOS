@@ -8,6 +8,10 @@ import {FileComponent} from "./Apps/file/file.component";
 import {SYSTEM_IMAGES} from "./config/System";
 import {WordpadComponent} from "./Apps/wordpad/wordpad.component";
 import {SystemAppsProcessName} from "./config/Apps/AppsNames";
+import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
+
+import {AppCreatMetadata} from "./interface/System";
+import {SYSTEM_INITS_APPS} from "./scripts/Decorators";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -18,15 +22,31 @@ export function initAllStartUpApps(): void {
   //NapicuOS.open_app("Terminal");
 
   // NapicuOS.open_app("UserManager");
+
+  NapicuOS.run_command({
+    cmd:  SystemCommandsPrefixEnum.openAppCommand,
+    args: [SystemAppsProcessName.fileManager]
+  });
+
 }
 
 //Before the user is logged in
 export function installAllApps(): void {
+  //TODO
   napicu_os_terminal();
   napicu_os_welcomeapp();
   napicu_os_user_manager();
-  napicu_os_file();
+  //napicu_os_file();
   napicu_os_notepad();
+
+
+  //TODO
+  SYSTEM_INITS_APPS.forEach((app: AppCreatMetadata) => {
+    NapicuOS.install_app(app)
+  });
+
+
+
 }
 
 
@@ -79,17 +99,17 @@ export function napicu_os_terminal(): void {
   });
 }
 
-export function napicu_os_file(): void {
-  return NapicuOS.install_app({
-    appTitle: 'File',
-    processTitle: SystemAppsProcessName.fileManager,
-    appComponent: FileComponent,
-    windowData: Window.centerPos(75, 75),
-    resizeAllowed: true,
-    fileIconPath: SYSTEM_IMAGES.BlueFolder,
-    addToDock: true,
-  });
-}
+// export function napicu_os_file(): void {
+//   return NapicuOS.install_app({
+//     appTitle: 'File',
+//     processTitle: SystemAppsProcessName.fileManager,
+//     appComponent: FileComponent,
+//     windowData: Window.centerPos(75, 75),
+//     resizeAllowed: true,
+//     fileIconPath: SYSTEM_IMAGES.BlueFolder,
+//     addToDock: true,
+//   });
+// }
 
 export function napicu_os_notepad(): void {
   return NapicuOS.install_app({

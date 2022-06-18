@@ -30,11 +30,11 @@ export class Process {
   /**
    * Process name
    */
-  private declare readonly _processTitle: string;
+  declare _processTitle: string;
   /**
    * Specifies the GUI of the process
    */
-  private declare readonly _Window: ProcessWindowValueMetadata;
+  private declare _Window: ProcessWindowValueMetadata;
   /**
    * Process interval - Function
    */
@@ -114,6 +114,15 @@ export class Process {
     this._pid = GrubComponent.GrubActiveSystem.SystemProcess.length - 1;
     NapicuOS.onRunNewProcess();
     return this;
+  }
+
+  public processResolve(data: any): void {
+
+  }
+
+  public resolve<T>(data: T): void {
+    this.processResolve(data);
+    this.kill();
   }
 
   /**

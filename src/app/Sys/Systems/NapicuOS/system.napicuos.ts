@@ -82,6 +82,7 @@ import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {IsPathMatch} from "./scripts/PathMatch";
 import {PathHasntLastSlash} from "./scripts/PathChecker";
 import {CommandParams} from "./interface/Commands/CommandParams";
+import {processConstructor} from "./interface/Process";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string;
@@ -1682,6 +1683,24 @@ public static get_system_boot(): boolean {
     }
     if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application.fileName);
     this.add_app_to_activity_menu(Application);
+  }
+
+  /**
+   * Convert AppCreation to Process metadata
+   * @param data
+   */
+  public static creat_installation_cnt(data: AppCreatMetadata): processConstructor {
+    return {
+      processTitle: data.processTitle,
+      Window: new Window({
+        windowTitle: data.appTitle,
+        component: data.appComponent,
+        windowData: data.windowData || Window.defaultWindowAppData,
+        windowButtons: data.windowButtons,
+        resizeAllowed: data.resizeAllowed,
+      }),
+      multiRun: data.multiRun,
+    }
   }
 
   /**
