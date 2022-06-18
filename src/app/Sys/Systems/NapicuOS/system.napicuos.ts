@@ -1486,7 +1486,7 @@ public static get_system_boot(): boolean {
    * @param ApplicationProcessTitle Filename of the installed application (ProcessTitle)
    * @param params Parameters to be passed to the application
    */
-  public static open_app(ApplicationProcessTitle: string, params?: string[]): void {
+  public static open_app(ApplicationProcessTitle: string, params?: string[]): any {
     let i: string[] = params || [];
     i.unshift(ApplicationProcessTitle);
     NapicuOS.run_command({cmd: SystemCommandsPrefixEnum.openAppCommand, args: i});

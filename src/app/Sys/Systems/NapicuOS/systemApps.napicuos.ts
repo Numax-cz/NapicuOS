@@ -7,6 +7,7 @@ import {UsermanagerComponent} from "./Apps/usermanager/usermanager.component";
 import {FileComponent} from "./Apps/file/file.component";
 import {SYSTEM_IMAGES} from "./config/System";
 import {WordpadComponent} from "./Apps/wordpad/wordpad.component";
+import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 
 export function initAllSystemProcess(): void {
   napicu_os_time().runAsSystem();
@@ -31,7 +32,7 @@ export function installAllApps(): void {
 
 export function napicu_os_time(): Process {
   return new Process({
-    processTitle: 'SystemTime',
+    processTitle: SystemAppsProcessName.systemTime,
     processInterval: {
       fun: () => {
         NapicuOS.update_time();
@@ -44,7 +45,7 @@ export function napicu_os_time(): Process {
 export function napicu_os_welcomeapp(): void {
   return NapicuOS.install_app({
     appTitle: 'Installer',
-    processTitle: 'InstallNapicuOS',
+    processTitle: SystemAppsProcessName.installer,
     appComponent: WelcomeComponent,
     windowData: Window.centerPos(75, 75),
     resizeAllowed: false,
@@ -57,7 +58,7 @@ export function napicu_os_welcomeapp(): void {
 export function napicu_os_user_manager(): void {
   return NapicuOS.install_app({
     appTitle: 'User Manager',
-    processTitle: 'UserManager',
+    processTitle: SystemAppsProcessName.userManager,
     appComponent: UsermanagerComponent,
     windowData: Window.centerPos(25, 32),
     resizeAllowed: false,
@@ -70,7 +71,7 @@ export function napicu_os_user_manager(): void {
 export function napicu_os_terminal(): void {
   return NapicuOS.install_app({
     appTitle: 'Terminal',
-    processTitle: 'Terminal',
+    processTitle: SystemAppsProcessName.terminal,
     appComponent: ConsoleComponent,
     windowData: Window.centerPos(35, 35),
     fileIconPath: SYSTEM_IMAGES.Term,
@@ -81,7 +82,7 @@ export function napicu_os_terminal(): void {
 export function napicu_os_file(): void {
   return NapicuOS.install_app({
     appTitle: 'File',
-    processTitle: 'FileManager',
+    processTitle: SystemAppsProcessName.fileManager,
     appComponent: FileComponent,
     windowData: Window.centerPos(75, 75),
     resizeAllowed: true,
@@ -93,7 +94,7 @@ export function napicu_os_file(): void {
 export function napicu_os_notepad(): void {
   return NapicuOS.install_app({
     appTitle: 'NotePad',
-    processTitle: 'Note',
+    processTitle: SystemAppsProcessName.note,
     appComponent: WordpadComponent,
     windowData: Window.centerPos(45, 45),
     resizeAllowed: true,

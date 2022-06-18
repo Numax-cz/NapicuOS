@@ -63,8 +63,7 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
     }else {
 
 
-      NapicuOS.open_app("FileManager")
-
+       NapicuOS.open_app("FileManager")
     }
   }
 
