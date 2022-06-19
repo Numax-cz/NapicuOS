@@ -66,7 +66,6 @@ import {SystemRemindNotificationConstructorMetadata} from "./interface/RemidNoti
 import {SystemRemindNotification} from "./SystemComponents/RemindNotification";
 import {checkIsRemindNotificationExpired} from "./scripts/RemindNotificationS";
 import {checkSystemStringLength} from './scripts/ChckStringCorrection';
-import {TerminalClass} from "./SystemComponents/Terminal";
 import {SystemUserPermissionsEnumMetadata} from "./config/UserPerms";
 import {UserConstructorMetadata} from "./interface/User/User";
 import {imagePreloader} from "./scripts/ImagePreloader";

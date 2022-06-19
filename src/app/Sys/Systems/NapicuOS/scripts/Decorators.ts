@@ -1,5 +1,4 @@
 import {NapicuOS} from "../system.napicuos";
-import {Process} from "../SystemComponents/Process";
 import {AppCreatMetadata} from "../interface/System";
 
 export function NapicuCookies() {

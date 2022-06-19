@@ -1,5 +1,4 @@
 import {Process} from "./Process";
-import {System} from "./System";
 import {AppCreatMetadata} from "../interface/System";
 import {NapicuOS} from "../system.napicuos";
 

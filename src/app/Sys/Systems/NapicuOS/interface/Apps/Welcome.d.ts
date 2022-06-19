@@ -1,6 +1,5 @@
 import {Type} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
 
 
 export declare interface welcomeUserInstallationDataMetadata {

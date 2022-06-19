@@ -13,7 +13,8 @@ import {
 import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
 
 import {
-  SystemInstallationOptionsArrayBinds, WelcomeUserForm,
+  SystemInstallationOptionsArrayBinds,
+  WelcomeUserForm,
   welcomeUserInstallationDataMetadata
 } from "../../../interface/Apps/Welcome";
 

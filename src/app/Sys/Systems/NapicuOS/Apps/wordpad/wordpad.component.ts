@@ -6,9 +6,6 @@ import {SystemFile} from "../../SystemComponents/File";
 import {NapicuOS} from "../../system.napicuos";
 import {SystemStateMetadata} from "../../interface/System";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
-import {SystemAppsFileManager} from "../../SystemComponents/Apps/FileManager";
-import {SystemInputAlert} from "../../SystemComponents/AlertInput";
-import {NapicuApps} from "../../systemAppsNew";
 
 @Component({
   selector: 'app-wordpad',
@@ -66,10 +63,10 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
     }else {
 
 
-       // NapicuOS.open_app("FileManager")
+       //NapicuOS.open_app("FileManager")
 
-      let i = await NapicuApps.SystemAppFileManager();
-      console.log(i);
+
+
     }
   }
 
