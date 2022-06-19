@@ -91,6 +91,17 @@ export declare interface AppCreatMetadata {
   multiRun?: boolean;
 }
 
+export declare interface ProcessCreatMetadata{
+  /**
+   * Process's process name
+   */
+  processTitle: string;
+  /**
+   * Interval time
+   */
+  intervalTime: number
+}
+
 export declare interface AppCreatFileMetadata {
   /**
    * Application's title

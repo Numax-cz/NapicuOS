@@ -1,5 +1,5 @@
 import {NapicuOS} from "../system.napicuos";
-import {AppCreatMetadata} from "../interface/System";
+import {AppCreatMetadata, ProcessCreatMetadata} from "../interface/System";
 
 export function NapicuCookies() {
   return function (target: any, key: string | symbol) {
@@ -24,6 +24,8 @@ export function NapicuCookies() {
 }
 
 export const SYSTEM_INITS_APPS: AppCreatMetadata[] = [];
+export const SYSTEM_INITS_PROCESS: ProcessCreatMetadata[] = [];
+
 export function NapicuApp(data: AppCreatMetadata) {
   return function <T extends { new (...args: any[]): {} }>(constructor: T) {
     SYSTEM_INITS_APPS.push(data);
@@ -33,3 +35,15 @@ export function NapicuApp(data: AppCreatMetadata) {
     }
   }
 }
+
+export function NapicuProcess(data: ProcessCreatMetadata) {
+  return function <T extends { new (...args: any[]): {} }>(constructor: T) {
+    SYSTEM_INITS_PROCESS.push(data);
+    console.log(SYSTEM_INITS_APPS);
+    return class extends constructor {
+      public static processName: string = data.processTitle;
+      public static processTime: number = data.intervalTime;
+    }
+  }
+}
+

@@ -93,7 +93,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get systemTime(): string {
-    return new NapicuDate().format("%dd %MN, %hh:%mm %a")
+    return NapicuOS.get_system_time();
   }
 
   get wallpaper(): string {

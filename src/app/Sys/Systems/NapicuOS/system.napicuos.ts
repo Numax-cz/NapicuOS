@@ -84,7 +84,7 @@ import {CommandParams} from "./interface/Commands/CommandParams";
 import {processConstructor} from "./interface/Process";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
-  public static systemTime: string;
+  public static systemTime: string = "NULL";
   public static systemData = {
     installed: true,
   };
@@ -308,11 +308,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static getTime(): string {
-    return new NapicuDate().format(TIME_FORMAT); //TODO Settings
+    return new NapicuDate().format(TIME_FORMAT);
   }
 
   public static getTimeByFormat(format: string): string {
-    return new NapicuDate().format(format); //TODO Settings
+    return new NapicuDate().format(format);
   }
 
 // * * * Getters * * *

@@ -10,17 +10,25 @@ import {SystemAppsFileManager} from "./SystemComponents/Apps/FileManager";
 import {SystemAppsTerminal} from "./SystemComponents/Apps/Terminal";
 import {SystemAppsUserManager} from "./SystemComponents/Apps/UserManager";
 import {SystemAppsNotepad} from "./SystemComponents/Apps/Notepad";
+import {SystemProcessTime} from "./SystemComponents/Process/Time";
 
 export function initAllSystemProcess(): void {
-  napicu_os_time().runAsSystem();
+  new SystemProcessTime().process.runAsSystem();
+}
+
+
+//Before the user is logged in
+export function installAllApps(): void {
+
+  SYSTEM_INITS_APPS.forEach((app: AppCreatMetadata) => {
+    NapicuOS.install_app(app)
+    console.log(app)
+  });
 }
 
 export function initAllStartUpApps(): void {
-  // NapicuOS.open_app("InstallNapicuOS");
-  //NapicuOS.open_app("Terminal");
 
-  // NapicuOS.open_app("UserManager");
-
+  //RUN FileManager
   NapicuOS.run_command({
     cmd:  SystemCommandsPrefixEnum.openAppCommand,
     args: [SystemAppsProcessName.fileManager]
@@ -28,33 +36,9 @@ export function initAllStartUpApps(): void {
 
 }
 
-//Before the user is logged in
-export function installAllApps(): void {
 
-
-  //TODO
-  SYSTEM_INITS_APPS.forEach((app: AppCreatMetadata) => {
-    NapicuOS.install_app(app)
-    console.log(app)
-  });
-}
-
-
-export function napicu_os_time(): Process {
-  return new Process({
-    processTitle: SystemAppsProcessName.systemTime,
-    processInterval: {
-      fun: () => {
-        NapicuOS.update_time();
-      },
-      time: 1000,
-    },
-  });
-}
-
-
+//Applications
 export class NapicuApps {
-
   public static SystemAppTerminal(): Promise<any> {
     return new Promise(() => {
       new SystemAppsTerminal().run()?.Window.open();
