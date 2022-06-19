@@ -33,11 +33,11 @@ export function initAllStartUpApps(): void {
 //Before the user is logged in
 export function installAllApps(): void {
   //TODO
-  napicu_os_terminal();
-  napicu_os_welcomeapp();
-  napicu_os_user_manager();
+  //napicu_os_terminal();
+  //napicu_os_welcomeapp();
+  //napicu_os_user_manager();
   //napicu_os_file();
-  napicu_os_notepad();
+  // napicu_os_notepad();
 
 
   //TODO
@@ -62,42 +62,42 @@ export function napicu_os_time(): Process {
   });
 }
 
-export function napicu_os_welcomeapp(): void {
-  return NapicuOS.install_app({
-    appTitle: 'Installer',
-    processTitle: SystemAppsProcessName.installer,
-    appComponent: WelcomeComponent,
-    windowData: Window.centerPos(75, 75),
-    resizeAllowed: false,
-    fileIconPath: '/assets/systems/NapicuOS/Logo.svg',
-    addToDock: true,
-    multiRun: false
-  });
-}
+// export function napicu_os_welcomeapp(): void {
+//   return NapicuOS.install_app({
+//     appTitle: 'Installer',
+//     processTitle: SystemAppsProcessName.installer,
+//     appComponent: WelcomeComponent,
+//     windowData: Window.centerPos(75, 75),
+//     resizeAllowed: false,
+//     fileIconPath: '/assets/systems/NapicuOS/Logo.svg',
+//     addToDock: true,
+//     multiRun: false
+//   });
+// }
 
-export function napicu_os_user_manager(): void {
-  return NapicuOS.install_app({
-    appTitle: 'User Manager',
-    processTitle: SystemAppsProcessName.userManager,
-    appComponent: UsermanagerComponent,
-    windowData: Window.centerPos(25, 32),
-    resizeAllowed: false,
-    fileIconPath: SYSTEM_IMAGES.User,
-    addToDock: false,
-    multiRun: true
-  });
-}
+// export function napicu_os_user_manager(): void {
+//   return NapicuOS.install_app({
+//     appTitle: 'User Manager',
+//     processTitle: SystemAppsProcessName.userManager,
+//     appComponent: UsermanagerComponent,
+//     windowData: Window.centerPos(25, 32),
+//     resizeAllowed: false,
+//     fileIconPath: SYSTEM_IMAGES.User,
+//     addToDock: false,
+//     multiRun: true
+//   });
+// }
 
-export function napicu_os_terminal(): void {
-  return NapicuOS.install_app({
-    appTitle: 'Terminal',
-    processTitle: SystemAppsProcessName.terminal,
-    appComponent: ConsoleComponent,
-    windowData: Window.centerPos(35, 35),
-    fileIconPath: SYSTEM_IMAGES.Term,
-    addToDock: true,
-  });
-}
+// export function napicu_os_terminal(): void {
+//   return NapicuOS.install_app({
+//     appTitle: 'Terminal',
+//     processTitle: SystemAppsProcessName.terminal,
+//     appComponent: ConsoleComponent,
+//     windowData: Window.centerPos(35, 35),
+//     fileIconPath: SYSTEM_IMAGES.Term,
+//     addToDock: true,
+//   });
+// }
 
 // export function napicu_os_file(): void {
 //   return NapicuOS.install_app({
@@ -111,14 +111,14 @@ export function napicu_os_terminal(): void {
 //   });
 // }
 
-export function napicu_os_notepad(): void {
-  return NapicuOS.install_app({
-    appTitle: 'NotePad',
-    processTitle: SystemAppsProcessName.note,
-    appComponent: WordpadComponent,
-    windowData: Window.centerPos(45, 45),
-    resizeAllowed: true,
-    fileIconPath: SYSTEM_IMAGES.AppDocText,
-    addToDock: true,
-  });
-}
+// export function napicu_os_notepad(): void {
+//   return NapicuOS.install_app({
+//     appTitle: 'NotePad',
+//     processTitle: SystemAppsProcessName.note,
+//     appComponent: WordpadComponent,
+//     windowData: Window.centerPos(45, 45),
+//     resizeAllowed: true,
+//     fileIconPath: SYSTEM_IMAGES.AppDocText,
+//     addToDock: true,
+//   });
+// }
