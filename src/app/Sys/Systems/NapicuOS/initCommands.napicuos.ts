@@ -53,9 +53,7 @@ import {initMkdir} from "./commands/Mkdir";
 
 
 
-function usageCommand(cmd: string): Line {
-  return new Line(`usage: ${cmd}`);
-}
+
 
 export function initAllCommands(): void {
   //? This is test for debugging

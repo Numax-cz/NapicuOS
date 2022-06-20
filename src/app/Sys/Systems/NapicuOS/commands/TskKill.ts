@@ -3,6 +3,7 @@ import {Command} from "../SystemComponents/Command";
 import {SystemCommandsPrefixEnum} from "../config/commands/Commands";
 import {Line} from "../Apps/console/console.component";
 import {CommandStateCodeMetadata} from "../interface/Commands/CommandsCodes";
+import {usageCommand} from "./scripts/usageCommand";
 
 export function initKillProcess(): void {
   NapicuOS.register_command(
