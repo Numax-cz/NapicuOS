@@ -22,3 +22,11 @@ export const enum SystemCommandsPrefixEnum {
 }
 
 
+export const enum SystemCommandsArgsEnum {
+  //Get
+  get_SystemProcess = "process",
+  get_Apps = "apps",
+  get_Users = "users",
+  get_Commands ="commands",
+
+}

@@ -1,4 +1,5 @@
 import {Line} from '../../../Apps/console/console.component';
+import {SystemCommandsArgsEnum} from "../Commands";
 
 export const getHelpCommandAPPS: Line = new Line(
   `\t\t--open - Returns open GUI applications
@@ -7,8 +8,8 @@ export const getHelpCommandAPPS: Line = new Line(
 
 export const getHelpCommand: Line = new Line(
   `Options:
-    systemprocess - Returns system processes running in the background
-    commands - Returns available commands
-    apps - Returns running GUI applications
+    ${SystemCommandsArgsEnum.get_SystemProcess} - Returns system processes running in the background
+    ${SystemCommandsArgsEnum.get_Commands} - Returns available commands
+    ${SystemCommandsArgsEnum.get_Apps} - Returns running GUI applications
     ${getHelpCommandAPPS.Write().value}
-    users - Returns registered users`);
+    ${SystemCommandsArgsEnum.get_Users} - Returns registered users`);

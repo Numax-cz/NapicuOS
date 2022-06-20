@@ -1,6 +1,6 @@
 import {NapicuOS} from "../system.napicuos";
 import {Command} from "../SystemComponents/Command";
-import {SystemCommandsPrefixEnum} from "../config/commands/Commands";
+import {SystemCommandsArgsEnum, SystemCommandsPrefixEnum} from "../config/commands/Commands";
 import {Line} from "../Apps/console/console.component";
 import {getHelpCommand, getHelpCommandAPPS} from "../config/commands/help/getCommand";
 import {CommandStateCodeMetadata} from "../interface/Commands/CommandsCodes";
@@ -23,7 +23,7 @@ export function initGetSystemInformation(): void {
                 stateCode: CommandStateCodeMetadata.HelpCommand,
               });
               break;
-            case 'systemprocess':
+            case SystemCommandsArgsEnum.get_SystemProcess:
               let process = NapicuOS.get_system_process();
               exportLines.push(
                 new Line('Processes running in the background: ', 'white')
@@ -40,7 +40,7 @@ export function initGetSystemInformation(): void {
                 linesForCMD: exportLines,
                 stateCode: CommandStateCodeMetadata.success,
               });
-            case 'apps':
+            case SystemCommandsArgsEnum.get_Apps:
               let apps: Process[] = NapicuOS.get_system_window_apps();
               if (params[1]) {
                 switch (params[1]) {
@@ -89,7 +89,7 @@ export function initGetSystemInformation(): void {
                 linesForCMD: exportLines,
                 stateCode: CommandStateCodeMetadata.success,
               });
-            case 'users':
+            case SystemCommandsArgsEnum.get_Users:
               let users = NapicuOS.get_users();
               users.forEach((user: User, index: number) => {
                 exportLines.push(
@@ -104,7 +104,7 @@ export function initGetSystemInformation(): void {
                 linesForCMD: exportLines,
                 stateCode: CommandStateCodeMetadata.success,
               });
-            case 'commands':
+            case SystemCommandsArgsEnum.get_Commands:
               let commands = NapicuOS.get_available_commands();
               commands.forEach((value: SystemFile, index: number) => {
                 exportLines.push(
