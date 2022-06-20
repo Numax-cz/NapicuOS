@@ -29,10 +29,10 @@ export function installAllApps(): void {
 export function initAllStartUpApps(): void {
 
   //RUN FileManager
-  NapicuOS.run_command({
-    cmd:  SystemCommandsPrefixEnum.openAppCommand,
-    args: [SystemAppsProcessName.fileManager]
-  });
+  // NapicuOS.run_command({
+  //   cmd:  SystemCommandsPrefixEnum.openAppCommand,
+  //   args: [SystemAppsProcessName.fileManager]
+  // });
 
 }
 

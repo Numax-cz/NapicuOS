@@ -60,7 +60,6 @@ export function initAllCommands(): void {
   NapicuOS.register_command(
     new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
       return new Promise((resolve) => {
-        console.log(NapicuOS.get_home_dir());
         resolve();
       });
     })

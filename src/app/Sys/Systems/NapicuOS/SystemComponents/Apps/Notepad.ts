@@ -10,7 +10,7 @@ import {FileComponent} from "../../Apps/file/file.component";
 @NapicuApp({
   appTitle: 'NotePad',
   processTitle: SystemAppsProcessName.note,
-  appComponent: FileComponent,
+  appComponent: WordpadComponent,
   windowData: Window.centerPos(45, 45),
   resizeAllowed: true,
   fileIconPath: SYSTEM_IMAGES.AppDocText,
