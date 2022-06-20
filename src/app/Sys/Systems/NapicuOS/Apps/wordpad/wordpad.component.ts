@@ -6,6 +6,8 @@ import {SystemFile} from "../../SystemComponents/File";
 import {NapicuOS} from "../../system.napicuos";
 import {SystemStateMetadata} from "../../interface/System";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
+import {NapicuApps} from "../../systemApps.napicuos";
+import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
 
 @Component({
   selector: 'app-wordpad',
@@ -53,27 +55,24 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
 
   }
 
-  public async saveFile(): Promise<void> {
+  public async onSaveFile(): Promise<void> {
     if(this.args[0]){
       let file: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
       if(file instanceof SystemFile) {
         NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.args[0]), this.getNotepadContent());
       }
-
     }else {
-
-
-       //NapicuOS.open_app("FileManager")
-
-
-
+      let get_dir: FileManagerResponse = await NapicuApps.SystemAppFileManager();
+      if(get_dir?.filePath && get_dir?.fileName){
+        NapicuOS.creat_dynamic_document(get_dir.filePath, get_dir.filePath, this.inputValue.nativeElement.innerHTML || '')
+      }
     }
   }
 
   public onKeyDown = (event: KeyboardEvent): void =>  {
     if(!this.windowValue.activated) return;
     if (event.keyCode == 83 && (event.ctrlKey || event.metaKey)){
-      this.saveFile();
+      this.onSaveFile();
       event.preventDefault();
     }
   }

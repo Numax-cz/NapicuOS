@@ -7,6 +7,7 @@ import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
 import {NapicuApp} from "../../scripts/Decorators";
 
 import {SystemApp} from "../SystemApp";
+import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
 
 
 @NapicuApp({
@@ -18,11 +19,11 @@ import {SystemApp} from "../SystemApp";
     fileIconPath: SYSTEM_IMAGES.BlueFolder,
     addToDock: true,
 })
-export class SystemAppsFileManager extends SystemApp implements ProcessResolver<string> {
+export class SystemAppsFileManager extends SystemApp implements ProcessResolver<FileManagerResponse> {
   public static declare appData: AppCreatMetadata;
 
   constructor(
-    public processResolver?: (value: (PromiseLike<string> | string)) => void,
+    public processResolver?: (value: (PromiseLike<FileManagerResponse> | FileManagerResponse)) => void,
   ) {
     super(SystemAppsFileManager.appData);
   }

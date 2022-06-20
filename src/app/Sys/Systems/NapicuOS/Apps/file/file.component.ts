@@ -16,6 +16,7 @@ import {SystemWindowAppInjectData} from "../../interface/Window/Window";
 import {InputAlertData} from "../../interface/InputAlert";
 import {FindParam} from "../../scripts/FindParam";
 import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
+import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
 
 @Component({
   selector: 'app-file',
@@ -30,7 +31,8 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   private declare foldersView: fileConfigDisplayedMetadata[];
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
-  private startDirectory: string = "/home/%USER/"
+  private startDirectory: string = "/home/%USER/";
+  public fileName: string = "document";
   public displayedFiles: filesAndDirsViewMetadata[] = [];
 
   public backHistoryPaths: string[] = [];
@@ -197,7 +199,12 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public clickSave(): void {
-    this.process.resolve("PROMISE TEST");
+    // this.process.resolve<FileManagerResponse>(
+    //   {
+    //     filePath: this.startDirectory,
+    //     fileName: this.selectedFileDir?.name,
+    //   }
+    // );
   }
 
   public exitProgram(): void {
@@ -278,7 +285,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     let doc_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_doc, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.AppDocText);
     if (doc_name) {
       let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
-      NapicuOS.creat_dynamic_blank_document(ReplaceSystemVariables(this.startDirectory), doc_name);
+      NapicuOS.creat_dynamic_document(ReplaceSystemVariables(this.startDirectory), doc_name);
       this.updateViewFilesAndDirs();
     }
   }

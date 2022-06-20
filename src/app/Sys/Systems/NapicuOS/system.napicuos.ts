@@ -870,8 +870,8 @@ public static get_system_boot(): boolean {
     }
   }
 
-  public static creat_dynamic_blank_document(path: string, fileName: string): SystemStateMetadata{
-    let i: SystemDocumentData = this.get_blank_document(fileName);
+  public static creat_dynamic_document(path: string, fileName: string, value?: string): SystemStateMetadata{
+    let i: SystemDocumentData = this.creat_document(fileName, value);
     if(!(i instanceof SystemFile)) return i;
     return this.creat_dynamic_file(path, i);
   }
@@ -1351,7 +1351,7 @@ public static get_system_boot(): boolean {
    */
   public static add_blank_document_to_dir(path: string, fileName: string): SystemFileStateData {
     let i: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
-    let doc: SystemDocumentData = this.get_blank_document(fileName);
+    let doc: SystemDocumentData = this.creat_document(fileName);
     if(!(doc instanceof SystemFile)) return doc;
     return this.add_file_to_dir(i.data || undefined, doc);
   }
@@ -1359,13 +1359,14 @@ public static get_system_boot(): boolean {
   /**
    * Return blank document
    * @param fileName Document name
+   * @param value Document value
    */
-  public static get_blank_document(fileName: string): SystemDocumentData{
+  public static creat_document(fileName: string, value?: string): SystemDocumentData{
     if(!this.check_file_name(fileName)) return SystemStateMetadata.FileHasBadName;
     return new SystemFile({
       fileName: fileName,
       createdBy: this.get_active_user_username(),
-      value: '',
+      value: value || '',
       fileType: SystemFileTypeEnumMetadata.document,
       iconPath: SYSTEM_IMAGES.AppDocText,
     })

@@ -11,6 +11,7 @@ import {SystemAppsTerminal} from "./SystemComponents/Apps/Terminal";
 import {SystemAppsUserManager} from "./SystemComponents/Apps/UserManager";
 import {SystemAppsNotepad} from "./SystemComponents/Apps/Notepad";
 import {SystemProcessTime} from "./SystemComponents/Process/Time";
+import {FileManagerResponse} from "./interface/Apps/Response/FileManagerRes";
 
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
@@ -51,7 +52,7 @@ export class NapicuApps {
     });
   }
 
-  public static SystemAppFileManager(): Promise<any> {
+  public static SystemAppFileManager(): Promise<FileManagerResponse> {
     return new Promise((resolve) => {
       new SystemAppsFileManager(resolve).run()?.Window.open();
     });
