@@ -1,7 +1,8 @@
 import {Line} from "../../../Apps/console/console.component";
+import {SystemCommandsPrefixEnum} from "../Commands";
 
 export const changeDirectoryHelpCommand: Line = new Line(
-  `Usage: cd <directory>`
+  `Usage: ${SystemCommandsPrefixEnum.cdCommand} <directory>`
 );
 
 export const directoryNotFoundError = (directory: string): Line => {

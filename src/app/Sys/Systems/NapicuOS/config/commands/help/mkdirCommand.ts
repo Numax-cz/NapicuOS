@@ -1,7 +1,8 @@
 import {Line} from "../../../Apps/console/console.component";
+import {SystemCommandsPrefixEnum} from "../Commands";
 
 export const mkdirHelpCommand: Line = new Line(
-  `mkdir <dir_name>`
+  `${SystemCommandsPrefixEnum.mkdirCommand} <dir_name>`
 );
 
 export const mkdirExists = (dirname: string): Line => {

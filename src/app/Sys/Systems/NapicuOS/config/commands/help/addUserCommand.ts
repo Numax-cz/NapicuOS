@@ -1,8 +1,9 @@
 import {Line} from '../../../Apps/console/console.component';
 import {SYSTEM_USERS_MAX_LENGTH, SYSTEM_USERS_MIN_LENGTH} from "../../System";
+import {SystemCommandsPrefixEnum} from "../Commands";
 
 export const addUserUsage: Line = new Line(
-  `Usage: adduser <user_name> <user_password>`
+  `Usage: ${SystemCommandsPrefixEnum.addUserCommand} <user_name> <user_password>`
 );
 
 export const addUserShortError: Line = new Line(

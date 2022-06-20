@@ -1,5 +1,6 @@
 import {Line} from '../../../Apps/console/console.component';
 import {SYSTEM_HOSTNAME_MAX_LENGTH, SYSTEM_HOSTNAME_MIN_LENGTH} from '../../System';
+import {SystemCommandsPrefixEnum} from "../Commands";
 
 export const setHelpCommand: Line = new Line(
   `Options:
@@ -8,11 +9,11 @@ export const setHelpCommand: Line = new Line(
 );
 
 export const setWindowTitleHelpCommand: Line = new Line(
-  `Usage: set windowtitle <pid> <new_title>`
+  `Usage: ${SystemCommandsPrefixEnum.setCommand} windowtitle <pid> <new_title>`
 );
 
 export const setHostnameHelpCommand: Line = new Line(
-  `Usage: set hostname <hostname>`
+  `Usage: ${SystemCommandsPrefixEnum.setCommand} hostname <hostname>`
 )
 
 export const setHostnameShortError: Line = new Line(
