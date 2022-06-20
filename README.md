@@ -1,6 +1,6 @@
 # NapicuBios - BETA
 
-- NapicuBios je webová aplikace, která simuluje reálný bios
+- NapicuBios je webová aplikace, která simuluje reálný bios + operační systém NapicuOS
 - Na této stránce najdete základní nastavení biosu
 - Vytvořeno v [Angular](https://angular.io/)
 - Použitý font [Perfect DOS VGA 437](https://www.dafont.com/perfect-dos-vga-437.font)
