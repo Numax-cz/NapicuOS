@@ -92,7 +92,7 @@
     <ng-container>
       <section class="BottomBoxContainer">
           <div class="BottomBoxButtonClass NapicuOSSimpleButton NapicuSimpleButtonVariables">
-            <input type="text" name="DocumentNameInput" class="NapicuOSSimpleInput">
+            <input #fileNameInput type="text" name="DocumentNameInput" class="NapicuOSSimpleInput">
             <button (click)="exitProgram()">Cancel</button>
             <button (click)="clickSave()">Save</button>
           </div>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../config/System";
 import {
   fileConfigDisplayedMetadata,
@@ -28,6 +28,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare windowValue: ProcessWindowValueMetadata;
   @Input() public declare process: Process;
   @Input() public declare args: string[];
+  @ViewChild('fileNameInput') public declare fileNameInput: ElementRef<HTMLInputElement>
   private declare foldersView: fileConfigDisplayedMetadata[];
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
@@ -199,12 +200,14 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public clickSave(): void {
-    // this.process.resolve<FileManagerResponse>(
-    //   {
-    //     filePath: this.startDirectory,
-    //     fileName: this.selectedFileDir?.name,
-    //   }
-    // );
+    //TODO error
+    if(!this.fileNameInput.nativeElement.value) return;
+    this.process.resolve<FileManagerResponse>(
+      {
+        filePath: this.startDirectory,
+        fileName: this.fileNameInput.nativeElement.value,
+      }
+    );
   }
 
   public exitProgram(): void {

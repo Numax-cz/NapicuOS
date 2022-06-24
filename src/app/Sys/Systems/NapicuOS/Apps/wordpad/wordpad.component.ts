@@ -8,6 +8,7 @@ import {SystemStateMetadata} from "../../interface/System";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 import {NapicuApps} from "../../systemApps.napicuos";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
+import {FileComponent} from "../file/file.component";
 
 @Component({
   selector: 'app-wordpad',
@@ -64,7 +65,8 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
     }else {
       let get_dir: FileManagerResponse = await NapicuApps.SystemAppFileManager();
       if(get_dir?.filePath && get_dir?.fileName){
-        NapicuOS.creat_dynamic_document(get_dir.filePath, get_dir.filePath, this.inputValue.nativeElement.innerHTML || '')
+        let i = NapicuOS.creat_dynamic_document(ReplaceSystemVariables(get_dir.filePath), get_dir.fileName, this.inputValue.nativeElement.innerHTML || '');
+        console.log(get_dir);
       }
     }
   }
