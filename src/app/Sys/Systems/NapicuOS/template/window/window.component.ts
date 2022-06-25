@@ -436,9 +436,9 @@ export class WindowComponent implements OnInit {
   protected snappingWindow(event: MouseEvent): void {
     if (!WindowComponent.selectedWindow.resizeAllowed) return;
     const p = event.target as HTMLElement;
-    if (p.classList.contains('left')) {
+    if (event.pageX <= 0 || p.classList.contains('left')) {
       WindowComponent.selectedWindow.setStateLeft();
-    } else if (p.classList.contains('right')) {
+    } else if (event.pageX >= window.innerWidth || p.classList.contains('right')) {
       WindowComponent.selectedWindow.setStateRight();
       return;
     } else if (event.pageY <= 0 && !p.classList.contains('resizer')) {
