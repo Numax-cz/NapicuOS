@@ -22,14 +22,16 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare process: Process;
   @Input() public declare args: string[];
   @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
-
   public declare file: SystemFile | null;
+  public declare filePath: string | null;
 
 
   constructor() {
+
   }
 
   ngOnInit(): void {
+    this.filePath = this.args?.[0] || null;
   }
 
 
@@ -58,16 +60,16 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public async onSaveFile(): Promise<void> {
-    if(this.args[0]){
-      let file: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.args[0]);
+    if(this.filePath){
+      let file: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.filePath);
       if(file instanceof SystemFile) {
-        NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.args[0]), this.getNotepadContent());
+        NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.filePath), this.getNotepadContent());
       }
     }else {
       let get_dir: FileManagerResponse = await NapicuApps.SystemAppFileManager([SystemFileManagerParams.selectMode]);
       if(get_dir?.filePath && get_dir?.fileName){
         let i = NapicuOS.creat_dynamic_document(ReplaceSystemVariables(get_dir.filePath), get_dir.fileName, this.inputValue.nativeElement.innerHTML || '');
-        console.log(get_dir);
+        this.filePath = get_dir.filePath;
       }
     }
   }
