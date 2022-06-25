@@ -40,33 +40,33 @@ export function initAllStartUpApps(): void {
 
 //Applications
 export class NapicuApps {
-  public static SystemAppTerminal(): Promise<any> {
+  public static SystemAppTerminal(args?: string[]): Promise<any> {
     return new Promise(() => {
-      new SystemAppsTerminal().run()?.Window.open();
+      new SystemAppsTerminal().run()?.Window.open(args);
     });
   }
 
-  public static SystemAppWelcome(): Promise<any> {
+  public static SystemAppWelcome(args?: string[]): Promise<any> {
     return new Promise(() => {
-      new SystemAppsWelcome().run()?.Window.open();
+      new SystemAppsWelcome().run()?.Window.open(args);
     });
   }
 
-  public static SystemAppFileManager(): Promise<FileManagerResponse> {
+  public static SystemAppFileManager(args?: string[]): Promise<FileManagerResponse> {
     return new Promise((resolve) => {
-      new SystemAppsFileManager(resolve).run()?.Window.open();
+      new SystemAppsFileManager(resolve).run()?.Window.open(args);
     });
   }
 
-  public static SystemAppUserManager(): Promise<any> {
+  public static SystemAppUserManager(args?: string[]): Promise<any> {
     return new Promise(() => {
-      new SystemAppsUserManager().run()?.Window.open();
+      new SystemAppsUserManager().run()?.Window.open(args);
     });
   }
 
-  public static SystemAppNotePad(): Promise<any>{
+  public static SystemAppNotePad(args?: string[]): Promise<any>{
     return new Promise(() => {
-      new SystemAppsNotepad().run()?.Window.open();
+      new SystemAppsNotepad().run()?.Window.open(args);
     });
   }
 }
