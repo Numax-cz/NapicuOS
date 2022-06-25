@@ -149,6 +149,16 @@
 
 }
 
+.FileNameContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--NapicuTextColor);
+  input{
+    width: 94%;
+  }
+}
+
 .RightObjectView {
   display: flex;
   flex-wrap: wrap;

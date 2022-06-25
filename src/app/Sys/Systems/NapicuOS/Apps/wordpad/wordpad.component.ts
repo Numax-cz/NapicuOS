@@ -9,6 +9,7 @@ import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 import {NapicuApps} from "../../systemApps.napicuos";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
 import {FileComponent} from "../file/file.component";
+import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 
 @Component({
   selector: 'app-wordpad',
@@ -63,7 +64,7 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
         NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.args[0]), this.getNotepadContent());
       }
     }else {
-      let get_dir: FileManagerResponse = await NapicuApps.SystemAppFileManager();
+      let get_dir: FileManagerResponse = await NapicuApps.SystemAppFileManager([SystemFileManagerParams.selectMode]);
       if(get_dir?.filePath && get_dir?.fileName){
         let i = NapicuOS.creat_dynamic_document(ReplaceSystemVariables(get_dir.filePath), get_dir.fileName, this.inputValue.nativeElement.innerHTML || '');
         console.log(get_dir);

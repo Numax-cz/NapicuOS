@@ -53,11 +53,11 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
 
   constructor() {
-    if(FindParam(this.args, SystemFileManagerParams.selectMode)) this.selectedMode = true;
 
   }
 
   ngOnInit(): void {
+    if(FindParam(this.args, SystemFileManagerParams.selectMode)) this.selectedMode = true;
     this.topTxtView = {
       file: NapicuOS.get_language_words().Apps.FileManager.file,
       edit: NapicuOS.get_language_words().Apps.FileManager.edit,
