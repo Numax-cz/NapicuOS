@@ -1,7 +1,7 @@
 export const enum SystemAppsProcessName{
   systemTime = "SystemTime",
   installer = "InstallNapicuOS",
-  userManager = " SystemAppsProcessName",
+  userManager = "UserManager",
   terminal = "Terminal",
   fileManager = "FileManager",
   note = "Note"

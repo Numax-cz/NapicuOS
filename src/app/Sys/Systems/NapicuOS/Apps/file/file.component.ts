@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, Type, ViewChild} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../config/System";
 import {
   fileConfigDisplayedMetadata,
@@ -17,6 +17,8 @@ import {InputAlertData} from "../../interface/InputAlert";
 import {FindParam} from "../../scripts/FindParam";
 import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
+import {SystemProcessTime} from "../../SystemComponents/Process/Time";
+
 
 @Component({
   selector: 'app-file',
@@ -54,7 +56,8 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   constructor() {
 
-  }
+ }
+
 
   ngOnInit(): void {
     if(FindParam(this.args, SystemFileManagerParams.selectMode)) this.selectedMode = true;
@@ -86,7 +89,9 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
         if(!this.freezeContent) this.selectedFileDir = null;
       }
     });
+
   }
+
 
   public updateMousePosition(event: MouseEvent) {
     this.boxMenuPosition = {
@@ -224,9 +229,6 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     this.creatDocument();
   }
 
-
-
-
   public clickRenameItem(): void {
     if (this.selectedFileDir?.isDir) {
       this.renameDirectory();
@@ -355,7 +357,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     this.nextHistoryPaths = [];
   }
 
-  public updateViewFilesAndDirs(): void {
+  public updateViewFilesAndDirs (): void {
     this.displayedFiles = this.GetFilesInDirectory;
   }
 
@@ -402,5 +404,6 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   get GetDevicesText(): string {
     return NapicuOS.get_language_words().other.devices;
   }
+
 
 }
