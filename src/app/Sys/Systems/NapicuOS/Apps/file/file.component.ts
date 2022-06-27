@@ -18,6 +18,7 @@ import {FindParam} from "../../scripts/FindParam";
 import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
 import {SystemProcessTime} from "../../SystemComponents/Process/Time";
+import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 
 @Component({
@@ -30,7 +31,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare windowValue: ProcessWindowValueMetadata;
   @Input() public declare process: Process;
   @Input() public declare args: string[];
-  @ViewChild('fileNameInput') public declare fileNameInput: ElementRef<HTMLInputElement>
+  public declare fileNameInput: string;
   private declare foldersView: fileConfigDisplayedMetadata[];
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
@@ -52,6 +53,8 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   public freezeContent: boolean = false;
 
   public selectedMode: boolean = false;
+
+  public fileNameError: boolean = false;
 
 
   constructor() {
@@ -89,9 +92,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
         if(!this.freezeContent) this.selectedFileDir = null;
       }
     });
-
   }
-
 
   public updateMousePosition(event: MouseEvent) {
     this.boxMenuPosition = {
@@ -120,7 +121,6 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     this.updateMousePosition(event);
     event.stopPropagation();
   }
-
 
   get GetFilesInDirectory(): filesAndDirsViewMetadata[] { //TODO
 
@@ -184,6 +184,18 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     //TODO
   }
 
+  public checkFileExist(): boolean {
+    return !!NapicuOS.is_file_or_dir_in_path(`${ReplaceSystemVariables(this.startDirectory)}${this.fileName}`);
+  }
+
+  public checkSelectedModeInputFileNameValue(): void {
+    if(this.fileNameInput.length && (!NapicuOS.check_file_name(this.fileNameInput) ||
+        NapicuOS.is_file_or_dir_in_path(ReplaceSystemVariables(`${this.startDirectory}${this.fileNameInput}`))?.file)
+    ){
+      this.fileNameError = true;
+    }else this.fileNameError = false;
+  }
+
   public clickFile(): void {
 
   }
@@ -206,11 +218,11 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   public clickSave(): void {
     //TODO error
-    if(!this.fileNameInput.nativeElement.value) return;
+    if(!this.fileNameInput) return;
     this.process.resolve<FileManagerResponse>(
       {
         filePath: this.startDirectory,
-        fileName: this.fileNameInput.nativeElement.value,
+        fileName: this.fileNameInput,
       }
     );
   }

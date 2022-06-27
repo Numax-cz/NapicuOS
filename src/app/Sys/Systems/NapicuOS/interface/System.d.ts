@@ -141,6 +141,7 @@ export declare const enum SystemStateMetadata {
   PathExist = 1053,
   Success = 1, //TODO Remove Success
 
+  CookiesError = 6970,
 
   RegisterCommandAlreadyExists = 9059,
   RegisterCommandSuccess = 9060,

@@ -5,22 +5,19 @@
     <div class="TopMenu">
       <!--Top tools options-->
       <div class="ToolOptions">
-
 <!--        <div (click)="clickFile()">{{topTxtView.file}}</div>-->
 <!--        <div (click)="clickEdit()">{{topTxtView.edit}}</div>-->
 <!--        <div (click)="clickView()">{{topTxtView.view}}</div>-->
 <!--        <div (click)="clickGo()">{{topTxtView.go}}</div>-->
-
       </div>
 
       <!--Creat file name bar - select mode-->
       <ng-container *ngIf="selectedMode">
         <section class="FileNameContainer">
             <span>Name: </span>
-            <input #fileNameInput type="text" name="DocumentNameInput" class="NapicuOSSimpleInput">
+            <input [(ngModel)]="fileNameInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': fileNameError}" (ngModelChange)="checkSelectedModeInputFileNameValue()" type="text" name="DocumentNameInput" class="NapicuOSSimpleInput">
         </section>
       </ng-container>
-
 
       <!--Bottom tools options-->
       <section class="FileManagerOptions">
@@ -90,21 +87,19 @@
             <div clickable="true" (click)="onClickDirAndFileView(i)"
                  (contextmenu)="clickFileAndDirProperty($event, i)"
                  class="ObjectContent" [ngClass]="{selectedFileDir: this.selectedFileDir?.name === i.name && (this.selectedFileDir?.isDir == !(i.fileType))}">
-
               <img clickable="true" [src]="i.icon" alt="icon">
               <p clickable="true">{{i.name}}</p>
             </div>
-
           </div>
         </div>
       </section>
     </section>
     <!--Bottom bar - select mode-->
-    <ng-container>
+    <ng-container *ngIf="selectedMode">
       <section class="BottomBoxContainer">
           <div class="BottomBoxButtonClass NapicuOSSimpleButton NapicuSimpleButtonVariables">
             <button (click)="exitProgram()">Cancel</button>
-            <button (click)="clickSave()">Save</button>
+            <button (click)="clickSave()" [disabled]="fileNameError" >Save</button>
           </div>
       </section>
     </ng-container>

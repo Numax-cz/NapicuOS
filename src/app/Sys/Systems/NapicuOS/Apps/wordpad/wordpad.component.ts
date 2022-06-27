@@ -69,6 +69,7 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
       let get_dir: FileManagerResponse = await NapicuApps.SystemAppFileManager([SystemFileManagerParams.selectMode]);
       if(get_dir?.filePath && get_dir?.fileName){
         let i = NapicuOS.creat_dynamic_document(ReplaceSystemVariables(get_dir.filePath), get_dir.fileName, this.inputValue.nativeElement.innerHTML || '');
+        console.log(i);
         this.filePath = get_dir.filePath;
       }
     }

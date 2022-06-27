@@ -817,10 +817,13 @@ public static get_system_boot(): boolean {
     if(i.state === SystemStateMetadata.PathExist) {
       let fl = this.add_file_to_dir(i.data || undefined, file); //TODO IDK
       if(fl == SystemStateMetadata.FileAddedSuccess) {
-        this.add_global_file_to_cookies(path, file);
-        this.update_config_to_cookies();
+        if (!this.is_file_or_dir_in_path(`${path}${file}`)?.file){
+          this.add_global_file_to_cookies(path, file);
+          this.update_config_to_cookies();
+        }
+        return SystemStateMetadata.FileAlreadyExists;
       }
-      return fl;
+        return fl;
     }else {
       return SystemStateMetadata.PathNotExist;
     }
@@ -928,17 +931,19 @@ public static get_system_boot(): boolean {
    * @param path
    * @param file
    */
-  protected static add_global_file_to_cookies(path: string, file: SystemFileConsMetadata): void {
-    const cfg:  NapicuOsCookiesTemplate | null = this.get_system_config_from_cookies();
-    if (!cfg) return;
+  protected static add_global_file_to_cookies(path: string, file: SystemFileConsMetadata): SystemStateMetadata {
+    const cfg: NapicuOsCookiesTemplate | null = this.get_system_config_from_cookies();
+    if (!cfg) return SystemStateMetadata.CookiesError;
     for (const i of cfg?.files) {
-      if (i.path === path) {
-        return;
+      if (i.file.fileName === file.fileName && i.path === path) {
+        //TODO return rewrite or error handler
+        i.file = file;
+        return SystemStateMetadata.FileAddedSuccess;
       }
     }
     cfg.files.push({path: path, file: file});
+    return SystemStateMetadata.FileAddedSuccess;
   }
-
 
   /**
    * Get file from global config by path
