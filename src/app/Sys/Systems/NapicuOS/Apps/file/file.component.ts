@@ -282,7 +282,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   protected deleteFile(): void {
     let file_name: string | undefined = this.selectedFileDir?.name;
     if(file_name){
-      let i = NapicuOS.remove_file(ReplaceSystemVariables( `${this.startDirectory}${file_name}`));
+      let i = NapicuOS.remove_file( `${ReplaceSystemVariables(this.startDirectory)}${file_name}`);
       this.updateViewFilesAndDirs();
     }
     this.closeAllContextMenu();

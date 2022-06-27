@@ -705,11 +705,11 @@ public static get_system_boot(): boolean {
       if(fl_files instanceof SystemFile) {
         let file_index = directory.data.files.indexOf(fl_files);
         delete directory.data.files[file_index];
+        this.remove_dynamic_file(path);
         return SystemStateMetadata.Success;
       }
     }
     return SystemStateMetadata.FileNotExist;
-
   }
 
   /**
@@ -805,6 +805,47 @@ public static get_system_boot(): boolean {
     this.add_global_path_to_cookies(`${path}${dirName}`);
     this.update_config_to_cookies();
   }
+
+  /**
+   * Return dynamic path
+   * @param path
+   */
+  protected static get_dynamic_file(path: string): SystemFileConsMetadata | SystemStateMetadata.FileNotExist{
+    let pathFile: PathSpliceMetadata = PathSpliceLastIndex(path);
+    let i: NapicuOsCookiesFileMetadata[] | undefined   = this.get_system_dynamic_files_cookies_config()?.filter((file:  NapicuOsCookiesFileMetadata) => {
+      return file.file.fileName === pathFile.removed;
+    });
+    if(i!.length > 1) console.error("[NAPICUOS] Ilegal files");
+    return i?.[0].file || SystemStateMetadata.FileNotExist;
+  }
+
+  /**
+   * Deletes file from cookies
+   * @param path
+   */
+  protected static remove_dynamic_file(path: string): SystemStateMetadata.Success | SystemStateMetadata.CookiesError{
+    let pathFile: PathSpliceMetadata = PathSpliceLastIndex(path);
+    let i: NapicuOsCookiesFileMetadata[] | null   = this.get_system_dynamic_files_cookies_config();
+    if(i) {
+      let b = this.get_system_dynamic_files_cookies_config()?.filter((file:  NapicuOsCookiesFileMetadata) => {
+        return file.file.fileName === pathFile.removed;
+      })[0];
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      if(i!.length > 1) console.error("[NAPICUOS] Ilegal files");
+
+      if (b) this.get_system_dynamic_files_cookies_config()?.splice(this.get_system_dynamic_files_cookies_config()?.indexOf(b) as number, 1)
+      this.update_config_to_cookies();
+      return SystemStateMetadata.Success;
+    }
+    return SystemStateMetadata.CookiesError;
+  }
+
 
   /**
    * Creat a new dynamic file in the directory by path
