@@ -24,6 +24,7 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
   @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
   public declare file: SystemFile | null;
   public declare filePath: string | null;
+  public fileManagerOpened: boolean = false;
 
 
   constructor() {
@@ -63,11 +64,10 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
     if(this.filePath){
       let file: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.filePath);
       if(file instanceof SystemFile) {
-        //TODO Not working lulí
-        console.log(this.filePath);
         NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.filePath), this.getNotepadContent());
       }
     }else {
+      this.fileManagerOpened = true;
       let get_dir: FileManagerResponse = await NapicuApps.SystemAppFileManager([SystemFileManagerParams.selectMode]);
       if(get_dir?.filePath && get_dir?.fileName){
         let i = NapicuOS.creat_dynamic_document(ReplaceSystemVariables(get_dir.filePath), get_dir.fileName, this.inputValue.nativeElement.innerHTML || '');
@@ -75,10 +75,11 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
         this.filePath = get_dir.filePath;
       }
     }
+    this.fileManagerOpened = false
   }
 
   public onKeyDown = (event: KeyboardEvent): void =>  {
-    if(!this.windowValue.activated) return;
+    if(!this.windowValue.activated || this.fileManagerOpened) return;
     if (event.keyCode == 83 && (event.ctrlKey || event.metaKey)){
       this.onSaveFile();
       event.preventDefault();
