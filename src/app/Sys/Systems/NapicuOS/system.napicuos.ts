@@ -857,6 +857,7 @@ public static get_system_boot(): boolean {
    */
   protected static update_dynamic_file(path: string, fileData: SystemUpdateFileConsMetadata): void {
     let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
+    console.log(path);
     if(i instanceof SystemFile){
       let fl = this.get_global_file_from_cookies(PathSpliceLastIndex(path).path);
       if(fl){

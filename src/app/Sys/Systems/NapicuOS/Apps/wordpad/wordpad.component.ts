@@ -63,6 +63,8 @@ export class WordpadComponent implements OnInit, SystemWindowAppInjectData {
     if(this.filePath){
       let file: SystemStateMetadata | SystemFile = NapicuOS.get_file_by_path(this.filePath);
       if(file instanceof SystemFile) {
+        //TODO Not working lulí
+        console.log(this.filePath);
         NapicuOS.rewrite_dynamic_file(ReplaceSystemVariables(this.filePath), this.getNotepadContent());
       }
     }else {
