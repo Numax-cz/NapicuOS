@@ -115,9 +115,30 @@
             </section>
           </div>
           <!--Top menu icons-->
-          <div class="top-panel-item" id="TopPanelIcons">
-            <img src="/assets/systems/NapicuOS/audio.svg"/>
-            <img src="/assets/systems/NapicuOS/on-off.svg"/>
+          <div id="TopPanelIcons">
+            <div class="top-panel-item" >
+              <img src="/assets/systems/NapicuOS/audio.svg"/>
+              <img src="/assets/systems/NapicuOS/on-off.svg"/>
+            </div>
+            <div
+                 class="NapicuSimpleBoxMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionLeft TopPanelLeftContentMenu"
+                 clickable="false" style="min-width: 130px !important; top: 50px">
+              <ul>
+                <li >
+                  <img [src]="GetSettingsImage" alt="Settings Icon">
+                  Settings
+                </li>
+                <li>
+                  <img [src]="GetLockImage" alt="Lock Icon">
+                  Lock
+                </li>
+                <li>
+                  <img [src]="GetShutdownImage" alt="Shutdown Icon">
+                  Power OFF
+                </li>
+              </ul>
+
+            </div>
           </div>
         </section>
         <!--Notification panel-->

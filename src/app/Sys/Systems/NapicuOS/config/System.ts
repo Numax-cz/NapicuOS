@@ -64,6 +64,9 @@ export enum SYSTEM_IMAGES {
   Home = "assets/systems/NapicuOS/SystemIcons/XFD/home.svg",
   addFile = "assets/systems/NapicuOS/SystemIcons/XFD/addFile.svg",
   addFolder = "assets/systems/NapicuOS/SystemIcons/XFD/addFolder.svg",
+  lock = "assets/systems/NapicuOS/SystemIcons/XFD/lock.svg",
+  settings = "assets/systems/NapicuOS/SystemIcons/XFD/settings.svg",
+  shutdown = "assets/systems/NapicuOS/SystemIcons/XFD/shutdown.svg"
 }
 
 export const SYSTEM_DEFAULT_HOME_FOLDERS: string[] = [

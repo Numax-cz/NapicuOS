@@ -29,13 +29,23 @@
 
 #TopPanelIcons {
   display: flex;
+  position: relative;
 
   img {
-    width: var(--NapicuSystemFontSize);
-    margin: 0px 3.5px;
+    width: 19px;
+    height: 19px;
+    margin: 0px 5px;
     filter: var(--NapicuTopMenuIconFilter);
   }
 }
+
+.TopPanelLeftContentMenu{
+  font-size: 1.2rem;
+  img{
+
+  }
+}
+
 
 .TopPanel {
   display: flex;
@@ -47,13 +57,13 @@
   font-size: var(--NapicuSystemFontSize);
   background-color: var(--NapicuTopMenuBackgroundColor);
 
-  > .top-panel-item {
+  .top-panel-item {
     padding: 6px 10px;
     border-radius: 20px;
     cursor: pointer;
   }
 
-  > .top-panel-item:hover {
+   .top-panel-item:hover {
     background-color: #333333;
   }
 }

@@ -829,17 +829,9 @@ public static get_system_boot(): boolean {
     if(i) {
       let b = this.get_system_dynamic_files_cookies_config()?.filter((file:  NapicuOsCookiesFileMetadata) => {
         return file.file.fileName === pathFile.removed;
-      })[0];
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      if(i!.length > 1) console.error("[NAPICUOS] Ilegal files");
-
-      if (b) this.get_system_dynamic_files_cookies_config()?.splice(this.get_system_dynamic_files_cookies_config()?.indexOf(b) as number, 1)
+      });
+      if(b!.length > 1) console.error("[NAPICUOS] Ilegal files");
+      if (b) this.get_system_dynamic_files_cookies_config()?.splice(this.get_system_dynamic_files_cookies_config()?.indexOf(b[0]) as number, 1)
       this.update_config_to_cookies();
       return SystemStateMetadata.Success;
     }

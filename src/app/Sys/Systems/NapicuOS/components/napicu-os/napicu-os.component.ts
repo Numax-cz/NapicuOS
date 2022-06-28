@@ -12,7 +12,7 @@ import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "napicuformatter";
 import {SystemCalendarMetadata} from "../../interface/System/Calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
-import {SYSTEM_WALLPAPER} from "../../config/System";
+import {SYSTEM_IMAGES, SYSTEM_WALLPAPER} from "../../config/System";
 
 @Component({
   selector: 'app-napicu-os',
@@ -345,5 +345,17 @@ export class NapicuOSComponent implements OnInit {
 
   get GetActivityMenuApps(): SystemFile[] {
     return NapicuOSComponent.ActivityMenuApps;
+  }
+
+  get GetSettingsImage(): string {
+    return SYSTEM_IMAGES.settings
+  }
+
+  get GetLockImage(): string {
+    return SYSTEM_IMAGES.lock;
+  }
+
+  get GetShutdownImage(): string {
+    return SYSTEM_IMAGES.shutdown;
   }
 }
