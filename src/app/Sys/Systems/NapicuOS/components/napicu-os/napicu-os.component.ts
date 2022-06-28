@@ -79,6 +79,7 @@ export class NapicuOSComponent implements OnInit {
   public static ActivityMenuApps: SystemFile[] = [];
   public static NotificationsFront: SystemNotification[] = [];
   public static NotificationActive: SystemNotification | null = null;
+  public static ToolsContextMenuDisplay: boolean = true;
   public selectedAppContext: number | null = null;
   public selectedAppProperties: number | null = null;
   public static CalendarMenu: SystemCalendarMetadata = {
@@ -130,6 +131,7 @@ export class NapicuOSComponent implements OnInit {
       ) {
         this.closeAppContextMenu();
         this.closeAppPropertiesMenu();
+        this.closeOffContextMenu();
         NapicuOSComponent.DataDisplay = false;
       }
       //e.preventDefault();
@@ -192,6 +194,19 @@ export class NapicuOSComponent implements OnInit {
     this.openNotificationMenu();
   }
 
+  public onClickSettings(): void {
+
+  }
+
+  public onClickLock(): void {
+
+  }
+
+  public onClickOff(): void {
+
+  }
+
+
   public openNotificationMenu(): void {
     if (!NapicuOSComponent.DataDisplay) {
       NapicuOSComponent.NotificationActive = null
@@ -235,6 +250,10 @@ export class NapicuOSComponent implements OnInit {
     this.selectedAppProperties = null;
   }
 
+  protected closeOffContextMenu(): void {
+    NapicuOSComponent.ToolsContextMenuDisplay = false;
+  }
+
   public arrowLeft(): void {
     NapicuOSComponent.CalendarMenu.selectedMonth--;
     if (NapicuOSComponent.CalendarMenu.selectedMonth < 0) NapicuOSComponent.CalendarMenu.selectedMonth = 11;
@@ -270,6 +289,14 @@ export class NapicuOSComponent implements OnInit {
     }
   }
 
+  public onClickToolsContextMenuDisplay(): void {
+    if (NapicuOSComponent.ToolsContextMenuDisplay) {
+      NapicuOSComponent.closeToolsContextMenuDisplay();
+    } else {
+      NapicuOSComponent.openToolsContextMenuDisplay();
+    }
+  }
+
   /**
    * This function is called when the user clicks on app in activities menu
    */
@@ -293,6 +320,14 @@ export class NapicuOSComponent implements OnInit {
   public static openActivityMenu(): void {
     NapicuOS.enable_window_manager();
     NapicuOSComponent.ActivityDisplay = true;
+  }
+
+  public static openToolsContextMenuDisplay(): void{
+    this.ToolsContextMenuDisplay = true;
+  }
+
+  public static closeToolsContextMenuDisplay(): void{
+    this.ToolsContextMenuDisplay = false;
   }
 
   public onClickDesktop(): void {
@@ -345,6 +380,10 @@ export class NapicuOSComponent implements OnInit {
 
   get GetActivityMenuApps(): SystemFile[] {
     return NapicuOSComponent.ActivityMenuApps;
+  }
+
+  get GetToolsContextMenuDisplay(): boolean{
+    return NapicuOSComponent.ToolsContextMenuDisplay;
   }
 
   get GetSettingsImage(): string {

@@ -115,24 +115,24 @@
             </section>
           </div>
           <!--Top menu icons-->
-          <div id="TopPanelIcons">
-            <div class="top-panel-item" >
+          <div id="TopPanelIcons" >
+            <div class="top-panel-item" (click)="onClickToolsContextMenuDisplay()">
               <img src="/assets/systems/NapicuOS/audio.svg"/>
               <img src="/assets/systems/NapicuOS/on-off.svg"/>
             </div>
-            <div
-                 class="NapicuSimpleBoxMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionLeft TopPanelLeftContentMenu"
+            <!--Tools Context Menu-->
+            <div *ngIf="GetToolsContextMenuDisplay"  class="NapicuSimpleBoxMenu NapicuOSSimpleBoxBorder NapicuOSSimpleContextMenuPositionLeft TopPanelLeftContentMenu"
                  clickable="false" style="min-width: 130px !important; top: 50px">
               <ul>
-                <li >
+                <li (click)="onClickSettings()">
                   <img [src]="GetSettingsImage" alt="Settings Icon">
                   Settings
                 </li>
-                <li>
+                <li (click)="onClickLock()">
                   <img [src]="GetLockImage" alt="Lock Icon">
                   Lock
                 </li>
-                <li>
+                <li (click)="onClickOff()">
                   <img [src]="GetShutdownImage" alt="Shutdown Icon">
                   Power OFF
                 </li>
