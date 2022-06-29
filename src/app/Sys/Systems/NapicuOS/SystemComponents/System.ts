@@ -2,6 +2,7 @@ import {Type} from '@angular/core';
 import {SystemComponent} from '../../../../Grub/system/system.component';
 import {Process} from './Process';
 import {NapicuOSComponent} from '../components/napicu-os/napicu-os.component';
+import {BlackscreenComponent} from "../../../../Bios/components/blackscreen/blackscreen.component";
 
 export class System {
   //TODO Doc
@@ -25,6 +26,7 @@ export class System {
   };
 
   public readonly shutDown = (): void => {
+    SystemComponent.SystemComponent = BlackscreenComponent;
     this.onShutDown();
   };
 

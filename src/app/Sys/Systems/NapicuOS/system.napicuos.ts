@@ -114,6 +114,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onShutDown(): void {
+    //TODO Loading screen
+    //TODO Kill all process
+    //TODO Save all cookies
+    //TODO => loading
   }
 
   public async SystemBoot(): Promise<void> {
@@ -233,9 +237,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onLogin(): void {
     if (!NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
       initAllStartUpApps();
-
     }
   }
+
+  /**
+   * Shuts down the NapicuOS
+   */
+  public static shutDown(): void {
+    GrubComponent.GrubActiveSystem.shutDown();
+  }
+
 
   protected static initSystemConfigCookies(): void {
     const i = getCookies<NapicuOsCookiesTemplate>(NAPICUOS_COOKIES_NAME);

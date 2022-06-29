@@ -203,9 +203,8 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public onClickOff(): void {
-
+    NapicuOS.shutDown();
   }
-
 
   public openNotificationMenu(): void {
     if (!NapicuOSComponent.DataDisplay) {
