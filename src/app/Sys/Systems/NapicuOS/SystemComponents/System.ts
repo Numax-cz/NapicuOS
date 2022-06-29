@@ -8,6 +8,7 @@ export class System {
   //TODO Doc
   public declare SystemBooted: boolean;
   public declare SystemProcess: Process[];
+  public declare SystemRunning: boolean;
   public declare component: Type<any>;
   public declare boot: {
     title: string;
@@ -16,6 +17,7 @@ export class System {
 
   constructor() {
     this.SystemBooted = false;
+    this.SystemRunning = false;
     this.SystemProcess = [];
     SystemComponent.SystemComponent = NapicuOSComponent; //! TODO
   }
@@ -23,11 +25,13 @@ export class System {
   public readonly Start = (): void => {
     SystemComponent.SystemComponent = this.component;
     this.onStart();
+    this.SystemRunning = true;
   };
 
   public readonly shutDown = (): void => {
     SystemComponent.SystemComponent = BlackscreenComponent;
     this.onShutDown();
+    this.SystemRunning = false;
   };
 
   public readonly load = (): void => {
