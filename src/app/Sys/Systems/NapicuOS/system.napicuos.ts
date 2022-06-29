@@ -166,9 +166,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Initialization of all users
       this.initUsers();
       //Initialization all dynamic directories
-      this.loadDirectoriesFromConfig();
+      //this.loadDirectoriesFromConfig();
       //Initialization all dynamic files
-      this.loadFilesFromConfig();
+      //this.loadFilesFromConfig();
+
       //Preload all images
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
@@ -812,8 +813,8 @@ public static get_system_boot(): boolean {
    */
   public static creat_dynamic_path_config(path: string, dirName: string): void { //TODO RETURN
     if (!this.check_file_name(dirName)) return;
-    this.creat_path(`${path}${dirName}`);
-    this.add_global_path_to_cookies(`${path}${dirName}`);
+    this.creat_path(`${path}${dirName}/`);
+    this.add_global_path_to_cookies(`${path}${dirName}/`);
     this.update_config_to_cookies();
   }
 
