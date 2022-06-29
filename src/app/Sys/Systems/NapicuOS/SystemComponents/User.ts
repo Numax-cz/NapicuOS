@@ -15,11 +15,6 @@ export class User {
       receive: true
     },
     audioVolume: 1,
-    drives: {
-      dir: {
-        home: {}
-      }
-    }
   };
   public declare userSetting: SystemUserDataMetadata;
 

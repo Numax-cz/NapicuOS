@@ -163,12 +163,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       installAllApps();
       //Init System Config & Users
       NapicuOS.initSystemConfigCookies();
+      //Initialization all dynamic directories
+      this.loadDirectoriesFromConfig();
       //Initialization of all users
       this.initUsers();
-      //Initialization all dynamic directories
-      //this.loadDirectoriesFromConfig();
       //Initialization all dynamic files
-      //this.loadFilesFromConfig();
+      this.loadFilesFromConfig();
 
       //Preload all images
       //await this.loadSystemImages(); //TODO
@@ -278,10 +278,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       [system_default_user, system_root_user].forEach((user: User) => {
         NapicuOS.add_user(user);
       });
-    } else {
+    }
+    else {
       //Init users home directory
+      //NapicuOS.creat_user_home_dirs(new User(user));
       i.user.users.forEach((user: UserConstructorMetadata) => {
-        NapicuOS.mount_user_home_directory(new User(user));
+        NapicuOS.creat_user_home_dirs(user.username);
       });
     }
 
@@ -1556,8 +1558,10 @@ public static get_system_boot(): boolean {
       } else {
         const config = this.get_system_config_from_cookies();
         if (config) config.user.users.push(user);
-        this.creat_dirs(user.userSetting.drives.dir?.["home"], SYSTEM_DEFAULT_HOME_FOLDERS);
-        this.mount_user_home_directory(user);
+        //this.creat_dirs(user.userSetting.drives.dir?.["home"], SYSTEM_DEFAULT_HOME_FOLDERS);
+        this.creat_dynamic_path_config(`/home/`, user.username);
+        this.creat_user_home_dirs(user.username);
+
         if (this.SystemCookiesConfig) {
           this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
             return i;
@@ -1572,16 +1576,14 @@ public static get_system_boot(): boolean {
   }
 
   /**
-   * Creat user's home directory
-   * @param user
+   * creates user folders
+   * @protected
    */
-  public static mount_user_home_directory(user: User): void {
-    let i: systemDirAFileMetadata | undefined = this.get_home_dir();
-    if (i) {
-      this.creat_dir(i, user.username);
-      let usr_folder: systemDirAFileMetadata | undefined = i.dir?.[user.username];
-      if (usr_folder) this.mount_folder(usr_folder, user.userSetting.drives.dir?.["home"].dir)
-    }
+  protected static creat_user_home_dirs(username: string): void {
+    // let home_dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(`/home/${username}/`);
+    let home_dir: systemDirAFileMetadata | undefined = this.get_home_dir()?.dir?.[username];
+    if(!home_dir) console.error("[NAPICUOS] Home doesn't exist ")
+    this.creat_dirs(home_dir || undefined, SYSTEM_DEFAULT_HOME_FOLDERS);
   }
 
   /**
