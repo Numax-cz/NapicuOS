@@ -79,7 +79,7 @@ export class NapicuOSComponent implements OnInit {
   public static ActivityMenuApps: SystemFile[] = [];
   public static NotificationsFront: SystemNotification[] = [];
   public static NotificationActive: SystemNotification | null = null;
-  public static ToolsContextMenuDisplay: boolean = true;
+  public static ToolsContextMenuDisplay: boolean = false;
   public selectedAppContext: number | null = null;
   public selectedAppProperties: number | null = null;
   public static CalendarMenu: SystemCalendarMetadata = {
@@ -199,7 +199,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public onClickLock(): void {
-
+    NapicuOS.logout_user();
   }
 
   public onClickOff(): void {
