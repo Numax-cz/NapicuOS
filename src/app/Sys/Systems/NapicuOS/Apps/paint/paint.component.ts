@@ -24,6 +24,8 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
   protected readonly defaultLineWidht: number = 10;
   public lineWidth: number = this.defaultLineWidht;
   public selectedColor: number = 0;
+  public dataCanvasArray: ImageData[] = [];
+  public index: number = -1;
   public readonly colors: PaintColorsMetadata[] = [
     {
       color: "black",
@@ -48,11 +50,9 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
     },
   ]
 
-  constructor() {
-  }
+  constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.canvas.nativeElement.removeEventListener("mousedown", this.startDraw);
@@ -60,6 +60,8 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
     this.canvas.nativeElement.removeEventListener("mousemove", this.draw);
     this.canvas.nativeElement.removeEventListener("touchend", this.stopDraw);
     this.canvas.nativeElement.removeEventListener("mouseout", this.stopDraw);
+
+    this.dataCanvasArray = [];
   }
 
   ngAfterViewInit(): void {
@@ -85,13 +87,19 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
     } else if (this.lineWidth > 100) this.lineWidth = 100;
   }
 
-  public stopDraw = (): void => {
+  public stopDraw = (event: any): void => {
     if (this.canvasCtx) {
       this.canvasCtx.stroke();
       this.canvasCtx.beginPath();
+      this.painting = false;
     }
 
-    this.painting = false;
+    if(event.type != "mouseout"){
+      let i = this.canvasCtx?.getImageData(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height)
+      if(i) this.dataCanvasArray.push(i);
+      console.log(this.dataCanvasArray)
+      this.index += 1;
+    }
   }
 
   public selectColor(index: number): void {
@@ -100,9 +108,8 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
 
   public draw = (e: MouseEvent): void => {
     if (!this.painting || !this.canvasCtx) return;
-
     let pos: Vector2f = SystemVector2fUpscale(e.offsetX, e.offsetY, this.windowContent.nativeElement.offsetWidth, this.windowContent.nativeElement.offsetHeight, 1920, 1080);
-    console.log(pos);
+
     this.canvasCtx.lineWidth = this.lineWidth;
     this.canvasCtx.lineCap = "round";
     this.canvasCtx.strokeStyle = this.colors[this.selectedColor].color;
@@ -110,6 +117,30 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
     this.canvasCtx.stroke();
     this.canvasCtx.beginPath();
     this.canvasCtx.moveTo(pos.x, pos.y);
+  }
+
+  public clear(): void {
+    if(this.canvasCtx){
+      this.canvasCtx.fillStyle = "white";
+      this.canvasCtx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+      this.canvasCtx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+      this.dataCanvasArray = [];
+      this.index = -1;
+    }
+  }
+
+  public next(): void {
+    if(this.canvasCtx && this.index < this.dataCanvasArray.length - 1){
+      this.index += 1;
+      this.canvasCtx.putImageData(this.dataCanvasArray[this.index], 0, 0);
+    }
+  }
+
+  public undo(): void {
+    if(this.index > 0 && this.canvasCtx){
+      this.index -= 1;
+      this.canvasCtx.putImageData(this.dataCanvasArray[this.index], 0, 0);
+    }
   }
 
   get GetSelectedColor(): string {

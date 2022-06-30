@@ -1,9 +1,10 @@
 <section #WindowContent class="WindowContent BackgroundColor" id="WindowScrollBar">
   <!--Tools-->
   <section class="TopTools">
-    <div>
-      <input [(ngModel)]="lineWidth" (blur)="submitLineWidthFromInput()" (keydown.enter)="submitLineWidthFromInput()" leave id="InputLine" class="NapicuOSSimpleInput" spellcheck="false" type="number"
-             autocomplete="off"/>
+    <div class="ToolsOptionsbr NapicuOSSimpleButton">
+        <button (click)="undo()"><</button>
+        <button (click)="next()">></button>
+        <button (click)="clear()">Clear</button>
     </div>
 
     <!--Colors-->
@@ -11,6 +12,8 @@
         <!--Selected color-->
 <!--        <div class="color" [style]="{'background-color': GetSelectedColor}"></div>-->
       <div class="colors">
+      <input [(ngModel)]="lineWidth" (blur)="submitLineWidthFromInput()" (keydown.enter)="submitLineWidthFromInput()" leave id="InputLine" class="NapicuOSSimpleInput" spellcheck="false" type="number"
+             autocomplete="off" style="margin-right: 16px;"/>
         <div *ngFor="let i of colors; let index = index" class="color" [style]="{'background-color': i.color}" [ngClass]="{SelectedColor: index === selectedColor}" (click)="selectColor(index)">
 <!--          <div *ngIf="selectedColor === index" class="SelectedOption">x</div>-->
         </div>

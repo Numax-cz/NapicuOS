@@ -9,7 +9,7 @@
 
 .TopTools{
   display: flex;
-  background-color: #242224;
+  background-color: #343034;
   padding: 3px;
   align-items: center;
   justify-content: space-between;
@@ -28,6 +28,7 @@
 .colors{
   display: flex;
   float: right;
+  align-items: center;
 }
 
 .color{
@@ -53,4 +54,13 @@
 }
 .SelectedColor{
   box-shadow: 0 0 0px 2px #ffffff;
+}
+.ToolsOptionsbr{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  >*{
+    margin: 0 7px;
+    min-width: 40px;
+  }
 }
