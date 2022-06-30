@@ -50,6 +50,11 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
   }
 
   public stopDraw = (): void => {
+    if (this.canvasCtx){
+      this.canvasCtx.stroke();
+      this.canvasCtx.beginPath();
+    }
+
     this.painting = false;
   }
 
@@ -61,7 +66,6 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
     this.canvasCtx.lineWidth = this.lineWidth;
     this.canvasCtx.lineCap = "round";
     this.canvasCtx.lineTo(pos.x, pos.y);
-
     this.canvasCtx.stroke();
     this.canvasCtx.beginPath();
     this.canvasCtx.moveTo(pos.x, pos.y);
