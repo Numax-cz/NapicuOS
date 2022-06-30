@@ -5,6 +5,7 @@ import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Proces
 import {SystemVector2fUpscale} from "../../scripts/Vector2fUpscale";
 import {Vector2f} from "../../interface/Vector2f";
 import {PaintColorsMetadata} from "../../interface/Apps/Paint";
+import {SYSTEM_APPS_PAINT_CANVAS_RESOLUTION, SYSTEM_APPS_PAINT_DEFAULT_LINE_WIDTH} from "../../config/Apps/Paint";
 
 @Component({
   selector: 'app-paint',
@@ -21,8 +22,8 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
 
   public canvasCtx: CanvasRenderingContext2D | null = null
   public painting: boolean = false;
-  protected readonly defaultLineWidht: number = 10;
-  public lineWidth: number = this.defaultLineWidht;
+
+  public lineWidth: number = SYSTEM_APPS_PAINT_DEFAULT_LINE_WIDTH;
   public selectedColor: number = 0;
   public dataCanvasArray: ImageData[] = [];
   public index: number = -1;
@@ -66,8 +67,8 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
 
   ngAfterViewInit(): void {
     this.canvasCtx = this.canvas.nativeElement.getContext("2d");
-    this.canvas.nativeElement.width = 1920;
-    this.canvas.nativeElement.height = 1080;
+    this.canvas.nativeElement.width = SYSTEM_APPS_PAINT_CANVAS_RESOLUTION.x;
+    this.canvas.nativeElement.height = SYSTEM_APPS_PAINT_CANVAS_RESOLUTION.y;
 
     this.canvas.nativeElement.addEventListener("mousedown", this.startDraw);
     this.canvas.nativeElement.addEventListener("mouseup", this.stopDraw);
@@ -83,7 +84,7 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
 
   public submitLineWidthFromInput(): void {
     if (this.lineWidth == null || this.lineWidth < 1) {
-      this.lineWidth = this.defaultLineWidht;
+      this.lineWidth = SYSTEM_APPS_PAINT_DEFAULT_LINE_WIDTH;
     } else if (this.lineWidth > 100) this.lineWidth = 100;
   }
 
@@ -108,7 +109,13 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
 
   public draw = (e: MouseEvent): void => {
     if (!this.painting || !this.canvasCtx) return;
-    let pos: Vector2f = SystemVector2fUpscale(e.offsetX, e.offsetY, this.windowContent.nativeElement.offsetWidth, this.windowContent.nativeElement.offsetHeight, 1920, 1080);
+    let pos: Vector2f = SystemVector2fUpscale(
+      e.offsetX,
+      e.offsetY,
+      this.windowContent.nativeElement.offsetWidth,
+      this.windowContent.nativeElement.offsetHeight,
+      SYSTEM_APPS_PAINT_CANVAS_RESOLUTION.x,
+      SYSTEM_APPS_PAINT_CANVAS_RESOLUTION.y);
 
     this.canvasCtx.lineWidth = this.lineWidth;
     this.canvasCtx.lineCap = "round";
