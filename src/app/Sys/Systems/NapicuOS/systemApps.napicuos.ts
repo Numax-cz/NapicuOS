@@ -12,6 +12,7 @@ import {SystemAppsUserManager} from "./SystemComponents/Apps/UserManager";
 import {SystemAppsNotepad} from "./SystemComponents/Apps/Notepad";
 import {SystemProcessTime} from "./SystemComponents/Process/Time";
 import {FileManagerResponse} from "./interface/Apps/Response/FileManagerRes";
+import {SystemAppsPaint} from "./SystemComponents/Apps/Paint";
 
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
@@ -49,6 +50,12 @@ export class NapicuApps {
   public static SystemAppWelcome(args?: string[]): Promise<any> {
     return new Promise(() => {
       new SystemAppsWelcome().run()?.Window.open(args);
+    });
+  }
+
+  public static SystemAppPaint(args?: string[]): Promise<any> {
+    return new Promise(() => {
+      new SystemAppsPaint().run()?.Window.open(args);
     });
   }
 

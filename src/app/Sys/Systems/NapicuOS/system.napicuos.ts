@@ -82,6 +82,8 @@ import {IsPathMatch} from "./scripts/PathMatch";
 import {PathHasntLastSlash} from "./scripts/PathChecker";
 import {CommandParams} from "./interface/Commands/CommandParams";
 import {processConstructor} from "./interface/Process";
+import {SystemVector2fUpscale} from "./scripts/Vector2fUpscale";
+import {Vector2f} from "./interface/Vector2f";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
