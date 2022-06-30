@@ -6,3 +6,51 @@
   height: 100%;
   display: block;
 }
+
+.TopTools{
+  display: flex;
+  background-color: #242224;
+  padding: 3px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#InputLine::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#InputLine{
+  width: 50px;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.colors{
+  display: flex;
+  float: right;
+}
+
+.color{
+  width: 23px;
+  height: 23px;
+  position: relative;
+  margin: 0px 3px;
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+.SelectedOption{
+  transform: translate(-50%, 50%);
+  position: absolute;
+  bottom: -10px;
+  font-size: 1rem;
+  width: 7px;
+  left: 50%;
+  height: 7px;
+  border-radius: 50%;
+  //background-color: #00a8ff;
+  background-color: white;
+}
+.SelectedColor{
+  box-shadow: 0 0 0px 2px #ffffff;
+}

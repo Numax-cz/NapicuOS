@@ -1,3 +1,23 @@
 <section #WindowContent class="WindowContent BackgroundColor" id="WindowScrollBar">
+  <!--Tools-->
+  <section class="TopTools">
+    <div>
+      <input [(ngModel)]="lineWidth" (blur)="submitLineWidthFromInput()" (keydown.enter)="submitLineWidthFromInput()" leave id="InputLine" class="NapicuOSSimpleInput" spellcheck="false" type="number"
+             autocomplete="off"/>
+    </div>
+
+    <!--Colors-->
+    <section>
+        <!--Selected color-->
+<!--        <div class="color" [style]="{'background-color': GetSelectedColor}"></div>-->
+      <div class="colors">
+        <div *ngFor="let i of colors; let index = index" class="color" [style]="{'background-color': i.color}" [ngClass]="{SelectedColor: index === selectedColor}" (click)="selectColor(index)">
+<!--          <div *ngIf="selectedColor === index" class="SelectedOption">x</div>-->
+        </div>
+
+      </div>
+    </section>
+  </section>
+  <!--Main view-->
   <canvas #NapicuCanvas id="canvas"></canvas>
 </section>
