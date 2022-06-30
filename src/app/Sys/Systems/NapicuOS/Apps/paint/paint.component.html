@@ -2,9 +2,9 @@
   <!--Tools-->
   <section class="TopTools">
     <div class="ToolsOptionsbr NapicuOSSimpleButton">
-        <button (click)="undo()"><</button>
-        <button (click)="next()">></button>
-        <button (click)="clear()">Clear</button>
+        <button (click)="undo()" [disabled]="!dataCanvasArray.length"><</button>
+        <button (click)="next()" [disabled]="!dataCanvasArray.length">></button>
+        <button (click)="clear()" [disabled]="!dataCanvasArray.length">Clear</button>
     </div>
 
     <!--Colors-->

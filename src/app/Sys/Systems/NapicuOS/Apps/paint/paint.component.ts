@@ -98,7 +98,6 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
     if(event.type != "mouseout"){
       let i = this.canvasCtx?.getImageData(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height)
       if(i) this.dataCanvasArray.push(i);
-      console.log(this.dataCanvasArray)
       this.index += 1;
     }
   }
@@ -106,6 +105,7 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
   public selectColor(index: number): void {
     this.selectedColor = index;
   }
+
 
   public draw = (e: MouseEvent): void => {
     if (!this.painting || !this.canvasCtx) return;
@@ -147,7 +147,7 @@ export class PaintComponent implements OnInit, AfterViewInit, OnDestroy, SystemW
     if(this.index > 0 && this.canvasCtx){
       this.index -= 1;
       this.canvasCtx.putImageData(this.dataCanvasArray[this.index], 0, 0);
-    }
+    }else this.clear();
   }
 
   get GetSelectedColor(): string {

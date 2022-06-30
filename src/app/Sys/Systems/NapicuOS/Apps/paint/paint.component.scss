@@ -1,5 +1,9 @@
 .BackgroundColor{
   background-color: white;
+  //TODO
+  display: flex;
+  overflow: hidden !important;
+  flex-direction: column;
 }
 #canvas{
   width: 100%;
