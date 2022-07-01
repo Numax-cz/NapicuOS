@@ -5,5 +5,6 @@ export const enum SystemAppsProcessName{
   terminal = "Terminal",
   fileManager = "FileManager",
   note = "Note",
-  paint = "Paint"
+  paint = "Paint",
+  flappy = "Flappy"
 }

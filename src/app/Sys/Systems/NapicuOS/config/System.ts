@@ -29,6 +29,11 @@ export enum SYSTEM_IMAGES {
   Info = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/info.png',
   Success = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/success.png',
   Warning = 'assets/systems/NapicuOS/SystemIcons/apps/Alert/warning.png',
+
+  //Apps - Bird
+  bird = "assets/systems/NapicuOS/SystemIcons/apps/Bird/bird.png",
+  pipe = "assets/systems/NapicuOS/SystemIcons/apps/Bird/pipe.png",
+
   //XFD icons
   FileCommander = 'assets/systems/NapicuOS/SystemIcons/XFD/commander.svg',
   Info2 = 'assets/systems/NapicuOS/SystemIcons/XFD/info.svg',
@@ -67,7 +72,8 @@ export enum SYSTEM_IMAGES {
   lock = "assets/systems/NapicuOS/SystemIcons/XFD/lock.svg",
   settings = "assets/systems/NapicuOS/SystemIcons/XFD/settings.svg",
   shutdown = "assets/systems/NapicuOS/SystemIcons/XFD/shutdown.svg",
-  paint = "assets/systems/NapicuOS/SystemIcons/XFD/paint.svg"
+  paint = "assets/systems/NapicuOS/SystemIcons/XFD/paint.svg",
+
 }
 
 export const SYSTEM_DEFAULT_HOME_FOLDERS: string[] = [
