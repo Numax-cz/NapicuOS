@@ -1,3 +1,3 @@
-import {Vector2f} from "../../interface/Vector2f";
-
-
+export const SYSTEM_APPS_FLAPPY_PIPES_COUNT = 10;
+export const SYSTEM_APPS_FLAPPY_PTP_SIZE = 550;
+export const SYSTEM_APPS_FLAPPY_PIPE_SPEED = 5;
