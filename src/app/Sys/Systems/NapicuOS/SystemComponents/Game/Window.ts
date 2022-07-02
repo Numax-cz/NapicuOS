@@ -14,8 +14,10 @@ export abstract class NapicuEngineWindow{
 
   public keyBoard: NapicuKeyboard = new NapicuKeyboard();
 
-
   protected requestId: number | undefined = undefined;
+
+  protected abstract backgroundColor: string;
+
 
   protected init(canvas: ElementRef<HTMLCanvasElement>): void {
     this.canvas = canvas;
@@ -53,6 +55,10 @@ export abstract class NapicuEngineWindow{
 
   public loop = (): void => {
     this.requestId = undefined;
+    if (this.ctx){
+      this.ctx.fillStyle = this.backgroundColor;
+      this.ctx?.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    }
 
     this.update();
     this.render();
@@ -63,24 +69,17 @@ export abstract class NapicuEngineWindow{
   }
 
   public renderObject(object: NapicuEngineGameObject): void {
-    this.ctx?.beginPath();
-    this.ctx?.save();
-    this.ctx?.translate((object.x - object.width/2 ) + object.width/2,  (object.y  - object.height/2) + object.height/2);
+    if(this.ctx){
+      this.ctx.beginPath();
+      this.ctx.save();
+      this.ctx.translate((object.x - object.width/2 ) + object.width/2,  (object.y  - object.height/2) + object.height/2);
 
-    this.ctx?.rotate(object.angle * Math.PI / 180);
+      this.ctx.rotate(object.angle * Math.PI / 180);
 
-    this.ctx?.translate((-object.x + object.width/2) - object.width/2, (-object.y + object.height/2) - object.height/2);
-   // this.ctx?.rect(object.x, object.y, object.width, object.height);
-    this.ctx?.drawImage(object.texture.getTexture(), object.x - object.width/2 , object.y - object.height/2, object.width, object.height);
-    this.ctx?.restore();
+      this.ctx.translate((-object.x + object.width/2) - object.width/2, (-object.y + object.height/2) - object.height/2);
 
-
-
-
-
-
-
-
+      this.ctx.drawImage(object.texture.getTexture(), object.x - object.width/2 , object.y - object.height/2, object.width, object.height);
+      this.ctx.restore();
+    }else console.error("[NAPICUOS] NapicuEngine CTX Error");
   }
-
 }
