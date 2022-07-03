@@ -62,9 +62,9 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
 
 
   protected generatePipes(): void {
-    for (let i = 2; i < SYSTEM_APPS_FLAPPY_PIPES_COUNT + 2; i += 2){
+    for (let i = 0; i < SYSTEM_APPS_FLAPPY_PIPES_COUNT; i += 2){
       //Bottom
-      this.pipes[i] = new FlappyPipe(i * SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE , (SYSTEM_GAME_CANVAS_RESOLUTION.y + FlappyPipe.height/2) - RandomNumber(150, SYSTEM_APPS_FLAPPY_PTP_SIZE) );
+      this.pipes[i] = new FlappyPipe((i + 2) * SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE , this.getPipeRandomPosition() );
       //Top
        let tp_pipe = new FlappyPipe(this.pipes[i].x, this.pipes[i].y - 1000);
        tp_pipe.rotate(180);
@@ -73,13 +73,21 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
 
   }
 
+  protected getPipeRandomPosition(): number{
+    return (SYSTEM_GAME_CANVAS_RESOLUTION.y + FlappyPipe.height/2) - RandomNumber(80, SYSTEM_APPS_FLAPPY_PTP_SIZE);
+  }
+
   protected updatePipes(): void {
-    this.pipes.forEach((pipe: NapicuEngineGameObject) => {
-      pipe.x -= SYSTEM_APPS_FLAPPY_PIPE_SPEED;
-      if(pipe.x + SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE + pipe.width/2 < 0){
-        pipe.x = this.canvas.nativeElement.width + pipe.width/2;
+
+    for(let i = 0; i < this.pipes.length; i ++){
+
+      this.pipes[i].x -= SYSTEM_APPS_FLAPPY_PIPE_SPEED;
+
+      if(this.pipes[i].x + SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE + FlappyPipe.width/2 < 0){
+        this.pipes[i].x = this.canvas.nativeElement.width + FlappyPipe.width/2;
       }
-    });
+    }
+
 
   }
 

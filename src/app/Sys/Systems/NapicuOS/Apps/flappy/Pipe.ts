@@ -6,7 +6,7 @@ export class FlappyPipe extends NapicuEngineGameObject{
 
   protected static readonly srcTexture: string = SYSTEM_IMAGES.pipe;
   public static readonly width = 180;
-  public static readonly height = 550;
+  public static readonly height = 650;
 
   constructor(x: number, y: number) {
     super(x, y, FlappyPipe.width, FlappyPipe.height, FlappyPipe.srcTexture);
