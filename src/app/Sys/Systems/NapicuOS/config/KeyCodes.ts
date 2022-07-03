@@ -1,6 +1,6 @@
 //By https://gist.github.com/jestho/951d81240898958b7e934aa4c56b6ef0
 
-declare enum KeyCodes {
+export const enum KeyCodes {
   BACKSPACE = 8,
   TAB = 9,
   ENTER = 13,

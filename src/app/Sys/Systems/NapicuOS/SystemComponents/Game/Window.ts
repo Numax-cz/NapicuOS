@@ -4,6 +4,7 @@ import {ElementRef} from "@angular/core";
 import {NapicuKeyboard} from "../../scripts/Events";
 import {NapicuEngineGameObject} from "./Object";
 import {SYSTEM_IMAGES} from "../../config/System";
+import {Process} from "../Process";
 
 export abstract class NapicuEngineWindow{
   protected readonly canvasResolution: Vector2f = SYSTEM_GAME_CANVAS_RESOLUTION;
@@ -16,6 +17,8 @@ export abstract class NapicuEngineWindow{
 
   protected requestId: number | undefined = undefined;
 
+  protected gameProcess: Process | null = null;
+
   protected abstract backgroundColor: string;
 
 
@@ -26,20 +29,21 @@ export abstract class NapicuEngineWindow{
     this.canvas.nativeElement.width = this.canvasResolution.x;
     this.canvas.nativeElement.height = this.canvasResolution.y;
 
-    window.addEventListener("keydown", this.keyBoard.event);
-    window.addEventListener("keyup", this.keyBoard.event);
+    window.addEventListener("keydown",  this.onKeyEvent);
+    window.addEventListener("keyup", this.onKeyEvent);
 
     this.onInit();
   }
 
-  public run(canvas: ElementRef<HTMLCanvasElement>): void {
+  public run(canvas: ElementRef<HTMLCanvasElement>, process: Process): void {
     this.init(canvas);
+    this.gameProcess = process;
     window.requestAnimationFrame(this.loop);
   }
 
   public kill(): void {
-    window.removeEventListener("keydown", this.keyBoard.event);
-    window.removeEventListener("keyup", this.keyBoard.event);
+    window.removeEventListener("keydown", this.onKeyEvent);
+    window.removeEventListener("keyup", this.onKeyEvent);
 
     if (this.requestId) {
       window.cancelAnimationFrame(this.requestId);
@@ -68,13 +72,20 @@ export abstract class NapicuEngineWindow{
     }
   }
 
+  protected onKeyEvent = (event: KeyboardEvent): void => {
+    if(this.gameProcess?.Window.activated){
+      this.keyBoard.event(event);
+    }
+  }
+
   public renderObject(object: NapicuEngineGameObject): void {
     if(this.ctx){
+
       this.ctx.beginPath();
       this.ctx.save();
       this.ctx.translate((object.x - object.width/2 ) + object.width/2,  (object.y  - object.height/2) + object.height/2);
 
-      this.ctx.rotate(object.angle * Math.PI / 180);
+      this.ctx.rotate(object.getRotate() * Math.PI / 180);
 
       this.ctx.translate((-object.x + object.width/2) - object.width/2, (-object.y + object.height/2) - object.height/2);
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NapicuEngineWindow} from "../../SystemComponents/Game/Window";
 import {NapicuEngineGameObject} from "../../SystemComponents/Game/Object";
 import {SYSTEM_IMAGES} from "../../config/System";
@@ -10,6 +10,8 @@ import {
 import {SYSTEM_GAME_CANVAS_RESOLUTION} from "../../config/SystemGame";
 import {FlappyPipe} from "./Pipe";
 import {RandomNumber} from "../../scripts/RandomNumber";
+import {KeyCodes} from "../../config/KeyCodes";
+import {Process} from "../../SystemComponents/Process";
 
 
 
@@ -20,6 +22,7 @@ import {RandomNumber} from "../../scripts/RandomNumber";
 })
 export class FlappyComponent extends NapicuEngineWindow implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('NapicuCanvas') declare canvas: ElementRef<HTMLCanvasElement>;
+  @Input() public declare process: Process;
 
   protected player: NapicuEngineGameObject = new NapicuEngineGameObject(100, SYSTEM_GAME_CANVAS_RESOLUTION.y/2, 100, 120, SYSTEM_IMAGES.bird);
 
@@ -36,7 +39,7 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
   }
 
   ngAfterViewInit(): void {
-    this.run(this.canvas);
+    this.run(this.canvas, this.process);
   }
 
   override onInit() {
@@ -78,15 +81,26 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
   }
 
   protected updatePlayer(): void {
+    this.playerGravitation();
+    if(this.keyBoard.isPressed(KeyCodes.SPACE)){
 
+      //TODO CONFIG
+      this.player.velocityY -= 25;
+
+      this.player.rotateDelta -= 0.25;
+
+    }
   }
 
+  protected playerGravitation(): void {
+    this.player.x += this.player.velocityX
+    this.player.y += this.player.velocityY
+    this.player.velocityY *= 0.9299;
+    this.player.velocityX *= 0.925;
+    this.player.velocityY +=  0.6;
 
+    this.player.rotateDelta +=  0.005;
 
-
-
-
-
-
-
+    this.player.rotate(this.player.rotateDelta * 90);
+  }
 }

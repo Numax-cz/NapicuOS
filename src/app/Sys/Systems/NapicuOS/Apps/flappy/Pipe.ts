@@ -11,4 +11,6 @@ export class FlappyPipe extends NapicuEngineGameObject{
   constructor(x: number, y: number) {
     super(x, y, FlappyPipe.width, FlappyPipe.height, FlappyPipe.srcTexture);
   }
+
+
 }
