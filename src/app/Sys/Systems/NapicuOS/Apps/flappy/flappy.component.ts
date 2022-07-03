@@ -3,7 +3,7 @@ import {NapicuEngineWindow} from "../../SystemComponents/Game/Window";
 import {NapicuEngineGameObject} from "../../SystemComponents/Game/Object";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {
-  SYSTEM_APPS_FLAPPY_PIPE_SPEED,
+  SYSTEM_APPS_FLAPPY_PIPE_SPEED, SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE,
   SYSTEM_APPS_FLAPPY_PIPES_COUNT,
   SYSTEM_APPS_FLAPPY_PTP_SIZE
 } from "../../config/Apps/Flappy";
@@ -64,7 +64,7 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
   protected generatePipes(): void {
     for (let i = 2; i < SYSTEM_APPS_FLAPPY_PIPES_COUNT + 2; i += 2){
       //Bottom
-      this.pipes[i] = new FlappyPipe(i * 300 , (SYSTEM_GAME_CANVAS_RESOLUTION.y + FlappyPipe.height/2) - RandomNumber(150, SYSTEM_APPS_FLAPPY_PTP_SIZE) );
+      this.pipes[i] = new FlappyPipe(i * SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE , (SYSTEM_GAME_CANVAS_RESOLUTION.y + FlappyPipe.height/2) - RandomNumber(150, SYSTEM_APPS_FLAPPY_PTP_SIZE) );
       //Top
        let tp_pipe = new FlappyPipe(this.pipes[i].x, this.pipes[i].y - 1000);
        tp_pipe.rotate(180);
@@ -76,9 +76,14 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
   protected updatePipes(): void {
     this.pipes.forEach((pipe: NapicuEngineGameObject) => {
       pipe.x -= SYSTEM_APPS_FLAPPY_PIPE_SPEED;
+      if(pipe.x + SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE + pipe.width/2 < 0){
+        pipe.x = this.canvas.nativeElement.width + pipe.width/2;
+      }
     });
 
   }
+
+
 
   protected updatePlayer(): void {
     this.playerGravitation();
@@ -87,7 +92,7 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
       //TODO CONFIG
       this.player.velocityY -= 25;
 
-      this.player.rotateDelta -= 0.25;
+      this.player.rotateDelta = -0.4;
 
     }
   }
@@ -95,11 +100,12 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
   protected playerGravitation(): void {
     this.player.x += this.player.velocityX
     this.player.y += this.player.velocityY
-    this.player.velocityY *= 0.9299;
+    this.player.velocityY *= 0.93;
     this.player.velocityX *= 0.925;
-    this.player.velocityY +=  0.6;
+    this.player.velocityY +=  0.8;
 
-    this.player.rotateDelta +=  0.005;
+
+    this.player.rotateDelta +=  0.015;
 
     this.player.rotate(this.player.rotateDelta * 90);
   }
