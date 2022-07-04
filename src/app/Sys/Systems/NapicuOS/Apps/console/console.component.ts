@@ -97,6 +97,7 @@ export class ConsoleComponent extends TerminalClass implements OnInit {
       this.creatCommandLine([]);
     }
     this.activeCommand = false;
+    this.selectedCommandHistory = 0;
     this.inputValue.nativeElement.focus();
     this.scrollBottom();
     event.preventDefault();
