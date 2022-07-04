@@ -92,10 +92,10 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
     if(!this.gameStarted || !this.player) return;
     for(let i = 0; i < this.pipes.length; i ++){
 
-      this.pipes[i].x -= SYSTEM_APPS_FLAPPY_PIPE_SPEED;
+      //this.pipes[i].x -= SYSTEM_APPS_FLAPPY_PIPE_SPEED;
 
       //X position
-      if(this.player.x + this.player.width/2 > this.pipes[i].x - FlappyPipe.width/2 &&  this.player.x + this.player.width/2 < this.pipes[i].x + FlappyPipe.width/2){
+      if(this.player.x + this.player.width/2 > this.pipes[i].x - FlappyPipe.width/2 &&  this.player.x - this.player.width/2 < this.pipes[i].x + FlappyPipe.width/2){
         //Y position TOP - BOT
         if((this.player.y - this.player.width/2) < this.pipes[i].y + FlappyPipe.height/2 && (this.player.y + this.player.width/2) > this.pipes[i].y - FlappyPipe.height/2){
           this.gameOver();
