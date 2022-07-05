@@ -14,6 +14,7 @@ import {SystemProcessTime} from "./SystemComponents/Process/Time";
 import {FileManagerResponse} from "./interface/Apps/Response/FileManagerRes";
 import {SystemAppsPaint} from "./SystemComponents/Apps/Paint";
 import {SystemAppsFlappy} from "./SystemComponents/Apps/Flappy";
+import {SystemAppsSettings} from "./SystemComponents/Apps/Settings";
 
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
@@ -69,6 +70,12 @@ export class NapicuApps {
   public static SystemAppFileManager(args?: string[]): Promise<FileManagerResponse> {
     return new Promise((resolve) => {
       new SystemAppsFileManager(resolve).run()?.Window.open(args);
+    });
+  }
+
+  public static SystemAppSettings(args?: string[]): Promise<FileManagerResponse> {
+    return new Promise(() => {
+      new SystemAppsSettings().run()?.Window.open(args);
     });
   }
 
