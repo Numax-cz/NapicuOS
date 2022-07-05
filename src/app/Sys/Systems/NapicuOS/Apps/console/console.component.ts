@@ -30,7 +30,7 @@ export class Line {
 })
 export class ConsoleComponent extends TerminalClass implements OnInit {
   @ViewChild('AppScreen') public declare appScreen: ElementRef;
-  @ViewChild('InputValue') public declare inputValue: ElementRef;
+  @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
 
 
   /**

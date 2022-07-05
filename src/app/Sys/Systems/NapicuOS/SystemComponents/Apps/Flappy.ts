@@ -14,7 +14,7 @@ import {FlappyComponent} from "../../Apps/flappy/flappy.component";
   windowData: Window.centerPos(70, 65),
   resizeAllowed: false,
   fileIconPath: SYSTEM_IMAGES.bird,
-  addToDock: true,
+  addToDock: false,
 })
 export class SystemAppsFlappy extends SystemApp{
   public static declare appData: AppCreatMetadata;
