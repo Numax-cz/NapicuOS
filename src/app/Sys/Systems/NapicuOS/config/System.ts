@@ -54,7 +54,7 @@ export enum SYSTEM_IMAGES {
   BlueFolderHome = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-home.svg",
   Trash = "assets/systems/NapicuOS/SystemIcons/XFD/trash.svg",
   Computer = "assets/systems/NapicuOS/SystemIcons/XFD/computer.svg",
-  Settings = "assets/systems/NapicuOS/SystemIcons/XFD/settings-blue.svg",
+  settings_blue = "assets/systems/NapicuOS/SystemIcons/XFD/settings-blue.svg",
   Drive = "assets/systems/NapicuOS/SystemIcons/XFD/drive.svg",
   BlueFolderDocuments = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-doc.svg",
   BlueFolderDownloads = "assets/systems/NapicuOS/SystemIcons/XFD/folder-blue-downloads.svg",

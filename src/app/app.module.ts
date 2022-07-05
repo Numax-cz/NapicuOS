@@ -40,6 +40,7 @@ import {AlertInputComponent} from './Sys/Systems/NapicuOS/Apps/alert-input/alert
 import {WordpadComponent} from './Sys/Systems/NapicuOS/Apps/wordpad/wordpad.component';
 import { PaintComponent } from './Sys/Systems/NapicuOS/Apps/paint/paint.component';
 import { FlappyComponent } from './Sys/Systems/NapicuOS/Apps/flappy/flappy.component';
+import { SettingsComponent } from './Sys/Systems/NapicuOS/Apps/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { FlappyComponent } from './Sys/Systems/NapicuOS/Apps/flappy/flappy.compo
     AlertInputComponent,
     WordpadComponent,
     PaintComponent,
-    FlappyComponent
+    FlappyComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

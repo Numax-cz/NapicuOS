@@ -10,7 +10,7 @@
     </g>
     <mask id="b">
       <g filter="url(#d)">
-        <rect width="384" height="384" fill-opacity=".30196"/>
+        <rect width="64" height="64" fill-opacity=".30196"/>
       </g>
     </mask>
     <filter id="d" x="0" y="0" width="1" height="1">
