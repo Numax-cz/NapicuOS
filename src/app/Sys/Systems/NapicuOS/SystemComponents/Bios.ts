@@ -1,4 +1,5 @@
 import {VM_COMPUTER_INFORMATION} from "../../../../Bios/vm_computer";
+import {Current} from "../../../../Bios/Config/FlashInformationData";
 
 export class NapicuBios{
 
@@ -20,6 +21,18 @@ export class NapicuBios{
 
   public static get_serial_number(): string {
     return VM_COMPUTER_INFORMATION.serial_number;
+  }
+
+  public static get_bios_version(): string {
+    return Current.ver;
+  }
+
+  public static get_board_model(): string{
+    return Current.board;
+  }
+
+  public static get_bios_version_date(): string{
+    return Current.date;
   }
 
 
