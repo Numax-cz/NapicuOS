@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MainInfo} from '../../Informations';
+import {BiosMainInformation} from '../../Informations';
 import {BiosSettings} from '../../ToolSettings';
 import {Informations} from '../../interface/Informations';
 import {settings, ToolSettings} from '../../interface/ToolSettings';
@@ -13,7 +13,7 @@ import {isTime} from '../../Scripts/Type';
 })
 export class BiosMainComponent implements OnInit {
   public MainOption: ToolSettings = BiosSettings.Main;
-  public MainOptionInfo: Informations[] = MainInfo();
+  public MainOptionInfo: Informations[] = BiosMainInformation();
 
   constructor() {
   }

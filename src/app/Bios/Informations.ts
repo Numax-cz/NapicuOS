@@ -1,7 +1,7 @@
 import {Informations} from './interface/Informations';
 import {lang} from './Config/BiosMenuList';
 
-export function MainInfo(): Informations[] {
+export function BiosMainInformation(): Informations[] {
   return [
     {
       title: lang.MainInfoTitle.cpu_type,
