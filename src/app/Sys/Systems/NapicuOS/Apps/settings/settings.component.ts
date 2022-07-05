@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SettingsOptionsMetadata} from "../../interface/Apps/Settings";
+import {SYSTEM_APPS_SETTINGS_OPTIONS} from "../../config/Apps/Settings";
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
+  public options: SettingsOptionsMetadata[] = SYSTEM_APPS_SETTINGS_OPTIONS;
+  public selectedOption: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+  public clickOption(index: number): void {
+    this.selectedOption = index;
   }
 
 }

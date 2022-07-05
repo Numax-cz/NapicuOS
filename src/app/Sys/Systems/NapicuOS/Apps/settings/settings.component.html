@@ -1,1 +1,21 @@
-<p>settings works!</p>
+<section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
+
+
+  <section class="BarOptions">
+    <!--Left bar-->
+    <div class="LeftBox">
+
+      <ul>
+        <li (click)="clickOption(index)" *ngFor="let i of options; let index = index">
+          {{i.name}}
+        </li>
+      </ul>
+    </div>
+    <!--Right bar-->
+    <section class="RightBox">
+
+    </section>
+
+  </section>
+
+</section>
