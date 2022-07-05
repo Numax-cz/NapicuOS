@@ -41,6 +41,7 @@ import {WordpadComponent} from './Sys/Systems/NapicuOS/Apps/wordpad/wordpad.comp
 import { PaintComponent } from './Sys/Systems/NapicuOS/Apps/paint/paint.component';
 import { FlappyComponent } from './Sys/Systems/NapicuOS/Apps/flappy/flappy.component';
 import { SettingsComponent } from './Sys/Systems/NapicuOS/Apps/settings/settings.component';
+import { AboutComponent } from './Sys/Systems/NapicuOS/Apps/settings/about/about.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { SettingsComponent } from './Sys/Systems/NapicuOS/Apps/settings/settings
     WordpadComponent,
     PaintComponent,
     FlappyComponent,
-    SettingsComponent
+    SettingsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
