@@ -7,26 +7,22 @@
     <div class="NapicuOSSimpleGTable table">
       <ul>
         <li>Device Name</li>
-        <li>localhost-live</li>
+        <li>{{GetDeviceName}}</li>
       </ul>
     </div>
 
     <div class="NapicuOSSimpleGTable table">
       <ul>
-        <div>Hardware Model</div>
-        <div>VirtualBox</div>
-      </ul>
-      <ul>
         <div>Memory</div>
-        <div>10 GiB</div>
+        <div>{{GetMemSize}}</div>
       </ul>
       <ul>
         <div>Processor</div>
-        <div>i5-9400F CPU &2.90GHz</div>
+        <div>{{GetCpuModel}}</div>
       </ul>
       <ul>
         <div>Graphics</div>
-        <div>RTX 3090TI</div>
+        <div>{{GetGpuModel}}</div>
       </ul>
       <ul>
         <div>Disk Capacity</div>
