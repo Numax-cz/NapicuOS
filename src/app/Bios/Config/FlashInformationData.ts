@@ -55,7 +55,7 @@ export var FlashingText: FlashingTxt = {
   3: 'Verifying BIOS:',
 };
 
-export var Drive: Drives[] = [
+export var Drive: Drives[] = [ //TODO change
   {
     title: 'A',
     description: '',

@@ -8,7 +8,7 @@ import {NapicuOS} from '../../Sys/Systems/NapicuOS/system.napicuos';
 /**
  * Main disks
  */
-export const drive: SystemDrives[] = [
+export const drive: SystemDrives[] = [ //TODO change
   {
     title: 'IBM 1405 0.0075 GB',
     data: {},
