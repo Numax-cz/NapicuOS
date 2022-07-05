@@ -1,0 +1,16 @@
+.NapicuOSSimpleGTable{
+
+  >ul{
+     display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 10px;
+    border: 1px solid black;
+    border-top: 0;
+    background-color: var(--NapicuClassicGray);
+  }
+
+  >ul:first-child {
+    border-top: 1px solid black !important;
+  }
+}
