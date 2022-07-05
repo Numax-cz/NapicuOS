@@ -7,6 +7,10 @@ export class NapicuBios{
     return VM_COMPUTER_INFORMATION.cpu;
   }
 
+  public static get_gpu_name(): string {
+    return VM_COMPUTER_INFORMATION.gpu
+  }
+
   public static get_cpu_speed(): string {
     return VM_COMPUTER_INFORMATION.cpu_speed;
   }
@@ -34,11 +38,4 @@ export class NapicuBios{
   public static get_bios_version_date(): string{
     return Current.date;
   }
-
-
-
-
-
-
-
 }
