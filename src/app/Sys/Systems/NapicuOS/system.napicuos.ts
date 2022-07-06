@@ -33,7 +33,7 @@ import {
   SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
-  SYSTEM_IMAGES,
+  SYSTEM_IMAGES, SYSTEM_INFORMATION,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH
@@ -332,6 +332,27 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
 // * * * Getters * * *
+  /**
+   * Returns system name
+   */
+  public static get_system_information_os_name(): string {
+    return SYSTEM_INFORMATION.name;
+  }
+
+  /**
+   * Returns system version
+   */
+  public static get_system_information_os_version(): string {
+    return SYSTEM_INFORMATION.ver;
+  }
+
+  /**
+   * Returns system type - 32bit/64bit
+   */
+  public static get_system_information_os_type(): string {
+    return SYSTEM_INFORMATION.type;
+  }
+
 /**
    * Returns system time
    */
@@ -342,9 +363,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns whether the system has been started
    */
-public static get_system_boot(): boolean {
-    return GrubComponent.GrubActiveSystem.SystemBooted;
-  }
+  public static get_system_boot(): boolean {
+      return GrubComponent.GrubActiveSystem.SystemBooted;
+    }
 
   /**
    * Returns if the system dock is displayed

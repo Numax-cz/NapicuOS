@@ -3,6 +3,12 @@ import {windowButtonsMetadata, windowData} from './Window/WindowData';
 import {SystemWindowConstructorMetadata} from "./Window/Window";
 import {SystemFile} from "../SystemComponents/File";
 
+export declare interface SystemInformation{
+  name: string,
+  type: string,
+  ver: string,
+}
+
 export declare interface onStartUp {
   onStart(): void;
 }
