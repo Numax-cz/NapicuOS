@@ -43,6 +43,7 @@ import { FlappyComponent } from './Sys/Systems/NapicuOS/Apps/flappy/flappy.compo
 import { SettingsComponent } from './Sys/Systems/NapicuOS/Apps/settings/settings.component';
 import { AboutComponent } from './Sys/Systems/NapicuOS/Apps/settings/about/about.component';
 import { TimeComponent } from './Sys/Systems/NapicuOS/Apps/settings/time/time.component';
+import { UsersComponent } from './Sys/Systems/NapicuOS/Apps/settings/users/users.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { TimeComponent } from './Sys/Systems/NapicuOS/Apps/settings/time/time.co
     FlappyComponent,
     SettingsComponent,
     AboutComponent,
-    TimeComponent
+    TimeComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
