@@ -81,7 +81,8 @@ export enum SYSTEM_IMAGES {
   settings = "assets/systems/NapicuOS/SystemIcons/XFD/settings.svg",
   shutdown = "assets/systems/NapicuOS/SystemIcons/XFD/shutdown.svg",
   paint = "assets/systems/NapicuOS/SystemIcons/XFD/paint.svg",
-  time = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/time.svg"
+  time = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/time.svg",
+  users = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/users.svg"
 
 }
 
