@@ -31,6 +31,15 @@ export class AboutComponent implements OnInit {
     return NapicuOS.get_hostname();
   }
 
+  get GetOSName(): string {
+    return NapicuOS.get_system_information_os_name();
+  }
 
+  get GetOSVersion(): string {
+    return NapicuOS.get_system_information_os_version();
+  }
 
+  get GetOSType(): string {
+    return NapicuOS.get_system_information_os_type();
+  }
 }

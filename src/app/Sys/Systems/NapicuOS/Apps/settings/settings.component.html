@@ -6,7 +6,8 @@
     <div class="LeftBox">
 
       <ul>
-        <li (click)="clickOption(index)" *ngFor="let i of options; let index = index">
+        <li (click)="clickOption(index)" *ngFor="let i of options; let index = index" style="padding-left: 3% !important;">
+          <img [src]="i.icon" alt="Icon">
           {{i.name}}
         </li>
       </ul>
