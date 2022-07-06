@@ -44,7 +44,7 @@ export enum SYSTEM_IMAGES {
 
   //XFD icons
   FileCommander = 'assets/systems/NapicuOS/SystemIcons/XFD/commander.svg',
-  Info2 = 'assets/systems/NapicuOS/SystemIcons/XFD/info.svg',
+  Info2 = 'assets/systems/NapicuOS/SystemIcons/XFD/symbols/info.svg',
   Internet = 'assets/systems/NapicuOS/SystemIcons/XFD/internet.svg',
   Menu = 'assets/systems/NapicuOS/SystemIcons/XFD/menu.svg',
   Monitor = 'assets/systems/NapicuOS/SystemIcons/XFD/monitor.svg',
@@ -81,7 +81,7 @@ export enum SYSTEM_IMAGES {
   settings = "assets/systems/NapicuOS/SystemIcons/XFD/settings.svg",
   shutdown = "assets/systems/NapicuOS/SystemIcons/XFD/shutdown.svg",
   paint = "assets/systems/NapicuOS/SystemIcons/XFD/paint.svg",
-  time = "assets/systems/NapicuOS/SystemIcons/XFD/time.svg"
+  time = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/time.svg"
 
 }
 
