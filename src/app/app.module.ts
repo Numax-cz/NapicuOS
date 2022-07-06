@@ -42,6 +42,7 @@ import { PaintComponent } from './Sys/Systems/NapicuOS/Apps/paint/paint.componen
 import { FlappyComponent } from './Sys/Systems/NapicuOS/Apps/flappy/flappy.component';
 import { SettingsComponent } from './Sys/Systems/NapicuOS/Apps/settings/settings.component';
 import { AboutComponent } from './Sys/Systems/NapicuOS/Apps/settings/about/about.component';
+import { TimeComponent } from './Sys/Systems/NapicuOS/Apps/settings/time/time.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AboutComponent } from './Sys/Systems/NapicuOS/Apps/settings/about/about
     PaintComponent,
     FlappyComponent,
     SettingsComponent,
-    AboutComponent
+    AboutComponent,
+    TimeComponent
   ],
   imports: [
     BrowserModule,
