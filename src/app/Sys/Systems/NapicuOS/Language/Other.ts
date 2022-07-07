@@ -18,3 +18,9 @@ export const lang_Places_cs = "Místa";
 
 export const lang_Devices_en = "Devices";
 export const lang_Devices_cs = "Zařízení";
+
+export const lang_Disabled_en = "Disabled";
+export const lang_Disabled_cs = "Zakázáno";
+
+export const lang_Enabled_en = "Enabled";
+export const lang_Enabled_cs = "Povoleno";

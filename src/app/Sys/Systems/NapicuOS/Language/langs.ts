@@ -7,7 +7,7 @@ import {
   lang_Creat_new_dir_en,
   lang_Creat_new_doc_cs,
   lang_Creat_new_doc_en,
-  lang_Devices_cs,
+  lang_Devices_cs, lang_Disabled_cs, lang_Disabled_en, lang_Enabled_cs, lang_Enabled_en,
   lang_Enter_name_cs,
   lang_Enter_name_en,
   lang_enter_new_name_cs,
@@ -43,7 +43,9 @@ export const NapicuOSLanguages = {
       places: lang_Places_en,
       devices: lang_Devices_cs,
       enter_new_name: lang_enter_new_name_en,
-      rename: lang_rename_en
+      rename: lang_rename_en,
+      disabled: lang_Disabled_en,
+      enabled: lang_Enabled_en,
     }
   },
 
@@ -69,7 +71,9 @@ export const NapicuOSLanguages = {
       places: lang_Places_cs,
       devices: lang_Devices_cs,
       enter_new_name: lang_enter_new_name_cs,
-      rename: lang_rename_cs
+      rename: lang_rename_cs,
+      disabled: lang_Disabled_cs,
+      enabled: lang_Enabled_cs,
     }
   }
 }
