@@ -6,6 +6,8 @@
 - Použitý font [Perfect DOS VGA 437](https://www.dafont.com/perfect-dos-vga-437.font)
 - Překlad [DeepL](https://www.deepl.com/)
 
+---
+
 ## Preview
 
 ![NapicuBiosMainScreen](/src/assets/preview/MainBiosScreen.webp)
@@ -13,6 +15,10 @@
 ![NapicuBiosFlashScreen](/src/assets/preview/BiosUpdate.webp)
 ![NapicuOSAppFileManagerScreen](/src/assets/preview/fileManager.png)
 ![NapicuOSAppWindowScreen](/src/assets/preview/systemAppsScreen.webp)
+![NapicuOSPaint](/src/assets/preview/paint.webp)
+![NapicuOSCalendar](/src/assets/preview/cale.webp)
+
+---
 
 ## Instalace
 
