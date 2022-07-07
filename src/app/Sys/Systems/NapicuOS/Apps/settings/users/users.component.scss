@@ -1,0 +1,36 @@
+.MainContent{
+  padding: 50px;
+  color: var(--NapicuTextColor);
+  width: 40%;
+  margin: auto;
+
+}
+
+.UserProfile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img{
+    width: 90px;
+    height: 90px;
+    background: gray;
+    border-radius: 50%;
+
+  }
+
+  h1{
+    font-size: 3.25rem;
+    margin-left: 1.5rem;
+  }
+}
+
+.UserSettings{
+  margin: 90px auto;
+}
+
+.table{
+  >ul{
+    cursor: pointer;
+  }
+}

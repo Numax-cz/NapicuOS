@@ -6,6 +6,7 @@ export class User {
   public username: string = 'user';
   public declare password: string;
   public declare permissions: SystemUserPermissionsEnumMetadata;
+  public declare autoAuth: boolean;
   public static readonly defaultUserSettings: SystemUserDataMetadata = {
     appsInDock: [],
     notifications: {
@@ -25,5 +26,6 @@ export class User {
     this.password = data.password;
     this.permissions = data.permissions || SystemUserPermissionsEnumMetadata.User;
     this.userSetting = data.userSetting || copy(User.defaultUserSettings);
+    this.autoAuth = false;
   }
 }

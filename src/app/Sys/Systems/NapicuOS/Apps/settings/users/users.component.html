@@ -1,1 +1,23 @@
-<p>users works!</p>
+<section class="MainContent">
+  <!-- Users profile -->
+  <div class="UserProfile">
+    <img [src]="GetUserIcon" alt="User">
+    <h1>{{GetActiveUserName}}</h1>
+  </div>
+
+  <!--Settings -->
+  <div class="UserSettings">
+    <div>Authentication & Login </div>
+    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
+      <ul>
+        <div>Password</div>
+        <div>None</div>
+      </ul>
+      <ul>
+        <div>Automatic login</div>
+        <div>{{GetActiveUserAuth}}</div>
+      </ul>
+
+    </div>
+  </div>
+</section>

@@ -10,7 +10,7 @@ import {SYSTEM_APPS_SETTINGS_OPTIONS} from "../../config/Apps/Settings";
 export class SettingsComponent implements OnInit {
 
   public options: SettingsOptionsMetadata[] = SYSTEM_APPS_SETTINGS_OPTIONS;
-  public selectedOption: number = 0;
+  public selectedOption: number = 1;
 
   constructor() { }
 
