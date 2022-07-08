@@ -84,6 +84,7 @@ import {CommandParams} from "./interface/Commands/CommandParams";
 import {processConstructor} from "./interface/Process";
 import {SystemVector2fUpscale} from "./scripts/Vector2fUpscale";
 import {Vector2f} from "./interface/Vector2f";
+import {InputButtonTypeMetadata} from "./interface/InputButtonType";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -175,7 +176,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload all images
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
-      //await this.loadSystemSounds(); //TODO
+      await this.loadSystemSounds(); //TODO
 
 
       resolve();
@@ -648,27 +649,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Plays the audio file
    * @param src Audio file
+   * @param volume Audio volume
    */
-  public static play_audio(src: string): void {
-    new NapicuAudio(src, this.get_user_settings_audio_volume()).play();
-  }
-
-  /**
-   * Plays system audio file
-   * @param systemAudio
-   */
-  public static play_system_audio(systemAudio: keyof typeof SYSTEM_SOUNDS): void {
-    let file = this.get_file_by_file_name(this.get_sounds_dir(), systemAudio);
-    if (file instanceof SystemFile) {
-      file.open();
-    }
+  public static play_audio(src: string, volume?: number): void {
+    new NapicuAudio(src, volume || this.get_user_settings_audio_volume()).play();
   }
 
   /**
    * Plays the notification sound
    */
   public static audio_play_notification(): void {
-    this.play_system_audio("LongPop");
+    this.play_audio(SYSTEM_SOUNDS.LongPop);
   }
 
   /**
@@ -1789,11 +1780,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Creates and opens a new system alert with input
    */
-  public static input_alert(title: string, value: string, icon?: string): Promise<string | null> {
+  public static input_alert(title: string, value: string, icon?: string, buttonType?: InputButtonTypeMetadata): Promise<string | null> {
     return new Promise((resolve) => {
       new Process({
         processTitle: 'SystemAlert',
-        Window: new SystemInputAlert(title, value, icon, resolve)
+        Window: new SystemInputAlert(title, value, icon, buttonType, resolve)
       }).run()?.Window.open();
     });
   }
@@ -1929,5 +1920,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static check_file_name(value: string): boolean {
     return SYSTEM_FILE_NAME_REGEX.test(value);
+  }
+
+  /**
+   * Returns button type
+   */
+  public static get_button_type_creat_cancel(): InputButtonTypeMetadata{
+    return {
+      submit: this.get_language_words().other.creat.creat_any,
+      reject: this.get_language_words().other.cancel_any
+    }
   }
 }
