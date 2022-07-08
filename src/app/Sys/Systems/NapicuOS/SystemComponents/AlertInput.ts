@@ -6,6 +6,9 @@ import {AlertInputComponent} from "../Apps/alert-input/alert-input.component";
 import {WindowData} from "../interface/WindowData";
 import {InputAlertData} from "../interface/InputAlert";
 
+import {InputButtonTypeMetadata} from "../interface/InputButtonType";
+import {NapicuOS} from "../system.napicuos";
+
 
 export class SystemInputAlert extends Window implements WindowData<InputAlertData> {
   public static defaultSize: windowData = {
@@ -22,6 +25,7 @@ export class SystemInputAlert extends Window implements WindowData<InputAlertDat
     title: string,
     value: string,
     icon: string | undefined,
+    buttonType: InputButtonTypeMetadata | undefined,
     public resolve: (value: (PromiseLike<string | null> | string | null)) => void,
   ) {
     super({
@@ -39,8 +43,10 @@ export class SystemInputAlert extends Window implements WindowData<InputAlertDat
       title: title,
       value: value,
       icon: icon,
-      inputData: null
+      inputData: null,
+      buttonType: buttonType || NapicuOS.get_button_type_creat_cancel()
     };
+
   }
 
   public submit(value: string): void {

@@ -17,8 +17,6 @@ import {InputAlertData} from "../../interface/InputAlert";
 import {FindParam} from "../../scripts/FindParam";
 import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
-import {SystemProcessTime} from "../../SystemComponents/Process/Time";
-import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 
 @Component({
@@ -255,7 +253,8 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   protected renameDirectory = async (): Promise<void> => {
     this.enableFreezeContent();
-    let new_dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.rename, NapicuOS.get_language_words().other.enter_new_name, SYSTEM_IMAGES.BlueFolder);
+    const ln = NapicuOS.get_language_words();
+    let new_dir_name: string | null = await NapicuOS.input_alert(ln.other.rename, ln.other.enter_new_name, SYSTEM_IMAGES.BlueFolder, NapicuOS.get_button_type_creat_cancel());
     if(new_dir_name){
       if(NapicuOS.check_file_name(new_dir_name)){
          NapicuOS.rename_dir(ReplaceSystemVariables(`${this.startDirectory}${this.selectedFileDir}`), new_dir_name);
@@ -290,7 +289,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   public creatDirectory = async (): Promise<void> => {
     this.enableFreezeContent();
-    let dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_dir, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.BlueFolder);
+    let dir_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_dir, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.BlueFolder, NapicuOS.get_button_type_creat_cancel());
     if (dir_name) {
       NapicuOS.creat_dynamic_path_config(ReplaceSystemVariables(this.startDirectory), dir_name);
       this.updateViewFilesAndDirs();
@@ -299,7 +298,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public creatDocument = async (): Promise<void> => {
-    let doc_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_doc, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.AppDocText);
+    let doc_name: string | null = await NapicuOS.input_alert(NapicuOS.get_language_words().other.creat.creat_doc, `${NapicuOS.get_language_words().other.enter_name}:`, SYSTEM_IMAGES.AppDocText, NapicuOS.get_button_type_creat_cancel());
     if (doc_name) {
       let dir_pth: ReturnGetDirByPathMetadata = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
       NapicuOS.creat_dynamic_document(ReplaceSystemVariables(this.startDirectory), doc_name);
