@@ -3,6 +3,10 @@ import {lang_Month_cs, lang_Month_en} from "./Months";
 import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
+  lang_Cancel_any_cs,
+  lang_Cancel_any_en,
+  lang_Creat_any_cs,
+  lang_Creat_any_en,
   lang_Creat_new_dir_cs,
   lang_Creat_new_dir_en,
   lang_Creat_new_doc_cs,
@@ -37,8 +41,10 @@ export const NapicuOSLanguages = {
     other: {
       creat: {
         creat_dir: lang_Creat_new_dir_en,
-        creat_doc: lang_Creat_new_doc_en
+        creat_doc: lang_Creat_new_doc_en,
+        creat_any: lang_Creat_any_en
       },
+      cancel_any: lang_Cancel_any_en,
       enter_name: lang_Enter_name_en,
       places: lang_Places_en,
       devices: lang_Devices_en,
@@ -65,8 +71,10 @@ export const NapicuOSLanguages = {
     other: {
       creat: {
         creat_dir: lang_Creat_new_dir_cs,
-        creat_doc: lang_Creat_new_doc_cs
+        creat_doc: lang_Creat_new_doc_cs,
+        creat_any: lang_Creat_any_cs
       },
+      cancel_any: lang_Cancel_any_cs,
       enter_name: lang_Enter_name_cs,
       places: lang_Places_cs,
       devices: lang_Devices_cs,

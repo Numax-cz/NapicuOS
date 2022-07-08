@@ -1,6 +1,9 @@
 export const lang_Creat_new_doc_en = "Creat a new document";
 export const lang_Creat_new_doc_cs = "Vytovřit nový dokument";
 
+export const lang_Creat_any_en = "Creat";
+export const lang_Creat_any_cs = "Vytovřit";
+
 export const lang_Creat_new_dir_en = "Creat a new directory";
 export const lang_Creat_new_dir_cs = "Vytovřit nový adresář";
 
@@ -24,3 +27,6 @@ export const lang_Disabled_cs = "Zakázáno";
 
 export const lang_Enabled_en = "Enabled";
 export const lang_Enabled_cs = "Povoleno";
+
+export const lang_Cancel_any_en = "Cancel";
+export const lang_Cancel_any_cs = "Zrušit";
