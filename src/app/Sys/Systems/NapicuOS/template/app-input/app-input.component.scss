@@ -1,0 +1,54 @@
+.Input{
+
+  background-color: var(--NapicuClassicDarkDarker);
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 16px;
+}
+
+.alertContent {
+  color: white;
+  padding: 10px 10px;
+}
+
+.alertFontSize {
+  font-size: var(--NapicuAPPSAlertTextSize);
+}
+
+.alertImgSize {
+  width: 57px;
+  height: 57px;
+}
+
+.Container {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 50px;
+  }
+}
+
+.ValueTXT {
+  color: var(--NapicuTextColor);
+}
+
+.Buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin: 0px 2px;
+    min-width: 80px;
+  }
+}
+
+.alertButton {
+  width: 100%;
+  text-align: right;
+
+  button {
+    width: 20%;
+  }
+
+}

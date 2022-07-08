@@ -44,6 +44,7 @@ import { SettingsComponent } from './Sys/Systems/NapicuOS/Apps/settings/settings
 import { AboutComponent } from './Sys/Systems/NapicuOS/Apps/settings/about/about.component';
 import { TimeComponent } from './Sys/Systems/NapicuOS/Apps/settings/time/time.component';
 import { UsersComponent } from './Sys/Systems/NapicuOS/Apps/settings/users/users.component';
+import { AppInputComponent } from './Sys/Systems/NapicuOS/template/app-input/app-input.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { UsersComponent } from './Sys/Systems/NapicuOS/Apps/settings/users/users
     SettingsComponent,
     AboutComponent,
     TimeComponent,
-    UsersComponent
+    UsersComponent,
+    AppInputComponent
   ],
   imports: [
     BrowserModule,
