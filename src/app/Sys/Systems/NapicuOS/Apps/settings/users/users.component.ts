@@ -30,4 +30,10 @@ export class UsersComponent implements OnInit {
     return 'NULL';
   }
 
+  get GetPencilIcon(): string {
+    return SYSTEM_IMAGES.pencil;
+  }
+
+
+
 }

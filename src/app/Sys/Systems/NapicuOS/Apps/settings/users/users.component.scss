@@ -23,6 +23,15 @@
     font-size: 3.25rem;
     margin-left: 1.5rem;
   }
+
+  .edit{
+    width: 35px !important;
+    height: 35px !important;
+    margin-left: 30px;
+    cursor: pointer;
+    filter: brightness(0.7);
+    background: none!important;
+  }
 }
 
 .UserSettings{
