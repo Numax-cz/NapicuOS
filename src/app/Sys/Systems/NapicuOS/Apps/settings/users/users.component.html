@@ -3,7 +3,7 @@
   <div class="UserProfile">
     <img [src]="GetUserIcon" alt="User">
     <h1>{{GetActiveUserName}}</h1>
-    <img class="edit" [src]="GetPencilIcon" alt="Edit">
+    <img class="edit" [src]="GetPencilIcon" alt="Edit" (click)="openSetUserNameMenu()">
   </div>
 
   <!--Settings -->

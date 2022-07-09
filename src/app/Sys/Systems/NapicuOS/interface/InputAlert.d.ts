@@ -1,5 +1,7 @@
 import {InputButtonTypeMetadata} from "./InputButtonType";
 
+declare type InputType = "password" | "text";
+
 export declare interface InputAlertData {
   title: string,
   value: string,
@@ -14,7 +16,8 @@ export declare type AppInputSubmitFunction = (value: string) => void;
 
 declare interface InputAppAlertData {
   value: string,
-  buttonType: InputButtonTypeMetadata | null
+  buttonType: InputButtonTypeMetadata | null,
+  inputType?: InputType
 }
 
 export declare interface AppMenuInputData{

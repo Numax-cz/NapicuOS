@@ -45,7 +45,8 @@ export class UsersComponent implements OnInit {
         value: 'Enter new username',
         buttonType: NapicuOS.get_button_type_creat_cancel()
       },
-      submitFunction: this.submitNewUserName
+      submitFunction: this.submitNewUserName,
+      rejectFunction: this.closeInputMenu
     }
     this.openInputMenu();
   }
@@ -55,9 +56,11 @@ export class UsersComponent implements OnInit {
     this.inputMenuData = {
       inputData: {
         value: 'Enter new password',
-        buttonType: NapicuOS.get_button_type_creat_cancel()
+        buttonType: NapicuOS.get_button_type_creat_cancel(),
+        inputType: "password"
       },
       submitFunction: this.submitNewUserPassword,
+      rejectFunction: this.closeInputMenu
     }
     this.openInputMenu();
   }
@@ -77,7 +80,7 @@ export class UsersComponent implements OnInit {
     this.showInputMenu = true;
   }
 
-  protected closeInputMenu(): void {
+  protected closeInputMenu = (): void  => {
     this.showInputMenu = false;
   }
 
