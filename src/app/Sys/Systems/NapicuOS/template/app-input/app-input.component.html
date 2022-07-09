@@ -2,13 +2,13 @@
   <div class="Container">
 
     <div style="margin-left: auto;width: 80%;">
-      <span class="ValueTXT">xd</span>
+      <span class="ValueTXT">{{data.value}}</span>
 
       <input [(ngModel)]="inputValue" class="NapicuOSSimpleInput" type="text" name="value">
     </div>
   </div>
   <div class="NapicuOSSimpleButton Buttons">
-    <button (click)="reject()">Cancel</button>
-    <button (click)="submit()">Create</button>
+    <button (click)="reject()">{{data.buttonType?.reject}}</button>
+    <button (click)="submit(inputValue)">{{data.buttonType?.submit}}</button>
   </div>
 </section>

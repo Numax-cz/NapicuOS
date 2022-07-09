@@ -11,8 +11,8 @@
       </div>
     </div>
     <div class="NapicuOSSimpleButton Buttons">
-      <button (click)="reject()">Cancel</button>
-      <button (click)="submit()">Create</button>
+      <button (click)="reject()">{{data.buttonType?.reject}}</button>
+      <button (click)="submit()">{{data.buttonType?.submit}}</button>
     </div>
   </section>
 </section>
