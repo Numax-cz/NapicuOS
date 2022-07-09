@@ -33,7 +33,8 @@ import {
   SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
-  SYSTEM_IMAGES, SYSTEM_INFORMATION,
+  SYSTEM_IMAGES,
+  SYSTEM_INFORMATION,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH
@@ -82,8 +83,6 @@ import {IsPathMatch} from "./scripts/PathMatch";
 import {PathHasntLastSlash} from "./scripts/PathChecker";
 import {CommandParams} from "./interface/Commands/CommandParams";
 import {processConstructor} from "./interface/Process";
-import {SystemVector2fUpscale} from "./scripts/Vector2fUpscale";
-import {Vector2f} from "./interface/Vector2f";
 import {InputButtonTypeMetadata} from "./interface/InputButtonType";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
@@ -1208,7 +1207,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the logged-in user.
    */
   public static get_active_user(): User | undefined {
-    return this.get_user_by_username(this.SystemCookiesConfig.user.activeUser);
+    return this.get_user_by_username(this.SystemCookiesConfig.user.activeUser); //TODO WTF ?
   }
 
   /**
@@ -1585,6 +1584,28 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         this.update_config_to_cookies();
         return SystemStateMetadata.UserNotExists;
       }
+    }
+    return lng;
+  }
+
+  /**
+   * Sets a new username for the user
+   * @param username
+   * @param newUsername
+   */
+  public static set_user_name(username: string , newUsername: string): SystemUserStateData | SystemStateMetadata.Success{
+    let lng = checkSystemStringLength(username, SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH);
+    if (lng === SystemStateMetadata.StringCorrect) {
+      let i = this.get_user_by_username(newUsername);
+      if(i) return SystemStateMetadata.UserExists;
+
+      this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
+        return user.username === username
+      })[0].username = newUsername;
+
+
+      this.update_config_to_cookies();
+      return SystemStateMetadata.Success
     }
     return lng;
   }

@@ -66,12 +66,36 @@ export class UsersComponent implements OnInit {
   }
 
   protected submitNewUserName = (value: string): void => {
-    console.log(value);
+    let ac_user = NapicuOS.get_active_user();
+    if(ac_user){
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      //TODO
+      NapicuOS.set_user_name(ac_user.username, value);
+      NapicuOS.logout_user();
+    }
     this.closeInputMenu();
   }
 
   protected submitNewUserPassword = (value: string): void => {
-    console.log(value);
+
     this.closeInputMenu();
   }
 
