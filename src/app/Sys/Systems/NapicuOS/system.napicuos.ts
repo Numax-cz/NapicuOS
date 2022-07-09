@@ -176,7 +176,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload all images
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
-      await this.loadSystemSounds(); //TODO
+      //await this.loadSystemSounds(); //TODO
 
 
       resolve();

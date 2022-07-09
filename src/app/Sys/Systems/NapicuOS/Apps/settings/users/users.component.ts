@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
+import {AppMenuInputData, InputAlertData, InputAppAlertData} from "../../../interface/InputAlert";
 
 @Component({
   selector: 'app-users',
@@ -8,6 +9,9 @@ import {NapicuOS} from "../../../system.napicuos";
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+
+  public showInputMenu: boolean = false;
+  public declare inputMenuData: AppMenuInputData;
 
   constructor() { }
 
@@ -32,6 +36,54 @@ export class UsersComponent implements OnInit {
 
   get GetPencilIcon(): string {
     return SYSTEM_IMAGES.pencil;
+  }
+
+  public openSetUserNameMenu(): void {
+    if(this.showInputMenu) return;
+    this.inputMenuData = {
+      inputData: {
+        value: 'Enter new username',
+        buttonType: NapicuOS.get_button_type_creat_cancel()
+      },
+      submitFunction: this.submitNewUserName
+    }
+    this.openInputMenu();
+  }
+
+  public openSetUserPass(): void {
+    if(this.showInputMenu) return;
+    this.inputMenuData = {
+      inputData: {
+        value: 'Enter new password',
+        buttonType: NapicuOS.get_button_type_creat_cancel()
+      },
+      submitFunction: this.submitNewUserPassword,
+    }
+    this.openInputMenu();
+  }
+
+  protected submitNewUserName = (value: string): void => {
+    console.log(value);
+    this.closeInputMenu();
+  }
+
+  protected submitNewUserPassword = (value: string): void => {
+    console.log(value);
+    this.closeInputMenu();
+  }
+
+
+  protected openInputMenu(): void {
+    this.showInputMenu = true;
+  }
+
+  protected closeInputMenu(): void {
+    this.showInputMenu = false;
+  }
+
+
+  public newNameSubmit(value: string): void {
+    console.log("submit")
   }
 
 

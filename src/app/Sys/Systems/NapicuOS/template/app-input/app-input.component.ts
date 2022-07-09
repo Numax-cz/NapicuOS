@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AppInputSubmitFunction, AppMenuInputData, InputAlertData, InputAppAlertData} from "../../interface/InputAlert";
+
+
 
 @Component({
   selector: 'app-input',
@@ -7,18 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppInputComponent implements OnInit {
   public declare inputValue: string;
+  @Input() public declare data: AppMenuInputData;
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public reject(){
 
+  public onReject(): void {
+    this.data.rejectFunction?.();
   }
 
-  public submit(){
-
+  public onSubmit(): void {
+    this.data.submitFunction(this.inputValue);
   }
 
 }

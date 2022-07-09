@@ -1,14 +1,12 @@
 <section class="Input">
   <div class="Container">
-
     <div style="margin-left: auto;width: 80%;">
-      <span class="ValueTXT">{{data.value}}</span>
-
+      <span class="ValueTXT">{{data.inputData.value}}</span>
       <input [(ngModel)]="inputValue" class="NapicuOSSimpleInput" type="text" name="value">
     </div>
   </div>
   <div class="NapicuOSSimpleButton Buttons">
-    <button (click)="reject()">{{data.buttonType?.reject}}</button>
-    <button (click)="submit(inputValue)">{{data.buttonType?.submit}}</button>
+    <button (click)="onReject()">{{data.inputData.buttonType?.reject}}</button>
+    <button (click)="onSubmit()">{{data.inputData.buttonType?.submit}}</button>
   </div>
 </section>

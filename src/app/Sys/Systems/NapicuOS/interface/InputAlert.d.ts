@@ -8,7 +8,17 @@ export declare interface InputAlertData {
   buttonType: InputButtonTypeMetadata | null
 }
 
-export declare interface InputAppAlertData {
+
+
+export declare type AppInputSubmitFunction = (value: string) => void;
+
+declare interface InputAppAlertData {
   value: string,
   buttonType: InputButtonTypeMetadata | null
+}
+
+export declare interface AppMenuInputData{
+  inputData: InputAppAlertData,
+  submitFunction: AppInputSubmitFunction,
+  rejectFunction?: () => void
 }

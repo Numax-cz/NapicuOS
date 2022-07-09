@@ -29,6 +29,8 @@ export enum SYSTEM_SOUNDS {
   InterfaceStart = 'assets/sound/InterfaceStart.mp3',
   LongPop = 'assets/sound/LongPop.mp3',
   ShortPop = 'assets/sound/ShortPop.mp3',
+  FlappyJump = "assets/sound/Apps/Bird/Jump.wav",
+  FlappyGameOver = "assets/sound/Apps/Bird/GameOver.wav"
 }
 
 export enum SYSTEM_IMAGES {

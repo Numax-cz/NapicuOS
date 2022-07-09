@@ -9,16 +9,22 @@
   <!--Settings -->
   <div class="UserSettings">
     <div>Authentication & Login </div>
-    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
-      <ul>
-        <div>Password</div>
-        <div>None</div>
-      </ul>
-      <ul>
-        <div>Automatic login</div>
-        <div>{{GetActiveUserAuth}}</div>
-      </ul>
-
+        <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
+        <ul (click)="openSetUserPass()">
+          <div>Password</div>
+          <div>None</div>
+        </ul>
+        <ul>
+          <div>Automatic login</div>
+          <div>{{GetActiveUserAuth}}</div>
+        </ul>
     </div>
   </div>
+
+  <ng-container *ngIf="showInputMenu && inputMenuData">
+    <section>
+      <app-input clickable="true" [data]="inputMenuData"  class="Input" ></app-input>
+    </section>
+  </ng-container>
+
 </section>
