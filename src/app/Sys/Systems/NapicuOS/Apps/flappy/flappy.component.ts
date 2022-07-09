@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NapicuEngineWindow} from "../../SystemComponents/Game/Window";
 import {NapicuEngineGameObject} from "../../SystemComponents/Game/Object";
-import {SYSTEM_IMAGES} from "../../config/System";
+import {SYSTEM_IMAGES, SYSTEM_SOUNDS} from "../../config/System";
 import {
   SYSTEM_APPS_FLAPPY_PIPE_SPEED, SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE,
   SYSTEM_APPS_FLAPPY_PIPES_COUNT,
@@ -12,6 +12,7 @@ import {FlappyPipe} from "./Pipe";
 import {RandomNumber} from "../../scripts/RandomNumber";
 import {KeyCodes} from "../../config/KeyCodes";
 import {Process} from "../../SystemComponents/Process";
+import {NapicuOS} from "../../system.napicuos";
 
 
 
@@ -120,6 +121,8 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
 
   protected gameOver(): void {
     this.gameStarted = false;
+    NapicuOS.play_audio(SYSTEM_SOUNDS.FlappyGameOver, 0.3);
+
     this.onInit();
   }
 
@@ -143,6 +146,8 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
     this.playerGravitation();
     if (this.keyBoard.isPressed(KeyCodes.SPACE)) {
       if (!this.gameStarted) this.gameStarted = true;
+
+      NapicuOS.play_audio(SYSTEM_SOUNDS.FlappyJump, 0.3);
 
       //TODO CONFIG
       this.player.velocityY -= 25;
