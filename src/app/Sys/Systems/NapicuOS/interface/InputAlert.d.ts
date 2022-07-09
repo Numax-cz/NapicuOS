@@ -7,3 +7,8 @@ export declare interface InputAlertData {
   inputData: string | null,
   buttonType: InputButtonTypeMetadata | null
 }
+
+export declare interface InputAppAlertData {
+  value: string,
+  buttonType: InputButtonTypeMetadata | null
+}
