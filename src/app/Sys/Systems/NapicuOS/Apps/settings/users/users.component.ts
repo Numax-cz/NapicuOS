@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
-import {AppMenuInputData, InputAlertData, InputAppAlertData} from "../../../interface/InputAlert";
+import {AppMenuInputData} from "../../../interface/InputAlert";
 
 @Component({
   selector: 'app-users',

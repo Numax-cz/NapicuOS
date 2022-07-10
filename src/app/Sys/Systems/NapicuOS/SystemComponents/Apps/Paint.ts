@@ -1,6 +1,5 @@
 import {NapicuApp} from "../../scripts/Decorators";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
-import {WordpadComponent} from "../../Apps/wordpad/wordpad.component";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";

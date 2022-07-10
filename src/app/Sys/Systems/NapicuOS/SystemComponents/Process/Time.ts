@@ -1,4 +1,3 @@
-import {Process} from "../Process";
 import {SystemProcess} from "../ProcessApp";
 import {NapicuProcess} from "../../scripts/Decorators";
 import {NapicuOS} from "../../system.napicuos";

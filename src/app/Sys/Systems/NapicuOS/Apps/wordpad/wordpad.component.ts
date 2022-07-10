@@ -8,7 +8,6 @@ import {SystemStateMetadata} from "../../interface/System";
 import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
 import {NapicuApps} from "../../systemApps.napicuos";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
-import {FileComponent} from "../file/file.component";
 import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 
 @Component({

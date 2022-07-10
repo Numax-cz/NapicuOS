@@ -38,13 +38,13 @@ import {LoadsComponent} from "./Sys/Systems/NapicuOS/components/loads/loads.comp
 import {FileComponent} from './Sys/Systems/NapicuOS/Apps/file/file.component';
 import {AlertInputComponent} from './Sys/Systems/NapicuOS/Apps/alert-input/alert-input.component';
 import {WordpadComponent} from './Sys/Systems/NapicuOS/Apps/wordpad/wordpad.component';
-import { PaintComponent } from './Sys/Systems/NapicuOS/Apps/paint/paint.component';
-import { FlappyComponent } from './Sys/Systems/NapicuOS/Apps/flappy/flappy.component';
-import { SettingsComponent } from './Sys/Systems/NapicuOS/Apps/settings/settings.component';
-import { AboutComponent } from './Sys/Systems/NapicuOS/Apps/settings/about/about.component';
-import { TimeComponent } from './Sys/Systems/NapicuOS/Apps/settings/time/time.component';
-import { UsersComponent } from './Sys/Systems/NapicuOS/Apps/settings/users/users.component';
-import { AppInputComponent } from './Sys/Systems/NapicuOS/template/app-input/app-input.component';
+import {PaintComponent} from './Sys/Systems/NapicuOS/Apps/paint/paint.component';
+import {FlappyComponent} from './Sys/Systems/NapicuOS/Apps/flappy/flappy.component';
+import {SettingsComponent} from './Sys/Systems/NapicuOS/Apps/settings/settings.component';
+import {AboutComponent} from './Sys/Systems/NapicuOS/Apps/settings/about/about.component';
+import {TimeComponent} from './Sys/Systems/NapicuOS/Apps/settings/time/time.component';
+import {UsersComponent} from './Sys/Systems/NapicuOS/Apps/settings/users/users.component';
+import {AppInputComponent} from './Sys/Systems/NapicuOS/template/app-input/app-input.component';
 
 @NgModule({
   declarations: [

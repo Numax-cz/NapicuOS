@@ -3,7 +3,6 @@ import {SYSTEM_GAME_CANVAS_RESOLUTION} from "../../config/SystemGame";
 import {ElementRef} from "@angular/core";
 import {NapicuKeyboard} from "../../scripts/Events";
 import {NapicuEngineGameObject} from "./Object";
-import {SYSTEM_IMAGES} from "../../config/System";
 import {Process} from "../Process";
 
 export abstract class NapicuEngineWindow{

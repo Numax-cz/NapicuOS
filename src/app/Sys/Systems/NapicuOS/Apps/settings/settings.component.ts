@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SettingsOptionsMetadata} from "../../interface/Apps/Settings";
 import {SYSTEM_APPS_SETTINGS_OPTIONS} from "../../config/Apps/Settings";
 

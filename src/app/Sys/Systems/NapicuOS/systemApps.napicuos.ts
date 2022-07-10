@@ -1,7 +1,4 @@
-import {Process} from './SystemComponents/Process';
 import {NapicuOS} from './system.napicuos';
-import {SystemAppsProcessName} from "./config/Apps/AppsNames";
-import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 
 import {AppCreatMetadata} from "./interface/System";
 import {SYSTEM_INITS_APPS} from "./scripts/Decorators";

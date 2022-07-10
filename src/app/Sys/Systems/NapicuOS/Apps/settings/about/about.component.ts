@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NapicuBios} from "../../../SystemComponents/Bios";
 import {NapicuOS} from "../../../system.napicuos";
 

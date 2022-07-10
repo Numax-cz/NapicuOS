@@ -1,6 +1,5 @@
 import {NapicuApp} from "../../scripts/Decorators";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
-import {PaintComponent} from "../../Apps/paint/paint.component";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";

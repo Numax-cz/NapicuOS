@@ -6,7 +6,8 @@ import {CommandStateCodeMetadata} from "../interface/Commands/CommandsCodes";
 import {
   setHelpCommand,
   setHostnameHelpCommand,
-  setHostnameLongError, setHostnameSet,
+  setHostnameLongError,
+  setHostnameSet,
   setHostnameShortError,
   setWindowTitleHelpCommand
 } from "../config/commands/help/setCommand";

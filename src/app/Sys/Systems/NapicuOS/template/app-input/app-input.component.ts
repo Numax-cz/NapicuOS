@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AppInputSubmitFunction, AppMenuInputData, InputAlertData, InputAppAlertData} from "../../interface/InputAlert";
-
+import {AppMenuInputData} from "../../interface/InputAlert";
 
 
 @Component({

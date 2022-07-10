@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, Type, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../config/System";
 import {
   fileConfigDisplayedMetadata,

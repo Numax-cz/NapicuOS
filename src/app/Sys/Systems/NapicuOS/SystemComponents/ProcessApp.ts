@@ -1,6 +1,4 @@
 import {Process} from "./Process";
-import {AppCreatMetadata} from "../interface/System";
-import {NapicuOS} from "../system.napicuos";
 
 
 export abstract class SystemProcess {

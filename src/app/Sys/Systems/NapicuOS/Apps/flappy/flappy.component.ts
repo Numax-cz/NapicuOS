@@ -3,7 +3,8 @@ import {NapicuEngineWindow} from "../../SystemComponents/Game/Window";
 import {NapicuEngineGameObject} from "../../SystemComponents/Game/Object";
 import {SYSTEM_IMAGES, SYSTEM_SOUNDS} from "../../config/System";
 import {
-  SYSTEM_APPS_FLAPPY_PIPE_SPEED, SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE,
+  SYSTEM_APPS_FLAPPY_PIPE_SPEED,
+  SYSTEM_APPS_FLAPPY_PIPE_VOID_SIZE,
   SYSTEM_APPS_FLAPPY_PIPES_COUNT,
   SYSTEM_APPS_FLAPPY_PTP_SIZE
 } from "../../config/Apps/Flappy";
@@ -13,7 +14,6 @@ import {RandomNumber} from "../../scripts/RandomNumber";
 import {KeyCodes} from "../../config/KeyCodes";
 import {Process} from "../../SystemComponents/Process";
 import {NapicuOS} from "../../system.napicuos";
-
 
 
 @Component({
