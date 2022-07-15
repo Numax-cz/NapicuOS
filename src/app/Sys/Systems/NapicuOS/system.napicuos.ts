@@ -1594,20 +1594,38 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param newUsername
    */
   public static set_user_name(username: string , newUsername: string): SystemUserStateData | SystemStateMetadata.Success{
-    let lng = checkSystemStringLength(username, SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH);
-    if (lng === SystemStateMetadata.StringCorrect) {
-      let i = this.get_user_by_username(newUsername);
-      if(i) return SystemStateMetadata.UserExists;
-
+    let ck_usr_name: SystemUserStateData = this.check_username(newUsername);
+    if(ck_usr_name === SystemStateMetadata.UserNotExists){
       this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
         return user.username === username
       })[0].username = newUsername;
-
-
       this.update_config_to_cookies();
       return SystemStateMetadata.Success
     }
+    return ck_usr_name;
+  }
+
+  /**
+   * Checks the username
+   * @param username
+   */
+  public static check_username(username: string): SystemUserStateData {
+    let lng = checkSystemStringLength(username, SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH);
+    if(lng == SystemStateMetadata.StringCorrect){
+      if(this.check_user_exist(username)){
+       return SystemStateMetadata.UserExists;
+      }
+      return SystemStateMetadata.UserNotExists;
+    }
     return lng;
+  }
+
+  /**
+   * Checks the existence of the user
+   * @param username
+   */
+  public static check_user_exist(username: string): boolean{
+    return !!this.get_user_by_username(username);
   }
 
   /**
