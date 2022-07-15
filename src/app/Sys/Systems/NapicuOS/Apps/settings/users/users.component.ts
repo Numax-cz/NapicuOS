@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
 import {AppMenuInputData} from "../../../interface/InputAlert";
+import {SystemStateMetadata, SystemUserStateData} from "../../../interface/System";
+
 
 @Component({
   selector: 'app-users',
@@ -68,28 +70,11 @@ export class UsersComponent implements OnInit {
   protected submitNewUserName = (value: string): void => {
     let ac_user = NapicuOS.get_active_user();
     if(ac_user){
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      //TODO
-      NapicuOS.set_user_name(ac_user.username, value);
-      NapicuOS.logout_user();
+      let usr_str: SystemUserStateData | SystemStateMetadata.Success = NapicuOS.set_user_name(ac_user.username, value);
+      //TODO Error handling 
+      if(usr_str === SystemStateMetadata.Success) {
+        NapicuOS.logout_user();
+      }
     }
     this.closeInputMenu();
   }
