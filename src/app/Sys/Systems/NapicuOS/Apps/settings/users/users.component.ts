@@ -71,7 +71,7 @@ export class UsersComponent implements OnInit {
     let ac_user = NapicuOS.get_active_user();
     if(ac_user){
       let usr_str: SystemUserStateData | SystemStateMetadata.Success = NapicuOS.set_user_name(ac_user.username, value);
-      //TODO Error handling 
+      //TODO Error handling
       if(usr_str === SystemStateMetadata.Success) {
         NapicuOS.logout_user();
       }

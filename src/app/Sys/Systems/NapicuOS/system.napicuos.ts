@@ -80,7 +80,7 @@ import {FormatPathToObject} from "./scripts/FormatPath";
 import {IfDirFileMetadata} from "./interface/IfDirFile";
 import {ReplaceSystemVariables} from "./scripts/ReplaceVariables";
 import {IsPathMatch} from "./scripts/PathMatch";
-import {PathHasntLastSlash} from "./scripts/PathChecker";
+import {PathHasLastSlash, PathHasntLastSlash} from "./scripts/PathChecker";
 import {CommandParams} from "./interface/Commands/CommandParams";
 import {processConstructor} from "./interface/Process";
 import {InputButtonTypeMetadata} from "./interface/InputButtonType";
@@ -865,6 +865,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return SystemStateMetadata.CookiesError;
   }
 
+  /**
+   * Deletes path from cookies
+   * @param path
+   */
+  protected static remove_dynamic_path(path: string): SystemStateMetadata.Success | SystemStateMetadata.CookiesError | SystemStateMetadata.DirNotExist{
+    let i:  NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies()
+    if(i?.directorys){
+      let pth_md = PathHasLastSlash(path);
+      let dir_index: number = i.directorys.indexOf(pth_md);
+      if (dir_index >= 0){
+        i.directorys.splice(dir_index, 1);
+        this.update_config_to_cookies();
+        return SystemStateMetadata.Success;
+      }
+      return SystemStateMetadata.DirNotExist
+    }
+    return SystemStateMetadata.CookiesError;
+  }
+
 
   /**
    * Creat a new dynamic file in the directory by path
@@ -904,9 +923,32 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path Path to the file
    * @param fileName New file name
    */
-  public static rename_dynamic_file(path: string, fileName: string): any {
+  public static rename_dynamic_file(path: string, fileName: string): any { //TODO NO ANY LUL
     let i: SystemStateMetadata | SystemFile = this.rename_file(path, fileName);
     if(i instanceof SystemFile) this.update_dynamic_file(path, {fileName: fileName});
+  }
+
+  /**
+   * Rename the directory name
+   * @param path Path to the directory
+   * @param dirName New directory name
+   */
+  public static rename_dynamic_path(path: string, dirName: string): any { //TODO NO ANY LUL
+    let pth = this.get_system_dynamic_paths_cookies_config();
+    if(!pth) return;
+
+    //TODO REMOVE ALL USERS FILES
+    //TODO REMOVE ALL USERS FILES
+    //TODO REMOVE ALL USERS FILES
+
+
+     this.remove_dynamic_path(path);
+
+    let dr_nm: string = PathHasLastSlash(PathSpliceLastIndex(path).path);
+
+    this.add_global_path_to_cookies(`${dr_nm}${dirName}/`);
+
+    this.update_config_to_cookies();
   }
 
   /**
@@ -951,7 +993,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         return;
       }
     }
-    conf_paths.push(path);
+    conf_paths.push(PathHasLastSlash(path));
   }
 
   /**
@@ -1599,10 +1641,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
         return user.username === username
       })[0].username = newUsername;
+      this.rename_user_home_folder(username, newUsername);
       this.update_config_to_cookies();
       return SystemStateMetadata.Success
     }
     return ck_usr_name;
+  }
+
+  protected static rename_user_home_folder(username: string, newUsername: string): void {
+    // this.creat_dynamic_path_config(`/home/`, user.username);
+    this.rename_dynamic_path( `/home/${username}/`, newUsername);
   }
 
   /**
