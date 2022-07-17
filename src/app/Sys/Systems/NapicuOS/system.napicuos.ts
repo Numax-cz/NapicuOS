@@ -956,7 +956,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     let files:  NapicuOsCookiesFileMetadata[] | null = this.get_system_dynamic_files_cookies_config();
 
     if(paths && files){
-      const regex: RegExp = new RegExp(PathHasLastSlash(oldPath), 'g');
+      const regex: RegExp = new RegExp(`^${PathHasLastSlash(oldPath)}`, 'g');
       const pth_sls: string = PathHasLastSlash(newPath);
 
       //Paths
