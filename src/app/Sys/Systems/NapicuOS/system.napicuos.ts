@@ -951,6 +951,33 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.update_config_to_cookies();
   }
 
+  protected static update_dependencies_path(oldPath: string, newPath: string): void {
+    let paths: string[] | null = this.get_system_dynamic_paths_cookies_config();
+    let files:  NapicuOsCookiesFileMetadata[] | null = this.get_system_dynamic_files_cookies_config();
+
+    if(paths && files){
+      const regex: RegExp = new RegExp(PathHasLastSlash(oldPath), 'g');
+      const pth_sls: string = PathHasLastSlash(newPath);
+
+      //Paths
+      for(let i = 0; i < paths.length; i++){
+        paths[i] = paths[i].replace(regex, pth_sls);
+      }
+
+      //Files
+      //TODO /home/numax/home/numax/.....
+      for(let i = 0; i < files.length; i++){
+        files[i].path = files[i].path.replace(regex, pth_sls);
+      }
+
+      this.update_config_to_cookies();
+
+
+    } else console.error("[NAPICUOS] Cookies error");
+  }
+
+
+
   /**
    * Update the file from cookies
    * @param path Path to the file
@@ -1651,6 +1678,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   protected static rename_user_home_folder(username: string, newUsername: string): void {
     // this.creat_dynamic_path_config(`/home/`, user.username);
     this.rename_dynamic_path( `/home/${username}/`, newUsername);
+    this.update_dependencies_path(`/home/${username}/`, `/home/${newUsername}/`);
   }
 
   /**
