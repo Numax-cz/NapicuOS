@@ -123,17 +123,17 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   get GetFilesInDirectory(): filesAndDirsViewMetadata[] { //TODO
 
-    let i = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
+    let directory = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
     let out: filesAndDirsViewMetadata[] = [];
 
-    if (i.data?.dir) ABCSortArray(Object.keys(i.data.dir)).map((dirName: string) => {
+    if (directory.data?.dir) ABCSortArray(Object.keys(directory.data.dir)).map((dirName: string) => {
       out.push({
         name: dirName,
         icon: SYSTEM_IMAGES.BlueFolder,
         fileType: null,
       })
     });
-    if (i.data?.files) ABCSortSystemFiles(i.data.files).map((file: SystemFile) => {
+    if (directory.data?.files) ABCSortSystemFiles(directory.data.files).map((file: SystemFile) => {
       out.push({
         name: file.fileName,
         icon: file.iconPath,
