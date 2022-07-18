@@ -17,6 +17,7 @@ import {InputAlertData} from "../../interface/InputAlert";
 import {FindParam} from "../../scripts/FindParam";
 import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
+import {ABCSortArray, ABCSortSystemFiles} from "../../scripts/Sorting";
 
 
 @Component({
@@ -125,14 +126,14 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     let i = NapicuOS.get_dir_by_path(ReplaceSystemVariables(this.startDirectory));
     let out: filesAndDirsViewMetadata[] = [];
 
-    if (i.data?.dir) Object.keys(i.data.dir).map((dirName: string) => {
+    if (i.data?.dir) ABCSortArray(Object.keys(i.data.dir)).map((dirName: string) => {
       out.push({
         name: dirName,
         icon: SYSTEM_IMAGES.BlueFolder,
         fileType: null,
       })
     });
-    if (i.data?.files) i.data.files.map((file: SystemFile) => {
+    if (i.data?.files) ABCSortSystemFiles(i.data.files).map((file: SystemFile) => {
       out.push({
         name: file.fileName,
         icon: file.iconPath,
