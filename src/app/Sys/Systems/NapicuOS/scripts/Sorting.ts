@@ -1,3 +1,3 @@
-export function ABCSort(array: string[]): string[]{
+export function ABCSortArray(array: string[]): string[]{
   return array.sort();
 }
