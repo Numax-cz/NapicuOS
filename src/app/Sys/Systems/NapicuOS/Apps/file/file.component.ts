@@ -255,10 +255,10 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   protected renameDirectory = async (): Promise<void> => {
     this.enableFreezeContent();
     const ln = NapicuOS.get_language_words();
-    let new_dir_name: string | null = await NapicuOS.input_alert(ln.other.rename, ln.other.enter_new_name, SYSTEM_IMAGES.BlueFolder, NapicuOS.get_button_type_creat_cancel());
+    let new_dir_name: string | null = await NapicuOS.input_alert(ln.other.rename, ln.other.enter_new_name, SYSTEM_IMAGES.BlueFolder, NapicuOS.get_button_type_rename_cancel());
     if(new_dir_name){
       if(NapicuOS.check_file_name(new_dir_name)){
-         NapicuOS.rename_dir(ReplaceSystemVariables(`${this.startDirectory}${this.selectedFileDir}`), new_dir_name);
+         NapicuOS.rename_dir(ReplaceSystemVariables(`${this.startDirectory}${this.selectedFileDir?.name}`), new_dir_name);
         this.updateViewFilesAndDirs();
       }
       //TODO ERROR => bad name
@@ -267,7 +267,18 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   protected renameFile = async (): Promise<void> => {
-
+    this.enableFreezeContent();
+    const ln = NapicuOS.get_language_words();
+    let new_dir_name: string | null = await NapicuOS.input_alert(ln.other.rename, ln.other.enter_new_name, SYSTEM_IMAGES.AppDocText, NapicuOS.get_button_type_rename_cancel());
+    if(new_dir_name){
+      if(NapicuOS.check_file_name(new_dir_name)){
+        let i = NapicuOS.rename_file(ReplaceSystemVariables(`${this.startDirectory}${this.selectedFileDir?.name}`), new_dir_name);
+        console.log(i);
+        this.updateViewFilesAndDirs();
+      }
+      //TODO ERROR => bad name
+    }
+    this.disableFreezeContent();
   }
 
   protected deleteDirectory(): void {
