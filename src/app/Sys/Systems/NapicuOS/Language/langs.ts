@@ -20,11 +20,11 @@ import {
   lang_Enter_name_cs,
   lang_Enter_name_en,
   lang_enter_new_name_cs,
-  lang_enter_new_name_en,
+  lang_enter_new_name_en, lang_none_cs, lang_none_en,
   lang_Places_cs,
   lang_Places_en,
   lang_rename_cs,
-  lang_rename_en
+  lang_rename_en, lang_yes_cs, lang_yes_en
 } from "./Other";
 
 export declare type NapicuOS_available_language = "en" | "cs";
@@ -57,6 +57,8 @@ export const NapicuOSLanguages = {
       rename: lang_rename_en,
       disabled: lang_Disabled_en,
       enabled: lang_Enabled_en,
+      yes: lang_yes_en,
+      none: lang_none_en
     }
   },
 
@@ -87,6 +89,8 @@ export const NapicuOSLanguages = {
       rename: lang_rename_cs,
       disabled: lang_Disabled_cs,
       enabled: lang_Enabled_cs,
+      yes: lang_yes_cs,
+      none: lang_none_cs
     }
   }
 }

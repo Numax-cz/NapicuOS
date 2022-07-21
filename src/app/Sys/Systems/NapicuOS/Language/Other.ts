@@ -30,3 +30,9 @@ export const lang_Enabled_cs = "Povoleno";
 
 export const lang_Cancel_any_en = "Cancel";
 export const lang_Cancel_any_cs = "Zrušit";
+
+export const lang_none_en = "None";
+export const lang_none_cs = "Žádné";
+
+export const lang_yes_en = "Yes";
+export const lang_yes_cs = "Ano";
