@@ -67,6 +67,14 @@ export class UsersComponent implements OnInit {
     this.openInputMenu();
   }
 
+  public onChangeAutoLoginSwitch(): void {
+
+  }
+
+  get GetAutoLoginSwitchA(): boolean{
+    return NapicuOS.get_active_user_has_auto_login();
+  }
+
   protected submitNewUserName = (value: string): void => {
     let ac_user = NapicuOS.get_active_user();
     if(ac_user){
@@ -83,7 +91,6 @@ export class UsersComponent implements OnInit {
 
     this.closeInputMenu();
   }
-
 
   protected openInputMenu(): void {
     this.showInputMenu = true;

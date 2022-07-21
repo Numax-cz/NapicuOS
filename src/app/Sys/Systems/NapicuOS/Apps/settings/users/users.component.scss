@@ -41,6 +41,7 @@
 .table{
   >ul{
     cursor: pointer;
+    height: 52px;
   }
 }
 
@@ -49,4 +50,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.UseAuthSwitch{
+  width: 50px !important;
+  height: 26px !important;
+}
+.UseAuthSwitchSlider::before{
+  width: 18px !important;
+  height: 18px !important;
 }

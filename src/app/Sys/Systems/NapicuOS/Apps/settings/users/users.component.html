@@ -16,9 +16,16 @@
         </ul>
         <ul>
           <div>Automatic login</div>
-          <div>{{GetActiveUserAuth}}</div>
+          <section class="SwitchNot UseAuthSwitch">
+            <label class="switch UseAuthSwitch" clickable="false">
+              <input type="checkbox" [checked]="!GetAutoLoginSwitchA"
+                     (change)="onChangeAutoLoginSwitch()">
+              <span class="slider UseAuthSwitchSlider"></span>
+            </label>
+          </section>
         </ul>
     </div>
+
   </div>
 
   <ng-container *ngIf="showInputMenu && inputMenuData">
