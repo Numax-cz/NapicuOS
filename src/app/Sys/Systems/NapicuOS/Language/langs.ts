@@ -4,7 +4,7 @@ import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
   lang_Cancel_any_cs,
-  lang_Cancel_any_en,
+  lang_Cancel_any_en, lang_change_cs, lang_change_en,
   lang_Creat_any_cs,
   lang_Creat_any_en,
   lang_Creat_new_dir_cs,
@@ -58,7 +58,8 @@ export const NapicuOSLanguages = {
       disabled: lang_Disabled_en,
       enabled: lang_Enabled_en,
       yes: lang_yes_en,
-      none: lang_none_en
+      none: lang_none_en,
+      change: lang_change_en
     }
   },
 
@@ -90,7 +91,8 @@ export const NapicuOSLanguages = {
       disabled: lang_Disabled_cs,
       enabled: lang_Enabled_cs,
       yes: lang_yes_cs,
-      none: lang_none_cs
+      none: lang_none_cs,
+      change: lang_change_cs
     }
   }
 }

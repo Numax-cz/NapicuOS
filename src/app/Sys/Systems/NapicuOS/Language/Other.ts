@@ -36,3 +36,6 @@ export const lang_none_cs = "Žádné";
 
 export const lang_yes_en = "Yes";
 export const lang_yes_cs = "Ano";
+
+export const lang_change_en = "Change";
+export const lang_change_cs = "Změnit";
