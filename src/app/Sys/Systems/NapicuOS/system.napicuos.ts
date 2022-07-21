@@ -1287,6 +1287,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns whether the user has an active automatic login
+   */
+  public static get_active_user_has_auto_login(): boolean{
+    return this.get_active_user()?.autoAuth || true;
+  }
+
+  /**
    * Sets the active user
    * @param user The user you want to put as active
    */
