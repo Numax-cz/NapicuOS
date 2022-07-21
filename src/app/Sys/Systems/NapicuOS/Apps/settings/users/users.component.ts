@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
     this.inputMenuData = {
       inputData: {
         value: 'Enter new username',
-        buttonType: NapicuOS.get_button_type_creat_cancel()
+        buttonType: NapicuOS.get_button_type_rename_cancel()
       },
       submitFunction: this.submitNewUserName,
       rejectFunction: this.closeInputMenu
@@ -58,7 +58,7 @@ export class UsersComponent implements OnInit {
     this.inputMenuData = {
       inputData: {
         value: 'Enter new password',
-        buttonType: NapicuOS.get_button_type_creat_cancel(),
+        buttonType: NapicuOS.get_button_type_change_cancel(),
         inputType: "password"
       },
       submitFunction: this.submitNewUserPassword,
@@ -96,6 +96,11 @@ export class UsersComponent implements OnInit {
 
   public newNameSubmit(value: string): void {
     console.log("submit")
+  }
+
+  get GetPassTxt(): string {
+    let lng = NapicuOS.get_language_words();
+    return NapicuOS.get_active_user()?.password.length ? lng.other.yes : lng.other.none;
   }
 
 
