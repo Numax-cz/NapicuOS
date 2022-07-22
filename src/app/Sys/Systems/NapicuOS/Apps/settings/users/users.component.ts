@@ -3,6 +3,7 @@ import {SYSTEM_IMAGES} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
 import {AppMenuInputData} from "../../../interface/InputAlert";
 import {SystemStateMetadata, SystemUserStateData} from "../../../interface/System";
+import {User} from "../../../SystemComponents/User";
 
 
 @Component({
@@ -68,7 +69,13 @@ export class UsersComponent implements OnInit {
   }
 
   public onChangeAutoLoginSwitch(): void {
+    let ac_user: User | undefined = NapicuOS.get_active_user();
+    if(!ac_user){
+      console.error("[NAPICUOS] User error");
+      return;
+    }
 
+    NapicuOS.set_user_auth(ac_user.username, !ac_user.autoAuth);
   }
 
   get GetAutoLoginSwitchA(): boolean{
