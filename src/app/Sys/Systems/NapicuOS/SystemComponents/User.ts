@@ -26,6 +26,6 @@ export class User {
     this.password = data.password;
     this.permissions = data.permissions || SystemUserPermissionsEnumMetadata.User;
     this.userSetting = data.userSetting || copy(User.defaultUserSettings);
-    this.autoAuth = data.autoAuth || true;
+    this.autoAuth = !!(data.autoAuth);
   }
 }
