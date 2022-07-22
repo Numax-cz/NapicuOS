@@ -18,5 +18,6 @@ export declare interface UserConstructorMetadata {
   username: string,
   password: string,
   permissions?: SystemUserPermissionsEnumMetadata,
-  userSetting?: SystemUserDataMetadata
+  userSetting?: SystemUserDataMetadata,
+  autoAuth?: boolean
 }
