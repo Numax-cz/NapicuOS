@@ -11,7 +11,7 @@
         translate: !i.Window.windowData.height || !i.Window.windowData.width ? '50' : '0'
       }
     }"
-    [ngClass]="[i.Window?.activated ? 'SelectedWindow' : 'UnSelectedWindow', !i.Window.windowData.height &&
+    [ngClass]="[i.Window!.activated ? 'SelectedWindow' : 'UnSelectedWindow', !i.Window.windowData.height &&
     !i.Window.windowData.width ? 'centerTransform' : '', !i.Window.windowData.height || !i.Window.windowData.width ?
     'fitWindowContent' : '']"
     [ngStyle]="{
