@@ -37,7 +37,7 @@ import {
   SYSTEM_INFORMATION,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH
+  SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MIN_PASSWORD_LENGTH
 } from './config/System';
 import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
@@ -1672,14 +1672,40 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static set_user_name(username: string , newUsername: string): SystemUserStateData | SystemStateMetadata.Success{
     let ck_usr_name: SystemUserStateData = this.check_username(newUsername);
     if(ck_usr_name === SystemStateMetadata.UserNotExists){
-      this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
-        return user.username === username
-      })[0].username = newUsername;
+      let i: UserConstructorMetadata = this.get_user_from_cookies(username);
+      i.username = newUsername
       this.rename_user_home_folder(username, newUsername);
       this.update_config_to_cookies();
       return SystemStateMetadata.Success
     }
     return ck_usr_name;
+  }
+
+  /**
+   * Sets a new password for the user
+   * @param username
+   * @param password
+   */
+  public static set_user_password(username: string , password: string): SystemUserStateData | SystemStateMetadata.Success{
+    let ps_lgt:  SystemStringStateCorrection = checkSystemStringLength(password, SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_USERS_MAX_LENGTH);
+    if(ps_lgt === SystemStateMetadata.StringCorrect){
+      let i: UserConstructorMetadata = this.get_user_from_cookies(username);
+      i.password = password;
+      this.update_config_to_cookies();
+      return SystemStateMetadata.Success
+    }
+    return ps_lgt;
+    return SystemStateMetadata.Success
+  }
+
+  protected static get_user_from_cookies(username: string):  UserConstructorMetadata{
+      let i: UserConstructorMetadata[] =  this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
+        return user.username === username
+      });
+      if(i.length > 1) console.error("[NAPICUOS] CookiesUser FATAL error");
+      // if(i.length < 0) return SystemStateMetadata.UserNotExists;
+      return i[0];
+
   }
 
   protected static rename_user_home_folder(username: string, newUsername: string): void {
