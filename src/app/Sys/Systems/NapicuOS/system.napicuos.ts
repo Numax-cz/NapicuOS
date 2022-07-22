@@ -37,7 +37,8 @@ import {
   SYSTEM_INFORMATION,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MIN_PASSWORD_LENGTH
+  SYSTEM_USERS_MIN_LENGTH,
+  SYSTEM_USERS_MIN_PASSWORD_LENGTH
 } from './config/System';
 import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
@@ -1672,7 +1673,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static set_user_name(username: string , newUsername: string): SystemUserStateData | SystemStateMetadata.Success{
     let ck_usr_name: SystemUserStateData = this.check_username(newUsername);
     if(ck_usr_name === SystemStateMetadata.UserNotExists){
-      let i: UserConstructorMetadata = this.get_user_from_cookies(username);
+      let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
+      if(i === SystemStateMetadata.UserNotExists) return i;
       i.username = newUsername
       this.rename_user_home_folder(username, newUsername);
       this.update_config_to_cookies();
@@ -1689,7 +1691,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static set_user_password(username: string , password: string): SystemUserStateData | SystemStateMetadata.Success{
     let ps_lgt:  SystemStringStateCorrection = checkSystemStringLength(password, SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_USERS_MAX_LENGTH);
     if(ps_lgt === SystemStateMetadata.StringCorrect){
-      let i: UserConstructorMetadata = this.get_user_from_cookies(username);
+      let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
+      if(i === SystemStateMetadata.UserNotExists) return i;
       i.password = password;
       this.update_config_to_cookies();
       return SystemStateMetadata.Success
@@ -1698,16 +1701,38 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return SystemStateMetadata.Success
   }
 
-  protected static get_user_from_cookies(username: string):  UserConstructorMetadata{
+  /**
+   * Sets a authLogin for the user
+   * @param username
+   * @param auth
+   */
+  public static set_user_auth(username: string, auth: boolean): SystemUserStateData | SystemStateMetadata.Success{
+    let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
+    if(i === SystemStateMetadata.UserNotExists) return i;
+    i.autoAuth = auth;
+    this.update_config_to_cookies();
+    return SystemStateMetadata.Success;
+  }
+
+  /**
+   * Returns users from cookies
+   * @param username
+   */
+  protected static get_user_from_cookies(username: string):  UserConstructorMetadata | SystemStateMetadata.UserNotExists{
       let i: UserConstructorMetadata[] =  this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
         return user.username === username
       });
       if(i.length > 1) console.error("[NAPICUOS] CookiesUser FATAL error");
-      // if(i.length < 0) return SystemStateMetadata.UserNotExists;
+      if(i.length <= 0) return SystemStateMetadata.UserNotExists;
       return i[0];
-
   }
 
+  /**
+   * Renames the user's home folder
+   * @param username
+   * @param newUsername
+   * @protected
+   */
   protected static rename_user_home_folder(username: string, newUsername: string): void {
     // this.creat_dynamic_path_config(`/home/`, user.username);
     this.rename_dynamic_path( `/home/${username}/`, newUsername);
