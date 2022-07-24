@@ -36,6 +36,10 @@
 
 .UserSettings{
   margin: 90px auto;
+  .UserSettingsAuthText{
+    padding: 10px 0;
+    font-size: 1.2rem;
+  }
 }
 
 .table{
@@ -59,4 +63,8 @@
 .UseAuthSwitchSlider::before{
   width: 18px !important;
   height: 18px !important;
+}
+
+@media screen and (max-width: 850px) {
+  
 }
