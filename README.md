@@ -1,6 +1,6 @@
 # NapicuOS - BETA
 
-- NapicuOS je webová aplikace, která simuluje reálný operační systém NapicuOS + bios NapicuBIOS
+- NapicuOS je OpenSource webová aplikace, která simuluje reálný operační systém NapicuOS + bios NapicuBIOS
 - Na této stránce najdete základní nastavení biosu
 - Vytvořeno v [Angular](https://angular.io/)
 - Použitý font [Perfect DOS VGA 437](https://www.dafont.com/perfect-dos-vga-437.font)
