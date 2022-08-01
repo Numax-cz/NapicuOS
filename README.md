@@ -33,14 +33,23 @@
 
 ## Spuštění
 
-1. Spuštění aplikace na localhostu
+1. Spuštění aplikace pro development
+   ```sh
+   npm run dev
+   ```
+   - Development spuštění urychlí boot time (nelze se dostat do BIOSU)
+
+2. Spuštění aplikace pro nasazení
    ```sh
    npm run start
    ```
+  - Normální spuštění aplikace
+   
 2. Buildnutí aplikace
    ```sh
    npm run build
    ```
+   - Aplikace se automaticky builde v configuraci pro nasazení
 
 ## Vytovření nové aplikace pro operační systém
 

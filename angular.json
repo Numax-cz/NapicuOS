@@ -55,8 +55,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/app/Bios/Config/bootloader.ts",
+                  "with": "src/app/Bios/Config/bootloader.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -68,6 +68,7 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+
             }
           },
           "defaultConfiguration": "production"

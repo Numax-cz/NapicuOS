@@ -14,7 +14,6 @@ import {ExitComponent} from './Bios/components/exit/exit.component';
 import {OptionPanelComponent} from './Bios/components/option-panel/option-panel.component';
 import {SettingsTemplateComponent} from './Bios/components/settings-template/settings-template.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
 import {FlashComponent} from './Bios/components/flash/flash.component';
 import {BlackloadingComponent} from './Bios/components/blackloading/blackloading.component';
 import {BlackscreenComponent} from './Bios/components/blackscreen/blackscreen.component';
@@ -45,6 +44,7 @@ import {AboutComponent} from './Sys/Systems/NapicuOS/Apps/settings/about/about.c
 import {TimeComponent} from './Sys/Systems/NapicuOS/Apps/settings/time/time.component';
 import {UsersComponent} from './Sys/Systems/NapicuOS/Apps/settings/users/users.component';
 import {AppInputComponent} from './Sys/Systems/NapicuOS/template/app-input/app-input.component';
+import {boot_configuration} from "./Bios/Config/bootloader";
 
 @NgModule({
   declarations: [
@@ -95,7 +95,7 @@ import {AppInputComponent} from './Sys/Systems/NapicuOS/template/app-input/app-i
     BrowserAnimationsModule,
     DynamicModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
+      enabled: boot_configuration.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',

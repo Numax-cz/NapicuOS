@@ -3,13 +3,14 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {BiosInfo, setBiosSettings} from '../../ToolSettings';
 import {BiosComponent} from '../bios/bios.component';
-import {exitTime, startTimeIn} from '../../Config/Animation/Boot';
 import {FlashComponent} from '../flash/flash.component';
 import {KeyMaps} from 'src/app/Bios/Config/KeyMaps';
 import {Navigate} from 'src/app/Bios/Scripts/BiosRouter';
 import {Boot} from 'src/app/Bios/Scripts/exit/Boot';
 import {setBiosSettingsFromCookies} from 'src/app/Bios/Scripts/setBiosSettings';
 import {setLanguage} from 'src/app/Bios/Config/BiosMenuList';
+import {boot_configuration} from "../../Config/bootloader";
+
 
 @Component({
   selector: 'app-boot',
@@ -43,7 +44,7 @@ export class BootComponent implements OnInit, OnDestroy {
       if (!BootComponent.EnterBios) {
         Boot();
       }
-    }, exitTime);
+    }, boot_configuration.exitTime);
   }
 
   ngOnDestroy(): void {
@@ -62,7 +63,7 @@ export class BootComponent implements OnInit, OnDestroy {
               ['bios/main'] /*{ skipLocationChange: true } */
             );
           }, 150);
-        }, startTimeIn);
+        }, boot_configuration.startTimeIn);
       }, 280);
     }
   };

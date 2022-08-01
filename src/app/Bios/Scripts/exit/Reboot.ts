@@ -1,6 +1,7 @@
-import {startTimeIn, startTimeOut} from 'src/app/Bios/Config/Animation/Boot';
+
 import {Loading} from '../LoadingAnimations';
+import {boot_configuration} from "../../Config/bootloader";
 
 export function Reboot(): void {
-  Loading('/', startTimeOut, startTimeIn);
+  Loading('/',boot_configuration.startTimeOut, boot_configuration.startTimeIn);
 }

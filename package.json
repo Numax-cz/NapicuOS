@@ -3,7 +3,8 @@
   "name": "napicubios",
   "version": "1.6.0",
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --configuration=production",
+    "dev": "ng serve --configuration=development",
     "newapp": "node ./scripts/newapp.js",
     "build": "ng build --prod --build-optimizer --extract-licenses --output-hashing none",
     "buildDev": "ng build --prod=false --build-optimizer --extract-licenses --output-hashing none"
