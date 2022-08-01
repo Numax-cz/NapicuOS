@@ -4,10 +4,10 @@
   <!--MainContent -->
   <section class="osInformation">
 
-    <div class="NapicuOSSimpleGTable table">
+    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table" style="cursor: pointer;">
       <ul>
         <li>Device Name</li>
-        <li>{{GetDeviceName}}</li>
+        <li>{{GetDeviceName}} <span class="NapicuArrowSettingLeft" >></span></li>
       </ul>
     </div>
 
@@ -45,13 +45,11 @@
         <div>{{GetOSVersion}}</div>
       </ul>
     </div>
-
-
-
-
-
-
-
-
   </section>
 </section>
+
+<ng-container *ngIf="showInputMenu && inputMenuData">
+  <section>
+    <app-input clickable="true" [data]="inputMenuData"  class="Input" ></app-input>
+  </section>
+</ng-container>

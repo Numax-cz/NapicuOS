@@ -40,9 +40,11 @@ export const lang_yes_cs = "Ano";
 export const lang_change_en = "Change";
 export const lang_change_cs = "Změnit";
 
-
 export const lang_change_hostname_en = "Enter new hostname";
 export const lang_change_hostname_cs = "Zadejte nový hostname";
 
 export const lang_change_password_en = "Enter new password";
 export const lang_change_pasword_cs = "Zadejte nový heslo";
+
+export const lang_change_username_en = "Enter new username";
+export const lang_change_username_cs = "Zadejte nový uživatelský jméno";

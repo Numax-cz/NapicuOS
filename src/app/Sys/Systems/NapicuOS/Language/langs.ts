@@ -9,7 +9,7 @@ import {
   lang_change_en,
   lang_change_hostname_cs,
   lang_change_hostname_en, lang_change_password_en,
-  lang_change_pasword_cs,
+  lang_change_pasword_cs, lang_change_username_cs, lang_change_username_en,
   lang_Creat_any_cs,
   lang_Creat_any_en,
   lang_Creat_new_dir_cs,
@@ -70,7 +70,8 @@ export const NapicuOSLanguages = {
       none: lang_none_en,
       change: lang_change_en,
       change_host_name: lang_change_hostname_en,
-      change_password: lang_change_password_en
+      change_password: lang_change_password_en,
+      change_username: lang_change_username_en
     }
   },
 
@@ -105,7 +106,8 @@ export const NapicuOSLanguages = {
       none: lang_none_cs,
       change: lang_change_cs,
       change_host_name: lang_change_hostname_cs,
-      change_password: lang_change_pasword_cs
+      change_password: lang_change_pasword_cs,
+      change_username: lang_change_username_cs
     }
   }
 }

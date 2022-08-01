@@ -58,7 +58,7 @@ export class UsersComponent implements OnInit {
     if(this.showInputMenu) return;
     this.inputMenuData = {
       inputData: {
-        value: 'Enter new password',
+        value: NapicuOS.get_language_words().other.change_password,
         buttonType: NapicuOS.get_button_type_change_cancel(),
         inputType: "password"
       },
