@@ -4,7 +4,12 @@ import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
   lang_Cancel_any_cs,
-  lang_Cancel_any_en, lang_change_cs, lang_change_en,
+  lang_Cancel_any_en,
+  lang_change_cs,
+  lang_change_en,
+  lang_change_hostname_cs,
+  lang_change_hostname_en, lang_change_password_en,
+  lang_change_pasword_cs,
   lang_Creat_any_cs,
   lang_Creat_any_en,
   lang_Creat_new_dir_cs,
@@ -20,11 +25,15 @@ import {
   lang_Enter_name_cs,
   lang_Enter_name_en,
   lang_enter_new_name_cs,
-  lang_enter_new_name_en, lang_none_cs, lang_none_en,
+  lang_enter_new_name_en,
+  lang_none_cs,
+  lang_none_en,
   lang_Places_cs,
   lang_Places_en,
   lang_rename_cs,
-  lang_rename_en, lang_yes_cs, lang_yes_en
+  lang_rename_en,
+  lang_yes_cs,
+  lang_yes_en
 } from "./Other";
 
 export declare type NapicuOS_available_language = "en" | "cs";
@@ -59,7 +68,9 @@ export const NapicuOSLanguages = {
       enabled: lang_Enabled_en,
       yes: lang_yes_en,
       none: lang_none_en,
-      change: lang_change_en
+      change: lang_change_en,
+      change_host_name: lang_change_hostname_en,
+      change_password: lang_change_password_en
     }
   },
 
@@ -92,7 +103,9 @@ export const NapicuOSLanguages = {
       enabled: lang_Enabled_cs,
       yes: lang_yes_cs,
       none: lang_none_cs,
-      change: lang_change_cs
+      change: lang_change_cs,
+      change_host_name: lang_change_hostname_cs,
+      change_password: lang_change_pasword_cs
     }
   }
 }
