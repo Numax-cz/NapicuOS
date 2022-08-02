@@ -49,7 +49,8 @@ export class UsersComponent implements OnInit {
         buttonType: NapicuOS.get_button_type_rename_cancel()
       },
       submitFunction: this.submitNewUserName,
-      rejectFunction: this.closeInputMenu
+      rejectFunction: this.closeInputMenu,
+      checkFunction: this.checkNewUserName
     }
     this.openInputMenu();
   }
@@ -63,7 +64,8 @@ export class UsersComponent implements OnInit {
         inputType: "password"
       },
       submitFunction: this.submitNewUserPassword,
-      rejectFunction: this.closeInputMenu
+      rejectFunction: this.closeInputMenu,
+      checkFunction: this.checkNewUserPassowrd
     }
     this.openInputMenu();
   }
@@ -94,9 +96,16 @@ export class UsersComponent implements OnInit {
     this.closeInputMenu();
   }
 
-  protected submitNewUserPassword = (value: string): void => {
+  protected checkNewUserName = (value: string): boolean => {
+    return NapicuOS.check_username(value) === SystemStateMetadata.UserNotExists;
+  }
 
+  protected submitNewUserPassword = (value: string): void => {
     this.closeInputMenu();
+  }
+
+  protected checkNewUserPassowrd = (value: string): boolean => {
+    return NapicuOS.check_password(value) === SystemStateMetadata.StringCorrect;
   }
 
   protected openInputMenu(): void {

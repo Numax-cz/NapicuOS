@@ -43,7 +43,6 @@ export class AboutComponent implements OnInit {
     return lng === SystemStateMetadata.StringCorrect;
   }
 
-
   protected closeInputMenu = (): void  => {
     this.showInputMenu = false;
   }

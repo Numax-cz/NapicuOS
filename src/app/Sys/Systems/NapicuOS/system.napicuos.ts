@@ -1710,6 +1710,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Checks the username
+   * @param password
+   */
+  public static check_password(password: string): SystemStringStateCorrection{
+    return checkSystemStringLength(password, SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_USERS_MAX_LENGTH)
+  }
+
+  /**
    * Sets a authLogin for the user
    * @param username
    * @param auth
