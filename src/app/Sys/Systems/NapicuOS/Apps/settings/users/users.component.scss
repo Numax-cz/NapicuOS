@@ -3,7 +3,7 @@
   color: var(--NapicuTextColor);
   width: 40%;
   margin: auto;
-
+  min-width: 400px;
 }
 
 .UserProfile{
@@ -63,8 +63,4 @@
 .UseAuthSwitchSlider::before{
   width: 18px !important;
   height: 18px !important;
-}
-
-@media screen and (max-width: 850px) {
-  
 }
