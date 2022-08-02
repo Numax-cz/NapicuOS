@@ -2,11 +2,11 @@
   <div class="Container">
     <div style="margin-left: auto;width: 80%;">
       <span class="ValueTXT">{{data.inputData.value}}</span>
-      <input [(ngModel)]="inputValue" class="NapicuOSSimpleInput" [type]="data.inputData.inputType || 'text'" name="value">
+      <input [(ngModel)]="inputValue" (ngModelChange)="onChangeInput()" class="NapicuOSSimpleInput" [type]="data.inputData.inputType || 'text'" name="value">
     </div>
   </div>
   <div class="NapicuOSSimpleButton Buttons">
     <button (click)="onReject()">{{data.inputData.buttonType?.reject}}</button>
-    <button (click)="onSubmit()">{{data.inputData.buttonType?.submit}}</button>
+    <button  (click)="onSubmit()" [disabled]="!allowSubmit">{{data.inputData.buttonType?.submit}}</button>
   </div>
 </section>

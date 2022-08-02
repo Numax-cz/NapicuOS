@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NapicuBios} from "../../../SystemComponents/Bios";
 import {NapicuOS} from "../../../system.napicuos";
 import {AppMenuInputData} from "../../../interface/InputAlert";
+import {SystemStateMetadata, SystemStringStateCorrection} from "../../../interface/System";
 
 @Component({
   selector: 'app-about',
@@ -9,7 +10,6 @@ import {AppMenuInputData} from "../../../interface/InputAlert";
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
   public showInputMenu: boolean = false;
   public declare inputMenuData: AppMenuInputData;
 
@@ -17,8 +17,6 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
 
   public openSetHost(): void {
     if(this.showInputMenu) return;
@@ -29,20 +27,26 @@ export class AboutComponent implements OnInit {
         inputType: "text"
       },
       submitFunction: this.submitNewHost,
-      rejectFunction: this.closeInputMenu
+      rejectFunction: this.closeInputMenu,
+      checkFunction: this.checkNewHostValid
     }
     this.openInputMenu();
   }
 
   protected submitNewHost = (value: string): void => {
-
+    let i: SystemStringStateCorrection = NapicuOS.set_hostname(value);
+    this.closeInputMenu();
   }
+
+  protected checkNewHostValid = (value: string): boolean => {
+    let lng: SystemStringStateCorrection = NapicuOS.check_hostname(value);
+    return lng === SystemStateMetadata.StringCorrect;
+  }
+
 
   protected closeInputMenu = (): void  => {
     this.showInputMenu = false;
   }
-
-
 
   protected openInputMenu(): void {
     this.showInputMenu = true;

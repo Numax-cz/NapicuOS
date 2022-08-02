@@ -9,21 +9,23 @@ import {AppMenuInputData} from "../../interface/InputAlert";
 })
 export class AppInputComponent implements OnInit {
   public declare inputValue: string;
+  public allowSubmit: boolean = false;
   @Input() public declare data: AppMenuInputData;
-
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-
   public onReject(): void {
     this.data.rejectFunction?.();
   }
 
   public onSubmit(): void {
-    this.data.submitFunction(this.inputValue);
+      this.data.submitFunction(this.inputValue);
   }
 
+  public onChangeInput(): void {
+    this.allowSubmit = !!this.data.checkFunction?.(this.inputValue) ;
+  }
 }

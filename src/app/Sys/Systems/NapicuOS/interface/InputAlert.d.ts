@@ -13,6 +13,7 @@ export declare interface InputAlertData {
 
 
 export declare type AppInputSubmitFunction = (value: string) => void;
+export declare type AppInputCheckFunction = (value: string) => boolean;
 
 declare interface InputAppAlertData {
   value: string,
@@ -23,5 +24,6 @@ declare interface InputAppAlertData {
 export declare interface AppMenuInputData{
   inputData: InputAppAlertData,
   submitFunction: AppInputSubmitFunction,
-  rejectFunction?: () => void
+  rejectFunction?: () => void,
+  checkFunction?: AppInputCheckFunction;
 }

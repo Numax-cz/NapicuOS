@@ -1331,12 +1331,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param hostname New computer name
    */
   public static set_hostname(hostname: string): SystemStringStateCorrection {
-    let lng: SystemStringStateCorrection = checkSystemStringLength(hostname, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_HOSTNAME_MAX_LENGTH);
+    let lng: SystemStringStateCorrection = this.check_hostname(hostname);
     if (lng === SystemStateMetadata.StringCorrect) {
       this.SystemCookiesConfig.hostname = hostname;
       this.update_config_to_cookies();
     }
     return lng;
+  }
+
+  /**
+   * Checks hostname validation
+   * @param hostname Computer name
+   */
+  public static check_hostname(hostname: string): SystemStringStateCorrection{
+    return checkSystemStringLength(hostname, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_HOSTNAME_MAX_LENGTH);
   }
 
   /**
