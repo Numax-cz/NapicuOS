@@ -1,27 +1,10 @@
-
-.MainContent{
-  padding: 25px;
-  color: var(--NapicuTextColor);
-
-}
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/BasicTable";
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/MainContentView";
 
 .MainOSName {
   text-align: center;
   font-size: 3rem;
-
 }
-
-.osInformation{
-
-  width: 80%;
-  margin: auto;
-  min-width: 500px;
-
-  .table{
-    padding: 20px 0;
-  }
-}
-
 .Input{
   position: absolute;
   top: 50%;

@@ -1,1 +1,35 @@
-<p>time works!</p>
+<section class="MainContent">
+  <!--Settings -->
+  <div class="BasicTableSizes BasicTableSettings-Medium">
+    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover NapicuOSSimpleGTablePointer table" >
+      <ul>
+        <div>{{GetAutomaticText}} {{GetDateAndTimeText}}</div>
+        <section class="SwitchNot">
+          <label class="switch UseAuthSwitch" clickable="false">
+            <input type="checkbox" [checked]="!GetAutoTimeSwitchA"
+                   (change)="onChangeAutoTimeSwitch()">
+            <span class="slider UseAuthSwitchSlider"></span>
+          </label>
+        </section>
+      </ul>
+      <ul>
+        <div>{{GetDateAndTimeText}}</div>
+        <div>3 August 2022, 9:38</div>
+      </ul>
+    </div>
+
+    <div class="NapicuOSSimpleGTable table">
+      <ul>
+        <div>{{GetDateAndTimeFormatText}}</div>
+        <div>24-h ></div>
+      </ul>
+    </div>
+  </div>
+
+<!--  <ng-container *ngIf="showInputMenu && inputMenuData">-->
+<!--    <section>-->
+<!--      <app-input clickable="true" [data]="inputMenuData"  class="Input" ></app-input>-->
+<!--    </section>-->
+<!--  </ng-container>-->
+
+</section>

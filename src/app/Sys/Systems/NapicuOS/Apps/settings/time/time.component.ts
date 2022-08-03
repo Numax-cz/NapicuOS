@@ -12,4 +12,26 @@ export class TimeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public onChangeAutoTimeSwitch(): void {
+
+  }
+
+  public GetAutoTimeSwitchA(): boolean {
+
+    return true;
+  }
+
+
+  get GetAutomaticText(): string {
+    return "Automatic";
+  }
+
+  get GetDateAndTimeText(): string {
+    return "Date & time"
+  }
+
+  get GetDateAndTimeFormatText(): string {
+    return "Time Format"
+  }
+
 }

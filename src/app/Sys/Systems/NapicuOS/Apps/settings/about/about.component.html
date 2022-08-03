@@ -2,16 +2,16 @@
   <h1 class="MainOSName">NapicuOS</h1>
 
   <!--MainContent -->
-  <section class="osInformation">
+  <section class="BasicTableSizes BasicTableSettings-Large">
 
-    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table" style="cursor: pointer;" (click)="openSetHost()">
+    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover NapicuOSSimpleGTablePointer table" (click)="openSetHost()">
       <ul>
         <li>Device Name</li>
         <li>{{GetDeviceName}} <span class="NapicuArrowSettingLeft" >></span></li>
       </ul>
     </div>
 
-    <div class="NapicuOSSimpleGTable table">
+    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
       <ul>
         <div>Memory</div>
         <div>{{GetMemSize}}</div>
@@ -31,7 +31,7 @@
     </div>
 
 
-    <div class="NapicuOSSimpleGTable table">
+    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
       <ul>
         <div>OS Name</div>
         <div>{{GetOSName}}</div>
