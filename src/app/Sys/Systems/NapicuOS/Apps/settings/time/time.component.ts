@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {SystemUserPermissionsEnumMetadata} from "../../../config/UserPerms";
+import {SystemTimeFormatEnumMetadata} from "../../../config/TimeFormat";
+import {NapicuOS} from "../../../system.napicuos";
 
 @Component({
   selector: 'app-time',
@@ -21,17 +24,19 @@ export class TimeComponent implements OnInit {
     return true;
   }
 
-
-  get GetAutomaticText(): string {
-    return "Automatic";
+  get GetDateAndTimeText(): string {
+    return NapicuOS.get_language_words().other.date_and_time;
   }
 
-  get GetDateAndTimeText(): string {
-    return "Date & time"
+  get GetDateAndTimeAutomaticText(): string {
+    return NapicuOS.get_language_words().other.automatic_date_and_time;
   }
 
   get GetDateAndTimeFormatText(): string {
-    return "Time Format"
+    return NapicuOS.get_language_words().other.time_format;
   }
 
+  get GetTimeFormatOptions() {
+    return Object.values(SystemTimeFormatEnumMetadata);
+  }
 }

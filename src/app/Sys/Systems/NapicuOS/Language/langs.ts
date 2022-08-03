@@ -37,7 +37,7 @@ import {
   lang_Places_cs,
   lang_Places_en,
   lang_rename_cs,
-  lang_rename_en,
+  lang_rename_en, lang_time_format_cs, lang_time_format_en,
   lang_yes_cs,
   lang_yes_en
 } from "./Other";
@@ -79,7 +79,8 @@ export const NapicuOSLanguages = {
       change_password: lang_change_password_en,
       change_username: lang_change_username_en,
       date_and_time: lang_change_date_and_time_en,
-      automatic_date_and_time: lang_change_date_and_time_automatic_en
+      automatic_date_and_time: lang_change_date_and_time_automatic_en,
+      time_format: lang_time_format_en
     }
   },
 
@@ -117,7 +118,8 @@ export const NapicuOSLanguages = {
       change_password: lang_change_pasword_cs,
       change_username: lang_change_username_cs,
       date_and_time: lang_change_date_and_time_cs,
-      automatic_date_and_time: lang_change_date_and_time_automatic_cs
+      automatic_date_and_time: lang_change_date_and_time_automatic_cs,
+      time_format: lang_time_format_cs
     }
   }
 }

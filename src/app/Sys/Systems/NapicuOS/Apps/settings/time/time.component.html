@@ -3,7 +3,7 @@
   <div class="BasicTableSizes BasicTableSettings-Medium">
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover NapicuOSSimpleGTablePointer table" >
       <ul>
-        <div>{{GetAutomaticText}} {{GetDateAndTimeText}}</div>
+        <div>{{GetDateAndTimeAutomaticText}}</div>
         <section class="SwitchNot">
           <label class="switch UseAuthSwitch" clickable="false">
             <input type="checkbox" [checked]="!GetAutoTimeSwitchA"
@@ -19,9 +19,13 @@
     </div>
 
     <div class="NapicuOSSimpleGTable table">
-      <ul>
+      <ul style="position: relative" >
         <div>{{GetDateAndTimeFormatText}}</div>
-        <div>24-h ></div>
+          <div >
+            <napicu-drop-down-menu clickable="false" [arrow]="false" [selectedOption]="0" formControlName="permission"
+                                   style="text-align: center; position: absolute; right: 10px; top: 0%; width: 70px;"
+                                 [options]="GetTimeFormatOptions"></napicu-drop-down-menu>
+          </div>
       </ul>
     </div>
   </div>

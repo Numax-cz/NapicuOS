@@ -54,3 +54,6 @@ export const lang_change_date_and_time_cs = "Datum a čas";
 
 export const lang_change_date_and_time_automatic_en = "Automatic Date & Time";
 export const lang_change_date_and_time_automatic_cs = "Datum a čas automaticky";
+
+export const lang_time_format_en = "Time Format";
+export const lang_time_format_cs = "Formát času";
