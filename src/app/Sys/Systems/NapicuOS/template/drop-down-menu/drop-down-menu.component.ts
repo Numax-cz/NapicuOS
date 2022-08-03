@@ -19,6 +19,7 @@ interface DropDownMenuData {
 export class DropDownMenuComponent implements ControlValueAccessor, OnInit {
   @Input() options: string[] = []
   @Input() selectedOption: number = 0;
+  @Input() arrow: boolean = true;
   @Output() napicuDropDownMenuClick = new EventEmitter<string>();
   @Input() declare formControlName: string;
   private declare control: AbstractControl;

@@ -4,7 +4,7 @@
   (napicuMenuClick)="isDropDownOpen = false"
   clickable="false"
 >
-  <div style="position: relative" [ngClass]="{'open': isDropDownOpen, 'close': !isDropDownOpen}"
+  <div style="position: relative" [ngClass]="{'open': isDropDownOpen && arrow, 'close': !isDropDownOpen && arrow}"
        (click)="isDropDownOpen = !isDropDownOpen"
        clickable="false">
     <span class="option-name">{{options[selectedOption]}}</span>
