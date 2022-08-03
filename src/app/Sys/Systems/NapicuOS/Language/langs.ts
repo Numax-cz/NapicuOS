@@ -6,10 +6,16 @@ import {
   lang_Cancel_any_cs,
   lang_Cancel_any_en,
   lang_change_cs,
+  lang_change_date_and_time_automatic_cs,
+  lang_change_date_and_time_automatic_en,
+  lang_change_date_and_time_cs, lang_change_date_and_time_en,
   lang_change_en,
   lang_change_hostname_cs,
-  lang_change_hostname_en, lang_change_password_en,
-  lang_change_pasword_cs, lang_change_username_cs, lang_change_username_en,
+  lang_change_hostname_en,
+  lang_change_password_en,
+  lang_change_pasword_cs,
+  lang_change_username_cs,
+  lang_change_username_en,
   lang_Creat_any_cs,
   lang_Creat_any_en,
   lang_Creat_new_dir_cs,
@@ -71,7 +77,9 @@ export const NapicuOSLanguages = {
       change: lang_change_en,
       change_host_name: lang_change_hostname_en,
       change_password: lang_change_password_en,
-      change_username: lang_change_username_en
+      change_username: lang_change_username_en,
+      date_and_time: lang_change_date_and_time_en,
+      automatic_date_and_time: lang_change_date_and_time_automatic_en
     }
   },
 
@@ -107,7 +115,9 @@ export const NapicuOSLanguages = {
       change: lang_change_cs,
       change_host_name: lang_change_hostname_cs,
       change_password: lang_change_pasword_cs,
-      change_username: lang_change_username_cs
+      change_username: lang_change_username_cs,
+      date_and_time: lang_change_date_and_time_cs,
+      automatic_date_and_time: lang_change_date_and_time_automatic_cs
     }
   }
 }
