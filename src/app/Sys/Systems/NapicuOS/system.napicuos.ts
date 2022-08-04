@@ -370,7 +370,23 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns system time format
    */
   public static get_system_time_format(): SystemTimeFormatEnumMetadata {
-    return NapicuOS.get_system_config_from_cookies()?.time.format || SYSTE_DEFAULT_TIME_FORMAT;
+    return NapicuOS.get_system_config_from_cookies()?.time?.format || SYSTE_DEFAULT_TIME_FORMAT;
+  }
+
+  /**
+   * Returns system time format - index
+   */
+  public static get_system_time_format_index(): number {
+    return Object.values(SystemTimeFormatEnumMetadata).indexOf(this.get_system_time_format());
+  }
+
+  /**
+   * Sets system time format
+   */
+  public static  set_system_time_format(format: SystemTimeFormatEnumMetadata | number): void {
+    if(typeof format == "number" ) this.SystemCookiesConfig.time.format = Object.values(SystemTimeFormatEnumMetadata)[format];
+    else this.SystemCookiesConfig.time.format = format;
+    this.update_config_to_cookies();
   }
 
   /**

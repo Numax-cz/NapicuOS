@@ -10,6 +10,8 @@ import {NapicuOS} from "../../../system.napicuos";
 })
 export class TimeComponent implements OnInit {
 
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,6 +19,10 @@ export class TimeComponent implements OnInit {
 
   public onChangeAutoTimeSwitch(): void {
 
+  }
+
+  public onChangeTimeFormat(value: number): void {
+    NapicuOS.set_system_time_format(value)
   }
 
   public GetAutoTimeSwitchA(): boolean {
@@ -34,6 +40,10 @@ export class TimeComponent implements OnInit {
 
   get GetDateAndTimeFormatText(): string {
     return NapicuOS.get_language_words().other.time_format;
+  }
+
+  get GetSelectedTimeFormat(){
+    return NapicuOS.get_system_time_format_index();
   }
 
   get GetTimeFormatOptions() {
