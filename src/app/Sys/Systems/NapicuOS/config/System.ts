@@ -1,4 +1,5 @@
 import {SystemInformation} from "../interface/System";
+import {SystemTimeFormatEnumMetadata} from "./TimeFormat";
 
 export const SYSTEM_DEFAULT_HOSTNAME = 'napicu-os';
 export const SYSTEM_BOOT_SCREEN_TITLE = 'NapicuOS';
@@ -18,6 +19,8 @@ export const SYSTEM_USERS_MAX_PASSWORD_LENGTH = 10;
 
 export const SYSTEM_HOSTNAME_MIN_LENGTH = 1;
 export const SYSTEM_HOSTNAME_MAX_LENGTH = 10;
+
+export const SYSTE_DEFAULT_TIME_FORMAT = SystemTimeFormatEnumMetadata.h12
 
 
 export const SYSTEM_DEFAULT_TERMINAL_PATH = `/home`; //TODO user
