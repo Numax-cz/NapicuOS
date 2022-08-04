@@ -1,5 +1,6 @@
 import {UserConstructorMetadata} from "./User/User";
 import {NapicuOsCookiesFileMetadata} from "./CookiesFiles";
+import {SystemTimeFormatEnumMetadata} from "../config/TimeFormat";
 
 export declare interface NapicuOsCookiesTemplate {
   user: {
@@ -8,5 +9,9 @@ export declare interface NapicuOsCookiesTemplate {
   }
   hostname: string
   directorys: string[],
-  files: NapicuOsCookiesFileMetadata[]
+  files: NapicuOsCookiesFileMetadata[],
+  time:{
+    format: SystemTimeFormatEnumMetadata
+  }
+
 }
