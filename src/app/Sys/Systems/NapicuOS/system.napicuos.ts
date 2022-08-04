@@ -26,6 +26,7 @@ import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './syste
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
+  SYSTE_DEFAULT_TIME_FORMAT,
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOME_FOLDERS,
@@ -85,6 +86,7 @@ import {PathHasLastSlash, PathHasntLastSlash} from "./scripts/PathChecker";
 import {CommandParams} from "./interface/Commands/CommandParams";
 import {processConstructor} from "./interface/Process";
 import {InputButtonTypeMetadata} from "./interface/InputButtonType";
+import {SystemTimeFormatEnumMetadata} from "./config/TimeFormat";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -101,7 +103,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     },
     hostname: SYSTEM_DEFAULT_HOSTNAME,
     directorys: [],
-    files: []
+    files: [],
+    time: {
+      format: SYSTE_DEFAULT_TIME_FORMAT
+    }
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
@@ -354,11 +359,18 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return SYSTEM_INFORMATION.type;
   }
 
-/**
+  /**
    * Returns system time
    */
   public static get_system_time(): string {
     return this.systemTime;
+  }
+
+  /**
+   * Returns system time format
+   */
+  public static get_system_time_format(): SystemTimeFormatEnumMetadata {
+    return NapicuOS.get_system_config_from_cookies()?.time.format || SYSTE_DEFAULT_TIME_FORMAT;
   }
 
   /**
