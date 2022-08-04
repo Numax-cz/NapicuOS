@@ -1,5 +1,20 @@
-import {Component, EventEmitter, Host, Input, OnInit, Optional, Output, SkipSelf} from '@angular/core';
-import {AbstractControl, ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {AfterViewInit, Component, EventEmitter, Host, Input, OnInit, Optional, Output, SkipSelf} from '@angular/core';
+import {
+  AbstractControl,
+  ControlContainer,
+  ControlValueAccessor,
+  FormControl,
+  FormGroup,
+  NG_VALUE_ACCESSOR, Validators
+} from "@angular/forms";
+import {UserManagerForm} from "../../interface/Apps/UsermanagerForm";
+import {
+  SYSTEM_USERS_MAX_LENGTH,
+  SYSTEM_USERS_MAX_PASSWORD_LENGTH,
+  SYSTEM_USERS_MIN_LENGTH,
+  SYSTEM_USERS_MIN_PASSWORD_LENGTH
+} from "../../config/System";
+import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
 
 interface DropDownMenuData {
   name: string,
@@ -20,6 +35,7 @@ export class DropDownMenuComponent implements ControlValueAccessor, OnInit {
   @Input() options: string[] = []
   @Input() selectedOption: number = 0;
   @Input() arrow: boolean = true;
+  @Input() declare onSet: (value: number) => void;
   @Output() napicuDropDownMenuClick = new EventEmitter<string>();
   @Input() declare formControlName: string;
   private declare control: AbstractControl;
@@ -33,6 +49,7 @@ export class DropDownMenuComponent implements ControlValueAccessor, OnInit {
     this.selectedOption = index;
     this.isDropDownOpen = false;
     if (this.control) this.control.setValue(this.options[index]);
+    this.onSet?.(index);
   }
 
   ngOnInit(): void {
@@ -44,9 +61,10 @@ export class DropDownMenuComponent implements ControlValueAccessor, OnInit {
       } else {
         console.warn('FormControlName error');
       }
-    } else {
-      console.warn('Can\'t find parent FormGroup directive');
     }
+    // else {
+    //   console.warn('Can\'t find parent FormGroup directive');
+    // }
   }
 
   registerOnChange(fn: any): void {
