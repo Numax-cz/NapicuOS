@@ -108,8 +108,8 @@ export class BiosComponent implements OnInit, OnDestroy {
           if (e.keyCode == KeyMaps.ArrowDown || e.keyCode == KeyMaps.ArrowUp) {
             MoveOption(e.keyCode);
           }
-          //* Enter
-          if (e.keyCode == KeyMaps.Enter) {
+          //* Enter || Escape
+          if (e.keyCode == KeyMaps.Enter){
             SetWindowOption();
           }
         } else {
@@ -126,11 +126,12 @@ export class BiosComponent implements OnInit, OnDestroy {
             if (OptionPanelComponent.window)
               OptionPanelComponent.window.CloseSave();
           }
-          //* Close --unsavey
+          //* Close --unsave
           if (e.keyCode == KeyMaps.Escape) {
             if (OptionPanelComponent.window)
               OptionPanelComponent.window.CloseUnsave();
           }
+
           if (BiosComponent.WindowFastOptionDisplay) {
             if (
               e.keyCode == KeyMaps.ArrowDown ||
