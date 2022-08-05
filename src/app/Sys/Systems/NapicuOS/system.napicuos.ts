@@ -87,6 +87,7 @@ import {CommandParams} from "./interface/Commands/CommandParams";
 import {processConstructor} from "./interface/Process";
 import {InputButtonTypeMetadata} from "./interface/InputButtonType";
 import {SystemTimeFormatEnumMetadata} from "./config/TimeFormat";
+import {NapicuBios} from "./SystemComponents/Bios";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -183,7 +184,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
-
 
       resolve();
     });
