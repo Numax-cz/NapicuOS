@@ -72,6 +72,7 @@ export class Window {
     if (BiosComponent.WindowFastOptionDisplay) {
       if (isTime(selected)) {
         selected.time = ItemsDateInit;
+        this.runTime();
       } else if (isDate(selected)) {
         selected.date = ItemsDateInit;
       }
@@ -89,10 +90,7 @@ export class Window {
     if (isOption(selected)) {
       selected.selected = BiosComponent.WindowSelectedOption;
     } else if (isTime(selected)) {
-      setTimeInterval(
-        SettingsTemplateComponent.MainOption,
-        SettingsTemplateComponent.selected
-      );
+      this.runTime();
     } else if (isDate(selected)) {
       //? There is nothing to see
     } else if (this.CallBack && BiosComponent.WindowSelectedOption == 0) {
@@ -101,6 +99,17 @@ export class Window {
       this.CallBackD();
     }
     this.close();
+  }
+
+  /**
+   * Runs the bios time
+   * @protected
+   */
+  protected runTime(): void {
+    setTimeInterval(
+      SettingsTemplateComponent.MainOption,
+      SettingsTemplateComponent.selected
+    );
   }
 
   /**
