@@ -11,7 +11,8 @@ export declare interface NapicuOsCookiesTemplate {
   directorys: string[],
   files: NapicuOsCookiesFileMetadata[],
   time:{
-    format: SystemTimeFormatEnumMetadata
+    format: SystemTimeFormatEnumMetadata,
+    auto_sync_time: boolean
   }
 
 }

@@ -26,7 +26,7 @@ import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './syste
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
-  SYSTE_DEFAULT_TIME_FORMAT,
+  SYSTEM_DEFAULT_TIME_FORMAT,
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOME_FOLDERS,
@@ -39,7 +39,7 @@ import {
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
-  SYSTEM_USERS_MIN_PASSWORD_LENGTH
+  SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_DEFAULT_TIME_SYNC
 } from './config/System';
 import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
@@ -105,7 +105,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     directorys: [],
     files: [],
     time: {
-      format: SYSTE_DEFAULT_TIME_FORMAT
+      format: SYSTEM_DEFAULT_TIME_FORMAT,
+      auto_sync_time: SYSTEM_DEFAULT_TIME_SYNC
     }
   };
   public override boot = {
@@ -370,7 +371,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns system time format
    */
   public static get_system_time_format(): SystemTimeFormatEnumMetadata {
-    return NapicuOS.get_system_config_from_cookies()?.time?.format || SYSTE_DEFAULT_TIME_FORMAT;
+    return NapicuOS.get_system_config_from_cookies()?.time?.format || SYSTEM_DEFAULT_TIME_FORMAT;
   }
 
   /**
@@ -386,6 +387,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static  set_system_time_format(format: SystemTimeFormatEnumMetadata | number): void {
     if(typeof format == "number" ) this.SystemCookiesConfig.time.format = Object.values(SystemTimeFormatEnumMetadata)[format];
     else this.SystemCookiesConfig.time.format = format;
+    this.update_config_to_cookies();
+  }
+
+  /**
+   * Returns system time sync
+   */
+  public static   get_system_time_sync(): boolean{
+    return this.SystemCookiesConfig.time.auto_sync_time;
+  }
+
+  /**
+   * Sets system time sync
+   * @param sync
+   */
+  public static set_system_time_sync(sync: boolean): void {
+    this.SystemCookiesConfig.time.auto_sync_time = sync;
     this.update_config_to_cookies();
   }
 

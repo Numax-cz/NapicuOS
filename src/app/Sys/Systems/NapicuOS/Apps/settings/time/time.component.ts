@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SystemUserPermissionsEnumMetadata} from "../../../config/UserPerms";
 import {SystemTimeFormatEnumMetadata} from "../../../config/TimeFormat";
 import {NapicuOS} from "../../../system.napicuos";
+import {NapicuOSComponent} from "../../../components/napicu-os/napicu-os.component";
 
 @Component({
   selector: 'app-time',
@@ -18,6 +19,7 @@ export class TimeComponent implements OnInit {
   }
 
   public onChangeAutoTimeSwitch(): void {
+    NapicuOS.set_system_time_sync(!NapicuOS.get_system_time_sync());
 
   }
 
@@ -25,9 +27,8 @@ export class TimeComponent implements OnInit {
     NapicuOS.set_system_time_format(value)
   }
 
-  public GetAutoTimeSwitchA(): boolean {
-
-    return true;
+  get GetAutoTimeSwitchA(): boolean {
+    return NapicuOS.get_system_time_sync();
   }
 
   get GetDateAndTimeText(): string {
