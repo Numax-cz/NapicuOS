@@ -332,9 +332,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     this.update_dock_items();
   }
 
-  public static getTime(): string {
-    let time: NapicuDate = (NapicuOS.get_system_time_sync()) ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format();
-    return  time.format(TIME_FORMAT);
+  public static getTime(): NapicuDate {
+    return NapicuOS.get_system_time_sync() ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format()
+
   }
 
   public static getTimeByFormat(format: string): string {
@@ -1463,7 +1463,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Function to update the system time
    */
   public static update_time(): void {
-    this.systemTime = this.getTime();
+    this.systemTime = this.getTime().format(TIME_FORMAT);
   }
 
   /*
