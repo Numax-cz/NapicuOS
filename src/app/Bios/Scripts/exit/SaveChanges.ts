@@ -9,7 +9,7 @@ export function SaveChanges(): void {
   Reboot();
 }
 
-function Save(): void {
+export function Save(): void {
   BiosComponent.BiosMenuSavePoint = BiosSettings;
   setCookies<BiosOptionsST>(cookiesForBisoSettingsAr, BiosSettings);
 }
