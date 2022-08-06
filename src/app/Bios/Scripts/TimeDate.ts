@@ -32,16 +32,29 @@ export function setTime(): BiosTime[] {
  */
 export function setDate(): BiosDate[] {
   var d = new Date();
+
   var out: BiosTime[] = [
     {
-      title: (d.getMonth() + +1).toString(),
+      title: "1",
     },
     {
-      title: d.getDate().toString(),
+      title: "1",
     },
     {
-      title: d.getFullYear().toString(),
+      title: "2020",
     },
-  ];
+  ]
+
+  // var out: BiosTime[] = [
+  //   {
+  //     title: (d.getMonth() + +1).toString(),
+  //   },
+  //   {
+  //     title: d.getDate().toString(),
+  //   },
+  //   {
+  //     title: d.getFullYear().toString(),
+  //   },
+  // ];
   return out;
 }
