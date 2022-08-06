@@ -6,8 +6,8 @@ export interface ToolSettings {
 export interface settings {
   title: string;
   options?: Options[];
-  time?: Time[];
-  date?: Date[];
+  time?: BiosTime[];
+  date?: BiosDate[];
   optionsFast?: Function | null;
   interval?: any;
   description: string;
@@ -22,11 +22,11 @@ export interface Options {
   title: string;
 }
 
-export interface Time {
+export interface BiosTime {
   title: string;
 }
 
-export interface Date {
+export interface BiosDate {
   title: string;
 }
 

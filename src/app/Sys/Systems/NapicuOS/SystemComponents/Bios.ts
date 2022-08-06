@@ -1,17 +1,22 @@
 import {VM_COMPUTER_INFORMATION} from "../../../../Bios/vm_computer";
 import {Current} from "../../../../Bios/Config/FlashInformationData";
 import {BiosOptionsST, BiosSettings} from "../../../../Bios/ToolSettings";
-import {Time, Date} from "../../../../Bios/interface/ToolSettings";
+import {BiosTime, BiosDate} from "../../../../Bios/interface/ToolSettings";
 import {SystemTimeFormatEnumMetadata} from "../config/TimeFormat";
 import {DateInterface, TimeInterface} from "../interface/Date";
+import {NapicuDate} from "napicuformatter";
+import {copy} from "../../../../Bios/Scripts/DeepClone";
+import {NapicuOS} from "../system.napicuos";
+import {NapicuApps} from "../systemApps.napicuos";
+import {TIME_FORMAT} from "../config/Time";
 
 export class NapicuBios{
 
-
-
+  protected static declare biosTime_Date: NapicuDate;
+  protected static declare biosTime_cache: number;
 
   public static get_bios_time(): TimeInterface<string>{
-    let time: Time[] = BiosSettings["Main"].settings["time"]?.time || []
+    let time: BiosTime[] = BiosSettings["Main"].settings["time"]?.time || []
     return {
       seconds: time[0].title,
       minutes: time[1].title,
@@ -29,12 +34,25 @@ export class NapicuBios{
   }
 
   public static get_bios_date(): DateInterface<string>{
-    let date: Date[] = BiosSettings["Main"].settings["date"]?.date || [];
+    let date: BiosDate[] = BiosSettings["Main"].settings["date"]?.date || [];
     return {
       day: date[0].title,
       month: date[1].title,
       year: date[2].title
     }
+  }
+
+  public static get_bios_time_napicu_date_format(): NapicuDate{
+    const time: TimeInterface<number> = this.get_bios_time_int();
+    const date: DateInterface<number> = this.get_bios_date_int();
+
+    if(!this.biosTime_Date || !this.biosTime_cache) {
+      this.biosTime_Date = new NapicuDate(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, 0);
+      this.biosTime_cache = new NapicuDate().getTimeStamp();
+    }
+
+    let timestamp: number = new Date().getTime() - (this.biosTime_cache - this.biosTime_Date.getTimeStamp());
+    return new NapicuDate(timestamp);
   }
 
   public static get_bios_date_int(): DateInterface<number>{

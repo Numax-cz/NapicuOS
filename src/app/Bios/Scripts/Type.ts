@@ -1,6 +1,6 @@
-import {Date, Options, settings, Time} from '../interface/ToolSettings';
+import {BiosDate, Options, settings, BiosTime} from '../interface/ToolSettings';
 
-export type WindowItems = Options[] | Time[] | Date[];
+export type WindowItems = Options[] | BiosTime[] | BiosDate[];
 
 /**
  *

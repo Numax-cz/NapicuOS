@@ -1,4 +1,4 @@
-import {Date, Time} from '../interface/ToolSettings';
+import {BiosDate, BiosTime} from '../interface/ToolSettings';
 
 /**
  * Index 1 is the `hour`
@@ -6,9 +6,9 @@ import {Date, Time} from '../interface/ToolSettings';
  * Index 2 is the `minute`
  *
  * Index 3 is the `second`
- * @returns {Date} Date
+ * @returns {BiosDate} Date
  */
-export function setTime(): Time[] {
+export function setTime(): BiosTime[] {
   return [
     {
       title: '0',
@@ -30,9 +30,9 @@ export function setTime(): Time[] {
  * Index 3 is the `year`
  * @returns {Date} Date
  */
-export function setDate(): Date[] {
+export function setDate(): BiosDate[] {
   var d = new Date();
-  var out: Time[] = [
+  var out: BiosTime[] = [
     {
       title: (d.getMonth() + +1).toString(),
     },

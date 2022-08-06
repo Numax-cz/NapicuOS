@@ -1,5 +1,5 @@
 import {isDate, isOption, isOptionsFast, isTime} from './Type';
-import {settings, Time} from '../interface/ToolSettings';
+import {settings, BiosTime} from '../interface/ToolSettings';
 import {clearTimeInterval} from './TimeController';
 import {BiosComponent} from '../components/bios/bios.component';
 import {OptionPanelComponent} from '../components/option-panel/option-panel.component';
@@ -8,7 +8,7 @@ import {Window} from './Window';
 import {copy} from './DeepClone';
 import {getSelectedItem} from './getSelectedItem';
 
-export var ItemsDateInit: Time[];
+export var ItemsDateInit: BiosTime[];
 
 export function SetWindowOption(): void {
   let selected: settings = getSelectedItem();

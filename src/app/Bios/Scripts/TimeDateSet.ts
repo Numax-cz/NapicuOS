@@ -1,5 +1,5 @@
 import {BiosComponent} from '../components/bios/bios.component';
-import {Time} from '../interface/ToolSettings';
+import {BiosTime} from '../interface/ToolSettings';
 import {SettingsTemplateComponent} from '../components/settings-template/settings-template.component';
 import {isDate, isTime} from './Type';
 
@@ -10,9 +10,9 @@ export const maxHours: number = 24;
 /**
  *
  * @param {number} keyCode
- * @param {Time} Items - Time[]
+ * @param {BiosTime} Items - Time[]
  */
-export function TimeDateSet(keyCode: number, Items: Time[]): void {
+export function TimeDateSet(keyCode: number, Items: BiosTime[]): void {
   //TODO AutoCheck - Date
   var ItemsNumber: number = Number(
     Items[BiosComponent.WindowSelectedOption].title

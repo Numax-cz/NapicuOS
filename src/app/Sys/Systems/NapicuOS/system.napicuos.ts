@@ -185,6 +185,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
 
+
+
       resolve();
     });
   }
@@ -331,7 +333,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static getTime(): string {
-    return new NapicuDate().format(TIME_FORMAT);
+    let time: NapicuDate = (NapicuOS.get_system_time_sync()) ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format();
+    return  time.format(TIME_FORMAT);
   }
 
   public static getTimeByFormat(format: string): string {
