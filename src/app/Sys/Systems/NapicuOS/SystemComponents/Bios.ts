@@ -18,7 +18,6 @@ export class NapicuBios{
 
   public static get_bios_time(): TimeInterface<string>{
     let time: BiosTime[] = BiosSettings["Main"].settings["time"]?.time || []
-    console.log(time);
     return {
       hours: time[0].title,
       minutes: time[1].title,
@@ -47,9 +46,9 @@ export class NapicuBios{
   public static get_bios_date(): DateInterface<string>{
     let date: BiosDate[] = BiosSettings["Main"].settings["date"]?.date || [];
     return {
+      month: date[0].title,
+      day: date[1].title,
       year: date[2].title,
-      month: date[1].title,
-      day: date[0].title
     }
   }
 
@@ -78,7 +77,7 @@ export class NapicuBios{
     NapicuBios.set_bios_date({
       year: napicuDate.getCurrentYear(),
       month: napicuDate.getCurrentMonth(),
-      day: napicuDate.getCurrentDay()
+      day: napicuDate.getCurrentDate()
     });
 
     NapicuBios.set_bios_time({
@@ -87,8 +86,10 @@ export class NapicuBios{
       seconds: napicuDate.getCurrentSeconds()
     });
 
+
     return napicuDate;
   }
+
 
   public static get_bios_date_int(): DateInterface<number>{
     let date: DateInterface<string> = this.get_bios_date();
