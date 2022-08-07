@@ -3,8 +3,14 @@ import {AboutComponent} from "../../Apps/settings/about/about.component";
 import {SYSTEM_IMAGES} from "../System";
 import {TimeComponent} from "../../Apps/settings/time/time.component";
 import {UsersComponent} from "../../Apps/settings/users/users.component";
+import {WallpaperComponent} from "../../Apps/settings/wallpaper/wallpaper.component";
 
 export const SYSTEM_APPS_SETTINGS_OPTIONS: SettingsOptionsMetadata[] = [ //TODO CONFIG
+  {
+    name: "Wallpaper",
+    icon: SYSTEM_IMAGES.photo,
+    component: WallpaperComponent
+  },
   {
     name: "Time",
     icon: SYSTEM_IMAGES.time,

@@ -89,7 +89,8 @@ export enum SYSTEM_IMAGES {
   time = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/time.svg",
   users = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/users.svg",
   user = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/user.svg",
-  pencil = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/pencil.svg"
+  pencil = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/pencil.svg",
+  photo = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/photo.svg"
 
 }
 
