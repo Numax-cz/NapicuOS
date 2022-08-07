@@ -35,8 +35,8 @@ export class NapicuCalendar {
   public data: NapicuCalendarDateMetadata[][] = [[]];
 
 
-  constructor(year?: number, month?: number) {
-    this.selectedMonth = (year && month) ? new Date(year, month, 1) : new Date();
+  constructor(year: number, month: number) {
+    this.selectedMonth = new Date(year, month, 1);
 
     this.todayNumber = this.selectedMonth.getDay();
     this.monthNumber = this.selectedMonth.getMonth();
