@@ -13,6 +13,7 @@ import {NapicuDate} from "napicuformatter";
 import {SystemCalendarMetadata} from "../../interface/System/Calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
 import {SYSTEM_IMAGES, SYSTEM_WALLPAPER} from "../../config/System";
+import {NapicuCalendar} from "../../scripts/Calendar";
 
 @Component({
   selector: 'app-napicu-os',
@@ -84,8 +85,8 @@ export class NapicuOSComponent implements OnInit {
   public selectedAppProperties: number | null = null;
   public static CalendarMenu: SystemCalendarMetadata = {
     calendar: [],
-    calendarDays: [],
-    selectedMonth: new NapicuDate().getCurrentMonth(),
+    calendarDays: NapicuDate.getLanguageShortsDays(),
+    selectedMonth: 0,
     fullDate: null,
   }
 
@@ -211,7 +212,7 @@ export class NapicuOSComponent implements OnInit {
       NapicuOSComponent.NotificationActive = null
     }
     NapicuOSComponent.DataDisplay = !NapicuOSComponent.DataDisplay;
-    NapicuOSComponent.CalendarMenu.selectedMonth = new NapicuDate().getCurrentMonth();
+    NapicuOSComponent.CalendarMenu.selectedMonth = NapicuOS.getTime().getCurrentMonth();
   }
 
   public onRightClick(index: number, event: Event): void {
@@ -350,7 +351,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetDate(): number {
-    return new Date().getDate();
+    return NapicuOS.getTime().getCurrentDate();
   }
 
   get GetShortDays(): string[] {
@@ -362,7 +363,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetOutOfMonth(): boolean {
-    return NapicuOSComponent.CalendarMenu.selectedMonth != new NapicuDate().getCurrentMonth();
+    return NapicuOSComponent.CalendarMenu.selectedMonth != NapicuOS.getTime().getCurrentMonth();
   }
 
   get GetFullDate(): string {

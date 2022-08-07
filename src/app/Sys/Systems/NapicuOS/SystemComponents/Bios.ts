@@ -13,7 +13,7 @@ import {Save, SaveChanges} from "../../../../Bios/Scripts/exit/SaveChanges";
 
 export class NapicuBios{
 
-  protected static declare biosTime_Date: NapicuDate;
+  protected static declare biosTime_Date: Date;
   protected static declare biosTime_cache: number;
 
   public static get_bios_time(): TimeInterface<string>{
@@ -66,13 +66,20 @@ export class NapicuBios{
     const date: DateInterface<number> = this.get_bios_date_int();
 
     if(!this.biosTime_Date || !this.biosTime_cache) {
-      this.biosTime_Date = new NapicuDate(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, 0);
-      this.biosTime_cache = new NapicuDate().getTimeStamp();
+      console.log(date.month);
+      this.biosTime_Date = new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, 0);
+      this.biosTime_cache = new Date().getTime();
+      console.log(this.biosTime_Date.getFullYear());
     }
 
-    let timestamp: number = new Date().getTime() - (this.biosTime_cache - this.biosTime_Date.getTimeStamp());
+    let timestamp: number = new Date().getTime() - (this.biosTime_cache - this.biosTime_Date.getTime());
+
+
 
     let napicuDate = new NapicuDate(timestamp);
+
+
+    console.log(napicuDate.getCurrentYear());
 
     NapicuBios.set_bios_date({
       year: napicuDate.getCurrentYear(),

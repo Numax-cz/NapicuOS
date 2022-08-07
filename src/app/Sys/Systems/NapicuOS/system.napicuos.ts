@@ -334,7 +334,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public static getTime(): NapicuDate {
     return NapicuOS.get_system_time_sync() ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format()
-
   }
 
   public static getTimeByFormat(format: string): string {
@@ -407,6 +406,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static set_system_time_sync(sync: boolean): void {
     this.SystemCookiesConfig.time.auto_sync_time = sync;
     this.update_config_to_cookies();
+    this.update_calendar();
   }
 
   /**
@@ -1454,9 +1454,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Function to update the system calendar
    */
   public static update_calendar(): void {
-    NapicuOSComponent.CalendarMenu.calendar = new NapicuCalendar(new NapicuDate().getCurrentYear(), NapicuOSComponent.CalendarMenu.selectedMonth).data;
-    NapicuOSComponent.CalendarMenu.calendarDays = NapicuDate.getLanguageShortsDays();
-    NapicuOSComponent.CalendarMenu.fullDate = new NapicuDate().format(TIME_FORMAT_CALENDAR);
+    let time = NapicuOS.getTime();
+    console.log(time.getCurrentYear());
+    NapicuOSComponent.CalendarMenu.calendar = new NapicuCalendar(time.getCurrentYear(), NapicuOSComponent.CalendarMenu.selectedMonth).data;
+    NapicuOSComponent.CalendarMenu.fullDate = time.format(TIME_FORMAT_CALENDAR);
+    // NapicuOSComponent.CalendarMenu.selectedMonth = time.getCurrentMonth();
   }
 
   /**
