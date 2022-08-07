@@ -45,6 +45,7 @@ import {TimeComponent} from './Sys/Systems/NapicuOS/Apps/settings/time/time.comp
 import {UsersComponent} from './Sys/Systems/NapicuOS/Apps/settings/users/users.component';
 import {AppInputComponent} from './Sys/Systems/NapicuOS/template/app-input/app-input.component';
 import {boot_configuration} from "./Bios/Config/bootloader";
+import {WallpaperComponent} from "./Sys/Systems/NapicuOS/Apps/settings/wallpaper/wallpaper.component";
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {boot_configuration} from "./Bios/Config/bootloader";
     AboutComponent,
     TimeComponent,
     UsersComponent,
-    AppInputComponent
+    AppInputComponent,
+    WallpaperComponent
   ],
   imports: [
     BrowserModule,
