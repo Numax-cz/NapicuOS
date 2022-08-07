@@ -333,7 +333,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static getTime(): NapicuDate {
-    return NapicuOS.get_system_time_sync() ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format()
+    return NapicuOS.get_system_time_sync() ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format();
   }
 
   public static getTimeByFormat(format: string): string {
