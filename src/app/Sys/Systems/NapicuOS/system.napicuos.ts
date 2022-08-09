@@ -63,7 +63,6 @@ import {NapicuOsCookiesTemplate} from "./interface/Cookies";
 import {NapicuCookies} from "./scripts/Decorators";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
-import {NapicuDate} from "napicuformatter";
 import {NapicuAudio} from "./SystemComponents/Audio";
 import {Window} from "./SystemComponents/Window";
 import {SystemRemindNotificationConstructorMetadata} from "./interface/RemidNotification";
@@ -89,6 +88,7 @@ import {processConstructor} from "./interface/Process";
 import {InputButtonTypeMetadata} from "./interface/InputButtonType";
 import {SystemTimeFormatEnumMetadata} from "./config/TimeFormat";
 import {NapicuBios} from "./SystemComponents/Bios";
+import {NapicuDate} from "napicuformatter";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -1215,6 +1215,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return Object.values(SYSTEM_WALLPAPERS)[k];
     }
     return NapicuOS.get_active_user()?.userSetting?.selectedWallpaper || SYSTEM_WALLPAPERS.default_wallpaper;
+  }
+
+  /**
+   * Returns active user selected wallpaper index
+   */
+  public static get_active_user_wallpaper_index(): number {
+    let fr = NapicuOS.get_active_user()?.userSetting?.selectedWallpaper || SYSTEM_WALLPAPERS.default_wallpaper;
+    return Object.keys(SYSTEM_WALLPAPERS).indexOf(fr);
   }
 
   /**
