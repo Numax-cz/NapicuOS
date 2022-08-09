@@ -13,7 +13,6 @@ import {NapicuDate} from "napicuformatter";
 import {SystemCalendarMetadata} from "../../interface/System/Calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
 import {SYSTEM_IMAGES} from "../../config/System";
-import {NapicuCalendar} from "../../scripts/Calendar";
 
 @Component({
   selector: 'app-napicu-os',
