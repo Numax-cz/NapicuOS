@@ -10,7 +10,7 @@ import {SettingsComponent} from "../../Apps/settings/settings.component";
   appTitle: 'Settings',
   processTitle: SystemAppsProcessName.settings,
   appComponent: SettingsComponent,
-  windowData: Window.centerPos(65, 65),
+  windowData: Window.centerPos(68, 70),
   resizeAllowed: true,
   fileIconPath: SYSTEM_IMAGES.settings_blue,
   addToDock: true,
