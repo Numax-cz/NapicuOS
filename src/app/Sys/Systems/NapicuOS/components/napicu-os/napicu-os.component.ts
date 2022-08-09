@@ -12,7 +12,7 @@ import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {NapicuDate} from "napicuformatter";
 import {SystemCalendarMetadata} from "../../interface/System/Calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
-import {SYSTEM_IMAGES, SYSTEM_WALLPAPER} from "../../config/System";
+import {SYSTEM_IMAGES} from "../../config/System";
 import {NapicuCalendar} from "../../scripts/Calendar";
 
 @Component({
@@ -99,7 +99,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get wallpaper(): string {
-    return SYSTEM_WALLPAPER;
+    return NapicuOS.get_active_user_wallpaper();
   }
 
   get GetBottomDockProcess(): SystemDockDisplay[] {

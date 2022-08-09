@@ -39,7 +39,8 @@ import {
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
-  SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_DEFAULT_TIME_SYNC
+  SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_DEFAULT_TIME_SYNC,
+  SYSTEM_WALLPAPERS
 } from './config/System';
 import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
 import {User} from './SystemComponents/User';
@@ -184,7 +185,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //await this.loadSystemImages(); //TODO
       //Preload system sounds
       //await this.loadSystemSounds(); //TODO
-
+      //Preload system wallpapers
+      //await this.loadSystemWallpapers(); //TODO
 
 
       resolve();
@@ -211,6 +213,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return new Promise<void>(async resolve => {
       //Preload system images
       for (const snd of Object.entries(SYSTEM_IMAGES)) {
+        await NapicuOS.add_image_to_system(snd[0], snd[1])
+      }
+      resolve();
+    });
+  }
+
+  /**
+   * Preload system wallpapers
+   */
+  protected async loadSystemWallpapers(): Promise<void> {
+    return new Promise<void>(async resolve => {
+      //Preload system images
+      for (const snd of Object.entries(SYSTEM_WALLPAPERS)) {
         await NapicuOS.add_image_to_system(snd[0], snd[1])
       }
       resolve();
@@ -1188,6 +1203,36 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_user_remind_notifications(): SystemRemindNotification[] {
     return this.get_active_user()?.userSetting.notifications.remindNotificationList || [];
+  }
+
+  /**
+   * Returns active user selected wallpaper
+   */
+  public static get_active_user_wallpaper(): string {
+    let fr = NapicuOS.get_active_user()?.userSetting?.selectedWallpaper || SYSTEM_WALLPAPERS.default_wallpaper;
+    let k = Object.keys(SYSTEM_WALLPAPERS).indexOf(fr);
+    if(k > -1){
+      return Object.values(SYSTEM_WALLPAPERS)[k];
+    }
+    return NapicuOS.get_active_user()?.userSetting?.selectedWallpaper || SYSTEM_WALLPAPERS.default_wallpaper;
+  }
+
+  /**
+   * Sets user wallpaper
+   * @param url
+   */
+  public static set_wallpaper(url: string | SYSTEM_WALLPAPERS): void  {
+    const u = url as SYSTEM_WALLPAPERS;
+    const user = this.get_active_user();
+    if(user){
+      let index = Object.values(SYSTEM_WALLPAPERS).indexOf(u);
+      if(index > -1){
+        user.userSetting.selectedWallpaper = Object.keys(SYSTEM_WALLPAPERS)[index];
+      }else {
+        user.userSetting.selectedWallpaper = url;
+      }
+      this.update_config_to_cookies();
+    }
   }
 
   /**

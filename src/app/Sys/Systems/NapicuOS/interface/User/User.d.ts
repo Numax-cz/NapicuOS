@@ -11,6 +11,7 @@ export declare interface SystemUserDataMetadata {
     remindNotificationList: SystemRemindNotificationConstructorMetadata[]
   };
   audioVolume: number,
+  selectedWallpaper: string
 }
 
 

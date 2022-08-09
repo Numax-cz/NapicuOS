@@ -1,6 +1,7 @@
 import {SystemUserDataMetadata, UserConstructorMetadata} from '../interface/User/User';
 import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
 import {copy} from "../../../../Bios/Scripts/DeepClone";
+import {SYSTEM_WALLPAPERS} from "../config/System";
 
 export class User {
   public username: string = 'user';
@@ -16,6 +17,7 @@ export class User {
       receive: true
     },
     audioVolume: 1,
+    selectedWallpaper: SYSTEM_WALLPAPERS.default_wallpaper
   };
   public declare userSetting: SystemUserDataMetadata;
 

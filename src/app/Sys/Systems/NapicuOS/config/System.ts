@@ -4,7 +4,6 @@ import {SystemTimeFormatEnumMetadata} from "./TimeFormat";
 export const SYSTEM_DEFAULT_HOSTNAME = 'napicu-os';
 export const SYSTEM_BOOT_SCREEN_TITLE = 'NapicuOS';
 export const SYSTEM_BOOT_SCREEN_LOGO = 'assets/systems/NapicuOS/logo.webp';
-export const SYSTEM_WALLPAPER = '/assets/systems/NapicuOS/NapicuOSWallpaper2.webp';
 
 export const SYSTEM_INFORMATION: SystemInformation = {
   name: "NapicuOS",
@@ -90,9 +89,23 @@ export enum SYSTEM_IMAGES {
   users = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/users.svg",
   user = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/user.svg",
   pencil = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/pencil.svg",
-  photo = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/photo.svg"
+  photo = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/photo.svg",
 
 }
+
+export enum SYSTEM_WALLPAPERS  {
+  default_wallpaper = "/assets/systems/NapicuOS/NapicuOSWallpaper2.webp",
+  wallpaper_1  = "assets/systems/NapicuOS/wallpapers/pexels-alina-blumberg-5908235.webp",
+  wallpaper_2  = "assets/systems/NapicuOS/wallpapers/pexels-asad-photo-maldives-9394683.webp",
+  wallpaper_3  = "assets/systems/NapicuOS/wallpapers/pexels-edward-jenner-4252893.webp",
+  wallpaper_4  = "assets/systems/NapicuOS/wallpapers/pexels-tiana-614479.webp",
+
+  wallpaper_5  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-11405712.webp",
+  wallpaper_6  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-13069595.webp",
+  wallpaper_7  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-2457290.webp",
+
+}
+
 
 export const SYSTEM_DEFAULT_HOME_FOLDERS: string[] = [
   "Desktop", "Documents", "Downloads", "Music", "Pictures", "Videos", "Downloads"

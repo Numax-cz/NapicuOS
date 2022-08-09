@@ -1,1 +1,24 @@
-<p>wallpaper works!</p>
+<section class="MainContent">
+  <!--Settings -->
+  <div class="BasicTableSizes BasicTableSettings-Medium">
+    <!--Selected wallpaper -->
+    <!--Selected wallpaper -->
+    <!--Selected wallpaper -->
+    <!-- {{contents}} -->
+    <div class="selectedImg">
+
+      <img [src]="GetActiveWallpaper">
+
+    </div>
+    <!--Wallpapers -->
+    <div class="wallpapers">
+      <div *ngFor="let i of system_wallpapers">
+        <img [src]="i" (click)="setWallpaper(i)">
+      </div>
+
+    </div>
+
+  </div>
+
+
+</section>

@@ -6,7 +6,6 @@ import {SystemStateMetadata} from '../../interface/System';
 import {NapicuOS} from '../../system.napicuos';
 import {NapicuOSComponent} from '../napicu-os/napicu-os.component';
 import {KeyMaps} from "../../../../../Bios/Config/KeyMaps";
-import {SYSTEM_WALLPAPER} from "../../config/System";
 
 @Component({
   selector: 'app-loginscreen',
@@ -42,7 +41,7 @@ export class LoginscreenComponent implements OnInit, OnDestroy {
   }
 
   get wallpaper(): string {
-    return SYSTEM_WALLPAPER;
+    return NapicuOS.get_active_user_wallpaper();
   }
 
   ngOnInit(): void {

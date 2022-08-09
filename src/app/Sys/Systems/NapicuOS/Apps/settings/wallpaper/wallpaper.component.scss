@@ -1,0 +1,28 @@
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/MainContentView";
+
+$WallpaperBorder: 7px;
+
+
+.selectedImg{
+  text-align: center;
+  img{
+    width: 350px;
+    border-radius: $WallpaperBorder;
+    height: auto;
+  }
+}
+
+
+
+.wallpapers{
+  display: flex;
+  padding: 40px 10px;
+  flex-wrap: wrap;
+  img{
+    width: 150px;
+    border-radius: $WallpaperBorder;
+    margin: 5px;
+    height: auto;
+    cursor: pointer;
+  }
+}
