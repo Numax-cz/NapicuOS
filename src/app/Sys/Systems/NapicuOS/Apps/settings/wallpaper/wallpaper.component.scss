@@ -12,8 +12,6 @@ $WallpaperBorder: 7px;
   }
 }
 
-
-
 .wallpapers{
   display: flex;
   padding: 40px 10px;
@@ -25,4 +23,8 @@ $WallpaperBorder: 7px;
     height: auto;
     cursor: pointer;
   }
+}
+
+.selectedWallpaper{
+  border: 5px solid var(--NapicuCalendarSelectedMonthColor);
 }

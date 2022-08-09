@@ -7,17 +7,22 @@
     <!-- {{contents}} -->
     <div class="selectedImg">
 
-      <img [src]="GetActiveWallpaper">
+      <img [src]="GetActiveWallpaper" alt="Selected wallpaper">
 
     </div>
     <!--Wallpapers -->
     <div class="wallpapers">
-      <div *ngFor="let i of system_wallpapers">
-        <img [src]="i" (click)="setWallpaper(i)">
+      <div *ngFor="let i of system_wallpapers; let index = index">
+        <img [src]="i" (click)="setWallpaper(i)" [ngClass]="{selectedWallpaper: index == GetActiveWallpaperIndex}"  alt="System Wallpapers">
       </div>
 
     </div>
 
+    <div>
+      <div>{{GetCustomWallpaperText}}</div>
+      <input class="NapicuOSSimpleInput" placeholder="URL" spellcheck="false" type="url" name="url"
+             autocomplete="off"/>
+    </div>
   </div>
 
 
