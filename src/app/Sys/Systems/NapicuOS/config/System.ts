@@ -94,15 +94,19 @@ export enum SYSTEM_IMAGES {
 }
 
 export enum SYSTEM_WALLPAPERS  {
-  default_wallpaper = "/assets/systems/NapicuOS/NapicuOSWallpaper2.webp",
-  wallpaper_1  = "assets/systems/NapicuOS/wallpapers/pexels-alina-blumberg-5908235.webp",
-  wallpaper_2  = "assets/systems/NapicuOS/wallpapers/pexels-asad-photo-maldives-9394683.webp",
+  // default_wallpaper = "/assets/systems/NapicuOS/NapicuOSWallpaper2.webp",
+  default_wallpaper  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-11405712.webp",
+  wallpaper_1  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-3418457.webp",
+  wallpaper_2  = "assets/systems/NapicuOS/wallpapers/pexels-alina-blumberg-5908235.webp",
   wallpaper_3  = "assets/systems/NapicuOS/wallpapers/pexels-edward-jenner-4252893.webp",
-  wallpaper_4  = "assets/systems/NapicuOS/wallpapers/pexels-tiana-614479.webp",
-
-  wallpaper_5  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-11405712.webp",
-  wallpaper_6  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-13069595.webp",
-  wallpaper_7  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-2457290.webp",
+  wallpaper_4  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-2832382.webp",
+  wallpaper_5  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-13069595.webp",
+  wallpaper_6  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-2457290.webp",
+  wallpaper_7  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-4175054.webp",
+  wallpaper_8  = "assets/systems/NapicuOS/wallpapers/pexels-steve-johnson-1517077.webp",
+  wallpaper_9  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-8152447.webp",
+  wallpaper_10  = "assets/systems/NapicuOS/wallpapers/pexels-anni-roenkae-4175070.webp",
+  wallpaper_11  = "assets/systems/NapicuOS/wallpapers/pexels-zaksheuskaya-1546251.webp",
 
 }
 
