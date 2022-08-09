@@ -1500,10 +1500,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static update_calendar(): void {
     let time = NapicuOS.getTime();
-    console.log(time.getCurrentYear());
     NapicuOSComponent.CalendarMenu.calendar = new NapicuCalendar(time.getCurrentYear(), NapicuOSComponent.CalendarMenu.selectedMonth).data;
     NapicuOSComponent.CalendarMenu.fullDate = time.format(TIME_FORMAT_CALENDAR);
-    // NapicuOSComponent.CalendarMenu.selectedMonth = time.getCurrentMonth();
+    //NapicuOSComponent.CalendarMenu.selectedMonth = time.getCurrentMonth();
   }
 
   /**

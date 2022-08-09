@@ -190,6 +190,7 @@ export class NapicuOSComponent implements OnInit {
    * Open the context calendar menu
    */
   public onClickDate(): void {
+    NapicuOSComponent.CalendarMenu.selectedMonth = NapicuOS.getTime().getCurrentMonth();
     NapicuOS.update_calendar();
     NapicuOSComponent.closeActivityMenu();
     this.openNotificationMenu();
@@ -212,7 +213,6 @@ export class NapicuOSComponent implements OnInit {
       NapicuOSComponent.NotificationActive = null
     }
     NapicuOSComponent.DataDisplay = !NapicuOSComponent.DataDisplay;
-    NapicuOSComponent.CalendarMenu.selectedMonth = NapicuOS.getTime().getCurrentMonth();
   }
 
   public onRightClick(index: number, event: Event): void {
