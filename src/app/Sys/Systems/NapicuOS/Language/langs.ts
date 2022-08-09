@@ -8,7 +8,8 @@ import {
   lang_change_cs,
   lang_change_date_and_time_automatic_cs,
   lang_change_date_and_time_automatic_en,
-  lang_change_date_and_time_cs, lang_change_date_and_time_en,
+  lang_change_date_and_time_cs,
+  lang_change_date_and_time_en,
   lang_change_en,
   lang_change_hostname_cs,
   lang_change_hostname_en,
@@ -37,7 +38,11 @@ import {
   lang_Places_cs,
   lang_Places_en,
   lang_rename_cs,
-  lang_rename_en, lang_time_format_cs, lang_time_format_en,
+  lang_rename_en,
+  lang_time_custom_wallpaper_cs,
+  lang_time_custom_wallpaper_en,
+  lang_time_format_cs,
+  lang_time_format_en,
   lang_yes_cs,
   lang_yes_en
 } from "./Other";
@@ -80,7 +85,8 @@ export const NapicuOSLanguages = {
       change_username: lang_change_username_en,
       date_and_time: lang_change_date_and_time_en,
       automatic_date_and_time: lang_change_date_and_time_automatic_en,
-      time_format: lang_time_format_en
+      time_format: lang_time_format_en,
+      custom_wallpaper: lang_time_custom_wallpaper_en
     }
   },
 
@@ -119,7 +125,8 @@ export const NapicuOSLanguages = {
       change_username: lang_change_username_cs,
       date_and_time: lang_change_date_and_time_cs,
       automatic_date_and_time: lang_change_date_and_time_automatic_cs,
-      time_format: lang_time_format_cs
+      time_format: lang_time_format_cs,
+      custom_wallpaper: lang_time_custom_wallpaper_cs
     }
   }
 }

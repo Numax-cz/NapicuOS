@@ -57,3 +57,6 @@ export const lang_change_date_and_time_automatic_cs = "Datum a čas automaticky"
 
 export const lang_time_format_en = "Time Format";
 export const lang_time_format_cs = "Formát času";
+
+export const lang_time_custom_wallpaper_en = "Custom wallpaper";
+export const lang_time_custom_wallpaper_cs = "Vlastní tapeta";
