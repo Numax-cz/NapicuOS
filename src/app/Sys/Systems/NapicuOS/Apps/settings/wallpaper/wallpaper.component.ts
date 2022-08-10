@@ -21,8 +21,11 @@ export class WallpaperComponent  implements OnInit {
 
 
 
+
+
   ngOnInit(): void {
     this.system_wallpapers = Object.values(SYSTEM_WALLPAPERS);
+    if(NapicuOS.get_active_user_wallpaper_index() < 0) this.wallpaper_url =  NapicuOS.get_active_user_wallpaper();
   }
 
   get GetActiveWallpaper(): string {
