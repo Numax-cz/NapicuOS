@@ -19,6 +19,7 @@ export const enum SystemCommandsPrefixEnum {
   mkdirCommand = "mkdir",
   notePadCommand = "note",
   fileManagerCommand = "filemanager",
+  settingsCommand = "settings"
 }
 
 

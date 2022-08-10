@@ -17,6 +17,7 @@ import {initExitFromConsole} from "./commands/Exit";
 import {initSetSystemInformation} from "./commands/Set";
 import {initLs} from "./commands/List";
 import {initMkdir} from "./commands/Mkdir";
+import {initSettings} from "./commands/Settings";
 
 
 export function initAllCommands(): void {
@@ -46,6 +47,7 @@ export function initAllCommands(): void {
   //APPS
   initWordPad();
   initFileManager();
+  initSettings();
 }
 
 

@@ -13,6 +13,7 @@ import {SystemCalendarMetadata} from "../../interface/System/Calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {NapicuDate} from "napicuformatter";
+import {SystemCommandsPrefixEnum} from "../../config/commands/Commands";
 
 @Component({
   selector: 'app-napicu-os',
@@ -184,7 +185,8 @@ export class NapicuOSComponent implements OnInit {
   }
 
   public onClickSettings(): void {
-
+    NapicuOS.run_command({cmd: SystemCommandsPrefixEnum.settingsCommand});
+    this.closeOffContextMenu();
   }
 
   public onClickLock(): void {
