@@ -43,7 +43,7 @@
    ```sh
    npm run start
    ```
-  - Normální spuštění aplikace
+   - Normální spuštění aplikace
    
 2. Buildnutí aplikace
    ```sh
