@@ -1,4 +1,4 @@
-<section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
+<section class="WindowContent ConsoleThemeFeraDark BackgroundColor">
 
 
   <section class="BarOptions">
@@ -13,7 +13,7 @@
       </ul>
     </div>
     <!--Right bar-->
-    <section class="RightBox">
+    <section id="WindowScrollBar" class="RightBox" >
       <ng-container [ngComponentOutlet]="options[selectedOption].component"></ng-container>
     </section>
 

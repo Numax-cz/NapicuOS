@@ -7,9 +7,14 @@
 .BarOptions {
   display: grid;
   height: 100%;
+  overflow: hidden;
   grid-template-columns: 230px auto;
 }
 
+
+.RightBox{
+  overflow: auto;
+}
 
 .LeftBox {
   border-right: 1px solid black;

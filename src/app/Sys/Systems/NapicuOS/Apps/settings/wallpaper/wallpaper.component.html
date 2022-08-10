@@ -2,9 +2,6 @@
   <!--Settings -->
   <div class="BasicTableSizes BasicTableSettings-Medium">
     <!--Selected wallpaper -->
-    <!--Selected wallpaper -->
-    <!--Selected wallpaper -->
-    <!-- {{contents}} -->
     <div class="selectedImg">
 
       <img [src]="GetActiveWallpaper" alt="Selected wallpaper">
@@ -20,7 +17,7 @@
 
     <div>
       <div>{{GetCustomWallpaperText}}</div>
-      <input class="NapicuOSSimpleInput" placeholder="URL" spellcheck="false" type="url" name="url"
+      <input class="NapicuOSSimpleInput" [(ngModel)]="wallpaper_url" (ngModelChange)="onChangeURL()"  placeholder="URL" spellcheck="false" type="url" name="url"
              autocomplete="off"/>
     </div>
   </div>

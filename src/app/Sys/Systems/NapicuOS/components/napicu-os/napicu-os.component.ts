@@ -9,10 +9,10 @@ import {WindowComponent} from "../../template/window/window.component";
 import {SystemNotification} from "../../SystemComponents/Notification";
 import {NOTIFICATION_ANIMATION_TIME} from "../../config/NotificationAnimations";
 import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
-import {NapicuDate} from "napicuformatter";
 import {SystemCalendarMetadata} from "../../interface/System/Calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
 import {SYSTEM_IMAGES} from "../../config/System";
+import {NapicuDate} from "napicuformatter";
 
 @Component({
   selector: 'app-napicu-os',
