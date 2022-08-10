@@ -17,7 +17,7 @@
 
     <div>
       <div>{{GetCustomWallpaperText}}</div>
-      <input class="NapicuOSSimpleInput" [(ngModel)]="wallpaper_url" (ngModelChange)="onChangeURL()"  placeholder="URL" spellcheck="false" type="url" name="url"
+      <input class="NapicuOSSimpleInput" [(ngModel)]="wallpaper_url" (ngModelChange)="onChangeURL()" (focusout)="setURLText()" [ngClass]="{'NapicuOSSimpleInput-Red-Border': error_input}"  placeholder="URL" spellcheck="false" type="url" name="url"
              autocomplete="off"/>
     </div>
   </div>
