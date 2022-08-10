@@ -60,22 +60,10 @@ import {SYSTEM_IMAGES} from "../../config/System";
   ],
 })
 export class NapicuOSComponent implements OnInit {
-  /**
-   * Specifies whether to display the dock
-   */
   public static BottomDockDisplay: boolean = false;
-  /**
-   * Specifies whether to display the context menu with the date
-   */
   public static DataDisplay: boolean = false;
-  /**
-   * Specifies whether to display the activity menu
-   */
   public static ActivityDisplay: boolean = false;
   public static BottomDockProcess: SystemDockDisplay[] = [];
-  /**
-   * Files to be displayed in activity apps menu
-   */
   public static ActivityMenuApps: SystemFile[] = [];
   public static NotificationsFront: SystemNotification[] = [];
   public static NotificationActive: SystemNotification | null = null;
