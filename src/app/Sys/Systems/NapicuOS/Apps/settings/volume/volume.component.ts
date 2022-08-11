@@ -22,7 +22,7 @@ export class VolumeComponent implements OnInit {
     return 69;
   }
 
-  public update(event: Event): void{
+  public update(): void{
     console.log(this.value);
   }
 

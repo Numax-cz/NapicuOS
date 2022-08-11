@@ -3,11 +3,7 @@
   <div class="UserSettings">
 
 
-    <div class="range-slider" style='--min:0; --max:100; --step:5; width: 100%'
-         [ngStyle]="{'--value': value, '--text-value': value }">
-      <input [(ngModel)]="value" (ngModelChange)="update($event)" type="range" min="0" max="100" step="5" >
-      <div class='range-slider__progress'></div>
-    </div>
+  <app-basic-slider-input [min]="0" [max]="100" [step]="5" [value]="GetVolumeValue" [onUpdate]="update"></app-basic-slider-input>
 
 
 

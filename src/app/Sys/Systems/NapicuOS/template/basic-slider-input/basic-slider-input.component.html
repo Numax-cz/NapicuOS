@@ -1,0 +1,4 @@
+<div class="range-slider" style='width: 100%' [ngStyle]="{'--value': value, '--text-value': value, '--min': min, '--max': max, '--step': step }">
+  <input [(ngModel)]="value" (ngModelChange)="ngOnUpdate()" type="range" min="0" max="100" step="5" >
+  <div class='range-slider__progress'></div>
+</div>
