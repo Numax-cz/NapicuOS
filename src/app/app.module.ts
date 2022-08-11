@@ -46,6 +46,7 @@ import {UsersComponent} from './Sys/Systems/NapicuOS/Apps/settings/users/users.c
 import {AppInputComponent} from './Sys/Systems/NapicuOS/template/app-input/app-input.component';
 import {boot_configuration} from "./Bios/Config/bootloader";
 import {WallpaperComponent} from "./Sys/Systems/NapicuOS/Apps/settings/wallpaper/wallpaper.component";
+import { VolumeComponent } from './Sys/Systems/NapicuOS/Apps/settings/volume/volume.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import {WallpaperComponent} from "./Sys/Systems/NapicuOS/Apps/settings/wallpaper
     TimeComponent,
     UsersComponent,
     AppInputComponent,
-    WallpaperComponent
+    WallpaperComponent,
+    VolumeComponent
   ],
   imports: [
     BrowserModule,
