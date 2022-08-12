@@ -22,6 +22,10 @@ export class VolumeComponent implements OnInit {
     return NapicuOS.get_user_settings_audio_volume() * 100;
   }
 
+  get GetVolumeText(): string{
+    return NapicuOS.get_language_words().other.system_volume
+  }
+
   public update(): void{
 
     NapicuOS.set_user_settings_audio_volume(NapicuOS.get_active_user()?.username, this.value / 100);
