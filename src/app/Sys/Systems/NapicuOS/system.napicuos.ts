@@ -411,7 +411,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns system time sync
    */
-  public static   get_system_time_sync(): boolean{
+  public static get_system_time_sync(): boolean{
     return this.SystemCookiesConfig.time.auto_sync_time;
   }
 
