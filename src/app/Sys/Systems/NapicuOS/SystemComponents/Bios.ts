@@ -1,14 +1,9 @@
 import {VM_COMPUTER_INFORMATION} from "../../../../Bios/vm_computer";
 import {Current} from "../../../../Bios/Config/FlashInformationData";
-import {BiosOptionsST, BiosSettings} from "../../../../Bios/ToolSettings";
+import {BiosSettings} from "../../../../Bios/ToolSettings";
 import {BiosTime, BiosDate} from "../../../../Bios/interface/ToolSettings";
-import {SystemTimeFormatEnumMetadata} from "../config/TimeFormat";
 import {DateInterface, TimeInterface} from "../interface/Date";
 import {NapicuDate} from "napicuformatter";
-import {copy} from "../../../../Bios/Scripts/DeepClone";
-import {NapicuOS} from "../system.napicuos";
-import {NapicuApps} from "../systemApps.napicuos";
-import {TIME_FORMAT} from "../config/Time";
 import {Save, SaveChanges} from "../../../../Bios/Scripts/exit/SaveChanges";
 
 export class NapicuBios{
