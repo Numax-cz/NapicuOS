@@ -60,3 +60,6 @@ export const lang_time_format_cs = "Formát času";
 
 export const lang_time_custom_wallpaper_en = "Custom wallpaper";
 export const lang_time_custom_wallpaper_cs = "Vlastní tapeta";
+
+export const lang_system_volume_en = "System volume";
+export const lang_system_volume_cs = "Systemová hlasitost";
