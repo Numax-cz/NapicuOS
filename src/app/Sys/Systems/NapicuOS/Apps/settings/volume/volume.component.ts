@@ -19,11 +19,13 @@ export class VolumeComponent implements OnInit {
 
 
   get GetVolumeValue(): number{
-    return 69;
+    return NapicuOS.get_user_settings_audio_volume() * 100;
   }
 
   public update(): void{
-    console.log(this.value);
+
+    NapicuOS.set_user_settings_audio_volume(NapicuOS.get_active_user()?.username, this.value / 100);
+    console.log(NapicuOS.get_user_settings_audio_volume())
   }
 
 }

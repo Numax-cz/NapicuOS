@@ -26,11 +26,12 @@ import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './syste
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
-  SYSTEM_DEFAULT_TIME_FORMAT,
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOME_FOLDERS,
   SYSTEM_DEFAULT_HOSTNAME,
+  SYSTEM_DEFAULT_TIME_FORMAT,
+  SYSTEM_DEFAULT_TIME_SYNC,
   SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
@@ -39,7 +40,7 @@ import {
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
-  SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_DEFAULT_TIME_SYNC,
+  SYSTEM_USERS_MIN_PASSWORD_LENGTH,
   SYSTEM_WALLPAPERS
 } from './config/System';
 import {NAPICU_OS_ROOT_PART, NapicuOSSystemDir} from './config/Drive';
@@ -705,9 +706,23 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the user's audio volume
    */
   public static get_user_settings_audio_volume(): number {
-    return this.get_active_user()?.userSetting.audioVolume || 1;
+    let i: number | undefined = this.get_active_user()?.userSetting.audioVolume;
+    if(i === undefined) return 0;
+    return i;
   }
 
+  /**
+   * Sets the user's audio volume
+   */
+  public static set_user_settings_audio_volume(username: string | undefined, gain: number): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success{
+    let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
+    if(i !== SystemStateMetadata.UserNotExists){
+      if(i.userSetting) i.userSetting.audioVolume = gain;
+      this.update_config_to_cookies();
+      return SystemStateMetadata.Success;
+    }
+    return SystemStateMetadata.UserNotExists;
+  }
 
   /**
    * Plays the audio file
@@ -1836,7 +1851,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns users from cookies
    * @param username
    */
-  protected static get_user_from_cookies(username: string):  UserConstructorMetadata | SystemStateMetadata.UserNotExists{
+  protected static get_user_from_cookies(username: string | undefined):  UserConstructorMetadata | SystemStateMetadata.UserNotExists{
+      if(!username) return SystemStateMetadata.UserNotExists;
       let i: UserConstructorMetadata[] =  this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
         return user.username === username
       });
