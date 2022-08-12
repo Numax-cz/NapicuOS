@@ -1,4 +1,5 @@
 @import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/MainContentView";
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/BasicText";
 
 .MainContent{
   width: 40%;
@@ -36,10 +37,6 @@
 
 .UserSettings{
   margin: 90px auto;
-  .UserSettingsAuthText{
-    padding: 10px 0;
-    font-size: 1.2rem;
-  }
 }
 
 .table{
