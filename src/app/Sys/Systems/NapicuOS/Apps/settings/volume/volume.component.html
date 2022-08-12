@@ -1,13 +1,7 @@
 <section class="MainContent">
   <!--Settings -->
   <div class="UserSettings">
-
-
-  <app-basic-slider-input [min]="0" [max]="100" [step]="5" [value]="GetVolumeValue" [onUpdate]="update"></app-basic-slider-input>
-
-
-
-
+    <div class="BasicText">{{GetVolumeText}}</div>
+    <app-basic-slider-input [min]="0" [max]="100" [step]="5" [value]="GetVolumeValue" [onUpdate]="update"></app-basic-slider-input>
   </div>
-
 </section>
