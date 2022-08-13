@@ -5,6 +5,8 @@
 - Vytvořeno v [Angular](https://angular.io/)
 - Použitý font [Perfect DOS VGA 437](https://www.dafont.com/perfect-dos-vga-437.font)
 - Překlad [DeepL](https://www.deepl.com/)
+- Inspirováno [Gnome](https://www.gnome.org/)
+- Ikony [Flat-Remix](https://github.com/daniruiz/flat-remix)
 
 ---
 
