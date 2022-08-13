@@ -26,7 +26,7 @@ import {
   lang_Devices_cs,
   lang_Devices_en,
   lang_Disabled_cs,
-  lang_Disabled_en,
+  lang_Disabled_en, lang_do_not_disturb_cs, lang_do_not_disturb_en,
   lang_Enabled_cs,
   lang_Enabled_en,
   lang_Enter_name_cs,
@@ -87,7 +87,8 @@ export const NapicuOSLanguages = {
       automatic_date_and_time: lang_change_date_and_time_automatic_en,
       time_format: lang_time_format_en,
       custom_wallpaper: lang_time_custom_wallpaper_en,
-      system_volume: lang_system_volume_en
+      system_volume: lang_system_volume_en,
+      do_not_disturb: lang_do_not_disturb_en
     }
   },
 
@@ -128,7 +129,8 @@ export const NapicuOSLanguages = {
       automatic_date_and_time: lang_change_date_and_time_automatic_cs,
       time_format: lang_time_format_cs,
       custom_wallpaper: lang_time_custom_wallpaper_cs,
-      system_volume: lang_system_volume_cs
+      system_volume: lang_system_volume_cs,
+      do_not_disturb: lang_do_not_disturb_cs
     }
   }
 }
