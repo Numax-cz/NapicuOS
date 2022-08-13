@@ -1,0 +1,41 @@
+
+$BoxWidth: 35px;
+
+.Input{
+  background-color: var(--NapicuClassicGray);
+  border-radius: 5px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  text-align: center;
+  height: $BoxWidth !important;
+
+  >div, button{
+    padding: 5px;
+    min-width: $BoxWidth;
+    color: var(--NapicuTextColor);
+
+    border-left: 1px solid black !important;
+  }
+
+  >div:first-child {
+    border-left: 0 !important;
+  }
+
+  .option {
+    width: $BoxWidth !important;
+    height: 100%;
+
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+
+
+
+  .option:hover{
+    background-color: var(--NapicuClassicDark2);
+  }
+;
+}
