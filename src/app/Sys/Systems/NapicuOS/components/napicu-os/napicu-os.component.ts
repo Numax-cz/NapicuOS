@@ -328,7 +328,11 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetUserNotificationA(): boolean {
-    return NapicuOS.get_active_user()?.userSetting.notifications.receive || false;
+    return NapicuOS.get_active_user_notification_receive();
+  }
+
+  get GetDoNoDisturbText(): string {
+    return NapicuOS.get_language_words().other.do_not_disturb;
   }
 
   get GetNotificationsMenu(): SystemNotification[] {

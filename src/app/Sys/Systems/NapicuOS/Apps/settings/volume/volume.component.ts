@@ -26,6 +26,21 @@ export class VolumeComponent implements OnInit {
     return NapicuOS.get_language_words().other.system_volume
   }
 
+  get GetDoNotDisturbSwitchA(): boolean{
+    return NapicuOS.get_active_user_notification_receive();
+  }
+
+  public changeUserNotificationReceive(): void {
+    const userConfig = NapicuOS.get_active_user()?.userSetting.notifications;
+    if (userConfig) {
+      userConfig.receive = !userConfig.receive;
+    }
+  }
+
+  get GetDoNoDisturbText(): string {
+    return NapicuOS.get_language_words().other.do_not_disturb;
+  }
+
   public update(): void{
 
     NapicuOS.set_user_settings_audio_volume(NapicuOS.get_active_user()?.username, this.value / 100);

@@ -1407,6 +1407,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns user notification settings
+   */
+  public static get_active_user_notification_receive(): boolean{
+    return NapicuOS.get_active_user()?.userSetting.notifications.receive || false
+  }
+
+  /**
+   * Returns user notification settings
+   */
+  public static get_active_user_notification_allow(): boolean{
+    return NapicuOS.get_active_user()?.userSetting.notifications.allow || false
+  }
+
+  /**
    * Returns the logged-in user username.
    */
   public static get_active_user_username(): string | undefined {
