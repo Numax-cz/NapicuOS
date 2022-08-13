@@ -89,6 +89,7 @@ import {InputButtonTypeMetadata} from "./interface/InputButtonType";
 import {SystemTimeFormatEnumMetadata} from "./config/TimeFormat";
 import {NapicuBios} from "./SystemComponents/Bios";
 import {NapicuDate} from "napicuformatter";
+import {ShortSystemWallpaper} from "./scripts/ShortSystemWallpaper";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -1259,15 +1260,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param url
    */
   public static set_wallpaper(url: string | SYSTEM_WALLPAPERS): void  {
-    const u = url as SYSTEM_WALLPAPERS;
     const user = this.get_active_user();
+    const u: string = ShortSystemWallpaper(url);
     if(user){
-      let index = Object.values(SYSTEM_WALLPAPERS).indexOf(u);
-      if(index > -1){
-        user.userSetting.selectedWallpaper = Object.keys(SYSTEM_WALLPAPERS)[index];
-      }else {
-        user.userSetting.selectedWallpaper = url;
-      }
+      user.userSetting.selectedWallpaper = u;
       this.update_config_to_cookies();
     }
   }

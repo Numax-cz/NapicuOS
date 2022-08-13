@@ -3,6 +3,7 @@ import {SystemUserPermissionsEnumMetadata} from "../config/UserPerms";
 import {copy} from "../../../../Bios/Scripts/DeepClone";
 import {SYSTEM_WALLPAPERS} from "../config/System";
 import {SystemTimeFormatEnumMetadata} from "../config/TimeFormat";
+import {ShortSystemWallpaper} from "../scripts/ShortSystemWallpaper";
 
 export class User {
   public username: string = 'user';
@@ -22,7 +23,7 @@ export class User {
       format: SystemTimeFormatEnumMetadata.h12,
       sync: false
     },
-    selectedWallpaper: SYSTEM_WALLPAPERS.default_wallpaper
+    selectedWallpaper: ShortSystemWallpaper(SYSTEM_WALLPAPERS.default_wallpaper)
   };
   public declare userSetting: SystemUserDataMetadata;
 
