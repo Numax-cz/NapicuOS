@@ -1,9 +1,11 @@
 
 $BoxWidth: 35px;
+$BackgroundColor: var(--NapicuSimpleButtonColor);
+$BorderRadius: 5px;
 
 .Input{
-  background-color: var(--NapicuClassicGray);
-  border-radius: 5px;
+  background-color: $BackgroundColor;
+  border-radius: $BorderRadius;
   border: 1px solid black;
   display: flex;
   align-items: center;
@@ -26,10 +28,14 @@ $BoxWidth: 35px;
   .option {
     width: $BoxWidth !important;
     height: 100%;
-
     cursor: pointer;
     background-color: transparent;
     border: none;
+  }
+
+  .right-left-brd{
+    border-top-right-radius: $BorderRadius;
+    border-bottom-right-radius: $BorderRadius;
   }
 
 
