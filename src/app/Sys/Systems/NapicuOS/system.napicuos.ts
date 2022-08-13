@@ -18,7 +18,7 @@ import {System} from './SystemComponents/System';
 import {LoadsComponent} from './components/loads/loads.component';
 import {NapicuOSComponent} from './components/napicu-os/napicu-os.component';
 import {BOOT_TIME, SOFT_BOOT_TIME} from './config/Boot';
-import {TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/Time';
+import {GET_SYSTEM_TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/Time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
@@ -31,7 +31,6 @@ import {
   SYSTEM_DEFAULT_HOME_FOLDERS,
   SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_DEFAULT_TIME_FORMAT,
-  SYSTEM_DEFAULT_TIME_SYNC,
   SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
@@ -107,10 +106,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     hostname: SYSTEM_DEFAULT_HOSTNAME,
     directorys: [],
     files: [],
-    time: {
-      format: SYSTEM_DEFAULT_TIME_FORMAT,
-      auto_sync_time: SYSTEM_DEFAULT_TIME_SYNC
-    }
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
@@ -349,7 +344,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static getTime(): NapicuDate {
-    return NapicuOS.get_system_time_sync() ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format();
+    return NapicuOS.get_active_user_time_sync() ? new NapicuDate() : NapicuBios.get_bios_time_napicu_date_format();
   }
 
   public static getTimeByFormat(format: string): string {
@@ -386,43 +381,63 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Returns system time format
+   * Returns user time format
    */
-  public static get_system_time_format(): SystemTimeFormatEnumMetadata {
-    return NapicuOS.get_system_config_from_cookies()?.time?.format || SYSTEM_DEFAULT_TIME_FORMAT;
+  public static get_active_user_time_format(): SystemTimeFormatEnumMetadata {
+    return NapicuOS.get_active_user()?.userSetting.time.format || SYSTEM_DEFAULT_TIME_FORMAT;
   }
 
   /**
    * Returns system time format - index
    */
-  public static get_system_time_format_index(): number {
-    return Object.values(SystemTimeFormatEnumMetadata).indexOf(this.get_system_time_format());
+  public static get_active_user_time_format_index(): number {
+    return Object.values(SystemTimeFormatEnumMetadata).indexOf(this.get_active_user_time_format());
   }
 
   /**
-   * Sets system time format
+   * Sets user time format
+   * @param username
+   * @param format
    */
-  public static  set_system_time_format(format: SystemTimeFormatEnumMetadata | number): void {
-    if(typeof format == "number" ) this.SystemCookiesConfig.time.format = Object.values(SystemTimeFormatEnumMetadata)[format];
-    else this.SystemCookiesConfig.time.format = format;
-    this.update_config_to_cookies();
+  public static set_user_time_format(username: string | undefined, format: SystemTimeFormatEnumMetadata | number): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success {
+    let i = this.get_user_from_cookies(username);
+    if(i !== SystemStateMetadata.UserNotExists){
+      if(typeof format == "number" ) i.userSetting!.time.format = Object.values(SystemTimeFormatEnumMetadata)[format];
+      else i.userSetting!.time.format = format;
+      this.update_config_to_cookies();
+      return SystemStateMetadata.Success;
+    }
+    return i;
   }
 
   /**
    * Returns system time sync
    */
-  public static get_system_time_sync(): boolean{
-    return this.SystemCookiesConfig.time.auto_sync_time;
+  public static get_active_user_time_sync(): boolean{
+    return this.get_active_user()?.userSetting.time.sync || true;
   }
 
   /**
    * Sets system time sync
+   * @param username
    * @param sync
+   **/
+  public static set_user_time_sync(username: string | undefined, sync: boolean): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success {
+    let i = this.get_user_from_cookies(username);
+    if(i !== SystemStateMetadata.UserNotExists){
+      i.userSetting!.time.sync = sync;
+      this.update_config_to_cookies();
+      this.update_calendar();
+      return SystemStateMetadata.Success;
+    }
+    return i;
+  }
+
+  /**
+   * Toggles user time sync
    */
-  public static set_system_time_sync(sync: boolean): void {
-    this.SystemCookiesConfig.time.auto_sync_time = sync;
-    this.update_config_to_cookies();
-    this.update_calendar();
+  public static switch_active_user_time_sync(): void {
+    this.set_user_time_sync(this.get_active_user_username(), !this.get_active_user_time_sync());
   }
 
   /**
@@ -962,7 +977,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     return SystemStateMetadata.CookiesError;
   }
-
 
   /**
    * Creat a new dynamic file in the directory by path
@@ -1532,7 +1546,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Function to update the system time
    */
   public static update_time(): void {
-    this.systemTime = this.getTime().format(TIME_FORMAT);
+    this.systemTime = this.getTime().format(GET_SYSTEM_TIME_FORMAT(this.get_active_user_time_format()));
   }
 
   /*

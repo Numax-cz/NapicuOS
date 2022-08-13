@@ -19,16 +19,15 @@ export class TimeComponent implements OnInit {
   }
 
   public onChangeAutoTimeSwitch(): void {
-    NapicuOS.set_system_time_sync(!NapicuOS.get_system_time_sync());
-
+    NapicuOS.switch_active_user_time_sync();
   }
 
   public onChangeTimeFormat(value: number): void {
-    NapicuOS.set_system_time_format(value)
+    NapicuOS.set_user_time_format(NapicuOS.get_active_user_username(), value);
   }
 
   get GetAutoTimeSwitchA(): boolean {
-    return NapicuOS.get_system_time_sync();
+    return NapicuOS.get_active_user_time_sync();
   }
 
   get GetDateAndTimeText(): string {
@@ -44,7 +43,7 @@ export class TimeComponent implements OnInit {
   }
 
   get GetSelectedTimeFormat(){
-    return NapicuOS.get_system_time_format_index();
+    return NapicuOS.get_active_user_time_format_index();
   }
 
   get GetTimeFormatOptions() {
