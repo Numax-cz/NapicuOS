@@ -8,7 +8,7 @@ export const SYSTEM_BOOT_SCREEN_LOGO = 'assets/systems/NapicuOS/logo.webp';
 export const SYSTEM_INFORMATION: SystemInformation = {
   name: "NapicuOS",
   type: "64-bit",
-  ver: "preview-0.22",
+  ver: "preview-0.32",
 }
 
 export const SYSTEM_USERS_MIN_LENGTH = 1;
