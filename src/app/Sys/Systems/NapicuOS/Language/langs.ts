@@ -1,5 +1,5 @@
 import {lang_Calendar_cs, lang_Calendar_en, lang_Notification_cs, lang_Notification_en} from "./CalendarMenu";
-import {lang_Month_cs, lang_Month_en} from "./Months";
+import {lang_Months_cs, lang_Months_en} from "./Months";
 import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
@@ -50,6 +50,7 @@ import {
   lang_yes_cs,
   lang_yes_en
 } from "./Other";
+import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Year_cs, lang_Year_en} from "./Date";
 
 export declare type NapicuOS_available_language = "en" | "cs";
 
@@ -62,8 +63,13 @@ export const NapicuOSLanguages = {
       Notification: lang_Notification_en,
       Calendar: lang_Calendar_en
     },
-    Months: lang_Month_en,
+    Months: lang_Months_en,
     Days: lang_Days_en,
+    Date: {
+      day: lang_Day_en,
+      month: lang_Months_en,
+      year: lang_Year_en
+    },
     Apps: {
       FileManager: lang_FileManager_en
     },
@@ -104,8 +110,13 @@ export const NapicuOSLanguages = {
       Notification: lang_Notification_cs,
       Calendar: lang_Calendar_cs
     },
-    Months: lang_Month_cs,
+    Months: lang_Months_cs,
     Days: lang_Days_cs,
+    Date: {
+      day: lang_Day_cs,
+      month: lang_Month_cs,
+      year: lang_Year_cs
+    },
     Apps: {
       FileManager: lang_FileManager_cs
     },

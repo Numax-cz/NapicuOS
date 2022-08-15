@@ -1,4 +1,4 @@
-export const lang_Month_en = [
+export const lang_Months_en = [
   "January",
   "February",
   "March",
@@ -13,7 +13,7 @@ export const lang_Month_en = [
   "December"
 ];
 
-export const lang_Month_cs = [
+export const lang_Months_cs = [
   "Leden",
   "Únor",
   "Březen",
