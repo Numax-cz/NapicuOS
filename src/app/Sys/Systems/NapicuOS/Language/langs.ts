@@ -50,7 +50,7 @@ import {
   lang_yes_cs,
   lang_yes_en
 } from "./Other";
-import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Year_cs, lang_Year_en} from "./Date";
+import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Month_en, lang_Year_cs, lang_Year_en} from "./Date";
 
 export declare type NapicuOS_available_language = "en" | "cs";
 
@@ -67,7 +67,7 @@ export const NapicuOSLanguages = {
     Days: lang_Days_en,
     Date: {
       day: lang_Day_en,
-      month: lang_Months_en,
+      month: lang_Month_en,
       year: lang_Year_en
     },
     Apps: {

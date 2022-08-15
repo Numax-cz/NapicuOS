@@ -9,11 +9,21 @@ import {NapicuOS} from "../../../system.napicuos";
 })
 export class TimeComponent implements OnInit {
 
+  public setTimeSettingMenuDisplayed: boolean = false;
 
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+  public openSetTimeSettingsMenu = (): void => {
+    this.setTimeSettingMenuDisplayed = true;
+  }
+
+  public closeSetTimeSettingsMenu = (): void => {
+    this.setTimeSettingMenuDisplayed = false;
   }
 
   public onChangeAutoTimeSwitch(): void {
@@ -46,5 +56,17 @@ export class TimeComponent implements OnInit {
 
   get GetTimeFormatOptions() {
     return Object.values(SystemTimeFormatEnumMetadata);
+  }
+
+  get GetDayText(): string{
+    return NapicuOS.get_language_words().Date.day;
+  }
+
+  get GetMonthText(): string {
+    return NapicuOS.get_language_words().Date.month;
+  }
+
+  get GetYearText(): string {
+    return NapicuOS.get_language_words().Date.year;
   }
 }

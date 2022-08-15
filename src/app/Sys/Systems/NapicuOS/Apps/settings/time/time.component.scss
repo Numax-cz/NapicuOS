@@ -7,6 +7,28 @@
 
 }
 
+#TimeSettingMenu{
+  position: absolute;
+  min-width: 200px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  min-height: 150px;
+
+  .TimeSettingMenuContent{
+    padding: 20px;
+    width: 500px;
+  }
+}
+
+.BoxRow{
+  >div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+}
 
 .osInformation{
 

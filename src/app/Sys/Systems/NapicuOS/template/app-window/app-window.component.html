@@ -1,0 +1,14 @@
+<div>
+  <section id="napicuos-App-window" class="SelectedWindow">
+    <div id="TopWindowAppBar">
+      <div class="WindowAppTitle">{{title}}</div>
+      <div class="napicuos-App-window-M">
+        <div (click)="close()"
+             id="CloseButton"></div>
+      </div>
+    </div>
+    <div id="INAppWindow">
+      <ng-content></ng-content>
+    </div>
+  </section>
+</div>

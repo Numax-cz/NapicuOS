@@ -1,4 +1,4 @@
-<section class="MainContent">
+<section class="MainContent" style="position: relative">
   <!--Settings -->
   <div class="BasicTableSizes BasicTableSettings-Medium">
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover NapicuOSSimpleGTablePointer table" >
@@ -12,7 +12,7 @@
           </label>
         </section>
       </ul>
-      <ul>
+      <ul (click)="openSetTimeSettingsMenu()">
         <div>{{GetDateAndTimeText}}</div>
         <div>3 August 2022, 9:38</div>
       </ul>
@@ -28,7 +28,41 @@
           </div>
       </ul>
     </div>
+
+
   </div>
+    <ng-container *ngIf="setTimeSettingMenuDisplayed">
+      <div id="TimeSettingMenu">
+        <in-app-window title="Window" [onClose]="closeSetTimeSettingsMenu">
+          <div class="WindowContent TimeSettingMenuContent">
+
+
+            <!--Date settings box -->
+            <section class="NapicuOSSimpleBoxBorder BoxRow">
+              <div>
+                <div>{{GetDayText}}</div>
+                <div>
+                  <app-counter-input [min]="0" [max]="5" [value]="2"></app-counter-input>
+                </div>
+              </div>
+              <div>
+                <div>{{GetMonthText}}</div>
+                <div>
+                  <app-counter-input [min]="0" [max]="5" [value]="2"></app-counter-input>
+                </div>
+              </div>
+              <div>
+                <div>{{GetYearText}}</div>
+                <div>
+                  <app-counter-input [min]="0" [max]="5" [value]="2"></app-counter-input>
+                </div>
+              </div>
+            </section>
+          </div>
+        </in-app-window>
+      </div>
+    </ng-container>
+
 
 <!--  <ng-container *ngIf="showInputMenu && inputMenuData">-->
 <!--    <section>-->
