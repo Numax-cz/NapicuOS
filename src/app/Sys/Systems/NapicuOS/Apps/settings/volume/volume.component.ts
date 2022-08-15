@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NapicuOS} from "../../../system.napicuos";
-import {readableStreamLikeToAsyncGenerator} from "rxjs/internal/util/isReadableStreamLike";
 
 @Component({
   selector: 'app-volume',

@@ -1,4 +1,3 @@
-import {NapicuOS} from "../system.napicuos";
 import {SYSTEM_WALLPAPERS} from "../config/System";
 
 export function ShortSystemWallpaper(path: string | SYSTEM_WALLPAPERS): string{

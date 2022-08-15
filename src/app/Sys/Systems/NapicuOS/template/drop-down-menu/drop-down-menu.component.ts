@@ -1,20 +1,5 @@
-import {AfterViewInit, Component, EventEmitter, Host, Input, OnInit, Optional, Output, SkipSelf} from '@angular/core';
-import {
-  AbstractControl,
-  ControlContainer,
-  ControlValueAccessor,
-  FormControl,
-  FormGroup,
-  NG_VALUE_ACCESSOR, Validators
-} from "@angular/forms";
-import {UserManagerForm} from "../../interface/Apps/UsermanagerForm";
-import {
-  SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MAX_PASSWORD_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH,
-  SYSTEM_USERS_MIN_PASSWORD_LENGTH
-} from "../../config/System";
-import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
+import {Component, EventEmitter, Host, Input, OnInit, Optional, Output, SkipSelf} from '@angular/core';
+import {AbstractControl, ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 interface DropDownMenuData {
   name: string,

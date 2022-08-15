@@ -1,6 +1,5 @@
 import {UserConstructorMetadata} from "./User/User";
 import {NapicuOsCookiesFileMetadata} from "./CookiesFiles";
-import {SystemTimeFormatEnumMetadata} from "../config/TimeFormat";
 
 export declare interface NapicuOsCookiesTemplate {
   user: {

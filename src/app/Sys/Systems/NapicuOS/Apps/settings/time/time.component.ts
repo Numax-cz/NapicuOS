@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {SystemUserPermissionsEnumMetadata} from "../../../config/UserPerms";
 import {SystemTimeFormatEnumMetadata} from "../../../config/TimeFormat";
 import {NapicuOS} from "../../../system.napicuos";
-import {NapicuOSComponent} from "../../../components/napicu-os/napicu-os.component";
 
 @Component({
   selector: 'app-time',

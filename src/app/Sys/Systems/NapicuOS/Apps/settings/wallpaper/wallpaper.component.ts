@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NapicuOS} from "../../../system.napicuos";
 import {SYSTEM_WALLPAPERS} from "../../../config/System";
 import {Interval} from "../../../scripts/Interval";

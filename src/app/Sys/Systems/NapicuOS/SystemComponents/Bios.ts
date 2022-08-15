@@ -1,10 +1,10 @@
 import {VM_COMPUTER_INFORMATION} from "../../../../Bios/vm_computer";
 import {Current} from "../../../../Bios/Config/FlashInformationData";
 import {BiosSettings} from "../../../../Bios/ToolSettings";
-import {BiosTime, BiosDate} from "../../../../Bios/interface/ToolSettings";
+import {BiosDate, BiosTime} from "../../../../Bios/interface/ToolSettings";
 import {DateInterface, TimeInterface} from "../interface/Date";
 import {NapicuDate} from "napicuformatter";
-import {Save, SaveChanges} from "../../../../Bios/Scripts/exit/SaveChanges";
+import {Save} from "../../../../Bios/Scripts/exit/SaveChanges";
 
 export class NapicuBios{
 

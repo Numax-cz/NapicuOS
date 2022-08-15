@@ -46,9 +46,11 @@ import {UsersComponent} from './Sys/Systems/NapicuOS/Apps/settings/users/users.c
 import {AppInputComponent} from './Sys/Systems/NapicuOS/template/app-input/app-input.component';
 import {boot_configuration} from "./Bios/Config/bootloader";
 import {WallpaperComponent} from "./Sys/Systems/NapicuOS/Apps/settings/wallpaper/wallpaper.component";
-import { VolumeComponent } from './Sys/Systems/NapicuOS/Apps/settings/volume/volume.component';
-import { BasicSliderInputComponent } from './Sys/Systems/NapicuOS/template/basic-slider-input/basic-slider-input.component';
-import { CounterInputComponent } from './Sys/Systems/NapicuOS/template/counter-input/counter-input.component';
+import {VolumeComponent} from './Sys/Systems/NapicuOS/Apps/settings/volume/volume.component';
+import {
+  BasicSliderInputComponent
+} from './Sys/Systems/NapicuOS/template/basic-slider-input/basic-slider-input.component';
+import {CounterInputComponent} from './Sys/Systems/NapicuOS/template/counter-input/counter-input.component';
 
 @NgModule({
   declarations: [

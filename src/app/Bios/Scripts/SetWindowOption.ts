@@ -1,5 +1,5 @@
 import {isDate, isOption, isOptionsFast, isTime} from './Type';
-import {settings, BiosTime} from '../interface/ToolSettings';
+import {BiosTime, settings} from '../interface/ToolSettings';
 import {clearTimeInterval} from './TimeController';
 import {BiosComponent} from '../components/bios/bios.component';
 import {OptionPanelComponent} from '../components/option-panel/option-panel.component';
