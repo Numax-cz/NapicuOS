@@ -19,6 +19,26 @@
     padding: 20px;
     width: 500px;
   }
+
+  .TimeSettingsBox{
+    width: fit-content;
+    margin: 10px auto 30px;
+
+    .time{
+      font-size: 2rem;
+      letter-spacing: 8px;
+    }
+
+    .arrow{
+      display: flex;
+      font-size: 1.3rem;
+
+      >div{
+        cursor: pointer;
+      }
+      justify-content: space-around
+    }
+  }
 }
 
 .BoxRow{

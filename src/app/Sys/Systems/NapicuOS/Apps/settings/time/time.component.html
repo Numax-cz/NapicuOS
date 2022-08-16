@@ -12,7 +12,7 @@
           </label>
         </section>
       </ul>
-      <ul (click)="openSetTimeSettingsMenu()">
+      <ul (click)="openSetTimeSettingsMenu()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': GetAutoTimeSwitchA }">
         <div>{{GetDateAndTimeText}}</div>
         <div>3 August 2022, 9:38</div>
       </ul>
@@ -29,14 +29,25 @@
       </ul>
     </div>
 
-
   </div>
     <ng-container *ngIf="setTimeSettingMenuDisplayed">
       <div id="TimeSettingMenu">
-        <in-app-window title="Window" [onClose]="closeSetTimeSettingsMenu">
+        <in-app-window appTitle="Window" [onClose]="closeSetTimeSettingsMenu">
           <div class="WindowContent TimeSettingMenuContent">
-
-            <section></section>
+            <!--Time settings box -->
+            <section class="TimeSettingsBox">
+              <div class="arrow">
+                <div (click)="addHour()">˄</div>
+                <div (click)="addMinute()">˄</div>
+              </div>
+              <div class="NapicuOSSimpleBoxBorder time">
+                18:33
+              </div>
+              <div class="arrow">
+                <div (click)="removeHour()">˅</div>
+                <div (click)="removeMinute()">˅</div>
+              </div>
+            </section>
 
             <!--Date settings box -->
             <section class="NapicuOSSimpleBoxBorder BoxRow">

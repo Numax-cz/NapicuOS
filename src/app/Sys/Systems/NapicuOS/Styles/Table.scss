@@ -16,6 +16,12 @@
   }
 }
 
+.NapicuOSSimpleGTable-Disabled{
+  filter: contrast(0.75) brightness(0.85);
+  cursor: default !important;
+  pointer-events: none;
+}
+
 .NapicuOSSimpleGTableHover{
   >ul:hover{
     background-color: var(--NapicuClassicDark2);
