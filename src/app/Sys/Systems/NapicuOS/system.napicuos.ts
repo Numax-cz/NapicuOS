@@ -415,7 +415,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns system time sync
    */
   public static get_active_user_time_sync(): boolean{
-    return this.get_active_user()?.userSetting.time.sync || true;
+    return !!this.get_active_user()?.userSetting.time.sync;
   }
 
   /**
@@ -438,6 +438,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Toggles user time sync
    */
   public static switch_active_user_time_sync(): void {
+    console.log(!this.get_active_user_time_sync());
     this.set_user_time_sync(this.get_active_user_username(), !this.get_active_user_time_sync());
   }
 
