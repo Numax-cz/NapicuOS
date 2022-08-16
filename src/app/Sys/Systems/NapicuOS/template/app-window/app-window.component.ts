@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./app-window.component.scss']
 })
 export class AppWindowComponent implements OnInit {
-  @Input() public title: string = "";
+  @Input() public appTitle: string = "";
   @Input() public declare onClose: () => void;
 
   constructor() { }
