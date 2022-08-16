@@ -36,25 +36,26 @@
         <in-app-window title="Window" [onClose]="closeSetTimeSettingsMenu">
           <div class="WindowContent TimeSettingMenuContent">
 
+            <section></section>
 
             <!--Date settings box -->
             <section class="NapicuOSSimpleBoxBorder BoxRow">
               <div>
                 <div>{{GetDayText}}</div>
                 <div>
-                  <app-counter-input [min]="0" [max]="5" [value]="2"></app-counter-input>
+                  <app-counter-input [min]="0" [max]="GetMaxDate" [(ngModel)]="selectedDay"></app-counter-input>
                 </div>
               </div>
               <div>
                 <div>{{GetMonthText}}</div>
                 <div>
-                  <app-counter-input [min]="0" [max]="5" [value]="2"></app-counter-input>
+                  <app-counter-input [min]="1" [max]="12" [(ngModel)]="selectedMonth"></app-counter-input>
                 </div>
               </div>
               <div>
                 <div>{{GetYearText}}</div>
                 <div>
-                  <app-counter-input [min]="0" [max]="5" [value]="2"></app-counter-input>
+                  <app-counter-input [min]="min_year" [max]="max_year" [(ngModel)]="selectedYear"></app-counter-input>
                 </div>
               </div>
             </section>

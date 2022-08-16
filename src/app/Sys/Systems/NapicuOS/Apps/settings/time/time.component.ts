@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SystemTimeFormatEnumMetadata} from "../../../config/TimeFormat";
 import {NapicuOS} from "../../../system.napicuos";
+import {DATE_MAX_YEAR, DATE_MIN_YEAR} from "../../../../../../Bios/Config/MaxDate";
+import {daysInMonth} from "../../../scripts/DaysInMonth";
 
 @Component({
   selector: 'app-time',
@@ -11,10 +13,25 @@ export class TimeComponent implements OnInit {
 
   public setTimeSettingMenuDisplayed: boolean = false;
 
+  public readonly max_year: number = DATE_MAX_YEAR;
+  public readonly min_year: number = DATE_MIN_YEAR;
+
+  public selectedDay: number = this.GetDate;
+  public selectedMonth: number = this.GetMonth;
+  public selectedYear: number = this.GetYear;
+
 
   constructor() { }
 
   ngOnInit(): void {
+    setInterval(() => {
+      console.log(this.selectedDay);
+    }, 100)
+  }
+
+
+  public SetSelectedDay(value: number): void {
+    this.selectedDay = value;
   }
 
 
@@ -60,6 +77,22 @@ export class TimeComponent implements OnInit {
 
   get GetDayText(): string{
     return NapicuOS.get_language_words().Date.day;
+  }
+
+  get GetDate(): number{
+    return NapicuOS.getTime().getCurrentDate();
+  }
+
+  get GetMaxDate(): number {
+    return daysInMonth(this.selectedYear, this.selectedMonth);
+  }
+
+  get GetMonth(): number{
+    return NapicuOS.getTime().getCurrentMonth() + 1;
+  }
+
+  get GetYear(): number{
+    return NapicuOS.getTime().getCurrentYear();
   }
 
   get GetMonthText(): string {
