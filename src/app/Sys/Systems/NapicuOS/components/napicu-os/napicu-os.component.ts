@@ -12,8 +12,8 @@ import {NapicuCalendarDateMetadata} from "../../interface/Calendar/calendar";
 import {SystemCalendarMetadata} from "../../interface/System/Calendar";
 import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
 import {SYSTEM_IMAGES} from "../../config/System";
-import {NapicuDate} from "napicuformatter";
 import {SystemCommandsPrefixEnum} from "../../config/commands/Commands";
+import {NapicuDate} from "napicuformatter";
 
 @Component({
   selector: 'app-napicu-os',
@@ -178,7 +178,7 @@ export class NapicuOSComponent implements OnInit {
    * Open the context calendar menu
    */
   public onClickDate(): void {
-    NapicuOSComponent.CalendarMenu.selectedMonth = NapicuOS.getTime().getCurrentMonth();
+    NapicuOSComponent.CalendarMenu.selectedMonth = NapicuOS.getTime().getCurrentMonth() - 1;
     NapicuOS.update_calendar();
     NapicuOSComponent.closeActivityMenu();
     this.openNotificationMenu();
@@ -356,7 +356,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetOutOfMonth(): boolean {
-    return NapicuOSComponent.CalendarMenu.selectedMonth != NapicuOS.getTime().getCurrentMonth();
+    return NapicuOSComponent.CalendarMenu.selectedMonth != NapicuOS.getTime().getCurrentMonth() - 1;
   }
 
   get GetFullDate(): string {

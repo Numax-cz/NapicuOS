@@ -24,9 +24,6 @@ export class TimeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    setInterval(() => {
-      console.log(this.selectedDay);
-    }, 100)
   }
 
 
@@ -34,6 +31,21 @@ export class TimeComponent implements OnInit {
     this.selectedDay = value;
   }
 
+  public addMinute(): void {
+
+  }
+
+  public removeMinute(): void {
+
+  }
+
+  public addHour(): void {
+
+  }
+
+  public removeHour(): void {
+
+  }
 
   public openSetTimeSettingsMenu = (): void => {
     this.setTimeSettingMenuDisplayed = true;
@@ -88,7 +100,7 @@ export class TimeComponent implements OnInit {
   }
 
   get GetMonth(): number{
-    return NapicuOS.getTime().getCurrentMonth() + 1;
+    return NapicuOS.getTime().getCurrentMonth();
   }
 
   get GetYear(): number{

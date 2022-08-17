@@ -29,7 +29,7 @@ export class NapicuBios{
     };
   }
 
-  public static  set_bios_time(time: TimeInterface<number>){
+  public static set_bios_time(time: TimeInterface<number>){
     let s =  BiosSettings["Main"].settings["time"].time;
     if(!s) return;
     s[0].title = String(time.hours);
@@ -48,12 +48,48 @@ export class NapicuBios{
   }
 
   public static set_bios_date(date: DateInterface<number>){
-   let s =  BiosSettings["Main"].settings["date"].date;
+    let s =  BiosSettings["Main"].settings["date"].date;
     if(!s) return;
     s[0].title = String(date.month);
     s[1].title = String(date.day);
     s[2].title = String(date.year);
     Save();
+  }
+
+  public static set_bios_time_hour(value :number): void {
+    let s =  BiosSettings["Main"].settings["time"].time;
+    if(!s) return;
+    s[0].title = String(value);
+  }
+
+  public static set_bios_time_minute(value: number): void {
+    let s =  BiosSettings["Main"].settings["time"].time;
+    if(!s) return;
+    s[1].title = String(value);
+  }
+
+  public static set_bios_time_seconds(value: number): void {
+    let s =  BiosSettings["Main"].settings["time"].time;
+    if(!s) return;
+    s[2].title = String(value);
+  }
+
+  public static set_bios_date_month(value: number): void {
+    let s =  BiosSettings["Main"].settings["date"].date;
+    if(!s) return;
+    s[0].title = String(value);
+  }
+
+  public static set_bios_date_day(value: number): void {
+    let s =  BiosSettings["Main"].settings["date"].date;
+    if(!s) return;
+    s[1].title = String(value);
+  }
+
+  public static set_bios_date_year(value :number): void {
+    let s =  BiosSettings["Main"].settings["date"].date;
+    if(!s) return;
+    s[2].title = String(value);
   }
 
   public static get_bios_time_napicu_date_format(): NapicuDate{
