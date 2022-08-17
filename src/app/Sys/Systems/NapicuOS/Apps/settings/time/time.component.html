@@ -14,7 +14,7 @@
       </ul>
       <ul (click)="openSetTimeSettingsMenu()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': GetAutoTimeSwitchA }">
         <div>{{GetDateAndTimeText}}</div>
-        <div>3 August 2022, 9:38</div>
+        <div>{{GetTimeDateSettingsTemplateTime}}</div>
       </ul>
     </div>
 
@@ -41,7 +41,7 @@
                 <div (click)="addMinute()">˄</div>
               </div>
               <div class="NapicuOSSimpleBoxBorder time">
-                18:33
+                {{GetTimeSettingsTimeTemplate}}
               </div>
               <div class="arrow">
                 <div (click)="removeHour()">˅</div>

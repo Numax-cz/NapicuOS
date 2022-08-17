@@ -3,6 +3,8 @@ import {SystemTimeFormatEnumMetadata} from "../../../config/TimeFormat";
 import {NapicuOS} from "../../../system.napicuos";
 import {DATE_MAX_YEAR, DATE_MIN_YEAR} from "../../../../../../Bios/Config/MaxDate";
 import {daysInMonth} from "../../../scripts/DaysInMonth";
+import {GET_SYSTEM_BASIC_TIME_FORMAT} from "../../../config/Time";
+import {SYSTEM_SETTINGS_TIME_DEFAULT_FOMRAT} from "../../../config/Apps/settings/time/config";
 
 @Component({
   selector: 'app-time',
@@ -105,6 +107,14 @@ export class TimeComponent implements OnInit {
 
   get GetYear(): number{
     return NapicuOS.getTime().getCurrentYear();
+  }
+
+  get GetTimeSettingsTimeTemplate(): string {
+    return NapicuOS.getTime().format(GET_SYSTEM_BASIC_TIME_FORMAT(NapicuOS.get_active_user_time_format()));
+  }
+
+  get GetTimeDateSettingsTemplateTime(): string{
+    return NapicuOS.getTime().format(SYSTEM_SETTINGS_TIME_DEFAULT_FOMRAT(NapicuOS.get_active_user_time_format()));
   }
 
   get GetMonthText(): string {
