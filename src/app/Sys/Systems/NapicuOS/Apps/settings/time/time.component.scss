@@ -23,6 +23,14 @@
   .TimeSettingsBox{
     width: fit-content;
     margin: 10px auto 30px;
+    display: flex;
+    align-items: center;
+    .NapicuOSSimpleButton{
+      margin: 0 13px;
+      >button {
+        font-size: 1.2rem !important;
+      }
+    }
 
     .time{
       font-size: 2rem;

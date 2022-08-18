@@ -36,17 +36,28 @@
           <div class="WindowContent TimeSettingMenuContent">
             <!--Time settings box -->
             <section class="TimeSettingsBox">
-              <div class="arrow">
-                <div (click)="addHour()">˄</div>
-                <div (click)="addMinute()">˄</div>
+              <div>
+                <div class="arrow">
+                  <div (click)="addHour()">˄</div>
+                  <div (click)="addMinute()">˄</div>
+                </div>
+                <div class="NapicuOSSimpleBoxBorder time">
+                    {{GetTimeSettingsTimeTemplate}}
+                </div>
+                <div class="arrow">
+                  <div (click)="removeHour()">˅</div>
+                  <div (click)="removeMinute()">˅</div>
+                </div>
               </div>
-              <div class="NapicuOSSimpleBoxBorder time">
-                {{GetTimeSettingsTimeTemplate}}
+
+              <div class="NapicuOSSimpleButton">
+                <button>AM</button>
               </div>
-              <div class="arrow">
-                <div (click)="removeHour()">˅</div>
-                <div (click)="removeMinute()">˅</div>
-              </div>
+            </section>
+
+
+            <section>
+
             </section>
 
             <!--Date settings box -->
