@@ -6,6 +6,7 @@ import {daysInMonth} from "../../../scripts/DaysInMonth";
 import {GET_SYSTEM_BASIC_TIME_FORMAT} from "../../../config/Time";
 import {SYSTEM_SETTINGS_TIME_DEFAULT_FOMRAT} from "../../../config/Apps/settings/time/config";
 import {NapicuBios} from "../../../SystemComponents/Bios";
+import {SettingsComponent} from "../settings.component";
 
 @Component({
   selector: 'app-time',
@@ -64,10 +65,13 @@ export class TimeComponent implements OnInit {
 
   public openSetTimeSettingsMenu = (): void => {
     this.setTimeSettingMenuDisplayed = true;
+    SettingsComponent.disableEvent();
   }
 
   public closeSetTimeSettingsMenu = (): void => {
     this.setTimeSettingMenuDisplayed = false;
+    SettingsComponent.allowEvent();
+
   }
 
   public onChangeAutoTimeSwitch(): void {

@@ -12,7 +12,7 @@ $boxSizeActive: 3px;
     padding: 5px;
     border: 1px solid black;
     border-bottom: 2px solid black;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: background-color .2s;
   }
 
@@ -22,7 +22,7 @@ $boxSizeActive: 3px;
 
   button:disabled {
     filter: contrast(0.8) brightness(0.7);
-    cursor: default;
+    cursor: default !important;
     pointer-events: none;
   }
 

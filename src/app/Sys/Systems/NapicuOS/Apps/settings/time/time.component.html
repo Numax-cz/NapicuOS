@@ -1,4 +1,4 @@
-<section class="MainContent" style="position: relative">
+<section class="MainContent" style="position: relative" [ngClass]="{MainContentEventDisable: setTimeSettingMenuDisplayed}">
   <!--Settings -->
   <div class="BasicTableSizes BasicTableSettings-Medium">
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover NapicuOSSimpleGTablePointer table" >
@@ -31,7 +31,7 @@
 
   </div>
     <ng-container *ngIf="setTimeSettingMenuDisplayed">
-      <div id="TimeSettingMenu">
+      <div id="TimeSettingMenu" clickable="true">
         <in-app-window appTitle="Window" [onClose]="closeSetTimeSettingsMenu">
           <div class="WindowContent TimeSettingMenuContent">
             <!--Time settings box -->
