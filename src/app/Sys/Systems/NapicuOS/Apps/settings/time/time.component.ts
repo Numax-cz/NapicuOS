@@ -5,6 +5,7 @@ import {DATE_MAX_YEAR, DATE_MIN_YEAR} from "../../../../../../Bios/Config/MaxDat
 import {daysInMonth} from "../../../scripts/DaysInMonth";
 import {GET_SYSTEM_BASIC_TIME_FORMAT} from "../../../config/Time";
 import {SYSTEM_SETTINGS_TIME_DEFAULT_FOMRAT} from "../../../config/Apps/settings/time/config";
+import {NapicuBios} from "../../../SystemComponents/Bios";
 
 @Component({
   selector: 'app-time',
@@ -29,24 +30,22 @@ export class TimeComponent implements OnInit {
   }
 
 
+  public addMinute = (): void => NapicuBios.set_bios_time_minute(NapicuBios.get_bios_time_int().minutes + 1);
+
+  public removeMinute = (): void => NapicuBios.set_bios_time_minute(NapicuBios.get_bios_time_int().minutes - 1)
+
+  public addHour = (): void  => NapicuBios.set_bios_time_hour(NapicuBios.get_bios_time_int().hours + 1);
+
+  public removeHour = (): void => NapicuBios.set_bios_time_hour(NapicuBios.get_bios_time_int().hours - 1);
+
+  public updateDay = (): void => NapicuBios.set_bios_date_day(this.selectedDay);
+
+  public updateMonth = (): void => NapicuBios.set_bios_date_month(this.selectedMonth);
+
+  public updateYear = (): void => NapicuBios.set_bios_date_year(this.selectedYear);
+
   public SetSelectedDay(value: number): void {
     this.selectedDay = value;
-  }
-
-  public addMinute(): void {
-
-  }
-
-  public removeMinute(): void {
-
-  }
-
-  public addHour(): void {
-
-  }
-
-  public removeHour(): void {
-
   }
 
   public openSetTimeSettingsMenu = (): void => {

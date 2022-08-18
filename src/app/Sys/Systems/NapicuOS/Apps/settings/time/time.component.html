@@ -54,19 +54,19 @@
               <div>
                 <div>{{GetDayText}}</div>
                 <div>
-                  <app-counter-input [min]="0" [max]="GetMaxDate" [(ngModel)]="selectedDay"></app-counter-input>
+                  <app-counter-input [min]="1" [max]="GetMaxDate" [(ngModel)]="selectedDay" (ngModelChange)="updateDay()"></app-counter-input>
                 </div>
               </div>
               <div>
                 <div>{{GetMonthText}}</div>
                 <div>
-                  <app-counter-input [min]="1" [max]="12" [(ngModel)]="selectedMonth"></app-counter-input>
+                  <app-counter-input [min]="1" [max]="12" [(ngModel)]="selectedMonth" (ngModelChange)="updateMonth()"></app-counter-input>
                 </div>
               </div>
               <div>
                 <div>{{GetYearText}}</div>
                 <div>
-                  <app-counter-input [min]="min_year" [max]="max_year" [(ngModel)]="selectedYear"></app-counter-input>
+                  <app-counter-input [min]="min_year" [max]="max_year" [(ngModel)]="selectedYear" (ngModelChange)="updateYear()"></app-counter-input>
                 </div>
               </div>
             </section>
