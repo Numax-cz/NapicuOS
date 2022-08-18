@@ -44,6 +44,20 @@ export class TimeComponent implements OnInit {
 
   public updateYear = (): void => NapicuBios.set_bios_date_year(this.selectedYear);
 
+  public changeTimeFormat (): void  {
+    let tf = NapicuOS.get_active_user_time_format_AM_PM();
+    if(tf === "PM") NapicuBios.set_bios_time_hour(NapicuBios.get_bios_time_int().hours - 12);
+    else NapicuBios.set_bios_time_hour(NapicuBios.get_bios_time_int().hours + 12);
+  }
+
+  get GetUserTimeFormatText(): string{
+    return NapicuOS.get_active_user_time_format_AM_PM();
+  }
+
+  get GetUserTimeFormat12h(): boolean {
+    return NapicuOS.get_active_user_time_format() == SystemTimeFormatEnumMetadata.h12
+  }
+
   public SetSelectedDay(value: number): void {
     this.selectedDay = value;
   }

@@ -88,8 +88,8 @@ import {processConstructor} from "./interface/Process";
 import {InputButtonTypeMetadata} from "./interface/InputButtonType";
 import {SystemTimeFormatEnumMetadata} from "./config/TimeFormat";
 import {NapicuBios} from "./SystemComponents/Bios";
-import {NapicuDate} from "napicuformatter";
 import {ShortSystemWallpaper} from "./scripts/ShortSystemWallpaper";
+import {NapicuDate} from "napicuformatter";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -386,6 +386,23 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_active_user_time_format(): SystemTimeFormatEnumMetadata {
     return NapicuOS.get_active_user()?.userSetting.time.format || SYSTEM_DEFAULT_TIME_FORMAT;
+  }
+
+  /**
+   * Returns user time format
+   */
+  public static get_active_user_time_format_AM_PM(): "PM" | "AM" {
+    return this.getTime().getCurrentMeridian();
+  }
+
+  /**
+   * Switch user time format
+   */
+  public static switch_active_user_time_format(): void {
+    let st = NapicuOS.get_active_user()?.userSetting;
+    if(!st) return;
+     st.time.format = (st.time.format === SystemTimeFormatEnumMetadata.h12) ? SystemTimeFormatEnumMetadata.h24 : SystemTimeFormatEnumMetadata.h24;
+     this.update_config_to_cookies();
   }
 
   /**

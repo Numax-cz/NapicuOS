@@ -49,17 +49,12 @@
                   <div (click)="removeMinute()">˅</div>
                 </div>
               </div>
-
-              <div class="NapicuOSSimpleButton">
-                <button>AM</button>
+              <div *ngIf="GetUserTimeFormat12h" class="NapicuOSSimpleButton">
+                <button (click)="changeTimeFormat()">{{GetUserTimeFormatText}}</button>
               </div>
             </section>
-
-
             <section>
-
             </section>
-
             <!--Date settings box -->
             <section class="NapicuOSSimpleBoxBorder BoxRow">
               <div>
