@@ -93,13 +93,7 @@ export class NapicuBios{
   }
 
   public static get_bios_time_napicu_date_format(): NapicuDate{
-    const time: TimeInterface<number> = this.get_bios_time_int();
-    const date: DateInterface<number> = this.get_bios_date_int();
-
-    if(!this.biosTime_Date || !this.biosTime_cache) {
-      this.biosTime_Date = new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, 0);
-      this.biosTime_cache = new Date().getTime();
-    }
+    if(!this.biosTime_Date || !this.biosTime_cache) this.load_time();
 
     let timestamp: number = new Date().getTime() - (this.biosTime_cache - this.biosTime_Date.getTime());
     let napicuDate = new NapicuDate(timestamp);
@@ -128,6 +122,13 @@ export class NapicuBios{
       month: Number(date.month),
       year: Number(date.year)
     }
+  }
+
+  public static load_time(): void {
+    const time: TimeInterface<number> = this.get_bios_time_int();
+    const date: DateInterface<number> = this.get_bios_date_int();
+    this.biosTime_Date = new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, 0);
+    this.biosTime_cache = new Date().getTime();
   }
 
 
