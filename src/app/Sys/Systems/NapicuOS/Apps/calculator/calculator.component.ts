@@ -32,7 +32,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   public calc(): void {
-    this.toShow = eval(this.toShow); //Dude eval is the best SAFE function ever YOLOOO
+    this.toShow = eval(this.toShow); //Dude eval is the best 100% SAFE function ever YOLOOO
   }
 
   public clear(): void {
