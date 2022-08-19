@@ -12,7 +12,7 @@
           </label>
         </section>
       </ul>
-      <ul (click)="openSetTimeSettingsMenu()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': GetAutoTimeSwitchA }">
+      <ul (click)="openSetTimeSettingsMenu()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': GetAutoTimeSwitchA }" clickable="false">
         <div>{{GetDateAndTimeText}}</div>
         <div>{{GetTimeDateSettingsTemplateTime}}</div>
       </ul>
