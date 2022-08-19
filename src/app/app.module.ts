@@ -53,6 +53,7 @@ import {
 import {CounterInputComponent} from './Sys/Systems/NapicuOS/template/counter-input/counter-input.component';
 import { AppWindowComponent } from './Sys/Systems/NapicuOS/template/app-window/app-window.component';
 import { CalculatorComponent } from './Sys/Systems/NapicuOS/Apps/calculator/calculator.component';
+import { BrowserComponent } from './Sys/Systems/NapicuOS/Apps/browser/browser.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { CalculatorComponent } from './Sys/Systems/NapicuOS/Apps/calculator/calc
     BasicSliderInputComponent,
     CounterInputComponent,
     AppWindowComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    BrowserComponent
   ],
   imports: [
     BrowserModule,

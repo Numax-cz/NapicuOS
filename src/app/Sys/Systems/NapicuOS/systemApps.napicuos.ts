@@ -15,6 +15,7 @@ import {SystemAppsSettings} from "./SystemComponents/Apps/Settings";
 import {SystemAppsCalculator} from "./SystemComponents/Apps/Calculator";
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemAppsProcessName} from "./config/Apps/AppsNames";
+import {SystemAppsBrowser} from "./SystemComponents/Apps/Browser";
 
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
@@ -32,10 +33,9 @@ export function installAllApps(): void {
 
 export function initAllStartUpApps(): void {
 
-  //RUN FileManager
   NapicuOS.run_command({
     cmd:  SystemCommandsPrefixEnum.openAppCommand,
-    args: [SystemAppsProcessName.calculator]
+    args: [SystemAppsProcessName.browser]
   });
 
 }
@@ -46,6 +46,12 @@ export class NapicuApps {
   public static SystemAppTerminal(args?: string[]): Promise<any> {
     return new Promise(() => {
       new SystemAppsTerminal().run()?.Window.open(args);
+    });
+  }
+
+  public static SystemAppBrowser(args?: string[]): Promise<any> {
+    return new Promise(() => {
+      new SystemAppsBrowser().run()?.Window.open(args);
     });
   }
 

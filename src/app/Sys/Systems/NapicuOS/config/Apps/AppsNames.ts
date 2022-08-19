@@ -8,5 +8,6 @@ export const enum SystemAppsProcessName{
   note = "Note",
   paint = "Paint",
   flappy = "Flappy",
-  settings = "Settings"
+  settings = "Settings",
+  browser = "Browser"
 }
