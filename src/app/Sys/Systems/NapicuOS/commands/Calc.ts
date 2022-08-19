@@ -8,11 +8,11 @@ import {calcHelpCommand} from "../config/commands/help/Calc";
 
 export function initEval(): void {
   NapicuOS.register_command(
-    new Command("Calc", SystemCommandsPrefixEnum.echoCommand, (params?: string[], terminal?: TerminalClass) => {
+    new Command("Calc", SystemCommandsPrefixEnum.calcCommand, (params?: string[], terminal?: TerminalClass) => {
       return new Promise((resolve) => {
         if (terminal) {
           if (params?.length) {
-            let s = params.toString()
+            let s: string = params.join("");
             let line: Line = new Line(eval(s), 'white'); //Dude eval is the best 100% SAFE function ever YOLOOO
             resolve({
               linesForCMD: [line],
