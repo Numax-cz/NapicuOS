@@ -1,1 +1,11 @@
-<p>browser works!</p>
+<section class="WindowContent ConsoleThemeFeraDark BackgroundColor BrowserView">
+  <div>
+    <input #input class="NapicuOSSimpleInput" [ngModel]="iframePath" (keydown.enter)="goToPage(input.value)">
+  </div>
+
+
+  <div class="BrowserIframe">
+    <iframe  [src]="iframePath | safe" title="Preview" ></iframe>
+  </div>
+
+</section>
