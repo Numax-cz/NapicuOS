@@ -1,0 +1,58 @@
+.BackgroundColor {
+  background-color: var(--NapicuClassicDark2);
+}
+
+
+.Calculator{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  grid-template-columns: repeat(4, 75px);
+  grid-template-rows: repeat(5, 60px);
+  //grid-template-rows: minmax(auto, auto) repeat(5, 10%);
+
+
+
+
+  button{
+    font-size: 1.3rem !important;
+    height: 100% !important;
+  }
+
+
+  .fit{
+    grid-column: span 2;
+  }
+
+
+  .output{
+    grid-column: 1 / -1;
+    color: var(--NapicuTextColor);
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-around;
+    word-wrap: break-word;
+    word-break: break-all;
+    input{
+      text-align: right;
+    }
+
+    font-size: 1.5rem;
+
+    .prev-op{
+
+    }
+
+    .cur-op{
+
+    }
+  }
+
+
+
+
+}
+

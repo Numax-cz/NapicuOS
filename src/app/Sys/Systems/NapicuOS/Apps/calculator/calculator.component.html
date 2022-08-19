@@ -1,0 +1,32 @@
+<section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
+
+  <!-- Calculator view-->
+  <div>
+
+  </div>
+
+  <!-- Calculator input-->
+  <div style="height: 100%">
+
+
+
+      <div class="NapicuOSSimpleButton Calculator">
+        <section class="output">
+          <input [(ngModel)]="toShow" type="text" class="cur-op NapicuOSSimpleInput">
+        </section>
+
+        <button class="fit" (click)="clear()">AC</button>
+        <button (click)="delete()">DEL</button>
+        <button *ngFor="let button of buttons" (click)="add($event)">{{button}}</button>
+        <button class="fit" (click)="calc()">=</button>
+      </div>
+
+
+
+
+  </div>
+
+</section>
+
+
+

@@ -12,6 +12,9 @@ import {FileManagerResponse} from "./interface/Apps/Response/FileManagerRes";
 import {SystemAppsPaint} from "./SystemComponents/Apps/Paint";
 import {SystemAppsFlappy} from "./SystemComponents/Apps/Flappy";
 import {SystemAppsSettings} from "./SystemComponents/Apps/Settings";
+import {SystemAppsCalculator} from "./SystemComponents/Apps/Calculator";
+import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
+import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
@@ -30,10 +33,10 @@ export function installAllApps(): void {
 export function initAllStartUpApps(): void {
 
   //RUN FileManager
-  // NapicuOS.run_command({
-  //   cmd:  SystemCommandsPrefixEnum.openAppCommand,
-  //   args: [SystemAppsProcessName.fileManager]
-  // });
+  NapicuOS.run_command({
+    cmd:  SystemCommandsPrefixEnum.openAppCommand,
+    args: [SystemAppsProcessName.calculator]
+  });
 
 }
 
@@ -43,6 +46,12 @@ export class NapicuApps {
   public static SystemAppTerminal(args?: string[]): Promise<any> {
     return new Promise(() => {
       new SystemAppsTerminal().run()?.Window.open(args);
+    });
+  }
+
+  public static SystemAppCalculator(args?: string[]): Promise<any> {
+    return new Promise(() => {
+      new SystemAppsCalculator().run()?.Window.open(args);
     });
   }
 
