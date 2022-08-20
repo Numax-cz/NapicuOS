@@ -2,6 +2,7 @@ import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 import {UrlChecker} from "../../scripts/UrlChecker";
 import {SYSTEM_IMAGES} from "../../config/System";
+import {HistoryLogger} from "../../scripts/HistoryLogger";
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -17,20 +18,18 @@ export class SafePipe implements PipeTransform {
   styleUrls: ['./browser.component.scss']
 })
 export class BrowserComponent implements OnInit {
-
-  public iframePath: string = "https://google.com";
-  public pageHistory: string[] = [];
+  protected static readonly defaultURL: string = "";
+  public pageHistory: HistoryLogger<string> = new HistoryLogger<string>();
 
   constructor() { }
 
   ngOnInit(): void {
+    this.pageHistory.add(BrowserComponent.defaultURL);
   }
 
-
   public goToPage(url: string): void {
-    let u = UrlChecker(url);
-    this.pageHistory.push(u);
-    this.iframePath = u;
+    if(!url.length) this.pageHistory.add("");
+    else this.pageHistory.add(UrlChecker(url));
   }
 
   public clickBack() {
@@ -41,12 +40,29 @@ export class BrowserComponent implements OnInit {
 
   }
 
+  public search(value: string){
+    this.pageHistory.add(`https://www.google.com/search?q=${value}`)
+  }
+
+  public clickHome(){
+    this.pageHistory.add(BrowserComponent.defaultURL);
+  }
+
+  get GetSelectedURL(): string{
+    return this.pageHistory.get();
+  }
+
+
   get GetBackImage(): string {
     return SYSTEM_IMAGES.ArrowLeft;
   }
 
   get GetNextImage(): string {
     return SYSTEM_IMAGES.ArrowRight;
+  }
+
+  get GetHomeImage(): string {
+    return SYSTEM_IMAGES.Home;
   }
 
 }

@@ -14,14 +14,33 @@
              alt="Next icon">
       </div>
 
-      <input #input class="NapicuOSSimpleInput" [ngModel]="iframePath" (keydown.enter)="goToPage(input.value)">
+      <div>
+        <img  (click)="clickHome()" [src]="GetHomeImage"
+              alt="Home icon">
+      </div>
+
+       <input #input class="NapicuOSSimpleInput" [ngModel]="GetSelectedURL" (keydown.enter)="goToPage(input.value)">
     </div>
-
   </div>
 
 
-  <div class="BrowserIframe">
-    <iframe  [src]="iframePath | safe" title="Preview" ></iframe>
+  <div class="BrowserIframe" clickable="false" >
+
+    <ng-container *ngIf="GetSelectedURL !== ''">
+      <iframe  [src]="GetSelectedURL | safe" title="Preview" ></iframe>
+    </ng-container>
+
+    <ng-container *ngIf="!GetSelectedURL.length">
+        <div class="NapicuSearch" clickable="false"  >
+            <div class="center" clickable="false" >
+              <h1>NapicuSearch</h1>
+              <input #SearchInput class="NapicuOSSimpleInput"(keydown.enter)="search(SearchInput.value)">
+            </div>
+        </div>
+    </ng-container>
+
+
   </div>
+
 
 </section>
