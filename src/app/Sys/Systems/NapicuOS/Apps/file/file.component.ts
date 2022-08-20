@@ -175,8 +175,8 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public setDir(dirName: string): void {
-    this.pathHistory.add(this.startDirectory);
     this.startDirectory = ReplaceSystemVariables(dirName);
+    this.pathHistory.add(this.startDirectory);
     this.updateViewFilesAndDirs();
   }
 
@@ -354,7 +354,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public clickHome(): void {
-    if( this.freezeContent) return;
+    if(this.freezeContent) return;
     this.setDir("%USERDIR");
     this.clearNextHistoryPaths();
   }
@@ -386,6 +386,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   public clearNextHistoryPaths(): void {
     // this.nextHistoryPaths = []; //TODO
+    // this.pathHistory.destroyNextHistory();
   }
 
   public updateViewFilesAndDirs (): void {
