@@ -77,19 +77,6 @@
   display: flex;
   margin-left: 7px;
 
-  img {
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    margin: 0 0.2rem;
-    transition: filter .2s;
-    border-radius: 4px;
-  }
-
-  img:hover {
-    background: var(--NapicuSelectColor);
-  }
-
   .cantClick {
     cursor: default;
     filter: brightness(0.5);

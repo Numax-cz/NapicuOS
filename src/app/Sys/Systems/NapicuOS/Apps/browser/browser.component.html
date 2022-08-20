@@ -1,6 +1,22 @@
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor BrowserView">
   <div>
-    <input #input class="NapicuOSSimpleInput" [ngModel]="iframePath" (keydown.enter)="goToPage(input.value)">
+
+    <div class="SearchBarTools NapicuSimpleIcon">
+      <!--Back button-->
+      <div>
+        <img  (click)="clickBack()" [src]="GetBackImage"
+             alt="Back icon">
+
+      </div>
+      <!--Next button-->
+      <div>
+        <img  (click)="clickNext()" [src]="GetNextImage"
+             alt="Next icon">
+      </div>
+
+      <input #input class="NapicuOSSimpleInput" [ngModel]="iframePath" (keydown.enter)="goToPage(input.value)">
+    </div>
+
   </div>
 
 
