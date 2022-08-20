@@ -18,6 +18,7 @@ import {FindParam} from "../../scripts/FindParam";
 import {SystemFileManagerParams} from "../../config/Apps/FileManager/fileManagerParams";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
 import {ABCSortArray, ABCSortSystemFiles} from "../../scripts/Sorting";
+import {HistoryLogger} from "../../scripts/HistoryLogger";
 
 
 @Component({
@@ -34,12 +35,11 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   private declare foldersView: fileConfigDisplayedMetadata[];
   private declare drivesView: fileConfigDisplayedMetadata[];
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
-  private startDirectory: string = "/home/%USER/";
+  private startDirectory: string = "/";
   public fileName: string = "document";
   public displayedFiles: filesAndDirsViewMetadata[] = [];
 
-  public backHistoryPaths: string[] = [];
-  public nextHistoryPaths: string[] = [];
+  public pathHistory: HistoryLogger<string> = new HistoryLogger<string>();
 
   public boxMenuPosition: { x: number, y: number } | null = null;
 
@@ -62,6 +62,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
 
   ngOnInit(): void {
+    this.pathHistory.add(this.startDirectory);
     if(FindParam(this.args, SystemFileManagerParams.selectMode)) this.selectedMode = true;
     this.topTxtView = {
       file: NapicuOS.get_language_words().Apps.FileManager.file,
@@ -168,15 +169,23 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public enterDir(dirName: string): void {
-    this.backHistoryPaths.push(this.startDirectory);
     this.startDirectory = ReplaceSystemVariables(this.startDirectory + dirName + "/");
+    this.pathHistory.add(this.startDirectory);
     this.updateViewFilesAndDirs();
   }
 
   public setDir(dirName: string): void {
-    this.backHistoryPaths.push(this.startDirectory);
+    this.pathHistory.add(this.startDirectory);
     this.startDirectory = ReplaceSystemVariables(dirName);
     this.updateViewFilesAndDirs();
+  }
+
+  public canNext(): boolean {
+    return this.pathHistory.canNext();
+  }
+
+  public canBack(): boolean {
+    return this.pathHistory.canBack();
   }
 
   public enterFile(fileName: string): void {
@@ -324,18 +333,17 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   }
 
   public clickBack(): void {
-    if(!this.backHistoryPaths.length || this.freezeContent) return;
-    this.nextHistoryPaths.push(this.startDirectory);
-    this.startDirectory = this.backHistoryPaths[this.backHistoryPaths.length - 1];
-    this.backHistoryPaths.shift();
+    if(this.freezeContent) return;
+    this.pathHistory.back();
+    this.startDirectory = this.pathHistory.get();
+
     this.updateViewFilesAndDirs();
   }
 
   public clickNext(): void {
-    if(!this.nextHistoryPaths.length || this.freezeContent) return;
-    this.backHistoryPaths.push(this.startDirectory);
-    this.startDirectory = this.nextHistoryPaths[this.nextHistoryPaths.length - 1];
-    this.nextHistoryPaths.shift();
+    if(this.freezeContent) return;
+    this.pathHistory.next();
+    this.startDirectory = this.pathHistory.get();
     this.updateViewFilesAndDirs();
   }
 
@@ -373,11 +381,11 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   //TODO kontrolovat jestli je to soubor / adresář
 
   public clearBackHistoryPaths(): void {
-    this.backHistoryPaths = [];
+    // this.backHistoryPaths = []; //TODO
   }
 
   public clearNextHistoryPaths(): void {
-    this.nextHistoryPaths = [];
+    // this.nextHistoryPaths = []; //TODO
   }
 
   public updateViewFilesAndDirs (): void {

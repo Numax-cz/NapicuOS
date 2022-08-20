@@ -25,13 +25,13 @@
         <div class="ToolOptionsFiles NapicuSimpleIcon">
           <!--Back button-->
           <div>
-            <img [ngClass]="{cantClick: !backHistoryPaths.length}" (click)="clickBack()" [src]="GetBackImage"
+            <img [ngClass]="{cantClick: !canBack()}" (click)="clickBack()" [src]="GetBackImage"
                  alt="Back icon">
 
           </div>
           <!--Next button-->
           <div>
-            <img [ngClass]="{cantClick: !nextHistoryPaths.length}" (click)="clickNext()" [src]="GetNextImage"
+            <img [ngClass]="{cantClick: !canNext()}" (click)="clickNext()" [src]="GetNextImage"
                  alt="Next icon">
           </div>
           <!--Home button-->
