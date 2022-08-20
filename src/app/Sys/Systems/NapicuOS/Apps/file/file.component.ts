@@ -356,7 +356,6 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   public clickHome(): void {
     if(this.freezeContent) return;
     this.setDir("%USERDIR");
-    this.clearNextHistoryPaths();
   }
 
   protected enableFreezeContent(): void {
@@ -378,16 +377,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     event.preventDefault();
   }
 
-  //TODO kontrolovat jestli je to soubor / adresář
 
-  public clearBackHistoryPaths(): void {
-    // this.backHistoryPaths = []; //TODO
-  }
-
-  public clearNextHistoryPaths(): void {
-    // this.nextHistoryPaths = []; //TODO
-    // this.pathHistory.destroyNextHistory();
-  }
 
   public updateViewFilesAndDirs (): void {
     this.displayedFiles = this.GetFilesInDirectory;
