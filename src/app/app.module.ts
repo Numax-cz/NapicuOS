@@ -54,6 +54,7 @@ import {CounterInputComponent} from './Sys/Systems/NapicuOS/template/counter-inp
 import { AppWindowComponent } from './Sys/Systems/NapicuOS/template/app-window/app-window.component';
 import { CalculatorComponent } from './Sys/Systems/NapicuOS/Apps/calculator/calculator.component';
 import {BrowserComponent, SafePipe} from './Sys/Systems/NapicuOS/Apps/browser/browser.component';
+import { MapsComponent } from './Sys/Systems/NapicuOS/Apps/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import {BrowserComponent, SafePipe} from './Sys/Systems/NapicuOS/Apps/browser/br
     AppWindowComponent,
     CalculatorComponent,
     BrowserComponent,
-    SafePipe
+    SafePipe,
+    MapsComponent
   ],
   imports: [
     BrowserModule,

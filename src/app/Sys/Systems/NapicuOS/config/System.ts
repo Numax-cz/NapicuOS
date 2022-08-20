@@ -91,7 +91,8 @@ export enum SYSTEM_IMAGES {
   pencil = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/pencil.svg",
   photo = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/photo.svg",
   calculator = "assets/systems/NapicuOS/SystemIcons/XFD/calculator.svg",
-  browser = "assets/systems/NapicuOS/SystemIcons/XFD/browser.svg"
+  browser = "assets/systems/NapicuOS/SystemIcons/XFD/browser.svg",
+  map = "assets/systems/NapicuOS/SystemIcons/XFD/map.svg",
 
 }
 
