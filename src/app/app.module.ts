@@ -55,6 +55,7 @@ import { AppWindowComponent } from './Sys/Systems/NapicuOS/template/app-window/a
 import { CalculatorComponent } from './Sys/Systems/NapicuOS/Apps/calculator/calculator.component';
 import {BrowserComponent, SafePipe} from './Sys/Systems/NapicuOS/Apps/browser/browser.component';
 import { MapsComponent } from './Sys/Systems/NapicuOS/Apps/maps/maps.component';
+import { WeatherComponent } from './Sys/Systems/NapicuOS/Apps/weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { MapsComponent } from './Sys/Systems/NapicuOS/Apps/maps/maps.component';
     CalculatorComponent,
     BrowserComponent,
     SafePipe,
-    MapsComponent
+    MapsComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,

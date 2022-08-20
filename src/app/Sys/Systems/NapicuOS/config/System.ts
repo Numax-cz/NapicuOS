@@ -93,6 +93,7 @@ export enum SYSTEM_IMAGES {
   calculator = "assets/systems/NapicuOS/SystemIcons/XFD/calculator.svg",
   browser = "assets/systems/NapicuOS/SystemIcons/XFD/browser.svg",
   map = "assets/systems/NapicuOS/SystemIcons/XFD/map.svg",
+  weather = "assets/systems/NapicuOS/SystemIcons/XFD/weather.svg",
 
 }
 

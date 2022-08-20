@@ -16,6 +16,8 @@ import {SystemAppsCalculator} from "./SystemComponents/Apps/Calculator";
 import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 import {SystemAppsMap} from "./SystemComponents/Apps/Maps";
+import {WeatherComponent} from "./Apps/weather/weather.component";
+import {SystemAppsWeather} from "./SystemComponents/Apps/Weather";
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
 }
@@ -51,6 +53,11 @@ export class NapicuApps {
   public static SystemAppCalculator(args?: string[]): Promise<any> {
     return new Promise(() => {
       new SystemAppsCalculator().run()?.Window.open(args);
+    });
+  }
+  public static SystemAppWeather(args?: string[]): Promise<any> {
+    return new Promise(() => {
+      new SystemAppsWeather().run()?.Window.open(args);
     });
   }
 
