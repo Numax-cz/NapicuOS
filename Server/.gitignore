@@ -1,6 +1,5 @@
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -33,3 +32,4 @@ build/
 .vscode/
 /src/main/resources/application-dev-local.yml
 /src/main/resources/application-prod.yml
+/.mvn/
