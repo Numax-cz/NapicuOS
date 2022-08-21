@@ -40,7 +40,7 @@
 3. Nakonfigurujte server 
    - V development configu `Server/src/main/resources/application-dev.yml` nastavte API klíč pro [OpenWeather](https://openweathermap.org/) 
 
-4Spusťte server
+4. Spusťte server
    ```sh
    npm run server-dev
    ```
