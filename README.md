@@ -27,7 +27,7 @@
 - [Git](https://git-scm.com/)
 - [Node - LTS](https://nodejs.org/en/)
 - [Java JDK 18](https://www.oracle.com/java/technologies/downloads/#jdk18-windows)
-
+- [OpenWeather](https://openweathermap.org/) API klíč 
 
 1. Naklonujte repozitář
    ```sh
