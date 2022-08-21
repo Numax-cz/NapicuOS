@@ -23,6 +23,11 @@
 ---
 
 ## Instalace
+### Co potřebuji ? 
+- [Git](https://git-scm.com/)
+- [Node - LTS](https://nodejs.org/en/)
+- [Java JDK 18](https://www.oracle.com/java/technologies/downloads/#jdk18-windows)
+
 
 1. Naklonujte repozitář
    ```sh
@@ -32,13 +37,15 @@
    ```sh
    npm install
    ```
+3. Nakonfigurujte server 
+   - V development configu `Server/src/main/resources/application-dev.yml` nastavte API klíč pro [OpenWeather](https://openweathermap.org/) 
 
-3. Spusťte server
+4Spusťte server
    ```sh
    npm run server-dev
    ```
 
-4. Spusťte script pro inicializaci OpenAPI
+5. Spusťte script pro inicializaci OpenAPI
     ```sh
      npm run build-openapi-dev
     ```
@@ -50,24 +57,29 @@
 ---
 
 ## Spuštění
-
-1. Spuštění aplikace pro development
+- Spuštění aplikace pro development
    ```sh
    npm run dev
    ```
    >Development spuštění urychlí boot time (nelze se dostat do BIOSU)
 
-2. Spuštění aplikace pro nasazení
+- Spuštění aplikace pro nasazení
    ```sh
    npm run start
    ```
    >Normální spuštění aplikace
-   
-2. Buildnutí aplikace
+
+- Buildnutí aplikace
    ```sh
    npm run build
    ```
    >Aplikace se automaticky builde v configuraci pro nasazení
+
+- Spuštění serveru pro development
+   ```sh
+   npm run server-dev
+   ```
+  >Ve výchozím nastavení se aplikace spustí na portu `8080`
 
 ## Vytovření nové aplikace pro operační systém
 
