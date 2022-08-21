@@ -23,7 +23,7 @@ process.argv.forEach(function (val, index) {
 function Run() {
   if (Profile){
 
-    let i = exec(".\\mvnw spring-boot:run -Dspring-boot.run.profiles=dev-local -f pom.xml",{ cwd: workingDir} , (error, stdout, stderr) => {
+    let i = exec(`.\\mvnw spring-boot:run -Dspring-boot.run.profiles=${Profile} -f pom.xml`,{ cwd: workingDir} , (error, stdout, stderr) => {
       console.log(stdout);
       console.log(stderr);
       if (error !== null) {
