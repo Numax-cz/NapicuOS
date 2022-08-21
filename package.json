@@ -5,7 +5,10 @@
   "scripts": {
     "start": "ng serve --configuration=production",
     "dev": "ng serve --configuration=development",
+    "server-dev": "node ./scripts/server.js dev",
+    "server-prod": "node ./scripts/server.js prod",
     "newapp": "node ./scripts/newapp.js",
+    "init": "node ./scripts/init.js",
     "build": "ng build --prod --build-optimizer --extract-licenses --output-hashing none",
     "buildDev": "ng build --prod=false --build-optimizer --extract-licenses --output-hashing none",
     "build-openapi-dev": "openapi-generator-cli generate -o ./OpenAPI -i http://localhost:8080/v3/api-docs/ -g typescript-angular"
