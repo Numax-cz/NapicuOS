@@ -28,7 +28,6 @@
 - [Node - LTS](https://nodejs.org/en/)
 - [Java JDK 18](https://www.oracle.com/java/technologies/downloads/#jdk18-windows)
 
----
 
 1. Naklonujte repozitář
    ```sh
