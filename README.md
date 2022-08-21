@@ -24,14 +24,30 @@
 
 ## Instalace
 
-1. Naklonování repozitáře
+1. Naklonujte repozitář
    ```sh
    git clone https://github.com/Numax-cz/NapicuOS.git
    ```
-2. Nainstalování balíčků
+2. Nainstalujte balíčky
    ```sh
    npm install
    ```
+
+3. Spusťte server
+   ```sh
+   npm run server-dev
+   ```
+
+4. Spusťte script pro inicializaci OpenAPI
+    ```sh
+     npm run build-openapi-dev
+    ```
+> Veškeré nastavení scriptů najdete v package.json
+
+> Nastavení serveru naleznete ve složce `Server/src/main/resources` více 
+> ohledně Spring profilů naleznete na [docs.spring.io](https://docs.spring.io/spring-boot/docs/1.2.3.RELEASE/reference/html/boot-features-external-config.html)
+
+---
 
 ## Spuštění
 
@@ -39,19 +55,19 @@
    ```sh
    npm run dev
    ```
-   - Development spuštění urychlí boot time (nelze se dostat do BIOSU)
+   >Development spuštění urychlí boot time (nelze se dostat do BIOSU)
 
 2. Spuštění aplikace pro nasazení
    ```sh
    npm run start
    ```
-   - Normální spuštění aplikace
+   >Normální spuštění aplikace
    
 2. Buildnutí aplikace
    ```sh
    npm run build
    ```
-   - Aplikace se automaticky builde v configuraci pro nasazení
+   >Aplikace se automaticky builde v configuraci pro nasazení
 
 ## Vytovření nové aplikace pro operační systém
 
