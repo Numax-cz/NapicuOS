@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+
+
+api:
+  limits: 40
+  keys:
+    open-weather:
+
+
