@@ -6,7 +6,7 @@
     "start": "ng serve --configuration=production",
     "dev": "ng serve --configuration=development",
     "server-dev": "node ./scripts/server.js dev",
-    "server-prod": "node ./scripts/server.js prod",
+    "server-dev-local": "node ./scripts/server.js devl-local",
     "newapp": "node ./scripts/newapp.js",
     "init": "node ./scripts/init.js",
     "build": "ng build --prod --build-optimizer --extract-licenses --output-hashing none",
