@@ -36,7 +36,7 @@ export function initAllStartUpApps(): void {
 
   NapicuOS.run_command({
     cmd:  SystemCommandsPrefixEnum.openAppCommand,
-    args: [SystemAppsProcessName.maps]
+    args: [SystemAppsProcessName.weather]
   });
 
 }

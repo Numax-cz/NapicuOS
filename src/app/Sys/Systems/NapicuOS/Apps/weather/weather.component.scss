@@ -1,0 +1,41 @@
+.BackgroundColor{
+  background-color: #1982df;
+}
+
+.MainContent{
+
+  animation: 1.5s ease-out 0s 1 onInit;
+  text-align: center;
+  color: white;
+  margin-top: 30px;
+  img{
+    width: 155px;
+    height: 155px;
+  }
+
+  h1{
+    font-size: 2rem;
+  }
+
+  h2{
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  input{
+    width: 40%;
+  }
+í
+  .text{
+    margin: 35px 0;
+  }
+}
+
+@keyframes onInit {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

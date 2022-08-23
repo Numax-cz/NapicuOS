@@ -90,6 +90,7 @@ import {SystemTimeFormatEnumMetadata} from "./config/TimeFormat";
 import {NapicuBios} from "./SystemComponents/Bios";
 import {ShortSystemWallpaper} from "./scripts/ShortSystemWallpaper";
 import {NapicuDate} from "napicuformatter";
+import {OPEN_WEATHER_ICONS} from "./config/OpenWeather";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -210,6 +211,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     return new Promise<void>(async resolve => {
       //Preload system images
       for (const snd of Object.entries(SYSTEM_IMAGES)) {
+        await NapicuOS.add_image_to_system(snd[0], snd[1])
+      }
+      //Preload OpenWeather images
+      for (const snd of Object.entries(OPEN_WEATHER_ICONS)) {
         await NapicuOS.add_image_to_system(snd[0], snd[1])
       }
       resolve();
