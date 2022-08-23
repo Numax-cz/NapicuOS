@@ -23,7 +23,10 @@ export class User {
       format: SystemTimeFormatEnumMetadata.h12,
       sync: false
     },
-    selectedWallpaper: ShortSystemWallpaper(SYSTEM_WALLPAPERS.default_wallpaper)
+    selectedWallpaper: ShortSystemWallpaper(SYSTEM_WALLPAPERS.default_wallpaper),
+    apps: {
+      weather: null
+    }
   };
   public declare userSetting: SystemUserDataMetadata;
 

@@ -1,15 +1,27 @@
 <section class="WindowContent BackgroundColor" id="WindowScrollBar">
   <!--Welcome screen-->
-  <section>
+  <ng-container *ngIf="!city">
 
-    <div  class="MainContent" >
-      <img [src]="GetWeatherIcon" alt="Weather icon">
-      <div class="text">
-        <h1>Vítejte v Počasí!</h1>
-        <h2>Pro začáten vyberte místo.</h2>
+    <section>
 
+      <div  class="MainContent" >
+        <img [src]="GetWeatherIcon" alt="Weather icon">
+        <div class="text">
+          <h1>Vítejte v Počasí!</h1>
+          <h2>Pro začáten vyberte místo.</h2>
+
+        </div>
+        <input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'--NapicuSimpleButtonColor': 'white', '--NapicuTitleTextColor': 'black'}">
       </div>
-      <input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'--NapicuSimpleButtonColor': 'white', '--NapicuTitleTextColor': 'black'}">
-    </div>
-  </section>
+    </section>
+  </ng-container>
+
+  <!--Main weather screen-->
+  <ng-container *ngIf="city">
+    <section>
+
+    </section>
+  </ng-container>
+
+
 </section>

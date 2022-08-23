@@ -51,6 +51,12 @@ import {
   lang_yes_en
 } from "./Other";
 import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Month_en, lang_Year_cs, lang_Year_en} from "./Date";
+import {lang_Weather_city_not_found_cs, lang_Weather_city_not_found_en} from "./Weather";
+import {
+  lang_NapicuApi_server_error_cs,
+  lang_NapicuApi_server_error_en, lang_NapicuApi_too_many_req_cs,
+  lang_NapicuApi_too_many_req_en
+} from "./NapicuApi";
 
 export declare type NapicuOS_available_language = "en" | "cs";
 
@@ -71,7 +77,14 @@ export const NapicuOSLanguages = {
       year: lang_Year_en
     },
     Apps: {
-      FileManager: lang_FileManager_en
+      FileManager: lang_FileManager_en,
+      Weather: {
+        city_not_found: lang_Weather_city_not_found_en
+      }
+    },
+    Api: {
+      server_error: lang_NapicuApi_server_error_en,
+      too_many_req: lang_NapicuApi_too_many_req_en
     },
     other: {
       creat: {
@@ -118,7 +131,14 @@ export const NapicuOSLanguages = {
       year: lang_Year_cs
     },
     Apps: {
-      FileManager: lang_FileManager_cs
+      FileManager: lang_FileManager_cs,
+      Weather: {
+        city_not_found: lang_Weather_city_not_found_cs
+      }
+    },
+    Api: {
+      server_error: lang_NapicuApi_server_error_cs,
+      too_many_req: lang_NapicuApi_too_many_req_cs
     },
     other: {
       creat: {

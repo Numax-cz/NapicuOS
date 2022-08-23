@@ -1292,6 +1292,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Sets default city for the weather app
+   */
+  public static set_user_app_default_weather_city(city: string): void {
+    const user = this.get_active_user();
+    if(user){
+      user.userSetting.apps.weather= city;
+      this.update_config_to_cookies();
+    }
+  }
+
+  /**
    * Returns the displayed user windows
    */
   public static get_user_system_displayed_window_apps(): Process[] {

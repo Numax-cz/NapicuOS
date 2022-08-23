@@ -17,6 +17,9 @@ export declare interface SystemUserDataMetadata {
     sync: boolean
   },
   selectedWallpaper: string
+  apps: {
+    weather: null | string
+  }
 }
 
 
