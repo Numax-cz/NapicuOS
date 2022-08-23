@@ -8,7 +8,7 @@
     "newapp": "node ./scripts/newapp.js",
 
     "server-dev": "node ./scripts/server.js dev",
-    "server-dev-local": "node ./scripts/server.js devl-local",
+    "server-dev-local": "node ./scripts/server.js dev-local",
 
 
     "build": "ng build --prod --build-optimizer --extract-licenses --output-hashing none",
