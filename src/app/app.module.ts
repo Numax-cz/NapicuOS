@@ -56,6 +56,7 @@ import { CalculatorComponent } from './Sys/Systems/NapicuOS/Apps/calculator/calc
 import {BrowserComponent, SafePipe} from './Sys/Systems/NapicuOS/Apps/browser/browser.component';
 import { MapsComponent } from './Sys/Systems/NapicuOS/Apps/maps/maps.component';
 import { WeatherComponent } from './Sys/Systems/NapicuOS/Apps/weather/weather.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { WeatherComponent } from './Sys/Systems/NapicuOS/Apps/weather/weather.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     DynamicModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
