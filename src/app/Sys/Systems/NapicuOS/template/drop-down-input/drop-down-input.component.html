@@ -1,0 +1,15 @@
+<section
+  napicuDropDownMenuClick
+  (napicuMenuClick)="isDropDownOpen = false"
+  clickable="false"
+>
+  <div class="drop-down-input">
+    <div (click)="isDropDownOpen = !isDropDownOpen">
+        <ng-content></ng-content>
+        <span *ngIf="arrow" class="arrow">▼</span>
+    </div>
+    <div class="input" *ngIf="isDropDownOpen" clickable="false">
+      <input type="text" class="NapicuOSSimpleInput" [placeholder]="placeholderValue">
+    </div>
+  </div>
+</section>

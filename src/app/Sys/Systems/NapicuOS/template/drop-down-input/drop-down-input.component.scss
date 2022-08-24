@@ -1,0 +1,17 @@
+.drop-down-input{
+  display: inline-block;
+  cursor: pointer;
+
+  .arrow{
+    font-size: 50%;
+    margin: 0 0 0 10px;
+    vertical-align: middle;
+  }
+}
+
+.input{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
