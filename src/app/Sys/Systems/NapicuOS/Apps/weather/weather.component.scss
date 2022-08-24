@@ -39,3 +39,49 @@
     opacity: 1;
   }
 }
+
+
+.weather{
+  * {
+    font-family: 'Work Sans', sans-serif !important;
+  }
+  text-align: center;
+  margin-top: 35px;
+  color: white;
+
+  img{
+    width: 120px;
+    height: 120px;
+    margin: 12px 0;
+  }
+
+  .temp{
+    font-size: 5.3rem;
+    font-weight: 800;
+  }
+
+  .temp-b{
+    letter-spacing: 6px;
+    font-size: 2rem;
+  }
+
+  .city{
+    font-size: 2.2rem;
+    margin: 10px 0;
+    font-weight: 600;
+  }
+
+  .inf{
+    font-size: 1.6rem;
+    font-weight: 600;
+    >div{
+      margin-top: 10px;
+    }
+
+  }
+
+  .date{
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+}
+

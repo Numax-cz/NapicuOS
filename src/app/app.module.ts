@@ -57,6 +57,7 @@ import {BrowserComponent, SafePipe} from './Sys/Systems/NapicuOS/Apps/browser/br
 import { MapsComponent } from './Sys/Systems/NapicuOS/Apps/maps/maps.component';
 import { WeatherComponent } from './Sys/Systems/NapicuOS/Apps/weather/weather.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { DropDownInputComponent } from './Sys/Systems/NapicuOS/template/drop-down-input/drop-down-input.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     BrowserComponent,
     SafePipe,
     MapsComponent,
-    WeatherComponent
+    WeatherComponent,
+    DropDownInputComponent
   ],
   imports: [
     BrowserModule,

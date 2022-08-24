@@ -4,12 +4,13 @@
   clickable="false"
 >
   <div class="drop-down-input">
-    <div (click)="isDropDownOpen = !isDropDownOpen">
+    <div (click)="openInput()">
         <ng-content></ng-content>
         <span *ngIf="arrow" class="arrow">▼</span>
     </div>
-    <div class="input" *ngIf="isDropDownOpen" clickable="false">
-      <input type="text" class="NapicuOSSimpleInput" [placeholder]="placeholderValue">
+    <div class="input" [ngClass]="{'NapicuOSSimpleBoxBorder': errorMessage}" *ngIf="isDropDownOpen" clickable="false">
+      <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+      <input #Input type="text" class="NapicuOSSimpleInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': errorMessage}" [placeholder]="placeholderValue" (keydown.enter)="onSubmitInput(Input.value)">
     </div>
   </div>
 </section>

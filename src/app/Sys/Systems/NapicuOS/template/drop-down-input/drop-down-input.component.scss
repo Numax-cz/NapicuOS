@@ -13,5 +13,18 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+  padding: 0px 10px 10px 10px;
+  .error{
+    color: red;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 10px 0;
+  }
+
+  input{
+    padding: 8px;
+    margin: 0 !important;
+    display: block;
+  }
 }
 

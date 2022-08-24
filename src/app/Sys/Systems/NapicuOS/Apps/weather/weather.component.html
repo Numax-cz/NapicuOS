@@ -1,25 +1,41 @@
 <section class="WindowContent BackgroundColor" id="WindowScrollBar">
   <!--Welcome screen-->
-  <ng-container *ngIf="!city">
+<!--  <ng-container *ngIf="!apiData" >-->
 
-    <section>
+<!--    <section>-->
 
-      <div  class="MainContent" >
-        <img [src]="GetWeatherIcon" alt="Weather icon">
-        <div class="text">
-          <h1>Vítejte v Počasí!</h1>
-          <h2>Pro začáten vyberte místo.</h2>
+<!--      <div  class="MainContent" >-->
+<!--        <img [src]="GetWeatherIcon" alt="Weather icon">-->
+<!--        <div class="text">-->
+<!--          <h1>Vítejte v Počasí!</h1>-->
+<!--          <h2>Pro začáten vyberte místo.</h2>-->
 
-        </div>
-        <input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'--NapicuSimpleButtonColor': 'white', '--NapicuTitleTextColor': 'black'}">
-      </div>
-    </section>
-  </ng-container>
+<!--        </div>-->
+<!--        <input #Input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'&#45;&#45;NapicuSimpleButtonColor': 'white', '&#45;&#45;NapicuTitleTextColor': 'black'}" (keydown.enter)="submitCity(Input.value)">-->
+<!--       </div>-->
+<!--      <div>-->
+<!--        {{err}}-->
+<!--      </div>-->
+<!--    </section>-->
+<!--  </ng-container>-->
 
   <!--Main weather screen-->
-  <ng-container *ngIf="city">
-    <section>
+  <ng-container >
+    <section class="weather">
+        <div>
+          <app-drop-down-input placeholderValue="City" class="drop-down-input-center city" [onSubmit]="submitCity">Prostějov</app-drop-down-input>
+         <div class="date">{{GetTimeFormat}}</div> <!--  TODO TIME-->
+        </div>
+      <img [src]="GetOpenWeatherIcon" alt="OpenWeather Icon" >
+        <div>
+          <h1 class="temp">25°C</h1>
+          <div class="temp-b">-------------</div>
+        </div>
 
+      <div class="inf">
+        <div>oblačno</div>
+        <div>25/30</div>
+      </div>
     </section>
   </ng-container>
 

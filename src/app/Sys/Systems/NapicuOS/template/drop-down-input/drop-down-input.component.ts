@@ -8,8 +8,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class DropDownInputComponent implements OnInit {
   @Input() arrow: boolean = true;
   @Input() placeholderValue: string = "";
+  @Input() public declare onSubmit: (city: string) => Promise<string | null>;
   @Output() napicuDropDownMenuClick = new EventEmitter<string>();
+
   public isDropDownOpen = false;
+  public errorMessage: string | null = null;
 
   constructor() { }
 
@@ -19,10 +22,14 @@ export class DropDownInputComponent implements OnInit {
 
 
   public openInput(): void {
-
+    this.isDropDownOpen = !this.isDropDownOpen;
+    this.errorMessage = null;
   }
 
-  public onSubmit(): void {
+  public onSubmitInput(value: string): void {
+    this.onSubmit?.(value).then((data) => this.errorMessage = data).finally(() => {
+      if(!this.errorMessage) this.isDropDownOpen = false;
+    });
 
   }
 }

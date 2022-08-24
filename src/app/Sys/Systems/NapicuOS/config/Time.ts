@@ -13,3 +13,5 @@ export function GET_SYSTEM_BASIC_TIME_FORMAT(format: SystemTimeFormatEnumMetadat
 export const TIME_FORMAT_MHA = '%hh:%mm %a';
 
 export const TIME_FORMAT_CALENDAR = '%MMN %dt %yyyy';
+
+export const TIME_FORMAT_WEATHER = '%ddn, %MMN %dt %yyyy';
