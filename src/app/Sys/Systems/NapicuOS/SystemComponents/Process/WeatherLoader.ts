@@ -19,7 +19,6 @@ export class SystemProcessWeather extends SystemProcess{
   }
 
   interval = (): void => {
-    console.log("update")
     WeatherComponent.update_weather_data();
   }
 }
