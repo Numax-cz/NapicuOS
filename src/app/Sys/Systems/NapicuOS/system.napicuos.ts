@@ -524,7 +524,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns the user processes
    */
   public static get_user_process(): Process[] {
-    return this.get_system_process().filter((value: Process) => {
+    return this.get_system_window_apps().filter((value: Process) => {
       return value.launchedBy === (this.get_active_user()?.username || "");
     });
   }

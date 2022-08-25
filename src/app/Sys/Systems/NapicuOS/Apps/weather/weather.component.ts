@@ -41,7 +41,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
     if(!WeatherComponent.weatherProcess) {
       WeatherComponent.weatherProcess = new SystemProcessWeather(this.service);
       WeatherComponent.update_weather_data();
-      WeatherComponent.weatherProcess.process.runAsSystem();
+      WeatherComponent.weatherProcess.process.run();
     }
   }
 
