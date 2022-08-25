@@ -45,6 +45,8 @@ export enum SYSTEM_IMAGES {
   //Apps - Bird
   bird = "assets/systems/NapicuOS/SystemIcons/apps/Bird/bird.png",
   pipe = "assets/systems/NapicuOS/SystemIcons/apps/Bird/pipe.png",
+  //Apps - Weather
+  weatherBackground = "assets/systems/NapicuOS/SystemIcons/apps/Weather/weatherBackground.jpg",
 
   //XFD icons
   FileCommander = 'assets/systems/NapicuOS/SystemIcons/XFD/commander.svg',

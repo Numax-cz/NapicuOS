@@ -1,4 +1,4 @@
-<section class="WindowContent BackgroundColor" id="WindowScrollBar">
+<section class="WindowContent BackgroundColor" id="WindowScrollBar" [ngStyle]="{'background-image': 'url(' + GetWallpaper + ')'}">
   <!--Welcome screen-->
   <ng-container *ngIf="!GetApiData">
     <section>
@@ -31,7 +31,7 @@
 
       <div class="inf">
         <div>{{GetApiData.description}}</div>
-        <div>{{GetApiData.temp_max}}°C/{{GetApiData.temp_max}}°C</div>
+        <div>{{GetApiData.temp_min}}°C/{{GetApiData.temp_max}}°C</div>
       </div>
       <div class="status">
         <div>{{GetLastUpdate}}</div>

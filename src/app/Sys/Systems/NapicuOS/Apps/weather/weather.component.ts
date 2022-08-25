@@ -114,6 +114,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
     return NapicuOS.get_language_words().other.last_update_minutes(WeatherComponent.weatherProcessStopwatch?.getTime().minutes || 0);
   }
 
+  get GetWallpaper(): string {
+    return SYSTEM_IMAGES.weatherBackground;
+  }
+
   static get Get404ErrorMessage(): string {
     return NapicuOS.get_language_words().Api.server_error;
   }

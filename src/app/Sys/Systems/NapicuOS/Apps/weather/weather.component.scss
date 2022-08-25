@@ -1,5 +1,6 @@
 .BackgroundColor{
-  background-color: #1982df;
+  //background-color: #1982df;
+  background-size: cover;
 }
 
 .MainContent{
@@ -45,8 +46,17 @@
   * {
     font-family: 'Work Sans', sans-serif !important;
   }
+
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #44444499;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+  backdrop-filter: blur(2.6px);
+  -webkit-backdrop-filter: blur(5.6px);
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
   text-align: center;
-  margin-top: 35px;
   color: white;
 
   img{
