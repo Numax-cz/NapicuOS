@@ -18,7 +18,7 @@ export class SystemProcessWeather extends SystemProcess{
     SystemProcessWeather.weatherService = service;
   }
 
-  interval (): void  {
+  interval = (): void => {
     console.log("update")
     WeatherComponent.update_weather_data();
   }
