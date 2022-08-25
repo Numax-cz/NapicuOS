@@ -66,3 +66,13 @@ export const lang_system_volume_cs = "Systemová hlasitost";
 
 export const lang_do_not_disturb_en = "Do not disturb";
 export const lang_do_not_disturb_cs = "Nerušit";
+
+export const lang_weather_data_from_en = "The weather data comes from ";
+export const lang_weather_data_from_cs = "Údaje o počasí pochází z";
+
+export const lang_last_update_minutes_en = (minutes: number) => {
+  return `Last updated ${minutes} ${(minutes == 1) ? "minute" : "minutes "} ago`;
+};
+export const lang_last_update_minutes_cs = (minutes: number) => {
+  return `Aktualizováno před ${minutes} ${(minutes == 1) ? "minutou" : "minutami"}`;
+};

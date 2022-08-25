@@ -34,7 +34,7 @@ import {
   lang_Enter_name_cs,
   lang_Enter_name_en,
   lang_enter_new_name_cs,
-  lang_enter_new_name_en,
+  lang_enter_new_name_en, lang_last_update_minutes_cs, lang_last_update_minutes_en,
   lang_none_cs,
   lang_none_en,
   lang_Places_cs,
@@ -46,7 +46,7 @@ import {
   lang_time_custom_wallpaper_cs,
   lang_time_custom_wallpaper_en,
   lang_time_format_cs,
-  lang_time_format_en,
+  lang_time_format_en, lang_weather_data_from_cs, lang_weather_data_from_en,
   lang_yes_cs,
   lang_yes_en
 } from "./Other";
@@ -79,7 +79,8 @@ export const NapicuOSLanguages = {
     Apps: {
       FileManager: lang_FileManager_en,
       Weather: {
-        city_not_found: lang_Weather_city_not_found_en
+        city_not_found: lang_Weather_city_not_found_en,
+        data_from: lang_weather_data_from_en
       }
     },
     Api: {
@@ -111,7 +112,8 @@ export const NapicuOSLanguages = {
       time_format: lang_time_format_en,
       custom_wallpaper: lang_time_custom_wallpaper_en,
       system_volume: lang_system_volume_en,
-      do_not_disturb: lang_do_not_disturb_en
+      do_not_disturb: lang_do_not_disturb_en,
+      last_update_minutes: lang_last_update_minutes_en
     }
   },
 
@@ -133,7 +135,8 @@ export const NapicuOSLanguages = {
     Apps: {
       FileManager: lang_FileManager_cs,
       Weather: {
-        city_not_found: lang_Weather_city_not_found_cs
+        city_not_found: lang_Weather_city_not_found_cs,
+        data_from: lang_weather_data_from_cs
       }
     },
     Api: {
@@ -165,7 +168,8 @@ export const NapicuOSLanguages = {
       time_format: lang_time_format_cs,
       custom_wallpaper: lang_time_custom_wallpaper_cs,
       system_volume: lang_system_volume_cs,
-      do_not_disturb: lang_do_not_disturb_cs
+      do_not_disturb: lang_do_not_disturb_cs,
+      last_update_minutes: lang_last_update_minutes_cs
     }
   }
 }
