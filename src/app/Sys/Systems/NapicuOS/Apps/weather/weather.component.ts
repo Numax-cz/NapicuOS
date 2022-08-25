@@ -7,10 +7,10 @@ import {NapicuApiResponseStatus} from "../../config/NapicuApi";
 import {NapicuDate} from "napicuformatter";
 import {GET_SYSTEM_TIME_FORMAT, TIME_FORMAT_WEATHER} from "../../config/Time";
 import {OPEN_WEATHER_ICONS} from "../../config/OpenWeather";
-
 import {SystemProcessWeather} from "../../SystemComponents/Process/WeatherLoader";
 import {SystemProcess} from "../../SystemComponents/ProcessApp";
-
+import {SystemProcessStopWatch} from "../../SystemComponents/Process/Stopwatch";
+import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 @Component({
   selector: 'app-weather.svg',
@@ -20,18 +20,16 @@ import {SystemProcess} from "../../SystemComponents/ProcessApp";
 export class WeatherComponent implements OnInit, OnDestroy {
   public city: string | null = null;
   public static apiData: WeatherResponseModel | null = null;
+  public static weatherProcessStopwatch: SystemProcessStopWatch | null = null;
   public static weatherProcess: SystemProcess | null = null;
   public err: string | null = null;
 
-  constructor(protected service: WeatherControllerService) {
-
-
-  }
+  constructor(protected service: WeatherControllerService) { }
 
   ngOnInit(): void {
     this.loadProcess();
-
   }
+
 
   ngOnDestroy(): void {
     this.killProcess();
@@ -43,6 +41,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
       WeatherComponent.update_weather_data();
       WeatherComponent.weatherProcess.process.run();
     }
+    if(!WeatherComponent.weatherProcessStopwatch){
+      WeatherComponent.weatherProcessStopwatch = new SystemProcessStopWatch()
+      WeatherComponent.weatherProcessStopwatch.process.run();
+    }
   }
 
   public killProcess(): void {
@@ -53,7 +55,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
   protected static async loadApiData (service: WeatherControllerService, input: string): Promise<void | string>   {
     if(!input.length) return;
     await service.get(input).toPromise()
-      .then((data) => {
+      .then((data: WeatherResponseModel | undefined) => {
         if(data){
           WeatherComponent.apiData = data;
           NapicuOS.set_user_app_default_weather_city(WeatherComponent.apiData.name);
@@ -71,8 +73,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   public static update_weather_data(): void  {
+    WeatherComponent.weatherProcessStopwatch?.resetTime();
     let i = NapicuOS.get_active_user()?.userSetting.apps?.weather;
-    if(i)WeatherComponent.loadApiData(SystemProcessWeather.weatherService, i);
+    if(i) WeatherComponent.loadApiData(SystemProcessWeather.weatherService, i);
     else {
       console.error("[NAPICUOS] Weather process error");
       if (WeatherComponent.weatherProcess) WeatherComponent.weatherProcess.process.kill();
@@ -99,6 +102,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   get GetTimeFormat(): string{
     return new NapicuDate().format(TIME_FORMAT_WEATHER)
+  }
+
+  get GetDataFromTest(): string{
+    return NapicuOS.get_language_words().Apps.Weather.data_from;
+  }
+
+  get GetLastUpdate(): string{
+    return NapicuOS.get_language_words().other.last_update_minutes(WeatherComponent.weatherProcessStopwatch?.getTime().minutes || 0);
   }
 
   static get Get404ErrorMessage(): string {
