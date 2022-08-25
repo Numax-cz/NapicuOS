@@ -61,6 +61,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
         if(data){
           WeatherComponent.apiData = data;
           NapicuOS.set_user_app_default_weather_city(WeatherComponent.apiData.name);
+          WeatherComponent.weatherProcessStopwatch?.resetTime();
         }
       })
       .catch((data) => {
@@ -75,7 +76,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   public static update_weather_data(): void  {
-    WeatherComponent.weatherProcessStopwatch?.resetTime();
     let i = NapicuOS.get_active_user()?.userSetting.apps?.weather;
     if(i) WeatherComponent.loadApiData(SystemProcessWeather.weatherService, i);
     else {
