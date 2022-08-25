@@ -14,7 +14,7 @@ export class SystemProcessTime extends SystemProcess{
     super(SystemProcessTime.processName, SystemProcessTime.processTime);
   }
 
-  interval(): void {
+  interval = (): void => {
     NapicuOS.update_time();
   }
 }

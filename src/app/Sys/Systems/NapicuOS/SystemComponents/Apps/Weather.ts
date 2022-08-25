@@ -11,7 +11,7 @@ import {WeatherComponent} from "../../Apps/weather/weather.component";
   appTitle: 'Weather',
   processTitle: SystemAppsProcessName.weather,
   appComponent: WeatherComponent,
-  windowData: Window.centerPos(45, 56),
+  windowData: Window.centerPos(53, 63),
   resizeAllowed: true,
   fileIconPath: SYSTEM_IMAGES.weather,
   addToDock: true,
