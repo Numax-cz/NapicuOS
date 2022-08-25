@@ -18,7 +18,7 @@
 
   <!--Main weather screen-->
   <ng-container *ngIf="GetApiData">
-    <section class="weather">
+    <section class="weather" clickable="false">
         <div>
           <app-drop-down-input placeholderValue="City" class="drop-down-input-center city" [onSubmit]="submitCity">{{GetApiData.name}}</app-drop-down-input>
          <div class="date">{{GetTimeFormat}}</div>
