@@ -18,6 +18,8 @@ import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 import {SystemAppsMap} from "./SystemComponents/Apps/Maps";
 import {WeatherComponent} from "./Apps/weather/weather.component";
 import {SystemAppsWeather} from "./SystemComponents/Apps/Weather";
+import {SystemProcessWeather} from "./SystemComponents/Process/WeatherLoader";
+import {WeatherControllerService} from "../../../../../OpenAPI";
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
 }

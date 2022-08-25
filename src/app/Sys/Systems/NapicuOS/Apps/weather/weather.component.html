@@ -1,40 +1,37 @@
 <section class="WindowContent BackgroundColor" id="WindowScrollBar">
   <!--Welcome screen-->
-<!--  <ng-container *ngIf="!apiData" >-->
-
-<!--    <section>-->
-
-<!--      <div  class="MainContent" >-->
-<!--        <img [src]="GetWeatherIcon" alt="Weather icon">-->
-<!--        <div class="text">-->
-<!--          <h1>Vítejte v Počasí!</h1>-->
-<!--          <h2>Pro začáten vyberte místo.</h2>-->
-
-<!--        </div>-->
-<!--        <input #Input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'&#45;&#45;NapicuSimpleButtonColor': 'white', '&#45;&#45;NapicuTitleTextColor': 'black'}" (keydown.enter)="submitCity(Input.value)">-->
-<!--       </div>-->
-<!--      <div>-->
-<!--        {{err}}-->
-<!--      </div>-->
-<!--    </section>-->
-<!--  </ng-container>-->
+  <ng-container *ngIf="!GetApiData">
+    <section>
+      <div  class="MainContent" >
+        <img [src]="GetWeatherIcon" alt="Weather icon">
+        <div class="text">
+          <h1>Vítejte v Počasí!</h1>
+          <h2>Pro začáten vyberte místo.</h2>
+        </div>
+        <input #Input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'--NapicuSimpleButtonColor': 'white', '--NapicuTitleTextColor': 'black'}" (keydown.enter)="submitCity(Input.value)">
+       </div>
+      <div>
+        {{err}}
+      </div>
+    </section>
+  </ng-container>
 
   <!--Main weather screen-->
-  <ng-container >
+  <ng-container *ngIf="GetApiData">
     <section class="weather">
         <div>
-          <app-drop-down-input placeholderValue="City" class="drop-down-input-center city" [onSubmit]="submitCity">Prostějov</app-drop-down-input>
-         <div class="date">{{GetTimeFormat}}</div> <!--  TODO TIME-->
+          <app-drop-down-input placeholderValue="City" class="drop-down-input-center city" [onSubmit]="submitCity">{{GetApiData.name}}</app-drop-down-input>
+         <div class="date">{{GetTimeFormat}}</div>
         </div>
       <img [src]="GetOpenWeatherIcon" alt="OpenWeather Icon" >
         <div>
-          <h1 class="temp">25°C</h1>
+          <h1 class="temp">{{GetApiData.temp}}°C</h1>
           <div class="temp-b">-------------</div>
         </div>
 
       <div class="inf">
-        <div>oblačno</div>
-        <div>25/30</div>
+        <div>{{GetApiData.description}}</div>
+        <div>{{GetApiData.temp_max}}°C/{{GetApiData.temp_max}}°C</div>
       </div>
     </section>
   </ng-container>
