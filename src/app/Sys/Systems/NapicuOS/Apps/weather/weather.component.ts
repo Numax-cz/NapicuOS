@@ -49,7 +49,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   public killProcess(): void {
     if(WeatherComponent.weatherProcess) WeatherComponent.weatherProcess.process.kill();
+    if(WeatherComponent.weatherProcessStopwatch) WeatherComponent.weatherProcessStopwatch.process.kill();
     WeatherComponent.weatherProcess = null;
+    WeatherComponent.weatherProcessStopwatch = null;
   }
 
   protected static async loadApiData (service: WeatherControllerService, input: string): Promise<void | string>   {
