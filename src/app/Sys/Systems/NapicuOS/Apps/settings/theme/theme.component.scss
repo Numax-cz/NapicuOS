@@ -1,10 +1,27 @@
 @import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/MainContentView";
 @import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/BasicText";
-
+@import "src/app/Sys/Systems/NapicuOS/Styles/window";
 .themes {
   display: flex;
-  padding: 50px 0;
-  width: 100%;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
+
+.windowExample{
+  position: inherit;
+  width: 250px;
+}
+
+.Box{
+  width: 100%;
+  position: inherit;
+}
+
+.in-window-example{
+  height: 130px;
+}
+
+.in-window-example-background-color{
+  background-color: var(--NapicuClassicDark2);
+}
+
