@@ -5,6 +5,7 @@ import {TimeComponent} from "../../Apps/settings/time/time.component";
 import {UsersComponent} from "../../Apps/settings/users/users.component";
 import {WallpaperComponent} from "../../Apps/settings/wallpaper/wallpaper.component";
 import {VolumeComponent} from "../../Apps/settings/volume/volume.component";
+import {LanguageComponent} from "../../Apps/settings/language/language.component";
 
 export const SYSTEM_APPS_SETTINGS_OPTIONS: SettingsOptionsMetadata[] = [ //TODO CONFIG
   {
@@ -21,6 +22,11 @@ export const SYSTEM_APPS_SETTINGS_OPTIONS: SettingsOptionsMetadata[] = [ //TODO 
     name: "Time",
     icon: SYSTEM_IMAGES.time,
     component: TimeComponent
+  },
+  {
+    name: "Language",
+    icon: SYSTEM_IMAGES.language,
+    component: LanguageComponent
   },
   {
     name: "Users",
