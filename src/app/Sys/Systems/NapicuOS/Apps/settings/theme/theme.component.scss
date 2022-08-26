@@ -1,0 +1,10 @@
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/MainContentView";
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/BasicText";
+
+.themes {
+  display: flex;
+  padding: 50px 0;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}

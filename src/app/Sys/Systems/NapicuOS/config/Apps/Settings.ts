@@ -6,6 +6,7 @@ import {UsersComponent} from "../../Apps/settings/users/users.component";
 import {WallpaperComponent} from "../../Apps/settings/wallpaper/wallpaper.component";
 import {VolumeComponent} from "../../Apps/settings/volume/volume.component";
 import {LanguageComponent} from "../../Apps/settings/language/language.component";
+import {ThemeComponent} from "../../Apps/settings/theme/theme.component";
 
 export const SYSTEM_APPS_SETTINGS_OPTIONS: SettingsOptionsMetadata[] = [ //TODO CONFIG
   {
@@ -16,7 +17,7 @@ export const SYSTEM_APPS_SETTINGS_OPTIONS: SettingsOptionsMetadata[] = [ //TODO 
   {
     name: "Theme",
     icon: SYSTEM_IMAGES.brush,
-    component: WallpaperComponent
+    component: ThemeComponent
   },
   {
     name: "Wallpaper",

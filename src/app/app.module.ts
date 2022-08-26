@@ -59,6 +59,7 @@ import { WeatherComponent } from './Sys/Systems/NapicuOS/Apps/weather/weather.co
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { DropDownInputComponent } from './Sys/Systems/NapicuOS/template/drop-down-input/drop-down-input.component';
 import { LanguageComponent } from './Sys/Systems/NapicuOS/Apps/settings/language/language.component';
+import { ThemeComponent } from './Sys/Systems/NapicuOS/Apps/settings/theme/theme.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { LanguageComponent } from './Sys/Systems/NapicuOS/Apps/settings/language
     MapsComponent,
     WeatherComponent,
     DropDownInputComponent,
-    LanguageComponent
+    LanguageComponent,
+    ThemeComponent
   ],
   imports: [
     BrowserModule,
