@@ -197,7 +197,7 @@ export class WindowComponent implements OnInit {
     window.addEventListener('mousedown', (e: MouseEvent) => {
       let p = e.target as HTMLElement;
       if (
-        p.offsetParent?.id !== 'napicuos-App-window' &&
+        !p.offsetParent?.classList.contains("napicuos-App-window") &&
         WindowComponent.selectedWindow?.activated
         && !p.offsetParent?.getAttribute('clickable')
       ) {

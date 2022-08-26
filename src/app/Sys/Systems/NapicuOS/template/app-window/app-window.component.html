@@ -1,13 +1,13 @@
 <div>
-  <section id="napicuos-App-window" class="SelectedWindow" style="position: inherit;">
-    <div id="TopWindowAppBar">
+  <section class="SelectedWindow napicuos-App-window" style="position: inherit;">
+    <div class="TopWindowAppBar">
       <div class="WindowAppTitle">{{appTitle}}</div>
       <div class="napicuos-App-window-M">
         <div (click)="close()"
-             id="CloseButton"></div>
+             class="CloseButton"></div>
       </div>
     </div>
-    <div id="INAppWindow">
+    <div class="INAppWindow">
       <ng-content></ng-content>
     </div>
   </section>

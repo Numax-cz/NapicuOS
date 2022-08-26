@@ -40,7 +40,7 @@
 
 
 
-#napicuos-App-window {
+.napicuos-App-window {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -59,12 +59,12 @@
   background-color: var(--NapicuUnSelectedWindowColor);
 }
 
-#INAppWindow {
+.INAppWindow {
   height: 100%;
   overflow: hidden;
 }
 
-#TopWindowAppBar {
+.TopWindowAppBar {
   display: flex;
   align-items: center;
   color: var(--NapicuTitleTextColor);
@@ -92,17 +92,17 @@
   }
 }
 
-#CloseButton {
+.CloseButton {
   background-color: var(--NapicuWindowButtonColor-Close);
   //border: 2px solid var(--NapicuWindowButtonColor-Close-Border);
 }
 
-#FullButton {
+.FullButton {
   background-color: var(--NapicuWindowButtonColor-Full);
   //border: 2px solid var(--NapicuWindowButtonColor-Full-Border);
 }
 
-#MinButton {
+.MinButton {
   background-color: var(--NapicuWindowButtonColor-Mini);
   //border: 2px solid var(--NapicuWindowButtonColor-Mini-Border);
 }

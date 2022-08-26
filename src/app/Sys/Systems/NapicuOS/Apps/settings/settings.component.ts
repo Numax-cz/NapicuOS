@@ -9,7 +9,7 @@ import {SYSTEM_APPS_SETTINGS_OPTIONS} from "../../config/Apps/Settings";
 })
 export class SettingsComponent implements OnInit {
 
-  public selectedOption: number = 1;
+  public selectedOption: number = 0;
   protected static event: boolean = true;
 
   constructor() { }
