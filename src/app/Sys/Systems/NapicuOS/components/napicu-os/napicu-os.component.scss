@@ -35,14 +35,14 @@
     width: 19px;
     height: 19px;
     margin: 0px 5px;
-    filter: var(--NapicuTopMenuIconFilter);
+    //filter: brightness(var(--NapicuSimbolFilter));
   }
 }
 
 .TopPanelLeftContentMenu{
   font-size: 1.2rem;
   img{
-
+    filter: brightness(var(--NapicuSimbolFilter));
   }
 }
 

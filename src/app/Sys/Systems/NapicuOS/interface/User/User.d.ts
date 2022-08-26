@@ -20,6 +20,9 @@ export declare interface SystemUserDataMetadata {
   apps: {
     weather: null | string
   }
+  theme:{
+    dark: boolean
+  }
 }
 
 

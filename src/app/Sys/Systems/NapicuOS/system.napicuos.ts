@@ -1279,6 +1279,24 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns if the active user has an active dark theme
+   */
+  public static get_active_user_dark_theme(): boolean {
+    return (this.get_active_user()?.userSetting.theme.dark !== undefined);
+  }
+
+  /**
+   * Returns if the active user has an active dark theme
+   */
+  public static set_active_user_dark_theme(value: boolean): void {
+    const user = this.get_active_user();
+    if(user){
+      user.userSetting.theme.dark = value;
+      this.update_config_to_cookies();
+    }
+  }
+
+  /**
    * Sets user wallpaper
    * @param url
    */

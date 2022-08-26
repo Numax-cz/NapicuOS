@@ -26,7 +26,11 @@ export class User {
     selectedWallpaper: ShortSystemWallpaper(SYSTEM_WALLPAPERS.default_wallpaper),
     apps: {
       weather: null
+    },
+    theme: {
+      dark: true
     }
+
   };
   public declare userSetting: SystemUserDataMetadata;
 
