@@ -63,7 +63,6 @@
   --NapicuSimpleButtonColor: #2e313c;
   --NapicuSimpleButtonHoverColor: #1f2128;
   //System Calendar
-  --NapicuCalendarTextColor: #ffffff;
   --NapicuCalendarTextColorGray: #858585;
   --NapicuCalendarTextDayNameColor: #979797;
   --NapicuCalendarSelectedMonthColor: #1f71d3;
@@ -79,5 +78,57 @@
 
 }
 
-// .NapicuThemeFeraWhite {
-// }
+ .NapicuThemeFeraWhite {
+
+
+   //Main
+   --NapicuTextColor: #000000;
+   --NapicuTextGray: rgb(204 203 203 / 88%);
+   --NapicuClassicDark: #d9d9d9;
+   --NapicuClassicDark2: white;
+   --NapicuClassicGray: #ececec;
+   --NapicuClassicDarkDarker: #e1e1e1;
+   --NapicuSelectColor: rgba(0, 0, 0, 0.45);
+
+   --NapicuBoxMenuBackgroundColor: #1f222a;
+
+
+
+
+
+   //TopPanel
+   --NapicuTopMenuTextColor: #d5d5d5;
+   --NapicuTopMenuIconFilter: none;
+   //BottomPanel
+   --NapicuBottomMenuBackgroundColor: rgba(238, 238, 238, 0.84);
+
+   //Window
+   --NapicuSelectedWindowColor: #e5e5e5;
+   --NapicuUnSelectedWindowColor: #c6c6c6;
+   --NapicuTitleTextColor: #ffffff;
+   --NapicuWindowBoxShadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.5);
+   --NapicuWindowScrollBar: #000000;
+   //MenuButtons
+   --NapicuWindowButtonColor-Close: #fc5753;
+   --NapicuWindowButtonColor-Full: #33c748;
+   --NapicuWindowButtonColor-Mini: #fdbc40;
+   --NapicuWindowButtonColor-Close-Border: #df4744;
+   --NapicuWindowButtonColor-Full-Border: #27aa35;
+   --NapicuWindowButtonColor-Mini-Border: #de9f34;
+   //SimpleButton#1
+   --NapicuSimpleButtonColor: #838383;
+   --NapicuSimpleButtonHoverColor: #606060;
+   //System Calendar
+   --NapicuCalendarTextColorGray: #858585;
+   --NapicuCalendarTextDayNameColor: #979797;
+   --NapicuCalendarSelectedMonthColor: #1f71d3;
+   --NapicuCalendarSelectedDayColor: #282828;
+   --NapicuCalendarHoverDayColor: #313131;
+   //Simple Box border
+   --NapicuSimpleBoxBackgroundColor: #d8d8d8;
+   --NapicuSimpleBoxDarkerBackgroundColor: #ffffff;
+   --NapicuSimpleBoxBorderColor: #000000c9;
+
+   --NapicuInputGlobalGrayColor: #353535;
+
+ }

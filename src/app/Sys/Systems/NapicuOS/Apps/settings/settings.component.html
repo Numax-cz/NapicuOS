@@ -6,7 +6,7 @@
     <div class="LeftBox">
 
       <ul>
-        <li (click)="clickOption(index)" *ngFor="let i of options; let index = index" style="padding-left: 3% !important;">
+        <li (click)="clickOption(index)" *ngFor="let i of GetOptions; let index = index" style="padding-left: 3% !important;">
           <img [src]="i.icon" alt="Icon">
           {{i.name}}
         </li>
@@ -14,7 +14,7 @@
     </div>
     <!--Right bar-->
     <section id="WindowScrollBar" class="RightBox" >
-      <ng-container [ngComponentOutlet]="options[selectedOption].component"></ng-container>
+      <ng-container [ngComponentOutlet]="GetOptions[selectedOption].component"></ng-container>
     </section>
 
   </section>

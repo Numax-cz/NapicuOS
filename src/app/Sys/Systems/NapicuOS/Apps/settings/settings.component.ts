@@ -9,7 +9,6 @@ import {SYSTEM_APPS_SETTINGS_OPTIONS} from "../../config/Apps/Settings";
 })
 export class SettingsComponent implements OnInit {
 
-  public options: SettingsOptionsMetadata[] = SYSTEM_APPS_SETTINGS_OPTIONS;
   public selectedOption: number = 1;
   protected static event: boolean = true;
 
@@ -32,5 +31,9 @@ export class SettingsComponent implements OnInit {
 
   get GetAllowEvent(): boolean {
     return SettingsComponent.event;
+  }
+
+  get GetOptions(): SettingsOptionsMetadata[]{
+    return SYSTEM_APPS_SETTINGS_OPTIONS;
   }
 }

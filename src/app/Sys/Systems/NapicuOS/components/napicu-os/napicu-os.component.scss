@@ -156,7 +156,7 @@ $ContextMenuBox-Padding: 10px 5px;
 //Calendar
 .DateContextMenu {
   text-align: center;
-  color: var(--NapicuCalendarTextColor);
+  color: var(--NapicuTextColor);
   z-index: 10000;
   width: 850px;
   height: 500px;
@@ -332,7 +332,7 @@ $ContextMenuBox-Padding: 10px 5px;
     margin-bottom: 10px;
 
     span {
-      color: var(--NapicuCalendarTextColor) !important;
+      color: var(--NapicuTextColor) !important;
     }
   }
 
@@ -358,7 +358,7 @@ $ContextMenuBox-Padding: 10px 5px;
     width: 35px;
     height: 35px;
     margin: 3px;
-    font-weight: 300;
+    font-weight: 400;
     border-radius: 9999rem;
   }
 

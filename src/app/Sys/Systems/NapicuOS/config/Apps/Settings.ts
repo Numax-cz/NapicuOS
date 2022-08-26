@@ -14,6 +14,11 @@ export const SYSTEM_APPS_SETTINGS_OPTIONS: SettingsOptionsMetadata[] = [ //TODO 
     component: VolumeComponent
   },
   {
+    name: "Theme",
+    icon: SYSTEM_IMAGES.brush,
+    component: WallpaperComponent
+  },
+  {
     name: "Wallpaper",
     icon: SYSTEM_IMAGES.photo,
     component: WallpaperComponent
