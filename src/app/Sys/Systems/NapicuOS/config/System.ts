@@ -99,6 +99,7 @@ export enum SYSTEM_IMAGES {
   language = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/lang.svg",
   usaFlag = "assets/systems/NapicuOS/SystemIcons/XFD/united-states.webp",
   czechFlag = "assets/systems/NapicuOS/SystemIcons/XFD/czech-republic.webp",
+  brush = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/brush.svg",
 
 
 }
