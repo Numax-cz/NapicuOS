@@ -1,6 +1,6 @@
 {
   "author": "Numax",
-  "name": "napicubios",
+  "name": "napicuos",
   "version": "1.6.0",
   "scripts": {
     "start": "ng serve --configuration=production",
