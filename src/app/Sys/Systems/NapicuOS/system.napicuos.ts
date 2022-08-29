@@ -460,8 +460,37 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Toggles user time sync
    */
   public static switch_active_user_time_sync(): void {
-    console.log(!this.get_active_user_time_sync());
     this.set_user_time_sync(this.get_active_user_username(), !this.get_active_user_time_sync());
+  }
+
+  /**
+   * Returns the system language to the user
+   */
+  public static get_active_user_language(): NapicuOS_available_language{
+    return NapicuOS.get_active_user()?.userSetting.lang || "en";
+  }
+
+  /**
+   * Sets the system language for the user
+   * @param username
+   * @param lang
+   */
+  public static set_user_language(username: string | undefined, lang: NapicuOS_available_language): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success {
+    let i = this.get_user_from_cookies(username);
+    if(i !== SystemStateMetadata.UserNotExists){
+      i.userSetting!.lang = lang;
+      this.update_config_to_cookies();
+      return SystemStateMetadata.Success;
+    }
+    return i;
+  }
+
+  /**
+   * Sets the system language for the active user
+   * @param lang
+   */
+  public static set_active_user_language(lang: NapicuOS_available_language): void {
+    this.set_user_language(this.get_active_user_username(), lang);
   }
 
   /**
