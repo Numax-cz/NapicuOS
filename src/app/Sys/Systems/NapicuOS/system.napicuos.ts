@@ -1282,7 +1282,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns if the active user has an active dark theme
    */
   public static get_active_user_dark_theme(): boolean {
-    return <boolean>this.get_active_user()?.userSetting.theme.dark
+    return <boolean>this.get_active_user()?.userSetting.theme.dark;
   }
 
   /**
