@@ -2,13 +2,10 @@
   <h1 class="BasicTitle">System language</h1>
   <div class="languages">
     <div>
-      <img class="SettingsCursorHoverItem" [src]="GetUSAFlag" alt="Language flag">
+      <img [ngClass]="{selectedLanguage: GetLanguage === 'en'}" class="SettingsCursorHoverItem" [src]="GetUSAFlag" alt="Language flag" (click)="changeLanguage('en')">
     </div>
     <div>
-      <img class="SettingsCursorHoverItem" [src]="GetCzechFlag" alt="Language flag">
+      <img [ngClass]="{selectedLanguage: GetLanguage === 'cs'}" class="SettingsCursorHoverItem" [src]="GetCzechFlag" alt="Language flag" (click)="changeLanguage('cs')">
     </div>
-
   </div>
-
-
 </section>

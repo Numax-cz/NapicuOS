@@ -113,9 +113,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     title: SYSTEM_BOOT_SCREEN_TITLE,
     logo: SYSTEM_BOOT_SCREEN_LOGO,
   };
-  //Default system language
-  //TODO: Config language
-  public static language: NapicuOS_available_language = 'en';
 
   public override onStart(): void {
     //TODO Login & root creat
@@ -1835,24 +1832,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Returns the system language
-   */
-  public static get_language(): string {
-    return this.language;
-  }
-
-  /**
    * Returns the system language variables
    */
   public static get_language_words(): typeof NapicuOSLanguages[keyof typeof NapicuOSLanguages] {
-    return NapicuOSLanguages[this.language];
-  }
-
-  /**
-   * Sets the system language
-   */
-  public static set_language(language: NapicuOS_available_language): void {
-    this.language = language;
+    return NapicuOSLanguages[this.get_active_user_language()];
   }
 
   /**

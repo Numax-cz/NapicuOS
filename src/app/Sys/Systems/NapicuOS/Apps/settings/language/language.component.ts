@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SYSTEM_IMAGES} from "../../../config/System";
+import {NapicuOS} from "../../../system.napicuos";
+import {NapicuOS_available_language} from "../../../Language/langs";
 
 @Component({
   selector: 'app-language',
@@ -13,6 +15,9 @@ export class LanguageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public changeLanguage(lang: NapicuOS_available_language): void {
+    NapicuOS.set_active_user_language(lang);
+  }
 
   get GetCzechFlag(): string{
     return SYSTEM_IMAGES.czechFlag;
@@ -22,4 +27,7 @@ export class LanguageComponent implements OnInit {
     return SYSTEM_IMAGES.usaFlag;
   }
 
+  get GetLanguage(): NapicuOS_available_language{
+    return NapicuOS.get_active_user_language();
+  }
 }
