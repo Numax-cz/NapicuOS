@@ -91,6 +91,9 @@ import {NapicuBios} from "./SystemComponents/Bios";
 import {ShortSystemWallpaper} from "./scripts/ShortSystemWallpaper";
 import {NapicuDate} from "napicuformatter";
 import {OPEN_WEATHER_ICONS} from "./config/OpenWeather";
+import {lang_Days_cs, lang_Days_en} from "./Language/Days";
+import {lang_Month_cs} from "./Language/Date";
+import {lang_Months_cs, lang_Months_en} from "./Language/Months";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -263,6 +266,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public override onLogin(): void {
     if (!NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
       initAllStartUpApps();
+      NapicuOS.update_napicu_date_config_lang();
     }
   }
 
@@ -476,6 +480,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     let i = this.get_user_from_cookies(username);
     if(i !== SystemStateMetadata.UserNotExists){
       i.userSetting!.lang = lang;
+      this.update_napicu_date_config_lang();
       this.update_config_to_cookies();
       return SystemStateMetadata.Success;
     }
@@ -488,6 +493,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static set_active_user_language(lang: NapicuOS_available_language): void {
     this.set_user_language(this.get_active_user_username(), lang);
+  }
+
+  /**
+   * Updates the config napicuformatter
+   */
+  public static update_napicu_date_config_lang(): void {
+    let lang: NapicuOS_available_language = NapicuOS.get_active_user_language();
+    NapicuDate.use({
+      days: lang === "cs" ? lang_Days_cs : lang_Days_en,
+      months: lang === "cs" ? lang_Months_cs : lang_Months_en
+    })
   }
 
   /**
