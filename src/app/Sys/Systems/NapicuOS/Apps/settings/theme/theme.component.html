@@ -3,12 +3,13 @@
   <div class="NapicuOSSimpleBoxBorder Box" clickable="false">
     <div class="themes">
       <div class="windowExample NapicuThemeFeraDark " clickable="false">
-        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" (click)="setDark()" style="position: relative;" clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': getDarkTheme}" (click)="setDark()" style="position: relative;" clickable="false">
           <div class="TopWindowAppBar">
             <div class="WindowAppTitle">Terminal</div>
             <div class="napicuos-App-window-M">
-              <div
-                class="CloseButton"></div>
+              <div class="MinButton"></div>
+              <div class="FullButton"></div>
+              <div class="CloseButton"></div>
             </div>
           </div>
           <div class="INAppWindow">
@@ -20,12 +21,13 @@
 
 
       <div class="windowExample NapicuThemeFeraWhite" clickable="false">
-        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" (click)="setWhite()" style="position: relative;" clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': (getDarkTheme == false) }" (click)="setWhite()" style="position: relative;" clickable="false">
           <div class="TopWindowAppBar">
             <div class="WindowAppTitle">Terminal</div>
             <div class="napicuos-App-window-M">
-              <div
-                class="CloseButton"></div>
+              <div class="MinButton"></div>
+              <div class="FullButton"></div>
+              <div class="CloseButton"></div>
             </div>
           </div>
           <div class="INAppWindow">

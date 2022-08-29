@@ -3,16 +3,14 @@
   <div class="BasicTableSizes BasicTableSettings-Medium">
     <!--Selected wallpaper -->
     <div class="selectedImg">
-
       <img [src]="GetActiveWallpaper" alt="Selected wallpaper">
-
     </div>
+
     <!--Wallpapers -->
     <div class="wallpapers">
       <div *ngFor="let i of system_wallpapers; let index = index">
         <img [src]="i" (click)="setWallpaper(i)" [ngClass]="{selectedWallpaper: index == GetActiveWallpaperIndex}"  alt="System Wallpapers">
       </div>
-
     </div>
 
     <div>
@@ -21,6 +19,4 @@
              autocomplete="off"/>
     </div>
   </div>
-
-
 </section>

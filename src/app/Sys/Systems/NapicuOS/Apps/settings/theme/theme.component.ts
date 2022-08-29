@@ -21,4 +21,8 @@ export class ThemeComponent implements OnInit {
   public setWhite(): void {
     NapicuOS.set_active_user_white_theme();
   }
+
+  get getDarkTheme(): boolean{
+    return NapicuOS.get_active_user_dark_theme();
+  }
 }
