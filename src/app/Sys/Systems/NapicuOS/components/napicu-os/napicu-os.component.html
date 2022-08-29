@@ -1,6 +1,7 @@
 <!-- MainSystem GetActivityDisplay -->
-<div id="SystemFont" class="NapicuThemeFeraDark NapicuGlobalVariables"
-     [ngClass]="GetActivityDisplay ? 'NapicuThemeFeraDarkBackgroundDarker' : 'NapicuThemeFeraDarkBackgroundDak'">
+<div id="SystemFont" class="NapicuGlobalVariables"
+     [ngClass]="[GetActivityDisplay ? 'NapicuThemeFeraDarkBackgroundDarker' : 'NapicuThemeFeraDarkBackgroundDak',
+     GetUserDarkTheme === true ?  'NapicuThemeFeraDark': 'NapicuThemeFeraWhite']">
   <!-- Resizers -->
   <div class="snappingEdge">
     <div class="resizer snapping left" style="cursor: unset"></div>

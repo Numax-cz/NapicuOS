@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NapicuOS} from "../../../system.napicuos";
 
 @Component({
   selector: 'app-theme',
@@ -12,4 +13,12 @@ export class ThemeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  public setDark(): void {
+    NapicuOS.set_active_user_dark_theme();
+  }
+
+  public setWhite(): void {
+    NapicuOS.set_active_user_white_theme();
+  }
 }

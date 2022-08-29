@@ -390,4 +390,8 @@ export class NapicuOSComponent implements OnInit {
   get GetShutdownImage(): string {
     return SYSTEM_IMAGES.shutdown;
   }
+
+  get GetUserDarkTheme(): boolean{
+    return NapicuOS.get_active_user_dark_theme();
+  }
 }

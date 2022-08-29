@@ -2,8 +2,8 @@
   <h1 class="BasicTitle">System theme</h1>
   <div class="NapicuOSSimpleBoxBorder Box" clickable="false">
     <div class="themes">
-      <div class="windowExample NapicuThemeFeraDark" clickable="false">
-        <section class="SelectedWindow napicuos-App-window" style="position: relative;" clickable="false">
+      <div class="windowExample NapicuThemeFeraDark " clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" (click)="setDark()" style="position: relative;" clickable="false">
           <div class="TopWindowAppBar">
             <div class="WindowAppTitle">Terminal</div>
             <div class="napicuos-App-window-M">
@@ -15,11 +15,12 @@
             <section class="WindowContent in-window-example in-window-example-background-color"></section>
           </div>
         </section>
+        <div class="ThemeDesc">Dark</div>
       </div>
 
 
       <div class="windowExample NapicuThemeFeraWhite" clickable="false">
-        <section class="SelectedWindow napicuos-App-window" style="position: relative;" clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" (click)="setWhite()" style="position: relative;" clickable="false">
           <div class="TopWindowAppBar">
             <div class="WindowAppTitle">Terminal</div>
             <div class="napicuos-App-window-M">
@@ -31,6 +32,7 @@
             <section class="WindowContent in-window-example in-window-example-background-color"></section>
           </div>
         </section>
+        <div class="ThemeDesc">White</div>
       </div>
 
     </div>

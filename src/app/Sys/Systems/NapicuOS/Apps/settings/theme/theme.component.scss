@@ -1,5 +1,6 @@
 @import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/MainContentView";
 @import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/BasicText";
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/Cursor";
 @import "src/app/Sys/Systems/NapicuOS/Styles/window";
 .themes {
   display: flex;
@@ -19,6 +20,11 @@
 
 .in-window-example{
   height: 130px;
+}
+.ThemeDesc{
+  text-align: center;
+  margin: 15px 0 0;
+  font-size: 1rem;
 }
 
 .in-window-example-background-color{
