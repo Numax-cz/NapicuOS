@@ -29,9 +29,10 @@ export class User {
     },
     theme: {
       dark: true
-    }
-
+    },
+    lang: "en"
   };
+
   public declare userSetting: SystemUserDataMetadata;
 
   constructor(
