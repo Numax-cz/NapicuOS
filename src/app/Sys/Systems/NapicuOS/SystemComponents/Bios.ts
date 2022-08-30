@@ -3,8 +3,8 @@ import {Current} from "../../../../Bios/Config/FlashInformationData";
 import {BiosSettings} from "../../../../Bios/ToolSettings";
 import {BiosDate, BiosTime} from "../../../../Bios/interface/ToolSettings";
 import {DateInterface, TimeInterface} from "../interface/Date";
-import {NapicuDate} from "napicuformatter";
 import {Save} from "../../../../Bios/Scripts/exit/SaveChanges";
+import {NapicuDate} from "napicuformatter";
 
 export class NapicuBios{
 
@@ -109,24 +109,24 @@ export class NapicuBios{
   public static get_bios_time_napicu_date_format(): NapicuDate{
     if(!this.biosTime_Date || !this.biosTime_cache) this.load_time();
 
-    let timestamp: number = new Date().getTime() - (this.biosTime_cache - this.biosTime_Date.getTime());
-    let napicuDate: Date = new Date(timestamp);
+    let timestamp: number = (new Date().getTime() - (this.biosTime_cache - this.biosTime_Date.getTime()));
+    let napicuDate: NapicuDate = new NapicuDate(timestamp);
 
-    console.log(napicuDate.getMonth())
+
+    //TODO make better lol
     NapicuBios.set_bios_date({
-      year: napicuDate.getFullYear(),
-      month: napicuDate.getMonth(),
-      day: napicuDate.getDate()
+      year: napicuDate.getCurrentYear(),
+      month: napicuDate.getCurrentMonth() - 1,
+      day: napicuDate.getCurrentDate()
     });
 
     NapicuBios.set_bios_time({
-      hours: napicuDate.getHours(),
-      minutes: napicuDate.getMinutes(),
-      seconds: napicuDate.getSeconds()
+      hours: napicuDate.getCurrentHours(),
+      minutes: napicuDate.getCurrentMinutes(),
+      seconds: napicuDate.getCurrentSeconds()
     });
 
-
-    return new NapicuDate(timestamp);
+    return new NapicuDate(napicuDate.getCurrentYear(), napicuDate.getCurrentMonth() - 1, napicuDate.getCurrentDate(), napicuDate.getCurrentHours(), napicuDate.getCurrentMinutes(), napicuDate.getCurrentSeconds(), 0);
   }
 
 
