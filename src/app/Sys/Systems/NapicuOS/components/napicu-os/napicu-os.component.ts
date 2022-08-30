@@ -73,7 +73,6 @@ export class NapicuOSComponent implements OnInit {
   public selectedAppProperties: number | null = null;
   public static CalendarMenu: SystemCalendarMetadata = {
     calendar: [],
-    calendarDays: NapicuDate.getLanguageShortsDays(),
     selectedMonth: 0,
     fullDate: null,
   }
@@ -348,7 +347,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetShortDays(): string[] {
-    return NapicuOSComponent.CalendarMenu.calendarDays;
+    return NapicuDate.getLanguageShortsDays();
   }
 
   get GetSelectedMonthName(): string {

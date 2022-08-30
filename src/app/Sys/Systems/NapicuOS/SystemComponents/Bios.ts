@@ -110,22 +110,23 @@ export class NapicuBios{
     if(!this.biosTime_Date || !this.biosTime_cache) this.load_time();
 
     let timestamp: number = new Date().getTime() - (this.biosTime_cache - this.biosTime_Date.getTime());
-    let napicuDate = new NapicuDate(timestamp);
+    let napicuDate: Date = new Date(timestamp);
 
+    console.log(napicuDate.getMonth())
     NapicuBios.set_bios_date({
-      year: napicuDate.getCurrentYear(),
-      month: napicuDate.getCurrentMonth(),
-      day: napicuDate.getCurrentDate()
+      year: napicuDate.getFullYear(),
+      month: napicuDate.getMonth(),
+      day: napicuDate.getDate()
     });
 
     NapicuBios.set_bios_time({
-      hours: napicuDate.getCurrentHours(),
-      minutes: napicuDate.getCurrentMinutes(),
-      seconds: napicuDate.getCurrentSeconds()
+      hours: napicuDate.getHours(),
+      minutes: napicuDate.getMinutes(),
+      seconds: napicuDate.getSeconds()
     });
 
 
-    return napicuDate;
+    return new NapicuDate(timestamp);
   }
 
 
