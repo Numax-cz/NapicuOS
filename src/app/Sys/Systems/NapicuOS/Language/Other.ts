@@ -70,6 +70,15 @@ export const lang_system_volume_cs = "Systemová hlasitost";
 export const lang_do_not_disturb_en = "Do not disturb";
 export const lang_do_not_disturb_cs = "Nerušit";
 
+export const lang_password_en = "Password";
+export const lang_password_cs = "Heslo";
+
+export const lang_auth_and_pass_en = "Authentication & Login";
+export const lang_auth_and_pass_cs = "Ověření a přihlášení";
+
+export const lang_auto_auth_en = "Automatic login";
+export const lang_auto_auth_cs = "Automatické přihlášení";
+
 export const lang_weather_data_from_en = "The weather data comes from ";
 export const lang_weather_data_from_cs = "Údaje o počasí pochází z";
 

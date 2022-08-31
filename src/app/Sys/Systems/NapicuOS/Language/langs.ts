@@ -4,7 +4,7 @@ import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
   lang_activities_cs,
-  lang_activities_en,
+  lang_activities_en, lang_auth_and_pass_cs, lang_auth_and_pass_en, lang_auto_auth_cs, lang_auto_auth_en,
   lang_Cancel_any_cs,
   lang_Cancel_any_en,
   lang_change_cs,
@@ -38,7 +38,7 @@ import {
   lang_enter_new_name_cs,
   lang_enter_new_name_en, lang_last_update_minutes_cs, lang_last_update_minutes_en,
   lang_none_cs,
-  lang_none_en,
+  lang_none_en, lang_password_cs, lang_password_en,
   lang_Places_cs,
   lang_Places_en,
   lang_rename_cs,
@@ -65,9 +65,6 @@ export declare type NapicuOS_available_language = "en" | "cs";
 
 export const NapicuOSLanguages = {
   en: {
-    Sys: {
-      activities: "Activities",
-    },
     CalendarMenu: {
       notification: lang_Notification_en,
       Calendar: lang_Calendar_en
@@ -119,14 +116,14 @@ export const NapicuOSLanguages = {
       system_volume: lang_system_volume_en,
       do_not_disturb: lang_do_not_disturb_en,
       last_update_minutes: lang_last_update_minutes_en,
-      activities: lang_activities_en
+      activities: lang_activities_en,
+      password: lang_password_en,
+      auto_auth: lang_auto_auth_en,
+      auth_and_login: lang_auth_and_pass_en
     }
   },
 
   cs: {
-    Sys: {
-      activities: "Aktivity",
-    },
     CalendarMenu: {
       notification: lang_Notification_cs,
       Calendar: lang_Calendar_cs
@@ -178,7 +175,10 @@ export const NapicuOSLanguages = {
       system_volume: lang_system_volume_cs,
       do_not_disturb: lang_do_not_disturb_cs,
       last_update_minutes: lang_last_update_minutes_cs,
-      activities: lang_activities_cs
+      activities: lang_activities_cs,
+      password: lang_password_cs,
+      auto_auth: lang_auto_auth_cs,
+      auth_and_login: lang_auth_and_pass_cs
     }
   }
 }

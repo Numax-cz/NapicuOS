@@ -8,14 +8,14 @@
 
   <!--Settings -->
   <div class="UserSettings">
-    <div class="BasicText">Authentication & Login</div>
+    <div class="BasicText">{{GetAuthAndLoginText}}</div>
         <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
         <ul (click)="openSetUserPass()">
-          <div>Password</div>
+          <div>{{GetPasswordText}}</div>
           <div>{{GetPassTxt}}<span class="NapicuArrowSettingLeft" >></span></div>
         </ul>
         <ul>
-          <div>Automatic login</div>
+          <div>{{GetAutoAuthText}}</div>
           <section class="SwitchNot UseAuthSwitch">
             <label class="switch UseAuthSwitch" clickable="false">
               <input type="checkbox" [checked]="!GetAutoLoginSwitchA"

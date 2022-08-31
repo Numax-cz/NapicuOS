@@ -126,6 +126,15 @@ export class UsersComponent implements OnInit {
     return NapicuOS.get_active_user()?.password.length ? lng.other.yes : lng.other.none;
   }
 
+  get GetPasswordText(): string{
+    return NapicuOS.get_language_words().other.password;
+  }
 
+  get GetAutoAuthText(): string{
+    return NapicuOS.get_language_words().other.auto_auth;
+  }
 
+  get GetAuthAndLoginText(): string{
+    return NapicuOS.get_language_words().other.auth_and_login;
+  }
 }
