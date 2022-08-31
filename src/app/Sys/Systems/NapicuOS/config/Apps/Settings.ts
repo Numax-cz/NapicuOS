@@ -7,44 +7,44 @@ import {WallpaperComponent} from "../../Apps/settings/wallpaper/wallpaper.compon
 import {VolumeComponent} from "../../Apps/settings/volume/volume.component";
 import {LanguageComponent} from "../../Apps/settings/language/language.component";
 import {ThemeComponent} from "../../Apps/settings/theme/theme.component";
+import {NapicuOS} from "../../system.napicuos";
 
-export const SYSTEM_APPS_SETTINGS_OPTIONS: SettingsOptionsMetadata[] = [ //TODO CONFIG
+export const SYSTEM_APPS_SETTINGS_OPTIONS = (): SettingsOptionsMetadata[] => {
+  let lang = NapicuOS.get_language_words().Apps.Settings;
+  return[
   {
-    name: "Volume",
+    name: lang.volume,
     icon: SYSTEM_IMAGES.AudioVolumeHigh,
     component: VolumeComponent
   },
   {
-    name: "Theme",
+    name: lang.theme,
     icon: SYSTEM_IMAGES.brush,
     component: ThemeComponent
   },
   {
-    name: "Wallpaper",
+    name: lang.theme,
     icon: SYSTEM_IMAGES.photo,
     component: WallpaperComponent
   },
   {
-    name: "Time",
+    name: lang.time,
     icon: SYSTEM_IMAGES.time,
     component: TimeComponent
   },
   {
-    name: "Language",
+    name: lang.language,
     icon: SYSTEM_IMAGES.language,
     component: LanguageComponent
   },
   {
-    name: "Users",
+    name: lang.users,
     icon: SYSTEM_IMAGES.users,
     component: UsersComponent
   },
   {
-    name: "About",
+    name: lang.about,
     icon: SYSTEM_IMAGES.Info2,
     component: AboutComponent
   }
-
-
-
-]
+]}

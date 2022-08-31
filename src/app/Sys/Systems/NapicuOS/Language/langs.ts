@@ -57,6 +57,7 @@ import {
   lang_NapicuApi_server_error_en, lang_NapicuApi_too_many_req_cs,
   lang_NapicuApi_too_many_req_en
 } from "./NapicuApi";
+import {lang_Settings_cs, lang_Settings_en} from "./SystemApp";
 
 export declare type NapicuOS_available_language = "en" | "cs";
 
@@ -81,7 +82,8 @@ export const NapicuOSLanguages = {
       Weather: {
         city_not_found: lang_Weather_city_not_found_en,
         data_from: lang_weather_data_from_en
-      }
+      },
+      Settings: lang_Settings_en
     },
     Api: {
       server_error: lang_NapicuApi_server_error_en,
@@ -137,7 +139,8 @@ export const NapicuOSLanguages = {
       Weather: {
         city_not_found: lang_Weather_city_not_found_cs,
         data_from: lang_weather_data_from_cs
-      }
+      },
+      Settings: lang_Settings_cs
     },
     Api: {
       server_error: lang_NapicuApi_server_error_cs,

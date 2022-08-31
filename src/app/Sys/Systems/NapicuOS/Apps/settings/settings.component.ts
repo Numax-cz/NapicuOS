@@ -8,13 +8,18 @@ import {SYSTEM_APPS_SETTINGS_OPTIONS} from "../../config/Apps/Settings";
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
   public selectedOption: number = 0;
   protected static event: boolean = true;
+  public static declare setting_items: SettingsOptionsMetadata[];
 
   constructor() { }
 
   ngOnInit(): void {
+    SettingsComponent.update_setting_items();
+  }
+
+  public static update_setting_items(): void {
+    SettingsComponent.setting_items = SYSTEM_APPS_SETTINGS_OPTIONS();
   }
 
   public static disableEvent(): void {
@@ -27,13 +32,14 @@ export class SettingsComponent implements OnInit {
 
   public clickOption(index: number): void {
     this.selectedOption = index;
+    SettingsComponent.update_setting_items();
   }
 
   get GetAllowEvent(): boolean {
     return SettingsComponent.event;
   }
 
-  get GetOptions(): SettingsOptionsMetadata[]{
-    return SYSTEM_APPS_SETTINGS_OPTIONS;
+  get GetSystemItems(): SettingsOptionsMetadata[]{
+    return SettingsComponent.setting_items;
   }
 }

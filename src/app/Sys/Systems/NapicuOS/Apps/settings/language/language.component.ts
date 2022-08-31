@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SYSTEM_IMAGES} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
 import {NapicuOS_available_language} from "../../../Language/langs";
+import {SettingsComponent} from "../settings.component";
 
 @Component({
   selector: 'app-language',
@@ -17,6 +18,7 @@ export class LanguageComponent implements OnInit {
 
   public changeLanguage(lang: NapicuOS_available_language): void {
     NapicuOS.set_active_user_language(lang);
+    SettingsComponent.update_setting_items();
   }
 
   get GetCzechFlag(): string{
