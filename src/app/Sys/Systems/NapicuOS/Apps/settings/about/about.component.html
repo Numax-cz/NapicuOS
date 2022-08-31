@@ -6,26 +6,26 @@
 
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover NapicuOSSimpleGTablePointer table" (click)="openSetHost()">
       <ul>
-        <li>Device Name</li>
+        <li>{{GetAboutLangTexts.device_name}}</li>
         <li>{{GetDeviceName}} <span class="NapicuArrowSettingLeft" >></span></li>
       </ul>
     </div>
 
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
       <ul>
-        <div>Memory</div>
+        <div>{{GetAboutLangTexts.memory}}</div>
         <div>{{GetMemSize}}</div>
       </ul>
       <ul>
-        <div>Processor</div>
+        <div>{{GetAboutLangTexts.processor}}</div>
         <div>{{GetCpuModel}}</div>
       </ul>
       <ul>
-        <div>Graphics</div>
+        <div>{{GetAboutLangTexts.graphics}}</div>
         <div>{{GetGpuModel}}</div>
       </ul>
       <ul>
-        <div>Disk Capacity</div>
+        <div>{{GetAboutLangTexts.disk_caps}}</div>
         <div>16.1 GB</div>
       </ul>
     </div>
@@ -33,15 +33,15 @@
 
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
       <ul>
-        <div>OS Name</div>
+        <div>{{GetAboutLangTexts.os_name}}</div>
         <div>{{GetOSName}}</div>
       </ul>
       <ul>
-        <div>OS Type</div>
+        <div>{{GetAboutLangTexts.os_type}}</div>
         <div>{{GetOSType}}</div>
       </ul>
       <ul>
-        <div>OS Version</div>
+        <div>{{GetAboutLangTexts.os_ver}}</div>
         <div>{{GetOSVersion}}</div>
       </ul>
     </div>

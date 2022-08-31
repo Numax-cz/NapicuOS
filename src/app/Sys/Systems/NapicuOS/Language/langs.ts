@@ -3,6 +3,8 @@ import {lang_Months_cs, lang_Months_en} from "./Months";
 import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
+  lang_activities_cs,
+  lang_activities_en,
   lang_Cancel_any_cs,
   lang_Cancel_any_en,
   lang_change_cs,
@@ -57,7 +59,7 @@ import {
   lang_NapicuApi_server_error_en, lang_NapicuApi_too_many_req_cs,
   lang_NapicuApi_too_many_req_en
 } from "./NapicuApi";
-import {lang_Settings_cs, lang_Settings_en} from "./SystemApp";
+import {lang_Settings_about_cs, lang_Settings_about_en, lang_Settings_cs, lang_Settings_en} from "./SystemApp";
 
 export declare type NapicuOS_available_language = "en" | "cs";
 
@@ -83,7 +85,8 @@ export const NapicuOSLanguages = {
         city_not_found: lang_Weather_city_not_found_en,
         data_from: lang_weather_data_from_en
       },
-      Settings: lang_Settings_en
+      Settings: lang_Settings_en,
+      SettingsAbout: lang_Settings_about_en
     },
     Api: {
       server_error: lang_NapicuApi_server_error_en,
@@ -115,7 +118,8 @@ export const NapicuOSLanguages = {
       custom_wallpaper: lang_time_custom_wallpaper_en,
       system_volume: lang_system_volume_en,
       do_not_disturb: lang_do_not_disturb_en,
-      last_update_minutes: lang_last_update_minutes_en
+      last_update_minutes: lang_last_update_minutes_en,
+      activities: lang_activities_en
     }
   },
 
@@ -140,7 +144,8 @@ export const NapicuOSLanguages = {
         city_not_found: lang_Weather_city_not_found_cs,
         data_from: lang_weather_data_from_cs
       },
-      Settings: lang_Settings_cs
+      Settings: lang_Settings_cs,
+      SettingsAbout: lang_Settings_about_cs
     },
     Api: {
       server_error: lang_NapicuApi_server_error_cs,
@@ -172,7 +177,8 @@ export const NapicuOSLanguages = {
       custom_wallpaper: lang_time_custom_wallpaper_cs,
       system_volume: lang_system_volume_cs,
       do_not_disturb: lang_do_not_disturb_cs,
-      last_update_minutes: lang_last_update_minutes_cs
+      last_update_minutes: lang_last_update_minutes_cs,
+      activities: lang_activities_cs
     }
   }
 }

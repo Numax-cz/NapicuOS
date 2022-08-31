@@ -394,11 +394,15 @@ export class NapicuOSComponent implements OnInit {
     return NapicuOS.get_active_user_dark_theme();
   }
 
-  get NotificationText(): string {
+  get GetNotificationText(): string {
     return NapicuOS.get_language_words().CalendarMenu.notification.title;
   }
 
-  get NoNotificationText(): string {
+  get GetNoNotificationText(): string {
     return NapicuOS.get_language_words().CalendarMenu.notification.notNotification;
+  }
+
+  get GetActivitiesText(): string{
+    return NapicuOS.get_language_words().other.activities;
   }
 }

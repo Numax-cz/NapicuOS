@@ -78,4 +78,8 @@ export class AboutComponent implements OnInit {
   get GetOSType(): string {
     return NapicuOS.get_system_information_os_type();
   }
+
+  get GetAboutLangTexts(){
+    return NapicuOS.get_language_words().Apps.SettingsAbout;
+  }
 }
