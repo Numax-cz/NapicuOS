@@ -27,7 +27,7 @@
               <!--Notifications-->
               <div class="DateContextMenu-box" style="overflow: hidden">
                 <div class="MenuNotificationText">
-                  <div>Notifications</div>
+                  <div>{{NotificationText}}</div>
                   <div *ngIf="GetNotificationsMenu.length" class="NotCloseButtonScheme"
                        (click)="clearNotifications()">X
                   </div>
@@ -56,7 +56,7 @@
                     </div>
                   </section>
                   <section *ngIf="!GetNotificationsMenu.length" class="NoNotification">
-                    No notifications
+                    {{NoNotificationText}}
                   </section>
 
                 </div>

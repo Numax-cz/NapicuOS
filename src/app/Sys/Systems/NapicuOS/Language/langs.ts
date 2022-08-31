@@ -66,7 +66,7 @@ export const NapicuOSLanguages = {
       activities: "Activities",
     },
     CalendarMenu: {
-      Notification: lang_Notification_en,
+      notification: lang_Notification_en,
       Calendar: lang_Calendar_en
     },
     Months: lang_Months_en,
@@ -122,7 +122,7 @@ export const NapicuOSLanguages = {
       activities: "Aktivity",
     },
     CalendarMenu: {
-      Notification: lang_Notification_cs,
+      notification: lang_Notification_cs,
       Calendar: lang_Calendar_cs
     },
     Months: lang_Months_cs,
