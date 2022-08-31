@@ -363,7 +363,7 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetDayName(): string {
-    return new NapicuDate().getCurrentDayName();
+    return NapicuOS.getTime().getCurrentDayName();
   }
 
   get GetActivityDisplay(): boolean {
