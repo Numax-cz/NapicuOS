@@ -137,4 +137,8 @@ export class UsersComponent implements OnInit {
   get GetAuthAndLoginText(): string{
     return NapicuOS.get_language_words().other.auth_and_login;
   }
+
+  get GetAddUserText(): string{
+    return NapicuOS.get_language_words().other.add_user;
+  }
 }

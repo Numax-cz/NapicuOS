@@ -4,7 +4,12 @@ import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
   lang_activities_cs,
-  lang_activities_en, lang_auth_and_pass_cs, lang_auth_and_pass_en, lang_auto_auth_cs, lang_auto_auth_en,
+  lang_activities_en, lang_add_user_cs,
+  lang_add_user_en,
+  lang_auth_and_pass_cs,
+  lang_auth_and_pass_en,
+  lang_auto_auth_cs,
+  lang_auto_auth_en,
   lang_Cancel_any_cs,
   lang_Cancel_any_en,
   lang_change_cs,
@@ -36,19 +41,27 @@ import {
   lang_Enter_name_cs,
   lang_Enter_name_en,
   lang_enter_new_name_cs,
-  lang_enter_new_name_en, lang_last_update_minutes_cs, lang_last_update_minutes_en,
+  lang_enter_new_name_en,
+  lang_last_update_minutes_cs,
+  lang_last_update_minutes_en,
   lang_none_cs,
-  lang_none_en, lang_password_cs, lang_password_en,
+  lang_none_en,
+  lang_password_cs,
+  lang_password_en,
   lang_Places_cs,
   lang_Places_en,
   lang_rename_cs,
-  lang_rename_en, lang_system_lang_cs, lang_system_lang_en,
+  lang_rename_en,
+  lang_system_lang_cs,
+  lang_system_lang_en,
   lang_system_volume_cs,
   lang_system_volume_en,
   lang_time_custom_wallpaper_cs,
   lang_time_custom_wallpaper_en,
   lang_time_format_cs,
-  lang_time_format_en, lang_weather_data_from_cs, lang_weather_data_from_en,
+  lang_time_format_en,
+  lang_weather_data_from_cs,
+  lang_weather_data_from_en,
   lang_yes_cs,
   lang_yes_en
 } from "./Other";
@@ -120,7 +133,8 @@ export const NapicuOSLanguages = {
       password: lang_password_en,
       auto_auth: lang_auto_auth_en,
       auth_and_login: lang_auth_and_pass_en,
-      sys_lang: lang_system_lang_en
+      sys_lang: lang_system_lang_en,
+      add_user: lang_add_user_en
     }
   },
 
@@ -180,7 +194,8 @@ export const NapicuOSLanguages = {
       password: lang_password_cs,
       auto_auth: lang_auto_auth_cs,
       auth_and_login: lang_auth_and_pass_cs,
-      sys_lang: lang_system_lang_cs
+      sys_lang: lang_system_lang_cs,
+      add_user: lang_add_user_cs
     }
   }
 }

@@ -52,6 +52,9 @@ export const lang_change_pasword_cs = "Zadejte nový heslo";
 export const lang_change_username_en = "Enter new username";
 export const lang_change_username_cs = "Zadejte nový uživatelský jméno";
 
+export const lang_add_user_en = "Add User";
+export const lang_add_user_cs = "Přidat uživatele";
+
 export const lang_change_date_and_time_en = "Date & Time";
 export const lang_change_date_and_time_cs = "Datum a čas";
 
