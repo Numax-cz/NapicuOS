@@ -5,6 +5,8 @@ import {BiosDate, BiosTime} from "../../../../Bios/interface/ToolSettings";
 import {DateInterface, TimeInterface} from "../interface/Date";
 import {Save} from "../../../../Bios/Scripts/exit/SaveChanges";
 import {NapicuDate} from "napicuformatter";
+import {VM_COMPUTER_INFORMATION_METADATA} from "../../../../Bios/interface/BiosInfo";
+import {VM_COMPUTER_DRIVES_METADATA} from "../../../../Bios/interface/SystemDrives";
 
 export class NapicuBios{
 
@@ -146,6 +148,9 @@ export class NapicuBios{
     this.biosTime_cache = new Date().getTime();
   }
 
+  public static get_drives(): VM_COMPUTER_DRIVES_METADATA[]{
+    return VM_COMPUTER_INFORMATION.drives;
+  }
 
   public static get_cpu_name(): string {
     return VM_COMPUTER_INFORMATION.cpu;
