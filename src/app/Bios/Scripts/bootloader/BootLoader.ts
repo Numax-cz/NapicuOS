@@ -1,4 +1,3 @@
-import {drive} from 'src/app/Bios/Config/Drives';
 import {BiosOptionsST} from 'src/app/Bios/ToolSettings';
 import {BlackscreenComponent} from 'src/app/Bios/components/blackscreen/blackscreen.component';
 import {NoBootDevice} from 'src/app/Bios/Config/BlackScreenTexts';
@@ -9,6 +8,7 @@ import {copy} from '../DeepClone';
 import {Loading} from '../LoadingAnimations';
 import {animationCursor, setDisplayText} from './text';
 import {boot_configuration} from "../../Config/bootloader";
+import {VM_COMPUTER_INFORMATION} from "../../vm_computer";
 
 /**
  * Main part of the system bootloader
@@ -51,7 +51,7 @@ export class BootLoader {
    */
   protected system(): void {
     setTimeout(() => {
-      var system = drive[this.selectedBootPriority].data.system;
+      var system = VM_COMPUTER_INFORMATION.drives[this.selectedBootPriority].data.system;
       if (system) {
         if (
           system.length &&
@@ -75,8 +75,8 @@ export class BootLoader {
    * Checks the disk to see if there is something to boot from
    */
   protected checkBootSector(): boolean {
-    if (drive && drive.length && drive[this.selectedBootPriority].data) {
-      if (!drive[this.selectedBootPriority].data.system) {
+    if (VM_COMPUTER_INFORMATION.drives && VM_COMPUTER_INFORMATION.drives.length && VM_COMPUTER_INFORMATION.drives[this.selectedBootPriority].data) {
+      if (!VM_COMPUTER_INFORMATION.drives[this.selectedBootPriority].data.system) {
         setDisplayText(copy(NoBootDevice));
         return false;
       }

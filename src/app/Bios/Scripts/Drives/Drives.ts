@@ -1,6 +1,6 @@
-import {drive} from 'src/app/Bios/Config/Drives';
 import {SystemDrives} from 'src/app/Bios/interface/SystemDrives';
 import {Options} from 'src/app/Bios/interface/ToolSettings';
+import {VM_COMPUTER_INFORMATION} from "../../vm_computer";
 
 /**
  * Function that converts an object of type Drives[] to type Options[]
@@ -10,7 +10,7 @@ import {Options} from 'src/app/Bios/interface/ToolSettings';
 export function GetDrives(num?: boolean, systemName?: boolean): Options[] {
   if (!num) num = false;
   var D: Options[] = [];
-  drive.forEach((element: SystemDrives, index: number) => {
+  VM_COMPUTER_INFORMATION.drives.forEach((element: SystemDrives, index: number) => {
     var text = num ? `${index + 1}. ${element.title}` : element.title;
     if (systemName && element.data.system && element.data.system.length == 1) {
       text += `(${element.data.system[0].boot.title})`;
