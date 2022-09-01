@@ -16,9 +16,9 @@
 ![NapicuBiosSettingsScreen](/src/assets/preview/MainBios.webp)
 ![NapicuBiosFlashScreen](/src/assets/preview/BiosUpdate.webp)
 ![NapicuOSAppFileManagerScreen](/src/assets/preview/fileManager.png)
-![NapicuOSAppWindowScreen](/src/assets/preview/systemAppsScreen.webp)
-![NapicuOSPaint](/src/assets/preview/paint.webp)
-![NapicuOSCalendar](/src/assets/preview/cale.webp)
+![NapicuOSAppWindowScreen](/src/assets/preview/window.png)
+![NapicuOSPaint](/src/assets/preview/paint.png)
+![NapicuOSCalendar](/src/assets/preview/cale.png)
 
 ---
 
