@@ -42,7 +42,7 @@ import {
   lang_Places_cs,
   lang_Places_en,
   lang_rename_cs,
-  lang_rename_en,
+  lang_rename_en, lang_system_lang_cs, lang_system_lang_en,
   lang_system_volume_cs,
   lang_system_volume_en,
   lang_time_custom_wallpaper_cs,
@@ -119,7 +119,8 @@ export const NapicuOSLanguages = {
       activities: lang_activities_en,
       password: lang_password_en,
       auto_auth: lang_auto_auth_en,
-      auth_and_login: lang_auth_and_pass_en
+      auth_and_login: lang_auth_and_pass_en,
+      sys_lang: lang_system_lang_en
     }
   },
 
@@ -178,7 +179,8 @@ export const NapicuOSLanguages = {
       activities: lang_activities_cs,
       password: lang_password_cs,
       auto_auth: lang_auto_auth_cs,
-      auth_and_login: lang_auth_and_pass_cs
+      auth_and_login: lang_auth_and_pass_cs,
+      sys_lang: lang_system_lang_cs
     }
   }
 }

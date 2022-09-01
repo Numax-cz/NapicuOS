@@ -32,4 +32,8 @@ export class LanguageComponent implements OnInit {
   get GetLanguage(): NapicuOS_available_language{
     return NapicuOS.get_active_user_language();
   }
+
+  get GetSystemLangText(): string{
+    return NapicuOS.get_language_words().other.sys_lang;
+  }
 }

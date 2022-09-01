@@ -67,6 +67,9 @@ export const lang_time_custom_wallpaper_cs = "Vlastní tapeta";
 export const lang_system_volume_en = "System volume";
 export const lang_system_volume_cs = "Systemová hlasitost";
 
+export const lang_system_lang_en = "System language";
+export const lang_system_lang_cs = "Systémový jazyk";
+
 export const lang_do_not_disturb_en = "Do not disturb";
 export const lang_do_not_disturb_cs = "Nerušit";
 
