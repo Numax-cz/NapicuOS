@@ -1,6 +1,6 @@
 import {System} from '../../Sys/Systems/NapicuOS/SystemComponents/System';
 
-export interface SystemDrives {
+export interface VM_COMPUTER_DRIVES_METADATA {
   capacity: string
   title: string;
   data: {

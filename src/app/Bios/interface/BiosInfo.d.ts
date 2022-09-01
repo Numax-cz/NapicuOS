@@ -1,5 +1,5 @@
 import {NapicuOS} from "../../Sys/Systems/NapicuOS/system.napicuos";
-import {SystemDrives} from "./SystemDrives";
+import {VM_COMPUTER_DRIVES_METADATA} from "./SystemDrives";
 
 export interface BiosIf {
   title: string;
@@ -17,5 +17,5 @@ export interface VM_COMPUTER_INFORMATION_METADATA{
   mem_size: string,
   serial_number: string,
 
-  drives: SystemDrives[]
+  drives: VM_COMPUTER_DRIVES_METADATA[]
 }
