@@ -9,7 +9,7 @@
     <!--Wallpapers -->
     <div class="wallpapers">
       <div *ngFor="let i of system_wallpapers; let index = index">
-        <img [src]="i" (click)="setWallpaper(i)" [ngClass]="{selectedWallpaper: index == GetActiveWallpaperIndex}"  alt="System Wallpapers">
+        <img [src]="i" (click)="setWallpaper(i)" class="SettingsCursorHoverItem" [ngClass]="{selectedWallpaper: index == GetActiveWallpaperIndex}"  alt="System Wallpapers">
       </div>
     </div>
 
