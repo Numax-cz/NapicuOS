@@ -152,6 +152,10 @@ export class NapicuBios{
     return VM_COMPUTER_INFORMATION.drives;
   }
 
+  public static get_selected_drive(): VM_COMPUTER_DRIVES_METADATA{
+    return VM_COMPUTER_INFORMATION.drives[BiosSettings["Boot"].settings["boot_priority"].selected]
+  }
+
   public static get_cpu_name(): string {
     return VM_COMPUTER_INFORMATION.cpu;
   }
