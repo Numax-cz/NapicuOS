@@ -1,4 +1,10 @@
-# NapicuOS - BETA
+<h1 align="center">
+  <br>
+  <img src="./src/assets/icons/NapicuBios-512x512.png" alt="NapicuBios image" width="130">
+  <br>
+    NapicuOS - Preview
+  <br>
+</h1>
 
 - NapicuOS je OpenSource webová aplikace, která simuluje reálný operační systém NapicuOS + bios NapicuBIOS
 - Na této stránce najdete základní nastavení biosu
