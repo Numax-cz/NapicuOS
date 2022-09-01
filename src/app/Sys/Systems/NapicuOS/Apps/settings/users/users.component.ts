@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
     if(this.showInputMenu) return;
     this.inputMenuData = {
       inputData: {
-        value: 'Enter new username',
+        value: NapicuOS.get_language_words().other.change_username,
         buttonType: NapicuOS.get_button_type_rename_cancel()
       },
       submitFunction: this.submitNewUserName,

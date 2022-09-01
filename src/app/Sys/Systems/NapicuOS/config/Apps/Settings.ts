@@ -23,7 +23,7 @@ export const SYSTEM_APPS_SETTINGS_OPTIONS = (): SettingsOptionsMetadata[] => {
     component: ThemeComponent
   },
   {
-    name: lang.theme,
+    name: lang.wallpaper,
     icon: SYSTEM_IMAGES.photo,
     component: WallpaperComponent
   },
