@@ -59,6 +59,10 @@ export class AboutComponent implements OnInit {
     return NapicuBios.get_gpu_name();
   }
 
+  get GetDiskCapacity(): string {
+    return NapicuBios.get_selected_drive().capacity;
+  }
+
   get GetMemSize(): string {
     return NapicuBios.get_mem_size();
   }
