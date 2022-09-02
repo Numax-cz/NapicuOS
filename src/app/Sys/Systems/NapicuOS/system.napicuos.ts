@@ -92,7 +92,6 @@ import {ShortSystemWallpaper} from "./scripts/ShortSystemWallpaper";
 import {NapicuDate} from "napicuformatter";
 import {OPEN_WEATHER_ICONS} from "./config/OpenWeather";
 import {lang_Days_cs, lang_Days_en} from "./Language/Days";
-import {lang_Month_cs} from "./Language/Date";
 import {lang_Months_cs, lang_Months_en} from "./Language/Months";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
@@ -1530,6 +1529,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_active_user_username(): string | undefined {
     return this.get_active_user()?.username
+  }
+
+  /**
+   * Returns users permission
+   */
+  public static get_active_user_permission(): string  {
+    return this.get_active_user()?.permissions || SystemUserPermissionsEnumMetadata.User
+  }
+
+  /**
+   * Returns users permission - Index
+   */
+  public static get_active_user_permission_index(): number {
+    return Object.values(SystemUserPermissionsEnumMetadata).indexOf(<SystemUserPermissionsEnumMetadata>this.get_active_user_permission());
   }
 
   /**
