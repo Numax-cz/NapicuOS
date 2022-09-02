@@ -66,3 +66,18 @@
   margin: 20px 0;
   float: right;
 }
+
+#AddUserMenu {
+  position: absolute;
+  min-width: 200px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  min-height: 150px;
+  pointer-events: all !important;
+
+  .AddUserMenuContent {
+    padding: 20px;
+    width: 500px;
+  }
+}

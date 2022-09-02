@@ -4,6 +4,8 @@ import {NapicuOS} from "../../../system.napicuos";
 import {AppMenuInputData} from "../../../interface/InputAlert";
 import {SystemStateMetadata, SystemUserStateData} from "../../../interface/System";
 import {User} from "../../../SystemComponents/User";
+import {SettingsComponent} from "../settings.component";
+import {SystemAppsProcessName} from "../../../config/Apps/AppsNames";
 
 
 @Component({
@@ -15,6 +17,7 @@ export class UsersComponent implements OnInit {
 
   public showInputMenu: boolean = false;
   public declare inputMenuData: AppMenuInputData;
+  public addUserMenuDisplayed: boolean = false;
 
   constructor() { }
 
@@ -117,9 +120,20 @@ export class UsersComponent implements OnInit {
   }
 
 
-  public newNameSubmit(value: string): void {
-    console.log("submit")
+  // public newNameSubmit(value: string): void {
+  //
+  // }
+
+  public openAddUserMenu = (): void => {
+    NapicuOS.open_app(SystemAppsProcessName.userManager);
+    // this.addUserMenuDisplayed = true;
+    // SettingsComponent.disableEvent();
   }
+
+  // public closeAddUserMenu = (): void => {
+  //   this.addUserMenuDisplayed = false;
+  //   SettingsComponent.allowEvent();
+  // }
 
   get GetPassTxt(): string {
     let lng = NapicuOS.get_language_words();

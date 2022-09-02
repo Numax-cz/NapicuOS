@@ -25,16 +25,28 @@
           </section>
         </ul>
           <div class="NapicuOSSimpleButton AddUserButton">
-            <button>{{GetAddUserText}}</button>
+            <button (click)="openAddUserMenu()">{{GetAddUserText}}</button>
           </div>
     </div>
 
   </div>
 
+  <!--Change username menu-->
   <ng-container *ngIf="showInputMenu && inputMenuData">
     <section>
       <app-input clickable="true" [data]="inputMenuData"  class="Input" ></app-input>
     </section>
   </ng-container>
 
+
+  <!--Add user menu-->
+<!--  <ng-container *ngIf="addUserMenuDisplayed">-->
+<!--    <div id="AddUserMenu" clickable="true">-->
+<!--      <in-app-window appTitle="Window" [onClose]="closeAddUserMenu">-->
+<!--        <div class="WindowContent AddUserMenuContent">-->
+
+<!--        </div>-->
+<!--      </in-app-window>-->
+<!--    </div>-->
+<!--  </ng-container>-->
 </section>
