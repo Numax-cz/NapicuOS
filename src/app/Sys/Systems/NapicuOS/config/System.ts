@@ -1,5 +1,7 @@
 import {SystemInformation} from "../interface/System";
 import {SystemTimeFormatEnumMetadata} from "./TimeFormat";
+import {SystemUserPermissionsEnumMetadata} from "./UserPerms";
+import {UserConstructorMetadata} from "../interface/User/User";
 
 export const SYSTEM_DEFAULT_HOSTNAME = 'napicu-os';
 export const SYSTEM_BOOT_SCREEN_TITLE = 'NapicuOS';
@@ -9,6 +11,18 @@ export const SYSTEM_INFORMATION: SystemInformation = {
   name: "NapicuOS",
   type: "64-bit",
   ver: "preview-0.32",
+}
+
+export const SYSTEM_ROOT_USER: UserConstructorMetadata = {
+  username: 'root',
+  password: 'root',
+  permissions: SystemUserPermissionsEnumMetadata.SuperUser
+}
+
+export const SYSTEM_DEFAULT_TEST_USER: UserConstructorMetadata = {
+  username: 'user',
+  password: 'napicuos',
+  permissions: SystemUserPermissionsEnumMetadata.User
 }
 
 export const SYSTEM_USERS_MIN_LENGTH = 1;
