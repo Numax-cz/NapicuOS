@@ -29,13 +29,13 @@ import {
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOME_FOLDERS,
-  SYSTEM_DEFAULT_HOSTNAME,
+  SYSTEM_DEFAULT_HOSTNAME, SYSTEM_DEFAULT_TEST_USER,
   SYSTEM_DEFAULT_TIME_FORMAT,
   SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
   SYSTEM_IMAGES,
-  SYSTEM_INFORMATION,
+  SYSTEM_INFORMATION, SYSTEM_ROOT_USER,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
@@ -288,18 +288,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
 
     //Init Root user
-    const system_root_user = new User({
-      username: 'root',
-      password: 'root',
-      permissions: SystemUserPermissionsEnumMetadata.SuperUser
-    });
+    const system_root_user = new User(SYSTEM_ROOT_USER);
 
     //Init default basic user
-    const system_default_user = new User({
-      username: 'user',
-      password: 'napicuos',
-      permissions: SystemUserPermissionsEnumMetadata.User
-    });
+    const system_default_user = new User(SYSTEM_DEFAULT_TEST_USER);
 
     if (!i?.user.users.length) {
       //Initialization of all users
@@ -1543,6 +1535,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_active_user_permission_index(): number {
     return Object.values(SystemUserPermissionsEnumMetadata).indexOf(<SystemUserPermissionsEnumMetadata>this.get_active_user_permission());
+  }
+
+  /**
+   * Returns root password
+   */
+  public static get_root_password(): string | null{
+    return NapicuOS.get_user_by_username("root")?.password  || null;
+  }
+
+  /**
+   * verify the root password
+   * @param password
+   */
+  public static verify_root_password(password: string): boolean{
+    let root_pass: string | null = this.get_root_password();
+    return !!(root_pass && password === root_pass);
   }
 
   /**
