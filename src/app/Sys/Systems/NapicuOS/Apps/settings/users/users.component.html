@@ -2,7 +2,7 @@
   <!-- Users profile -->
   <div class="UserProfile">
     <img [src]="GetUserIcon" alt="User">
-    <h1>{{GetActiveUserName}}</h1>
+    <h1>{{GetActiveUser?.username}}</h1>
     <img class="edit" [src]="GetPencilIcon" alt="Edit" (click)="openSetUserNameMenu()">
   </div>
 
@@ -10,6 +10,14 @@
   <div class="UserSettings">
     <div class="BasicText">{{GetAuthAndLoginText}}</div>
         <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
+          <ul style="position: relative"  clickable="true" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot}">
+            <div>Typ</div>
+            <div >
+              <napicu-drop-down-menu clickable="true" [onSet]="onSetPermission" [arrow]="false" [selectedOption]="GetActiveUserPerms"
+                                     style="text-align: center; position: absolute; right: 10px; top: 0; z-index: 1000;"
+                                     [options]="GetTypeUser"></napicu-drop-down-menu>
+            </div>
+          </ul>
         <ul (click)="openSetUserPass()">
           <div>{{GetPasswordText}}</div>
           <div>{{GetPassTxt}}<span class="NapicuArrowSettingLeft" >></span></div>
@@ -28,7 +36,16 @@
             <button (click)="openAddUserMenu()">{{GetAddUserText}}</button>
           </div>
     </div>
+  </div>
 
+  <div>
+    <div class="BasicText">{{GetAuthAndLoginText}}</div>
+    <div class="NapicuOSSimpleGTable table">
+      <ul *ngFor="let i of GetUsers">
+        <div>{{i.username}}</div>
+        <div></div>
+      </ul>
+    </div>
   </div>
 
   <!--Change username menu-->

@@ -6,6 +6,7 @@ import {SystemStateMetadata, SystemUserStateData} from "../../../interface/Syste
 import {User} from "../../../SystemComponents/User";
 import {SettingsComponent} from "../settings.component";
 import {SystemAppsProcessName} from "../../../config/Apps/AppsNames";
+import {SystemUserPermissionsEnumMetadata} from "../../../config/UserPerms";
 
 
 @Component({
@@ -18,31 +19,14 @@ export class UsersComponent implements OnInit {
   public showInputMenu: boolean = false;
   public declare inputMenuData: AppMenuInputData;
   public addUserMenuDisplayed: boolean = false;
+  public verifyRoot: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  get GetUserIcon(): string {
-    return SYSTEM_IMAGES.user;
-  }
 
-  get GetActiveUserName(): string {
-    return NapicuOS.get_active_user()?.username || 'NULL';
-  }
-
-  get GetActiveUserAuth(): string {
-    let user = NapicuOS.get_active_user();
-    if(user){
-      return user.autoAuth ? NapicuOS.get_language_words().other.enabled : NapicuOS.get_language_words().other.disabled;
-    }
-    return 'NULL';
-  }
-
-  get GetPencilIcon(): string {
-    return SYSTEM_IMAGES.pencil;
-  }
 
   public openSetUserNameMenu(): void {
     if(this.showInputMenu) return;
@@ -130,10 +114,39 @@ export class UsersComponent implements OnInit {
     // SettingsComponent.disableEvent();
   }
 
+  public onSetPermission = (): void => {
+
+  }
+
   // public closeAddUserMenu = (): void => {
   //   this.addUserMenuDisplayed = false;
   //   SettingsComponent.allowEvent();
   // }
+
+
+  get GetUserIcon(): string {
+    return SYSTEM_IMAGES.user;
+  }
+
+  get GetActiveUser(): User | undefined{
+    return NapicuOS.get_active_user();
+  }
+
+  get GetActiveUserPerms(): number{
+    return NapicuOS.get_active_user_permission_index();
+  }
+
+  get GetActiveUserAuth(): string {
+    let user = NapicuOS.get_active_user();
+    if(user){
+      return user.autoAuth ? NapicuOS.get_language_words().other.enabled : NapicuOS.get_language_words().other.disabled;
+    }
+    return 'NULL';
+  }
+
+  get GetPencilIcon(): string {
+    return SYSTEM_IMAGES.pencil;
+  }
 
   get GetPassTxt(): string {
     let lng = NapicuOS.get_language_words();
@@ -154,5 +167,13 @@ export class UsersComponent implements OnInit {
 
   get GetAddUserText(): string{
     return NapicuOS.get_language_words().other.add_user;
+  }
+
+  get GetUsers(): User[] {
+    return NapicuOS.get_users();
+  }
+
+  get GetTypeUser(): string[]{
+    return Object.values(SystemUserPermissionsEnumMetadata)
   }
 }
