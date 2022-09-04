@@ -3,7 +3,7 @@
     <div style="margin-left: auto;width: 80%;">
       <span class="ValueTXT">{{data.inputData.value}}</span>
       <div *ngIf="!allowSubmit && errorMessage" class="ErrorMsg">{{errorMessage}}</div>
-      <input [(ngModel)]="inputValue" (ngModelChange)="onChangeInput()" class="NapicuOSSimpleInput"
+      <input #Input [(ngModel)]="inputValue" (ngModelChange)="onChangeInput()" class="NapicuOSSimpleInput"
              [ngClass]="{'NapicuOSSimpleInput-Red-Border': errorMessage}"
              [type]="data.inputData.inputType || 'text'" name="value" (keydown.enter)="onSubmit()" (keydown.escape)="onReject()">
     </div>

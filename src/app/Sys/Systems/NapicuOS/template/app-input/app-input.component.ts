@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { AppInputCheckFunctionReturn, AppMenuInputData} from "../../interface/InputAlert";
 
 
@@ -8,15 +8,21 @@ import { AppInputCheckFunctionReturn, AppMenuInputData} from "../../interface/In
   templateUrl: './app-input.component.html',
   styleUrls: ['./app-input.component.scss']
 })
-export class AppInputComponent implements OnInit {
+export class AppInputComponent implements OnInit, AfterViewInit {
   public declare inputValue: string;
   public allowSubmit: boolean = false;
   public declare errorMessage: string | undefined;
   @Input() public declare data: AppMenuInputData;
+  @ViewChild('Input') declare usernameElement: ElementRef<HTMLInputElement>;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    this.usernameElement.nativeElement.focus();
+
   }
 
   public onReject(): void {
