@@ -2394,4 +2394,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       reject: this.get_language_words().other.cancel_any
     }
   }
+
+  /**
+   * Returns button type
+   */
+  public static get_button_type_verify_cancel(): InputButtonTypeMetadata{
+    return {
+      submit: this.get_language_words().other.verify,
+      reject: this.get_language_words().other.cancel_any
+    }
+  }
 }

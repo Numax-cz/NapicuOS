@@ -94,6 +94,12 @@ export const lang_verify_user_cs = "Odemkněte, abyste mohli přidávat uživate
 export const lang_verify_user_2_en = "Some settings must be unlocked before they can be changed";
 export const lang_verify_user_2_cs = "Některá nastavení musí být odemknuta, než je můžete změnit";
 
+export const lang_verify_en = "Verify";
+export const lang_verify_cs = "Ověřit";
+
+export const lang_enter_root_pass_en = "Enter the root password";
+export const lang_enter_root_pass_cs = "Zadejte heslo roota";
+
 export const lang_last_update_minutes_en = (minutes: number) => {
   return `Last updated ${minutes} ${(minutes == 1) ? "minute" : "minutes "} ago`;
 };

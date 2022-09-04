@@ -4,7 +4,8 @@ import {lang_Days_cs, lang_Days_en} from "./Days";
 import {lang_FileManager_cs, lang_FileManager_en} from "./FileManager";
 import {
   lang_activities_cs,
-  lang_activities_en, lang_add_user_cs,
+  lang_activities_en,
+  lang_add_user_cs,
   lang_add_user_en,
   lang_auth_and_pass_cs,
   lang_auth_and_pass_en,
@@ -41,7 +42,7 @@ import {
   lang_Enter_name_cs,
   lang_Enter_name_en,
   lang_enter_new_name_cs,
-  lang_enter_new_name_en,
+  lang_enter_new_name_en, lang_enter_root_pass_cs, lang_enter_root_pass_en,
   lang_last_update_minutes_cs,
   lang_last_update_minutes_en,
   lang_none_cs,
@@ -59,7 +60,12 @@ import {
   lang_time_custom_wallpaper_cs,
   lang_time_custom_wallpaper_en,
   lang_time_format_cs,
-  lang_time_format_en, lang_verify_user_2_cs, lang_verify_user_2_en, lang_verify_user_cs, lang_verify_user_en,
+  lang_time_format_en,
+  lang_verify_cs, lang_verify_en,
+  lang_verify_user_2_cs,
+  lang_verify_user_2_en,
+  lang_verify_user_cs,
+  lang_verify_user_en,
   lang_weather_data_from_cs,
   lang_weather_data_from_en,
   lang_yes_cs,
@@ -137,6 +143,8 @@ export const NapicuOSLanguages = {
       add_user: lang_add_user_en,
       settings_verify_1: lang_verify_user_en,
       settings_verify_2: lang_verify_user_2_en,
+      verify: lang_verify_en,
+      enter_root_pass: lang_enter_root_pass_en
     }
   },
 
@@ -200,6 +208,8 @@ export const NapicuOSLanguages = {
       add_user: lang_add_user_cs,
       settings_verify_1: lang_verify_user_cs,
       settings_verify_2: lang_verify_user_2_cs,
+      verify: lang_verify_cs,
+      enter_root_pass: lang_enter_root_pass_cs
     }
   }
 }
