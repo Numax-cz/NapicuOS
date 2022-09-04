@@ -23,9 +23,15 @@
 .Container {
   display: flex;
   align-items: center;
+  min-width: 380px;
 
   img {
     width: 50px;
+  }
+
+  .ErrorMsg{
+    color: red;
+    font-size: .9rem;
   }
 }
 
