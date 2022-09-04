@@ -103,6 +103,9 @@ export const lang_enter_root_pass_cs = "Heslo je nesprávné";
 export const lang_pass_error_en = "Password is incorrect";
 export const lang_pass_error_cs = "Zadejte heslo roota";
 
+export const lang_users_en = "Users";
+export const lang_users_cs = "Uživatelé";
+
 export const lang_last_update_minutes_en = (minutes: number) => {
   return `Last updated ${minutes} ${(minutes == 1) ? "minute" : "minutes "} ago`;
 };

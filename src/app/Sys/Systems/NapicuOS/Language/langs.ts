@@ -60,7 +60,7 @@ import {
   lang_time_custom_wallpaper_cs,
   lang_time_custom_wallpaper_en,
   lang_time_format_cs,
-  lang_time_format_en,
+  lang_time_format_en, lang_users_cs, lang_users_en,
   lang_verify_cs, lang_verify_en,
   lang_verify_user_2_cs,
   lang_verify_user_2_en,
@@ -145,7 +145,8 @@ export const NapicuOSLanguages = {
       settings_verify_2: lang_verify_user_2_en,
       verify: lang_verify_en,
       enter_root_pass: lang_enter_root_pass_en,
-      pass_error: lang_pass_error_en
+      pass_error: lang_pass_error_en,
+      users: lang_users_en
     }
   },
 
@@ -211,7 +212,8 @@ export const NapicuOSLanguages = {
       settings_verify_2: lang_verify_user_2_cs,
       verify: lang_verify_cs,
       enter_root_pass: lang_enter_root_pass_cs,
-      pass_error: lang_pass_error_cs
+      pass_error: lang_pass_error_cs,
+      users: lang_users_cs
     }
   }
 }

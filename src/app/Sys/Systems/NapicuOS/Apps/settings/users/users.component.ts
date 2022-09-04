@@ -20,10 +20,12 @@ export class UsersComponent implements OnInit {
   public declare inputMenuData: AppMenuInputData;
   public addUserMenuDisplayed: boolean = false;
   public verifyRoot: boolean = false;
+  public usersList: User[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.updateUsersList();
     this.verifyRoot = (NapicuOS.get_active_user_permission() == SystemUserPermissionsEnumMetadata.SuperUser);
   }
 
@@ -130,6 +132,10 @@ export class UsersComponent implements OnInit {
     return {submit: true}
   }
 
+  protected updateUsersList(): void {
+    this.usersList = NapicuOS.get_users();
+  }
+
   // public newNameSubmit(value: string): void {
   //
   // }
@@ -195,10 +201,6 @@ export class UsersComponent implements OnInit {
     return NapicuOS.get_language_words().other.add_user;
   }
 
-  get GetUsers(): User[] {
-    return NapicuOS.get_users();
-  }
-
   get GetTypeUser(): string[]{
     return Object.values(SystemUserPermissionsEnumMetadata)
   }
@@ -209,5 +211,9 @@ export class UsersComponent implements OnInit {
 
   get GetVerify2Text(): string{
     return NapicuOS.get_language_words().other.settings_verify_2;
+  }
+
+  get GetUsersText(): string{
+    return NapicuOS.get_language_words().other.users;
   }
 }

@@ -53,11 +53,11 @@
   </div>
 
   <div>
-    <div class="BasicText">{{GetAuthAndLoginText}}</div>
+    <div class="BasicText">{{GetUsersText}}</div>
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
-      <ul *ngFor="let i of GetUsers">
+      <ul *ngFor="let i of usersList">
         <div>{{i.username}}</div>
-        <div></div>
+        <div>></div>
       </ul>
     </div>
   </div>
