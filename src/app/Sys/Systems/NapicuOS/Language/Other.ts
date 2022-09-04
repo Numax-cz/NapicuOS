@@ -98,7 +98,10 @@ export const lang_verify_en = "Verify";
 export const lang_verify_cs = "Ověřit";
 
 export const lang_enter_root_pass_en = "Enter the root password";
-export const lang_enter_root_pass_cs = "Zadejte heslo roota";
+export const lang_enter_root_pass_cs = "Heslo je nesprávné";
+
+export const lang_pass_error_en = "Password is incorrect";
+export const lang_pass_error_cs = "Zadejte heslo roota";
 
 export const lang_last_update_minutes_en = (minutes: number) => {
   return `Last updated ${minutes} ${(minutes == 1) ? "minute" : "minutes "} ago`;

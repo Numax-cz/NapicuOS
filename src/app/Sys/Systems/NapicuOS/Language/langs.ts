@@ -46,7 +46,7 @@ import {
   lang_last_update_minutes_cs,
   lang_last_update_minutes_en,
   lang_none_cs,
-  lang_none_en,
+  lang_none_en, lang_pass_error_cs, lang_pass_error_en,
   lang_password_cs,
   lang_password_en,
   lang_Places_cs,
@@ -144,7 +144,8 @@ export const NapicuOSLanguages = {
       settings_verify_1: lang_verify_user_en,
       settings_verify_2: lang_verify_user_2_en,
       verify: lang_verify_en,
-      enter_root_pass: lang_enter_root_pass_en
+      enter_root_pass: lang_enter_root_pass_en,
+      pass_error: lang_pass_error_en
     }
   },
 
@@ -209,7 +210,8 @@ export const NapicuOSLanguages = {
       settings_verify_1: lang_verify_user_cs,
       settings_verify_2: lang_verify_user_2_cs,
       verify: lang_verify_cs,
-      enter_root_pass: lang_enter_root_pass_cs
+      enter_root_pass: lang_enter_root_pass_cs,
+      pass_error: lang_pass_error_cs
     }
   }
 }
