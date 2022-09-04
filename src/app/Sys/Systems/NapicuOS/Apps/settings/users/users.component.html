@@ -1,4 +1,18 @@
-<section class="MainContent">
+<div style="position:relative;" clickable="true">
+  <ng-container *ngIf="!this.verifyRoot">
+    <div class="VerifyMenu" clickable="true">
+      <div>
+        <div class="MainText">{{GetVerify1Text}}</div>
+        <div class="BotText">{{GetVerify2Text}}</div>
+      </div>
+      <div>
+        <div class="NapicuOSSimpleButton">
+          <button (click)="openVerifyUser()">Verify</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <section class="MainContent">
   <!-- Users profile -->
   <div class="UserProfile">
     <img [src]="GetUserIcon" alt="User">
@@ -48,7 +62,7 @@
     </div>
   </div>
 
-  <!--Change username menu-->
+  <!--Change username menu && verify menu-->
   <ng-container *ngIf="showInputMenu && inputMenuData">
     <section>
       <app-input clickable="true" [data]="inputMenuData"  class="Input" ></app-input>
@@ -67,3 +81,4 @@
 <!--    </div>-->
 <!--  </ng-container>-->
 </section>
+</div>

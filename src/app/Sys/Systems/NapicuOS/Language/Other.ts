@@ -88,6 +88,12 @@ export const lang_auto_auth_cs = "Automatické přihlášení";
 export const lang_weather_data_from_en = "The weather data comes from ";
 export const lang_weather_data_from_cs = "Údaje o počasí pochází z";
 
+export const lang_verify_user_en = "Unlock To add users and Change Settings";
+export const lang_verify_user_cs = "Odemkněte, abyste mohli přidávat uživatele a měnit nastavení";
+
+export const lang_verify_user_2_en = "Some settings must be unlocked before they can be changed";
+export const lang_verify_user_2_cs = "Některá nastavení musí být odemknuta, než je můžete změnit";
+
 export const lang_last_update_minutes_en = (minutes: number) => {
   return `Last updated ${minutes} ${(minutes == 1) ? "minute" : "minutes "} ago`;
 };

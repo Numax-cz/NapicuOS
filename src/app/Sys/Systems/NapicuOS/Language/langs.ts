@@ -59,7 +59,7 @@ import {
   lang_time_custom_wallpaper_cs,
   lang_time_custom_wallpaper_en,
   lang_time_format_cs,
-  lang_time_format_en,
+  lang_time_format_en, lang_verify_user_2_cs, lang_verify_user_2_en, lang_verify_user_cs, lang_verify_user_en,
   lang_weather_data_from_cs,
   lang_weather_data_from_en,
   lang_yes_cs,
@@ -134,7 +134,9 @@ export const NapicuOSLanguages = {
       auto_auth: lang_auto_auth_en,
       auth_and_login: lang_auth_and_pass_en,
       sys_lang: lang_system_lang_en,
-      add_user: lang_add_user_en
+      add_user: lang_add_user_en,
+      settings_verify_1: lang_verify_user_en,
+      settings_verify_2: lang_verify_user_2_en,
     }
   },
 
@@ -195,7 +197,9 @@ export const NapicuOSLanguages = {
       auto_auth: lang_auto_auth_cs,
       auth_and_login: lang_auth_and_pass_cs,
       sys_lang: lang_system_lang_cs,
-      add_user: lang_add_user_cs
+      add_user: lang_add_user_cs,
+      settings_verify_1: lang_verify_user_cs,
+      settings_verify_2: lang_verify_user_2_cs,
     }
   }
 }

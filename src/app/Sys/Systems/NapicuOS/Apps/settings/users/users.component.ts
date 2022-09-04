@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.verifyRoot = (NapicuOS.get_active_user_permission() == SystemUserPermissionsEnumMetadata.SuperUser);
   }
 
 
@@ -53,6 +54,20 @@ export class UsersComponent implements OnInit {
       submitFunction: this.submitNewUserPassword,
       rejectFunction: this.closeInputMenu,
       checkFunction: this.checkNewUserPassowrd
+    }
+    this.openInputMenu();
+  }
+
+  public openVerifyUser(): void {
+    if(this.showInputMenu) return;
+    this.inputMenuData = {
+      inputData: {
+        value: NapicuOS.get_language_words().other.change_username,
+        buttonType: NapicuOS.get_button_type_rename_cancel()
+      },
+      submitFunction: this.submitNewUserName,
+      rejectFunction: this.closeInputMenu,
+      checkFunction: this.checkNewUserName
     }
     this.openInputMenu();
   }
@@ -102,7 +117,6 @@ export class UsersComponent implements OnInit {
   protected closeInputMenu = (): void  => {
     this.showInputMenu = false;
   }
-
 
   // public newNameSubmit(value: string): void {
   //
@@ -175,5 +189,13 @@ export class UsersComponent implements OnInit {
 
   get GetTypeUser(): string[]{
     return Object.values(SystemUserPermissionsEnumMetadata)
+  }
+
+  get GetVerify1Text(): string{
+    return NapicuOS.get_language_words().other.settings_verify_1;
+  }
+
+  get GetVerify2Text(): string{
+    return NapicuOS.get_language_words().other.settings_verify_2;
   }
 }

@@ -7,6 +7,26 @@
   min-width: 400px;
 }
 
+.VerifyMenu{
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background-color: var(--NapicuCalendarSelectedMonthColor);
+
+  .MainText{
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .BotText{
+    font-size: .95rem;
+  }
+}
+
 .UserProfile{
   display: flex;
   align-items: center;
