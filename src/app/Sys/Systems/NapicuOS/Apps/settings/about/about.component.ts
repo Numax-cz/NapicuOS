@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NapicuBios} from "../../../SystemComponents/Bios";
 import {NapicuOS} from "../../../system.napicuos";
-import {AppMenuInputData} from "../../../interface/InputAlert";
+import {AppInputCheckFunctionReturn, AppMenuInputData} from "../../../interface/InputAlert";
 import {SystemStateMetadata, SystemStringStateCorrection} from "../../../interface/System";
 
 @Component({
@@ -38,9 +38,9 @@ export class AboutComponent implements OnInit {
     this.closeInputMenu();
   }
 
-  protected checkNewHostValid = (value: string): boolean => {
+  protected checkNewHostValid = (value: string): AppInputCheckFunctionReturn => {
     let lng: SystemStringStateCorrection = NapicuOS.check_hostname(value);
-    return lng === SystemStateMetadata.StringCorrect;
+    return {submit: (lng === SystemStateMetadata.StringCorrect)};
   }
 
   protected closeInputMenu = (): void  => {

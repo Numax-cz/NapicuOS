@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AppMenuInputData} from "../../interface/InputAlert";
+import { AppInputCheckFunctionReturn, AppMenuInputData} from "../../interface/InputAlert";
+
 
 
 @Component({
@@ -10,6 +11,7 @@ import {AppMenuInputData} from "../../interface/InputAlert";
 export class AppInputComponent implements OnInit {
   public declare inputValue: string;
   public allowSubmit: boolean = false;
+  public declare errorMessage: string | undefined;
   @Input() public declare data: AppMenuInputData;
 
   constructor() { }
@@ -22,10 +24,16 @@ export class AppInputComponent implements OnInit {
   }
 
   public onSubmit(): void {
-      this.data.submitFunction(this.inputValue);
+     let i: AppInputCheckFunctionReturn | void =  this.data.submitFunction(this.inputValue);
+     if(i){
+       this.allowSubmit = !!i?.submit;
+       this.errorMessage = i?.message;
+     }
   }
 
   public onChangeInput(): void {
-    this.allowSubmit = !!this.data.checkFunction?.(this.inputValue) ;
+    let i = this.data.checkFunction?.(this.inputValue);
+    this.allowSubmit = !!i?.submit;
+    this.errorMessage = i?.message;
   }
 }

@@ -12,8 +12,12 @@ export declare interface InputAlertData {
 
 
 
-export declare type AppInputSubmitFunction = (value: string) => void;
-export declare type AppInputCheckFunction = (value: string) => boolean;
+export declare type AppInputCheckFunction = (value: string) => AppInputCheckFunctionReturn;
+
+export declare interface AppInputCheckFunctionReturn{
+  submit: boolean;
+  message?: string;
+}
 
 declare interface InputAppAlertData {
   value: string,
@@ -23,7 +27,7 @@ declare interface InputAppAlertData {
 
 export declare interface AppMenuInputData{
   inputData: InputAppAlertData,
-  submitFunction: AppInputSubmitFunction,
+  submitFunction: AppInputCheckFunction | ((value: string) => void),
   rejectFunction?: () => void,
   checkFunction?: AppInputCheckFunction;
 }

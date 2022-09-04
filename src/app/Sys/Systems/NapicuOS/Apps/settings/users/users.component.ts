@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
-import {AppMenuInputData} from "../../../interface/InputAlert";
+import {AppInputCheckFunctionReturn, AppMenuInputData} from "../../../interface/InputAlert";
 import {SystemStateMetadata, SystemUserStateData} from "../../../interface/System";
 import {User} from "../../../SystemComponents/User";
 import {SettingsComponent} from "../settings.component";
@@ -62,12 +62,12 @@ export class UsersComponent implements OnInit {
     if(this.showInputMenu) return;
     this.inputMenuData = {
       inputData: {
-        value: NapicuOS.get_language_words().other.change_username,
-        buttonType: NapicuOS.get_button_type_rename_cancel()
+        value: NapicuOS.get_language_words().other.enter_root_pass,
+        buttonType: NapicuOS.get_button_type_verify_cancel()
       },
-      submitFunction: this.submitNewUserName,
+      submitFunction: this.submitVerifyRootUser,
       rejectFunction: this.closeInputMenu,
-      checkFunction: this.checkNewUserName
+      checkFunction: this.checkVerifyRootUser
     }
     this.openInputMenu();
   }
@@ -98,16 +98,16 @@ export class UsersComponent implements OnInit {
     this.closeInputMenu();
   }
 
-  protected checkNewUserName = (value: string): boolean => {
-    return NapicuOS.check_username(value) === SystemStateMetadata.UserNotExists;
+  protected checkNewUserName = (value: string): AppInputCheckFunctionReturn => {
+    return {submit: (NapicuOS.check_username(value) === SystemStateMetadata.UserNotExists)};
   }
 
   protected submitNewUserPassword = (value: string): void => {
     this.closeInputMenu();
   }
 
-  protected checkNewUserPassowrd = (value: string): boolean => {
-    return NapicuOS.check_password(value) === SystemStateMetadata.StringCorrect;
+  protected checkNewUserPassowrd = (value: string): AppInputCheckFunctionReturn => {
+    return {submit: (NapicuOS.check_password(value) === SystemStateMetadata.StringCorrect)};
   }
 
   protected openInputMenu(): void {
@@ -116,6 +116,19 @@ export class UsersComponent implements OnInit {
 
   protected closeInputMenu = (): void  => {
     this.showInputMenu = false;
+  }
+
+  protected checkVerifyRootUser = (): AppInputCheckFunctionReturn => {
+
+
+
+    return {submit: true};
+  }
+
+  protected submitVerifyRootUser = (): AppInputCheckFunctionReturn => {
+
+    return {submit: false, message: "ERROR"};
+
   }
 
   // public newNameSubmit(value: string): void {
