@@ -119,16 +119,15 @@ export class UsersComponent implements OnInit {
   }
 
   protected checkVerifyRootUser = (): AppInputCheckFunctionReturn => {
-
-
-
     return {submit: true};
   }
 
-  protected submitVerifyRootUser = (): AppInputCheckFunctionReturn => {
-
-    return {submit: false, message: "ERROR"};
-
+  protected submitVerifyRootUser = (value: string): AppInputCheckFunctionReturn => {
+    let i = NapicuOS.verify_root_password(value);
+    if(!i) return {submit: false, message: NapicuOS.get_language_words().other.pass_error};
+    this.closeInputMenu();
+    this.verifyRoot = true;
+    return {submit: true}
   }
 
   // public newNameSubmit(value: string): void {
