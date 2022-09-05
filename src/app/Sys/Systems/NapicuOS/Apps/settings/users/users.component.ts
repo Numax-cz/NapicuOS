@@ -29,8 +29,6 @@ export class UsersComponent implements OnInit {
     this.verifyRoot = (NapicuOS.get_active_user_permission() == SystemUserPermissionsEnumMetadata.SuperUser);
   }
 
-
-
   public openSetUserNameMenu(): void {
     if(this.showInputMenu) return;
     this.inputMenuData = {

@@ -3,7 +3,9 @@
 
 .MainContent{
   width: 40%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
   min-width: 400px;
 }
 
@@ -56,7 +58,7 @@
 }
 
 .UserSettings{
-  margin: 90px auto;
+  margin: 40px auto;
 }
 
 .table{

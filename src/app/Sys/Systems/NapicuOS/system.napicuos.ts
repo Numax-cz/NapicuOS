@@ -1945,6 +1945,27 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Sets a user permission
+   * @param username
+   * @param perms
+   */
+  public static set_user_permission(username: string | undefined, perms: SystemUserPermissionsEnumMetadata): SystemUserStateData | SystemStateMetadata.Success {
+      let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
+      if(i === SystemStateMetadata.UserNotExists) return i;
+      i.permissions = perms;
+      this.update_config_to_cookies();
+      return SystemStateMetadata.Success
+  }
+
+  /**
+   * Sets a user perms
+   * @param perms
+   */
+  public static set_active_user_permission(perms: SystemUserPermissionsEnumMetadata): SystemUserStateData | SystemStateMetadata.Success {
+    return this.set_user_permission(this.get_active_user_username(), perms);
+  }
+
+  /**
    * Sets a new password for the user
    * @param username
    * @param password
