@@ -21,11 +21,13 @@ export class UsersComponent implements OnInit {
   public addUserMenuDisplayed: boolean = false;
   public verifyRoot: boolean = false;
   public usersList: User[] = [];
+  public declare selectedUser: number;
 
   constructor() { }
 
   ngOnInit(): void {
     this.updateUsersList();
+    this.selectedUser = this.GetActiveUserIndex;
     this.verifyRoot = (NapicuOS.get_active_user_permission() == SystemUserPermissionsEnumMetadata.SuperUser);
   }
 
@@ -63,11 +65,12 @@ export class UsersComponent implements OnInit {
     this.inputMenuData = {
       inputData: {
         value: NapicuOS.get_language_words().other.enter_root_pass,
-        buttonType: NapicuOS.get_button_type_verify_cancel()
+        buttonType: NapicuOS.get_button_type_verify_cancel(),
+        inputType: "password"
       },
       submitFunction: this.submitVerifyRootUser,
       rejectFunction: this.closeInputMenu,
-      checkFunction: this.checkVerifyRootUser
+      checkFunction: this.checkVerifyRootUser,
     }
     this.openInputMenu();
   }
@@ -159,11 +162,11 @@ export class UsersComponent implements OnInit {
   }
 
   get GetActiveUser(): User | undefined{
-    return NapicuOS.get_active_user();
+    return this.usersList[this.selectedUser];
   }
 
   get GetActiveUserPerms(): number{
-    return NapicuOS.get_active_user_permission_index();
+    return Object.values(SystemUserPermissionsEnumMetadata).indexOf(<SystemUserPermissionsEnumMetadata>this.usersList[this.selectedUser].permissions);
   }
 
   get GetActiveUserAuth(): string {
@@ -213,5 +216,9 @@ export class UsersComponent implements OnInit {
 
   get GetUsersText(): string{
     return NapicuOS.get_language_words().other.users;
+  }
+
+  get GetActiveUserIndex(): number{
+    return NapicuOS.get_active_user_index();
   }
 }

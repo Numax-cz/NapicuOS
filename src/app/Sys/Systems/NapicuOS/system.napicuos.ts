@@ -1477,6 +1477,24 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return value.username === username;
     })[0];
   }
+  /**
+   * Returns the index of user by username if the user exists
+   * @param username Username of searched user
+   */
+  public static get_user_index(username: string | undefined): number{
+    return this.get_users().findIndex((user: User) =>{
+      return user.username === username;
+    });
+  }
+
+  /**
+   * Returns the index of active user
+   */
+  public static get_active_user_index(): number{
+    return this.get_users().findIndex((user: User) =>{
+      return user.username === this.get_active_user_username();
+    });
+  }
 
   /**
    * Returns the user home folder by username

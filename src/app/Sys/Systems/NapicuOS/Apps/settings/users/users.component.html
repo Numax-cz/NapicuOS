@@ -17,7 +17,9 @@
   <div class="UserProfile">
     <img [src]="GetUserIcon" alt="User">
     <h1>{{GetActiveUser?.username}}</h1>
-    <img class="edit" [src]="GetPencilIcon" alt="Edit" (click)="openSetUserNameMenu()">
+    <ng-container *ngIf="verifyRoot || this.selectedUser == GetActiveUserIndex">
+      <img class="edit" [src]="GetPencilIcon" alt="Edit" (click)="openSetUserNameMenu()">
+    </ng-container>
   </div>
 
   <!--Settings -->
@@ -32,16 +34,16 @@
                                      [options]="GetTypeUser"></napicu-drop-down-menu>
             </div>
           </ul>
-        <ul (click)="openSetUserPass()">
+        <ul (click)="openSetUserPass()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && this.selectedUser !== GetActiveUserIndex }">
           <div>{{GetPasswordText}}</div>
           <div>{{GetPassTxt}}<span class="NapicuArrowSettingLeft" >></span></div>
         </ul>
-        <ul>
+        <ul [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && this.selectedUser !== GetActiveUserIndex }">
           <div>{{GetAutoAuthText}}</div>
           <section class="SwitchNot UseAuthSwitch">
             <label class="switch UseAuthSwitch" clickable="false">
               <input type="checkbox" [checked]="!GetAutoLoginSwitchA"
-                     (change)="onChangeAutoLoginSwitch()">
+                     (change)="onChangeAutoLoginSwitch()" [disabled]="!verifyRoot">
               <span class="slider UseAuthSwitchSlider"></span>
             </label>
           </section>
@@ -53,13 +55,13 @@
   <div>
     <div class="BasicText">{{GetUsersText}}</div>
     <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
-      <ul *ngFor="let i of usersList">
+      <ul *ngFor="let i of usersList; let index = index" (click)="selectedUser = index">
         <div>{{i.username}}</div>
         <div>></div>
       </ul>
     </div>
     <div class="NapicuOSSimpleButton AddUserButton">
-      <button (click)="openAddUserMenu()">{{GetAddUserText}}</button>
+      <button (click)="openAddUserMenu()" [disabled]="!verifyRoot">{{GetAddUserText}}</button>
     </div>
   </div>
 
