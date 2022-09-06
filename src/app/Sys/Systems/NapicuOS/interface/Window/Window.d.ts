@@ -1,10 +1,11 @@
 import {Type} from "@angular/core";
 import {windowButtonsMetadata, windowData} from "./WindowData";
 import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
+import {NapicuOS_available_language} from "../../Language/langs";
 
 export declare interface SystemWindowConstructorMetadata {
   component: Type<any>;
-  windowTitle?: string;
+  windowTitle?: { [key in NapicuOS_available_language]: string } | string;
   windowData: windowData;
   windowButtons?: windowButtonsMetadata;
   resizeAllowed?: boolean;

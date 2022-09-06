@@ -5,9 +5,10 @@ import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
 import {FlappyComponent} from "../../Apps/flappy/flappy.component";
+import {lang_App_Flappy_Title} from "../../Language/SystemApp";
 
 @NapicuApp({
-  appTitle: 'FlappyBird',
+  appTitle: lang_App_Flappy_Title,
   processTitle: SystemAppsProcessName.flappy,
   appComponent: FlappyComponent,
   windowData: Window.centerPos(70, 65),

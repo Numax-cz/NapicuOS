@@ -42,7 +42,7 @@
     </div>
 
     <div (mousedown)="activeWindow(i.Window, index); moveWindowIn(i.Window, $event)" class="TopWindowAppBar">
-      <div class="WindowAppTitle">{{ i.Window.windowTitle }}</div>
+      <div class="WindowAppTitle">{{ i.Window.getWindowTitle() }}</div>
       <div class="napicuos-App-window-M">
         <div (click)="minimized($event)" *ngIf="i.Window.windowButtons.minimized"
              class="MinButton"></div>

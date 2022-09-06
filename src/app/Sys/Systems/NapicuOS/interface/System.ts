@@ -2,12 +2,15 @@ import {Type} from '@angular/core';
 import {windowButtonsMetadata, windowData} from './Window/WindowData';
 import {SystemWindowConstructorMetadata} from "./Window/Window";
 import {SystemFile} from "../SystemComponents/File";
+import {NapicuOS_available_language, NapicuOSLanguages} from "../Language/langs";
 
 export declare interface SystemInformation{
   name: string,
   type: string,
   ver: string,
 }
+
+export declare type AppCreatTitleMetadata = { [key in NapicuOS_available_language]: string } | string
 
 export declare interface onStartUp {
   onStart(): void;
@@ -69,7 +72,7 @@ export declare interface AppCreatMetadata {
   /**
    * Application's title
    */
-  appTitle: string;
+  appTitle: AppCreatTitleMetadata;
   /**
    * Application's process name
    */

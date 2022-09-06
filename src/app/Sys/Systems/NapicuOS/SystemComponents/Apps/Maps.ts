@@ -5,9 +5,10 @@ import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
 import {MapsComponent} from "../../Apps/maps/maps.component";
+import {lang_App_Maps_Title} from "../../Language/SystemApp";
 
 @NapicuApp({
-  appTitle: 'Maps',
+  appTitle: lang_App_Maps_Title,
   processTitle: SystemAppsProcessName.maps,
   appComponent: MapsComponent,
   windowData: Window.centerPos(45, 45),

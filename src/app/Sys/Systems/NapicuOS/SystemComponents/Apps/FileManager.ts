@@ -8,10 +8,11 @@ import {NapicuApp} from "../../scripts/Decorators";
 
 import {SystemApp} from "../SystemApp";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
+import {lang_App_File_Title} from "../../Language/SystemApp";
 
 
 @NapicuApp({
-    appTitle: 'File',
+    appTitle: lang_App_File_Title,
     processTitle: SystemAppsProcessName.fileManager,
     appComponent: FileComponent,
     windowData: Window.centerPos(75, 75),

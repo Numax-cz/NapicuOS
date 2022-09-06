@@ -5,9 +5,10 @@ import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
 import {PaintComponent} from "../../Apps/paint/paint.component";
+import {lang_App_Paint_Title} from "../../Language/SystemApp";
 
 @NapicuApp({
-  appTitle: 'Paint',
+  appTitle: lang_App_Paint_Title,
   processTitle: SystemAppsProcessName.paint,
   appComponent: PaintComponent,
   windowData: Window.centerPos(45, 45),

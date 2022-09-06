@@ -4,6 +4,8 @@ import {percentage, percentageValue,} from '../scripts/getPercentage';
 import {WindowComponent} from '../template/window/window.component';
 import {SystemWindowConstructorMetadata} from "../interface/Window/Window";
 import {NapicuOS} from "../system.napicuos";
+import {NapicuOS_available_language} from "../Language/langs";
+import {AppCreatTitleMetadata} from "../interface/System";
 
 export class Window {
   /**
@@ -21,7 +23,7 @@ export class Window {
   /**
    * Title of the application window
    */
-  public windowTitle: string = 'Window';
+  protected windowTitle: AppCreatTitleMetadata = {en: 'Window', cs: "Window"};
   /**
    * Specifies whether the application window is displayed
    */
@@ -277,6 +279,10 @@ export class Window {
 
   //? WindowTitle
   public setWindowTitle(title: string): void {
-    this.windowTitle = title;
+   this.windowTitle = title;
+  }
+
+  public getWindowTitle(): string{
+    return (typeof this.windowTitle != "string" ) ? this.windowTitle[NapicuOS.get_active_user_language()] : this.windowTitle;
   }
 }

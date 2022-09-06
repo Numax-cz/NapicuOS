@@ -5,9 +5,10 @@ import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
 import {SettingsComponent} from "../../Apps/settings/settings.component";
+import {lang_App_Settings_Title} from "../../Language/SystemApp";
 
 @NapicuApp({
-  appTitle: 'Settings',
+  appTitle: lang_App_Settings_Title,
   processTitle: SystemAppsProcessName.settings,
   appComponent: SettingsComponent,
   windowData: Window.centerPos(68, 70),

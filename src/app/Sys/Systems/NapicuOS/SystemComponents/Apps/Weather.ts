@@ -6,9 +6,10 @@ import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
 import {WeatherComponent} from "../../Apps/weather/weather.component";
+import {lang_App_Weather_Title} from "../../Language/SystemApp";
 
 @NapicuApp({
-  appTitle: 'Weather',
+  appTitle: lang_App_Weather_Title,
   processTitle: SystemAppsProcessName.weather,
   appComponent: WeatherComponent,
   windowData: Window.centerPos(53, 67),

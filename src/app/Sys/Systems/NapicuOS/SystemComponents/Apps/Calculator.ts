@@ -5,9 +5,10 @@ import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
 import {CalculatorComponent} from "../../Apps/calculator/calculator.component";
+import {lang_App_Calculator_Title} from "../../Language/SystemApp";
 
 @NapicuApp({
-  appTitle: 'Calculator',
+  appTitle: lang_App_Calculator_Title,
   processTitle: SystemAppsProcessName.calculator,
   appComponent: CalculatorComponent,
   windowData: Window.centerPos(20, 45),

@@ -5,9 +5,10 @@ import {WordpadComponent} from "../../Apps/wordpad/wordpad.component";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {AppCreatMetadata} from "../../interface/System";
+import {lang_App_Notepad_Title} from "../../Language/SystemApp";
 
 @NapicuApp({
-  appTitle: 'NotePad',
+  appTitle: lang_App_Notepad_Title,
   processTitle: SystemAppsProcessName.note,
   appComponent: WordpadComponent,
   windowData: Window.centerPos(45, 45),
