@@ -147,8 +147,8 @@ export class UsersComponent implements OnInit {
     // SettingsComponent.disableEvent();
   }
 
-  public onSetPermission = (): void => {
-
+  public onSetPermission = (value: number): void => {
+    NapicuOS.set_active_user_permission(value);
   }
 
   // public closeAddUserMenu = (): void => {

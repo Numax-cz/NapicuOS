@@ -1979,8 +1979,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Sets a user perms
    * @param perms
    */
-  public static set_active_user_permission(perms: SystemUserPermissionsEnumMetadata): SystemUserStateData | SystemStateMetadata.Success {
-    return this.set_user_permission(this.get_active_user_username(), perms);
+  public static set_active_user_permission(perms: SystemUserPermissionsEnumMetadata | number): SystemUserStateData | SystemStateMetadata.Success {
+    return this.set_user_permission(this.get_active_user_username(), (typeof perms !== "number") ? perms : Object.values(SystemUserPermissionsEnumMetadata)[perms]);
   }
 
   /**
