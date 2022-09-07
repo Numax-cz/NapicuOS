@@ -9,6 +9,6 @@ export function initLogout(): void {
         NapicuOS.logout_user();
         resolve();
       });
-    })
+    }, "Logout active user")
   );
 }

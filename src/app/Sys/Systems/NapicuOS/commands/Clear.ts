@@ -17,6 +17,6 @@ export function initClearTerminal(): void {
           stateCode: CommandStateCodeMetadata.HelpCommand,
         })
       });
-    })
+    }, "Clear terminal")
   )
 }

@@ -34,6 +34,6 @@ export function initWordPad(): void {
         });
         //TODO Return file not exist
       });
-    })
+    }, "Open notepad application")
   )
 }

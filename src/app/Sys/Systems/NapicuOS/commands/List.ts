@@ -43,6 +43,6 @@ export function initLs(): void {
           }
         }
       });
-    })
+    }, "List files in directory")
   )
 }

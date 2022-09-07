@@ -19,6 +19,7 @@ import {initLs} from "./commands/List";
 import {initMkdir} from "./commands/Mkdir";
 import {initSettings} from "./commands/Settings";
 import {initEval} from "./commands/Calc";
+import {initHelp} from "./commands/Help";
 
 
 export function initAllCommands(): void {
@@ -28,7 +29,7 @@ export function initAllCommands(): void {
       return new Promise((resolve) => {
         resolve();
       });
-    })
+    }, "Run terminal application")
   );
 
   initGetSystemInformation();
@@ -46,6 +47,7 @@ export function initAllCommands(): void {
   initLogout();
   initOpenApp();
   initEval();
+  initHelp();
   //APPS
   initWordPad();
   initFileManager();

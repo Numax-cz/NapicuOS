@@ -26,6 +26,6 @@ export function initKillProcess(): void {
           });
         }
       });
-    })
+    }, "Kill process by PID")
   );
 }

@@ -91,6 +91,6 @@ export function initSetSystemInformation(): void {
           });
         }
       });
-    })
+    }, "Set system information")
   );
 }

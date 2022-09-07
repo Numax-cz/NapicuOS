@@ -14,5 +14,5 @@ export function initSettings(): void {
         stateCode: CommandStateCodeMetadata.success,
       });
     });
-  }));
+  }, "Open setting application"));
 }

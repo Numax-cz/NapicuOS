@@ -137,6 +137,6 @@ export function initGetSystemInformation(): void {
           stateCode: CommandStateCodeMetadata.HelpCommand,
         });
       });
-    })
+    }, "Get system information")
   );
 }

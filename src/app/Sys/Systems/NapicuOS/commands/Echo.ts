@@ -27,6 +27,6 @@ export function initEcho(): void {
         }
         resolve();
       });
-    })
+    }, "Print text on terminal")
   )
 }

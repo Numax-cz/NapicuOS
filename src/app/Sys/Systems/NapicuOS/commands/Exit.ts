@@ -8,6 +8,6 @@ export function initExitFromConsole(): void {
       return new Promise((resolve) => {
         resolve(NapicuOS.get_system_activated_window_app()?.kill());
       });
-    })
+    }, "Exit from terminal application")
   );
 }

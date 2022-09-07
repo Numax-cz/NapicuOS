@@ -22,22 +22,29 @@ export class Command {
     params?: string[],
     terminal?: TerminalClass
   ) => Promise<CommandFunMetadata>;
+  /**
+   * Command help command
+   */
+  private declare _helpValue: string;
 
   /**
    * @param {string} commandName Full command name
    * @param {string} command The expression after which the command function is executed
    * @param {Function} fun Command Function
+   * @param helpValue
    */
   constructor(
     commandName: string,
     command: string,
     fun: (
       params?: string[], terminal?: TerminalClass
-    ) => Promise<CommandFunMetadata>
+    ) => Promise<CommandFunMetadata>,
+    helpValue?: string
   ) {
     this._commandName = commandName;
     this._command = command.toLocaleLowerCase();
     this.fun = fun;
+    this._helpValue = helpValue || "";
   }
 
   /**
@@ -52,6 +59,13 @@ export class Command {
    */
   get command(): string {
     return this._command;
+  }
+
+  /**
+   * Returns the command help value
+   */
+  get commandHelp(): string {
+    return this._helpValue;
   }
 
   /**

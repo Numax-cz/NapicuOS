@@ -42,5 +42,5 @@ export function initMkdir(): void {
         stateCode: CommandStateCodeMetadata.HelpCommand,
       })
     });
-  }));
+  }, "Create a directory"));
 }

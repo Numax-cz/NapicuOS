@@ -12,6 +12,6 @@ export function initOpenApp(): void {
           resolve({linesForCMD: [new Line(`RUN : ${x}`)], stateCode: x});
         }
       });
-    })
+    }, "Open system application")
   );
 }

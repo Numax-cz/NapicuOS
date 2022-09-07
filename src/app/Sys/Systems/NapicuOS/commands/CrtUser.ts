@@ -50,6 +50,6 @@ export function initCreateUser(): void {
           });
         }
       });
-    })
+    }, "Creat a new user")
   );
 }

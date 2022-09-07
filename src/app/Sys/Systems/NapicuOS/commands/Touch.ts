@@ -28,5 +28,5 @@ export function initTouch(): void {
         //TODO PARAMS is undefined & terminal
       }
     });
-  }));
+  }, "Creat a file"));
 }

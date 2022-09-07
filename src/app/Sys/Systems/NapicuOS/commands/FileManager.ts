@@ -13,5 +13,5 @@ export function initFileManager(): void {
         stateCode: CommandStateCodeMetadata.success,
       });
     });
-  }));
+  }, "Open file manager application"));
 }

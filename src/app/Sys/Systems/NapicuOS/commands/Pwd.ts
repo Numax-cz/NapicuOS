@@ -14,6 +14,6 @@ export function initPwd(): void {
           stateCode: CommandStateCodeMetadata.success,
         });
       });
-    })
+    }, "Print full path")
   );
 }

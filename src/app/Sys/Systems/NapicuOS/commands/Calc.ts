@@ -27,6 +27,6 @@ export function initEval(): void {
         }
         resolve();
       });
-    })
+    }, "Command calculator")
   )
 }

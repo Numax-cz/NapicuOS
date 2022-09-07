@@ -45,6 +45,6 @@ export function initChangeDirectory(): void {
           });
         }
       });
-    })
+    }, "Change directory")
   )
 }
