@@ -6,23 +6,23 @@
       <section>
         <div class="AppInputSegment">
           <div>Your name</div>
-          <input spellcheck="false" type="text" name="username" formControlName="username"
+          <input class="NapicuOSSimpleInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': !checkUsername()}"  spellcheck="false" type="text" name="username" formControlName="username"
                  autocomplete="off"/>
         </div>
         <div class="AppInputSegment">
           <div>Your computer’s name</div>
-          <input spellcheck="false" type="text" name="hostname" formControlName="hostname" autocomplete="off"/>
+          <input class="NapicuOSSimpleInput" spellcheck="false" type="text" name="hostname" formControlName="hostname" autocomplete="off"/>
         </div>
       </section>
 
       <section formGroupName="passwords">
         <div class="AppInputSegment">
           <div>Chose a password</div>
-          <input spellcheck="false" type="password" name="password" formControlName="pass1" autocomplete="off"/>
+          <input class="NapicuOSSimpleInput" spellcheck="false" type="password" name="password" formControlName="pass1" autocomplete="off"/>
         </div>
         <div class="AppInputSegment">
           <div>Confirm your password</div>
-          <input spellcheck="false" type="password" name="password2" formControlName="pass2" autocomplete="off"/>
+          <input class="NapicuOSSimpleInput" spellcheck="false" type="password" name="password2" formControlName="pass2" autocomplete="off"/>
         </div>
       </section>
     </form>

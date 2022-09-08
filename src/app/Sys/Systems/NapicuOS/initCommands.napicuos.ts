@@ -24,13 +24,7 @@ import {initHelp} from "./commands/Help";
 
 export function initAllCommands(): void {
   //? This is test for debugging
-  NapicuOS.register_command(
-    new Command('Terminal', SystemCommandsPrefixEnum.shellCommand, (params: string[] | undefined) => {
-      return new Promise((resolve) => {
-        resolve();
-      });
-    }, "Run terminal application")
-  );
+
 
   initGetSystemInformation();
   initExitFromConsole();

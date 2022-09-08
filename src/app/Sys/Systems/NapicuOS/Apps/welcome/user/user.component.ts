@@ -17,6 +17,8 @@ import {
   WelcomeUserForm,
   welcomeUserInstallationDataMetadata
 } from "../../../interface/Apps/Welcome";
+import {NapicuOS} from "../../../system.napicuos";
+import {SystemStateMetadata} from "../../../interface/System";
 
 @Component({
   selector: 'app-user',
@@ -70,6 +72,10 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
 
   public GetDefaultHostName(): string {
     return SYSTEM_DEFAULT_HOSTNAME;
+  }
+
+  public checkUsername(): boolean {
+    return (NapicuOS.check_username(<string>this.formData.value.username) === SystemStateMetadata.UserNotExists || !this.formData.value.username);
   }
 }
 
