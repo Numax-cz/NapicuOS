@@ -290,12 +290,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //Init Root user
     const system_root_user = new User(SYSTEM_ROOT_USER);
 
-    //Init default basic user
-    const system_default_user = new User(SYSTEM_DEFAULT_TEST_USER);
+    // //Init default basic user
+    // const system_default_user = new User(SYSTEM_DEFAULT_TEST_USER);
 
     if (!i?.user.users.length) {
       //Initialization of all users
-      [system_default_user, system_root_user].forEach((user: User) => {
+      [system_root_user].forEach((user: User) => {
         NapicuOS.add_user(user);
       });
     }
@@ -307,7 +307,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       });
     }
 
-    initUser = NapicuOS.get_user_by_username(i?.user.activeUser) || system_default_user;
+    initUser = NapicuOS.get_user_by_username(i?.user.activeUser) || system_root_user;
 
 
     //Automatic login of the default user
