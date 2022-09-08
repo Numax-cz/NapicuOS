@@ -74,8 +74,20 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
     return SYSTEM_DEFAULT_HOSTNAME;
   }
 
-  public checkUsername(): boolean {
-    return (NapicuOS.check_username(<string>this.formData.value.username) === SystemStateMetadata.UserNotExists || !this.formData.value.username);
+  public GetUsernameError(): boolean {
+    let i =this.formData.get("username")
+    return !i?.valid && !!i?.value.length;
+  }
+
+
+  public GetMainPasswordError(): boolean {
+    let i =this.formData.get("passwords")?.get("pass1")
+    return !i?.valid && !!i?.value.length;
+  }
+
+  public GetPasswordError(): boolean {
+    let i =this.formData.get("passwords")
+    return !i?.valid && !!i?.get("pass1")?.value.length && !!i?.get("pass2")?.value.length
   }
 }
 
