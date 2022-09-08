@@ -60,6 +60,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { DropDownInputComponent } from './Sys/Systems/NapicuOS/template/drop-down-input/drop-down-input.component';
 import { LanguageComponent } from './Sys/Systems/NapicuOS/Apps/settings/language/language.component';
 import { ThemeComponent } from './Sys/Systems/NapicuOS/Apps/settings/theme/theme.component';
+import {WelcomeLanguageComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/language/language.component";
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { ThemeComponent } from './Sys/Systems/NapicuOS/Apps/settings/theme/theme
     WeatherComponent,
     DropDownInputComponent,
     LanguageComponent,
-    ThemeComponent
+    ThemeComponent,
+    WelcomeLanguageComponent
   ],
   imports: [
     BrowserModule,

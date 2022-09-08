@@ -13,12 +13,12 @@ import {
 import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
 
 import {
-  SystemInstallationOptionsArrayBinds,
-  WelcomeUserForm,
+  SystemInstallationOptionsArrayBinds, WelcomeUserForm,
   welcomeUserInstallationDataMetadata
 } from "../../../interface/Apps/Welcome";
 import {NapicuOS} from "../../../system.napicuos";
-import {SystemStateMetadata} from "../../../interface/System";
+import {WelcomeComponent} from "../welcome.component";
+import {User} from "../../../SystemComponents/User";
 
 @Component({
   selector: 'app-user',
@@ -63,10 +63,18 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
   }
 
   public submit(): welcomeUserInstallationDataMetadata {
+    let username = this.formData.value.username;
+    let password = this.formData.value.passwords?.pass1;
+    let hostname = this.formData.value.hostname;
+
+    if (username && password) WelcomeComponent.userCache = new User({
+      username: username,
+      password: password,
+    })
     return {
-      username: this.formData.value.username,
-      password: this.formData.value.passwords?.pass1,
-      hostname: this.formData.value.hostname,
+      username: username,
+      password: password,
+      hostname: hostname,
     }
   }
 
@@ -78,7 +86,6 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
     let i =this.formData.get("username")
     return !i?.valid && !!i?.value.length;
   }
-
 
   public GetMainPasswordError(): boolean {
     let i =this.formData.get("passwords")?.get("pass1")

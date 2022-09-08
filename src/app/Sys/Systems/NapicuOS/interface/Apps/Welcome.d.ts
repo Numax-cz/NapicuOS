@@ -19,7 +19,8 @@ export declare type SystemInstallationOptionsArrayBinds = keyof SystemInstallati
 
 export declare interface SystemInstallationOptionsArrayMetadata {
   Welcome: SystemInstallationOptionsMetadata,
-  User: SystemInstallationOptionsMetadata
+  User: SystemInstallationOptionsMetadata,
+  Language: SystemInstallationOptionsMetadata,
 }
 
 

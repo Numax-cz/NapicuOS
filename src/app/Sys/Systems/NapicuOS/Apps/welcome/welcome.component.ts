@@ -5,6 +5,8 @@ import {
   SystemInstallationOptionsArrayBinds,
   SystemInstallationOptionsArrayMetadata
 } from "../../interface/Apps/Welcome";
+import {WelcomeLanguageComponent} from "./language/language.component";
+import {User} from "../../SystemComponents/User";
 
 
 @Component({
@@ -13,6 +15,7 @@ import {
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
+  public static userCache: User | null = null;
 
   public static systemInstallationOptions: SystemInstallationOptionsArrayMetadata = {
     Welcome: {
@@ -22,6 +25,10 @@ export class WelcomeComponent implements OnInit {
 
     User: {
       component: UserComponent,
+      data: null
+    },
+    Language: {
+      component: WelcomeLanguageComponent,
       data: null
     }
   };
