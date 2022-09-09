@@ -61,6 +61,7 @@ import { DropDownInputComponent } from './Sys/Systems/NapicuOS/template/drop-dow
 import { LanguageComponent } from './Sys/Systems/NapicuOS/Apps/settings/language/language.component';
 import { ThemeComponent } from './Sys/Systems/NapicuOS/Apps/settings/theme/theme.component';
 import {WelcomeLanguageComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/language/language.component";
+import {WelcomeThemeComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/theme/theme.component";
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import {WelcomeLanguageComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/lang
     DropDownInputComponent,
     LanguageComponent,
     ThemeComponent,
-    WelcomeLanguageComponent
+    WelcomeLanguageComponent,
+    WelcomeThemeComponent
   ],
   imports: [
     BrowserModule,

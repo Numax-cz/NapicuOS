@@ -8,21 +8,15 @@ export declare interface welcomeUserInstallationDataMetadata {
   hostname: string | undefined
 }
 
+export declare interface welcomeItemsOptionMetadata{
+  name: string,
+  component: Type<any>
+}
+
 export declare interface SystemInstallationOptionsMetadata {
-
   component: Type<any>,
-  data: any,
-
+  data: any
 }
-
-export declare type SystemInstallationOptionsArrayBinds = keyof SystemInstallationOptionsArrayMetadata;
-
-export declare interface SystemInstallationOptionsArrayMetadata {
-  Welcome: SystemInstallationOptionsMetadata,
-  User: SystemInstallationOptionsMetadata,
-  Language: SystemInstallationOptionsMetadata,
-}
-
 
 export declare interface WelcomeComponentMetadata<T> {
   welcomeComponentData: T | null,

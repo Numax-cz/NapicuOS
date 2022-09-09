@@ -7,9 +7,9 @@
       </div>
 
 
-      <div *ngFor="let i of GetKeysSystemInstallationOptionsKeys; let index = index" [ngClass]="{selected: index
+      <div *ngFor="let i of GetValuessSystemInstallationOptionsVal; let index = index" [ngClass]="{selected: index
       === GetSelectedBarOption}">
-        <p>{{i}}</p>
+        <p>{{i.name}}</p>
       </div>
     </div>
     <!--    Mainbox-->

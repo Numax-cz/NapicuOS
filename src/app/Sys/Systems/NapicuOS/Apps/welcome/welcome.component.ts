@@ -1,12 +1,11 @@
 import {Component, OnInit, Type} from '@angular/core';
 import {MainComponent} from "./main/main.component";
 import {UserComponent} from "./user/user.component";
-import {
-  SystemInstallationOptionsArrayBinds,
-  SystemInstallationOptionsArrayMetadata
-} from "../../interface/Apps/Welcome";
 import {WelcomeLanguageComponent} from "./language/language.component";
 import {User} from "../../SystemComponents/User";
+import {WelcomeThemeComponent} from "./theme/theme.component";
+import {ThemeComponent} from "../settings/theme/theme.component";
+import {welcomeItemsOptionMetadata} from "../../interface/Apps/Welcome";
 
 
 @Component({
@@ -16,23 +15,26 @@ import {User} from "../../SystemComponents/User";
 })
 export class WelcomeComponent implements OnInit {
   public static userCache: User | null = null;
+  public static selectedItem: number = 0;
 
-  public static systemInstallationOptions: SystemInstallationOptionsArrayMetadata = {
-    Welcome: {
+  public static systemInstallationOptions: welcomeItemsOptionMetadata[] = [
+    {
+      name: "Welcome",
       component: MainComponent,
-      data: null
     },
-
-    User: {
+    {
+      name: "User",
       component: UserComponent,
-      data: null
     },
-    Language: {
+    {
+      name: "Language",
       component: WelcomeLanguageComponent,
-      data: null
+    },
+    {
+      name: "Theme",
+      component: ThemeComponent,
     }
-  };
-  protected static selectedBarOption: number = 0;
+  ];
 
 
   constructor() {
@@ -44,20 +46,20 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-  public static get GetKeysSystemInstallationOptions(): string[] {
-    return Object.keys(WelcomeComponent.systemInstallationOptions);
+  public static get GetValuessSystemInstallationOptions(): welcomeItemsOptionMetadata{
+    return WelcomeComponent.systemInstallationOptions[WelcomeComponent.selectedItem];
+  }
+
+  public get GetValuessSystemInstallationOptionsVal(): welcomeItemsOptionMetadata[]{
+    return WelcomeComponent.systemInstallationOptions;
+  }
+
+  public get GetDisplayedComponent(): Type<any>{
+    return WelcomeComponent.systemInstallationOptions[WelcomeComponent.selectedItem].component;
   }
 
   public static get GetSelectedBarOption(): number {
-    return WelcomeComponent.selectedBarOption;
-  }
-
-  get GetDisplayedComponent(): Type<any> {
-    return WelcomeComponent.systemInstallationOptions[this.GetKeysSystemInstallationOptionsKeys[this.GetSelectedBarOption]].component;
-  }
-
-  get GetKeysSystemInstallationOptionsKeys(): Array<SystemInstallationOptionsArrayBinds> {
-    return WelcomeComponent.GetKeysSystemInstallationOptions as Array<SystemInstallationOptionsArrayBinds>;
+    return WelcomeComponent.selectedItem;
   }
 
   get GetSelectedBarOption(): number {
@@ -65,11 +67,10 @@ export class WelcomeComponent implements OnInit {
   }
 
   public static next(): void {
-    if (WelcomeComponent.selectedBarOption < this.GetKeysSystemInstallationOptions.length - 1) this.selectedBarOption += 1;
-    console.log(WelcomeComponent.systemInstallationOptions);
+    if (WelcomeComponent.selectedItem < this.systemInstallationOptions.length - 1) this.selectedItem++;
   }
 
   public static back(): void {
-    if (WelcomeComponent.selectedBarOption > 0) this.selectedBarOption -= 1;
+    if (WelcomeComponent.selectedItem > 0) this.selectedItem--;
   }
 }

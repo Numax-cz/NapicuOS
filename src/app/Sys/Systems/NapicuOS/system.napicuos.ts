@@ -309,7 +309,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Init users home directory
       //NapicuOS.creat_user_home_dirs(new User(user));
       i.user.users.forEach((user: UserConstructorMetadata) => {
-        NapicuOS.creat_user_home_dirs(user.username);
+        if(user.username !== SYSTEM_ROOT_USER.username) NapicuOS.creat_user_home_dirs(user.username);
       });
     }
 

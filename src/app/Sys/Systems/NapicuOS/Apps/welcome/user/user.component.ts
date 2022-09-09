@@ -13,7 +13,7 @@ import {
 import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
 
 import {
-  SystemInstallationOptionsArrayBinds, WelcomeUserForm,
+  WelcomeUserForm,
   welcomeUserInstallationDataMetadata
 } from "../../../interface/Apps/Welcome";
 import {NapicuOS} from "../../../system.napicuos";
@@ -26,9 +26,6 @@ import {User} from "../../../SystemComponents/User";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent extends WelcomeComponentClass<welcomeUserInstallationDataMetadata> implements OnInit {
-
-
-  public override bindArrayName: SystemInstallationOptionsArrayBinds = "User";
 
   public formData = new FormGroup<WelcomeUserForm>({
     username: new FormControl<string> ("",{ validators: [
