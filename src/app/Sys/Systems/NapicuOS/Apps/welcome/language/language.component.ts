@@ -4,15 +4,19 @@ import {NapicuOS} from "../../../system.napicuos";
 import {SettingsComponent} from "../../settings/settings.component";
 import {SYSTEM_IMAGES} from "../../../config/System";
 import {WelcomeComponent} from "../welcome.component";
+import {WelcomeComponentClass} from "../WelcomeComponentClass";
+import {welcomeUserInstallationDataMetadata} from "../../../interface/Apps/Welcome";
 
 @Component({
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss']
 })
-export class WelcomeLanguageComponent implements OnInit {
+export class WelcomeLanguageComponent extends WelcomeComponentClass<welcomeUserInstallationDataMetadata>  implements OnInit {
   public static declare selectedLang: NapicuOS_available_language;
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {
     WelcomeLanguageComponent.selectedLang = NapicuOS.get_active_user_language();
@@ -41,6 +45,14 @@ export class WelcomeLanguageComponent implements OnInit {
 
   get GetLanguage(): NapicuOS_available_language{
     return WelcomeLanguageComponent.selectedLang;
+  }
+
+  checkSubmit(): boolean {
+    return true;
+  }
+
+  submit(): void | welcomeUserInstallationDataMetadata {
+    return undefined;
   }
 
 }

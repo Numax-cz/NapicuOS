@@ -1,6 +1,7 @@
-<section class="MainContent">
+<section class="WelcomeMainComponentContent LanguageContent">
   <h1 class="BasicTitle">System language</h1>
-  <div class="languages">
+
+  <div class="WelcomeAppComponentContent languages">
     <div>
       <img [ngClass]="{selectedLanguage: GetLanguage === 'en'}" class="SettingsCursorHoverItem" [src]="GetUSAFlag" alt="Language flag" (click)="changeLanguage('en')">
     </div>
@@ -8,4 +9,8 @@
       <img [ngClass]="{selectedLanguage: GetLanguage === 'cs'}" class="SettingsCursorHoverItem" [src]="GetCzechFlag" alt="Language flag" (click)="changeLanguage('cs')">
     </div>
   </div>
+  <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
+    <button (click)="back()">Back</button>
+    <button (click)="next()" [disabled]="!checkSubmit()">Next</button>
+  </section>
 </section>

@@ -1941,8 +1941,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         const config = this.get_system_config_from_cookies();
         if (config) config.user.users.push(user);
         //this.creat_dirs(user.userSetting.drives.dir?.["home"], SYSTEM_DEFAULT_HOME_FOLDERS);
-        this.creat_dynamic_path_config(`/home/`, user.username);
-        this.creat_user_home_dirs(user.username);
+        if(user.username !== SYSTEM_ROOT_USER.username){
+          this.creat_dynamic_path_config(`/home/`, user.username);
+          this.creat_user_home_dirs(user.username);
+        }
 
         if (this.SystemCookiesConfig) {
           this.SystemCookiesConfig.user.users = this.get_users().map((i: User) => {
