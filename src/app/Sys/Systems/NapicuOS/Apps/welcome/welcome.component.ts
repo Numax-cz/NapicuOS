@@ -32,7 +32,7 @@ export class WelcomeComponent implements OnInit {
     },
     {
       name: "Theme",
-      component: ThemeComponent,
+      component: WelcomeThemeComponent,
     }
   ];
 

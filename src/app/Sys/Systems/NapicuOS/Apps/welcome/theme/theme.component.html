@@ -1,0 +1,47 @@
+<section class="WelcomeMainComponentContent ThemeContent">
+  <h1 class="BasicTitle">Themes</h1>
+
+  <div class="WelcomeAppComponentContent th">
+    <div class="themes">
+      <div class="windowExample NapicuThemeFeraDark " clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': getDarkTheme}" (click)="setDark()" style="position: relative;" clickable="false">
+          <div class="TopWindowAppBar">
+            <div class="WindowAppTitle">Terminal</div>
+            <div class="napicuos-App-window-M">
+              <div class="MinButton"></div>
+              <div class="FullButton"></div>
+              <div class="CloseButton"></div>
+            </div>
+          </div>
+          <div class="INAppWindow">
+            <section class="WindowContent in-window-example in-window-example-background-color"></section>
+          </div>
+        </section>
+        <div class="ThemeDesc">Dark</div>
+      </div>
+
+
+      <div class="windowExample NapicuThemeFeraWhite" clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': (getDarkTheme == false) }" (click)="setWhite()" style="position: relative;" clickable="false">
+          <div class="TopWindowAppBar">
+            <div class="WindowAppTitle">Terminal</div>
+            <div class="napicuos-App-window-M">
+              <div class="MinButton"></div>
+              <div class="FullButton"></div>
+              <div class="CloseButton"></div>
+            </div>
+          </div>
+          <div class="INAppWindow">
+            <section class="WindowContent in-window-example in-window-example-background-color"></section>
+          </div>
+        </section>
+        <div class="ThemeDesc">White</div>
+      </div>
+
+    </div>
+  </div>
+  <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
+    <button (click)="back()">Back</button>
+    <button (click)="next()" [disabled]="!checkSubmit()">Next</button>
+  </section>
+</section>

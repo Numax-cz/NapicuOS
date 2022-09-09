@@ -1,0 +1,49 @@
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/MainContentView";
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/BasicText";
+@import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/Cursor";
+@import "../styles";
+
+
+.ThemeContent{
+  height: 100%;
+  color: var(--NapicuTextColor);
+  padding-top: 40px;
+}
+
+.th{
+  padding: 50px 0;
+}
+
+.themes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.windowExample{
+  position: inherit;
+  width: 250px;
+}
+
+.Box{
+  width: 100%;
+  margin: 50px 0;
+  position: inherit;
+}
+
+.in-window-example{
+  height: 130px;
+}
+.ThemeDesc{
+  text-align: center;
+  margin: 15px 0 0;
+  font-size: 1rem;
+}
+
+.in-window-example-background-color{
+  background-color: var(--NapicuClassicDark2);
+}
+
+.selectedTheme{
+  border: 5px solid var(--NapicuCalendarSelectedMonthColor);
+}
