@@ -1534,6 +1534,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Returns whether the logged-in user is root
+   */
+  public static get_active_user_is_root(): boolean {
+    return this.get_active_user()?.username == SYSTEM_ROOT_USER.username
+  }
+
+  /**
    * Returns user notification settings
    */
   public static get_active_user_notification_receive(): boolean{
