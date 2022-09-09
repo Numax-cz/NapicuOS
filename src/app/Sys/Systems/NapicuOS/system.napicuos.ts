@@ -22,14 +22,14 @@ import {GET_SYSTEM_TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/Time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
-import {initAllStartUpApps, initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
+import { initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
   SYSTEM_DEFAULT_HOME_FOLDERS,
-  SYSTEM_DEFAULT_HOSTNAME, SYSTEM_DEFAULT_TEST_USER,
+  SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_DEFAULT_TIME_FORMAT,
   SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
@@ -93,6 +93,7 @@ import {NapicuDate} from "napicuformatter";
 import {OPEN_WEATHER_ICONS} from "./config/OpenWeather";
 import {lang_Days_cs, lang_Days_en} from "./Language/Days";
 import {lang_Months_cs, lang_Months_en} from "./Language/Months";
+import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -108,8 +109,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       users: []
     },
     hostname: SYSTEM_DEFAULT_HOSTNAME,
-    directorys: [],
+    directors: [],
     files: [],
+    firstRun: false
   };
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
@@ -237,7 +239,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Initialize all directories from config
    */
   protected loadDirectoriesFromConfig(): void {
-    let pth = NapicuOS.get_system_config_from_cookies()?.directorys;
+    let pth = NapicuOS.get_system_config_from_cookies()?.directors;
     if (pth) {
       pth.forEach((path: string) => {
         NapicuOS.creat_path(path);
@@ -264,9 +266,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public override onLogin(): void {
     if (!NapicuOS.get_if_user_active(NapicuOS.get_active_user()?.username)) {
-      initAllStartUpApps();
+      NapicuOS.initAllStartUpApps();
       NapicuOS.update_napicu_date_config_lang();
     }
+  }
+
+  public static initAllStartUpApps(): void {
+    if(!this.SystemCookiesConfig.firstRun) this.onFirstLoad();
   }
 
   /**
@@ -321,14 +327,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * A function that runs when a new process is started.
+   * Function that runs when a new process is started.
    */
   public static onRunNewProcess(): void {
     this.update_dock_items();
   }
 
   /**
-   * A function that starts when a new application is launched.
+   * Function that starts when a new application is launched.
    */
   public static onRunNewApp(): void {
     this.update_dock_items();
@@ -339,6 +345,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static onKillProcess(): void {
     this.update_dock_items();
+  }
+
+  /**
+   * Function that runs on first init
+   */
+  public static onFirstLoad(): void {
+    NapicuOS.open_app(SystemAppsProcessName.installer);
   }
 
   public static getTime(): NapicuDate {
@@ -969,7 +982,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns dynamic paths from cookies
    */
   public static get_system_dynamic_paths_cookies_config(): string[] | null{
-    return NapicuOS.get_system_config_from_cookies()?.directorys || null;
+    return NapicuOS.get_system_config_from_cookies()?.directors || null;
   }
 
   /**
@@ -1022,11 +1035,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   protected static remove_dynamic_path(path: string): SystemStateMetadata.Success | SystemStateMetadata.CookiesError | SystemStateMetadata.DirNotExist{
     let i:  NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies()
-    if(i?.directorys){
+    if(i?.directors){
       let pth_md = PathHasLastSlash(path);
-      let dir_index: number = i.directorys.indexOf(pth_md);
+      let dir_index: number = i.directors.indexOf(pth_md);
       if (dir_index >= 0){
-        i.directorys.splice(dir_index, 1);
+        i.directors.splice(dir_index, 1);
         this.update_config_to_cookies();
         return SystemStateMetadata.Success;
       }

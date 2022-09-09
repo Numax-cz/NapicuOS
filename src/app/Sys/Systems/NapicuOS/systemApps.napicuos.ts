@@ -27,22 +27,11 @@ export function initAllSystemProcess(): void {
 
 //Before the user is logged in
 export function installAllApps(): void {
-
   SYSTEM_INITS_APPS.forEach((app: AppCreatMetadata) => {
     NapicuOS.install_app(app)
     console.log(app)
   });
 }
-
-export function initAllStartUpApps(): void {
-
-  // NapicuOS.run_command({
-  //   cmd:  SystemCommandsPrefixEnum.openAppCommand,
-  //   args: [SystemAppsProcessName.weather]
-  // });
-
-}
-
 
 //Applications
 export class NapicuApps {

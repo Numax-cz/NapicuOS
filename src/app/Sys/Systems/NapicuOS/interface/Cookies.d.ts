@@ -7,6 +7,7 @@ export declare interface NapicuOsCookiesTemplate {
     activeUser: string | null
   }
   hostname: string
-  directorys: string[],
+  directors: string[],
   files: NapicuOsCookiesFileMetadata[],
+  firstRun: boolean
 }
