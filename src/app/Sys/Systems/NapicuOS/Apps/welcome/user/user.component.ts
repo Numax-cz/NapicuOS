@@ -19,6 +19,8 @@ import {
 import {NapicuOS} from "../../../system.napicuos";
 import {WelcomeComponent} from "../welcome.component";
 import {User} from "../../../SystemComponents/User";
+import {WelcomeThemeComponent} from "../theme/theme.component";
+import {NapicuOSComponent} from "../../../components/napicu-os/napicu-os.component";
 
 @Component({
   selector: 'app-user',
@@ -64,10 +66,13 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
     let password = this.formData.value.passwords?.pass1;
     let hostname = this.formData.value.hostname;
 
-    if (username && password) WelcomeComponent.userCache = new User({
-      username: username,
-      password: password,
-    })
+    if (username && password){
+      WelcomeComponent.userCache = new User({
+        username: username,
+        password: password,
+        userSetting: NapicuOS.get_active_user()?.userSetting
+      })
+    }
     return {
       username: username,
       password: password,

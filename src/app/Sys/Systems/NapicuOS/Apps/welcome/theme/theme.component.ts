@@ -15,6 +15,7 @@ export class WelcomeThemeComponent extends WelcomeComponentClass<welcomeUserInst
   }
 
   ngOnInit(): void {
+
   }
 
   checkSubmit(): boolean {
