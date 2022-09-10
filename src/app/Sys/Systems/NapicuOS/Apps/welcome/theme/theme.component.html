@@ -1,6 +1,5 @@
 <section class="WelcomeMainComponentContent ThemeContent">
-  <h1 class="BasicTitle">Themes</h1>
-
+  <h1 class="BasicTitle">{{GetThemeText}}</h1>
   <div class="WelcomeAppComponentContent th">
     <div class="themes">
       <div class="windowExample NapicuThemeFeraDark " clickable="false">
@@ -17,10 +16,8 @@
             <section class="WindowContent in-window-example in-window-example-background-color"></section>
           </div>
         </section>
-        <div class="ThemeDesc">Dark</div>
+        <div class="ThemeDesc">{{GetDarkText}}</div>
       </div>
-
-
       <div class="windowExample NapicuThemeFeraWhite" clickable="false">
         <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': (getDarkTheme == false) }" (click)="setWhite()" style="position: relative;" clickable="false">
           <div class="TopWindowAppBar">
@@ -35,7 +32,7 @@
             <section class="WindowContent in-window-example in-window-example-background-color"></section>
           </div>
         </section>
-        <div class="ThemeDesc">White</div>
+        <div class="ThemeDesc">{{GetWhiteText}}</div>
       </div>
 
     </div>

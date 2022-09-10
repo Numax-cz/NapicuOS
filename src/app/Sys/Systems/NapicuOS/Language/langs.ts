@@ -89,7 +89,13 @@ import {
   lang_your_username_en,
   lang_confirm_password_en,
   lang_confirm_password_cs,
-  lang_creat_new_user_cs, lang_creat_new_user_en
+  lang_creat_new_user_cs,
+  lang_creat_new_user_en,
+  lang_dark_en,
+  lang_white_en,
+  lang_dark_cs,
+  lang_white_cs,
+  lang_theme_en, lang_theme_cs
 } from "./Other";
 import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Month_en, lang_Year_cs, lang_Year_en} from "./Date";
 import {lang_Weather_city_not_found_cs, lang_Weather_city_not_found_en} from "./Weather";
@@ -173,7 +179,10 @@ export const NapicuOSLanguages = {
       your_hostname: lang_your_hostname_en,
       your_username: lang_your_username_en,
       confirm_pass: lang_confirm_password_en,
-      creat_new_user: lang_creat_new_user_en
+      creat_new_user: lang_creat_new_user_en,
+      dark: lang_dark_en,
+      white: lang_white_en,
+      theme: lang_theme_en
     }
   },
 
@@ -247,7 +256,10 @@ export const NapicuOSLanguages = {
       your_hostname: lang_your_hostname_cs,
       your_username: lang_your_username_cs,
       confirm_pass: lang_confirm_password_cs,
-      creat_new_user: lang_creat_new_user_cs
+      creat_new_user: lang_creat_new_user_cs,
+      dark: lang_dark_cs,
+      white: lang_white_cs,
+      theme: lang_theme_cs
     }
   }
 }

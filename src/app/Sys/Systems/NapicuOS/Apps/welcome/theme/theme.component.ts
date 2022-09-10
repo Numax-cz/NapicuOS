@@ -47,4 +47,16 @@ export class WelcomeThemeComponent extends WelcomeComponentClass<welcomeUserInst
   get GetBackButtonText(): string{
     return NapicuOS.get_language_words().other.back;
   }
+
+  get GetWhiteText(): string{
+    return NapicuOS.get_language_words().other.white;
+  }
+
+  get GetDarkText(): string{
+    return NapicuOS.get_language_words().other.dark;
+  }
+
+  get GetThemeText(): string {
+    return NapicuOS.get_language_words().other.theme;
+  }
 }

@@ -88,6 +88,15 @@ export const lang_time_format_cs = "Formát času";
 export const lang_time_custom_wallpaper_en = "Custom wallpaper";
 export const lang_time_custom_wallpaper_cs = "Vlastní tapeta";
 
+export const lang_dark_en = "Dark";
+export const lang_dark_cs = "Tmavý";
+
+export const lang_white_en = "White";
+export const lang_white_cs = "Světlý";
+
+export const lang_theme_en = "Theme";
+export const lang_theme_cs = "Vzhled";
+
 export const lang_system_volume_en = "System volume";
 export const lang_system_volume_cs = "Systemová hlasitost";
 
