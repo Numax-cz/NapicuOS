@@ -6,9 +6,13 @@
   font-weight: 900;
   font-size: 1.75rem;
 }
+*{
+  color: var(--NapicuTextColor) !important;
+
+}
 
 .BackgroundColor {
-  background-color: var(--NapicuAPPSWelcomeBackgroundColor);
+  background-color: var(--NapicuClassicDark2);
 }
 
 .MainBox {
@@ -27,7 +31,7 @@
 }
 
 #LeftBox {
-  background-color: #454948;
+  background-color: var(--NapicuClassicDark);
   padding: 20px 0;
 
   > div {
@@ -82,6 +86,6 @@
 }
 
 .selected {
-  background-color: #1c1c1c;
+  background-color: var(--NapicuSelectColor);
 }
 
