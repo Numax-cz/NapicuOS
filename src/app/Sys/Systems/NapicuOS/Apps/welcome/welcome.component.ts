@@ -6,6 +6,7 @@ import {User} from "../../SystemComponents/User";
 import {WelcomeThemeComponent} from "./theme/theme.component";
 import {ThemeComponent} from "../settings/theme/theme.component";
 import {welcomeItemsOptionMetadata} from "../../interface/Apps/Welcome";
+import {InstallComponent} from "./install/install.component";
 
 
 @Component({
@@ -33,6 +34,10 @@ export class WelcomeComponent implements OnInit {
     {
       name: "Theme",
       component: WelcomeThemeComponent,
+    },
+    {
+      name: "Install",
+      component: InstallComponent,
     }
   ];
 

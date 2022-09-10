@@ -55,4 +55,12 @@ export class WelcomeLanguageComponent extends WelcomeComponentClass<welcomeUserI
     return undefined;
   }
 
+  get GetNextButtonText(): string{
+    return NapicuOS.get_language_words().other.next;
+  }
+
+  get GetBackButtonText(): string{
+    return NapicuOS.get_language_words().other.back;
+  }
+
 }

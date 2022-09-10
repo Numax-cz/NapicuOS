@@ -98,5 +98,34 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
     let i =this.formData.get("passwords")
     return !i?.valid && !!i?.get("pass1")?.value.length && !!i?.get("pass2")?.value.length
   }
+
+  get GetNextButtonText(): string{
+    return NapicuOS.get_language_words().other.next;
+  }
+
+  get GetBackButtonText(): string{
+    return NapicuOS.get_language_words().other.back;
+  }
+
+  get GetUsernameText(): string{
+    return NapicuOS.get_language_words().other.your_username
+  }
+
+  get GetHostNameText(): string{
+    return NapicuOS.get_language_words().other.your_hostname;
+  }
+
+  get GetChosePasswordText(): string{
+    return NapicuOS.get_language_words().other.chose_pass;
+  }
+
+  get GetConfirmPasswordText(): string{
+    return NapicuOS.get_language_words().other.confirm_pass;
+  }
+
+  get GetCreatNewUserText(): string {
+    return NapicuOS.get_language_words().other.creat_new_user;
+  }
+
 }
 

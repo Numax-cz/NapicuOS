@@ -17,8 +17,8 @@
 
   </section>
   <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
-    <button (click)="back()">Back</button>
-    <button (click)="next()" [disabled]="!checkSubmit()">Next</button>
+    <button (click)="back()">{{GetBackButtonText}}</button>
+    <button (click)="next()" [disabled]="!checkSubmit()">{{GetNextButtonText}}</button>
   </section>
 </section>
 

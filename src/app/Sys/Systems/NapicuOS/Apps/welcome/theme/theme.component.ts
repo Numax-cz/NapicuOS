@@ -39,4 +39,12 @@ export class WelcomeThemeComponent extends WelcomeComponentClass<welcomeUserInst
   get getDarkTheme(): boolean{
     return WelcomeComponent.userCache?.userSetting.theme.dark || NapicuOS.get_active_user_dark_theme();
   }
+
+  get GetNextButtonText(): string{
+    return NapicuOS.get_language_words().other.next;
+  }
+
+  get GetBackButtonText(): string{
+    return NapicuOS.get_language_words().other.back;
+  }
 }

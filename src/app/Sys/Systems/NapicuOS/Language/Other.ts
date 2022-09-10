@@ -37,6 +37,12 @@ export const lang_none_cs = "Žádné";
 export const lang_yes_en = "Yes";
 export const lang_yes_cs = "Ano";
 
+export const lang_next_en = "Next";
+export const lang_next_cs = "Další";
+
+export const lang_back_en = "Back";
+export const lang_back_cs = "Zpět";
+
 export const lang_change_en = "Change";
 export const lang_change_cs = "Změnit";
 
@@ -47,13 +53,28 @@ export const lang_change_hostname_en = "Enter new hostname";
 export const lang_change_hostname_cs = "Zadejte nový hostname";
 
 export const lang_change_password_en = "Enter new password";
-export const lang_change_pasword_cs = "Zadejte nový heslo";
+export const lang_change_password_cs = "Zadejte nový heslo";
 
 export const lang_change_username_en = "Enter new username";
 export const lang_change_username_cs = "Zadejte nový uživatelský jméno";
 
+export const lang_your_hostname_en = "Your computer’s name";
+export const lang_your_hostname_cs = "Název počítače";
+
+export const lang_chose_password_en = "Chose a password";
+export const lang_chose_password_cs = "Vyberte si heslo";
+
+export const lang_your_username_en = "Your name";
+export const lang_your_username_cs = "Vaše jméno";
+
 export const lang_add_user_en = "Add User";
 export const lang_add_user_cs = "Přidat uživatele";
+
+export const lang_confirm_password_en = "Confirm your password";
+export const lang_confirm_password_cs = "Potvrďte své heslo";
+
+export const lang_creat_new_user_en = "Creat a new user";
+export const lang_creat_new_user_cs = "Vytvoření nového uživatele";
 
 export const lang_change_date_and_time_en = "Date & Time";
 export const lang_change_date_and_time_cs = "Datum a čas";

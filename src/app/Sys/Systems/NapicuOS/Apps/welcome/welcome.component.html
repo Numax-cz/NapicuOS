@@ -5,8 +5,6 @@
       <div style="padding-bottom: 8px;">
         <img alt="NapicuOSLogo" height="64px" src="/assets/systems/NapicuOS/Logo.svg" width="64px">
       </div>
-
-
       <div *ngFor="let i of GetValuessSystemInstallationOptionsVal; let index = index" [ngClass]="{selected: index
       === GetSelectedBarOption}">
         <p>{{i.name}}</p>

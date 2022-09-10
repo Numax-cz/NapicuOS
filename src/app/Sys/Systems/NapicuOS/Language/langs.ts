@@ -11,6 +11,8 @@ import {
   lang_auth_and_pass_en,
   lang_auto_auth_cs,
   lang_auto_auth_en,
+  lang_back_cs,
+  lang_back_en,
   lang_Cancel_any_cs,
   lang_Cancel_any_en,
   lang_change_cs,
@@ -22,7 +24,7 @@ import {
   lang_change_hostname_cs,
   lang_change_hostname_en,
   lang_change_password_en,
-  lang_change_pasword_cs,
+  lang_change_password_cs,
   lang_change_username_cs,
   lang_change_username_en,
   lang_Creat_any_cs,
@@ -42,11 +44,17 @@ import {
   lang_Enter_name_cs,
   lang_Enter_name_en,
   lang_enter_new_name_cs,
-  lang_enter_new_name_en, lang_enter_root_pass_cs, lang_enter_root_pass_en,
+  lang_enter_new_name_en,
+  lang_enter_root_pass_cs,
+  lang_enter_root_pass_en,
   lang_last_update_minutes_cs,
   lang_last_update_minutes_en,
+  lang_next_cs,
+  lang_next_en,
   lang_none_cs,
-  lang_none_en, lang_pass_error_cs, lang_pass_error_en,
+  lang_none_en,
+  lang_pass_error_cs,
+  lang_pass_error_en,
   lang_password_cs,
   lang_password_en,
   lang_Places_cs,
@@ -60,8 +68,11 @@ import {
   lang_time_custom_wallpaper_cs,
   lang_time_custom_wallpaper_en,
   lang_time_format_cs,
-  lang_time_format_en, lang_users_cs, lang_users_en,
-  lang_verify_cs, lang_verify_en,
+  lang_time_format_en,
+  lang_users_cs,
+  lang_users_en,
+  lang_verify_cs,
+  lang_verify_en,
   lang_verify_user_2_cs,
   lang_verify_user_2_en,
   lang_verify_user_cs,
@@ -69,7 +80,16 @@ import {
   lang_weather_data_from_cs,
   lang_weather_data_from_en,
   lang_yes_cs,
-  lang_yes_en
+  lang_yes_en,
+  lang_your_hostname_cs,
+  lang_your_username_cs,
+  lang_chose_password_cs,
+  lang_chose_password_en,
+  lang_your_hostname_en,
+  lang_your_username_en,
+  lang_confirm_password_en,
+  lang_confirm_password_cs,
+  lang_creat_new_user_cs, lang_creat_new_user_en
 } from "./Other";
 import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Month_en, lang_Year_cs, lang_Year_en} from "./Date";
 import {lang_Weather_city_not_found_cs, lang_Weather_city_not_found_en} from "./Weather";
@@ -146,7 +166,14 @@ export const NapicuOSLanguages = {
       verify: lang_verify_en,
       enter_root_pass: lang_enter_root_pass_en,
       pass_error: lang_pass_error_en,
-      users: lang_users_en
+      users: lang_users_en,
+      next: lang_next_en,
+      back: lang_back_en,
+      chose_pass: lang_chose_password_en,
+      your_hostname: lang_your_hostname_en,
+      your_username: lang_your_username_en,
+      confirm_pass: lang_confirm_password_en,
+      creat_new_user: lang_creat_new_user_en
     }
   },
 
@@ -193,7 +220,7 @@ export const NapicuOSLanguages = {
       none: lang_none_cs,
       change: lang_change_cs,
       change_host_name: lang_change_hostname_cs,
-      change_password: lang_change_pasword_cs,
+      change_password: lang_change_password_cs,
       change_username: lang_change_username_cs,
       date_and_time: lang_change_date_and_time_cs,
       automatic_date_and_time: lang_change_date_and_time_automatic_cs,
@@ -213,7 +240,14 @@ export const NapicuOSLanguages = {
       verify: lang_verify_cs,
       enter_root_pass: lang_enter_root_pass_cs,
       pass_error: lang_pass_error_cs,
-      users: lang_users_cs
+      users: lang_users_cs,
+      next: lang_next_cs,
+      back: lang_back_cs,
+      chose_pass: lang_chose_password_cs,
+      your_hostname: lang_your_hostname_cs,
+      your_username: lang_your_username_cs,
+      confirm_pass: lang_confirm_password_cs,
+      creat_new_user: lang_creat_new_user_cs
     }
   }
 }
