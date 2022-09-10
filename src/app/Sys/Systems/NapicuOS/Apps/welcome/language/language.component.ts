@@ -30,7 +30,6 @@ export class WelcomeLanguageComponent extends WelcomeComponentClass<welcomeUserI
     //Set
     WelcomeLanguageComponent.selectedLang = lang;
     NapicuOS.set_active_user_language(lang); //for root
-
     //Update
     SettingsComponent.update_setting_items();
   }
@@ -61,6 +60,10 @@ export class WelcomeLanguageComponent extends WelcomeComponentClass<welcomeUserI
 
   get GetBackButtonText(): string{
     return NapicuOS.get_language_words().other.back;
+  }
+
+  get GetSystemLanguageText(): string{
+    return NapicuOS.get_language_words().other.system_language;
   }
 
 }

@@ -97,6 +97,9 @@ export const lang_white_cs = "Světlý";
 export const lang_theme_en = "Theme";
 export const lang_theme_cs = "Vzhled";
 
+export const lang_system_language_en = "System language";
+export const lang_system_language_cs = "Jazyk systému";
+
 export const lang_system_volume_en = "System volume";
 export const lang_system_volume_cs = "Systemová hlasitost";
 

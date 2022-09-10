@@ -95,7 +95,7 @@ import {
   lang_white_en,
   lang_dark_cs,
   lang_white_cs,
-  lang_theme_en, lang_theme_cs
+  lang_theme_en, lang_theme_cs, lang_system_language_cs, lang_system_language_en
 } from "./Other";
 import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Month_en, lang_Year_cs, lang_Year_en} from "./Date";
 import {lang_Weather_city_not_found_cs, lang_Weather_city_not_found_en} from "./Weather";
@@ -182,7 +182,8 @@ export const NapicuOSLanguages = {
       creat_new_user: lang_creat_new_user_en,
       dark: lang_dark_en,
       white: lang_white_en,
-      theme: lang_theme_en
+      theme: lang_theme_en,
+      system_language: lang_system_language_en
     }
   },
 
@@ -259,7 +260,8 @@ export const NapicuOSLanguages = {
       creat_new_user: lang_creat_new_user_cs,
       dark: lang_dark_cs,
       white: lang_white_cs,
-      theme: lang_theme_cs
+      theme: lang_theme_cs,
+      system_language: lang_system_language_cs
     }
   }
 }
