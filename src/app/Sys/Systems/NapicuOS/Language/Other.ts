@@ -169,6 +169,9 @@ export const lang_language_text_cs = "Jazyk";
 export const lang_install_text_en = "Install";
 export const lang_install_text_cs = "Instalace";
 
+export const lang_finish_text_en = "Finish";
+export const lang_finish_text_cs = "Dokončit";
+
 export const lang_welcome_installing_system_en = "Installing system...";
 export const lang_welcome_installing_system_cs = "Instalace systému...";
 

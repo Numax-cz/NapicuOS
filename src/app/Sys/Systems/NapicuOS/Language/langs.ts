@@ -121,7 +121,7 @@ import {
   lang_welcome_creating_users_cs,
   lang_welcome_verifying_cs,
   lang_welcome_done_cs,
-  lang_welcome_done_desc_cs, lang_welcome_done_desc_en
+  lang_welcome_done_desc_cs, lang_welcome_done_desc_en, lang_finish_text_en, lang_finish_text_cs
 } from "./Other";
 import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Month_en, lang_Year_cs, lang_Year_en} from "./Date";
 import {lang_Weather_city_not_found_cs, lang_Weather_city_not_found_en} from "./Weather";
@@ -217,6 +217,7 @@ export const NapicuOSLanguages = {
       welcome: lang_welcome_text_en,
       language: lang_language_text_en,
       install: lang_install_text_en,
+      finish: lang_finish_text_en,
       welcome_installing_system: lang_welcome_installing_system_en,
       welcome_creating_users: lang_welcome_creating_users_en,
       welcome_verifying: lang_welcome_verifying_en,
@@ -307,6 +308,7 @@ export const NapicuOSLanguages = {
       welcome: lang_welcome_text_cs,
       language: lang_language_text_cs,
       install: lang_install_text_cs,
+      finish: lang_finish_text_cs,
       welcome_installing_system: lang_welcome_installing_system_cs,
       welcome_creating_users: lang_welcome_creating_users_cs,
       welcome_verifying: lang_welcome_verifying_cs,

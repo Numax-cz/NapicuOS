@@ -9,6 +9,7 @@ import {welcomeItemsOptionMetadata} from "../../interface/Apps/Welcome";
 import {InstallComponent} from "./install/install.component";
 import {NapicuDate} from "napicuformatter";
 import {NapicuOS} from "../../system.napicuos";
+import {FinishComponent} from "./finish/finish.component";
 
 
 @Component({
@@ -44,6 +45,10 @@ export class WelcomeComponent implements OnInit {
       {
         name: NapicuOS.get_language_words().other.install,
         component: InstallComponent,
+      },
+      {
+        name: NapicuOS.get_language_words().other.finish,
+        component: FinishComponent,
       }
     ]
   }
