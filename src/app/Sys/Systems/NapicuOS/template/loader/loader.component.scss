@@ -1,0 +1,13 @@
+
+$borderRadius: 5px;
+
+.baseLine{
+  background-color: rgba(68, 68, 68, 0.53);
+  width: 100%;
+  border-radius: $borderRadius;
+}
+.line{
+  height: 20px;
+  background-color: var(--NapicuCalendarSelectedMonthColor);
+  border-radius: $borderRadius;
+}

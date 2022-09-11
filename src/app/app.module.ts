@@ -63,6 +63,7 @@ import { ThemeComponent } from './Sys/Systems/NapicuOS/Apps/settings/theme/theme
 import {WelcomeLanguageComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/language/language.component";
 import {WelcomeThemeComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/theme/theme.component";
 import { InstallComponent } from './Sys/Systems/NapicuOS/Apps/welcome/install/install.component';
+import { LoaderComponent } from './Sys/Systems/NapicuOS/template/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { InstallComponent } from './Sys/Systems/NapicuOS/Apps/welcome/install/in
     ThemeComponent,
     WelcomeLanguageComponent,
     WelcomeThemeComponent,
-    InstallComponent
+    InstallComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
