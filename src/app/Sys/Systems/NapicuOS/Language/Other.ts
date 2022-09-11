@@ -168,3 +168,18 @@ export const lang_language_text_cs = "Jazyk";
 
 export const lang_install_text_en = "Install";
 export const lang_install_text_cs = "Instalace";
+
+export const lang_welcome_installing_system_en = "Installing system...";
+export const lang_welcome_installing_system_cs = "Instalace systému...";
+
+export const lang_welcome_creating_users_en = "Creating user and system configuration...";
+export const lang_welcome_creating_users_cs = "Vytváření uživatele a konfigurace systému...";
+
+export const lang_welcome_verifying_en = "Verifying...";
+export const lang_welcome_verifying_cs = "Ověřování...";
+
+export const lang_welcome_done_en = "Done!";
+export const lang_welcome_done_cs = "Dokončeno!";
+
+export const lang_welcome_done_desc_en = "We appreciate you choosing NapicuOS and hope you enjoy it!";
+export const lang_welcome_done_desc_cs = "Vážíme si toho, že jste si vybrali NapicuOS, a doufáme, že se vám bude líbit!";

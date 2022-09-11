@@ -2,3 +2,27 @@
 @import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/BasicText";
 @import "src/app/Sys/Systems/NapicuOS/Apps/settings/styles/Cursor";
 @import "../styles";
+
+.MainInstallationTitle{
+  position: absolute;
+  text-align: center;
+  h1{
+    font-size: 3rem;
+  }
+  p{
+    font-size: 1rem;
+  }
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.installation{
+  position: relative;
+}
+
+.WelcomeInstallationBar{
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}

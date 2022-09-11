@@ -1,8 +1,18 @@
 <section class="WelcomeMainComponentContent LanguageContent">
-  <h1 class="BasicTitle">THANK YOU</h1>
-
-  <div class="WelcomeAppComponentContent languages">
-
+  <div class="WelcomeAppComponentContent installation">
+    <div class="MainInstallationTitle">
+      <h1>THANK YOU</h1>
+      <p>{{GetDoneInstallationDescText}}</p>
+    </div>
+    <div class="WelcomeInstallationBar">
+      <div>{{installationText}}</div>
+      <section class="NapicuOSBasicLoaderLine-Base">
+        <div #Line class="NapicuOSBasicLoaderLine"></div>
+      </section>
+    </div>
   </div>
-
+  <section class="BottomContent NapicuOSSimpleButton NapicuSimpleButtonVariables">
+    <button (click)="next()" [disabled]="!checkSubmit()">{{GetNextButtonText}}</button>
+  </section>
 </section>
+

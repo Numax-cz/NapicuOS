@@ -19,7 +19,7 @@ import {NapicuOS} from "../../system.napicuos";
 export class WelcomeComponent implements OnInit {
   public static userCache: User | null = null;
 
-  public static selectedItem: number = 0;
+  public static selectedItem: number = 4;
 
   public static systemInstallationOptions: welcomeItemsOptionMetadata[] = [];
 

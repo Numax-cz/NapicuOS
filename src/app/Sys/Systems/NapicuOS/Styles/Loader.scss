@@ -1,12 +1,12 @@
 
 $borderRadius: 5px;
 
-.baseLine{
+.NapicuOSBasicLoaderLine-Base{
   background-color: rgba(68, 68, 68, 0.53);
   width: 100%;
   border-radius: $borderRadius;
 }
-.line{
+.NapicuOSBasicLoaderLine{
   height: 20px;
   background-color: var(--NapicuCalendarSelectedMonthColor);
   border-radius: $borderRadius;
