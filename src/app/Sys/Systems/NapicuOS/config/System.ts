@@ -113,8 +113,8 @@ export enum SYSTEM_IMAGES {
   usaFlag = "assets/systems/NapicuOS/SystemIcons/XFD/united-states.webp",
   czechFlag = "assets/systems/NapicuOS/SystemIcons/XFD/czech-republic.webp",
   brush = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/brush.svg",
-
-
+  github = "assets/systems/NapicuOS/github.png",
+  angular = "assets/systems/NapicuOS/angular.svg",
 }
 
 export enum SYSTEM_WALLPAPERS  {

@@ -21,6 +21,11 @@
   margin-top: 100px
 }
 
+.BottomButtons{
+  display: flex;
+  justify-content: space-between;
+}
+
 .WelcomeSystemLogo {
   display: flex;
   align-items: center;
@@ -45,5 +50,14 @@
   font-size: 1.8rem;
   font-weight: 400;
   color: white; //TODO COnfig
+}
+.author{
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  a{
+    color: #00a8ff !important;
+  }
 }
 
