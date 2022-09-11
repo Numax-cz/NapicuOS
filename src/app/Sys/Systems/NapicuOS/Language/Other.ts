@@ -139,6 +139,9 @@ export const lang_pass_error_cs = "Heslo je nesprávné";
 export const lang_users_en = "Users";
 export const lang_users_cs = "Uživatelé";
 
+export const lang_user_en = "User";
+export const lang_user_cs = "Uživatel";
+
 export const lang_last_update_minutes_en = (minutes: number) => {
   return `Last updated ${minutes} ${(minutes == 1) ? "minute" : "minutes "} ago`;
 };
@@ -156,3 +159,12 @@ export const lang_welcome_main_desc_cs = `NapicuOS je webová aplikace s otevře
 
 export const lang_welcome_built_on_angular_en = "Built on Angular";
 export const lang_welcome_built_on_angular_cs = "Postaveno na Anguláru";
+
+export const lang_welcome_text_en = "Welcome";
+export const lang_welcome_text_cs = "Vítejte";
+
+export const lang_language_text_en = "Language";
+export const lang_language_text_cs = "Jazyk";
+
+export const lang_install_text_en = "Install";
+export const lang_install_text_cs = "Instalace";

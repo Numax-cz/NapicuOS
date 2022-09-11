@@ -32,6 +32,7 @@ export class WelcomeLanguageComponent extends WelcomeComponentClass<welcomeUserI
     NapicuOS.set_active_user_language(lang); //for root
     //Update
     SettingsComponent.update_setting_items();
+    WelcomeComponent.updateSystemInstallationOptions();
   }
 
   get GetCzechFlag(): string{

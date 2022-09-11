@@ -104,7 +104,12 @@ import {
   lang_welcome_main_title_en,
   lang_welcome_main_desc_en,
   lang_welcome_built_on_angular_cs,
-  lang_welcome_built_on_angular_en
+  lang_welcome_built_on_angular_en,
+  lang_user_en,
+  lang_user_cs,
+  lang_welcome_text_cs,
+  lang_welcome_text_en,
+  lang_language_text_cs, lang_language_text_en, lang_install_text_en, lang_install_text_cs
 } from "./Other";
 import {lang_Day_cs, lang_Day_en, lang_Month_cs, lang_Month_en, lang_Year_cs, lang_Year_en} from "./Date";
 import {lang_Weather_city_not_found_cs, lang_Weather_city_not_found_en} from "./Weather";
@@ -182,6 +187,7 @@ export const NapicuOSLanguages = {
       enter_root_pass: lang_enter_root_pass_en,
       pass_error: lang_pass_error_en,
       users: lang_users_en,
+      user: lang_user_en,
       next: lang_next_en,
       back: lang_back_en,
       chose_pass: lang_chose_password_en,
@@ -195,7 +201,10 @@ export const NapicuOSLanguages = {
       system_language: lang_system_language_en,
       welcome_main_title: lang_welcome_main_title_en,
       welcome_desc_text: lang_welcome_main_desc_en,
-      built_on_angular: lang_welcome_built_on_angular_en
+      built_on_angular: lang_welcome_built_on_angular_en,
+      welcome: lang_welcome_text_en,
+      language: lang_language_text_en,
+      install: lang_install_text_en
     }
   },
 
@@ -263,6 +272,7 @@ export const NapicuOSLanguages = {
       enter_root_pass: lang_enter_root_pass_cs,
       pass_error: lang_pass_error_cs,
       users: lang_users_cs,
+      user: lang_user_cs,
       next: lang_next_cs,
       back: lang_back_cs,
       chose_pass: lang_chose_password_cs,
@@ -276,7 +286,10 @@ export const NapicuOSLanguages = {
       system_language: lang_system_language_cs,
       welcome_main_title: lang_welcome_main_title_cs,
       welcome_desc_text: lang_welcome_main_desc_cs,
-      built_on_angular: lang_welcome_built_on_angular_cs
+      built_on_angular: lang_welcome_built_on_angular_cs,
+      welcome: lang_welcome_text_cs,
+      language: lang_language_text_cs,
+      install: lang_install_text_cs
     }
   }
 }

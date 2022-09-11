@@ -7,6 +7,8 @@ import {WelcomeThemeComponent} from "./theme/theme.component";
 import {ThemeComponent} from "../settings/theme/theme.component";
 import {welcomeItemsOptionMetadata} from "../../interface/Apps/Welcome";
 import {InstallComponent} from "./install/install.component";
+import {NapicuDate} from "napicuformatter";
+import {NapicuOS} from "../../system.napicuos";
 
 
 @Component({
@@ -16,43 +18,44 @@ import {InstallComponent} from "./install/install.component";
 })
 export class WelcomeComponent implements OnInit {
   public static userCache: User | null = null;
+
   public static selectedItem: number = 0;
 
-  public static systemInstallationOptions: welcomeItemsOptionMetadata[] = [
-    {
-      name: "Welcome",
-      component: MainComponent,
-    },
-    {
-      name: "User",
-      component: UserComponent,
-    },
-    {
-      name: "Language",
-      component: WelcomeLanguageComponent,
-    },
-    {
-      name: "Theme",
-      component: WelcomeThemeComponent,
-    },
-    {
-      name: "Install",
-      component: InstallComponent,
-    }
-  ];
+  public static systemInstallationOptions: welcomeItemsOptionMetadata[] = [];
 
-
-  constructor() {
-
+  protected static getSystemInstallationOptions(): welcomeItemsOptionMetadata[] {
+    return [
+      {
+        name: NapicuOS.get_language_words().other.welcome,
+        component: MainComponent,
+      },
+      {
+        name: NapicuOS.get_language_words().other.user,
+        component: UserComponent,
+      },
+      {
+        name: NapicuOS.get_language_words().other.language,
+        component: WelcomeLanguageComponent,
+      },
+      {
+        name: NapicuOS.get_language_words().other.theme,
+        component: WelcomeThemeComponent,
+      },
+      {
+        name: NapicuOS.get_language_words().other.install,
+        component: InstallComponent,
+      }
+    ]
   }
+
+  public static updateSystemInstallationOptions(): void {
+    this.systemInstallationOptions = this.getSystemInstallationOptions();
+  }
+
+  constructor() { }
 
   ngOnInit(): void {
-
-
-  }
-
-  public static get GetValuessSystemInstallationOptions(): welcomeItemsOptionMetadata{
-    return WelcomeComponent.systemInstallationOptions[WelcomeComponent.selectedItem];
+    WelcomeComponent.updateSystemInstallationOptions();
   }
 
   public get GetValuessSystemInstallationOptionsVal(): welcomeItemsOptionMetadata[]{
