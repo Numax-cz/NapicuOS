@@ -94,13 +94,11 @@ import {OPEN_WEATHER_ICONS} from "./config/OpenWeather";
 import {lang_Days_cs, lang_Days_en} from "./Language/Days";
 import {lang_Months_cs, lang_Months_en} from "./Language/Months";
 import {SystemAppsProcessName} from "./config/Apps/AppsNames";
+import {copy} from "../../../Bios/Scripts/DeepClone";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
-  public static systemData = {
-    installed: true,
-  };
-  private static drives: systemDrivesMetadata = NapicuOSSystemDir;
+  private static drives: systemDrivesMetadata = copy(NapicuOSSystemDir);
   public static activeUsers: string[] = [];
   @NapicuCookies()
   public static SystemCookiesConfig: NapicuOsCookiesTemplate = {
@@ -124,9 +122,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onShutDown(): void {
-    //TODO Loading screen
-    //TODO Kill all process
-    //TODO Save all cookies
+    NapicuOS.kill_all_process();
+    NapicuOS.activeUsers = [];
+    NapicuOS.update_config_to_cookies();
+
     //TODO => loading
   }
 
@@ -165,6 +164,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public loadSystemComponents(): Promise<void> {
     return new Promise<void>(async resolve => {
+      //Load drives
+      this.initDrives();
       //Initialization of all system processes
       initAllSystemProcess();
       //Initialize all system commands
@@ -234,6 +235,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       resolve();
     });
   }
+
+  /**
+   * Loads all directories
+   * @protected
+   */
+  protected initDrives(): void {
+    NapicuOS.drives = NapicuOSSystemDir;
+}
 
   /**
    * Initialize all directories from config
@@ -1624,6 +1633,16 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Kills all system process
+   */
+  public static kill_all_process(): void {
+    GrubComponent.GrubActiveSystem.SystemProcess.forEach((process: Process) => {
+      process.kill();
+    });
+    GrubComponent.GrubActiveSystem.SystemProcess = [];
+  }
+
+  /**
    * Returns the computer's name
    */
   public static get_hostname(): string {
@@ -2249,7 +2268,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     });
 
     if (this.add_file_to_dir(this.get_usr_dir(), Application) === SystemStateMetadata.FileAlreadyExists) {
-      console.error("CreatAppFile Error - File already exists");
+      //console.error("CreatAppFile Error - File already exists");
     }
     if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application.fileName);
     this.add_app_to_activity_menu(Application);
