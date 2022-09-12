@@ -20,6 +20,7 @@ import {WeatherComponent} from "./Apps/weather/weather.component";
 import {SystemAppsWeather} from "./SystemComponents/Apps/Weather";
 import {SystemProcessWeather} from "./SystemComponents/Process/WeatherLoader";
 import {WeatherControllerService} from "../../../../../OpenAPI";
+import {SystemProcessRebootTimeout} from "./SystemComponents/Process/RebootTimeout";
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
 }
