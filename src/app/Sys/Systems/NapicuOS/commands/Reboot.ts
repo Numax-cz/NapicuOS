@@ -2,11 +2,8 @@ import {NapicuOS} from "../system.napicuos";
 import {Command} from "../SystemComponents/Command";
 import {SystemCommandsArgsEnum, SystemCommandsPrefixEnum} from "../config/commands/Commands";
 import {Line} from "../Apps/console/console.component";
-import {NapicuDate} from "napicuformatter";
-import {GrubComponent} from "../../../../Grub/grub/grub.component";
 import {SystemProcessRebootTimeout} from "../SystemComponents/Process/RebootTimeout";
 import {CommandStateCodeMetadata} from "../interface/Commands/CommandsCodes";
-import {echoHelpCommand} from "../config/commands/help/echoCommand";
 import {rebootTimeoutHelpCommand, rebootTimeoutNowHelpCommand} from "../config/commands/help/rebootTimeoutCommand";
 
 export function initReboot(): void {
