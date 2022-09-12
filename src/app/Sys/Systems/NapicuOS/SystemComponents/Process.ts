@@ -104,7 +104,7 @@ export class Process {
    * Run the process
    */
   public run(): this | null {
-    if (!this._multiRun && NapicuOS.get_user_process_by_title(this._processTitle)) return null;
+    if (!this._multiRun && NapicuOS.get_user_process_by_title(this._processTitle)[0]) return null;
     if (this.processInterval) {
       this._Interval = setInterval(() => {
         this.processInterval?.fun();
@@ -148,5 +148,9 @@ export class Process {
       NapicuOS.onKillProcess();
       this._Window?.onKillProcess();
     }, x);
+  }
+
+  public static update_pid(): void {
+    GrubComponent.GrubActiveSystem.SystemProcess.forEach((process: Process, pid: number) => process._pid = pid);
   }
 }

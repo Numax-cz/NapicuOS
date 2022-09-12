@@ -354,6 +354,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static onKillProcess(): void {
     this.update_dock_items();
+    Process.update_pid();
   }
 
   /**
@@ -588,10 +589,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns process by process title
    * @param processTitle Name of the process you want to search for
    */
-  public static get_system_process_by_title(processTitle: string): Process {
+  public static get_system_process_by_title(processTitle: string): Process[] {
     return this.get_system_process().filter((element: Process) => {
       return element.processTitle === processTitle;
-    })[0];
+    });
   }
 
   /**
@@ -1416,10 +1417,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns user process by process title
    * @param processTitle Name of the process you want to search for
    */
-  public static get_user_process_by_title(processTitle: string): Process {
+  public static get_user_process_by_title(processTitle: string): Process[] {
     return this.get_user_process().filter((element: Process) => {
       return element.processTitle === processTitle;
-    })[0];
+    });
   }
 
   /**
