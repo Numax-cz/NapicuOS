@@ -33,4 +33,8 @@ export const enum SystemCommandsArgsEnum {
   get_Users = "users",
   get_Commands ="commands",
 
+  //Shutdown
+  reboot_kill_process = "-c",
+  reboot_now= "now",
+
 }
