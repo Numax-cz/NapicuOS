@@ -20,7 +20,7 @@ import {FinishComponent} from "./finish/finish.component";
 export class WelcomeComponent implements OnInit {
   public static userCache: User | null = null;
 
-  public static selectedItem: number = 4;
+  public static selectedItem: number = 5;
 
   public static systemInstallationOptions: welcomeItemsOptionMetadata[] = [];
 

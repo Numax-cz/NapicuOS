@@ -69,6 +69,10 @@ export class InstallComponent extends WelcomeComponentClass<welcomeUserInstallat
     return NapicuOS.get_language_words().other.back;
   }
 
+  get GetThankYouText(): string {
+    return NapicuOS.get_language_words().other.thank_you.toUpperCase();
+  }
+
   checkSubmit(): boolean {
     return this.done;
   }
