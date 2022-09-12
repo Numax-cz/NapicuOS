@@ -22,7 +22,7 @@ export const enum SystemCommandsPrefixEnum {
   fileManagerCommand = "filemanager",
   settingsCommand = "settings",
   helpCommand = "help",
-
+  rebootCommand = "reboot"
 }
 
 

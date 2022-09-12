@@ -3,9 +3,9 @@ import {SystemComponent} from '../../../../Grub/system/system.component';
 import {Process} from './Process';
 import {NapicuOSComponent} from '../components/napicu-os/napicu-os.component';
 import {BlackscreenComponent} from "../../../../Bios/components/blackscreen/blackscreen.component";
+import {Navigate} from "../../../../Bios/Scripts/BiosRouter";
 
 export class System {
-  //TODO Doc
   public declare SystemBooted: boolean;
   public declare SystemProcess: Process[];
   public declare SystemRunning: boolean;
@@ -33,6 +33,13 @@ export class System {
     this.onShutDown();
     this.SystemRunning = false;
   };
+
+  public readonly reboot = (): void => {
+    this.shutDown();
+    setTimeout(() => {
+      Navigate("/");
+    }, 2000);
+  }
 
   public readonly load = (): void => {
     this.SystemBooted = true;

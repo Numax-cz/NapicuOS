@@ -20,6 +20,7 @@ import {initMkdir} from "./commands/Mkdir";
 import {initSettings} from "./commands/Settings";
 import {initEval} from "./commands/Calc";
 import {initHelp} from "./commands/Help";
+import {initReboot} from "./commands/Reboot";
 
 
 export function initAllCommands(): void {
@@ -32,6 +33,7 @@ export function initAllCommands(): void {
   initEcho();
   initMkdir();
   initLs();
+  initReboot();
   initTouch();
   initPwd();
   initChangeDirectory();
