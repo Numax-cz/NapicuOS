@@ -2,10 +2,22 @@ import {SystemInformation} from "../interface/System";
 import {SystemTimeFormatEnumMetadata} from "./TimeFormat";
 import {SystemUserPermissionsEnumMetadata} from "./UserPerms";
 import {UserConstructorMetadata} from "../interface/User/User";
+import {NapicuOsCookiesTemplate} from "../interface/Cookies";
 
 export const SYSTEM_DEFAULT_HOSTNAME = 'napicu-os';
 export const SYSTEM_BOOT_SCREEN_TITLE = 'NapicuOS';
 export const SYSTEM_BOOT_SCREEN_LOGO = 'assets/systems/NapicuOS/logo.webp';
+
+export const SYSTEM_DEFAULT_COOKIES_ARRAY: NapicuOsCookiesTemplate = {
+  user: {
+    activeUser: null,
+      users: []
+  },
+  hostname: SYSTEM_DEFAULT_HOSTNAME,
+    directors: [],
+    files: [],
+    firstRun: true
+};
 
 export const SYSTEM_INFORMATION: SystemInformation = {
   name: "NapicuOS",

@@ -11,6 +11,7 @@ export const enum SystemCommandsPrefixEnum {
   exitCommand = "exit",
   openAppCommand = "openapp",
   clearCommand = "clear",
+  clearCookiesCommand = "clcookies",
   cdCommand = "cd",
   echoCommand = "echo",
   calcCommand = "calc",

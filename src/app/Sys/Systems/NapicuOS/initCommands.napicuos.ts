@@ -1,6 +1,3 @@
-import {Command} from './SystemComponents/Command';
-import {NapicuOS} from './system.napicuos';
-import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {initTouch} from "./commands/Touch";
 import {initOpenApp} from "./commands/OpenApp";
 import {initCreateUser} from "./commands/CrtUser";
@@ -21,6 +18,7 @@ import {initSettings} from "./commands/Settings";
 import {initEval} from "./commands/Calc";
 import {initHelp} from "./commands/Help";
 import {initReboot} from "./commands/Reboot";
+import {initClearCookiesTerminal} from "./commands/ClearCookies";
 
 
 export function initAllCommands(): void {
@@ -40,6 +38,7 @@ export function initAllCommands(): void {
   initSetSystemInformation();
   initKillProcess();
   initCreateUser();
+  initClearCookiesTerminal();
   initLogout();
   initOpenApp();
   initEval();

@@ -58,7 +58,7 @@ import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
 import {SystemDockDisplay} from "./interface/System/dock";
 import {SystemNotification} from "./SystemComponents/Notification";
 import {NOTIFICATION_ACTIVE_TIME} from "./config/NotificationAnimations";
-import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
+import {deleteCookies, getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
 import {NAPICUOS_COOKIES_NAME} from "./config/Cookies";
 import {NapicuOsCookiesTemplate} from "./interface/Cookies";
 import {NapicuCalendar} from "./scripts/Calendar";
@@ -2498,7 +2498,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public static clear_cookies(): void {
     this.kill_all_process();
-    this.SystemCookiesConfig = copy(SYSTEM_DEFAULT_COOKIES_ARRAY);
-    this.update_config_to_cookies();
+    deleteCookies(NAPICUOS_COOKIES_NAME);
   }
 }
