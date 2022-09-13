@@ -14,6 +14,6 @@ export function initClearCookiesTerminal(): void {
           stateCode: CommandStateCodeMetadata.success,
         })
       });
-    }, "Clear web app cookies - deletes all system data")
+    }, "DEBUG: Clear web app cookies - deletes all system data")
   )
 }
