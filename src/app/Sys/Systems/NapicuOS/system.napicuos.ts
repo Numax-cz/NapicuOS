@@ -22,20 +22,21 @@ import {GET_SYSTEM_TIME_FORMAT, TIME_FORMAT_CALENDAR} from './config/Time';
 import {Line} from './Apps/console/console.component';
 import {Command, CommandFunMetadata} from './SystemComponents/Command';
 import {initAllCommands} from './initCommands.napicuos';
-import { initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
+import {initAllSystemProcess, installAllApps,} from './systemApps.napicuos';
 import {SystemFile} from './SystemComponents/File';
 import {systemDirAFileMetadata, systemDirMetadata, systemDrivesMetadata,} from './interface/FilesDirs/SystemDir';
 import {
   SYSTEM_BOOT_SCREEN_LOGO,
   SYSTEM_BOOT_SCREEN_TITLE,
+  SYSTEM_DEFAULT_COOKIES_ARRAY,
   SYSTEM_DEFAULT_HOME_FOLDERS,
-  SYSTEM_DEFAULT_HOSTNAME,
   SYSTEM_DEFAULT_TIME_FORMAT,
   SYSTEM_FILE_NAME_REGEX,
   SYSTEM_HOSTNAME_MAX_LENGTH,
   SYSTEM_HOSTNAME_MIN_LENGTH,
   SYSTEM_IMAGES,
-  SYSTEM_INFORMATION, SYSTEM_ROOT_USER,
+  SYSTEM_INFORMATION,
+  SYSTEM_ROOT_USER,
   SYSTEM_SOUNDS,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
@@ -60,7 +61,6 @@ import {NOTIFICATION_ACTIVE_TIME} from "./config/NotificationAnimations";
 import {getCookies, setCookies} from "../../../Bios/Scripts/Cookies";
 import {NAPICUOS_COOKIES_NAME} from "./config/Cookies";
 import {NapicuOsCookiesTemplate} from "./interface/Cookies";
-import {NapicuCookies} from "./scripts/Decorators";
 import {NapicuCalendar} from "./scripts/Calendar";
 import {NapicuOS_available_language, NapicuOSLanguages} from "./Language/langs";
 import {NapicuAudio} from "./SystemComponents/Audio";
@@ -100,17 +100,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
   private static drives: systemDrivesMetadata = copy(NapicuOSSystemDir);
   public static activeUsers: string[] = [];
-  @NapicuCookies()
-  public static SystemCookiesConfig: NapicuOsCookiesTemplate = {
-    user: {
-      activeUser: null,
-      users: []
-    },
-    hostname: SYSTEM_DEFAULT_HOSTNAME,
-    directors: [],
-    files: [],
-    firstRun: false
-  };
+  public static onShutDownSystemFunctions: (() => void)[] = [];
+  public static SystemCookiesConfig: NapicuOsCookiesTemplate = copy(SYSTEM_DEFAULT_COOKIES_ARRAY);
+
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
     logo: SYSTEM_BOOT_SCREEN_LOGO,
@@ -122,9 +114,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public override onShutDown(): void {
+    NapicuOS.run_all_waiting_functions();
     NapicuOS.kill_all_process();
     NapicuOS.activeUsers = [];
     NapicuOS.update_config_to_cookies();
+
 
     //TODO => loading
   }
@@ -165,7 +159,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public loadSystemComponents(): Promise<void> {
     return new Promise<void>(async resolve => {
       //Load drives
-      this.initDrives();
+      //this.initDrives();
       //Initialization of all system processes
       initAllSystemProcess();
       //Initialize all system commands
@@ -281,7 +275,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static initAllStartUpApps(): void {
-    if(!this.SystemCookiesConfig.firstRun) this.onFirstLoad();
+    if(this.SystemCookiesConfig.firstRun) this.onFirstLoad();
   }
 
   /**
@@ -1644,6 +1638,22 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
+   * Starts all functions that are waiting to be shutdown
+   */
+  public static run_all_waiting_functions(): void {
+    this.onShutDownSystemFunctions.forEach((fun: () => void) => fun());
+    this.onShutDownSystemFunctions = [];
+  }
+
+  /**
+   * adds a function to waiting functions
+   * @param fun
+   */
+  public static add_waiting_function(fun: () => void): void {
+    this.onShutDownSystemFunctions.push(fun);
+  }
+
+  /**
    * Returns the computer's name
    */
   public static get_hostname(): string {
@@ -2484,5 +2494,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       submit: this.get_language_words().other.verify,
       reject: this.get_language_words().other.cancel_any
     }
+  }
+
+  public static clear_cookies(): void {
+    this.kill_all_process();
+    this.SystemCookiesConfig = copy(SYSTEM_DEFAULT_COOKIES_ARRAY);
+    this.update_config_to_cookies();
   }
 }

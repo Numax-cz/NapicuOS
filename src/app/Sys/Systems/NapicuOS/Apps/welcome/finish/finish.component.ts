@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NapicuOS} from "../../../system.napicuos";
 
 @Component({
@@ -7,9 +7,12 @@ import {NapicuOS} from "../../../system.napicuos";
 })
 export class FinishComponent implements OnInit {
 
+  public static restartTime: number = 5000;
+
   constructor() { }
 
   ngOnInit(): void {
+    //setTimeout(() => {WelcomeComponent.restartDevice()}, FinishComponent.restartTime);
   }
 
   get GetInstallationDoneText(): string {

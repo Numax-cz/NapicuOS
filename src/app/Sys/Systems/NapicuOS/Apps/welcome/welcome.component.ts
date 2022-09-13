@@ -4,12 +4,11 @@ import {UserComponent} from "./user/user.component";
 import {WelcomeLanguageComponent} from "./language/language.component";
 import {User} from "../../SystemComponents/User";
 import {WelcomeThemeComponent} from "./theme/theme.component";
-import {ThemeComponent} from "../settings/theme/theme.component";
 import {welcomeItemsOptionMetadata} from "../../interface/Apps/Welcome";
 import {InstallComponent} from "./install/install.component";
-import {NapicuDate} from "napicuformatter";
 import {NapicuOS} from "../../system.napicuos";
 import {FinishComponent} from "./finish/finish.component";
+import {SystemProcessRebootTimeout} from "../../SystemComponents/Process/RebootTimeout";
 
 
 @Component({
@@ -20,7 +19,7 @@ import {FinishComponent} from "./finish/finish.component";
 export class WelcomeComponent implements OnInit {
   public static userCache: User | null = null;
 
-  public static selectedItem: number = 5;
+  public static selectedItem: number = 0;
 
   public static systemInstallationOptions: welcomeItemsOptionMetadata[] = [];
 
@@ -53,6 +52,22 @@ export class WelcomeComponent implements OnInit {
     ]
   }
 
+  public static creatUser(): void {
+    if (this.userCache) NapicuOS.add_user(this.userCache);
+  }
+
+  public static verifyInstallation(): void {
+    NapicuOS.SystemCookiesConfig.firstRun = false;
+    if(this.userCache?.username) NapicuOS.add_waiting_function(() => {
+      if(WelcomeComponent.userCache?.username) NapicuOS.SystemCookiesConfig.user.activeUser = WelcomeComponent.userCache.username
+    });
+    NapicuOS.update_config_to_cookies();
+  }
+
+  public static restartDevice(): void {
+    new SystemProcessRebootTimeout(0).process.run();
+  }
+
   public static updateSystemInstallationOptions(): void {
     this.systemInstallationOptions = this.getSystemInstallationOptions();
   }
@@ -60,6 +75,7 @@ export class WelcomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    WelcomeComponent.userCache = null;
     WelcomeComponent.updateSystemInstallationOptions();
   }
 

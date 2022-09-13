@@ -1,9 +1,9 @@
-import {AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NapicuOS} from "../../../system.napicuos";
 import {Loader} from "../../../SystemComponents/Loader";
-import {NapicuDate} from "napicuformatter";
 import {WelcomeComponentClass} from "../WelcomeComponentClass";
 import {welcomeUserInstallationDataMetadata} from "../../../interface/Apps/Welcome";
+import {WelcomeComponent} from "../welcome.component";
 
 @Component({
   templateUrl: './install.component.html',
@@ -35,12 +35,14 @@ export class InstallComponent extends WelcomeComponentClass<welcomeUserInstallat
   }
 
   public loadUser = (): void => {
+    WelcomeComponent.creatUser();
     this.installationText = NapicuOS.get_language_words().other.welcome_creating_users;
     this.loader = new Loader(50, this.loadElement, this.verifySystem);
     this.loader.start();
   }
 
   public verifySystem = (): void => {
+    WelcomeComponent.verifyInstallation();
     this.installationText = NapicuOS.get_language_words().other.welcome_verifying;
     this.loader = new Loader(10, this.loadElement, this.endInstallationSystem);
     this.loader.start();
