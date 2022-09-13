@@ -85,7 +85,10 @@
 
   img {
     cursor: pointer;
-    width: 50px;
+    //width: 50px;
+    width: 55px;
+    padding: 5px;
+    border-radius: 7px;
   }
 
   .rightPanelMenu {
@@ -116,15 +119,20 @@
 
   .DockIcon {
     position: relative;
-    margin-right: 10px;
+    //margin-right: 10px;
   }
 
   .BottomMenuIcon{
     margin-left: 18px;
     img{
-      width: 35px;
-      height: 35px;
+      width: 43px;
+      height: 43px;
     }
+  }
+
+
+  img:hover {
+    background-color: var(--NapicuCalendarHoverDayColor);
   }
 
   .SelectedApp {
