@@ -405,4 +405,8 @@ export class NapicuOSComponent implements OnInit {
   get GetActivitiesText(): string{
     return NapicuOS.get_language_words().other.activities;
   }
+
+  get GetMenuImage(): string{
+    return SYSTEM_IMAGES.menu;
+  }
 }

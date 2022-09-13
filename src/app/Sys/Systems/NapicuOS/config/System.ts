@@ -127,6 +127,8 @@ export enum SYSTEM_IMAGES {
   brush = "assets/systems/NapicuOS/SystemIcons/XFD/symbols/brush.svg",
   github = "assets/systems/NapicuOS/github.png",
   angular = "assets/systems/NapicuOS/angular.svg",
+  menu = "assets/systems/NapicuOS/SystemIcons/XFD/menu.svg",
+
 }
 
 export enum SYSTEM_WALLPAPERS  {
