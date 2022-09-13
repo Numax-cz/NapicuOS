@@ -149,6 +149,13 @@ export const lang_last_update_minutes_cs = (minutes: number) => {
   return `Aktualizováno před ${minutes} ${(minutes == 1) ? "minutou" : "minutami"}`;
 };
 
+export const lang_device_restart_en = (seconds: number) => {
+  return `Device restarts in ${seconds} ${(seconds == 1) ? "second" : "seconds "}`;
+}
+export const lang_device_restart_cs = (seconds: number) => {
+  return `Zařízení se restartuje za ${seconds} ${(seconds == 1) ? "sekundu" : "sekund "}`;
+}
+
 export const lang_welcome_main_title_en = "Welcome to the NapicuOS installer";
 export const lang_welcome_main_title_cs = "Vítejte v instalačním programu NapicuOS";
 
