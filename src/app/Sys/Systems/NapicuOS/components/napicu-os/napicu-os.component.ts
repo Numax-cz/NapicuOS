@@ -371,7 +371,6 @@ export class NapicuOSComponent implements OnInit {
   }
 
   get GetActivityMenuApps(): SystemFile[] {
-    console.log(NapicuOS.get_activity_apps_menu())
     return NapicuOS.get_activity_apps_menu();
   }
 

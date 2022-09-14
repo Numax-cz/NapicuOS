@@ -5,6 +5,7 @@ import {WelcomeComponent} from "../../Apps/welcome/welcome.component";
 import {Window} from "../Window";
 import {AppCreatMetadata} from "../../interface/System";
 import {lang_App_Welcome_Title} from "../../Language/SystemApp";
+import {NapicuOS} from "../../system.napicuos";
 
 
 @NapicuApp({
@@ -25,6 +26,6 @@ export class SystemAppsWelcome extends SystemApp{
   }
 
   public static remove(): void {
-
+    NapicuOS.uninstall_app(this.appData.processTitle);
   }
 }
