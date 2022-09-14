@@ -14,7 +14,7 @@ import {lang_App_Notepad_Title} from "../../Language/SystemApp";
   windowData: Window.centerPos(45, 45),
   resizeAllowed: true,
   fileIconPath: SYSTEM_IMAGES.AppDocText,
-  addToDock: true,
+  addToDock: false,
 })
 export class SystemAppsNotepad extends SystemApp{
   public static declare appData: AppCreatMetadata;

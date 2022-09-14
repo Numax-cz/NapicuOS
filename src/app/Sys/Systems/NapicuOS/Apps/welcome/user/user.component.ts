@@ -3,24 +3,16 @@ import {WelcomeComponentClass} from "../WelcomeComponentClass";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
   SYSTEM_DEFAULT_HOSTNAME,
-  SYSTEM_HOSTNAME_MAX_LENGTH,
-  SYSTEM_HOSTNAME_MIN_LENGTH,
-  SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MAX_PASSWORD_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH,
   SYSTEM_USERS_MIN_PASSWORD_LENGTH
 } from "../../../config/System";
 import {NgFormCheckIfMatchingPasswords} from '../../../scripts/NgFormMatchingPasswords';
 
-import {
-  WelcomeUserForm,
-  welcomeUserInstallationDataMetadata
-} from "../../../interface/Apps/Welcome";
+import {WelcomeUserForm, welcomeUserInstallationDataMetadata} from "../../../interface/Apps/Welcome";
 import {NapicuOS} from "../../../system.napicuos";
 import {WelcomeComponent} from "../welcome.component";
 import {User} from "../../../SystemComponents/User";
-import {WelcomeThemeComponent} from "../theme/theme.component";
-import {NapicuOSComponent} from "../../../components/napicu-os/napicu-os.component";
+import {SYSTEM_VALIDATORS_HOSTNAME, SYSTEM_VALIDATORS_USERNAME} from "../../../config/Validators";
 
 @Component({
   selector: 'app-user',
@@ -30,17 +22,8 @@ import {NapicuOSComponent} from "../../../components/napicu-os/napicu-os.compone
 export class UserComponent extends WelcomeComponentClass<welcomeUserInstallationDataMetadata> implements OnInit {
 
   public formData = new FormGroup<WelcomeUserForm>({
-    username: new FormControl<string> ("",{ validators: [
-      Validators.required,
-      Validators.minLength(SYSTEM_USERS_MIN_LENGTH),
-      Validators.maxLength(SYSTEM_USERS_MAX_LENGTH),
-    ], nonNullable: true }),
-
-    hostname: new FormControl<string>(this.GetDefaultHostName(), { validators: [
-      Validators.required,
-      Validators.minLength(SYSTEM_HOSTNAME_MIN_LENGTH),
-      Validators.maxLength(SYSTEM_HOSTNAME_MAX_LENGTH),
-    ], nonNullable: true}),
+    username: SYSTEM_VALIDATORS_USERNAME(),
+    hostname: SYSTEM_VALIDATORS_HOSTNAME(),
 
     passwords: new FormGroup({
         pass1: new FormControl('', { validators: [
@@ -85,7 +68,7 @@ export class UserComponent extends WelcomeComponentClass<welcomeUserInstallation
   }
 
   public GetUsernameError(): boolean {
-    let i =this.formData.get("username")
+    let i =this.formData.get("username");
     return !i?.valid && !!i?.value.length;
   }
 
