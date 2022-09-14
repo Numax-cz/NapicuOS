@@ -95,6 +95,7 @@ import {lang_Days_cs, lang_Days_en} from "./Language/Days";
 import {lang_Months_cs, lang_Months_en} from "./Language/Months";
 import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 import {copy} from "../../../Bios/Scripts/DeepClone";
+import {SystemAppsWelcome} from "./SystemComponents/Apps/Welcome";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -276,6 +277,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public static initAllStartUpApps(): void {
     if(this.SystemCookiesConfig.firstRun) this.onFirstLoad();
+    else {
+      SystemAppsWelcome.remove();
+    }
   }
 
   /**
@@ -768,7 +772,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns apps in activity system menu
    */
   public static get_activity_apps_menu(): SystemFile[] {
-    return NapicuOSComponent.ActivityMenuApps;
+    return this.get_usr_dir()?.files || [];
   }
 
   /**
@@ -899,7 +903,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       let fl_files = this.get_file_by_path(path);
       if(fl_files instanceof SystemFile) {
         let file_index = directory.data.files.indexOf(fl_files);
-        delete directory.data.files[file_index];
+         directory.data.files.splice(file_index, 1);
         this.remove_dynamic_file(path);
         return SystemStateMetadata.Success;
       }
@@ -1292,6 +1296,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return i;
     }
     return [];
+  }
+
+  /**
+   * Removes user app in dock
+   * @param fileName
+   */
+  public static remove_app_in_user_dock(fileName: string): void {
+    const userAppsInDock = this.get_active_user()?.userSetting.appsInDock || [];
+    if(userAppsInDock.length) userAppsInDock.splice(userAppsInDock.indexOf(fileName), 1);
+
+    this.update_dock_items();
   }
 
   /**
@@ -2255,7 +2270,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   /**
-   * Creates and installs the application
+   * Creates and installs a system application
    * @return {SystemFile} Application file
    */
   public static install_app(data: AppCreatMetadata): void {
@@ -2283,6 +2298,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     }
     if (data.addToDock) User.defaultUserSettings.appsInDock.push(Application.fileName);
     this.add_app_to_activity_menu(Application);
+  }
+
+  /**
+   * Uninstalls a system application
+   * @param name
+   */
+  public static uninstall_app(name: string): void {
+    NapicuOS.remove_file(`/usr/${name}`);
+    NapicuOS.remove_app_in_user_dock(name);
   }
 
   /**

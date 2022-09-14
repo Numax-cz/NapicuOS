@@ -23,4 +23,8 @@ export class SystemAppsWelcome extends SystemApp{
   constructor() {
     super(SystemAppsWelcome.appData);
   }
+
+  public static remove(): void {
+
+  }
 }
