@@ -2,16 +2,12 @@ import {Component} from '@angular/core';
 import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SystemStateMetadata} from "../../interface/System";
-import {
-  SYSTEM_USERS_MAX_LENGTH,
-  SYSTEM_USERS_MAX_PASSWORD_LENGTH,
-  SYSTEM_USERS_MIN_LENGTH,
-  SYSTEM_USERS_MIN_PASSWORD_LENGTH
-} from "../../config/System";
+import {SYSTEM_USERS_MAX_PASSWORD_LENGTH, SYSTEM_USERS_MIN_PASSWORD_LENGTH} from "../../config/System";
 import {NapicuOS} from "../../system.napicuos";
 import {User} from "../../SystemComponents/User";
 import {systemAlertImagesEnumMetadata} from "../../config/Alert";
 import {UserManagerForm} from "../../interface/Apps/UsermanagerForm";
+import {SYSTEM_VALIDATORS_USERNAME} from "../../config/Validators";
 
 
 @Component({
@@ -26,11 +22,7 @@ export class UsermanagerComponent {
 
 
   public formData = new FormGroup<UserManagerForm>( {
-    username: new FormControl<string>("", { validators: [
-      Validators.required,
-      Validators.minLength(SYSTEM_USERS_MIN_LENGTH),
-      Validators.maxLength(SYSTEM_USERS_MAX_LENGTH),
-    ], nonNullable: true }),
+    username: SYSTEM_VALIDATORS_USERNAME(),
 
     password: new FormControl<string>("", { validators: [
         Validators.required,
