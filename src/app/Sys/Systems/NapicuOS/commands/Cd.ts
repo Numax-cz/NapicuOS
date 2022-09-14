@@ -21,7 +21,8 @@ export function initChangeDirectory(): void {
             let prthStr = prth.toString().split(",").join("/");
             path = (!prthStr.length) ? "/" : prthStr;
           } else if (!path.startsWith('/')) {
-            path = `${terminal?.getPath()}/${path}`;
+            let temPth = terminal?.getPath();
+            path = `${(temPth !== terminal?.getPath()) ? temPth : ''}/${path}`;
           }
 
           let dtChange = NapicuOS.get_dir_by_path(path);
