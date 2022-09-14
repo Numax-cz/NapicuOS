@@ -1,24 +1,41 @@
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
+  <!--Verify user-->
+ <ng-container *ngIf="!verify">
+   <div class="form">
+    <div>
+      <div>Verify</div>
+
+             autocomplete="off"/>
+    </div>
+     <div class="NapicuOSSimpleButton" style="margin-top: 15px;">
+       <button (click)="onButtonClickVerifyUser()" [disabled]="!GetCheckSubmit">Verify root</button>
+     </div>
+   </div>
+ </ng-container>
+  <!--Main form-->
+  <ng-container *ngIf="verify">
   <div class="form" [formGroup]="formData">
-    <div>
-      <div>Username</div>
-      <input class="NapicuOSSimpleInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': GetUsernameError()}" spellcheck="false" formControlName="username" type="text" name="username"
-             autocomplete="off"/>
-    </div>
-    <div>
-      <div>Password</div>
-      <input class="NapicuOSSimpleInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': GetMainPasswordError()}" spellcheck="false" formControlName="password" type="password" name="password"
-             autocomplete="off"/>
-    </div>
-    <div>
-      <div>Permission</div>
-      <napicu-drop-down-menu [selectedOption]="0" formControlName="permission"
-                             [options]="GetUsersPermission"></napicu-drop-down-menu>
-    </div>
-    <div class="NapicuOSSimpleButton" style="margin-top: 15px;">
-      <button (click)="onButtonClick()" [disabled]="!GetCheckSubmit">Add new user</button>
-    </div>
+   <div>
+     <div>Username</div>
+     <input class="NapicuOSSimpleInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': GetUsernameError()}" spellcheck="false" formControlName="username" type="text" name="username"
+            autocomplete="off"/>
+   </div>
+   <div>
+     <div>Password</div>
+     <input class="NapicuOSSimpleInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': GetMainPasswordError()}" spellcheck="false" formControlName="password" type="password" name="password"
+            autocomplete="off"/>
+   </div>
+   <div>
+     <div>Permission</div>
+     <napicu-drop-down-menu [selectedOption]="0" formControlName="permission"
+                            [options]="GetUsersPermission"></napicu-drop-down-menu>
+   </div>
+   <div class="NapicuOSSimpleButton" style="margin-top: 15px;">
+     <button (click)="onButtonClick()" [disabled]="!GetCheckSubmit">Add new user</button>
+   </div>
   </div>
+  </ng-container>
+
 </section>
 
 

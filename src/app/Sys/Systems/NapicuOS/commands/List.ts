@@ -23,7 +23,7 @@ export function initLs(): void {
             //Dirs
             if (dirsName.dir) {
               Object.keys(dirsName.dir).forEach((keys: string) => {
-                let line: Line = new Line(`${keys}`, 'white');
+                let line: Line = new Line(`${keys}`, 'blue');
                 exportLinest.push(line);
               });
             }

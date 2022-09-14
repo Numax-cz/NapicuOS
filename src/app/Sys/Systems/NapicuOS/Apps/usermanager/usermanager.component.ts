@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SystemStateMetadata} from "../../interface/System";
@@ -15,9 +15,15 @@ import {SYSTEM_VALIDATORS_USERNAME} from "../../config/Validators";
   templateUrl: './usermanager.component.html',
   styleUrls: ['./usermanager.component.scss']
 })
-export class UsermanagerComponent {
+export class UsermanagerComponent implements OnInit{
+
+  public verify: boolean = false;
 
   constructor() {
+  }
+
+  public ngOnInit() {
+    this.verify = false;
   }
 
 
@@ -35,7 +41,7 @@ export class UsermanagerComponent {
     ], nonNullable: true})
   });
 
-  public onButtonClick() {
+  public onButtonClick(): void {
     if (this.formData.valid) {
       let i = NapicuOS.add_user(new User({
         username: this.formData.value.username || "NULL",
@@ -49,6 +55,10 @@ export class UsermanagerComponent {
         NapicuOS.alert("User Manager", "User added", systemAlertImagesEnumMetadata.Info);
       }
     }
+  }
+
+  public onButtonClickVerifyUser(): void {
+
   }
 
   get GetCheckSubmit(): boolean {

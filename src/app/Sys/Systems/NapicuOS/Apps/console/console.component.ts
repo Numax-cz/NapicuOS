@@ -7,7 +7,7 @@ import {TerminalClass} from "../../SystemComponents/Terminal";
 
 export class Line {
   private declare line: string;
-  private color: terminalColorsMetadata = 'white';
+  public color: terminalColorsMetadata = 'white';
 
   constructor(line: string, color?: terminalColorsMetadata) {
     this.line = line;

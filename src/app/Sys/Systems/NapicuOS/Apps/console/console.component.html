@@ -15,7 +15,7 @@
       >$<span class="inputMargin">{{ i.enteredCommand }}</span>
       </div>
       <div *ngFor="let x of i.lines" class="line">
-        <pre>{{ x.Write().value }}</pre>
+        <pre [ngStyle]="{'color':'var(--NapicuTerminal-' + x.color +')'}">{{ x.Write().value }}</pre>
       </div>
     </div>
     <div [style.display]="GetActiveCommand ? 'none' : ''" class="line">
