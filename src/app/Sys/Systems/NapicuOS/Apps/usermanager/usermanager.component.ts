@@ -51,8 +51,22 @@ export class UsermanagerComponent {
     }
   }
 
+  get GetCheckSubmit(): boolean {
+    return this.formData.valid;
+  }
+
   get GetUsersPermission() {
     return Object.keys(SystemUserPermissionsEnumMetadata);
+  }
+
+  public GetUsernameError(): boolean {
+    let i =this.formData.get("username");
+    return !i?.valid && !!i?.value.length;
+  }
+
+  public GetMainPasswordError(): boolean {
+    let i =this.formData.get("password");
+    return !i?.valid && !!i?.value.length;
   }
 
 
