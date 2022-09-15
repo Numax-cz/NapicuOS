@@ -199,3 +199,12 @@ export const lang_welcome_done_cs = "Dokončeno!";
 
 export const lang_welcome_done_desc_en = "We appreciate you choosing NapicuOS and hope you enjoy it!";
 export const lang_welcome_done_desc_cs = "Vážíme si toho, že jste si vybrali NapicuOS, a doufáme, že se vám bude líbit!";
+
+export const lang_lock_en = "Lock";
+export const lang_lock_cs = "Uzamknout";
+
+export const lang_settings_en = "Settings";
+export const lang_settings_cs = "Nastavení";
+
+export const lang_power_off_en = "Power Off";
+export const lang_power_off_cs = "Vypnout";

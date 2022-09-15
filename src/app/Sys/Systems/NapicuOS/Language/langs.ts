@@ -67,6 +67,8 @@ import {
   lang_language_text_en,
   lang_last_update_minutes_cs,
   lang_last_update_minutes_en,
+  lang_lock_cs,
+  lang_lock_en,
   lang_next_cs,
   lang_next_en,
   lang_none_cs,
@@ -77,8 +79,12 @@ import {
   lang_password_en,
   lang_Places_cs,
   lang_Places_en,
+  lang_power_off_cs,
+  lang_power_off_en,
   lang_rename_cs,
   lang_rename_en,
+  lang_settings_cs,
+  lang_settings_en,
   lang_system_lang_cs,
   lang_system_lang_en,
   lang_system_language_cs,
@@ -235,7 +241,10 @@ export const NapicuOSLanguages = {
       welcome_verifying: lang_welcome_verifying_en,
       welcome_done: lang_welcome_done_en,
       welcome_done_installation: lang_welcome_done_desc_en,
-      welcome_installation_is_done: lang_installation_done_en
+      welcome_installation_is_done: lang_installation_done_en,
+      lock: lang_lock_en,
+      settings: lang_settings_en,
+      power_off: lang_power_off_en
     }
   },
 
@@ -329,7 +338,10 @@ export const NapicuOSLanguages = {
       welcome_verifying: lang_welcome_verifying_cs,
       welcome_done: lang_welcome_done_cs,
       welcome_done_installation: lang_welcome_done_desc_cs,
-      welcome_installation_is_done: lang_installation_done_cs
+      welcome_installation_is_done: lang_installation_done_cs,
+      lock: lang_lock_cs,
+      settings: lang_settings_cs,
+      power_off: lang_power_off_cs
     }
   }
 }

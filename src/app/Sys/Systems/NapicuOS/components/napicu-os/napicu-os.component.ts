@@ -428,4 +428,16 @@ export class NapicuOSComponent implements OnInit {
   get GetMenuImage(): string{
     return SYSTEM_IMAGES.menu;
   }
+
+  get GetSettingsText(): string {
+    return NapicuOS.get_language_words().other.settings;
+  }
+
+  get GetLockText(): string {
+    return NapicuOS.get_language_words().other.lock;
+  }
+
+  get GetPowerOffText(): string{
+    return NapicuOS.get_language_words().other.power_off;
+  }
 }

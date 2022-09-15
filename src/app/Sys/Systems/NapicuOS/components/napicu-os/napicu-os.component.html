@@ -127,15 +127,15 @@
               <ul>
                 <li (click)="onClickSettings()">
                   <img [src]="GetSettingsImage" alt="Settings Icon">
-                  Settings
+                  {{GetSettingsText}}
                 </li>
                 <li (click)="onClickLock()">
                   <img [src]="GetLockImage" alt="Lock Icon">
-                  Lock
+                  {{GetLockText}}
                 </li>
                 <li (click)="onClickOff()">
                   <img [src]="GetShutdownImage" alt="Shutdown Icon">
-                  Power OFF
+                  {{GetPowerOffText}}
                 </li>
               </ul>
 
