@@ -181,11 +181,17 @@
 
         <!-- Bottom AppPanel -->
         <section *ngIf="BottomDockDisplay" class="BottomPanel" id="Dock"
-                 style="z-index: 10000">
+                 style="z-index: 1000">
           <div style="display: flex; align-items: center; justify-content: space-between">
-            <section style="display: flex;">
+            <section style="display: flex;"
+                     cdkDropList
+                     #todoList="cdkDropList"
+                     [cdkDropListData]="GetBottomDockProcess"
+                     (cdkDropListDropped)="drop($event)"
+                     cdkDropListOrientation="horizontal">
+
               <!-- Applications -->
-              <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon" clickable="false">
+              <div *ngFor="let i of GetBottomDockProcess; let index = index" class="DockIcon" clickable="false" cdkDrag>
                 <!--                <div *ngIf="index === selectedAppContext"-->
                 <!--                     class="NapicuOSSimpleContextMenu NapicuOSSimpleBoxBorder-->
                 <!--                                     NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight"-->
@@ -202,18 +208,13 @@
                      class="NapicuSimpleBoxMenu NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight"
                      clickable="false">
                   <ul>
-
                     <li (click)="openFile(i.file)">Open</li>
-
                     <li
                       (click)="pinFunFileInContextMenu(i.file, index, i.alreadyPinned)">{{i.alreadyPinned ?
                       'Unpin' : 'Pin'}}
                     </li>
-
                   </ul>
-
                 </div>
-
 
                 <!-- Application icon-->
                 <img (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"

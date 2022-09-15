@@ -14,6 +14,7 @@ import {WINDOW_ANIMATION_TIME} from "../../config/WindowAnimations";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemCommandsPrefixEnum} from "../../config/commands/Commands";
 import {NapicuDate} from "napicuformatter";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-napicu-os',
@@ -124,6 +125,19 @@ export class NapicuOSComponent implements OnInit {
       }
       //e.preventDefault();
     });
+  }
+
+  drop(event: CdkDragDrop<SystemDockDisplay[], any>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 
   public dockRunner(file: SystemFile, running: boolean): void {

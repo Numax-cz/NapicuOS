@@ -51,19 +51,20 @@ import {
   BasicSliderInputComponent
 } from './Sys/Systems/NapicuOS/template/basic-slider-input/basic-slider-input.component';
 import {CounterInputComponent} from './Sys/Systems/NapicuOS/template/counter-input/counter-input.component';
-import { AppWindowComponent } from './Sys/Systems/NapicuOS/template/app-window/app-window.component';
-import { CalculatorComponent } from './Sys/Systems/NapicuOS/Apps/calculator/calculator.component';
+import {AppWindowComponent} from './Sys/Systems/NapicuOS/template/app-window/app-window.component';
+import {CalculatorComponent} from './Sys/Systems/NapicuOS/Apps/calculator/calculator.component';
 import {BrowserComponent, SafePipe} from './Sys/Systems/NapicuOS/Apps/browser/browser.component';
-import { MapsComponent } from './Sys/Systems/NapicuOS/Apps/maps/maps.component';
-import { WeatherComponent } from './Sys/Systems/NapicuOS/Apps/weather/weather.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { DropDownInputComponent } from './Sys/Systems/NapicuOS/template/drop-down-input/drop-down-input.component';
-import { LanguageComponent } from './Sys/Systems/NapicuOS/Apps/settings/language/language.component';
-import { ThemeComponent } from './Sys/Systems/NapicuOS/Apps/settings/theme/theme.component';
+import {MapsComponent} from './Sys/Systems/NapicuOS/Apps/maps/maps.component';
+import {WeatherComponent} from './Sys/Systems/NapicuOS/Apps/weather/weather.component';
+import {HttpClientModule} from "@angular/common/http";
+import {DropDownInputComponent} from './Sys/Systems/NapicuOS/template/drop-down-input/drop-down-input.component';
+import {LanguageComponent} from './Sys/Systems/NapicuOS/Apps/settings/language/language.component';
+import {ThemeComponent} from './Sys/Systems/NapicuOS/Apps/settings/theme/theme.component';
 import {WelcomeLanguageComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/language/language.component";
 import {WelcomeThemeComponent} from "./Sys/Systems/NapicuOS/Apps/welcome/theme/theme.component";
-import { InstallComponent } from './Sys/Systems/NapicuOS/Apps/welcome/install/install.component';
-import { FinishComponent } from './Sys/Systems/NapicuOS/Apps/welcome/finish/finish.component';
+import {InstallComponent} from './Sys/Systems/NapicuOS/Apps/welcome/install/install.component';
+import {FinishComponent} from './Sys/Systems/NapicuOS/Apps/welcome/finish/finish.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { FinishComponent } from './Sys/Systems/NapicuOS/Apps/welcome/finish/fini
     HttpClientModule,
     BrowserAnimationsModule,
     DynamicModule,
+    DragDropModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: boot_configuration.production,
       // Register the ServiceWorker as soon as the app is stable
