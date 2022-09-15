@@ -10,7 +10,7 @@ export class NapicuAudio {
    */
   constructor(src: string, gain?: number) {
     this._audio = new Audio(src);
-    this._audio.volume = gain || 1;
+    this._audio.volume = (gain === undefined) ? 0 : gain;
   }
 
   /**

@@ -121,8 +121,7 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
 
   protected gameOver(): void {
     this.gameStarted = false;
-    NapicuOS.play_audio(SYSTEM_SOUNDS.FlappyGameOver, 0.3);
-
+    NapicuOS.play_audio(SYSTEM_SOUNDS.FlappyGameOver, this.GetSystemUserVolume);
     this.onInit();
   }
 
@@ -146,8 +145,7 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
     this.playerGravitation();
     if (this.keyBoard.isPressed(KeyCodes.SPACE)) {
       if (!this.gameStarted) this.gameStarted = true;
-
-      NapicuOS.play_audio(SYSTEM_SOUNDS.FlappyJump, 0.3);
+      NapicuOS.play_audio(SYSTEM_SOUNDS.FlappyJump, this.GetSystemUserVolume);
 
       //TODO CONFIG
       this.player.velocityY -= 25;
@@ -171,5 +169,10 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
     this.player.rotateDelta +=  0.015;
 
     this.player.rotate(this.player.rotateDelta * 90);
+  }
+
+  get GetSystemUserVolume(): number{
+    let usr_volume = NapicuOS.get_user_settings_audio_volume() - 0.5;
+    return (usr_volume < 0) ? 0 : usr_volume;
   }
 }
