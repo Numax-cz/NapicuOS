@@ -127,9 +127,14 @@ export class NapicuOSComponent implements OnInit {
     });
   }
 
-  drop(event: CdkDragDrop<SystemDockDisplay[], any>) {
+  public drop(event: CdkDragDrop<any, any>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      let ac_user = NapicuOS.get_active_user();
+      if(ac_user) {
+        moveItemInArray(ac_user.userSetting.appsInDock, event.previousIndex, event.currentIndex);
+        NapicuOS.update_config_to_cookies();
+      }
     } else {
       transferArrayItem(
         event.previousContainer.data,
