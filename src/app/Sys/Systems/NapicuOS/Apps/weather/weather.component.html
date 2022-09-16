@@ -1,6 +1,31 @@
 <section class="WindowContent BackgroundColor" id="WindowScrollBar" [ngStyle]="{'background-image': 'url(' + GetWallpaper + ')'}">
+
+  <!--Loading screen-->
+  <ng-container *ngIf="GetApiError === null">
+    <section>
+      <div  class="MainContent LoadScreen" >
+        <img [src]="GetWeatherIcon" alt="Weather icon">
+      </div>
+    </section>
+  </ng-container>
+
+  <!--Error screen-->
+  <ng-container *ngIf="GetApiError">
+    <section>
+      <div  class="MainContent" >
+        <img [src]="GetWeatherIcon" alt="Weather icon">
+        <div class="text">
+          <h1>Server je momentálně nedostupný :(</h1>
+        </div>
+      </div>
+      <div class="NapicuOSSimpleButton" style="text-align: center">
+        <button (click)="check_weather_api()">Zkusit znovu</button>
+      </div>
+    </section>
+  </ng-container>
+
   <!--Welcome screen-->
-  <ng-container *ngIf="!GetApiData">
+  <ng-container *ngIf="!GetApiData && GetApiError === false">
     <section>
       <div  class="MainContent" >
         <img [src]="GetWeatherIcon" alt="Weather icon">
@@ -17,7 +42,7 @@
   </ng-container>
 
   <!--Main weather screen-->
-  <ng-container *ngIf="GetApiData">
+  <ng-container *ngIf="GetApiData && GetApiError === false">
     <section class="weather" clickable="false">
         <div>
           <app-drop-down-input placeholderValue="City" class="drop-down-input-center city" [onSubmit]="submitCity">{{GetApiData.name}}</app-drop-down-input>

@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,4 +60,14 @@ public class WeatherController {
         }
         throw new RequestException(HttpStatus.TOO_MANY_REQUESTS, NAPICU_TO_MANY_REQUESTS);
     }
+
+
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Vše je v pořádku")
+    }
+  )
+  @GetMapping("/")
+  public ResponseEntity getSatus() {
+    return ResponseEntity.ok().build();
+  }
 }

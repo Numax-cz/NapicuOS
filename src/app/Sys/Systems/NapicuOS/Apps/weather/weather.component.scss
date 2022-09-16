@@ -3,11 +3,19 @@
   background-size: cover;
 }
 
+.LoadScreen{
+  margin-top: 150px !important;
+  img{
+    width: 255px !important;
+    height: 255px !important;
+  }
+}
+
 .MainContent{
 
   animation: 1.5s ease-out 0s 1 onInit;
   text-align: center;
-  color: white;
+  color: black;
   margin-top: 30px;
   img{
     width: 155px;
@@ -26,11 +34,13 @@
   input{
     width: 40%;
   }
-í
+
   .text{
     margin: 35px 0;
   }
 }
+
+
 
 @keyframes onInit {
   0% {

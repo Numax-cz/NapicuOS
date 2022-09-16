@@ -1,16 +1,15 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NapicuOS} from "../../system.napicuos";
-import {SYSTEM_DEFAULT_TIME_FORMAT, SYSTEM_IMAGES, SYSTEM_WALLPAPERS} from "../../config/System";
+import {SYSTEM_IMAGES} from "../../config/System";
 import {RequestExceptionSchema, WeatherControllerService, WeatherResponseModel} from "../../../../../../../OpenAPI";
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {HttpStatusCode} from "@angular/common/http";
 import {NapicuApiResponseStatus} from "../../config/NapicuApi";
 import {NapicuDate} from "napicuformatter";
-import {GET_SYSTEM_TIME_FORMAT, TIME_FORMAT_WEATHER} from "../../config/Time";
+import {TIME_FORMAT_WEATHER} from "../../config/Time";
 import {OPEN_WEATHER_ICONS} from "../../config/OpenWeather";
 import {SystemProcessWeather} from "../../SystemComponents/Process/WeatherLoader";
 import {SystemProcess} from "../../SystemComponents/ProcessApp";
 import {SystemProcessStopWatch} from "../../SystemComponents/Process/Stopwatch";
-import {NapicuOSComponent} from "../../components/napicu-os/napicu-os.component";
 
 @Component({
   selector: 'app-weather.svg',
@@ -22,18 +21,25 @@ export class WeatherComponent implements OnInit, OnDestroy {
   public static apiData: WeatherResponseModel | null = null;
   public static weatherProcessStopwatch: SystemProcessStopWatch | null = null;
   public static weatherProcess: SystemProcess | null = null;
+  public static apiError: boolean | null = null;
   public err: string | null = null;
 
   constructor(protected service: WeatherControllerService) { }
 
   ngOnInit(): void {
-    this.loadProcess();
+  this.loadApp();
   }
-
 
   ngOnDestroy(): void {
     this.killProcess();
   }
+
+  public async loadApp(): Promise<void> {
+    WeatherComponent.apiError = null;
+    this.check_weather_api();
+    this.loadProcess();
+  }
+
 
   public loadProcess (): void  {
     if(!WeatherComponent.weatherProcess) {
@@ -78,10 +84,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
   public static update_weather_data(): void  {
     let i = NapicuOS.get_active_user()?.userSetting.apps?.weather;
     if(i) WeatherComponent.loadApiData(SystemProcessWeather.weatherService, i);
-    else {
-      console.error("[NAPICUOS] Weather process error");
-      if (WeatherComponent.weatherProcess) WeatherComponent.weatherProcess.process.kill();
-    }
+    else if (WeatherComponent.weatherProcess) WeatherComponent.weatherProcess.process.kill();
+  }
+
+  public check_weather_api(): void{
+     this.service.getSatus().subscribe({
+      next: () => WeatherComponent.apiError = false,
+      error: () => WeatherComponent.apiError = true
+    })
   }
 
   public submitCity = async (city: string): Promise<string | null> => {
@@ -118,6 +128,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
     return SYSTEM_IMAGES.weatherBackground;
   }
 
+  get GetApiError(): boolean | null {
+    return WeatherComponent.apiError;
+  }
+
   static get Get404ErrorMessage(): string {
     return NapicuOS.get_language_words().Api.server_error;
   }
@@ -129,4 +143,5 @@ export class WeatherComponent implements OnInit, OnDestroy {
   static get GetTooManyRequestsErrorMessage(): string {
     return NapicuOS.get_language_words().Api.too_many_req;
   }
+
 }
