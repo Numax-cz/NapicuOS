@@ -82,15 +82,12 @@ export class ConsoleComponent extends TerminalClass implements OnInit {
     i.innerText = '';
     this.activeCommand = true;
 
-
     if (inputCmd) {
       this.creatCommandLine([], input);
       this.setHistoryCommand(input);
       await NapicuOS.run_command({cmd: inputCmd,args: inputSplit, terminal: this}).then(
         (value: CommandFunMetadata) => {
-          if (value) { //TODO
-            this.lines[this.lines.length - 1].lines = value.linesForCMD;
-          }
+          if (value && this.lines[this.lines.length - 1]?.lines.length) this.lines[this.lines.length - 1].lines = value.linesForCMD;
         }
       );
     } else {

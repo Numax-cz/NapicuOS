@@ -6,10 +6,6 @@ import {ReplaceSystemVariables} from "../scripts/ReplaceVariables";
 
 export abstract class TerminalClass {
   /**
-   * Current displayed path
-   */
-  public displayedPath: string = '~'; //TODO change dynamically
-  /**
    * Command line lines
    */
   public lines: inputMetadata[] = [];
