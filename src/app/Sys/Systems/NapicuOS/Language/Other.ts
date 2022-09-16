@@ -217,3 +217,15 @@ export const lang_weather_welcome_cs = "Vítejte v počasí!";
 
 export const lang_weather_on_start_en = "To get started, please select a location.";
 export const lang_weather_on_start_cs = "Pro začátek, prosím vyberte místo.";
+
+export const lang_open_en = "Open";
+export const lang_open_cs = "Otevřít";
+
+export const lang_delete_en = "Delete";
+export const lang_delete_cs = "Vymazat";
+
+export const lang_save_en = "Save";
+export const lang_save_cs = "Uložit";
+
+export const lang_name_en = "Name";
+export const lang_name_cs = "Jméno";

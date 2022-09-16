@@ -41,6 +41,8 @@ import {
   lang_creat_new_user_en,
   lang_dark_cs,
   lang_dark_en,
+  lang_delete_cs,
+  lang_delete_en,
   lang_device_restart_cs,
   lang_device_restart_en,
   lang_Devices_cs,
@@ -69,10 +71,14 @@ import {
   lang_last_update_minutes_en,
   lang_lock_cs,
   lang_lock_en,
+  lang_name_cs,
+  lang_name_en,
   lang_next_cs,
   lang_next_en,
   lang_none_cs,
   lang_none_en,
+  lang_open_cs,
+  lang_open_en,
   lang_pass_error_cs,
   lang_pass_error_en,
   lang_password_cs,
@@ -83,6 +89,8 @@ import {
   lang_power_off_en,
   lang_rename_cs,
   lang_rename_en,
+  lang_save_cs,
+  lang_save_en,
   lang_settings_cs,
   lang_settings_en,
   lang_system_lang_cs,
@@ -253,7 +261,11 @@ export const NapicuOSLanguages = {
       power_off: lang_power_off_en,
       try_again: lang_try_again_en,
       weather_welcome: lang_weather_welcome_en,
-      weather_on_start: lang_weather_on_start_en
+      weather_on_start: lang_weather_on_start_en,
+      open: lang_open_en,
+      delete: lang_delete_en,
+      save: lang_save_en,
+      name: lang_name_en
     }
   },
 
@@ -353,7 +365,11 @@ export const NapicuOSLanguages = {
       power_off: lang_power_off_cs,
       try_again: lang_try_again_cs,
       weather_welcome: lang_weather_welcome_cs,
-      weather_on_start: lang_weather_on_start_cs
+      weather_on_start: lang_weather_on_start_cs,
+      open: lang_open_cs,
+      delete: lang_delete_cs,
+      save: lang_save_cs,
+      name: lang_name_cs
     }
   }
 }

@@ -14,7 +14,7 @@
       <!--Creat file name bar - select mode-->
       <ng-container *ngIf="selectedMode">
         <section class="FileNameContainer">
-            <span>Name: </span>
+            <span>{{GetNameText}}: </span>
             <input [(ngModel)]="fileNameInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': fileNameError}" (ngModelChange)="checkSelectedModeInputFileNameValue()" type="text" name="DocumentNameInput" class="NapicuOSSimpleInput">
         </section>
       </ng-container>
@@ -98,8 +98,8 @@
     <ng-container *ngIf="selectedMode">
       <section class="BottomBoxContainer">
           <div class="BottomBoxButtonClass NapicuOSSimpleButton NapicuSimpleButtonVariables">
-            <button (click)="exitProgram()">Cancel</button>
-            <button (click)="clickSave()" [disabled]="fileNameError" >Save</button>
+            <button (click)="exitProgram()">{{GetCancelText}}</button>
+            <button (click)="clickSave()" [disabled]="fileNameError">{{GetSaveText}}</button>
           </div>
       </section>
     </ng-container>
@@ -116,11 +116,11 @@
 
       <li (click)="clickCreatDirectory()">
         <img [src]="GetAddFolderImage" alt="Add File icon">
-        Creat Folder...
+        {{GetCreatNewDirectoryText}}
       </li>
       <li (click)="clickCreatFile()">
         <img [src]="GetAddFileImage" alt="Add Document icon">
-        Creat Document
+        {{GetCreatNewDocumentText}}
       </li>
     </ul>
   </div>
@@ -134,13 +134,13 @@
   boxMenuPosition.y}" clickable="true">
     <ul>
       <li>
-        Open
+        {{GetOpenText}}
       </li>
       <li (click)="clickDeleteItem()">
-        Delete
+        {{GetDeleteText}}
       </li>
       <li (click)="clickRenameItem()">
-        Rename
+        {{GetRenameText}}
       </li>
     </ul>
   </div>
@@ -154,13 +154,13 @@
   boxMenuPosition.y}" clickable="true">
     <ul>
       <li>
-        Open
+        {{GetOpenText}}
       </li>
       <li (click)="clickDeleteItem()">
-        Delete
+        {{GetDeleteText}}
       </li>
       <li (click)="clickRenameItem()">
-        Rename
+        {{GetRenameText}}
       </li>
     </ul>
   </div>

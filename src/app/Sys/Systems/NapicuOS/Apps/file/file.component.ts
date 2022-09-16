@@ -427,5 +427,36 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     return NapicuOS.get_language_words().other.devices;
   }
 
+  get GetOpenText(): string {
+    return NapicuOS.get_language_words().other.open;
+  }
+
+  get GetDeleteText(): string {
+    return NapicuOS.get_language_words().other.delete;
+  }
+
+  get GetRenameText(): string {
+    return NapicuOS.get_language_words().other.rename;
+  }
+
+  get GetCreatNewDocumentText(): string {
+    return NapicuOS.get_language_words().other.creat.creat_doc;
+  }
+
+  get GetCreatNewDirectoryText(): string {
+    return NapicuOS.get_language_words().other.creat.creat_dir;
+  }
+
+  get GetCancelText(): string {
+    return NapicuOS.get_language_words().other.cancel_any;
+  }
+
+  get GetSaveText(): string {
+    return NapicuOS.get_language_words().other.save;
+  }
+
+  get GetNameText(): string {
+    return NapicuOS.get_language_words().other.name;
+  }
 
 }
