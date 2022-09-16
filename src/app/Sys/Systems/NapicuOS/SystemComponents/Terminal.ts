@@ -49,7 +49,7 @@ export abstract class TerminalClass {
    * @param enteredCommand The command that appears as entered
    */
   public creatCommandLine(value: Line[], enteredCommand?: string): void {
-    this.lines.push({lines: value, enteredCommand: enteredCommand});
+    this.lines.push({lines: value, enteredCommand: enteredCommand, path: this.activePath});
   }
 
   /**

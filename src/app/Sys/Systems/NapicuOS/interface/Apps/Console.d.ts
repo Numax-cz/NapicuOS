@@ -24,5 +24,6 @@ export declare interface historyCommandsMetadata {
 export declare interface inputMetadata {
   lines: Line[];
   enteredCommand: string | undefined;
+  path: string
 }
 
