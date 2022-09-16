@@ -18,7 +18,7 @@ export class User {
       allow: true,
       receive: true
     },
-    audioVolume: 1,
+    audioVolume: 0.5,
     time: {
       format: SystemTimeFormatEnumMetadata.h12,
       sync: false

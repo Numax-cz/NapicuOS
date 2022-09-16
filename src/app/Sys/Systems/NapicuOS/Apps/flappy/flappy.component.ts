@@ -172,7 +172,7 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
   }
 
   get GetSystemUserVolume(): number{
-    let usr_volume = NapicuOS.get_user_settings_audio_volume() - 0.5;
+    let usr_volume = NapicuOS.get_user_settings_audio_volume();
     return (usr_volume < 0) ? 0 : usr_volume;
   }
 }
