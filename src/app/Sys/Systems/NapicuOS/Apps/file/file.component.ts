@@ -28,15 +28,25 @@ import {HistoryLogger} from "../../scripts/HistoryLogger";
 })
 export class FileComponent implements OnInit, SystemWindowAppInjectData {
   @Input() public declare data: InputAlertData;
+
   @Input() public declare windowValue: ProcessWindowValueMetadata;
+
   @Input() public declare process: Process;
+
   @Input() public declare args: string[];
+
   public declare fileNameInput: string;
+
   private declare foldersView: fileConfigDisplayedMetadata[];
+
   private declare drivesView: fileConfigDisplayedMetadata[];
+
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
+
   private startDirectory: string = "/";
+
   public fileName: string = "document";
+
   public displayedFiles: filesAndDirsViewMetadata[] = [];
 
   public pathHistory: HistoryLogger<string> = new HistoryLogger<string>();
@@ -44,7 +54,9 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
   public boxMenuPosition: { x: number, y: number } | null = null;
 
   public showFileManagerContextMenu: boolean = false;
+
   public showFilePropertyContextMenu: boolean = false;
+
   public showDirPropertyContextMenu: boolean = false;
 
   public selectedFileDir: filesAndDirSelectMetadata | null = null;
@@ -55,11 +67,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   public fileNameError: boolean = false;
 
-
-  constructor() {
-
- }
-
+  constructor() { }
 
   ngOnInit(): void {
     this.pathHistory.add(this.startDirectory);
@@ -156,8 +164,6 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     } else {
       this.openFile(i.name);
     }
-
-
     this.selectedFileDir = null;
   }
 
@@ -366,7 +372,6 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     this.freezeContent = false;
   }
 
-
   public onEnter(event: Event): void {
     let i: HTMLElement = event.target as HTMLElement;
     let input = i.innerText;
@@ -376,8 +381,6 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
     if (pathData.state === SystemStateMetadata.PathExist) this.setDir(input);
     event.preventDefault();
   }
-
-
 
   public updateViewFilesAndDirs (): void {
     this.displayedFiles = this.GetFilesInDirectory;
