@@ -22,7 +22,10 @@
 }
 
 .line {
-  display: flex;
+  //display: flex;
+  display: grid;
+  width: 100%;
+  grid-template-columns: max-content auto;
 
   *.line-red {
     color: red;

@@ -30,8 +30,8 @@ export class Line {
 })
 export class ConsoleComponent extends TerminalClass implements OnInit {
   @ViewChild('AppScreen') public declare appScreen: ElementRef;
-  @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
 
+  @ViewChild('InputValue') public declare inputValue: ElementRef<HTMLElement>;
 
   /**
    * Returns the username
@@ -51,7 +51,7 @@ export class ConsoleComponent extends TerminalClass implements OnInit {
    * Returns the path the user is in
    */
   get GetPath(): string {
-    return this.displayedPath;
+    return this.activePath;
   }
 
   /**
