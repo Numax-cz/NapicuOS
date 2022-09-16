@@ -513,8 +513,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static update_napicu_date_config_lang(): void {
     let lang: NapicuOS_available_language = NapicuOS.get_active_user_language();
     NapicuDate.use({
-      days: lang === "cs" ? lang_Days_cs : lang_Days_en,
-      months: lang === "cs" ? lang_Months_cs : lang_Months_en
+      days: lang === "cz" ? lang_Days_cs : lang_Days_en,
+      months: lang === "cz" ? lang_Months_cs : lang_Months_en
     })
   }
 

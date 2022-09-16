@@ -14,8 +14,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class WeatherService {
 
-    public WeatherResponseModel getOpenWeatherData(String api_key, String country) {
-        final String url = "http://api.openweathermap.org/data/2.5/weather?q=" + country + "&units=metric&appid=" + api_key + "&lang=cz";
+    public WeatherResponseModel getOpenWeatherData(String api_key, String country, String lang) {
+        final String url = "http://api.openweathermap.org/data/2.5/weather?q=" + country + "&units=metric&appid=" + api_key + "&lang=" + lang;
         WeatherResponseModel data = new WeatherResponseModel();
 
         try {

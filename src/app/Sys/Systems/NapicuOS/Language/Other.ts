@@ -208,3 +208,12 @@ export const lang_settings_cs = "Nastavení";
 
 export const lang_power_off_en = "Power Off";
 export const lang_power_off_cs = "Vypnout";
+
+export const lang_try_again_en = "Try again";
+export const lang_try_again_cs = "Zkusit znovu";
+
+export const lang_weather_welcome_en = "Welcome to Weather!";
+export const lang_weather_welcome_cs = "Vítejte v počasí!";
+
+export const lang_weather_on_start_en = "To get started, please select a location.";
+export const lang_weather_on_start_cs = "Pro začátek, prosím vyberte místo.";

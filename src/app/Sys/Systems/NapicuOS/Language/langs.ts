@@ -99,6 +99,8 @@ import {
   lang_time_custom_wallpaper_en,
   lang_time_format_cs,
   lang_time_format_en,
+  lang_try_again_cs,
+  lang_try_again_en,
   lang_user_cs,
   lang_user_en,
   lang_users_cs,
@@ -111,6 +113,10 @@ import {
   lang_verify_user_en,
   lang_weather_data_from_cs,
   lang_weather_data_from_en,
+  lang_weather_on_start_cs,
+  lang_weather_on_start_en,
+  lang_weather_welcome_cs,
+  lang_weather_welcome_en,
   lang_welcome_built_on_angular_cs,
   lang_welcome_built_on_angular_en,
   lang_welcome_creating_users_cs,
@@ -148,7 +154,7 @@ import {
 } from "./NapicuApi";
 import {lang_Settings_about_cs, lang_Settings_about_en, lang_Settings_cs, lang_Settings_en} from "./SystemApp";
 
-export declare type NapicuOS_available_language = "en" | "cs";
+export declare type NapicuOS_available_language = "en" | "cz";
 
 export const NapicuOSLanguages = {
   en: {
@@ -244,11 +250,14 @@ export const NapicuOSLanguages = {
       welcome_installation_is_done: lang_installation_done_en,
       lock: lang_lock_en,
       settings: lang_settings_en,
-      power_off: lang_power_off_en
+      power_off: lang_power_off_en,
+      try_again: lang_try_again_en,
+      weather_welcome: lang_weather_welcome_en,
+      weather_on_start: lang_weather_on_start_en
     }
   },
 
-  cs: {
+  cz: {
     CalendarMenu: {
       notification: lang_Notification_cs,
       Calendar: lang_Calendar_cs
@@ -341,7 +350,10 @@ export const NapicuOSLanguages = {
       welcome_installation_is_done: lang_installation_done_cs,
       lock: lang_lock_cs,
       settings: lang_settings_cs,
-      power_off: lang_power_off_cs
+      power_off: lang_power_off_cs,
+      try_again: lang_try_again_cs,
+      weather_welcome: lang_weather_welcome_cs,
+      weather_on_start: lang_weather_on_start_cs
     }
   }
 }

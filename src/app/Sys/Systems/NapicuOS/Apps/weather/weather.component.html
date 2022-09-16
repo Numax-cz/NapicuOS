@@ -15,11 +15,11 @@
       <div  class="MainContent" >
         <img [src]="GetWeatherIcon" alt="Weather icon">
         <div class="text">
-          <h1>Server je momentálně nedostupný :(</h1>
+          <h1>{{GetServerError}}</h1>
         </div>
       </div>
       <div class="NapicuOSSimpleButton" style="text-align: center">
-        <button (click)="check_weather_api()">Zkusit znovu</button>
+        <button (click)="check_weather_api()">{{GetTryAgaiButton}}</button>
       </div>
     </section>
   </ng-container>
@@ -30,8 +30,8 @@
       <div  class="MainContent" >
         <img [src]="GetWeatherIcon" alt="Weather icon">
         <div class="text">
-          <h1>Vítejte v Počasí!</h1>
-          <h2>Pro začáten vyberte místo.</h2>
+          <h1>{{GetWelcomeText}}</h1>
+          <h2>{{GetOnStartText}}</h2>
         </div>
         <input #Input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'--NapicuSimpleButtonColor': 'white', '--NapicuTitleTextColor': 'black'}" (keydown.enter)="submitCity(Input.value)">
        </div>
@@ -64,6 +64,4 @@
       </div>
     </section>
   </ng-container>
-
-
 </section>

@@ -54,9 +54,9 @@ public class WeatherController {
     )
     @GetMapping("/weather")
     @ResponseBody
-    public WeatherResponseModel get(@RequestParam String city) {
+    public WeatherResponseModel get(@RequestParam String city, @RequestParam String language_code) {
         if (rateLimit.getServiceBucket().tryConsume(1)) {
-            return this.pocasiService.getOpenWeatherData(this.api_key, city);
+            return this.pocasiService.getOpenWeatherData(this.api_key, city, language_code);
         }
         throw new RequestException(HttpStatus.TOO_MANY_REQUESTS, NAPICU_TO_MANY_REQUESTS);
     }

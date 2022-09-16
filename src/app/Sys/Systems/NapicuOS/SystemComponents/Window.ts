@@ -4,7 +4,6 @@ import {percentage, percentageValue,} from '../scripts/getPercentage';
 import {WindowComponent} from '../template/window/window.component';
 import {SystemWindowConstructorMetadata} from "../interface/Window/Window";
 import {NapicuOS} from "../system.napicuos";
-import {NapicuOS_available_language} from "../Language/langs";
 import {AppCreatTitleMetadata} from "../interface/System";
 
 export class Window {
@@ -23,7 +22,7 @@ export class Window {
   /**
    * Title of the application window
    */
-  protected windowTitle: AppCreatTitleMetadata = {en: 'Window', cs: "Window"};
+  protected windowTitle: AppCreatTitleMetadata = {en: 'Window', cz: "Window"};
   /**
    * Specifies whether the application window is displayed
    */

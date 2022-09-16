@@ -40,7 +40,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
     this.loadProcess();
   }
 
-
   public loadProcess (): void  {
     if(!WeatherComponent.weatherProcess) {
       WeatherComponent.weatherProcess = new SystemProcessWeather(this.service);
@@ -62,7 +61,8 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   protected static async loadApiData (service: WeatherControllerService, input: string): Promise<void | string>   {
     if(!input.length) return;
-    await service.get(input).toPromise()
+    console.log(NapicuOS.get_active_user_language())
+    await service.get(input, NapicuOS.get_active_user_language()).toPromise()
       .then((data: WeatherResponseModel | undefined) => {
         if(data){
           WeatherComponent.apiData = data;
@@ -97,6 +97,23 @@ export class WeatherComponent implements OnInit, OnDestroy {
   public submitCity = async (city: string): Promise<string | null> => {
     this.err = await WeatherComponent.loadApiData(this.service, city) || null;
     return this.err;
+  }
+
+
+  get GetServerError(): string {
+    return NapicuOS.get_language_words().Api.server_error;
+  }
+
+  get GetTryAgaiButton(): string {
+    return NapicuOS.get_language_words().other.try_again;
+  }
+
+  get GetWelcomeText(): string {
+    return NapicuOS.get_language_words().other.weather_welcome;
+  }
+
+  get GetOnStartText(): string {
+    return NapicuOS.get_language_words().other.weather_on_start;
   }
 
   get GetApiData(): WeatherResponseModel | null{
