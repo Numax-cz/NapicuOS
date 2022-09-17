@@ -71,6 +71,7 @@ export class NapicuOSComponent implements OnInit {
   public static NotificationActive: SystemNotification | null = null;
   public static ToolsContextMenuDisplay: boolean = false;
   public selectedAppContext: number | null = null;
+  public selectedAppPreview: { index: number, process: Process[] } | null = null;
   public selectedAppProperties: number | null = null;
   public static CalendarMenu: SystemCalendarMetadata = {
     calendar: [],
@@ -224,6 +225,20 @@ export class NapicuOSComponent implements OnInit {
 
   public onRightClick(index: number, event: Event): void {
     this.selectedAppContext = index;
+    event.preventDefault();
+  }
+
+  public onMouseEnter(index: number, event: Event): void {
+    let bt_process: SystemDockDisplay[] = this.GetBottomDockProcess;
+    let windows: Process[] = NapicuOS.get_apps_running_by_process_title(bt_process[index].file.fileName);
+
+    if(bt_process[index].running) this.selectedAppPreview = {index: index, process: windows};
+
+    event.preventDefault();
+  }
+
+  public onMouseLeave(event: Event): void {
+    this.selectedAppPreview = null;
     event.preventDefault();
   }
 
@@ -439,5 +454,9 @@ export class NapicuOSComponent implements OnInit {
 
   get GetPowerOffText(): string{
     return NapicuOS.get_language_words().other.power_off;
+  }
+
+  get GetPreviewProcess(): Process[] | null{
+    return this.selectedAppPreview?.process || null;
   }
 }

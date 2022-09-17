@@ -216,7 +216,22 @@
                   </ul>
                 </div>
 
-                <!-- Application icon-->
+                <!-- Application preview menu-->
+<!--                <div *ngIf="index === selectedAppPreview?.index"-->
+<!--                     class="NapicuSimpleBoxMenu NapicuOSSimpleContextMenuPositionTop NapicuOSSimpleContextMenuPositionRight"-->
+<!--                     clickable="false">-->
+<!--                  <ul>-->
+<!--                    <ng-container *ngIf="GetPreviewProcess">-->
+<!--                      <div *ngFor="let p of GetPreviewProcess">-->
+
+<!--                        <ng-container *ngComponentOutlet="p.Window.windowComponent"></ng-container>-->
+
+<!--                      </div>-->
+<!--                    </ng-container>-->
+<!--                  </ul>-->
+<!--                </div>-->
+
+                <!-- Application icon (mouseenter)="onMouseEnter(index, $event)" (mouseleave)="onMouseLeave($event)"-->
                 <img (click)="dockRunner(i.file, i.running)" (contextmenu)="onRightClick(index, $event)"
                      [src]="i.file.iconPath"
                      alt="Application icon"/>
