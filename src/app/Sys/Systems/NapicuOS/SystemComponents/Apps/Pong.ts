@@ -11,8 +11,9 @@ import {PongComponent} from "../../Apps/pong/pong.component";
   appTitle: lang_App_Pong_Title,
   processTitle: SystemAppsProcessName.pong,
   appComponent: PongComponent,
-  windowData: Window.centerPos(35, 35),
+  windowData: Window.centerPos(55, 65),
   fileIconPath: SYSTEM_IMAGES.pong,
+  resizeAllowed: false,
   addToDock: false,
 })
 export class SystemAppsPong extends SystemApp {
