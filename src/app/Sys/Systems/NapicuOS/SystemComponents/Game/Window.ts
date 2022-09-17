@@ -7,6 +7,7 @@ import {Process} from "../Process";
 import {NapicuEngineGameMesh} from "./Mesh";
 
 export abstract class NapicuEngineWindow{
+
   protected readonly canvasResolution: Vector2f = SYSTEM_GAME_CANVAS_RESOLUTION;
 
   public declare canvas: ElementRef<HTMLCanvasElement>;
@@ -20,7 +21,6 @@ export abstract class NapicuEngineWindow{
   protected gameProcess: Process | null = null;
 
   protected abstract backgroundColor: string;
-
 
   protected init(canvas: ElementRef<HTMLCanvasElement>): void {
     this.canvas = canvas;
@@ -80,17 +80,12 @@ export abstract class NapicuEngineWindow{
 
   public renderObject(object: NapicuEngineGameObject): void {
     if(this.ctx){
-
       this.ctx.beginPath();
       this.ctx.save();
       this.ctx.translate((object.x - object.width/2 ) + object.width/2,  (object.y  - object.height/2) + object.height/2);
-
       this.ctx.rotate(object.getRotate() * Math.PI / 180);
-
       this.ctx.translate((-object.x + object.width/2) - object.width/2, (-object.y + object.height/2) - object.height/2);
-
       this.ctx.drawImage(object.texture.getTexture(), object.x - object.width/2 , object.y - object.height/2, object.width, object.height);
-
       this.ctx.restore();
     }else console.error("[NAPICUOS] NapicuEngine CTX Error");
   }
@@ -99,6 +94,15 @@ export abstract class NapicuEngineWindow{
     if(this.ctx){
       this.ctx.beginPath();
       this.ctx.rect(mesh.x, mesh.y, mesh.width, mesh.height);
+      this.ctx.fillStyle = mesh.color;
+      this.ctx.fill();
+    }else console.error("[NAPICUOS] NapicuEngine CTX Error");
+  }
+
+  public renderBall(mesh: NapicuEngineGameMesh): void{
+    if(this.ctx){
+      this.ctx.beginPath();
+      this.ctx.arc(50, 50, 10, 0, Math.PI * 2);
       this.ctx.fillStyle = mesh.color;
       this.ctx.fill();
     }else console.error("[NAPICUOS] NapicuEngine CTX Error");
