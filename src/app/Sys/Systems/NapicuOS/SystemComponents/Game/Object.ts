@@ -3,12 +3,19 @@ import {NapicuEngineTexture} from "./Texture";
 export class NapicuEngineGameObject{
 
   public declare x: number;
+
   public declare y: number;
+
   public declare width: number
+
   public declare height: number;
+
   public declare texture: NapicuEngineTexture;
+
   protected declare angle: number;
+
   public declare velocityX: number;
+
   public declare velocityY: number
 
   public declare rotateDelta: number;
@@ -31,7 +38,6 @@ export class NapicuEngineGameObject{
     this.angle = angle;
   }
 
-
   public onUpdate(){
 
   }
@@ -39,6 +45,4 @@ export class NapicuEngineGameObject{
   public getRotate(): number {
     return this.angle;
   }
-
-
 }
