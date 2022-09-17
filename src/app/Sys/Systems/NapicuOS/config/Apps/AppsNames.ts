@@ -3,6 +3,7 @@ export const enum SystemAppsProcessName{
   installer = "InstallNapicuOS",
   userManager = "UserManager",
   terminal = "Terminal",
+  pong = "Pong",
   fileManager = "FileManager",
   calculator = "Calculator",
   note = "Note",

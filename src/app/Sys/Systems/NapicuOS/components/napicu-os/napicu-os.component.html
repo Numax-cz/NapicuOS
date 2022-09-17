@@ -171,7 +171,7 @@
         <section style="display: contents; background-color: white">
           <div [@NapicuOSfeoreActivityMenu]="GetActivityDisplay" (click)="onClickDesktop()"
                [style.background-image]="'url(' + wallpaper + ')'"
-               id="wallpaper" style="overflow: hidden">
+               id="wallpaper" [ngClass]="{'overflowH': GetActivityDisplay }">
             <!-- Apps -->
             <section>
               <app-window></app-window>

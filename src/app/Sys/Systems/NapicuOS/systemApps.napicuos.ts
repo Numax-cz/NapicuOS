@@ -13,14 +13,10 @@ import {SystemAppsPaint} from "./SystemComponents/Apps/Paint";
 import {SystemAppsFlappy} from "./SystemComponents/Apps/Flappy";
 import {SystemAppsSettings} from "./SystemComponents/Apps/Settings";
 import {SystemAppsCalculator} from "./SystemComponents/Apps/Calculator";
-import {SystemCommandsPrefixEnum} from "./config/commands/Commands";
-import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 import {SystemAppsMap} from "./SystemComponents/Apps/Maps";
-import {WeatherComponent} from "./Apps/weather/weather.component";
 import {SystemAppsWeather} from "./SystemComponents/Apps/Weather";
-import {SystemProcessWeather} from "./SystemComponents/Process/WeatherLoader";
-import {WeatherControllerService} from "../../../../../OpenAPI";
-import {SystemProcessRebootTimeout} from "./SystemComponents/Process/RebootTimeout";
+import {SystemAppsPong} from "./SystemComponents/Apps/Pong";
+
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
 }
@@ -74,6 +70,12 @@ export class NapicuApps {
   public static SystemAppFlappy(args?: string[]): Promise<any> {
     return new Promise(() => {
       new SystemAppsFlappy().run()?.Window.open(args);
+    });
+  }
+
+  public static SystemAppPong(args?: string[]): Promise<any> {
+    return new Promise(() => {
+      new SystemAppsPong().run()?.Window.open(args);
     });
   }
 

@@ -4,6 +4,7 @@ import {ElementRef} from "@angular/core";
 import {NapicuKeyboard} from "../../scripts/Events";
 import {NapicuEngineGameObject} from "./Object";
 import {Process} from "../Process";
+import {NapicuEngineGameMesh} from "./Mesh";
 
 export abstract class NapicuEngineWindow{
   protected readonly canvasResolution: Vector2f = SYSTEM_GAME_CANVAS_RESOLUTION;
@@ -89,7 +90,17 @@ export abstract class NapicuEngineWindow{
       this.ctx.translate((-object.x + object.width/2) - object.width/2, (-object.y + object.height/2) - object.height/2);
 
       this.ctx.drawImage(object.texture.getTexture(), object.x - object.width/2 , object.y - object.height/2, object.width, object.height);
+
       this.ctx.restore();
+    }else console.error("[NAPICUOS] NapicuEngine CTX Error");
+  }
+
+  public renderMesh(mesh: NapicuEngineGameMesh): void{
+    if(this.ctx){
+      this.ctx.beginPath();
+      this.ctx.rect(mesh.x, mesh.y, mesh.width, mesh.height);
+      this.ctx.fillStyle = mesh.color;
+      this.ctx.fill();
     }else console.error("[NAPICUOS] NapicuEngine CTX Error");
   }
 }

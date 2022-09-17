@@ -128,6 +128,7 @@ export enum SYSTEM_IMAGES {
   github = "assets/systems/NapicuOS/github.png",
   angular = "assets/systems/NapicuOS/angular.svg",
   menu = "assets/systems/NapicuOS/SystemIcons/XFD/menu.svg",
+  pong = "assets/systems/NapicuOS/SystemIcons/XFD/ping-pong.webp",
 
 }
 
