@@ -31,7 +31,6 @@ export class NapicuEngineGameObject{
     this.rotateDelta = 0;
     this.velocityX = 0;
     this.velocityY = 0;
-
   }
 
   public rotate(angle: number){
