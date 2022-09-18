@@ -66,6 +66,7 @@ import {InstallComponent} from './Sys/Systems/NapicuOS/Apps/welcome/install/inst
 import {FinishComponent} from './Sys/Systems/NapicuOS/Apps/welcome/finish/finish.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {PongComponent} from './Sys/Systems/NapicuOS/Apps/pong/pong.component';
+import {TypegameComponent} from './Sys/Systems/NapicuOS/Apps/type-game/typegame.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import {PongComponent} from './Sys/Systems/NapicuOS/Apps/pong/pong.component';
     InstallComponent,
     FinishComponent,
     PongComponent,
+    TypegameComponent,
   ],
   imports: [
     BrowserModule,

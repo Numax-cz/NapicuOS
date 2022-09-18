@@ -4,6 +4,7 @@ export const enum SystemAppsProcessName{
   userManager = "UserManager",
   terminal = "Terminal",
   pong = "Pong",
+  typeGame = "TypeGame",
   fileManager = "FileManager",
   calculator = "Calculator",
   note = "Note",

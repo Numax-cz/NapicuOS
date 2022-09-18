@@ -12,6 +12,7 @@ export const lang_App_User_Title: AppCreatTitleMetadata = {en: 'User Manager', c
 export const lang_App_Weather_Title: AppCreatTitleMetadata = {en: 'Weather', cz: "Počasí"}
 export const lang_App_Welcome_Title: AppCreatTitleMetadata = {en: 'Installer', cz: "Instalátor"}
 export const lang_App_Pong_Title: AppCreatTitleMetadata = {en: 'Pong', cz: "Pong"}
+export const lang_App_Type_Game_Title: AppCreatTitleMetadata = {en: 'TypeGame', cz: "TypeGame"}
 
 export const lang_Settings_en = {
   volume: "Volume",

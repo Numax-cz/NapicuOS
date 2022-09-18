@@ -16,6 +16,7 @@ import {SystemAppsCalculator} from "./SystemComponents/Apps/Calculator";
 import {SystemAppsMap} from "./SystemComponents/Apps/Maps";
 import {SystemAppsWeather} from "./SystemComponents/Apps/Weather";
 import {SystemAppsPong} from "./SystemComponents/Apps/Pong";
+import {SystemAppsTypeGame} from "./SystemComponents/Apps/TypeGame";
 
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
@@ -100,6 +101,12 @@ export class NapicuApps {
   public static SystemAppNotePad(args?: string[]): Promise<any>{
     return new Promise(() => {
       new SystemAppsNotepad().run()?.Window.open(args);
+    });
+  }
+
+  public static SystemAppTypeGame(args?: string[]): Promise<any>{
+    return new Promise(() => {
+      new SystemAppsTypeGame().run()?.Window.open(args);
     });
   }
 }

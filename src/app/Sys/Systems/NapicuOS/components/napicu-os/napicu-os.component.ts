@@ -46,12 +46,11 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
         animate(NOTIFICATION_ANIMATION_TIME, style({transform: 'translate(-50%, -125%)', opacity: 0})),
       ]),
     ]),
-
     trigger('NapicuOSfeoreActivityMenu', [
       state(
         'true',
         style({
-          transform: 'scale(0.4) ',
+          transform: 'scale(0.4)',
           opacity: 1,
           transformOrigin: 'top',
           borderRadius: '40px',
@@ -59,6 +58,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
       ),
       transition(`* => *`, animate(WINDOW_ANIMATION_TIME)),
     ]),
+
   ],
 })
 export class NapicuOSComponent implements OnInit {
