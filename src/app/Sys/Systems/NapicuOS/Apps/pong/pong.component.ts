@@ -76,10 +76,9 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
   protected generateBall(): void{
     this.ball = new NapicuEngineGameBall(SYSTEM_GAME_CANVAS_RESOLUTION.x/2, SYSTEM_GAME_CANVAS_RESOLUTION.y/2, SYSTEM_APPS_BALL_WIDTH, "white");
 
-    let randomX: number = RandomNumber(10, 14);
-    let randomY: number = RandomNumber(5, 7);
+    let randomY: number = RandomNumber(7, 14);
 
-    this.ball.velocityX = Math.round(Math.random()) ? randomX : -(randomX);
+    this.ball.velocityX = Math.round(Math.random()) ? 22 : -(22);
     this.ball.velocityY = Math.round(Math.random()) ? randomY : -(randomY);
   }
 
@@ -117,7 +116,7 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
       }
 
 
-      if (this.ball.x > SYSTEM_GAME_CANVAS_RESOLUTION.x/RandomNumber(2.5, 4)) this.bot.velocityY = this.ball.velocityY;
+      if (this.ball.x > SYSTEM_GAME_CANVAS_RESOLUTION.x/RandomNumber(1.33, 4.33)) this.bot.velocityY = this.ball.velocityY;
 
       this.bot.velocityY *= 0.93;
       this.padCollision(this.bot);
@@ -140,8 +139,13 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
       this.ball.x += this.ball.velocityX;
      this.ball.y += this.ball.velocityY;
 
-      if(this.ball.x - this.ball.width <= 0) this.ball.velocityX = -(this.ball.velocityX);
-      if(this.ball.x + this.ball.width >= SYSTEM_GAME_CANVAS_RESOLUTION.x) this.ball.velocityX = -(this.ball.velocityX);
+      if(this.ball.x - this.ball.width <= 0) {
+        this.score.bot++;
+        this.onInit();
+      } else if(this.ball.x + this.ball.width >= SYSTEM_GAME_CANVAS_RESOLUTION.x){
+        this.score.player++
+        this.onInit();
+      }
 
       if(this.ball.y - this.ball.width <= 0) this.ball.velocityY = -(this.ball.velocityY);
       if(this.ball.y + this.ball.width >= SYSTEM_GAME_CANVAS_RESOLUTION.y) this.ball.velocityY = -(this.ball.velocityY);
@@ -163,6 +167,10 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
 
     this.ctx.fill();
     this.ctx.stroke();
+  }
+
+  protected renderStartText(): void {
+
   }
 
 }
