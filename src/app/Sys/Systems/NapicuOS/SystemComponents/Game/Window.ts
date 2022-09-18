@@ -5,6 +5,7 @@ import {NapicuKeyboard} from "../../scripts/Events";
 import {NapicuEngineGameObject} from "./Object";
 import {Process} from "../Process";
 import {NapicuEngineGameMesh} from "./Mesh";
+import {NapicuEngineGameBall} from "./Ball";
 
 export abstract class NapicuEngineWindow{
 
@@ -29,8 +30,8 @@ export abstract class NapicuEngineWindow{
     this.canvas.nativeElement.width = this.canvasResolution.x;
     this.canvas.nativeElement.height = this.canvasResolution.y;
 
-    window.addEventListener("keydown",  this.onKeyEvent);
-    window.addEventListener("keyup", this.onKeyEvent);
+    window.addEventListener("keydown",  this.onKeyEvent, true);
+    window.addEventListener("keyup", this.onKeyEvent, true);
 
     this.onInit();
   }
@@ -99,10 +100,10 @@ export abstract class NapicuEngineWindow{
     }else console.error("[NAPICUOS] NapicuEngine CTX Error");
   }
 
-  public renderBall(mesh: NapicuEngineGameMesh): void{
+  public renderBall(mesh: NapicuEngineGameBall): void{
     if(this.ctx){
       this.ctx.beginPath();
-      this.ctx.arc(50, 50, 10, 0, Math.PI * 2);
+      this.ctx.arc(mesh.x, mesh.y, mesh.width, 0, Math.PI * 2);
       this.ctx.fillStyle = mesh.color;
       this.ctx.fill();
     }else console.error("[NAPICUOS] NapicuEngine CTX Error");
