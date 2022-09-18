@@ -143,7 +143,7 @@ export class FlappyComponent extends NapicuEngineWindow implements OnInit, After
   protected updatePlayer(): void {
     if(!this.player) return;
     this.playerGravitation();
-    if (this.keyBoard.isPressed(KeyCodes.SPACE)) {
+    if (this.keyBoard.isClicked(KeyCodes.SPACE)) {
       if (!this.gameStarted) this.gameStarted = true;
       NapicuOS.play_audio(SYSTEM_SOUNDS.FlappyJump, this.GetSystemUserVolume);
 
