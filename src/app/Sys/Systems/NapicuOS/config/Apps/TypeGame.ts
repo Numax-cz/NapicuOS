@@ -1,0 +1,1 @@
+export const SYSTEM_APPS_TYPE_GAME_WORDS_COUNT = 300;

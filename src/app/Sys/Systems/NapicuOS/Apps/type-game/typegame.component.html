@@ -1,0 +1,37 @@
+<section class="WindowContent BackgroundColor" id="WindowScrollBar">
+
+
+  <!--Loading screen-->
+  <ng-container *ngIf="apiError === null && !words.length">
+    <div>
+    Loading...
+    </div>
+  </ng-container>
+
+
+
+  <div class="Container">
+    <!--Words-->
+    <div class="WordsBox Box">
+      <div class="Words">
+      <span class="Word" *ngFor="let word of words">
+        {{word.value}}
+      </span>
+      </div>
+    </div>
+
+
+    <div class="MainInput Box">
+      <div class="Box WhiteBox">
+        1:00
+      </div>
+      <input type="text">
+      <div class="Box WhiteBox">
+        reset
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

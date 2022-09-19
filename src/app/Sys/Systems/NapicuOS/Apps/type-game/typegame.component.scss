@@ -1,0 +1,67 @@
+.BackgroundColor {
+  background-color: #3e8ed0!important;
+  width: 100%;
+  height: 100%;
+  color: var(--NapicuTextColor);
+}
+
+.Container{
+  width: 60%;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.Box{
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em #0a0a0a1a, 0 0 0 1px #0a0a0a05;
+}
+
+.WordsBox{
+  width: 100%;
+  margin-bottom: 1.5rem;
+  overflow-y: hidden;
+  max-height: 5rem;
+  min-height: 5rem;
+  height: auto;
+  text-align: center;
+  background-color: #fff;
+  color: #4a4a4a;
+  display: block;
+  padding: 1.25rem;
+
+  .Word{
+    border-radius: 10px;
+    margin: 0 4px;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 3px 5px;
+    display: inline-block!important;
+  }
+
+  span{
+    font-size: 1.8rem!important;
+    font-style: inherit;
+    font-weight: inherit;
+  }
+}
+
+.WhiteBox{
+  background-color: #fff;
+}
+
+.MainInput{
+  background-color: rgba(70, 70, 70, 0.444);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  input {
+    border: none;
+    outline: none;
+    padding: 10px 14px;
+    font-size: 1.4rem;
+    width: 40%;
+    margin: 0 25px;
+    font-weight: 500!important;
+    border-radius: 10px;
+  }
+}

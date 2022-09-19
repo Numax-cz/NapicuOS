@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {WordsControllerService} from "../../../../../../../OpenAPI";
+import {typeGameWordsLetterMetadata, typeGameWordsMetadata} from "../../interface/TypeGame";
+import {SYSTEM_APPS_TYPE_GAME_WORDS_COUNT} from "../../config/Apps/TypeGame";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   templateUrl: './typegame.component.html',
@@ -6,9 +10,54 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TypegameComponent implements OnInit {
 
-  constructor() { }
+  public words: typeGameWordsMetadata[] = [];
 
-  ngOnInit(): void {
+  public apiError: any | boolean = null;
+
+
+  constructor(protected service: WordsControllerService) { }
+
+  public ngOnInit(): void {
+    this.loadApiData();
   }
 
+  public restart(): void {
+    this.ngOnInit();
+  }
+
+  public setTimer(): void {
+    //TODO SET PROCESS
+  }
+
+  public onEnd(): void {
+    //TODO ON END FUNCTION
+  }
+
+  public getWPM(): any{
+
+  }
+
+  protected loadApiData = () => {
+    this.service.getWords(SYSTEM_APPS_TYPE_GAME_WORDS_COUNT).subscribe({
+      next: (data: string[] | undefined) => {
+        if(data) this.setWords(data);
+        this.apiError = false;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+
+        this.apiError = true;
+      }
+    })
+  }
+
+  protected setWords(words: string[]): void {
+    this.words = [];
+    words.forEach((i: string) => {
+      let value: typeGameWordsLetterMetadata[] = [];
+      i.split('').forEach((element: string) => value.push({value: element, mistake: null}));
+      this.words.push({value: i, mistake: false, letters: value});
+    });
+    this.apiError = false;
+  }
 }
