@@ -38,9 +38,8 @@
 
 
 .Container{
-  width: 60%;
-  margin: auto;
-  margin-top: 100px;
+  width: 75%;
+  margin: 100px auto auto;
 }
 
 .Box{
@@ -79,6 +78,7 @@
 
 .WhiteBox{
   background-color: #fff;
+  color: #4a4a4a;;
 }
 
 .MainInput{
@@ -86,6 +86,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.25rem;
+
   input {
     border: none;
     outline: none;
@@ -95,5 +97,20 @@
     margin: 0 25px;
     font-weight: 500!important;
     border-radius: 10px;
+  }
+
+  .SquareBox{
+    width: 64px;
+    height: 64px;
+    display: flex;
+    cursor: pointer;
+    padding: .9rem;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: center;
+    font-size: 1.4rem;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
   }
 }
