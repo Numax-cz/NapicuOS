@@ -3,15 +3,32 @@
 
   <!--Loading screen-->
   <ng-container *ngIf="apiError === null && !words.length">
-    <div>
-    Loading...
-    </div>
+    <section>
+      <div  class="MainContent LoadScreen">
+        <img [src]="GetKeyBoardIcon" alt="Keyboard icon">
+      </div>
+    </section>
+  </ng-container>
+
+  <!--Error screen-->
+  <ng-container *ngIf="apiError">
+    <section>
+      <div  class="MainContent" >
+        <img [src]="GetKeyBoardIcon" alt="Weather icon">
+        <div class="text">
+          <h1>{{GetServerError}}</h1>
+        </div>
+      </div>
+      <div class="NapicuOSSimpleButton" style="text-align: center">
+        <button (click)="loadApiData()">{{GetTryAgaiButton}}</button>
+      </div>
+    </section>
   </ng-container>
 
 
-
-  <div class="Container">
     <!--Words-->
+  <ng-container *ngIf="apiError === false && words.length">
+  <div class="Container">
     <div class="WordsBox Box">
       <div class="Words">
       <span class="Word" *ngFor="let word of words">
@@ -31,6 +48,7 @@
       </div>
     </div>
   </div>
+  </ng-container>
 
 
 

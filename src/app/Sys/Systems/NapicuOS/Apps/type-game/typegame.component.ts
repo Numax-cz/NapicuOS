@@ -3,6 +3,8 @@ import {WordsControllerService} from "../../../../../../../OpenAPI";
 import {typeGameWordsLetterMetadata, typeGameWordsMetadata} from "../../interface/TypeGame";
 import {SYSTEM_APPS_TYPE_GAME_WORDS_COUNT} from "../../config/Apps/TypeGame";
 import {HttpErrorResponse} from "@angular/common/http";
+import {SYSTEM_IMAGES} from "../../config/System";
+import {NapicuOS} from "../../system.napicuos";
 
 @Component({
   templateUrl: './typegame.component.html',
@@ -37,7 +39,7 @@ export class TypegameComponent implements OnInit {
 
   }
 
-  protected loadApiData = () => {
+  public loadApiData = () => {
     this.service.getWords(SYSTEM_APPS_TYPE_GAME_WORDS_COUNT).subscribe({
       next: (data: string[] | undefined) => {
         if(data) this.setWords(data);
@@ -60,4 +62,17 @@ export class TypegameComponent implements OnInit {
     });
     this.apiError = false;
   }
+
+  get GetKeyBoardIcon(): string{
+    return SYSTEM_IMAGES.keyboard;
+  }
+
+  get GetServerError(): string {
+    return NapicuOS.get_language_words().Api.server_error;
+  }
+
+  get GetTryAgaiButton(): string {
+    return NapicuOS.get_language_words().other.try_again;
+  }
+
 }
