@@ -1,6 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {WordsControllerService} from "../../../../../../../OpenAPI";
-import {typeGameTimerMetadata, typeGameWordsLetterMetadata, typeGameWordsMetadata} from "../../interface/TypeGame";
+import {
+  typeGameScoreMetadata,
+  typeGameTimerMetadata,
+  typeGameWordMetadata,
+  typeGameWordsLetterMetadata
+} from "../../interface/TypeGame";
 import {
   SYSTEM_APPS_TYPE_GAME_TIME_MINUTES,
   SYSTEM_APPS_TYPE_GAME_TIME_SECONDS,
@@ -15,9 +20,9 @@ import {Process} from "../../SystemComponents/Process";
   templateUrl: './typegame.component.html',
   styleUrls: ['./typegame.component.scss']
 })
-export class TypegameComponent implements OnInit {
+export class TypegameComponent implements OnInit, OnDestroy {
 
-  public words: typeGameWordsMetadata[] = [];
+  public words: typeGameWordMetadata[] = [];
 
   public apiError: any | boolean = null;
 
@@ -25,24 +30,61 @@ export class TypegameComponent implements OnInit {
 
   public timerProcess: Process | null = null;
 
+  public declare selectedWordIndex: number;
 
-  constructor(protected service: WordsControllerService) { }
+  public declare inputValue: string | null;
+
+  public declare launched: boolean;
+
+  public declare noMove: boolean;
+
+  public declare score: typeGameScoreMetadata;
+
+  public declare previousWordPosition: number;
+
+
+  constructor(protected service: WordsControllerService) {
+    window.addEventListener('keydown', this.onSpaceBar, true);
+  }
 
   public ngOnInit(): void {
+    if(this.timerProcess) {
+      this.timerProcess.kill();
+      this.timerProcess = null;
+    }
+
+    this.selectedWordIndex = 0;
     this.timer = {
       minutes: SYSTEM_APPS_TYPE_GAME_TIME_MINUTES,
       seconds: SYSTEM_APPS_TYPE_GAME_TIME_SECONDS,
     };
 
+    this.score = {
+      wrongWords: 0,
+      wrongLetters: 0,
+      letters: 0,
+      words: 0,
+    };
+
     this.loadApiData();
   }
 
-  public restart(): void {
+  public ngOnDestroy() {
+    window.removeEventListener('keydown', this.onSpaceBar, true);
+  }
+
+  public start(): void {
+    this.launched = true;
+    this.ngOnInit();
+    this.setTimer();
+  }
+
+  public clickRestart(): void {
+    this.loadApiData();
     this.ngOnInit();
   }
 
   public onEnd(): void {
-
     if(this.timerProcess){
       this.timerProcess.kill();
       this.timerProcess = null;
@@ -83,6 +125,63 @@ export class TypegameComponent implements OnInit {
     }).run();
   }
 
+  public onSpaceBar = (e: KeyboardEvent): void =>{
+    if (e.keyCode !== 32 || this.noMove || !this.inputValue?.length) return;
+    var element = document
+      .getElementsByClassName(`napicuWord-${this.selectedWordIndex + 1}`)
+      .item(0) as HTMLElement;
+
+    if (this.previousWordPosition < element.offsetTop) {
+      this.words.splice(0, this.selectedWordIndex + 1);
+      this.selectedWordIndex = -1;
+    }
+    this.previousWordPosition = element.offsetTop;
+
+    if (this.inputValue?.indexOf(' ') != 0) {
+      this.checkFullText();
+      if (this.GetSelecteWord()?.mistake) {
+        this.score.wrongWords += 1;
+      } else {
+        this.score.words += 1;
+      }
+
+      this.inputValue = null;
+      this.selectedWordIndex += 1;
+      e.preventDefault();
+    }
+  }
+
+  public onInputChange(e: string): void {
+    if (!this.launched) this.start();
+    if (this.noMove) return;
+    this.checkMistakes();
+    let letter: typeGameWordsLetterMetadata = this.GetSelecteWord().letters[e.length - 1];
+    if (letter) {
+      if (this.GetSelecteWord().mistake && letter.mistake == null) {
+        this.score.wrongLetters += 1;
+        letter.mistake = false;
+      } else if (letter.mistake == null) {
+        this.score.letters += 1;
+        letter.mistake = true;
+      }
+    }
+  }
+
+  public checkMistakes(): void {
+    let selectedWord = this.GetSelecteWord();
+    let returnValue = false;
+    if (this.inputValue && selectedWord) {
+      const inputLetters = this.inputValue.split('');
+      const selectedLetters = selectedWord.value?.split('');
+      inputLetters.forEach((sL: string, index: number) => {
+        if (sL !== selectedLetters[index]) {
+          returnValue = true;
+          return;
+        }
+      });
+    }
+    selectedWord.mistake = returnValue;
+  }
 
   protected setWords(words: string[]): void {
     this.words = [];
@@ -92,6 +191,11 @@ export class TypegameComponent implements OnInit {
       this.words.push({value: i, mistake: false, letters: value});
     });
     this.apiError = false;
+  }
+
+  public checkFullText(): void {
+    let selectedWord = this.GetSelecteWord();
+    if (selectedWord && selectedWord.value.length !== this.inputValue?.length) selectedWord.mistake = true;
   }
 
   get GetKeyBoardIcon(): string{
@@ -104,6 +208,10 @@ export class TypegameComponent implements OnInit {
 
   get GetTryAgaiButton(): string {
     return NapicuOS.get_language_words().other.try_again;
+  }
+
+  public GetSelecteWord(): typeGameWordMetadata {
+    return this.words[this.selectedWordIndex];
   }
 
 }
