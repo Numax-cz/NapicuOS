@@ -31,7 +31,12 @@
   <div class="Container">
     <div class="WordsBox Box">
       <div class="Words">
-      <span class="Word" *ngFor="let word of words">
+      <span class="Word" *ngFor="let word of words; let index = index"
+            [ngClass]="{
+                'selectedWord': index == selectedWordIndex && !word.mistake,
+                'errorWord': word.mistake
+             }"
+            [class]="'napicuWord-' + index">
         {{word.value}}
       </span>
       </div>
@@ -42,8 +47,8 @@
       <div class="Box WhiteBox SquareBox">
         {{ timer.minutes }}:{{ timer.seconds }}
       </div>
-      <input type="text">
-      <div class="Box WhiteBox SquareBox">
+      <input type="text" [(ngModel)]="inputValue" (ngModelChange)="onInputChange($event)">
+      <div class="Box WhiteBox SquareBox" (click)="clickRestart()">
         reset
       </div>
     </div>

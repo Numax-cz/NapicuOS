@@ -69,11 +69,20 @@
     display: inline-block!important;
   }
 
+  .selectedWord{
+    background-color: #dbdbdb!important;;
+  }
+
+  .errorWord{
+    background-color: #f14668!important;
+  }
+
   span{
     font-size: 1.8rem!important;
     font-style: inherit;
     font-weight: inherit;
   }
+
 }
 
 .WhiteBox{
