@@ -45,6 +45,7 @@ export class TypegameComponent implements OnInit, OnDestroy {
 
   constructor(protected service: WordsControllerService) {
     window.addEventListener('keydown', this.onSpaceBar, true);
+    this.loadApiData();
   }
 
   public ngOnInit(): void {
@@ -65,8 +66,6 @@ export class TypegameComponent implements OnInit, OnDestroy {
       letters: 0,
       words: 0,
     };
-
-    this.loadApiData();
   }
 
   public ngOnDestroy() {
