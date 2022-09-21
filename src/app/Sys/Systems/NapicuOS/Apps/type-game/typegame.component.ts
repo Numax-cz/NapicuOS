@@ -26,6 +26,8 @@ export class TypegameComponent implements OnInit, OnDestroy {
 
   public apiError: any | boolean = null;
 
+  public showTimer: boolean = true;
+
   public declare timer: typeGameTimerMetadata;
 
   public timerProcess: Process | null = null;
@@ -196,6 +198,10 @@ export class TypegameComponent implements OnInit, OnDestroy {
     let selectedWord = this.GetSelecteWord();
     if (selectedWord && selectedWord.value.length !== this.inputValue?.length) selectedWord.mistake = true;
   }
+
+  public switchDisplayTimer(): void{
+    this.showTimer = !this.showTimer;
+}
 
   get GetKeyBoardIcon(): string{
     return SYSTEM_IMAGES.keyboard;

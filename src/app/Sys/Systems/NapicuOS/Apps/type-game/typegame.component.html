@@ -44,7 +44,7 @@
 
 
     <div class="MainInput Box">
-      <div class="Box WhiteBox SquareBox">
+      <div class="Box WhiteBox SquareBox" (click)="switchDisplayTimer()">
         {{ timer.minutes }}:{{ timer.seconds }}
       </div>
       <input type="text" [(ngModel)]="inputValue" (ngModelChange)="onInputChange($event)">
