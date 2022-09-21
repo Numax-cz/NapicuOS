@@ -92,8 +92,8 @@ export class TypegameComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getWPM(): any{
-
+  public getWPM(): number{
+    return Math.round(this.score.letters / 5 / SYSTEM_APPS_TYPE_GAME_TIME_MINUTES + (SYSTEM_APPS_TYPE_GAME_TIME_SECONDS % 3600) / 60);
   }
 
   public loadApiData = () => {

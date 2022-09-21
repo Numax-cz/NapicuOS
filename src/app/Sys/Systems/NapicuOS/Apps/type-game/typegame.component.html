@@ -1,6 +1,4 @@
 <section class="WindowContent BackgroundColor" id="WindowScrollBar">
-
-
   <!--Loading screen-->
   <ng-container *ngIf="apiError === null && !words.length">
     <section>
@@ -25,7 +23,6 @@
     </section>
   </ng-container>
 
-
     <!--Words-->
   <ng-container *ngIf="apiError === false && words.length">
   <div class="Container">
@@ -42,7 +39,6 @@
       </div>
     </div>
 
-
     <div class="MainInput Box">
       <div class="Box WhiteBox SquareBox" (click)="switchDisplayTimer()">
         {{ timer.minutes }}:{{ timer.seconds }}
@@ -54,7 +50,4 @@
     </div>
   </div>
   </ng-container>
-
-
-
 </section>
