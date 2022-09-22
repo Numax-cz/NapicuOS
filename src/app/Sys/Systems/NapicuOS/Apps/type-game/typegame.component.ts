@@ -51,10 +51,7 @@ export class TypegameComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    if(this.timerProcess) {
-      this.timerProcess.kill();
-      this.timerProcess = null;
-    }
+    this.killTypeGameProcess();
 
     this.selectedWordIndex = 0;
     this.timer = {
@@ -72,6 +69,7 @@ export class TypegameComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
     window.removeEventListener('keydown', this.onSpaceBar, true);
+    this.killTypeGameProcess();
   }
 
   public start(): void {
@@ -86,6 +84,13 @@ export class TypegameComponent implements OnInit, OnDestroy {
   }
 
   public onEnd(): void {
+    if(this.timerProcess){
+      this.timerProcess.kill();
+      this.timerProcess = null;
+    }
+  }
+
+  public killTypeGameProcess(): void {
     if(this.timerProcess){
       this.timerProcess.kill();
       this.timerProcess = null;
