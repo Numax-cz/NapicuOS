@@ -183,9 +183,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Preload system wallpapers
       //await this.loadSystemWallpapers(); //TODO
 
-      NapicuOS.open_app(SystemAppsProcessName.typeGame);
-
-
       resolve();
     });
   }

@@ -11,7 +11,7 @@ import {
   SYSTEM_APPS_TYPE_GAME_TIME_SECONDS,
   SYSTEM_APPS_TYPE_GAME_WORDS_COUNT
 } from "../../config/Apps/TypeGame";
-import {HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {NapicuOS} from "../../system.napicuos";
 import {Process} from "../../SystemComponents/Process";
@@ -25,6 +25,8 @@ export class TypegameComponent implements OnInit, OnDestroy {
   public words: typeGameWordMetadata[] = [];
 
   public apiError: any | boolean = null;
+
+  public apiErrorText: string | null = null;
 
   public showScore: boolean = false;
 
@@ -114,8 +116,13 @@ export class TypegameComponent implements OnInit, OnDestroy {
         this.apiError = false;
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err);
         this.apiError = true;
+
+        if(err.status === HttpStatusCode.TooManyRequests){
+          this.apiErrorText = this.GetTooManyRequestsText;
+        }else {
+          this.apiErrorText = this.GetServerError
+        }
       }
     })
   }
@@ -266,5 +273,9 @@ export class TypegameComponent implements OnInit, OnDestroy {
 
   get GetCorrectWordsText(): string {
     return NapicuOS.get_language_words().other.type_game_correct_words;
+  }
+
+  get GetTooManyRequestsText(): string {
+    return NapicuOS.get_language_words().Api.too_many_req;
   }
 }
