@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NapicuOS} from "../../system.napicuos";
 import {SYSTEM_IMAGES} from "../../config/System";
-import {RequestExceptionSchema, WeatherControllerService, WeatherResponseModel} from "../../../../../../../OpenAPI";
+import {WeatherControllerService, WeatherResponseModel} from "../../../../../../../OpenAPI";
 import {HttpStatusCode} from "@angular/common/http";
-import {NapicuApiResponseStatus} from "../../config/NapicuApi";
 import {NapicuDate} from "napicuformatter";
 import {TIME_FORMAT_WEATHER} from "../../config/Time";
 import {OPEN_WEATHER_ICONS} from "../../config/OpenWeather";
@@ -22,7 +21,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
   public static weatherProcessStopwatch: SystemProcessStopWatch | null = null;
   public static weatherProcess: SystemProcess | null = null;
   public static apiError: boolean | null = null;
-  public err: string | null = null;
+  public static apiErrorText: string | null = null;
+
+
 
   constructor(protected service: WeatherControllerService) { }
 
@@ -70,14 +71,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
           WeatherComponent.weatherProcessStopwatch?.resetTime();
         }
       })
-      .catch((data) => {
-        let i = data.error as RequestExceptionSchema;
+      .catch((err) => {
         WeatherComponent.apiData = null;
-        if (i.code === NapicuApiResponseStatus.NAPICU_POCASI_CITY_NOT_FOUND) {
-          return WeatherComponent.GetCityNotFoundErrorMessage;
-        } else if (i.code === HttpStatusCode.TooManyRequests) {
-          return  WeatherComponent.GetTooManyRequestsErrorMessage;
-        } else  return WeatherComponent.Get404ErrorMessage;
+        WeatherComponent.apiError = true;
+        if(err.status === HttpStatusCode.TooManyRequests){
+          this.apiErrorText = this.GetTooManyRequestsText;
+        }else {
+          this.apiErrorText = this.GetServerError
+        }
       })
   }
 
@@ -95,12 +96,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   public submitCity = async (city: string): Promise<string | null> => {
-    this.err = await WeatherComponent.loadApiData(this.service, city) || null;
-    return this.err;
+    return await WeatherComponent.loadApiData(this.service, city) || null;
   }
 
-
-  get GetServerError(): string {
+  static get GetServerError(): string {
     return NapicuOS.get_language_words().Api.server_error;
   }
 
@@ -149,6 +148,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
     return WeatherComponent.apiError;
   }
 
+  get GetApiErrorText(): string | null {
+    return WeatherComponent.apiErrorText;
+  }
+
   static get Get404ErrorMessage(): string {
     return NapicuOS.get_language_words().Api.server_error;
   }
@@ -161,4 +164,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
     return NapicuOS.get_language_words().Api.too_many_req;
   }
 
+  static get GetTooManyRequestsText(): string {
+    return NapicuOS.get_language_words().Api.too_many_req;
+  }
 }

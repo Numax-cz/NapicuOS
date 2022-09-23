@@ -15,7 +15,7 @@
       <div  class="MainContent" >
         <img [src]="GetWeatherIcon" alt="Weather icon">
         <div class="text">
-          <h1>{{GetServerError}}</h1>
+          <h1>{{GetApiErrorText}}</h1>
         </div>
       </div>
       <div class="NapicuOSSimpleButton" style="text-align: center">
@@ -35,9 +35,9 @@
         </div>
         <input #Input type="text" class="NapicuOSSimpleInput" [ngStyle]="{'--NapicuSimpleButtonColor': 'white', '--NapicuTitleTextColor': 'black'}" (keydown.enter)="submitCity(Input.value)">
        </div>
-      <div>
-        {{err}}
-      </div>
+<!--      <div>-->
+<!--        {{GetApiErrorText}}-->
+<!--      </div>-->
     </section>
   </ng-container>
 
