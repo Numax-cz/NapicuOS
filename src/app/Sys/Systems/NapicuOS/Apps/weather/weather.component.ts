@@ -16,13 +16,18 @@ import {SystemProcessStopWatch} from "../../SystemComponents/Process/Stopwatch";
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit, OnDestroy {
-  public city: string | null = null;
-  public static apiData: WeatherResponseModel | null = null;
-  public static weatherProcessStopwatch: SystemProcessStopWatch | null = null;
-  public static weatherProcess: SystemProcess | null = null;
-  public static apiError: boolean | null = null;
-  public static apiErrorText: string | null = null;
 
+  public city: string | null = null;
+
+  public static apiData: WeatherResponseModel | null = null;
+
+  public static weatherProcessStopwatch: SystemProcessStopWatch | null = null;
+
+  public static weatherProcess: SystemProcess | null = null;
+
+  public static apiError: boolean | null = null;
+
+  public static apiErrorText: string | null = null;
 
 
   constructor(protected service: WeatherControllerService) { }
@@ -47,6 +52,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
       WeatherComponent.update_weather_data();
       WeatherComponent.weatherProcess.process.run();
     }
+
     if(!WeatherComponent.weatherProcessStopwatch){
       WeatherComponent.weatherProcessStopwatch = new SystemProcessStopWatch()
       WeatherComponent.weatherProcessStopwatch.process.run();
@@ -62,7 +68,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   protected static async loadApiData (service: WeatherControllerService, input: string): Promise<void | string>   {
     if(!input.length) return;
-    console.log(NapicuOS.get_active_user_language())
     await service.get(input, NapicuOS.get_active_user_language()).toPromise()
       .then((data: WeatherResponseModel | undefined) => {
         if(data){
