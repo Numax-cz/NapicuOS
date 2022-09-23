@@ -229,3 +229,15 @@ export const lang_save_cs = "Uložit";
 
 export const lang_name_en = "Name";
 export const lang_name_cs = "Jméno";
+
+export const lang_type_game_chars_en = "Keystroke";
+export const lang_type_game_chars_cs = "Úhozů";
+
+export const lang_type_game_accuracy_en = "Accuracy";
+export const lang_type_game_accuracy_cs = "Přesnost";
+
+export const lang_type_game_bad_words_en = "Wrong words";
+export const lang_type_game_bad_words_cs = "Chybných slov";
+
+export const lang_type_game_correct_words_en = "Correct words";
+export const lang_type_game_correct_words_cs = "Správných slov";

@@ -109,6 +109,14 @@ import {
   lang_time_format_en,
   lang_try_again_cs,
   lang_try_again_en,
+  lang_type_game_accuracy_cs,
+  lang_type_game_accuracy_en,
+  lang_type_game_bad_words_cs,
+  lang_type_game_bad_words_en,
+  lang_type_game_chars_cs,
+  lang_type_game_chars_en,
+  lang_type_game_correct_words_cs,
+  lang_type_game_correct_words_en,
   lang_user_cs,
   lang_user_en,
   lang_users_cs,
@@ -265,7 +273,11 @@ export const NapicuOSLanguages = {
       open: lang_open_en,
       delete: lang_delete_en,
       save: lang_save_en,
-      name: lang_name_en
+      name: lang_name_en,
+      type_game_chars: lang_type_game_chars_en,
+      type_game_accuracy: lang_type_game_accuracy_en,
+      type_game_bad_words: lang_type_game_bad_words_en,
+      type_game_correct_words: lang_type_game_correct_words_en
     }
   },
 
@@ -369,7 +381,11 @@ export const NapicuOSLanguages = {
       open: lang_open_cs,
       delete: lang_delete_cs,
       save: lang_save_cs,
-      name: lang_name_cs
+      name: lang_name_cs,
+      type_game_chars: lang_type_game_chars_cs,
+      type_game_accuracy: lang_type_game_accuracy_cs,
+      type_game_bad_words: lang_type_game_bad_words_cs,
+      type_game_correct_words: lang_type_game_correct_words_cs
     }
   }
 }

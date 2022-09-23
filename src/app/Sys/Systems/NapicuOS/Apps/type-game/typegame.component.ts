@@ -26,6 +26,8 @@ export class TypegameComponent implements OnInit, OnDestroy {
 
   public apiError: any | boolean = null;
 
+  public showScore: boolean = false;
+
   public showTimer: boolean = true;
 
   public declare timer: typeGameTimerMetadata;
@@ -59,6 +61,8 @@ export class TypegameComponent implements OnInit, OnDestroy {
       seconds: SYSTEM_APPS_TYPE_GAME_TIME_SECONDS,
     };
 
+    this.showScore = false;
+
     this.score = {
       wrongWords: 0,
       wrongLetters: 0,
@@ -88,6 +92,7 @@ export class TypegameComponent implements OnInit, OnDestroy {
       this.timerProcess.kill();
       this.timerProcess = null;
     }
+    this.showScore = true;
   }
 
   public killTypeGameProcess(): void {
@@ -224,4 +229,41 @@ export class TypegameComponent implements OnInit, OnDestroy {
     return this.words[this.selectedWordIndex];
   }
 
+  public GetAccurately(): number {
+    return Math.round(
+      (this.score.letters - this.score.wrongLetters) / (this.score.letters / 100)
+    );
+  }
+
+  public GetBadWords(): number{
+    return this.score.wrongWords;
+  }
+
+  public GetCorrectWords(): number{
+    return this.score.words;
+  }
+
+  public GetChars(): number{
+    return this.score.letters;
+  }
+
+  public GetBadChars(): number {
+    return this.score.wrongLetters;
+  }
+
+  get GetCharsText(): string{
+    return NapicuOS.get_language_words().other.type_game_chars;
+  }
+
+  get GetAccuaracyText(): string {
+    return NapicuOS.get_language_words().other.type_game_accuracy;
+  }
+
+  get GetBadWordsText(): string {
+    return NapicuOS.get_language_words().other.type_game_bad_words;
+  }
+
+  get GetCorrectWordsText(): string {
+    return NapicuOS.get_language_words().other.type_game_correct_words;
+  }
 }

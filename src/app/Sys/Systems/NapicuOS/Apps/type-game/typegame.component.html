@@ -50,4 +50,17 @@
     </div>
   </div>
   </ng-container>
+
+
+  <!--Words-->
+  <ng-container *ngIf="showScore">
+    <div class="Container Score">
+      <h1 class="MainTitle">WPM: {{getWPM()}}</h1>
+      <h1>{{GetAccuaracyText}}: {{GetAccurately()}}%</h1>
+      <h1>{{GetCharsText}}: {{GetChars()}}/{{GetBadChars()}}</h1>
+      <h1>{{GetBadWordsText}}: {{GetBadWords()}}</h1>
+      <h1>{{GetCorrectWordsText}}: {{GetCorrectWords()}}</h1>
+    </div>
+  </ng-container>
+
 </section>
