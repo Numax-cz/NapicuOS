@@ -43,7 +43,7 @@
       <div class="Box WhiteBox SquareBox" (click)="switchDisplayTimer()">
         {{ timer.minutes }}:{{ timer.seconds }}
       </div>
-      <input type="text" [(ngModel)]="inputValue" (ngModelChange)="onInputChange($event)">
+      <input type="text" [(ngModel)]="inputValue" (ngModelChange)="onInputChange($event)" [attr.disabled]="showScore ? '' : null ">
       <div class="Box WhiteBox SquareBox" (click)="clickRestart()">
         reset
       </div>

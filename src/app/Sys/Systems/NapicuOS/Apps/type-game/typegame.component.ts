@@ -83,6 +83,7 @@ export class TypegameComponent implements OnInit, OnDestroy {
   }
 
   public clickRestart(): void {
+    this.launched = false;
     this.loadApiData();
     this.ngOnInit();
   }
