@@ -41,7 +41,9 @@
 
     <div class="MainInput Box">
       <div class="Box WhiteBox SquareBox" (click)="switchDisplayTimer()">
-        {{ timer.minutes }}:{{ timer.seconds }}
+        <ng-container *ngIf="showTimer">
+          {{ timer.minutes }}:{{ timer.seconds }}
+        </ng-container>
       </div>
       <input type="text" [(ngModel)]="inputValue" (ngModelChange)="onInputChange($event)" [attr.disabled]="showScore ? '' : null ">
       <div class="Box WhiteBox SquareBox" (click)="clickRestart()">
@@ -57,7 +59,7 @@
     <div class="Container Score">
       <h1 class="MainTitle">WPM: {{getWPM()}}</h1>
       <h1>{{GetAccuaracyText}}: {{GetAccurately()}}%</h1>
-      <h1>{{GetCharsText}}: {{GetChars()}}/{{GetBadChars()}}</h1>
+      <h1>{{GetCharsText}}: <span class="green">{{GetChars()}}</span>/<span class="red">{{GetBadChars()}}</span></h1>
       <h1>{{GetBadWordsText}}: {{GetBadWords()}}</h1>
       <h1>{{GetCorrectWordsText}}: {{GetCorrectWords()}}</h1>
     </div>
