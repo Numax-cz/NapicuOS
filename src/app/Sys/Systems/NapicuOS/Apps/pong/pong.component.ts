@@ -21,6 +21,7 @@ import {PongScoreMetadata} from "../../interface/Apps/Bot";
   styleUrls: ['./pong.component.scss']
 })
 export class PongComponent extends NapicuEngineWindow implements OnInit, AfterViewInit, OnDestroy {
+
   @ViewChild('NapicuCanvas') declare canvas: ElementRef<HTMLCanvasElement>;
 
   @Input() public declare process: Process;
@@ -35,8 +36,11 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
 
   protected score: PongScoreMetadata = {player: 0, bot: 0};
 
+  public started: boolean = false;
+
 
   ngOnInit(): void {
+    window.addEventListener("keydown", this.onStartKey);
   }
 
   ngAfterViewInit(): void {
@@ -44,9 +48,15 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
   }
 
   ngOnDestroy(): void {
+    window.removeEventListener("keydown", this.onStartKey);
+  }
+
+  public onStartKey = (): void => {
+    this.started = true;
   }
 
   onInit(): void {
+    this.started = false;
     this.generatePlayer();
     this.generateBot();
     this.generateBall();
@@ -57,12 +67,15 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
     if(this.bot) this.renderMesh(this.bot);
     if(this.ball) this.renderBall(this.ball);
     this.renderScore();
+    this.renderPressAnyKeyText();
   }
 
   override update(): void {
-    this.updateBall();
-    this.updatePlayer();
-    this.updateBot();
+    if(this.started){
+      this.updateBall();
+      this.updatePlayer();
+      this.updateBot();
+    }
   }
 
   protected generatePlayer(): void {
@@ -115,7 +128,6 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
         this.bot.velocityY = 0;
       }
 
-
       if (this.ball.x > SYSTEM_GAME_CANVAS_RESOLUTION.x/RandomNumber(1.33, 4.33)) this.bot.velocityY = this.ball.velocityY;
 
       this.bot.velocityY *= 0.93;
@@ -160,8 +172,10 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
     this.ctx.font = '80pt DosVGA';
     this.ctx.strokeStyle = 'black';
     this.ctx.textBaseline = 'top';
-    this.ctx.fillText (text, this.canvas.nativeElement.width/2 - 53, 50);
-    this.ctx.strokeText(text, this.canvas.nativeElement.width/2 - 53, 50);
+    this.ctx.textAlign = "center";
+
+    this.ctx.fillText (text, this.canvas.nativeElement.width/2, 50);
+    this.ctx.strokeText(text, this.canvas.nativeElement.width/2, 50);
 
     this.ctx.lineWidth = 4;
 
@@ -169,8 +183,21 @@ export class PongComponent extends NapicuEngineWindow implements OnInit, AfterVi
     this.ctx.stroke();
   }
 
-  protected renderStartText(): void {
+  protected renderPressAnyKeyText(): void {
+    if(!this.ctx || this.started) return
+    const text: string  = `Press any key to start`;
 
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = '70pt DosVGA';
+    this.ctx.strokeStyle = 'black';
+    this.ctx.textBaseline = 'top';
+    this.ctx.textAlign = "center";
+    this.ctx.fillText (text, this.canvas.nativeElement.width/2, this.canvas.nativeElement.height/2 + 100);
+    this.ctx.strokeText(text, this.canvas.nativeElement.width/2, this.canvas.nativeElement.height/2 + 100);
+
+    this.ctx.lineWidth = 4;
+
+    this.ctx.fill();
+    this.ctx.stroke();
   }
-
 }
