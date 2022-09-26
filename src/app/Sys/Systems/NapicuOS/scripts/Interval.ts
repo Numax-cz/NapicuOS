@@ -1,5 +1,5 @@
 export class Interval {
-  protected interval_cache: number = 0;
+  protected interval_cache: any = 0;
 
   public delay (fun: Function): void {
     clearTimeout(this.interval_cache)

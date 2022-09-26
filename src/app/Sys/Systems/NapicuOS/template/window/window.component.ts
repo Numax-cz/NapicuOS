@@ -6,7 +6,6 @@ import {Window} from 'src/app/Sys/Systems/NapicuOS/SystemComponents/Window';
 import {WINDOW_ANIMATION_TIME} from '../../config/WindowAnimations';
 import {percentage, percentageValue} from '../../scripts/getPercentage';
 import {NapicuOS} from '../../system.napicuos';
-import {SystemWindowAppInjectData} from "../../interface/Window/Window";
 
 @Component({
   selector: 'app-window',
@@ -211,7 +210,7 @@ export class WindowComponent implements OnInit {
    * Returns the value for the dynamic component
    * @param p Application window process
    */
-  public getInput(p: Process): SystemWindowAppInjectData {
+  public getInput(p: Process): any { //SystemWindowAppInjectData
     let x = p.Window as SystemAlert;
     return {data: x.data, windowValue: WindowComponent.selectedWindow, process: p, args: WindowComponent.selectedWindow.executeArguments};
   }
