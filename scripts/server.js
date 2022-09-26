@@ -21,9 +21,8 @@ process.argv.forEach(function (val, index) {
 });
 
 function Run() {
-  if (Profile){
-
-    let i = exec(`.\\mvnw spring-boot:run -Dspring-boot.run.profiles=${Profile} -f pom.xml`,{ cwd: workingDir} , (error, stdout, stderr) => {
+  if (Profile) {
+    let i = exec(`.\\mvnw spring-boot:run -Dspring-boot.run.profiles=${Profile} -f pom.xml`, {cwd: workingDir}, (error, stdout, stderr) => {
       console.log(stdout);
       console.log(stderr);
       if (error !== null) {
@@ -31,12 +30,11 @@ function Run() {
       }
     });
 
-    i.stdout.on('data', function(data) {
+    i.stdout.on('data', function (data) {
       console.log(data);
     });
 
-
-  }else {
+  } else {
     console.error(`
              Please enter parameters!
     `);
