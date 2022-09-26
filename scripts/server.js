@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 const {exec} = require('child_process');
-const workingDir = "./Server"
+const workingDir = "./server"
 
 let Profile;
 process.argv.forEach(function (val, index) {
