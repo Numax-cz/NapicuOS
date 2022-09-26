@@ -74,6 +74,8 @@
    npm run start
    ```
    >Normální spuštění aplikace
+> Profily spuštění BIOSU najdete `src/app/Bios/Config/bootloader.prod.ts` 
+> a `src/app/Bios/Config/bootloader.ts` více ohledně Angular profilů naleznete na [Configuring application environments](https://angular.io/guide/build)
 
 - Buildnutí aplikace
    ```sh
