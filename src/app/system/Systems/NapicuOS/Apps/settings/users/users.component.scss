@@ -1,0 +1,106 @@
+@import "src/app/system/Systems/NapicuOS/Apps/settings/styles/MainContentView";
+@import "src/app/system/Systems/NapicuOS/Apps/settings/styles/BasicText";
+
+.MainContent{
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  min-width: 400px;
+}
+
+.VerifyMenu{
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background-color: var(--NapicuCalendarSelectedMonthColor);
+
+  .MainText{
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .BotText{
+    font-size: .95rem;
+  }
+}
+
+.UserProfile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img{
+    width: 90px;
+    height: 90px;
+    background: gray;
+    border-radius: 50%;
+
+  }
+
+  h1{
+    font-size: 3.25rem;
+    margin-left: 1.5rem;
+  }
+
+  .edit{
+    width: 35px !important;
+    height: 35px !important;
+    margin-left: 30px;
+    cursor: pointer;
+    filter: brightness(0.7);
+    background: none!important;
+  }
+}
+
+.UserSettings{
+  margin: 40px auto;
+}
+
+.table{
+  >ul{
+    cursor: pointer;
+    height: 52px;
+  }
+}
+
+.Input{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.UseAuthSwitch{
+  width: 50px !important;
+  height: 26px !important;
+}
+.UseAuthSwitchSlider::before{
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.AddUserButton{
+  margin: 20px 0;
+  float: right;
+}
+
+#AddUserMenu {
+  position: absolute;
+  min-width: 200px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  min-height: 150px;
+  pointer-events: all !important;
+
+  .AddUserMenuContent {
+    padding: 20px;
+    width: 500px;
+  }
+}

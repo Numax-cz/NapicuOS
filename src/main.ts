@@ -2,7 +2,7 @@ import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 import {AppModule} from './app/app.module';
-import {boot_configuration} from "./app/Bios/Config/bootloader";
+import {boot_configuration} from "./app/bios/Config/bootloader";
 
 if (boot_configuration.production) {
   enableProdMode();

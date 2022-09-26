@@ -33,22 +33,22 @@
 //// that you are using.
 //@include mat.all-component-themes($NapicuBios-theme);
 
-@import '/src/app/Sys/Systems/NapicuOS/Styles/variables.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/buttons.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/window.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/img.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/font.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/App.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/resizer.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/ToolMenu.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/Input.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/Box.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/BoxMenu.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/Table.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/Slider.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/ArrowSetting.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/Icon.scss';
-@import '/src/app/Sys/Systems/NapicuOS/Styles/Loader.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/variables.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/buttons.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/window.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/img.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/font.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/App.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/resizer.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/ToolMenu.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/Input.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/Box.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/BoxMenu.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/Table.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/Slider.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/ArrowSetting.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/Icon.scss';
+@import 'src/app/system/Systems/NapicuOS/Styles/Loader.scss';
 @import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:wght@500&display=swap');
 /* You can add global styles to this file, and also import other style files */
 @font-face {

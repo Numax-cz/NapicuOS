@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
 import {Observable} from 'rxjs';
-import {GrubComponent} from './Grub/grub/grub.component';
+import {GrubComponent} from './grub/grub/grub.component';
 
 @Injectable({
   providedIn: 'root',

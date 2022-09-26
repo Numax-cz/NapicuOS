@@ -1,24 +1,24 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AdvancedComponent} from './Bios/components/advanced/advanced.component';
-import {BiosMainComponent} from './Bios/components/bios-main/bios-main.component';
+import {AdvancedComponent} from './bios/components/advanced/advanced.component';
+import {BiosMainComponent} from './bios/components/bios-main/bios-main.component';
 import {BiosGuard} from './bios.guard';
 
-import {BiosComponent} from './Bios/components/bios/bios.component';
-import {BootComponent} from './Bios/components/boot/boot.component';
-import {BootbComponent} from './Bios/components/bootb/bootb.component';
-import {ExitComponent} from './Bios/components/exit/exit.component';
-import {FlashComponent} from './Bios/components/flash/flash.component';
-import {PowerComponent} from './Bios/components/power/power.component';
-import {ToolsComponent} from './Bios/components/tools/tools.component';
-import {TweakerComponent} from './Bios/components/tweaker/tweaker.component';
-import {BlackloadingComponent} from './Bios/components/blackloading/blackloading.component';
-import {BlackscreenComponent} from './Bios/components/blackscreen/blackscreen.component';
+import {BiosComponent} from './bios/components/bios/bios.component';
+import {BootComponent} from './bios/components/boot/boot.component';
+import {BootbComponent} from './bios/components/bootb/bootb.component';
+import {ExitComponent} from './bios/components/exit/exit.component';
+import {FlashComponent} from './bios/components/flash/flash.component';
+import {PowerComponent} from './bios/components/power/power.component';
+import {ToolsComponent} from './bios/components/tools/tools.component';
+import {TweakerComponent} from './bios/components/tweaker/tweaker.component';
+import {BlackloadingComponent} from './bios/components/blackloading/blackloading.component';
+import {BlackscreenComponent} from './bios/components/blackscreen/blackscreen.component';
 import {BlackscreenGuard} from './blackscreen.guard';
 
-import {GrubComponent} from './Grub/grub/grub.component';
+import {GrubComponent} from './grub/grub/grub.component';
 
-import {SystemComponent} from './Grub/system/system.component';
+import {SystemComponent} from './grub/system/system.component';
 import {SystemGuard} from './system.guard';
 import {GrubGuard} from './grub.guard';
 import {MobileGuard} from './mobile.guard';

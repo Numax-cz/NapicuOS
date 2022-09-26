@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
 import {Observable} from 'rxjs';
-import {BlackscreenComponent} from './Bios/components/blackscreen/blackscreen.component';
-import {animationCursor} from './Bios/Scripts/bootloader/text';
+import {BlackscreenComponent} from './bios/components/blackscreen/blackscreen.component';
+import {animationCursor} from './bios/Scripts/bootloader/text';
 
 @Injectable({
   providedIn: 'root',
