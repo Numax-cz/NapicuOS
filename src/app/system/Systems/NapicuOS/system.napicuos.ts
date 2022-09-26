@@ -236,7 +236,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   protected initDrives(): void {
     NapicuOS.drives = NapicuOSSystemDir;
-}
+  }
 
   /**
    * Initialize all directories from config
@@ -258,7 +258,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     if (pth) {
       pth.forEach((fl: NapicuOsCookiesFileMetadata) => {
         let i = NapicuOS.add_file_to_dir_by_path(fl.path, new SystemFile(fl.file));
-        if(i !== SystemStateMetadata.FileAddedSuccess) {
+        if (i !== SystemStateMetadata.FileAddedSuccess) {
           console.error(`SYSTEM: Path ${fl.path} not exist`);
           console.error(i);
           return;
@@ -275,7 +275,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
   public static initAllStartUpApps(): void {
-    if(this.SystemCookiesConfig.firstRun) this.onFirstLoad();
+    if (this.SystemCookiesConfig.firstRun) this.onFirstLoad();
     else {
       SystemAppsWelcome.remove();
     }
@@ -310,12 +310,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       [system_root_user].forEach((user: User) => {
         NapicuOS.add_user(user);
       });
-    }
-    else {
+    } else {
       //Init users home directory
       //NapicuOS.creat_user_home_dirs(new User(user));
       i.user.users.forEach((user: UserConstructorMetadata) => {
-        if(user.username !== SYSTEM_ROOT_USER.username) NapicuOS.creat_user_home_dirs(user.username);
+        if (user.username !== SYSTEM_ROOT_USER.username) NapicuOS.creat_user_home_dirs(user.username);
       });
     }
 
@@ -417,9 +416,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static switch_active_user_time_format(): void {
     let st = NapicuOS.get_active_user()?.userSetting;
-    if(!st) return;
-     st.time.format = (st.time.format === SystemTimeFormatEnumMetadata.h12) ? SystemTimeFormatEnumMetadata.h24 : SystemTimeFormatEnumMetadata.h24;
-     this.update_config_to_cookies();
+    if (!st) return;
+    st.time.format = (st.time.format === SystemTimeFormatEnumMetadata.h12) ? SystemTimeFormatEnumMetadata.h24 : SystemTimeFormatEnumMetadata.h24;
+    this.update_config_to_cookies();
   }
 
   /**
@@ -436,8 +435,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static set_user_time_format(username: string | undefined, format: SystemTimeFormatEnumMetadata | number): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success {
     let i = this.get_user_from_cookies(username);
-    if(i !== SystemStateMetadata.UserNotExists){
-      if(typeof format == "number" ) i.userSetting!.time.format = Object.values(SystemTimeFormatEnumMetadata)[format];
+    if (i !== SystemStateMetadata.UserNotExists) {
+      if (typeof format == "number") i.userSetting!.time.format = Object.values(SystemTimeFormatEnumMetadata)[format];
       else i.userSetting!.time.format = format;
       this.update_config_to_cookies();
       return SystemStateMetadata.Success;
@@ -448,7 +447,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns system time sync
    */
-  public static get_active_user_time_sync(): boolean{
+  public static get_active_user_time_sync(): boolean {
     return !!this.get_active_user()?.userSetting.time.sync;
   }
 
@@ -459,7 +458,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    **/
   public static set_user_time_sync(username: string | undefined, sync: boolean): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success {
     let i = this.get_user_from_cookies(username);
-    if(i !== SystemStateMetadata.UserNotExists){
+    if (i !== SystemStateMetadata.UserNotExists) {
       i.userSetting!.time.sync = sync;
       this.update_config_to_cookies();
       this.update_calendar();
@@ -478,7 +477,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns the system language to the user
    */
-  public static get_active_user_language(): NapicuOS_available_language{
+  public static get_active_user_language(): NapicuOS_available_language {
     return NapicuOS.get_active_user()?.userSetting.lang || "en";
   }
 
@@ -489,7 +488,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static set_user_language(username: string | undefined, lang: NapicuOS_available_language): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success {
     let i = this.get_user_from_cookies(username);
-    if(i !== SystemStateMetadata.UserNotExists){
+    if (i !== SystemStateMetadata.UserNotExists) {
       i.userSetting!.lang = lang;
       this.update_napicu_date_config_lang();
       this.update_config_to_cookies();
@@ -521,8 +520,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns whether the system has been started
    */
   public static get_system_boot(): boolean {
-      return GrubComponent.GrubActiveSystem.SystemBooted;
-    }
+    return GrubComponent.GrubActiveSystem.SystemBooted;
+  }
 
   /**
    * Returns if the system dock is displayed
@@ -799,17 +798,17 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static get_user_settings_audio_volume(): number {
     let i: number | undefined = this.get_active_user()?.userSetting.audioVolume;
-    if(i === undefined) return 0;
+    if (i === undefined) return 0;
     return i;
   }
 
   /**
    * Sets the user's audio volume
    */
-  public static set_user_settings_audio_volume(username: string | undefined, gain: number): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success{
+  public static set_user_settings_audio_volume(username: string | undefined, gain: number): SystemStateMetadata.UserNotExists | SystemStateMetadata.Success {
     let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
-    if(i !== SystemStateMetadata.UserNotExists){
-      if(i.userSetting) i.userSetting.audioVolume = gain;
+    if (i !== SystemStateMetadata.UserNotExists) {
+      if (i.userSetting) i.userSetting.audioVolume = gain;
       this.update_config_to_cookies();
       return SystemStateMetadata.Success;
     }
@@ -859,13 +858,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static rename_dir(path: string, name: string): SystemDirStateData | SystemStateMetadata.Success {
     let root_path: string = PathSpliceLastIndex(path).path;
-    if(this.check_file_name(name)){
+    if (this.check_file_name(name)) {
       const dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
-      if(!dir?.data?.dir) return SystemStateMetadata.PathNotExist;
+      if (!dir?.data?.dir) return SystemStateMetadata.PathNotExist;
       this.creat_path(`${root_path}/${name}`);
       this.remove_path(`${path}`);
       let n_dir = this.get_dir_by_path(`${root_path}/${name}`).data;
-      if(n_dir?.dir) {
+      if (n_dir?.dir) {
         n_dir.dir = dir.data.dir;
         n_dir.files = dir.data.files;
         return SystemStateMetadata.Success;
@@ -881,9 +880,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path
    * @param name
    */
-  public static rename_file(path: string, name: string): any{
+  public static rename_file(path: string, name: string): any {
     let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
-    if(i instanceof SystemFile){
+    if (i instanceof SystemFile) {
       i.fileName = name;
       return SystemStateMetadata.Success;
     }
@@ -897,12 +896,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static remove_file(path: string): SystemStateMetadata | SystemFile {
     let pth: PathSpliceMetadata = PathSpliceLastIndex(PathHasntLastSlash(path));
     let directory: ReturnGetDirByPathMetadata = this.get_dir_by_path(pth.path);
-    if(!directory.data) return SystemStateMetadata.PathNotExist;
-    if(directory.data?.files?.length){
+    if (!directory.data) return SystemStateMetadata.PathNotExist;
+    if (directory.data?.files?.length) {
       let fl_files = this.get_file_by_path(path);
-      if(fl_files instanceof SystemFile) {
+      if (fl_files instanceof SystemFile) {
         let file_index = directory.data.files.indexOf(fl_files);
-         directory.data.files.splice(file_index, 1);
+        directory.data.files.splice(file_index, 1);
         this.remove_dynamic_file(path);
         return SystemStateMetadata.Success;
       }
@@ -915,9 +914,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path Path to file
    * @param value New value of file
    */
-  public static rewrite_file(path: string, value: string): SystemFile | SystemStateMetadata{
+  public static rewrite_file(path: string, value: string): SystemFile | SystemStateMetadata {
     let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
-    if(i instanceof SystemFile){
+    if (i instanceof SystemFile) {
       i.value = value;
       return i;
     }
@@ -948,9 +947,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static is_file_or_dir_in_path(path: string): IfDirFileMetadata | null {
     let pth: PathSpliceMetadata = PathSpliceLastIndex(path);
-    if(pth.removed){
+    if (pth.removed) {
       let i = this.get_dir_by_path(pth.path);
-      if(i.state === SystemStateMetadata.PathNotExist) return null;
+      if (i.state === SystemStateMetadata.PathNotExist) return null;
       let dir = !!i.data?.dir?.[pth.removed];
       let file = !!i.data?.files?.filter(f => f.fileName === pth.removed)[0];
       return {dir: dir, file: file};
@@ -965,10 +964,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static remove_path(path: string): SystemStateMetadata {
     const pth: PathSpliceMetadata = PathSpliceLastIndex(path);
-    if(pth.removed){
+    if (pth.removed) {
       let dir = this.get_dir_by_path(`${pth.path}/`).data;
-      if(dir?.dir){
-         delete dir.dir[pth.removed];
+      if (dir?.dir) {
+        delete dir.dir[pth.removed];
         this.remove_global_path_from_cookies(path);
         return SystemStateMetadata.Success;
       }
@@ -981,14 +980,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns dynamic files from cookies
    */
-  public static get_system_dynamic_files_cookies_config():  NapicuOsCookiesFileMetadata[] | null{
+  public static get_system_dynamic_files_cookies_config(): NapicuOsCookiesFileMetadata[] | null {
     return NapicuOS.get_system_config_from_cookies()?.files || null;
   }
 
   /**
    * Returns dynamic paths from cookies
    */
-  public static get_system_dynamic_paths_cookies_config(): string[] | null{
+  public static get_system_dynamic_paths_cookies_config(): string[] | null {
     return NapicuOS.get_system_config_from_cookies()?.directors || null;
   }
 
@@ -1008,12 +1007,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Return dynamic path
    * @param path
    */
-  protected static get_dynamic_file(path: string): SystemFileConsMetadata | SystemStateMetadata.FileNotExist{
+  protected static get_dynamic_file(path: string): SystemFileConsMetadata | SystemStateMetadata.FileNotExist {
     let pathFile: PathSpliceMetadata = PathSpliceLastIndex(path);
-    let i: NapicuOsCookiesFileMetadata[] | undefined   = this.get_system_dynamic_files_cookies_config()?.filter((file:  NapicuOsCookiesFileMetadata) => {
+    let i: NapicuOsCookiesFileMetadata[] | undefined = this.get_system_dynamic_files_cookies_config()?.filter((file: NapicuOsCookiesFileMetadata) => {
       return file.file.fileName === pathFile.removed;
     });
-    if(i!.length > 1) console.error("[NAPICUOS] Ilegal files");
+    if (i!.length > 1) console.error("[NAPICUOS] Ilegal files");
     return i?.[0].file || SystemStateMetadata.FileNotExist;
   }
 
@@ -1021,14 +1020,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Deletes file from cookies
    * @param path
    */
-  protected static remove_dynamic_file(path: string): SystemStateMetadata.Success | SystemStateMetadata.CookiesError{
+  protected static remove_dynamic_file(path: string): SystemStateMetadata.Success | SystemStateMetadata.CookiesError {
     let pathFile: PathSpliceMetadata = PathSpliceLastIndex(path);
-    let i: NapicuOsCookiesFileMetadata[] | null   = this.get_system_dynamic_files_cookies_config();
-    if(i) {
-      let b = this.get_system_dynamic_files_cookies_config()?.filter((file:  NapicuOsCookiesFileMetadata) => {
+    let i: NapicuOsCookiesFileMetadata[] | null = this.get_system_dynamic_files_cookies_config();
+    if (i) {
+      let b = this.get_system_dynamic_files_cookies_config()?.filter((file: NapicuOsCookiesFileMetadata) => {
         return file.file.fileName === pathFile.removed;
       });
-      if(b!.length > 1) console.error("[NAPICUOS] Ilegal files");
+      if (b!.length > 1) console.error("[NAPICUOS] Ilegal files");
       if (b) this.get_system_dynamic_files_cookies_config()?.splice(this.get_system_dynamic_files_cookies_config()?.indexOf(b[0]) as number, 1)
       this.update_config_to_cookies();
       return SystemStateMetadata.Success;
@@ -1040,12 +1039,12 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Deletes path from cookies
    * @param path
    */
-  protected static remove_dynamic_path(path: string): SystemStateMetadata.Success | SystemStateMetadata.CookiesError | SystemStateMetadata.DirNotExist{
-    let i:  NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies()
-    if(i?.directors){
+  protected static remove_dynamic_path(path: string): SystemStateMetadata.Success | SystemStateMetadata.CookiesError | SystemStateMetadata.DirNotExist {
+    let i: NapicuOsCookiesTemplate | null = NapicuOS.get_system_config_from_cookies()
+    if (i?.directors) {
       let pth_md = PathHasLastSlash(path);
       let dir_index: number = i.directors.indexOf(pth_md);
-      if (dir_index >= 0){
+      if (dir_index >= 0) {
         i.directors.splice(dir_index, 1);
         this.update_config_to_cookies();
         return SystemStateMetadata.Success;
@@ -1061,19 +1060,19 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param file File
    */
   public static creat_dynamic_file(path: string, file: SystemFile): SystemStateMetadata {
-    if(!this.check_file_name(file.fileName)) return SystemStateMetadata.InvalidFileDirName;
+    if (!this.check_file_name(file.fileName)) return SystemStateMetadata.InvalidFileDirName;
     let i = this.get_dir_by_path(path);
-    if(i.state === SystemStateMetadata.PathExist) {
+    if (i.state === SystemStateMetadata.PathExist) {
       let fl = this.add_file_to_dir(i.data || undefined, file); //TODO IDK
-      if(fl == SystemStateMetadata.FileAddedSuccess) {
-        if (!this.is_file_or_dir_in_path(`${path}${file}`)?.file){
+      if (fl == SystemStateMetadata.FileAddedSuccess) {
+        if (!this.is_file_or_dir_in_path(`${path}${file}`)?.file) {
           this.add_global_file_to_cookies(path, file);
           this.update_config_to_cookies();
         }
         return SystemStateMetadata.FileAlreadyExists;
       }
-        return fl;
-    }else {
+      return fl;
+    } else {
       return SystemStateMetadata.PathNotExist;
     }
   }
@@ -1083,9 +1082,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path Path to the file
    * @param value New value
    */
-  public static rewrite_dynamic_file(path: string, value: string): any{
+  public static rewrite_dynamic_file(path: string, value: string): any {
     let i: SystemStateMetadata | SystemFile = this.rewrite_file(path, value);
-    if(i instanceof SystemFile) this.update_dynamic_file(path, {value: value});
+    if (i instanceof SystemFile) this.update_dynamic_file(path, {value: value});
   }
 
   /**
@@ -1095,7 +1094,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static rename_dynamic_file(path: string, fileName: string): any { //TODO NO ANY LUL
     let i: SystemStateMetadata | SystemFile = this.rename_file(path, fileName);
-    if(i instanceof SystemFile) this.update_dynamic_file(path, {fileName: fileName});
+    if (i instanceof SystemFile) this.update_dynamic_file(path, {fileName: fileName});
   }
 
   /**
@@ -1105,14 +1104,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static rename_dynamic_path(path: string, dirName: string): any { //TODO NO ANY LUL
     let pth = this.get_system_dynamic_paths_cookies_config();
-    if(!pth) return;
+    if (!pth) return;
 
     //TODO REMOVE ALL USERS FILES
     //TODO REMOVE ALL USERS FILES
     //TODO REMOVE ALL USERS FILES
 
 
-     this.remove_dynamic_path(path);
+    this.remove_dynamic_path(path);
 
     let dr_nm: string = PathHasLastSlash(PathSpliceLastIndex(path).path);
 
@@ -1123,20 +1122,20 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   protected static update_dependencies_path(oldPath: string, newPath: string): void {
     let paths: string[] | null = this.get_system_dynamic_paths_cookies_config();
-    let files:  NapicuOsCookiesFileMetadata[] | null = this.get_system_dynamic_files_cookies_config();
+    let files: NapicuOsCookiesFileMetadata[] | null = this.get_system_dynamic_files_cookies_config();
 
-    if(paths && files){
+    if (paths && files) {
       const regex: RegExp = new RegExp(`^${PathHasLastSlash(oldPath)}`, 'g');
       const pth_sls: string = PathHasLastSlash(newPath);
 
       //Paths
-      for(let i = 0; i < paths.length; i++){
+      for (let i = 0; i < paths.length; i++) {
         paths[i] = paths[i].replace(regex, pth_sls);
       }
 
       //Files
       //TODO /home/numax/home/numax/.....
-      for(let i = 0; i < files.length; i++){
+      for (let i = 0; i < files.length; i++) {
         files[i].path = files[i].path.replace(regex, pth_sls);
       }
 
@@ -1147,7 +1146,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   }
 
 
-
   /**
    * Update the file from cookies
    * @param path Path to the file
@@ -1156,25 +1154,25 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   protected static update_dynamic_file(path: string, fileData: SystemUpdateFileConsMetadata): void {
     let i: SystemStateMetadata | SystemFile = this.get_file_by_path(path);
-    if(i instanceof SystemFile){
+    if (i instanceof SystemFile) {
       let fl = this.get_global_file_from_cookies(PathSpliceLastIndex(path).path);
-      if(fl){
-        if(fileData.fileName) fl.fileName = fileData.fileName;
-        if(fileData.fileType) fl.fileType = fileData.fileType;
-        if(fileData.value) fl.value = fileData.value;
-        if(fileData.createdBy) fl.createdBy = fileData.createdBy;
-        if(fileData.permissions) fl.permissions = fileData.permissions;
-        if(fileData.iconPath) fl.iconPath = fileData.iconPath;
+      if (fl) {
+        if (fileData.fileName) fl.fileName = fileData.fileName;
+        if (fileData.fileType) fl.fileType = fileData.fileType;
+        if (fileData.value) fl.value = fileData.value;
+        if (fileData.createdBy) fl.createdBy = fileData.createdBy;
+        if (fileData.permissions) fl.permissions = fileData.permissions;
+        if (fileData.iconPath) fl.iconPath = fileData.iconPath;
         this.update_config_to_cookies();
-      }else {
+      } else {
         console.error(`SYSTEM: Rewrite value error ${path} dynamic file not found`);
       }
     }
   }
 
-  public static creat_dynamic_document(path: string, fileName: string, value?: string): SystemStateMetadata{
+  public static creat_dynamic_document(path: string, fileName: string, value?: string): SystemStateMetadata {
     let i: SystemDocumentData = this.creat_document(fileName, value);
-    if(!(i instanceof SystemFile)) return i;
+    if (!(i instanceof SystemFile)) return i;
     return this.creat_dynamic_file(path, i);
   }
 
@@ -1249,8 +1247,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path Path
    */
   protected static get_global_file_from_cookies(path: string): SystemFileConsMetadata | null {
-    if(!path.endsWith("/")) path += "/";
-    const cfg:  NapicuOsCookiesTemplate | null = this.get_system_config_from_cookies();
+    if (!path.endsWith("/")) path += "/";
+    const cfg: NapicuOsCookiesTemplate | null = this.get_system_config_from_cookies();
     if (!cfg) return null;
     for (const i of cfg?.files) {
       if (i.path === path) {
@@ -1303,7 +1301,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static remove_app_in_user_dock(fileName: string): void {
     const userAppsInDock = this.get_active_user()?.userSetting.appsInDock || [];
-    if(userAppsInDock.length) userAppsInDock.splice(userAppsInDock.indexOf(fileName), 1);
+    if (userAppsInDock.length) userAppsInDock.splice(userAppsInDock.indexOf(fileName), 1);
 
     this.update_dock_items();
   }
@@ -1328,7 +1326,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static get_active_user_wallpaper(): string {
     let fr = NapicuOS.get_active_user()?.userSetting?.selectedWallpaper || SYSTEM_WALLPAPERS.default_wallpaper;
     let k = Object.keys(SYSTEM_WALLPAPERS).indexOf(fr);
-    if(k > -1){
+    if (k > -1) {
       return Object.values(SYSTEM_WALLPAPERS)[k];
     }
     return NapicuOS.get_active_user()?.userSetting?.selectedWallpaper || SYSTEM_WALLPAPERS.default_wallpaper;
@@ -1354,7 +1352,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static set_active_user_dark_theme(): void {
     const user = this.get_active_user();
-    if(user){
+    if (user) {
       user.userSetting.theme.dark = true;
       this.update_config_to_cookies();
     }
@@ -1365,7 +1363,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static set_active_user_white_theme(): void {
     const user = this.get_active_user();
-    if(user){
+    if (user) {
       user.userSetting.theme.dark = false;
       this.update_config_to_cookies();
     }
@@ -1375,10 +1373,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Sets user wallpaper
    * @param url
    */
-  public static set_wallpaper(url: string | SYSTEM_WALLPAPERS): void  {
+  public static set_wallpaper(url: string | SYSTEM_WALLPAPERS): void {
     const user = this.get_active_user();
     const u: string = ShortSystemWallpaper(url);
-    if(user){
+    if (user) {
       user.userSetting.selectedWallpaper = u;
       this.update_config_to_cookies();
     }
@@ -1389,8 +1387,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static set_user_app_default_weather_city(city: string): void {
     const user = this.get_active_user();
-    if(user){
-      user.userSetting.apps.weather= city;
+    if (user) {
+      user.userSetting.apps.weather = city;
       this.update_config_to_cookies();
     }
   }
@@ -1508,12 +1506,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       return value.username === username;
     })[0];
   }
+
   /**
    * Returns the index of user by username if the user exists
    * @param username Username of searched user
    */
-  public static get_user_index(username: string | undefined): number{
-    return this.get_users().findIndex((user: User) =>{
+  public static get_user_index(username: string | undefined): number {
+    return this.get_users().findIndex((user: User) => {
       return user.username === username;
     });
   }
@@ -1521,8 +1520,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns the index of active user
    */
-  public static get_active_user_index(): number{
-    return this.get_users().findIndex((user: User) =>{
+  public static get_active_user_index(): number {
+    return this.get_users().findIndex((user: User) => {
       return user.username === this.get_active_user_username();
     });
   }
@@ -1561,14 +1560,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns user notification settings
    */
-  public static get_active_user_notification_receive(): boolean{
+  public static get_active_user_notification_receive(): boolean {
     return NapicuOS.get_active_user()?.userSetting.notifications.receive || false
   }
 
   /**
    * Returns user notification settings
    */
-  public static get_active_user_notification_allow(): boolean{
+  public static get_active_user_notification_allow(): boolean {
     return NapicuOS.get_active_user()?.userSetting.notifications.allow || false
   }
 
@@ -1582,7 +1581,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns users permission
    */
-  public static get_active_user_permission(): string  {
+  public static get_active_user_permission(): string {
     return this.get_active_user()?.permissions || SystemUserPermissionsEnumMetadata.User
   }
 
@@ -1596,15 +1595,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns root password
    */
-  public static get_root_password(): string | null{
-    return NapicuOS.get_user_by_username("root")?.password  || null;
+  public static get_root_password(): string | null {
+    return NapicuOS.get_user_by_username("root")?.password || null;
   }
 
   /**
    * verify the root password
    * @param password
    */
-  public static verify_root_password(password: string): boolean{
+  public static verify_root_password(password: string): boolean {
     let root_pass: string | null = this.get_root_password();
     return !!(root_pass && password === root_pass);
   }
@@ -1612,7 +1611,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns whether the user has an active automatic login
    */
-  public static get_active_user_has_auto_login(): boolean{
+  public static get_active_user_has_auto_login(): boolean {
     return !!this.get_active_user()?.autoAuth;
   }
 
@@ -1691,7 +1690,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Checks hostname validation
    * @param hostname Computer name
    */
-  public static check_hostname(hostname: string): SystemStringStateCorrection{
+  public static check_hostname(hostname: string): SystemStringStateCorrection {
     return checkSystemStringLength(hostname, SYSTEM_HOSTNAME_MIN_LENGTH, SYSTEM_HOSTNAME_MAX_LENGTH);
   }
 
@@ -1835,7 +1834,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path Path to the directory
    * @param file File to be added
    */
-  public static add_file_to_dir_by_path(path: string, file: SystemFile):  SystemFileStateData | ReturnGetDirByPathMetadata{
+  public static add_file_to_dir_by_path(path: string, file: SystemFile): SystemFileStateData | ReturnGetDirByPathMetadata {
     let dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
     if (dir.data?.dir) {
       return this.add_file_to_dir(dir.data, file);
@@ -1851,7 +1850,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static add_blank_document_to_dir(path: string, fileName: string): SystemFileStateData {
     let i: ReturnGetDirByPathMetadata = this.get_dir_by_path(path);
     let doc: SystemDocumentData = this.creat_document(fileName);
-    if(!(doc instanceof SystemFile)) return doc;
+    if (!(doc instanceof SystemFile)) return doc;
     return this.add_file_to_dir(i.data || undefined, doc);
   }
 
@@ -1860,8 +1859,8 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param fileName Document name
    * @param value Document value
    */
-  public static creat_document(fileName: string, value?: string): SystemDocumentData{
-    if(!this.check_file_name(fileName)) return SystemStateMetadata.FileHasBadName;
+  public static creat_document(fileName: string, value?: string): SystemDocumentData {
+    if (!this.check_file_name(fileName)) return SystemStateMetadata.FileHasBadName;
     return new SystemFile({
       fileName: fileName,
       createdBy: this.get_active_user_username(),
@@ -1921,14 +1920,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param path
    */
   public static get_file_by_path(path: string): SystemStateMetadata | SystemFile {
-    let i:  PathSpliceMetadata = PathSpliceLastIndex(ReplaceSystemVariables(path));
+    let i: PathSpliceMetadata = PathSpliceLastIndex(ReplaceSystemVariables(path));
     let fileName: string | undefined = i.removed;
     let dir = this.get_dir_by_path(i.path);
-    if(fileName && dir.state === SystemStateMetadata.PathExist){
-      let file: SystemFile| undefined = dir.data?.files?.filter((value: SystemFile) => {
+    if (fileName && dir.state === SystemStateMetadata.PathExist) {
+      let file: SystemFile | undefined = dir.data?.files?.filter((value: SystemFile) => {
         return value.fileName === fileName;
       })[0];
-      if(!file) return SystemStateMetadata.FileNotExist;
+      if (!file) return SystemStateMetadata.FileNotExist;
       return file;
     }
     return SystemStateMetadata.PathNotExist;
@@ -1992,7 +1991,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         const config = this.get_system_config_from_cookies();
         if (config) config.user.users.push(user);
         //this.creat_dirs(user.userSetting.drives.dir?.["home"], SYSTEM_DEFAULT_HOME_FOLDERS);
-        if(user.username !== SYSTEM_ROOT_USER.username){
+        if (user.username !== SYSTEM_ROOT_USER.username) {
           this.creat_dynamic_path_config(`/home/`, user.username);
           this.creat_user_home_dirs(user.username);
         }
@@ -2015,11 +2014,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username
    * @param newUsername
    */
-  public static set_user_name(username: string , newUsername: string): SystemUserStateData | SystemStateMetadata.Success{
+  public static set_user_name(username: string, newUsername: string): SystemUserStateData | SystemStateMetadata.Success {
     let ck_usr_name: SystemUserStateData = this.check_username(newUsername);
-    if(ck_usr_name === SystemStateMetadata.UserNotExists){
+    if (ck_usr_name === SystemStateMetadata.UserNotExists) {
       let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
-      if(i === SystemStateMetadata.UserNotExists) return i;
+      if (i === SystemStateMetadata.UserNotExists) return i;
       i.username = newUsername
       this.rename_user_home_folder(username, newUsername);
       this.update_config_to_cookies();
@@ -2034,11 +2033,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param perms
    */
   public static set_user_permission(username: string | undefined, perms: SystemUserPermissionsEnumMetadata): SystemUserStateData | SystemStateMetadata.Success {
-      let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
-      if(i === SystemStateMetadata.UserNotExists) return i;
-      i.permissions = perms;
-      this.update_config_to_cookies();
-      return SystemStateMetadata.Success
+    let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
+    if (i === SystemStateMetadata.UserNotExists) return i;
+    i.permissions = perms;
+    this.update_config_to_cookies();
+    return SystemStateMetadata.Success
   }
 
   /**
@@ -2054,11 +2053,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username
    * @param password
    */
-  public static set_user_password(username: string , password: string): SystemUserStateData | SystemStateMetadata.Success{
-    let ps_lgt:  SystemStringStateCorrection = checkSystemStringLength(password, SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_USERS_MAX_LENGTH);
-    if(ps_lgt === SystemStateMetadata.StringCorrect){
+  public static set_user_password(username: string, password: string): SystemUserStateData | SystemStateMetadata.Success {
+    let ps_lgt: SystemStringStateCorrection = checkSystemStringLength(password, SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_USERS_MAX_LENGTH);
+    if (ps_lgt === SystemStateMetadata.StringCorrect) {
       let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
-      if(i === SystemStateMetadata.UserNotExists) return i;
+      if (i === SystemStateMetadata.UserNotExists) return i;
       i.password = password;
       this.update_config_to_cookies();
       return SystemStateMetadata.Success
@@ -2071,7 +2070,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Checks the username
    * @param password
    */
-  public static check_password(password: string): SystemStringStateCorrection{
+  public static check_password(password: string): SystemStringStateCorrection {
     return checkSystemStringLength(password, SYSTEM_USERS_MIN_PASSWORD_LENGTH, SYSTEM_USERS_MAX_LENGTH)
   }
 
@@ -2080,9 +2079,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username
    * @param auth
    */
-  public static set_user_auth(username: string, auth: boolean): SystemUserStateData | SystemStateMetadata.Success{
+  public static set_user_auth(username: string, auth: boolean): SystemUserStateData | SystemStateMetadata.Success {
     let i: UserConstructorMetadata | SystemStateMetadata.UserNotExists = this.get_user_from_cookies(username);
-    if(i === SystemStateMetadata.UserNotExists) return i;
+    if (i === SystemStateMetadata.UserNotExists) return i;
     i.autoAuth = auth;
     this.update_config_to_cookies();
     return SystemStateMetadata.Success;
@@ -2092,14 +2091,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Returns users from cookies
    * @param username
    */
-  protected static get_user_from_cookies(username: string | undefined):  UserConstructorMetadata | SystemStateMetadata.UserNotExists{
-      if(!username) return SystemStateMetadata.UserNotExists;
-      let i: UserConstructorMetadata[] =  this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
-        return user.username === username
-      });
-      if(i.length > 1) console.error("[NAPICUOS] CookiesUser FATAL error");
-      if(i.length <= 0) return SystemStateMetadata.UserNotExists;
-      return i[0];
+  protected static get_user_from_cookies(username: string | undefined): UserConstructorMetadata | SystemStateMetadata.UserNotExists {
+    if (!username) return SystemStateMetadata.UserNotExists;
+    let i: UserConstructorMetadata[] = this.SystemCookiesConfig.user.users.filter((user: UserConstructorMetadata) => {
+      return user.username === username
+    });
+    if (i.length > 1) console.error("[NAPICUOS] CookiesUser FATAL error");
+    if (i.length <= 0) return SystemStateMetadata.UserNotExists;
+    return i[0];
   }
 
   /**
@@ -2110,7 +2109,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   protected static rename_user_home_folder(username: string, newUsername: string): void {
     // this.creat_dynamic_path_config(`/home/`, user.username);
-    this.rename_dynamic_path( `/home/${username}/`, newUsername);
+    this.rename_dynamic_path(`/home/${username}/`, newUsername);
     this.update_dependencies_path(`/home/${username}/`, `/home/${newUsername}/`);
   }
 
@@ -2120,9 +2119,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static check_username(username: string): SystemUserStateData {
     let lng = checkSystemStringLength(username, SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH);
-    if(lng == SystemStateMetadata.StringCorrect){
-      if(this.check_user_exist(username)){
-       return SystemStateMetadata.UserExists;
+    if (lng == SystemStateMetadata.StringCorrect) {
+      if (this.check_user_exist(username)) {
+        return SystemStateMetadata.UserExists;
       }
       return SystemStateMetadata.UserNotExists;
     }
@@ -2133,7 +2132,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * Checks the existence of the user
    * @param username
    */
-  public static check_user_exist(username: string): boolean{
+  public static check_user_exist(username: string): boolean {
     return !!this.get_user_by_username(username);
   }
 
@@ -2144,7 +2143,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   protected static creat_user_home_dirs(username: string): void {
     // let home_dir: ReturnGetDirByPathMetadata = this.get_dir_by_path(`/home/${username}/`);
     let home_dir: systemDirAFileMetadata | undefined = this.get_home_dir()?.dir?.[username];
-    if(!home_dir) console.error("[NAPICUOS] Home doesn't exist ")
+    if (!home_dir) console.error("[NAPICUOS] Home doesn't exist ")
     this.creat_dirs(home_dir || undefined, SYSTEM_DEFAULT_HOME_FOLDERS);
   }
 
@@ -2482,7 +2481,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns button type
    */
-  public static get_button_type_creat_cancel(): InputButtonTypeMetadata{
+  public static get_button_type_creat_cancel(): InputButtonTypeMetadata {
     return {
       submit: this.get_language_words().other.creat.creat_any,
       reject: this.get_language_words().other.cancel_any
@@ -2492,7 +2491,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns button type
    */
-  public static get_button_type_rename_cancel(): InputButtonTypeMetadata{
+  public static get_button_type_rename_cancel(): InputButtonTypeMetadata {
     return {
       submit: this.get_language_words().other.rename,
       reject: this.get_language_words().other.cancel_any
@@ -2502,7 +2501,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns button type
    */
-  public static get_button_type_change_cancel(): InputButtonTypeMetadata{
+  public static get_button_type_change_cancel(): InputButtonTypeMetadata {
     return {
       submit: this.get_language_words().other.change,
       reject: this.get_language_words().other.cancel_any
@@ -2512,7 +2511,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   /**
    * Returns button type
    */
-  public static get_button_type_verify_cancel(): InputButtonTypeMetadata{
+  public static get_button_type_verify_cancel(): InputButtonTypeMetadata {
     return {
       submit: this.get_language_words().other.verify,
       reject: this.get_language_words().other.cancel_any
