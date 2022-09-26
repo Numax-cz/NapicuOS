@@ -17,7 +17,7 @@
   <div class="UserProfile">
     <img [src]="GetUserIcon" alt="User">
     <h1>{{GetActiveUser?.username}}</h1>
-    <ng-container *ngIf="verifyRoot || this.selectedUser == GetActiveUserIndex">
+    <ng-container *ngIf="(verifyRoot || this.selectedUser == GetActiveUserIndex) && !GetIsActiveUserRoot">
       <img class="edit" [src]="GetPencilIcon" alt="Edit" (click)="openSetUserNameMenu()">
     </ng-container>
   </div>
@@ -26,7 +26,7 @@
   <div class="UserSettings">
     <div class="BasicText">{{GetAuthAndLoginText}}</div>
         <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
-          <ul style="position: relative"  clickable="true" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot}">
+          <ul style="position: relative"  clickable="true" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot || GetIsActiveUserRoot}">
             <div>Typ</div>
             <div >
               <napicu-drop-down-menu clickable="true" [onSet]="onSetPermission" [arrow]="false" [selectedOption]="GetActiveUserPerms"

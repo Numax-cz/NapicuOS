@@ -155,6 +155,9 @@ export class UsersComponent implements OnInit {
   //   SettingsComponent.allowEvent();
   // }
 
+  get GetIsActiveUserRoot(): boolean {
+    return NapicuOS.get_active_user_is_root();
+  }
 
   get GetUserIcon(): string {
     return SYSTEM_IMAGES.user;
