@@ -1,4 +1,4 @@
-import {Line} from '../Apps/console/console.component';
+import {Line} from '../apps/console/console.component';
 import {TerminalClass} from "./Terminal";
 
 export declare type CommandFunMetadata = {

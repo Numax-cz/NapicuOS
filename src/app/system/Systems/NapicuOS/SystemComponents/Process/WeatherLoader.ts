@@ -1,7 +1,7 @@
 import {NapicuProcess} from "../../scripts/Decorators";
 import {SystemProcess} from "../ProcessApp";
 import {WeatherControllerService} from "../../../../../../../OpenAPI";
-import {WeatherComponent} from "../../Apps/weather/weather.component";
+import {WeatherComponent} from "../../apps/weather/weather.component";
 
 @NapicuProcess({
   processTitle: "WeatherUpdater",

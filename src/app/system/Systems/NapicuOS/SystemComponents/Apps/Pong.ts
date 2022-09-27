@@ -1,11 +1,11 @@
 import {NapicuApp} from "../../scripts/Decorators";
-import {lang_App_Pong_Title} from "../../Language/SystemApp";
+import {lang_App_Pong_Title} from "../../language/SystemApp";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {PongComponent} from "../../Apps/pong/pong.component";
+import {PongComponent} from "../../apps/pong/pong.component";
 
 @NapicuApp({
   appTitle: lang_App_Pong_Title,

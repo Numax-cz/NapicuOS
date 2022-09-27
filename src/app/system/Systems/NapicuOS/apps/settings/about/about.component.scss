@@ -1,0 +1,14 @@
+@import "src/app/system/Systems/NapicuOS/apps/settings/styles/BasicTable";
+@import "src/app/system/Systems/NapicuOS/apps/settings/styles/MainContentView";
+@import "src/app/system/Systems/NapicuOS/apps/settings/styles/BasicText";
+
+.MainOSName {
+  text-align: center;
+  font-size: 3rem;
+}
+.Input{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

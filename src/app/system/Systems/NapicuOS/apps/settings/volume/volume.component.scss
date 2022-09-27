@@ -1,0 +1,9 @@
+@import "src/app/system/Systems/NapicuOS/apps/settings/styles/MainContentView";
+@import "src/app/system/Systems/NapicuOS/apps/settings/styles/BasicText";
+@import "src/app/system/Systems/NapicuOS/apps/settings/styles/BasicTable";
+
+.MainContent{
+  width: 40%;
+  margin: auto;
+  min-width: 400px;
+}

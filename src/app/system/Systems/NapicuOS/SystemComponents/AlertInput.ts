@@ -2,7 +2,7 @@ import {Type} from '@angular/core';
 import {windowData} from '../interface/Window/WindowData';
 import {Window} from './Window';
 import {copy} from "../../../../bios/Scripts/DeepClone";
-import {AlertInputComponent} from "../Apps/alert-input/alert-input.component";
+import {AlertInputComponent} from "../apps/alert-input/alert-input.component";
 import {WindowData} from "../interface/WindowData";
 import {InputAlertData} from "../interface/InputAlert";
 

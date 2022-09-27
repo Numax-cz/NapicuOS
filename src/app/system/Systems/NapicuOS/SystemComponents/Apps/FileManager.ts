@@ -1,4 +1,4 @@
-import {FileComponent} from "../../Apps/file/file.component";
+import {FileComponent} from "../../apps/file/file.component";
 import {Window} from "../Window";
 import {ProcessResolver} from "../ProcessResolver";
 import {AppCreatMetadata} from "../../interface/System";
@@ -8,7 +8,7 @@ import {NapicuApp} from "../../scripts/Decorators";
 
 import {SystemApp} from "../SystemApp";
 import {FileManagerResponse} from "../../interface/Apps/Response/FileManagerRes";
-import {lang_App_File_Title} from "../../Language/SystemApp";
+import {lang_App_File_Title} from "../../language/SystemApp";
 
 
 @NapicuApp({

@@ -4,8 +4,8 @@ import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {SettingsComponent} from "../../Apps/settings/settings.component";
-import {lang_App_Settings_Title} from "../../Language/SystemApp";
+import {SettingsComponent} from "../../apps/settings/settings.component";
+import {lang_App_Settings_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_Settings_Title,

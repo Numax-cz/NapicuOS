@@ -1,7 +1,7 @@
 import {NapicuOS} from "../system.napicuos";
 import {Command} from "../SystemComponents/Command";
 import {SystemCommandsArgsEnum, SystemCommandsPrefixEnum} from "../config/commands/Commands";
-import {Line} from "../Apps/console/console.component";
+import {Line} from "../apps/console/console.component";
 import {SystemProcessRebootTimeout} from "../SystemComponents/Process/RebootTimeout";
 import {CommandStateCodeMetadata} from "../interface/Commands/CommandsCodes";
 import {rebootTimeoutHelpCommand, rebootTimeoutNowHelpCommand} from "../config/commands/help/rebootTimeoutCommand";

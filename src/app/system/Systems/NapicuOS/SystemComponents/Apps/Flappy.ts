@@ -4,8 +4,8 @@ import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {FlappyComponent} from "../../Apps/flappy/flappy.component";
-import {lang_App_Flappy_Title} from "../../Language/SystemApp";
+import {FlappyComponent} from "../../apps/flappy/flappy.component";
+import {lang_App_Flappy_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_Flappy_Title,

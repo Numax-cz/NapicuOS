@@ -1,4 +1,4 @@
-import {Line} from '../../../Apps/console/console.component';
+import {Line} from '../../../apps/console/console.component';
 import {SYSTEM_HOSTNAME_MAX_LENGTH, SYSTEM_HOSTNAME_MIN_LENGTH} from '../../System';
 import {SystemCommandsPrefixEnum} from "../Commands";
 

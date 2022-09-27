@@ -3,7 +3,7 @@ import {Command} from "../SystemComponents/Command";
 import {SystemCommandsPrefixEnum} from "../config/commands/Commands";
 import {TerminalClass} from "../SystemComponents/Terminal";
 import {systemDirAFileMetadata} from "../interface/FilesDirs/SystemDir";
-import {Line} from "../Apps/console/console.component";
+import {Line} from "../apps/console/console.component";
 import {SystemFile} from "../SystemComponents/File";
 import {CommandStateCodeMetadata} from "../interface/Commands/CommandsCodes";
 

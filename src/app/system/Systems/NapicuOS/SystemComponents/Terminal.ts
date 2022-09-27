@@ -1,5 +1,5 @@
 import {inputMetadata} from "../interface/Apps/Console";
-import {ConsoleComponent, Line} from "../Apps/console/console.component";
+import {ConsoleComponent, Line} from "../apps/console/console.component";
 import {ElementRef} from "@angular/core";
 import {SYSTEM_DEFAULT_TERMINAL_PATH} from "../config/System";
 import {ReplaceSystemVariables} from "../scripts/ReplaceVariables";

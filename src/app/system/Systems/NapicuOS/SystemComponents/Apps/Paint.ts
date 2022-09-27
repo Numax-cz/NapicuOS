@@ -4,8 +4,8 @@ import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {PaintComponent} from "../../Apps/paint/paint.component";
-import {lang_App_Paint_Title} from "../../Language/SystemApp";
+import {PaintComponent} from "../../apps/paint/paint.component";
+import {lang_App_Paint_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_Paint_Title,

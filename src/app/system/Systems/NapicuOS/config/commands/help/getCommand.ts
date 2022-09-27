@@ -1,4 +1,4 @@
-import {Line} from '../../../Apps/console/console.component';
+import {Line} from '../../../apps/console/console.component';
 import {SystemCommandsArgsEnum} from "../Commands";
 
 export const getHelpCommandAPPS: Line = new Line(

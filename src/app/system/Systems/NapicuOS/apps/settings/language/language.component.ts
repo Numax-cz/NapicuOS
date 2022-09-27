@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SYSTEM_IMAGES} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
-import {NapicuOS_available_language} from "../../../Language/langs";
+import {NapicuOS_available_language} from "../../../language/langs";
 import {SettingsComponent} from "../settings.component";
 
 @Component({

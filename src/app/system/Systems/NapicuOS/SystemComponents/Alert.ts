@@ -1,5 +1,5 @@
 import {Type} from '@angular/core';
-import {AlertComponent} from '../Apps/alert/alert.component';
+import {AlertComponent} from '../apps/alert/alert.component';
 import {systemAlertImagesEnumMetadata} from '../config/Alert';
 import {windowData} from '../interface/Window/WindowData';
 import {Window} from './Window';

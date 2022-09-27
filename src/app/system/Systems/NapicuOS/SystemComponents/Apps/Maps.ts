@@ -4,8 +4,8 @@ import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {MapsComponent} from "../../Apps/maps/maps.component";
-import {lang_App_Maps_Title} from "../../Language/SystemApp";
+import {MapsComponent} from "../../apps/maps/maps.component";
+import {lang_App_Maps_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_Maps_Title,

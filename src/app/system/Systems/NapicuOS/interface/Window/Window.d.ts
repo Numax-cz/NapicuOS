@@ -1,7 +1,7 @@
 import {Type} from "@angular/core";
 import {windowButtonsMetadata, windowData} from "./WindowData";
 import {Process, ProcessWindowValueMetadata} from "../../SystemComponents/Process";
-import {NapicuOS_available_language} from "../../Language/langs";
+import {NapicuOS_available_language} from "../../language/langs";
 
 export declare interface SystemWindowConstructorMetadata {
   component: Type<any>;

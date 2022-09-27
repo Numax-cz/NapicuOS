@@ -1,11 +1,11 @@
 import {NapicuApp} from "../../scripts/Decorators";
-import {lang_App_Type_Game_Title} from "../../Language/SystemApp";
+import {lang_App_Type_Game_Title} from "../../language/SystemApp";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {TypegameComponent} from "../../Apps/type-game/typegame.component";
+import {TypegameComponent} from "../../apps/type-game/typegame.component";
 
 @NapicuApp({
   appTitle: lang_App_Type_Game_Title,

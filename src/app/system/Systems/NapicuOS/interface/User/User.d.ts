@@ -1,7 +1,7 @@
 import {SystemRemindNotificationConstructorMetadata} from "../RemidNotification";
 import {SystemUserPermissionsEnumMetadata} from "../../config/UserPerms";
 import {SystemTimeFormatEnumMetadata} from "../../config/TimeFormat";
-import {NapicuOS_available_language} from "../../Language/langs";
+import {NapicuOS_available_language} from "../../language/langs";
 
 
 export declare interface SystemUserDataMetadata {

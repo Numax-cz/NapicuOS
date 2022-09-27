@@ -1,7 +1,7 @@
 import {NapicuOS} from "../system.napicuos";
 import {Command} from "../SystemComponents/Command";
 import {SystemCommandsArgsEnum, SystemCommandsPrefixEnum} from "../config/commands/Commands";
-import {Line} from "../Apps/console/console.component";
+import {Line} from "../apps/console/console.component";
 import {getHelpCommand, getHelpCommandAPPS} from "../config/commands/help/getCommand";
 import {CommandStateCodeMetadata} from "../interface/Commands/CommandsCodes";
 import {Process} from "../SystemComponents/Process";

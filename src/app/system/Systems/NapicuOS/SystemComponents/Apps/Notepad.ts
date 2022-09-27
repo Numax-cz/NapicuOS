@@ -1,11 +1,11 @@
 import {SystemApp} from "../SystemApp";
 import {NapicuApp} from "../../scripts/Decorators";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
-import {WordpadComponent} from "../../Apps/wordpad/wordpad.component";
+import {WordpadComponent} from "../../apps/wordpad/wordpad.component";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {AppCreatMetadata} from "../../interface/System";
-import {lang_App_Notepad_Title} from "../../Language/SystemApp";
+import {lang_App_Notepad_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_Notepad_Title,

@@ -1,10 +1,10 @@
 import {SystemApp} from "../SystemApp";
 import {NapicuApp} from "../../scripts/Decorators";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
-import {WelcomeComponent} from "../../Apps/welcome/welcome.component";
+import {WelcomeComponent} from "../../apps/welcome/welcome.component";
 import {Window} from "../Window";
 import {AppCreatMetadata} from "../../interface/System";
-import {lang_App_Welcome_Title} from "../../Language/SystemApp";
+import {lang_App_Welcome_Title} from "../../language/SystemApp";
 import {NapicuOS} from "../../system.napicuos";
 
 

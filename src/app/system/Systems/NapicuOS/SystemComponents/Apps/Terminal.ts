@@ -1,11 +1,11 @@
 import {NapicuApp} from "../../scripts/Decorators";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
-import {ConsoleComponent} from "../../Apps/console/console.component";
+import {ConsoleComponent} from "../../apps/console/console.component";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {lang_App_Terminal_Title} from "../../Language/SystemApp";
+import {lang_App_Terminal_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_Terminal_Title,

@@ -1,11 +1,11 @@
 import {SystemApp} from "../SystemApp";
 import {NapicuApp} from "../../scripts/Decorators";
 import {SystemAppsProcessName} from "../../config/Apps/AppsNames";
-import {UsermanagerComponent} from "../../Apps/usermanager/usermanager.component";
+import {UsermanagerComponent} from "../../apps/usermanager/usermanager.component";
 import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {AppCreatMetadata} from "../../interface/System";
-import {lang_App_User_Title} from "../../Language/SystemApp";
+import {lang_App_User_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_User_Title,

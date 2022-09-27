@@ -4,8 +4,8 @@ import {Window} from "../Window";
 import {SYSTEM_IMAGES} from "../../config/System";
 import {SystemApp} from "../SystemApp";
 import {AppCreatMetadata} from "../../interface/System";
-import {WeatherComponent} from "../../Apps/weather/weather.component";
-import {lang_App_Weather_Title} from "../../Language/SystemApp";
+import {WeatherComponent} from "../../apps/weather/weather.component";
+import {lang_App_Weather_Title} from "../../language/SystemApp";
 
 @NapicuApp({
   appTitle: lang_App_Weather_Title,
