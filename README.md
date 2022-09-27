@@ -74,7 +74,7 @@
    npm run start
    ```
    >Normální spuštění aplikace
-> - Profily spuštění NapicuBIOS najdete `src/app/bios/Config/bootloader.prod.ts` a `src/app/Bios/Config/bootloader.ts`
+> - Profily spuštění NapicuBIOS najdete `src/app/bios/config/bootloader.prod.ts` a `src/app/Bios/Config/bootloader.ts`
 > - Profily spuštění NapicuOS najdete `src/app/system/Systems/NapicuOS/config/run.prod.ts` a `src/app/system/Systems/NapicuOS/config/run.ts`
 > - Více ohledně Angular profilů naleznete na [Configuring application environments](https://angular.io/guide/build)
 
