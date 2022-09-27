@@ -22,7 +22,12 @@ export class ThemeComponent implements OnInit {
     NapicuOS.set_active_user_white_theme();
   }
 
-  get getDarkTheme(): boolean{
+  get GetDarkTheme(): boolean{
     return NapicuOS.get_active_user_dark_theme();
   }
+
+  get GetSystemThemeText(): string{
+    return NapicuOS.get_language_words().other.system_theme;
+  }
+
 }

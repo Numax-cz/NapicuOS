@@ -1,9 +1,9 @@
 <section class="MainContent" clickable="false">
-  <h1 class="BasicTitle">System theme</h1>
+  <h1 class="BasicTitle">{{GetSystemThemeText}}</h1>
   <div class="NapicuOSSimpleBoxBorder Box" clickable="false">
     <div class="themes">
       <div class="windowExample NapicuThemeFeraDark " clickable="false">
-        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': getDarkTheme}" (click)="setDark()" style="position: relative;" clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': GetDarkTheme}" (click)="setDark()" style="position: relative;" clickable="false">
           <div class="TopWindowAppBar">
             <div class="WindowAppTitle">Terminal</div>
             <div class="napicuos-App-window-M">
@@ -19,9 +19,8 @@
         <div class="ThemeDesc">Dark</div>
       </div>
 
-
       <div class="windowExample NapicuThemeFeraWhite" clickable="false">
-        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': (getDarkTheme == false) }" (click)="setWhite()" style="position: relative;" clickable="false">
+        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': (GetDarkTheme == false) }" (click)="setWhite()" style="position: relative;" clickable="false">
           <div class="TopWindowAppBar">
             <div class="WindowAppTitle">Terminal</div>
             <div class="napicuos-App-window-M">
