@@ -44,7 +44,7 @@ import {AboutComponent} from './system/Systems/NapicuOS/Apps/settings/about/abou
 import {TimeComponent} from './system/Systems/NapicuOS/Apps/settings/time/time.component';
 import {UsersComponent} from './system/Systems/NapicuOS/Apps/settings/users/users.component';
 import {AppInputComponent} from './system/Systems/NapicuOS/template/app-input/app-input.component';
-import {boot_configuration} from "./bios/Config/bootloader";
+import {boot_configuration} from "./bios/config/bootloader";
 import {WallpaperComponent} from "./system/Systems/NapicuOS/Apps/settings/wallpaper/wallpaper.component";
 import {VolumeComponent} from './system/Systems/NapicuOS/Apps/settings/volume/volume.component';
 import {

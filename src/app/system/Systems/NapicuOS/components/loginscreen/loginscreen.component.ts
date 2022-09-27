@@ -5,7 +5,7 @@ import {LOG_SCREEN_ANIMATION_TIME} from '../../config/LogScreen';
 import {SystemStateMetadata} from '../../interface/System';
 import {NapicuOS} from '../../system.napicuos';
 import {NapicuOSComponent} from '../napicu-os/napicu-os.component';
-import {KeyMaps} from "../../../../../bios/Config/KeyMaps";
+import {KeyMaps} from "../../../../../bios/config/KeyMaps";
 
 @Component({
   selector: 'app-loginscreen',

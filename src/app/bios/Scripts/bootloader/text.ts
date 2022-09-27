@@ -1,5 +1,5 @@
 import {BlackscreenComponent} from 'src/app/bios/components/blackscreen/blackscreen.component';
-import {CursorAnimationIN, CursorAnimationTimeIn, CursorMoveDown,} from 'src/app/bios/Config/Animation/animationCursor';
+import {CursorAnimationIN, CursorAnimationTimeIn, CursorMoveDown,} from 'src/app/bios/config/Animation/animationCursor';
 
 export function setDisplayText(text: string[], index?: number): void {
   if (index && BlackscreenComponent.text[index]) {

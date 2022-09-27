@@ -1,6 +1,6 @@
-import {FlashingText} from 'src/app/bios/Config/FlashInformationData';
+import {FlashingText} from 'src/app/bios/config/FlashInformationData';
 import {FlashComponent} from 'src/app/bios/components/flash/flash.component';
-import {Checking, Erasing, Verifying, Writing,} from 'src/app/bios/Config/Animation/Flash';
+import {Checking, Erasing, Verifying, Writing,} from 'src/app/bios/config/Animation/Flash';
 import {ReadyToFlash, SuccesFlash} from './OpenWindow';
 import {ProgressBar} from './ProgressBar';
 

@@ -2,7 +2,7 @@ import {BiosComponent} from '../components/bios/bios.component';
 import {BiosTime} from '../interface/ToolSettings';
 import {SettingsTemplateComponent} from '../components/settings-template/settings-template.component';
 import {isDate, isTime} from './Type';
-import {DATE_MAX_YEAR, DATE_MIN_YEAR} from "../Config/MaxDate";
+import {DATE_MAX_YEAR, DATE_MIN_YEAR} from "../config/MaxDate";
 
 export const maxMinutes: number = 60;
 export const maxSeconds: number = 60;

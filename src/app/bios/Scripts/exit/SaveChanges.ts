@@ -1,6 +1,6 @@
 import {BiosOptionsST, BiosSettings} from 'src/app/bios/ToolSettings';
 import {BiosComponent} from 'src/app/bios/components/bios/bios.component';
-import {cookiesForBisoSettingsAr} from 'src/app/bios/Config/Cookies';
+import {cookiesForBisoSettingsAr} from 'src/app/bios/config/Cookies';
 import {setCookies} from '../Cookies';
 import {Reboot} from './Reboot';
 

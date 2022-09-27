@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SystemTimeFormatEnumMetadata} from "../../../config/TimeFormat";
 import {NapicuOS} from "../../../system.napicuos";
-import {DATE_MAX_YEAR, DATE_MIN_YEAR} from "../../../../../../bios/Config/MaxDate";
+import {DATE_MAX_YEAR, DATE_MIN_YEAR} from "../../../../../../bios/config/MaxDate";
 import {daysInMonth} from "../../../scripts/DaysInMonth";
 import {GET_SYSTEM_BASIC_TIME_FORMAT} from "../../../config/Time";
 import {SYSTEM_SETTINGS_TIME_DEFAULT_FOMRAT} from "../../../config/Apps/settings/time/config";

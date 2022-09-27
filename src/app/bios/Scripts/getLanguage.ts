@@ -1,6 +1,6 @@
 import {BiosOptionsST} from '../ToolSettings';
-import {cookiesForBisoSettingsAr} from '../Config/Cookies';
-import {Deutschland, English, Japanes, LangMenu, Slovenia,} from '../Config/Lang/Lang';
+import {cookiesForBisoSettingsAr} from '../config/Cookies';
+import {Deutschland, English, Japanes, LangMenu, Slovenia,} from '../config/Lang/Lang';
 import {getCookies} from './Cookies';
 
 export function getLanguage(): any {

@@ -1,4 +1,4 @@
-import {exitTimeOut, TimeIn} from 'src/app/bios/Config/Animation/FlashBiosExit';
+import {exitTimeOut, TimeIn} from 'src/app/bios/config/Animation/FlashBiosExit';
 import {Loading} from '../LoadingAnimations';
 
 export function FlashBiosExit(): void {

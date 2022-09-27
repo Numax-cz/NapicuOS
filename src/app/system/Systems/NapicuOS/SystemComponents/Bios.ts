@@ -1,5 +1,5 @@
 import {VM_COMPUTER_INFORMATION} from "../../../../bios/vm_computer";
-import {Current} from "../../../../bios/Config/FlashInformationData";
+import {Current} from "../../../../bios/config/FlashInformationData";
 import {BiosSettings} from "../../../../bios/ToolSettings";
 import {BiosDate, BiosTime} from "../../../../bios/interface/ToolSettings";
 import {DateInterface, TimeInterface} from "../interface/Date";

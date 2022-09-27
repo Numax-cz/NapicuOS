@@ -10,10 +10,10 @@ import {BiosInfo, BiosOptionsST} from '../../ToolSettings';
 import {BootComponent} from '../boot/boot.component';
 import {FlashComponent} from '../flash/flash.component';
 import {GlobalEvents} from '../../Scripts/GlobalEvents';
-import {KeyMaps} from 'src/app/bios/Config/KeyMaps';
+import {KeyMaps} from 'src/app/bios/config/KeyMaps';
 import {OptionPanelComponent} from '../option-panel/option-panel.component';
-import {setCookiesBiosinf} from 'src/app/bios/Config/FlashInformationData';
-import {getMenu} from 'src/app/bios/Config/BiosMenuList';
+import {setCookiesBiosinf} from 'src/app/bios/config/FlashInformationData';
+import {getMenu} from 'src/app/bios/config/BiosMenuList';
 
 /**
  * @author Numax

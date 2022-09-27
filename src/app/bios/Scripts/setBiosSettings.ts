@@ -1,6 +1,6 @@
 import {BiosOptionsST, BiosSettings, setSettingsValue,} from '../ToolSettings';
 import {BiosComponent} from '../components/bios/bios.component';
-import {cookiesForBisoSettingsAr} from '../Config/Cookies';
+import {cookiesForBisoSettingsAr} from '../config/Cookies';
 import {getCookies} from './Cookies';
 import {copy} from './DeepClone';
 

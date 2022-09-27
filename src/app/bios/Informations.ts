@@ -1,5 +1,5 @@
 import {Informations} from './interface/Informations';
-import {lang} from './Config/BiosMenuList';
+import {lang} from './config/BiosMenuList';
 import {VM_COMPUTER_INFORMATION} from "./vm_computer";
 
 export function BiosMainInformation(): Informations[] {

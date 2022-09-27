@@ -1,4 +1,4 @@
-import {LangMenu} from './Config/Lang/Lang';
+import {LangMenu} from './config/Lang/Lang';
 import {BiosIf} from './interface/BiosInfo';
 import {ToolSettings} from './interface/ToolSettings';
 import {GetDrives} from './Scripts/Drives/Drives';
@@ -8,7 +8,7 @@ import {SaveChanges} from './Scripts/exit/SaveChanges';
 import {FlashBios} from './Scripts/Flash/FlashBios';
 import {setDate, setTime} from './Scripts/TimeDate';
 import {isDate, isOption, isTime} from './Scripts/Type';
-import {lang} from './Config/BiosMenuList';
+import {lang} from './config/BiosMenuList';
 
 export interface BiosOptionsST {
   [index: string]: ToolSettings;

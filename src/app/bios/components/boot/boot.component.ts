@@ -4,12 +4,12 @@ import {Router} from '@angular/router';
 import {BiosInfo, setBiosSettings} from '../../ToolSettings';
 import {BiosComponent} from '../bios/bios.component';
 import {FlashComponent} from '../flash/flash.component';
-import {KeyMaps} from 'src/app/bios/Config/KeyMaps';
+import {KeyMaps} from 'src/app/bios/config/KeyMaps';
 import {Navigate} from 'src/app/bios/Scripts/BiosRouter';
 import {Boot} from 'src/app/bios/Scripts/exit/Boot';
 import {setBiosSettingsFromCookies} from 'src/app/bios/Scripts/setBiosSettings';
-import {setLanguage} from 'src/app/bios/Config/BiosMenuList';
-import {boot_configuration} from "../../Config/bootloader";
+import {setLanguage} from 'src/app/bios/config/BiosMenuList';
+import {boot_configuration} from "../../config/bootloader";
 
 
 @Component({

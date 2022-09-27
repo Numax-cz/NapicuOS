@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {KeyMaps} from 'src/app/bios/Config/KeyMaps';
+import {KeyMaps} from 'src/app/bios/config/KeyMaps';
 import {Boot} from 'src/app/bios/Scripts/exit/Boot';
 import {System} from 'src/app/system/Systems/NapicuOS/SystemComponents/System';
 

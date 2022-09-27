@@ -1,13 +1,13 @@
 import {BiosOptionsST} from 'src/app/bios/ToolSettings';
 import {BlackscreenComponent} from 'src/app/bios/components/blackscreen/blackscreen.component';
-import {NoBootDevice} from 'src/app/bios/Config/BlackScreenTexts';
+import {NoBootDevice} from 'src/app/bios/config/BlackScreenTexts';
 
 import {GrubComponent} from 'src/app/grub/grub/grub.component';
 import {Navigate} from '../BiosRouter';
 import {copy} from '../DeepClone';
 import {Loading} from '../LoadingAnimations';
 import {animationCursor, setDisplayText} from './text';
-import {boot_configuration} from "../../Config/bootloader";
+import {boot_configuration} from "../../config/bootloader";
 import {VM_COMPUTER_INFORMATION} from "../../vm_computer";
 
 /**

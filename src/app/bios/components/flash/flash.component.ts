@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Current, Drive, Update} from '../../Config/FlashInformationData';
+import {Current, Drive, Update} from '../../config/FlashInformationData';
 import {BiosInfo} from '../../ToolSettings';
 import {directories} from '../../interface/Directorie';
 import {FlashInformation} from '../../interface/FlashInformation';

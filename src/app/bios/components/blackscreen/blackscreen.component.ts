@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {KeyMaps} from 'src/app/bios/Config/KeyMaps';
+import {KeyMaps} from 'src/app/bios/config/KeyMaps';
 import {animationCursor} from 'src/app/bios/Scripts/bootloader/text';
 import {Reboot} from 'src/app/bios/Scripts/exit/Reboot';
 
