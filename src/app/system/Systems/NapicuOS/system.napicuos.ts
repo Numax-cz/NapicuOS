@@ -131,8 +131,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     //Set black screen
     SystemComponent.SystemComponent = BlackscreenComponent;
     //Preload based images
-    //await imagePreloader(SYSTEM_BOOT_SCREEN_LOGO); //TODO
-    //await imagePreloader(SYSTEM_WALLPAPER); //TODO
+    if(NAPICUOS_ANGULAR_CONFIG.preload_assets) await imagePreloader(SYSTEM_BOOT_SCREEN_LOGO);
 
     //Set system loading screen
     SystemComponent.SystemComponent = LoadsComponent;
