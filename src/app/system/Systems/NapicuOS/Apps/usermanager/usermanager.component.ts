@@ -17,13 +17,16 @@ import {SYSTEM_VALIDATORS_USERNAME} from "../../config/Validators";
 })
 export class UsermanagerComponent implements OnInit{
 
-  public verify: boolean = false;
+  public declare verify: boolean;
+
+  public declare badVerifyRoot: boolean;
 
   constructor() {
+    this.verify = false;
+    this.badVerifyRoot = false
   }
 
   public ngOnInit() {
-    this.verify = false;
   }
 
 
@@ -57,16 +60,10 @@ export class UsermanagerComponent implements OnInit{
     }
   }
 
-  public onButtonClickVerifyUser(): void {
-
-  }
-
-  get GetCheckSubmit(): boolean {
-    return this.formData.valid;
-  }
-
-  get GetUsersPermission() {
-    return Object.keys(SystemUserPermissionsEnumMetadata);
+  public onButtonClickVerifyUser(password: string): void {
+    if(NapicuOS.verify_root_password(password)){
+      this.verify = true;
+    }else this.badVerifyRoot = true;
   }
 
   public GetUsernameError(): boolean {
@@ -77,6 +74,26 @@ export class UsermanagerComponent implements OnInit{
   public GetMainPasswordError(): boolean {
     let i =this.formData.get("password");
     return !i?.valid && !!i?.value.length;
+  }
+
+  get GetCheckSubmit(): boolean {
+    return this.formData.valid;
+  }
+
+  get GetUsersPermission() {
+    return Object.keys(SystemUserPermissionsEnumMetadata);
+  }
+
+  get GetVerifyText(): string {
+    return NapicuOS.get_language_words().other.enter_root_pass;
+  }
+
+  get GetVerifyRootText(): string {
+    return NapicuOS.get_language_words().other.verify_root_pass;
+  }
+
+  get GetBadPass(): string {
+    return NapicuOS.get_language_words().other.pass_error;
   }
 
 

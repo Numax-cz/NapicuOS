@@ -241,3 +241,6 @@ export const lang_type_game_bad_words_cs = "Chybných slov";
 
 export const lang_type_game_correct_words_en = "Correct words";
 export const lang_type_game_correct_words_cs = "Správných slov";
+
+export const lang_verify_root_pass_en = "Verify root";
+export const lang_verify_root_pass_cs = "Ověřit roota";

@@ -1,14 +1,19 @@
 <section class="WindowContent ConsoleThemeFeraDark BackgroundColor" id="WindowScrollBar">
   <!--Verify user-->
  <ng-container *ngIf="!verify">
-   <div class="form">
+   <div class="form" style="margin-top: 60px;">
     <div>
-      <div>Verify</div>
-
+      <div>{{GetVerifyText}}</div>
+      <input #VerifyRootInput class="NapicuOSSimpleInput" [ngClass]="{'NapicuOSSimpleInput-Red-Border': GetMainPasswordError()}" spellcheck="false" type="password" name="password"
              autocomplete="off"/>
     </div>
+     <ng-container *ngIf="badVerifyRoot">
+       <div class="error">
+         {{GetBadPass}}
+       </div>
+     </ng-container>
      <div class="NapicuOSSimpleButton" style="margin-top: 15px;">
-       <button (click)="onButtonClickVerifyUser()" [disabled]="!GetCheckSubmit">Verify root</button>
+       <button (click)="onButtonClickVerifyUser(VerifyRootInput.value)">{{GetVerifyRootText}}</button>
      </div>
    </div>
  </ng-container>

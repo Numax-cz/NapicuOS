@@ -2,7 +2,6 @@
   background-color: var(--NapicuClassicDark2);
 }
 
-
 .form {
   display: flex;
   flex-direction: column;
@@ -16,3 +15,6 @@
   }
 }
 
+.error{
+  color: red;
+}
