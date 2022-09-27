@@ -177,13 +177,15 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Initialization all dynamic files
       this.loadFilesFromConfig();
 
-      if(NAPICUOS_ANGULAR_CONFIG){
+      if(NAPICUOS_ANGULAR_CONFIG.preload_assets){
         //Preload all images
         await this.loadSystemImages();
         //Preload system sounds
         await this.loadSystemSounds();
         //Preload system wallpapers
         await this.loadSystemWallpapers();
+
+        console.log("xd");
       }
 
       resolve();
