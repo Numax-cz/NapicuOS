@@ -57,6 +57,10 @@
                 {
                   "replace": "src/app/Bios/Config/bootloader.ts",
                   "with": "src/app/Bios/Config/bootloader.prod.ts"
+                },
+                {
+                  "replace": "src/app/system/Systems/NapicuOS/config/run.ts",
+                  "with": "src/app/system/Systems/NapicuOS/config/run.prod.ts"
                 }
               ],
               "outputHashing": "all"

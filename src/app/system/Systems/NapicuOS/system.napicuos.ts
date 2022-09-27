@@ -96,6 +96,7 @@ import {lang_Months_cs, lang_Months_en} from "./Language/Months";
 import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 import {copy} from "../../../bios/Scripts/DeepClone";
 import {SystemAppsWelcome} from "./SystemComponents/Apps/Welcome";
+import {NAPICUOS_ANGULAR_CONFIG} from "./config/run";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -176,12 +177,14 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       //Initialization all dynamic files
       this.loadFilesFromConfig();
 
-      //Preload all images
-      await this.loadSystemImages(); //TODO
-      //Preload system sounds
-      await this.loadSystemSounds(); //TODO
-      //Preload system wallpapers
-      await this.loadSystemWallpapers(); //TODO
+      if(NAPICUOS_ANGULAR_CONFIG){
+        //Preload all images
+        await this.loadSystemImages();
+        //Preload system sounds
+        await this.loadSystemSounds();
+        //Preload system wallpapers
+        await this.loadSystemWallpapers();
+      }
 
       resolve();
     });
