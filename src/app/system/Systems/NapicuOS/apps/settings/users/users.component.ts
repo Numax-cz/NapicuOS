@@ -223,4 +223,8 @@ export class UsersComponent implements OnInit {
   get GetActiveUserIndex(): number{
     return NapicuOS.get_active_user_index();
   }
+
+  get GetVerifyText(): string {
+    return NapicuOS.get_language_words().other.verify;
+  }
 }
