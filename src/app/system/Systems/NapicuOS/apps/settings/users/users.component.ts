@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SYSTEM_IMAGES} from "../../../config/System";
+import {SYSTEM_IMAGES, SYSTEM_ROOT_USER} from "../../../config/System";
 import {NapicuOS} from "../../../system.napicuos";
 import {AppInputCheckFunctionReturn, AppMenuInputData} from "../../../interface/InputAlert";
 import {SystemStateMetadata, SystemUserStateData} from "../../../interface/System";
@@ -157,6 +157,10 @@ export class UsersComponent implements OnInit {
 
   get GetIsActiveUserRoot(): boolean {
     return NapicuOS.get_active_user_is_root();
+  }
+
+  get GetIsSelectedUserRoot(): boolean{
+    return this.usersList[this.selectedUser].username === SYSTEM_ROOT_USER.username;
   }
 
   get GetUserIcon(): string {

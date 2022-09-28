@@ -1,4 +1,4 @@
-<div style="position:relative;" clickable="true">
+<div clickable="true" style="position:relative;">
   <ng-container *ngIf="!verifyRoot">
     <div class="VerifyMenu" clickable="true">
       <div>
@@ -13,75 +13,65 @@
     </div>
   </ng-container>
   <section class="MainContent">
-  <!-- Users profile -->
-  <div class="UserProfile">
-    <img [src]="GetUserIcon" alt="User">
-    <h1>{{GetActiveUser?.username}}</h1>
-    <ng-container *ngIf="verifyRoot || (selectedUser == GetActiveUserIndex)">
-      <img class="edit" [src]="GetPencilIcon" alt="Edit" (click)="openSetUserNameMenu()">
-    </ng-container>
-  </div>
+    <!-- Users profile -->
+    <div class="UserProfile">
+      <img [src]="GetUserIcon" alt="User">
+      <h1>{{GetActiveUser?.username}}</h1>
+      <ng-container *ngIf="verifyRoot || (selectedUser == GetActiveUserIndex)">
+        <img (click)="openSetUserNameMenu()" [src]="GetPencilIcon" alt="Edit" class="edit">
+      </ng-container>
+    </div>
 
-  <!--Settings -->
-  <div class="UserSettings">
-    <div class="BasicText">{{GetAuthAndLoginText}}</div>
-        <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
-          <ul style="position: relative"  clickable="true" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot}">
-            <div>Typ</div>
-            <div >
-              <napicu-drop-down-menu clickable="true" [onSet]="onSetPermission" [arrow]="false" [selectedOption]="GetActiveUserPerms"
-                                     style="text-align: center; position: absolute; right: 10px; top: 0; z-index: 1000;"
-                                     [options]="GetTypeUser"></napicu-drop-down-menu>
-            </div>
-          </ul>
-        <ul (click)="openSetUserPass()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && selectedUser !== GetActiveUserIndex }">
+    <!--Settings -->
+    <div class="UserSettings">
+      <div class="BasicText">{{GetAuthAndLoginText}}</div>
+      <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
+        <ul *ngIf="!GetIsSelectedUserRoot" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot}" clickable="true"
+            style="position: relative">
+          <div>Typ</div>
+          <div>
+            <napicu-drop-down-menu [arrow]="false" [onSet]="onSetPermission" [options]="GetTypeUser"
+                                   [selectedOption]="GetActiveUserPerms"
+                                   clickable="true"
+                                   style="text-align: center; position: absolute; right: 10px; top: 0; z-index: 1000;"></napicu-drop-down-menu>
+          </div>
+        </ul>
+        <ul (click)="openSetUserPass()"
+            [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && selectedUser !== GetActiveUserIndex }">
           <div>{{GetPasswordText}}</div>
-          <div>{{GetPassTxt}}<span class="NapicuArrowSettingLeft" >></span></div>
+          <div>{{GetPassTxt}}<span class="NapicuArrowSettingLeft">></span></div>
         </ul>
         <ul [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && selectedUser !== GetActiveUserIndex }">
           <div>{{GetAutoAuthText}}</div>
           <section class="SwitchNot UseAuthSwitch">
             <label class="switch UseAuthSwitch" clickable="false">
-              <input type="checkbox" [checked]="!GetAutoLoginSwitchA"
-                     (change)="onChangeAutoLoginSwitch()" [disabled]="!verifyRoot">
+              <input (change)="onChangeAutoLoginSwitch()" [checked]="!GetAutoLoginSwitchA"
+                     [disabled]="!verifyRoot" type="checkbox">
               <span class="slider UseAuthSwitchSlider"></span>
             </label>
           </section>
         </ul>
-
+      </div>
     </div>
-  </div>
 
-  <div>
-    <div class="BasicText">{{GetUsersText}}</div>
-    <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
-      <ul *ngFor="let i of usersList; let index = index" (click)="selectedUser = index">
-        <div>{{i.username}}</div>
-        <div>></div>
-      </ul>
+    <div>
+      <div class="BasicText">{{GetUsersText}}</div>
+      <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
+        <ul (click)="selectedUser = index" *ngFor="let i of usersList; let index = index">
+          <div>{{i.username}}</div>
+          <div>></div>
+        </ul>
+      </div>
+      <div class="NapicuOSSimpleButton AddUserButton">
+        <button (click)="openAddUserMenu()" [disabled]="!verifyRoot">{{GetAddUserText}}</button>
+      </div>
     </div>
-    <div class="NapicuOSSimpleButton AddUserButton">
-      <button (click)="openAddUserMenu()" [disabled]="!verifyRoot">{{GetAddUserText}}</button>
-    </div>
-  </div>
 
-  <!--Change username menu && verify menu-->
-  <ng-container *ngIf="showInputMenu && inputMenuData">
-    <section>
-      <app-input clickable="true" [data]="inputMenuData"  class="Input" ></app-input>
-    </section>
-  </ng-container>
-
-
-  <!--Add user menu-->
-<!--  <ng-container *ngIf="addUserMenuDisplayed">-->
-<!--    <div id="AddUserMenu" clickable="true">-->
-<!--      <in-app-window appTitle="Window" [onClose]="closeAddUserMenu">-->
-<!--        <div class="WindowContent AddUserMenuContent">-->
-
-<!--        </div>-->
-<!--      </in-app-window>-->
-<!--    </div>-->
-<!--  </ng-container>-->
-</section>
+    <!--Change username menu && verify menu-->
+    <ng-container *ngIf="showInputMenu && inputMenuData">
+      <section>
+        <app-input [data]="inputMenuData" class="Input" clickable="true"></app-input>
+      </section>
+    </ng-container>
+  </section>
 </div>
