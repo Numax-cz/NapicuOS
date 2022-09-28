@@ -2108,6 +2108,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     // this.creat_dynamic_path_config(`/home/`, user.username);
     this.rename_dynamic_path(`/home/${username}/`, newUsername);
     this.update_dependencies_path(`/home/${username}/`, `/home/${newUsername}/`);
+    this.rename_dir(`/home/${username}/`, newUsername);
   }
 
   /**
