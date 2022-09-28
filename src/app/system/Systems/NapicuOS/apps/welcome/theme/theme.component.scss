@@ -18,6 +18,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  > section {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .windowExample{
@@ -38,6 +42,7 @@
   text-align: center;
   margin: 15px 0 0;
   font-size: 1rem;
+  color: var(--NapicuTextColor) !important;
 }
 
 .in-window-example-background-color{

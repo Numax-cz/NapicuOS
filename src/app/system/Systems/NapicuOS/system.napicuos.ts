@@ -183,8 +183,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         await this.loadSystemSounds();
         //Preload system wallpapers
         await this.loadSystemWallpapers();
-
-        console.log("xd");
       }
 
       resolve();

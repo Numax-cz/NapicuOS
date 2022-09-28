@@ -2,38 +2,43 @@
   <h1 class="BasicTitle">{{GetThemeText}}</h1>
   <div class="WelcomeAppComponentContent th">
     <div class="themes">
-      <div class="windowExample NapicuThemeFeraDark " clickable="false">
-        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': getDarkTheme}" (click)="setDark()" style="position: relative;" clickable="false">
-          <div class="TopWindowAppBar">
-            <div class="WindowAppTitle">Terminal</div>
-            <div class="napicuos-App-window-M">
-              <div class="MinButton"></div>
-              <div class="FullButton"></div>
-              <div class="CloseButton"></div>
+      <section>
+        <div class="windowExample NapicuThemeFeraDark " clickable="false">
+          <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': getDarkTheme}" (click)="setDark()" style="position: relative;" clickable="false">
+            <div class="TopWindowAppBar">
+              <div class="WindowAppTitle">Terminal</div>
+              <div class="napicuos-App-window-M">
+                <div class="MinButton"></div>
+                <div class="FullButton"></div>
+                <div class="CloseButton"></div>
+              </div>
             </div>
-          </div>
-          <div class="INAppWindow">
-            <section class="WindowContent in-window-example in-window-example-background-color"></section>
-          </div>
-        </section>
+            <div class="INAppWindow">
+              <section class="WindowContent in-window-example in-window-example-background-color"></section>
+            </div>
+          </section>
+        </div>
         <div class="ThemeDesc">{{GetDarkText}}</div>
-      </div>
-      <div class="windowExample NapicuThemeFeraWhite" clickable="false">
-        <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': (getDarkTheme == false) }" (click)="setWhite()" style="position: relative;" clickable="false">
-          <div class="TopWindowAppBar">
-            <div class="WindowAppTitle">Terminal</div>
-            <div class="napicuos-App-window-M">
-              <div class="MinButton"></div>
-              <div class="FullButton"></div>
-              <div class="CloseButton"></div>
+      </section>
+
+      <section>
+        <div class="windowExample NapicuThemeFeraWhite" clickable="false">
+          <section class="SelectedWindow napicuos-App-window SettingsCursorHoverItem" [ngClass]="{'selectedTheme': (getDarkTheme == false) }" (click)="setWhite()" style="position: relative;" clickable="false">
+            <div class="TopWindowAppBar">
+              <div class="WindowAppTitle">Terminal</div>
+              <div class="napicuos-App-window-M">
+                <div class="MinButton"></div>
+                <div class="FullButton"></div>
+                <div class="CloseButton"></div>
+              </div>
             </div>
-          </div>
-          <div class="INAppWindow">
-            <section class="WindowContent in-window-example in-window-example-background-color"></section>
-          </div>
-        </section>
+            <div class="INAppWindow">
+              <section class="WindowContent in-window-example in-window-example-background-color"></section>
+            </div>
+          </section>
+        </div>
         <div class="ThemeDesc">{{GetWhiteText}}</div>
-      </div>
+      </section>
 
     </div>
   </div>
