@@ -162,10 +162,10 @@ export const lang_device_restart_cs = (seconds: number) => {
 export const lang_welcome_main_title_en = "Welcome to the NapicuOS installer";
 export const lang_welcome_main_title_cs = "Vítejte v instalačním programu NapicuOS";
 
-export const lang_welcome_main_desc_en = `NapicuOS is an open source web application.<br>
-        Please report any bugs through the application or by email to example@example.com.`;
-export const lang_welcome_main_desc_cs = `NapicuOS je webová aplikace s otevřeným zdrojovým kódem.<br>
-        Případné chyby prosím nahlaste prostřednictvím aplikace nebo e-mailem na adresu example@example.com.`;
+export const lang_welcome_main_desc_en = `NapicuOS is an open source web application.
+        Please report any bugs through `;
+export const lang_welcome_main_desc_cs = `NapicuOS je webová aplikace s otevřeným zdrojovým kódem.
+        Případné chyby prosím nahlaste prostřednictvím `;
 
 export const lang_welcome_built_on_angular_en = "Built on Angular";
 export const lang_welcome_built_on_angular_cs = "Postaveno na Anguláru";

@@ -10,12 +10,19 @@
 .WelcomeDescription {
   padding: 10px;
 
+
+  a {
+    color: #00a8ff !important;
+  }
+
   p {
     font-size: 1rem;
     color: white; //TODO COnfig
     text-align: center;
+
   }
 }
+
 
 .WelcomeMainContent {
   margin-top: 100px
