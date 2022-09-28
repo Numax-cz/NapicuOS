@@ -52,4 +52,8 @@ export class MainComponent extends WelcomeComponentClass<null> implements OnInit
   get GetYear(): string{
     return new NapicuDate().getCurrentYear().toString();
   }
+
+  get GetOSVersion(): string {
+    return NapicuOS.get_system_information_os_version();
+  }
 }
