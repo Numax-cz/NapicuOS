@@ -28,7 +28,7 @@
       <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
         <ul *ngIf="!GetIsSelectedUserRoot" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot}" clickable="true"
             style="position: relative">
-          <div>Typ</div>
+          <div>{{GetTypeText}}</div>
           <div>
             <napicu-drop-down-menu [arrow]="false" [onSet]="onSetPermission" [options]="GetTypeUser"
                                    [selectedOption]="GetActiveUserPerms"

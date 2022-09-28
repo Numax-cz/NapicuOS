@@ -111,6 +111,8 @@ import {
   lang_time_format_en,
   lang_try_again_cs,
   lang_try_again_en,
+  lang_type_cs,
+  lang_type_en,
   lang_type_game_accuracy_cs,
   lang_type_game_accuracy_en,
   lang_type_game_bad_words_cs,
@@ -283,7 +285,8 @@ export const NapicuOSLanguages = {
       type_game_bad_words: lang_type_game_bad_words_en,
       type_game_correct_words: lang_type_game_correct_words_en,
       verify_root_pass: lang_verify_root_pass_en,
-      system_theme: lang_system_theme_en
+      system_theme: lang_system_theme_en,
+      type: lang_type_en
     }
   },
 
@@ -393,7 +396,8 @@ export const NapicuOSLanguages = {
       type_game_bad_words: lang_type_game_bad_words_cs,
       type_game_correct_words: lang_type_game_correct_words_cs,
       verify_root_pass: lang_verify_root_pass_cs,
-      system_theme: lang_system_theme_cs
+      system_theme: lang_system_theme_cs,
+      type: lang_type_cs
     }
   }
 }

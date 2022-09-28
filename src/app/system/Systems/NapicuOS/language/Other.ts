@@ -247,3 +247,6 @@ export const lang_type_game_correct_words_cs = "Správných slov";
 
 export const lang_verify_root_pass_en = "Verify root";
 export const lang_verify_root_pass_cs = "Ověřit roota";
+
+export const lang_type_en = "Type";
+export const lang_type_cs = "Typ";

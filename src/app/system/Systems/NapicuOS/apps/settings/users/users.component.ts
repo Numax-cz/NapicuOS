@@ -231,4 +231,8 @@ export class UsersComponent implements OnInit {
   get GetVerifyText(): string {
     return NapicuOS.get_language_words().other.verify;
   }
+
+  get GetTypeText(): string {
+    return NapicuOS.get_language_words().other.type;
+  }
 }
