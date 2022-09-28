@@ -1108,11 +1108,6 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     let pth = this.get_system_dynamic_paths_cookies_config();
     if (!pth) return;
 
-    //TODO REMOVE ALL USERS FILES
-    //TODO REMOVE ALL USERS FILES
-    //TODO REMOVE ALL USERS FILES
-
-
     this.remove_dynamic_path(path);
 
     let dr_nm: string = PathHasLastSlash(PathSpliceLastIndex(path).path);

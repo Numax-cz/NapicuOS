@@ -1,5 +1,5 @@
 <div style="position:relative;" clickable="true">
-  <ng-container *ngIf="!this.verifyRoot">
+  <ng-container *ngIf="!verifyRoot">
     <div class="VerifyMenu" clickable="true">
       <div>
         <div class="MainText">{{GetVerify1Text}}</div>
@@ -17,7 +17,7 @@
   <div class="UserProfile">
     <img [src]="GetUserIcon" alt="User">
     <h1>{{GetActiveUser?.username}}</h1>
-    <ng-container *ngIf="(verifyRoot || this.selectedUser == GetActiveUserIndex) && !GetIsActiveUserRoot">
+    <ng-container *ngIf="verifyRoot || (selectedUser == GetActiveUserIndex)">
       <img class="edit" [src]="GetPencilIcon" alt="Edit" (click)="openSetUserNameMenu()">
     </ng-container>
   </div>
@@ -26,7 +26,7 @@
   <div class="UserSettings">
     <div class="BasicText">{{GetAuthAndLoginText}}</div>
         <div class="NapicuOSSimpleGTable NapicuOSSimpleGTableHover table">
-          <ul style="position: relative"  clickable="true" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot || GetIsActiveUserRoot}">
+          <ul style="position: relative"  clickable="true" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot}">
             <div>Typ</div>
             <div >
               <napicu-drop-down-menu clickable="true" [onSet]="onSetPermission" [arrow]="false" [selectedOption]="GetActiveUserPerms"
@@ -34,11 +34,11 @@
                                      [options]="GetTypeUser"></napicu-drop-down-menu>
             </div>
           </ul>
-        <ul (click)="openSetUserPass()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && this.selectedUser !== GetActiveUserIndex }">
+        <ul (click)="openSetUserPass()" [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && selectedUser !== GetActiveUserIndex }">
           <div>{{GetPasswordText}}</div>
           <div>{{GetPassTxt}}<span class="NapicuArrowSettingLeft" >></span></div>
         </ul>
-        <ul [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && this.selectedUser !== GetActiveUserIndex }">
+        <ul [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && selectedUser !== GetActiveUserIndex }">
           <div>{{GetAutoAuthText}}</div>
           <section class="SwitchNot UseAuthSwitch">
             <label class="switch UseAuthSwitch" clickable="false">

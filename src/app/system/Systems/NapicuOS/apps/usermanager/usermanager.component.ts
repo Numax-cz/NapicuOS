@@ -22,7 +22,7 @@ export class UsermanagerComponent implements OnInit{
   public declare badVerifyRoot: boolean;
 
   constructor() {
-    this.verify = false;
+    this.verify = (NapicuOS.get_active_user_permission() == SystemUserPermissionsEnumMetadata.SuperUser);
     this.badVerifyRoot = false
   }
 
@@ -81,7 +81,7 @@ export class UsermanagerComponent implements OnInit{
   }
 
   get GetUsersPermission() {
-    return Object.keys(SystemUserPermissionsEnumMetadata);
+    return Object.values(SystemUserPermissionsEnumMetadata);
   }
 
   get GetVerifyText(): string {
@@ -95,6 +95,4 @@ export class UsermanagerComponent implements OnInit{
   get GetBadPass(): string {
     return NapicuOS.get_language_words().other.pass_error;
   }
-
-
 }
