@@ -41,22 +41,11 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
+              "budgets": [],
               "fileReplacements": [
                 {
-                  "replace": "src/app/Bios/Config/bootloader.ts",
-                  "with": "src/app/Bios/Config/bootloader.prod.ts"
+                  "replace": "src/app/bios/config/bootloader.ts",
+                  "with": "src/app/bios/config/bootloader.prod.ts"
                 },
                 {
                   "replace": "src/app/system/Systems/NapicuOS/config/run.ts",
