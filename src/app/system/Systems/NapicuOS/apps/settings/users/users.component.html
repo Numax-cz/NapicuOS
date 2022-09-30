@@ -37,11 +37,11 @@
           </div>
         </ul>
         <ul (click)="openSetUserPass()"
-            [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && selectedUser !== GetActiveUserIndex }">
+            [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot }">
           <div>{{GetPasswordText}}</div>
           <div>{{GetPassTxt}}<span class="NapicuArrowSettingLeft">></span></div>
         </ul>
-        <ul [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot && selectedUser !== GetActiveUserIndex }">
+        <ul [ngClass]="{'NapicuOSSimpleGTable-Disabled': !verifyRoot }">
           <div>{{GetAutoAuthText}}</div>
           <section class="SwitchNot UseAuthSwitch">
             <label class="switch UseAuthSwitch" clickable="false">
