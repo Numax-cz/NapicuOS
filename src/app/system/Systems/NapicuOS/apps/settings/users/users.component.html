@@ -45,7 +45,7 @@
           <div>{{GetAutoAuthText}}</div>
           <section class="SwitchNot UseAuthSwitch">
             <label class="switch UseAuthSwitch" clickable="false">
-              <input (change)="onChangeAutoLoginSwitch()" [checked]="!GetAutoLoginSwitchA"
+              <input (change)="onChangeAutoLoginSwitch()" [checked]="GetAutoLoginSwitchA"
                      [disabled]="!verifyRoot" type="checkbox">
               <span class="slider UseAuthSwitchSlider"></span>
             </label>
