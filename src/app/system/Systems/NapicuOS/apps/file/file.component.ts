@@ -43,7 +43,7 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   public declare topTxtView: { file: string, edit: string, view: string, go: string };
 
-  private startDirectory: string = "/";
+  private declare startDirectory: string;
 
   public fileName: string = "document";
 
@@ -67,7 +67,9 @@ export class FileComponent implements OnInit, SystemWindowAppInjectData {
 
   public fileNameError: boolean = false;
 
-  constructor() { }
+  constructor() {
+    this.startDirectory = "%USERDIR";
+  }
 
   ngOnInit(): void {
     this.pathHistory.add(this.startDirectory);
