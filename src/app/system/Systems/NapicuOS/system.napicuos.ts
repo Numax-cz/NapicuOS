@@ -1298,8 +1298,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static remove_app_in_user_dock(fileName: string): void {
     const userAppsInDock = this.get_active_user()?.userSetting.appsInDock || [];
-    if (userAppsInDock.length) userAppsInDock.splice(userAppsInDock.indexOf(fileName), 1);
-
+    let index = userAppsInDock.indexOf(fileName);
+    if (userAppsInDock.length && index >= 0) {
+      userAppsInDock.splice(index, 1);
+    }
     this.update_dock_items();
   }
 
