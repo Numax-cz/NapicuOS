@@ -1197,10 +1197,11 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @protected
    */
   protected static remove_global_path_from_cookies(path: string): void {
+    let p = PathHasLastSlash(path);
     const conf_paths = this.get_system_dynamic_paths_cookies_config();
     if (!conf_paths) return;
     for (const i of conf_paths) {
-      if (i === path) {
+      if (i === p) {
         conf_paths.splice(conf_paths.indexOf(i), 1);
         this.update_config_to_cookies();
       }
