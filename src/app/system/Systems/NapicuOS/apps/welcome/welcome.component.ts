@@ -53,7 +53,10 @@ export class WelcomeComponent implements OnInit {
   }
 
   public static creatUser(): void {
-    if (this.userCache) NapicuOS.add_user(this.userCache);
+    if (this.userCache){
+      this.userCache.autoAuth = true;
+      NapicuOS.add_user(this.userCache);
+    }
   }
 
   public static verifyInstallation(): void {
