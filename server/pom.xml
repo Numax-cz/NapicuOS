@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.napicu</groupId>
-	<artifactId>Server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>NapicuOSAPI</artifactId>
+	<version>1.0.0</version>
 	<name>Server</name>
 	<description>Server</description>
 	<properties>
