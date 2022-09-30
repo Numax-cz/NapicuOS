@@ -1030,7 +1030,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
         return file.file.fileName === pathFile.removed;
       });
       if (b!.length > 1) console.error("[NAPICUOS] Ilegal files");
-      if (b) this.get_system_dynamic_files_cookies_config()?.splice(this.get_system_dynamic_files_cookies_config()?.indexOf(b[0]) as number, 1)
+      if (b) {
+        let ind: number = this.get_system_dynamic_files_cookies_config()?.indexOf(b[0]) as number;
+        if(ind >= 0) this.get_system_dynamic_files_cookies_config()?.splice(ind, 1)
+      }
       this.update_config_to_cookies();
       return SystemStateMetadata.Success;
     }
