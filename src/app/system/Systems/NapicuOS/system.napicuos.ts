@@ -140,8 +140,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
     setTimeout(() => {
       SystemComponent.SystemComponent = BlackscreenComponent;
       this.load();
-
-      if (NapicuOS.get_active_user()) {
+      if (NapicuOS.get_active_user()?.autoAuth) {
         setTimeout(() => {
           SystemComponent.SystemComponent = NapicuOSComponent;
           // setTimeout(() => {
@@ -324,10 +323,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
 
     //Automatic login of the default user
-    NapicuOS.log_user(
-      initUser.username,
-      initUser.password
-    );
+    // if(initUser.autoAuth) {
+    //   console.log("login")
+    //   NapicuOS.log_user(
+    //     initUser.username,
+    //     initUser.password
+    //   );
+    // }
   }
 
   public override onLoad(): void {
