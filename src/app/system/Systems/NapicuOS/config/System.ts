@@ -28,7 +28,8 @@ export const SYSTEM_INFORMATION: SystemInformation = {
 export const SYSTEM_ROOT_USER: UserConstructorMetadata = {
   username: 'root',
   password: 'root',
-  permissions: SystemUserPermissionsEnumMetadata.SuperUser
+  permissions: SystemUserPermissionsEnumMetadata.SuperUser,
+  autoAuth: true
 }
 
 export const SYSTEM_DEFAULT_TEST_USER: UserConstructorMetadata = {
