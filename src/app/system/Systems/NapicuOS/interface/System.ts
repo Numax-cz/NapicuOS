@@ -29,7 +29,8 @@ export declare type SystemUserStateData =
   SystemStateMetadata.UserExists
   | SystemStateMetadata.UserNotExists
   | SystemStateMetadata.StringTooLong
-  | SystemStateMetadata.StringTooShort;
+  | SystemStateMetadata.StringTooShort
+  | SystemStateMetadata.StringInCorrect
 
 export declare type SystemFileStateData =
   | SystemStateMetadata.FileAlreadyExists
@@ -161,6 +162,7 @@ export declare const enum SystemStateMetadata {
   StringCorrect = 6900,
   StringTooShort = 6901,
   StringTooLong = 6902,
+  StringInCorrect = 6903,
 }
 
 

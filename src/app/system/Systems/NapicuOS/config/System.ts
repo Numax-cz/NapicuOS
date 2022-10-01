@@ -52,6 +52,8 @@ export const SYSTEM_DEFAULT_TERMINAL_PATH = `/home`; //TODO user
 
 export const SYSTEM_FILE_NAME_REGEX = /^[a-zA-Z0-9_\-\.]+$/;
 
+export const SYSTEM_USERNAME_REGEX = /^[a-zA-Z\-]+$/;
+
 export enum SYSTEM_SOUNDS {
   InterfaceSelect = 'assets/sound/InterfaceSelect.mp3',
   InterfaceStart = 'assets/sound/InterfaceStart.mp3',

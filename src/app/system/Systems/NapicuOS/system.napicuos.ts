@@ -38,6 +38,7 @@ import {
   SYSTEM_INFORMATION,
   SYSTEM_ROOT_USER,
   SYSTEM_SOUNDS,
+  SYSTEM_USERNAME_REGEX,
   SYSTEM_USERS_MAX_LENGTH,
   SYSTEM_USERS_MIN_LENGTH,
   SYSTEM_USERS_MIN_PASSWORD_LENGTH,
@@ -2123,13 +2124,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    */
   public static check_username(username: string): SystemUserStateData {
     let lng = checkSystemStringLength(username, SYSTEM_USERS_MIN_LENGTH, SYSTEM_USERS_MAX_LENGTH);
-    if (lng == SystemStateMetadata.StringCorrect) {
+    if (lng == SystemStateMetadata.StringCorrect && SYSTEM_USERNAME_REGEX.exec(username)) {
       if (this.check_user_exist(username)) {
         return SystemStateMetadata.UserExists;
       }
       return SystemStateMetadata.UserNotExists;
     }
-    return lng;
+    return SystemStateMetadata.StringInCorrect;
   }
 
   /**
@@ -2137,7 +2138,9 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
    * @param username
    */
   public static check_user_exist(username: string): boolean {
-    return !!this.get_user_by_username(username);
+    return !!this.get_users().filter((user: User) => {
+      return user.username.toLowerCase() === username.toLowerCase()
+    }).length;
   }
 
   /**
