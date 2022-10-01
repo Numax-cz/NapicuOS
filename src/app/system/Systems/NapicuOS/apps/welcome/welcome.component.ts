@@ -9,6 +9,9 @@ import {InstallComponent} from "./install/install.component";
 import {NapicuOS} from "../../system.napicuos";
 import {FinishComponent} from "./finish/finish.component";
 import {SystemProcessRebootTimeout} from "../../SystemComponents/Process/RebootTimeout";
+import {ReplaceSystemVariables} from "../../scripts/ReplaceVariables";
+import {SystemFile} from "../../SystemComponents/File";
+import {SystemFileTypeEnumMetadata} from "../../interface/FilesDirs/File";
 
 
 @Component({
@@ -56,6 +59,17 @@ export class WelcomeComponent implements OnInit {
     if (this.userCache){
       this.userCache.autoAuth = true;
       NapicuOS.add_user(this.userCache);
+      NapicuOS.creat_dynamic_file(ReplaceSystemVariables(`/home/${this.userCache.username}/`), new SystemFile({
+        fileName: "ROOT",
+        fileType: SystemFileTypeEnumMetadata.document,
+        value: `
+          ROOT USER:
+          <div><br></div>
+          USERNAME: root\n
+          <div><br></div>
+          PASSWORD: root\n
+        `
+      }));
     }
   }
 
