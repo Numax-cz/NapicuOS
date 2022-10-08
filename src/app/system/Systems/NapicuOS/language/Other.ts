@@ -61,7 +61,7 @@ export const lang_change_username_cs = "Zadejte nový uživatelský jméno";
 export const lang_your_hostname_en = "Your computer’s name";
 export const lang_your_hostname_cs = "Název počítače";
 
-export const lang_chose_password_en = "Chose a password";
+export const lang_chose_password_en = "Choose a password";
 export const lang_chose_password_cs = "Vyberte si heslo";
 
 export const lang_your_username_en = "Your name";
