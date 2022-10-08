@@ -9,8 +9,10 @@
     "server-dev": "node ./scripts/server.js dev",
     "server-dev-local": "node ./scripts/server.js dev-local",
     "build": "ng build --build-optimizer --extract-licenses --output-hashing none --optimization true",
+    "build-update-api": "node ./scripts/build.js",
     "buildDev": "ng build --configuration=development --build-optimizer --extract-licenses --output-hashing none",
-    "build-openapi-dev": "openapi-generator-cli generate -o ./OpenAPI -i http://localhost:8080/v3/api-docs/ -g typescript-angular"
+    "build-openapi-dev": "openapi-generator-cli generate -o ./OpenAPI -i http://localhost:8080/v3/api-docs/ -g typescript-angular",
+    "build-openapi-prod": "openapi-generator-cli generate -o ./OpenAPI -i https://api-os.napicu.eu/v3/api-docs/ -g typescript-angular"
   },
   "private": true,
   "dependencies": {
