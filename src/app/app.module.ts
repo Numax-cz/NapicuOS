@@ -67,6 +67,7 @@ import {FinishComponent} from './system/Systems/NapicuOS/apps/welcome/finish/fin
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {PongComponent} from './system/Systems/NapicuOS/apps/pong/pong.component';
 import {TypegameComponent} from './system/Systems/NapicuOS/apps/type-game/typegame.component';
+import {NapicuApiModule} from "./napicu-api.module";
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import {TypegameComponent} from './system/Systems/NapicuOS/apps/type-game/typega
       registrationStrategy: 'registerWhenStable:30000',
     }),
     ReactiveFormsModule,
+    NapicuApiModule
   ],
   providers: [],
   bootstrap: [AppComponent],
