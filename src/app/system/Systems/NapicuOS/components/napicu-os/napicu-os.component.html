@@ -15,7 +15,7 @@
     <section @NapicuOSfeoreStartUp id="System">
       <section style="width: 100%; height: 100%; display: flex; flex-direction: column">
         <!-- Top panel -->
-        <section class="TopPanel">
+        <section *ngIf="GetActiveDesktop" class="TopPanel">
           <div class="top-panel-item" (click)="onClickActivities()">{{GetActivitiesText}}</div>
           <div (click)="onClickDate()" class="top-panel-item">{{ systemTime }}</div>
           <!-- Date panel-->
@@ -171,7 +171,7 @@
         <section style="display: contents; background-color: white">
           <div [@NapicuOSfeoreActivityMenu]="GetActivityDisplay" (click)="onClickDesktop()"
                [style.background-image]="'url(' + wallpaper + ')'"
-               id="wallpaper" [ngClass]="{'overflowH': GetActivityDisplay }">
+               id="wallpaper" [ngClass]="{'overflowH': GetActivityDisplay, 'blank': !GetActiveDesktop }">
             <!-- Apps -->
             <section>
               <app-window></app-window>
@@ -180,7 +180,7 @@
         </section>
 
         <!-- Bottom AppPanel -->
-        <section *ngIf="BottomDockDisplay" class="BottomPanel" id="Dock"
+        <section *ngIf="BottomDockDisplay && GetActiveDesktop" class="BottomPanel" id="Dock"
                  style="z-index: 1000">
           <div style="display: flex; align-items: center; justify-content: space-between">
             <section style="display: flex;"

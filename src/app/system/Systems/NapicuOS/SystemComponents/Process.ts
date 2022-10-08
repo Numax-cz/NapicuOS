@@ -40,6 +40,10 @@ export class Process {
    */
   private declare readonly processInterval: { fun: () => void; time: number };
 
+  /**
+   * Function after kill process
+   */
+  public declare onProcessKill: () => void;
 
   constructor(data: processConstructor) {
     if (data?.Window) this._Window = data.Window;
@@ -147,6 +151,7 @@ export class Process {
       GrubComponent.GrubActiveSystem.SystemProcess.splice(this._pid, 1);
       NapicuOS.onKillProcess();
       this._Window?.onKillProcess();
+      if(this.onProcessKill) this.onProcessKill();
     }, x);
   }
 

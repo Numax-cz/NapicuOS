@@ -17,6 +17,7 @@ import {SystemAppsMap} from "./SystemComponents/Apps/Maps";
 import {SystemAppsWeather} from "./SystemComponents/Apps/Weather";
 import {SystemAppsPong} from "./SystemComponents/Apps/Pong";
 import {SystemAppsTypeGame} from "./SystemComponents/Apps/TypeGame";
+import {SystemProcessDesktop} from "./SystemComponents/Process/Desktop";
 
 export function initAllSystemProcess(): void {
   new SystemProcessTime().process.runAsSystem();
@@ -27,8 +28,10 @@ export function initAllSystemProcess(): void {
 export function installAllApps(): void {
   SYSTEM_INITS_APPS.forEach((app: AppCreatMetadata) => {
     NapicuOS.install_app(app)
-    console.log(app)
+    //console.log(app)
   });
+
+ new SystemProcessDesktop().process.runAsSystem();
 }
 
 //Applications

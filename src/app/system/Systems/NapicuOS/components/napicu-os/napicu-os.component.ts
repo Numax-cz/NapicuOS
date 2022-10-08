@@ -459,4 +459,8 @@ export class NapicuOSComponent implements OnInit {
   get GetPreviewProcess(): Process[] | null{
     return this.selectedAppPreview?.process || null;
   }
+
+  get GetActiveDesktop(): boolean{
+    return NapicuOS.activeDeskop;
+  }
 }

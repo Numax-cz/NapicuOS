@@ -105,7 +105,7 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static activeUsers: string[] = [];
   public static onShutDownSystemFunctions: (() => void)[] = [];
   public static SystemCookiesConfig: NapicuOsCookiesTemplate = copy(SYSTEM_DEFAULT_COOKIES_ARRAY);
-
+  public static activeDeskop: boolean = true;
   public override boot = {
     title: SYSTEM_BOOT_SCREEN_TITLE,
     logo: SYSTEM_BOOT_SCREEN_LOGO,
@@ -1652,6 +1652,13 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
       process.kill();
     });
     GrubComponent.GrubActiveSystem.SystemProcess = [];
+  }
+
+  /**
+   * Kills desktop
+   */
+  public static kill_desktop(): void {
+    this.activeDeskop = false;
   }
 
   /**
