@@ -2,7 +2,7 @@
   <br>
   <img src="./src/assets/icons/NapicuBios-512x512.png" alt="NapicuBios image" width="130">
   <br>
-    NapicuOS - Preview
+    NapicuOS
   <br>
 </h1>
 
