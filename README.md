@@ -90,7 +90,7 @@
    ```
   >Ve výchozím nastavení se aplikace spustí na portu `8080`
 
-## Vytovření nové aplikace pro operační systém
+## Vytvoření nové aplikace pro operační systém
 
 ```sh
 npm run newapp <nazev_systemu> <nazev_aplikace>
