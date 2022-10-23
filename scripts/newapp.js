@@ -26,7 +26,7 @@ process.argv.forEach(function (val, index) {
   }
 });
 
-const appDir = 'Sys/Systems';
+const appDir = 'system/Systems';
 const defaultDir = `./src/app/${appDir}`;
 const prefixFile = 'system';
 const appName = 'Apps';
