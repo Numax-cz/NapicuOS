@@ -42,6 +42,7 @@ export class BootComponent implements OnInit, OnDestroy {
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
     this.setEvents();
+    if(BootComponent.allowCookies !== null) this.startBooting();
   }
 
   ngOnDestroy(): void {
@@ -79,14 +80,18 @@ export class BootComponent implements OnInit, OnDestroy {
   public selectCookiesOption(value: boolean){
     BootComponent.cookiesOptionPopUp = value;
     BootComponent.allowCookies = value;
-    setTimeout(() => {
-      if (!BootComponent.EnterBios) Boot();
-    }, boot_configuration.exitTime);
+    this.startBooting();
   }
 
   protected setEvents(): void {
     window.removeEventListener('keydown', this.RunBios, true);
     window.addEventListener('keydown', this.RunBios, true);
+  }
+
+  protected startBooting(): void {
+    setTimeout(() => {
+      if (!BootComponent.EnterBios) Boot();
+    }, boot_configuration.exitTime);
   }
 
   protected PlayBootSound(): void {
