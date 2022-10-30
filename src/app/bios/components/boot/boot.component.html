@@ -8,3 +8,28 @@
     <div class="BottomText">Please press DEL or F2 to enter BIOS setting</div>
   </div>
 </section>
+
+<ng-container *ngIf="GetAllowCookiesWindow == null">
+  <div class="BootCookiesWindowContainer">
+    <div>
+
+      <div class="BootCookiesWindowMainTitle">
+        Allow cookies?
+      </div>
+      <p>
+        This website uses cookies to save NapicuOS and NapicuBIOS settings<br>
+        For more information about cookies: <a href="https://www.cookiesandyou.com/" target="_blank">cookiesandyou</a>
+      </p>
+
+      <div class="FunFlex">
+        <div [ngClass]="{selected: GetOptionCookiesWindow}" (click)="selectCookiesOption(true)">
+          <p>Yes</p>
+        </div>
+        <div [ngClass]="{selected: !GetOptionCookiesWindow}" (click)="selectCookiesOption(false)">
+          <p>No</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

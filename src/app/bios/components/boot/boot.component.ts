@@ -23,6 +23,8 @@ export class BootComponent implements OnInit, OnDestroy {
   protected BiosBootAudio: HTMLAudioElement = new Audio(
     '/assets/sound/Boot.wav'
   );
+  public static allowCookies: boolean | null = null;
+  public static cookiesOptionPopUp: boolean = true;
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     BootComponent.NavigateRouter = this.router;
@@ -40,11 +42,6 @@ export class BootComponent implements OnInit, OnDestroy {
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
     this.setEvents();
-    setTimeout(() => {
-      if (!BootComponent.EnterBios) {
-        Boot();
-      }
-    }, boot_configuration.exitTime);
   }
 
   ngOnDestroy(): void {
@@ -66,12 +63,25 @@ export class BootComponent implements OnInit, OnDestroy {
         }, boot_configuration.startTimeIn);
       }, 280);
     }
+    if (BootComponent.allowCookies == null){
+      if(e.keyCode == 13) this.selectCookiesOption(BootComponent.cookiesOptionPopUp);
+      else if(e.keyCode == 37) BootComponent.cookiesOptionPopUp = true;
+      else if (e.keyCode == 39) BootComponent.cookiesOptionPopUp = false;
+    }
   };
 
   public ClearRouter(): void {
     BiosComponent.BiosRouter = this.router;
     BiosComponent.selected = 0;
     BootComponent.EnterBios = false;
+  }
+
+  public selectCookiesOption(value: boolean){
+    BootComponent.cookiesOptionPopUp = value;
+    BootComponent.allowCookies = value;
+    setTimeout(() => {
+      if (!BootComponent.EnterBios) Boot();
+    }, boot_configuration.exitTime);
   }
 
   protected setEvents(): void {
@@ -81,5 +91,13 @@ export class BootComponent implements OnInit, OnDestroy {
 
   protected PlayBootSound(): void {
     this.BiosBootAudio.play();
+  }
+
+  get GetAllowCookiesWindow(): boolean | null {
+    return BootComponent.allowCookies;
+  }
+
+  get GetOptionCookiesWindow(): boolean  {
+    return BootComponent.cookiesOptionPopUp;
   }
 }

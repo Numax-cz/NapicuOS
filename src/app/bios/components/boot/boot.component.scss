@@ -36,3 +36,46 @@
   left: 0;
   text-align: center;
 }
+
+.BootCookiesWindowContainer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  padding: 10px 3px;
+  font-size: 2rem;
+  color: white;
+  box-shadow: 10px 10px black;
+  z-index: 100000;
+  .BootCookiesWindowMainTitle{
+    text-align: center;
+  }
+  >div{
+    padding: 20px;
+    border-left: 4px solid white;
+    border-right: 4px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+  }
+}
+
+.FunFlex {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  p{
+    cursor: pointer;
+  }
+
+  p:hover{
+    background-color: black;
+
+  }
+}
+
+.selected {
+  p {
+    background-color: black;
+  }
+}
