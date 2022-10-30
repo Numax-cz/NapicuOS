@@ -1,7 +1,7 @@
 import {DOCUMENT} from '@angular/common';
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {BiosInfo, setBiosSettings} from '../../ToolSettings';
+import {BiosInfo} from '../../ToolSettings';
 import {BiosComponent} from '../bios/bios.component';
 import {FlashComponent} from '../flash/flash.component';
 import {KeyMaps} from 'src/app/bios/config/KeyMaps';
@@ -36,8 +36,8 @@ export class BootComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     setLanguage();
-    setBiosSettings();
-    setBiosSettingsFromCookies();
+    //setBiosSettings();
+    if(BootComponent.allowCookies) setBiosSettingsFromCookies();
     this.ClearRouter();
     BootComponent.EnterBios = false;
     FlashComponent.ezFlashWindow = false;
