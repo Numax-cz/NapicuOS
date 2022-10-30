@@ -1,4 +1,5 @@
 import {cookiesTime} from '../config/Cookies';
+import {BootComponent} from "../components/boot/boot.component";
 
 /**
  * Sets the value of cookies
@@ -6,10 +7,12 @@ import {cookiesTime} from '../config/Cookies';
  * @param {string} value Value of cookies
  */
 export function setCookies<T>(name: string, value: T): void {
-  const date = new Date();
-  date.setTime(date.getTime() + cookiesTime);
-  document.cookie =
-    name + '=' + JSON.stringify(value) + '; expires=' + date.toUTCString() + '; path=/';
+  if(BootComponent.allowCookies){
+    const date = new Date();
+    date.setTime(date.getTime() + cookiesTime);
+    document.cookie =
+      name + '=' + JSON.stringify(value) + '; expires=' + date.toUTCString() + '; path=/';
+  }
 }
 
 /**

@@ -98,6 +98,7 @@ import {SystemAppsProcessName} from "./config/Apps/AppsNames";
 import {copy} from "../../../bios/Scripts/DeepClone";
 import {SystemAppsWelcome} from "./SystemComponents/Apps/Welcome";
 import {NAPICUOS_ANGULAR_CONFIG} from "./config/run";
+import {BootComponent} from "../../../bios/components/boot/boot.component";
 
 export class NapicuOS extends System implements Os, onStartUp, onShutDown {
   public static systemTime: string = "NULL";
@@ -369,6 +370,10 @@ export class NapicuOS extends System implements Os, onStartUp, onShutDown {
 
   public static getTimeByFormat(format: string): string {
     return new NapicuDate().format(format);
+  }
+
+  public static getIsAllowedCookies(): boolean{
+    return BootComponent.allowCookies || false;
   }
 
 // * * * Getters * * *
