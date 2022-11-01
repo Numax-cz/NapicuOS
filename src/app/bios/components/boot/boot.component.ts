@@ -10,6 +10,9 @@ import {Boot} from 'src/app/bios/Scripts/exit/Boot';
 import {setBiosSettingsFromCookies} from 'src/app/bios/Scripts/setBiosSettings';
 import {setLanguage} from 'src/app/bios/config/BiosMenuList';
 import {boot_configuration} from "../../config/bootloader";
+import {getCookies} from "../../Scripts/Cookies";
+import {NAPICUOS_COOKIES_NAME} from "../../../system/Systems/NapicuOS/config/Cookies";
+import {cookiesForBisoSettingsAr} from "../../config/Cookies";
 
 
 @Component({
@@ -28,6 +31,7 @@ export class BootComponent implements OnInit, OnDestroy {
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     BootComponent.NavigateRouter = this.router;
+    BootComponent.allowCookies = (getCookies(NAPICUOS_COOKIES_NAME) || getCookies(cookiesForBisoSettingsAr));
   }
 
   get biosTitle(): string {
