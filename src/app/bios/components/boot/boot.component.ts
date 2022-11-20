@@ -31,7 +31,7 @@ export class BootComponent implements OnInit, OnDestroy {
 
   constructor(@Inject(DOCUMENT) private doc: Document, private router: Router) {
     BootComponent.NavigateRouter = this.router;
-    BootComponent.allowCookies = (getCookies(NAPICUOS_COOKIES_NAME) || getCookies(cookiesForBisoSettingsAr));
+    if(BootComponent.allowCookies === null) BootComponent.allowCookies = (getCookies(NAPICUOS_COOKIES_NAME) || getCookies(cookiesForBisoSettingsAr));
   }
 
   get biosTitle(): string {
