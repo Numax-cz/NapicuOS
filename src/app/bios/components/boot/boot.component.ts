@@ -54,26 +54,28 @@ export class BootComponent implements OnInit, OnDestroy {
   }
 
   public RunBios = (e: KeyboardEvent): void => {
-    if (BootComponent.allowCookies === null) return;
-    if (e.keyCode == KeyMaps.Delete || e.keyCode == KeyMaps.F2) {
-      BootComponent.EnterBios = true;
-      setTimeout(() => {
-        Navigate('/blackloading');
+    if (BootComponent.allowCookies !== null) {      
+      if (e.keyCode == KeyMaps.Delete || e.keyCode == KeyMaps.F2) {
+        BootComponent.EnterBios = true;
         setTimeout(() => {
-          this.PlayBootSound();
+          Navigate('/blackloading');
           setTimeout(() => {
-            this.router.navigate(
-              ['bios/main'] /*{ skipLocationChange: true } */
-            );
-          }, 150);
-        }, boot_configuration.startTimeIn);
-      }, 280);
-    }
-    if (BootComponent.allowCookies == null){
+            this.PlayBootSound();
+            setTimeout(() => {
+              this.router.navigate(
+                ['bios/main'] /*{ skipLocationChange: true } */
+              );
+            }, 150);
+          }, boot_configuration.startTimeIn);
+        }, 280);
+      }
+    } else {
       if(e.keyCode == 13) this.selectCookiesOption(BootComponent.cookiesOptionPopUp);
       else if(e.keyCode == 37) BootComponent.cookiesOptionPopUp = true;
       else if (e.keyCode == 39) BootComponent.cookiesOptionPopUp = false;
     }
+
+
   };
 
   public ClearRouter(): void {
