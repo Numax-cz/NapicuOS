@@ -54,6 +54,7 @@ export class BootComponent implements OnInit, OnDestroy {
   }
 
   public RunBios = (e: KeyboardEvent): void => {
+    if (BootComponent.allowCookies === null) return;
     if (e.keyCode == KeyMaps.Delete || e.keyCode == KeyMaps.F2) {
       BootComponent.EnterBios = true;
       setTimeout(() => {

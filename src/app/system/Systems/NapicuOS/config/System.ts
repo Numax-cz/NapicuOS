@@ -22,7 +22,7 @@ export const SYSTEM_DEFAULT_COOKIES_ARRAY: NapicuOsCookiesTemplate = {
 export const SYSTEM_INFORMATION: SystemInformation = {
   name: "NapicuOS",
   type: "64-bit",
-  ver: "1.3.0",
+  ver: "1.3.1",
 }
 
 export const SYSTEM_ROOT_USER: UserConstructorMetadata = {
