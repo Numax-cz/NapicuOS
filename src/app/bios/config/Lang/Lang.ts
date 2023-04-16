@@ -11,7 +11,7 @@ export const LangMenu: Options[] = [
     title: 'Slovenia',
   },
   {
-    title: 'Deutschland',
+    title: 'Deutsch',
   },
 ];
 
