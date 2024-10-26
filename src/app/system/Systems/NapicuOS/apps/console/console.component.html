@@ -9,7 +9,7 @@
   <section id="CommandShellInput">
     <div *ngFor="let i of GetLines; let index = index">
       <div>
-        <span class="TerminalNames">{{ GetUserName }}@{{ GetHostname }}</span>: <span
+        <span class="TerminalNames">{{ GetUserName }}&#64;{{ GetHostname }}</span>: <span
         class="TerminalPath"
       >{{ i.path }}</span
       >$<span class="inputMargin">{{ i.enteredCommand }}</span>
@@ -20,7 +20,7 @@
     </div>
     <div [style.display]="GetActiveCommand ? 'none' : ''" class="line">
       <div>
-        <span class="TerminalNames">{{ GetUserName }}@{{ GetHostname }}</span>: <span
+        <span class="TerminalNames">{{ GetUserName }}&#64;{{ GetHostname }}</span>: <span
         class="TerminalPath"
       >{{ GetPath }}</span
       >$
